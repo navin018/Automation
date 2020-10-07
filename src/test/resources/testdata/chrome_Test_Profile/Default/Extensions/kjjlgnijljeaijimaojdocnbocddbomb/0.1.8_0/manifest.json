@@ -1,0 +1,26 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "browser_action": {
+      "default_icon": {
+         "19": "images/icon-19.png",
+         "38": "images/icon-38.png"
+      },
+      "default_title": "Disable Accenture SignOn"
+   },
+   "description": "Enables Sign On for Accenture Managed Devices.",
+   "homepage_url": "https://support.accenture.com/technology/MyComputer/Pages/AccentureSingleSignOnChromeBrowserExtension.aspx?rd=1&Country=60",
+   "icons": {
+      "128": "images/icon-128.png",
+      "16": "images/icon-16.png",
+      "32": "images/icon-32.png",
+      "48": "images/icon-48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgIFnPmbdslsikgpk9O1rAzyuKPLwVjjhtZTd5QDB2t9UhBuIyjU93Dz8cAkoil4o2RhYIj5V7QPwmxDz3G9XQV37Cn31TFF2hbqGASx6hZaNVINcbbFnRqKiqCJXqOLJvOMx4S4ZzKbAEMhCA1FS+2kAxz3pO9QgwNCKihLXdNPWbBT7jtDggOtBz7W37lEX3TgmKjfEfJGuRmJORWj7AoOhA6IxrH2/x5yKDUjl/rnii88oVADdnfGtfn2FAgQEYtgiN8yIwx5RVnA4PnKoAeUCXFdbL8UBzmJN1w98TcbRwUkE8R4lfJG0VXWEew3mPiVl26qw6n8D4YgFt92mYQIDAQAB",
+   "manifest_version": 2,
+   "name": "Accenture SignOn",
+   "permissions": [ "webRequest", "webRequestBlocking", "*://*.accenture.com/*", "storage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.1.8"
+}

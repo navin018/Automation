@@ -1,0 +1,66 @@
+{
+	"item": {
+
+		
+		"Task_01": {
+			"Summary": "Task_AutomationData",
+			"Description": "Task_Description"
+		},
+
+
+		"Story_01": {
+			"Summary": "Story_AutomationData",
+			"Description": "Story_Description"
+		},
+		
+		"Epic_01": {
+			"EpicName": "Epic_AutomationData",
+			"Summary": "Epic_AutomationData",
+			"Description": "Epic_Description",
+			"Priority": "Medium"
+		},
+		"Bug_01": {
+			"Summary": "Bug_AutomationData",
+			"Description": "Bug_Description",
+			"Severity": "Medium",
+			"Priority": "Medium"
+		},
+		"Feature_01": {
+			"Summary": "Feature_AutomationData",
+			"Description": "Feature_Description",
+			"Severity": "Medium",
+			"Priority": "Medium"
+		},
+		"Impediment_01": {
+			"Summary": "Impediment_AutomationData",
+			"Description": "Impediment_Description"
+		},
+		"Issue_01": {
+			"Summary": "Issue_AutomationData",
+			"Description": "Issue_Description"
+		},
+		"TestCase_01": {
+			"Summary": "TestCase_AutomationData",
+			"Description": "TestCase_Description"
+		},
+		"ProductBacklog_01": {
+			"Summary": "ProductBacklog_AutomationData",
+			"Description": "ProductBacklog_Description"
+		},
+		"Release_01": {
+			"IterationName": "Release_AutomationData",
+			"StartDate": "1/1/2023",
+			"EndDate": "12/1/2023"
+		},
+		"Sprint_01": {
+			"IterationName": "Sprint_AutomationData",
+			"StartDate": "2/1/2023",
+			"EndDate": "5/1/2023"
+		}
+		
+		
+
+
+	}
+
+}
