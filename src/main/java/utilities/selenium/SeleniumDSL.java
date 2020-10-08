@@ -853,7 +853,7 @@ public class SeleniumDSL {
 		}
 //		System.out.println("Generated xpath is"+generatedXpath);
 		/*ExtentTestManager.logInfo("Generated xpath is"+generatedXpath);*/
-    	logger.info("Generated xpath is"+generatedXpath);
+//    	logger.info("Generated xpath is"+generatedXpath);
 		return generatedXpath;
 		
 	}
@@ -875,7 +875,7 @@ public class SeleniumDSL {
 		}
 //		System.out.println("Generated xpath is"+generatedXpath);
 		/*ExtentTestManager.logInfo("Generated xpath is"+generatedXpath);*/
-    	logger.info("Generated xpath is"+generatedXpath);
+//    	logger.info("Generated xpath is"+generatedXpath);
 		return generatedXpath;
 		
 	}
