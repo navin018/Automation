@@ -76,6 +76,7 @@ public class Hooks {
 		
 //		DriverFactory.getInstance().quit();
 //		utilities.selenium.SeleniumDSL.driver().close();
+//		utilities.selenium.SeleniumDSL.driver().switchTo()
 //		utilities.selenium.SeleniumDSL.driver().quit();
 		
 //		Process p = Runtime.getRuntime().exec("cmd /c killFirefox.bat",null,new File("C:\\"));

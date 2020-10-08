@@ -29,6 +29,7 @@ public static String SelectDC_statictxt = "//span[@class='node-name'][text()='{d
 public static String SelectProgram_statictxt = "//span[@class='node-name'][text()='{programname}']";
 
 public static String PickAnAccount_link = "//div[text()='{username}']";
+public static String PickAnAccount1_link = "//div[contains(text(),'{username}')]";
 //public static String SelectDC_statictxt = "//*[text()='{dcname}']";
 ////public static String SelectProgram_statictxt = "//*[text()='{programname}']";
 //public static String SelectProgram_statictxt = "//*[text()='{dcname}']//following::div[text()='{programname}']";

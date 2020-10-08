@@ -42,6 +42,7 @@ public class MyWizardHomePage {
 	public	static void NavigateToHomePage() {
 		
 	try	{
+		
 		Thread.sleep(4000);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		ExpWaitForElementToDisappear(MyWizardUIMap.DCMsg_StaticTxt);
@@ -59,10 +60,18 @@ public class MyWizardHomePage {
 		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		 Thread.sleep(3000);
 		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		 ExpWaitForCondition(MyWizardUIMap.scopeSelector_drpdown);
+		
 		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		 
-		 
+		//if creds are remebered but needs to be selected
+         String username = Property.getProperty("MyWizard_Username");
+         String[] username_sp = username.split("@");
+         if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username")))
+         {
+             clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username"));
+         }
+         
+         ExpWaitForCondition(MyWizardUIMap.scopeSelector_drpdown);
 		}
 		catch(Exception e)
 		{

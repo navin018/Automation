@@ -66,6 +66,7 @@ public class CommonAcrossApps {
 	
 	public static void LoginToMyWizard(){
 		try{
+			
 			driver().get(Property.getProperty("MyWizard_URL"));
 			waitPageToLoad();
 			driver().manage().window().maximize();
@@ -95,11 +96,25 @@ public class CommonAcrossApps {
 			if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount_link, Property.getProperty("MyWizard_Username"), "username")))
 			{ 
 				click(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount_link, Property.getProperty("MyWizard_Username"), "username"));
+				Thread.sleep(2000);
+				if(CheckIfElementExists(MyWizardUIMap.Pwd_txtbox))
+					 enterText(MyWizardUIMap.Pwd_txtbox,Property.getProperty("MyWizard_Password"));
 			 click(MyWizardUIMap.signIn_btn);
 			 ExpWaitForCondition(MyWizardUIMap.Yes_btn);
 			 click(MyWizardUIMap.Yes_btn);
 			 Thread.sleep(4000);
 			}
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 
+			 //if creds are remembered but needs to be selected
+			 String username = Property.getProperty("MyWizard_Username");
+			 String[] username_sp = username.split("@");
+			 if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username")))
+			 {
+			 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username"));
+			 }
+			 
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			 

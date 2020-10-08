@@ -472,6 +472,11 @@ public class SeleniumDSL {
 	public static void sendTab(By by)  {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(Keys.TAB);
     }
+	public static void sendBlankTab()  {
+		Actions ac = new Actions(driver());
+		ac.sendKeys(Keys.TAB);
+		ac.build().perform();
+    }
 	
 	public static void sendEsc()  {
 //		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(Keys.ESCAPE);

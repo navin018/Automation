@@ -174,6 +174,8 @@ public class DriverFactory {
     			options.addArguments("disable-infobars");
     			options.addArguments("start-maximized");
     			 options.addArguments("--disable-extensions");
+    			 options.addArguments("--disable-popup-blocking");
+    			 options.addArguments("test-type");
      		    options.setExperimentalOption("debuggerAddress", "localhost:9014");
     			
     			options.setBinary(Property.getProperty("chromeBinary"));
