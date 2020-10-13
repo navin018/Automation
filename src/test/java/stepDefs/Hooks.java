@@ -47,7 +47,7 @@ public class Hooks {
     	
 		DriverFactory.getInstance().setWebDriver(Property.getProperty("CheckPerformance"));
 		
-		logger.info("Scenario run is starting now");
+		logger.info("Scenario "+scenario.getName()+" run is starting now");
 		logger.info("Scenario start time: "+new Timestamp(System.currentTimeMillis()));
 	}
 
@@ -80,7 +80,7 @@ public class Hooks {
 //		utilities.selenium.SeleniumDSL.driver().quit();
 		
 //		Process p = Runtime.getRuntime().exec("cmd /c killFirefox.bat",null,new File("C:\\"));
-//		Process p = Runtime.getRuntime().exec("cmd /c taskkill /f /im chrome.exe");
+		Process p = Runtime.getRuntime().exec("cmd /c taskkill /f /im chrome.exe");
 //		if(!(driver().toString().contains("null")))
 //		DriverFactory.getInstance().quit();
 //		Process p1 = Runtime.getRuntime().exec("cmd /c start D:\\GIT\\killTemp.bat");

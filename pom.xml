@@ -1,45 +1,58 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>grp1</groupId>
-  <artifactId>almPT</artifactId>
+  <artifactId>ART</artifactId>
   <version>SNAPSHOT-1.0</version>
   <reporting>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>3.0.0-M5</version>
-         <configuration>
-          <outputDirectory>${basedir}/target/newsite</outputDirectory>
-        </configuration>
-      </plugin>
-      <plugin>
+     
+     <!--  <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <version>2.1</version>
         <configuration>
           <outputDirectory>${basedir}/target/newsite</outputDirectory>
         </configuration>
-      </plugin>
+      </plugin> -->
     </plugins>
   </reporting>
   <build>
     <plugins>
+     <!--  plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.0.0-M5</version>
+         <configuration>
+          <outputDirectory>${basedir}/target/newsite</outputDirectory>
+        </configuration>
+      </plugin>-->
+         <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-surefire-plugin</artifactId>
+             <version>2.19.1</version>
+             <configuration>
+                    <properties>
+                      <property>
+                               <name>junit</name>
+                               <value>true</value>
+                      </property>
+                    </properties>
+                    <includes>
+                             <include>**/*Runner.java</include>
+                    </includes>
+              </configuration>
+         </plugin>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.1</version>
+            <version>3.7.0</version>
             <configuration>
                 <source>1.8</source>
                 <target>1.8</target>
+                   <encoding>UTF-8</encoding>   
             </configuration>
         </plugin>
-        <plugin>
-        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-		    <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-surefire-plugin</artifactId>
-		    <version>3.0.0-M4</version>       
-        </plugin>
+      
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-clean-plugin</artifactId>
@@ -155,6 +168,11 @@
       <artifactId>cucumber-junit</artifactId>
       <version>1.2.4</version>
       <scope>test</scope>
+	</dependency>
+	<dependency>
+	    <groupId>info.cukes</groupId>
+	    <artifactId>cucumber-jvm-deps</artifactId>
+	    <version>1.0.5</version>
 	</dependency>
 	<dependency>
       <groupId>info.cukes</groupId>
