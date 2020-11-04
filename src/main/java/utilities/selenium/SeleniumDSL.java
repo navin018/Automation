@@ -885,4 +885,10 @@ public class SeleniumDSL {
 		WebElement element = driver().findElement(by);
 		((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView();", element);
 	}
+	
+	 public static boolean isNullOrEmpty(String str) {
+	        if(str != null && !str.isEmpty())
+	            return false;
+	        return true;
+	    }
 }

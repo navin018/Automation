@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import static utilities.reporting.LogUtil.logger;
+import static utilities.selenium.SeleniumDSL.grabScreenshotForExtentReport;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +20,22 @@ import utilities.general.Property;
 
 
 public class Reporting {
+	
+	public static void create_logs_and_report(String logs, String flag) {
+        if (flag.equals("pass")) {
+            ExtentTestManager.logInfo(logs);
+            logger.info(logs);
+        } else if (flag.equals("fail")) {
+            ExtentTestManager.logFail(logs);
+            logger.info(logs);
+            try {
+//            	 grabScreenshotForExtentReport();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+           
+        }
+    }
 
 	public static void main(String[] args) throws Exception { 
 		

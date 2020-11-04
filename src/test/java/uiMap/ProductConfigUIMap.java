@@ -5,7 +5,8 @@ import org.openqa.selenium.By;
 public class ProductConfigUIMap {
 	
 	public static By searchBox_txtbox = By.xpath("//input[@placeholder='Search...']");
-	
+	public static By LifecycletemplateConfig_statictxt = By.xpath("//a[text()='Lifecycle Template Configuration']");
+	public static By ContractOnBoarding_statictxt = By.xpath("//a[text()='DIY AD Automation']");
 	public static By plusIcon_btn = By.xpath("//i[@class='pi pi-fw pi-chevron-right']");
 	public static By ToasterMsg_HighlightedFeilds_Msg = By.xpath("//div[contains(text(),'Highlighted fields are mandatory to fill')]");
 	public static String toolnameInstance_statixtxt = "//table//tbody//tr[3]//td[1]//span[@title='{toolname}']";
