@@ -61,7 +61,7 @@ Scenario Outline: Client_Native_ADTJIRA(iteration)
 		| applicationname |toolname_Sheet|
 		| MyWizard        |ADT JIRA_Iteration|
 
-@3SEI_ADTJira1
+@3SEI_ADTJira
 Scenario Outline: SEI_ADTJira_IB_Pipelines 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 

@@ -29,9 +29,11 @@ Baseclass(){
 	public String WorkItemExternalId_TestCase;
 	public String WorkItemExternalId_ProductBacklog;
 	public String WorkItemExternalId_Test;
-	
+	public static List<SecurityHeaders> SH = new ArrayList<>();
+	 
 	
 	public String TFS_ReleaseName;
+	
 	public String TFS_ReleaseStartDate;
 	public String TFS_ReleaseEndDate;
 	public String TFS_SprintName;
@@ -54,6 +56,21 @@ Baseclass(){
 	public String RMP_SprintStartDate;
 	public String RMP_SprintEndDate;
 	
+	public boolean SecurityTestsResults;
+	
+	
+	
+	
+	
+	
+	public boolean isSecurityTestsResults() {
+		return SecurityTestsResults;
+	}
+
+
+	public void setSecurityTestsResults(boolean securityTestsResults) {
+		SecurityTestsResults = securityTestsResults;
+	}
 	public static HashMap<String,List<Object>> ClientNativeMatch;
 	
 	public int RandomNumbForMappingRule;

@@ -1,3 +1,21 @@
-2020/10/06-19:13:52.523 5910 Reusing MANIFEST C:\Users\sonal.harish.nagda\workspace\almPT\src\test\resources\testdata\chrome_Test_Profile\Default\Session Storage/MANIFEST-000001
-2020/10/06-19:13:52.523 5910 Recovering log #3
-2020/10/06-19:13:52.523 5910 Reusing old log C:\Users\sonal.harish.nagda\workspace\almPT\src\test\resources\testdata\chrome_Test_Profile\Default\Session Storage/000003.log 
+2020/11/03-16:00:31.414 4c30 Reusing MANIFEST C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Session Storage/MANIFEST-000001
+2020/11/03-16:00:31.415 4c30 Recovering log #973
+2020/11/03-16:00:31.415 4c30 Reusing old log C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Session Storage/000973.log 
+2020/11/03-16:09:22.514 2c54 Level-0 table #977: started
+2020/11/03-16:09:22.521 2c54 Level-0 table #977: 34781 bytes OK
+2020/11/03-16:09:22.525 2c54 Delete type=0 #973
+2020/11/03-16:16:16.401 2bd4 Level-0 table #979: started
+2020/11/03-16:16:16.417 2bd4 Level-0 table #979: 820269 bytes OK
+2020/11/03-16:16:16.421 2bd4 Delete type=0 #976
+2020/11/03-16:16:16.422 4ba8 Compacting 4@0 + 1@1 files
+2020/11/03-16:16:16.463 4ba8 Generated table #980@0: 633 keys, 1986164 bytes
+2020/11/03-16:16:16.463 4ba8 Compacted 4@0 + 1@1 files => 1986164 bytes
+2020/11/03-16:16:16.466 4ba8 compacted to: files[ 0 1 1 0 0 0 0 ]
+2020/11/03-16:16:16.467 4ba8 Delete type=2 #969
+2020/11/03-16:16:16.467 4ba8 Delete type=2 #971
+2020/11/03-16:16:16.467 4ba8 Delete type=2 #974
+2020/11/03-16:16:16.467 4ba8 Delete type=2 #977
+2020/11/03-16:16:16.467 4ba8 Delete type=2 #979
+2020/11/03-16:25:34.232 502c Level-0 table #982: started
+2020/11/03-16:25:34.250 502c Level-0 table #982: 850443 bytes OK
+2020/11/03-16:25:34.256 502c Delete type=0 #978
