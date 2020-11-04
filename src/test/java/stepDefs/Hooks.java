@@ -63,9 +63,11 @@ public class Hooks {
 		if (scenario.isFailed()){
 			ExtentTestManager.getTest().log(LogStatus.FAIL, scenario.getName());	
 //			System.out.println(scenario.getName());
+			logger.info("=======================================================================");
 			logger.info("Scenario "+featureName+" FAILED during execution. Scenario end time: "+new Timestamp(System.currentTimeMillis()));
 		}else{
-			ExtentTestManager.getTest().log(LogStatus.PASS, scenario.getName());							 		 				
+			ExtentTestManager.getTest().log(LogStatus.PASS, scenario.getName());	
+			logger.info("=======================================================================");
 			logger.info("Scenario "+featureName+" PASSED during execution. Scenario end time: "+new Timestamp(System.currentTimeMillis()));
 		}
 			

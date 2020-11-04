@@ -134,7 +134,10 @@ public class DriverFactory {
     		driver.set(new RemoteWebDriver(new URL(Context.getInstance().getServerAddress()), cap));
     	}else{
     		if(Context.getInstance().getBrowserName().equalsIgnoreCase("chrome")){
+    			if(Property.getProperty("WindowsOrLinux").equalsIgnoreCase("Windows"))
     			System.setProperty("webdriver.chrome.driver", Property.getProperty("chromeDriver"));
+    			if(Property.getProperty("WindowsOrLinux").equalsIgnoreCase("Linux"))
+    				System.setProperty("webdriver.chrome.driver", Property.getProperty("chromeDriver_lx"));
     			System.setProperty("webdriver.chrome.silentOutput", "true");
     			
     			//code to remember vip symantec
