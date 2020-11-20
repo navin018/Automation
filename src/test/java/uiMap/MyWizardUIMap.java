@@ -9,9 +9,12 @@ public class MyWizardUIMap {
 
 public static By signIn_txtbox=By.xpath("//input[@type='email' and @name='loginfmt']");
 public static By Next_btn=By.xpath("//input[@type='submit']");
-
+public static String enteredUsername_txtbox = "//input[@placeholder='Enterprise ID' and @value='{username}']";
 public static By Pwd_txtbox=By.xpath("//input[@type='password' and @name='passwd']");
 public static By signIn_btn=By.xpath("//input[@type='submit']");
+
+public static By Pwd_txtbox1=By.xpath("//input[@type='password' and @name='Password']");
+public static By signIn_btn1=By.xpath("//span[@id='submitButton']");
 public static By Yes_btn=By.xpath("//input[@type='submit'][@class='button ext-button primary ext-primary']");
 
 
@@ -29,6 +32,7 @@ public static String SelectDC_statictxt = "//span[@class='node-name'][text()='{d
 public static String SelectProgram_statictxt = "//span[@class='node-name'][text()='{programname}']";
 
 public static String PickAnAccount_link = "//div[text()='{username}']";
+public static String PickAnAccountnew_link = "//div[@data-test-id='{username}']";
 public static String PickAnAccount1_link = "//div[contains(text(),'{username}')]";
 //public static String SelectDC_statictxt = "//*[text()='{dcname}']";
 ////public static String SelectProgram_statictxt = "//*[text()='{programname}']";

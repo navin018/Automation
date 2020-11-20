@@ -53,7 +53,7 @@ public class ClientNativeAPI {
 			 RequestSpecification request = RestAssured.given();
 			 	
 			 request.header("Content-Type", "application/json")
-			        .header("Authorization","Bearer "+Property.getProperty("Token"))
+			        .header("Authorization","Bearer "+Property.getToken("Token"))
 			        .header("AppServiceUId",Property.getProperty("AppServiceUId"));
 			 
 			 JSONObject requestParams = new JSONObject();
@@ -116,11 +116,11 @@ public class ClientNativeAPI {
 									    }
 								 }
 					 //comment out the below part
-//					 for(Map.Entry<String, List<Object>> entry : alldata.entrySet())
-//					 {
-//						 System.out.println(entry.getKey() + " = " + entry.getValue());
-//					 }
-//					 System.out.println("_________________________________");
+					 for(Map.Entry<String, List<Object>> entry : alldata.entrySet())
+					 {
+						 System.out.println(entry.getKey() + " = " + entry.getValue());
+					 }
+					 System.out.println("_________________________________");
 					 
 					 return alldata;
 					

@@ -2039,7 +2039,7 @@ public static void verifyClientNativeDetails(String toolname){
 //					  //system.out.println(currentProperty.size());
 //					  assertEquals(totalrowcount-1, currentProperty.size());
 					  
-					  //verifyEntityPropertyToggleButton(totalrowcount);	
+					  verifyEntityPropertyToggleButton(totalrowcount);	
 					  verifyEntityProperty("State", totalrowcount,currentProperty);
 					  verifyEntityPropertyGUId("State", totalrowcount,currentPropertyGUId);
 					 	
@@ -2064,10 +2064,10 @@ public static void verifyClientNativeDetails(String toolname){
 //					  //system.out.println(currentProperty.size());
 //					  assertEquals(totalrowcount-1, currentProperty.size());
 					 
-					 
+					  verifyEntityPropertyToggleButton(totalrowcount);
 					  verifyEntityPropertyForCategory("Category",totalrowcount,currentProperty);
 					  verifyEntityPropertyGUIdForCategory("Category",totalrowcount,currentPropertyGUId);
-					
+					 	
 					  
 					  clickJS(ProductConfigUIMap.ContinueToSaveAttribute_PropertyValuePage_btn);
 					  Thread.sleep(5000);
@@ -2089,7 +2089,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);	
+				  verifyEntityPropertyToggleButton(totalrowcount);	
 				  verifyEntityProperty("Priority",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Priority",totalrowcount,currentPropertyGUId);
 					
@@ -2113,7 +2113,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);	
+				  verifyEntityPropertyToggleButton(totalrowcount);	
 				  verifyEntityProperty("Type",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Type",totalrowcount,currentPropertyGUId);
 					
@@ -2137,7 +2137,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);	
+				  verifyEntityPropertyToggleButton(totalrowcount);	
 				  verifyEntityProperty("Type",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Type",totalrowcount,currentPropertyGUId);
 					
@@ -2161,7 +2161,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Exposure",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Exposure",totalrowcount,currentPropertyGUId);
 				  
@@ -2187,7 +2187,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Exposure",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Exposure",totalrowcount,currentPropertyGUId);
 				  
@@ -2212,7 +2212,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Exposure",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Exposure",totalrowcount,currentPropertyGUId);
 				  
@@ -2236,7 +2236,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Severity",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Severity",totalrowcount,currentPropertyGUId);
 				  
@@ -2260,7 +2260,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("ExposureThreshold",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("ExposureThreshold",totalrowcount,currentPropertyGUId);
 				  
@@ -2285,7 +2285,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Proximity",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Proximity",totalrowcount,currentPropertyGUId);
 				  
@@ -2309,7 +2309,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Proximity",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Proximity",totalrowcount,currentPropertyGUId);
 				  
@@ -2334,7 +2334,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Probability",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Probability",totalrowcount,currentPropertyGUId);
 				  
@@ -2358,7 +2358,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("EscalationLevel",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("EscalationLevel",totalrowcount,currentPropertyGUId);
 				  
@@ -2382,7 +2382,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("EscalationLevel",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("EscalationLevel",totalrowcount,currentPropertyGUId);
 				  
@@ -2409,7 +2409,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Methodology",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Methodology",totalrowcount,currentPropertyGUId);
 				  
@@ -2433,7 +2433,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("IterationPhase",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("IterationPhase",totalrowcount,currentPropertyGUId);
 				  
@@ -2457,7 +2457,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Complexity",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Complexity",totalrowcount,currentPropertyGUId);
 				  
@@ -2481,7 +2481,7 @@ public static void verifyClientNativeDetails(String toolname){
 //				  //system.out.println(currentProperty.size());
 //				  assertEquals(totalrowcount-1, currentProperty.size());
 				  
-				  //verifyEntityPropertyToggleButton(totalrowcount);		
+				  verifyEntityPropertyToggleButton(totalrowcount);		
 				  verifyEntityProperty("Type",totalrowcount,currentProperty);
 				  verifyEntityPropertyGUId("Type",totalrowcount,currentPropertyGUId);
 				  
@@ -2649,22 +2649,22 @@ public static void verifyEntityPropertyGUIdForCategory(String property,int total
 	
 }
 
-//public static void //verifyEntityPropertyToggleButton(int totalrowcount){
-//	
-//	try{
-//		  for(int p=1;p<totalrowcount;p++)
-//		  {
-//			  String togglevalue = getAttribute(prepareWebElementWithDynamicXpath(ProductConfigUIMap.EntityPropertyToggle_btn, String.valueOf(p), "int"),"aria-pressed");
-//			  if(!togglevalue.equalsIgnoreCase("true"))
-//				  clickJS(prepareWebElementWithDynamicXpath(ProductConfigUIMap.EntityPropertyToggle_btn, String.valueOf(p), "int"));
-//			 
-//		  }
-//	}
-//	catch(Exception e)
-//	{
-//		e.printStackTrace();
-//	}
-//}
+public static void verifyEntityPropertyToggleButton(int totalrowcount){
+	
+	try{
+		  for(int p=1;p<totalrowcount;p++)
+		  {
+			  String togglevalue = getAttribute(prepareWebElementWithDynamicXpath(ProductConfigUIMap.EntityPropertyToggle_btn, String.valueOf(p), "int"),"aria-pressed");
+			  if(!togglevalue.equalsIgnoreCase("true"))
+				  clickJS(prepareWebElementWithDynamicXpath(ProductConfigUIMap.EntityPropertyToggle_btn, String.valueOf(p), "int"));
+			 
+		  }
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+}
 	
 public static void navigateToEntityPropertyTable(String EntityProperty){
 	

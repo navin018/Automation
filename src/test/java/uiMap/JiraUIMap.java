@@ -16,6 +16,7 @@ public static By signInPwd_txtbox=By.xpath("//input[@id='passwordInput' and @nam
 public static By signIn_btn=By.xpath("//span[@id='submitButton']");
 
 public static By Create_link=By.xpath("//a[@id='create_link']");
+public static By CreateIssue_Statictxt=By.xpath("//h2[@title='Create Issue']");
 public static By CreateWokitem_dropdown=By.xpath("//input[@id='issuetype-field']");
 public static By SelectProject_dropdown=By.xpath("//input[@id='project-field']");
 
@@ -106,5 +107,8 @@ public static By CreateDisabled_btn = By.xpath("//input[@name='Edit' and @value=
 public static String SprintNameFromRMP_statictxt = "//span[@data-fieldname='sprintName' and @data-fieldvalue='{sprintname}']";
 public static String SprintStartDateFromRMP_statictxt ="//span[@data-fieldname='sprintName' and @data-fieldvalue='{sprintname}']//following::span[@data-fieldname='startDate'][1]";
 public static String SprintEndDateFromRMP_statictxt ="//span[@data-fieldname='sprintName' and @data-fieldvalue='{sprintname}']//following::span[@data-fieldname='endDate'][1]";
+public static By UserName_txtbox = By.xpath("//input[@name='os_username']");
+public static By Pwd_txtbox = By.xpath("//input[@name='os_password']");
+public static By login_btn1 = By.xpath("//input[@name='login' and @value='Log In']");
 
 }

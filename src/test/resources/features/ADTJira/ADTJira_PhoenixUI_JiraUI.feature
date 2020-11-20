@@ -19,10 +19,10 @@ Scenario Outline: ProdConfigCheck_ADTJIRA
 	And i click on tile "Product Configuration" 
 	Then i select client and DC for "MyWizard" 
 	And i select the "ADT JIRA" in Manage Product Configuration page 
-	And i navigate to "Product Instance Extension(s)" section 
-	And i add Product Instance Extension(s) details in the page for "ADT JIRA" 
-	And i hit the save button in Product Config page 
-	And i select the "ADT JIRA" in Manage Product Configuration page 
+#	And i navigate to "Product Instance Extension(s)" section 
+#	And i add Product Instance Extension(s) details in the page for "ADT JIRA" 
+#	And i hit the save button in Product Config page 
+#	And i select the "ADT JIRA" in Manage Product Configuration page 
 	And i navigate to "Delivery Construct Association" section 
 	And i add Delivery construct association details in the page for "ADT JIRA" 
 	And i navigate to "Product Instance Entities" section 
@@ -41,7 +41,9 @@ Scenario Outline: Client_Native_ADTJIRA(!Iteraion)
 	Then i select client and DC for "<applicationname>" 
 	And i select the "ADT JIRA" in Manage Product Configuration page 
 	And i navigate to "Product Instance Entities" section 
+	And i generate a token for "DevTest" environment 
 	And i verify the ClientNative details for "<toolname_Sheet>" 
+	And i hit the save button in Product Config page 
 #	
 	Examples: 
 		| applicationname |toolname_Sheet|
@@ -55,7 +57,9 @@ Scenario Outline: Client_Native_ADTJIRA(iteration)
 	Then i select client and DC for "<applicationname>" 
 	And i select the "mywizardinstance" in Manage Product Configuration page 
 	And i navigate to "Product Instance Entities" section 
+	And i generate a token for "DevTest" environment 
 	And i verify the ClientNative details for "<toolname_Sheet>" 
+	And i hit the save button in Product Config page 
 #	
 	Examples: 
 		| applicationname |toolname_Sheet|
@@ -133,6 +137,7 @@ Scenario Outline: ADTJira_WorkitemCcreation
 	And i create an "<Team>" in Jira 
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" 
 	And i put a explicit wait of "600000" 
+	And i generate a token for "DevTest" environment 
 	
 	Examples: 
 		| applicationname | task    | story    | risk    |Requirement| Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|

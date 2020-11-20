@@ -111,7 +111,20 @@ public class CommonSteps {
 		
 	}
 	
-
+	@Then("^i generate a token for \"([^\"]*)\" environment$")
+	public void generateToken(String Env) throws Throwable {
+		try{
+			CommonFunctions.generateToken(Env);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 
 
 	

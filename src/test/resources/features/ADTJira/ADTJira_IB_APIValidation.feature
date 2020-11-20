@@ -1,6 +1,7 @@
 @6IBValidation_ADTJira
 Feature: ADTJira_IB_Validation
 
+
 Scenario: ADTJIRA_Task 
 
 	And i verify the "Inbound" "Task" details for "ADT JIRA" 
@@ -15,11 +16,12 @@ Scenario: ADTJIRA_Story
 
 	And i verify the "Inbound" "Story" details for "ADT JIRA" 
 
+
 Scenario: ADTJIRA_Risk 
 
 	And i verify the "Inbound" "Risk" details for "ADT JIRA" 
 	
-#@6IBValidation_ADTJira
+
 Scenario: ADTJIRA_Impediment 
 
 	And i verify the "Inbound" "Impediment" details for "ADT JIRA" 

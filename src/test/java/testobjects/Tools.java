@@ -172,7 +172,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team")))
 					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="WorkItems"; 
 				 if(workitem.equalsIgnoreCase("Deliverable"))
-					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="WorkItems";
+					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Deliverables";
 				 if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
 					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Iterations";	
 				 if(workitem.equalsIgnoreCase("Test"))
@@ -253,7 +253,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 
 					//DeliveryConstructUId for all workitems 
 				 if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Team")))
-				 Assert.assertTrue(DCUid.toString().contains(Property.getProperty("DeliveryConstructUId_L1")),workitem+" is not associated to the required DCUId for tool "+toolname);
+				 Assert.assertTrue(DCUid.toString().contains(Property.getProperty("DeliveryConstructUId_L2")),workitem+" is not associated to the required DCUId for tool "+toolname);
 				 
 				 if(workitem.equalsIgnoreCase("Team"))
 				 {
@@ -328,7 +328,7 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	RequestSpecification request = RestAssured.given();
  	
 	 request.header("Content-Type", "application/json")
-	        .header("Authorization","Bearer "+Property.getProperty("Token"))
+	        .header("Authorization","Bearer "+Property.getToken("Token"))
 	        .header("AppServiceUId",Property.getProperty("AppServiceUId"));
 	 
 	 JSONObject requestParams = new JSONObject();
@@ -346,7 +346,7 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")  || workitem.equalsIgnoreCase("Team")))
 	 {
 	 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
-	 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L1"));
+	 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
 	 requestParams.put("WorkItemTypeUId",WorkItemTypeUId);
 	//if WorkItemExternalId is equals to null, assert fail
 	 requestParams.put("WorkItemExternalId", WorkItemExternalId);
@@ -361,34 +361,34 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	 if(workitem.equalsIgnoreCase("Deliverable") )
 	 {
 		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
-		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L1"));
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
 		 requestParams.put("DeliverableExternalId",WorkItemExternalId);
 		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Deliverables";				 
 	 }
 	 if(workitem.equalsIgnoreCase("Test") )
 	 {
 		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
-		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L1"));
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
 		 requestParams.put("TestExternalId",WorkItemExternalId);
 		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Tests";				 
 	 }
 	 if(workitem.equalsIgnoreCase("Requirement") )
 	 {
 		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
-		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L1"));
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
 		 requestParams.put("RequirementExternalId",WorkItemExternalId);
 		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Requirements";				 
 	 }
 	 if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
 	 {
 		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
-		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L1"));
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
 		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Iterations";	
 	 }
 	 if(workitem.equalsIgnoreCase("Team"))
 	 {
 		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
-		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L1"));
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
 		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="DeliveryConstructsByDeliveryConstructType";	
 	 }
 	
@@ -400,7 +400,7 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	 if(FlatNonFlarURL.equalsIgnoreCase("NonFlat"))
 		 QueryType = "Query";
 	 if(!workitem.equalsIgnoreCase("Team"))
-	 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"/"+QueryType+"?clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L1")+"&includeCompleteHierarchy=false";
+	 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"/"+QueryType+"?clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 	 if(workitem.equalsIgnoreCase("Team"))
 		 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"?clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId=null&deliveryConstructTypeUId=00200020-0000-0000-0000-000000000000";
 	
@@ -571,7 +571,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 RequestSpecification request = RestAssured.given();
 								 	
 				request.header("Content-Type", "application/json")
-						.header("Authorization","Bearer "+Property.getProperty("Token"))
+						.header("Authorization","Bearer "+Property.getToken("Token"))
 						.header("AppServiceUId",Property.getProperty("AppServiceUId_OB"))
 						.header("CorrelationUId",CorrelationUID);
 									 
@@ -585,11 +585,12 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				
 				String posturlmerge="";
 				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")))
-				posturlmerge = mywizURL+"/v1/MergeWorkItem?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L1")+"&includeCompleteHierarchy=false";
+				posturlmerge = mywizURL+"/v1/MergeWorkItem?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Test"))
-					posturlmerge = mywizURL+"/v1/Test1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L1")+"&includeCompleteHierarchy=false";
+					posturlmerge = mywizURL+"/v1/Test1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Requirement"))
-					posturlmerge = mywizURL+"/v1/Requirement?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L1")+"&includeCompleteHierarchy=false";
+					posturlmerge = mywizURL+"/v1/Requirement?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
+				
 				
 				
 				Response response = request.post(posturlmerge);
@@ -644,7 +645,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				Assert.assertEquals(TitleFromAPI, workitem_title,"title mismatch for workitem "+workitem +" for the given tool "+toolname);
 				Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
 				List<Object>  DCUid = js.getList("WorkItems.WorkItemDeliveryConstructs.DeliveryConstructUId");
-				  Assert.assertTrue(!DCUid.toString().contains(Property.getProperty("DeliveryConstructUId_L1")),workitem+" is not associated to the required DCUId for tool "+toolname);
+				  Assert.assertTrue(!DCUid.toString().contains(Property.getProperty("DeliveryConstructUId_L2")),workitem+" is not associated to the required DCUId for tool "+toolname);
 			}
 			catch(Exception e)
 			{

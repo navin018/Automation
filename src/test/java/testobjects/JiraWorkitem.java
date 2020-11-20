@@ -108,7 +108,7 @@ import java.util.Random;
 				}
 				
 				click(JiraUIMap.Create_btn);
-				 Thread.sleep(3000);
+				 Thread.sleep(10000);
 				 ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
 				 waitPageToLoad();
 				
@@ -151,7 +151,7 @@ import java.util.Random;
 				waitPageToLoad();
 				click(JiraUIMap.Project_link);
 				click(JiraUIMap.ViewAllProject_link);
-				
+				Thread.sleep(10000);
 //				
 			
 				enterText(JiraUIMap.SearchBoxAllPorjects_txtbox, Property.getProperty("JiraProject"));

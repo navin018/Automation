@@ -33,14 +33,15 @@ public class MyWizardSteps {
 	@Then("^i click on tile \"([^\"]*)\"$")
 	public void i_click_on_tile(String Tilename) throws Throwable {
 		
-	  MyWizardHomePage.clickOnTile(Tilename);
+		MyWizardHomePage.clickOnTile(Tilename);
+		MyWizardHomePage.VerifyIfTileisLoaded(Tilename);
 
-	
 	}
 	
 	@Then("^i navigate to the homepage of \"([^\"]*)\" from \"([^\"]*)\"$")
 	public void i_navigate_to_the_homepage_of_from(String arg1, String arg2) throws Throwable {
 		MyWizardHomePage.NavigateToHomePage();
+	
 	}
 	
 	@Then("^i verify and add the rules if missing for the \"([^\"]*)\"$")

@@ -34,11 +34,18 @@ public class ProductConfigUIMap {
 	
 
 	
-	public static String getSelectedProjectValueFromDropDown_L1_DC_drpdown = "//span[text()='{DCname}']//following::select[1]";
-	public static String getSelectedBoardValueFromDropDown_L1_DC_drpdown = "//span[text()='{DCname}']//following::select[2]";
+//	public static String getSelectedProjectValueFromDropDown_L1_DC_drpdown = "//span[text()='{DCname}']//following::select[1]";
+//	public static String getSelectedBoardValueFromDropDown_L1_DC_drpdown = "//span[text()='{DCname}']//following::select[2]";
 	
-	public static String getSelectedProjectValueFromDropDown_L2_DC_drpdown = "//span[text()='{programname}']//following::select[1]";
-	public static String getSelectedBoardValueFromDropDown_L2_DC_drpdown = "//span[text()='{programname}']//following::select[2]";
+	public static String getSelectedProjectValueFromDropDown_L1_DC_drpdown = "//span[text()='{DCname}']//ancestor::tr/child::td[1]/following::select[1]";
+	public static String getSelectedBoardValueFromDropDown_L1_DC_drpdown = "//span[text()='{DCname}']//ancestor::tr/child::td[2]/following::select[1]";
+	
+	
+//	public static String getSelectedProjectValueFromDropDown_L2_DC_drpdown = "//span[text()='{programname}']//following::select[1]";
+//	public static String getSelectedBoardValueFromDropDown_L2_DC_drpdown = "//span[text()='{programname}']//following::select[2]";
+	
+	public static String getSelectedProjectValueFromDropDown_L2_DC_drpdown = "//span[text()='{programname}']//ancestor::tr/child::td[1]/following::select[1]";
+	public static String getSelectedBoardValueFromDropDown_L2_DC_drpdown = "//span[text()='{programname}']//ancestor::tr/child::td[2]/following::select[1]";
 	
 	public static By AddEntity_link = By.xpath("//span[text()='Add Entity']");
 	
