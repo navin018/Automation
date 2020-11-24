@@ -55,7 +55,8 @@ public static By DynamicWorkItemID_txt = By.xpath("//a[@class='issue-created-key
 
 public static By StoryPoints_txtbox = By.xpath("//label[text()='Story Points']//following::input[1]");
 
-public static By Releases_Link = By.xpath("//a[@class='aui-nav-item '][contains(@href,'release-page')]");
+//public static By Releases_Link = By.xpath("//a[@class='aui-nav-item '][contains(@href,'release-page')]");
+public static By Releases_Link = By.xpath("//span[text()='Releases']");
 public static By SearchReleases_txtbox = By.xpath("//input[@id='version-filter-text']");
 public static By SearchedReleaseName_txt = By.xpath("//table[@id='versions-table']//tbody//tr[1]//td[2]//a[1]");
 public static By SearchedReleaseStartDate_txt = By.xpath("//table[@id='versions-table']//tbody//tr[1]/td[5]/div[1]/time[@class='date']");
