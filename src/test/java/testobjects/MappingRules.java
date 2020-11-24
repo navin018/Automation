@@ -307,6 +307,7 @@ import java.util.Random;
 				{
 					clickJS(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.Entity_statictxt, Entity_NonWorkItem, "workitem"));
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					Thread.sleep(3000);
 					clickJS(MyWizardMappingRuleUIMap.viewEdit_link);
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				}
@@ -327,7 +328,7 @@ import java.util.Random;
 				String rulename ="("+ "Project='"+Property.getProperty("RulesForProject")+"')";
 				enterText(MyWizardMappingRuleUIMap.xpathrule_txtbox,rulename);
 				Thread.sleep(2000);
-				clickJS(MyWizardMappingRuleUIMap.SaveRule_btn);
+				singleClick(MyWizardMappingRuleUIMap.SaveRule_btn);
 				Thread.sleep(1000);
 				ExpWaitForCondition(MyWizardMappingRuleUIMap.RuleSavedSuccesfully_statictxt);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
