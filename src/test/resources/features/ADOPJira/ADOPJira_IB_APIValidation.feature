@@ -3,7 +3,7 @@ Feature: ADOPJira_IB_Validation
 
 
 Scenario: ADOPJIRA_Task 
-
+	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "ADOP JIRA" 
 	
 
