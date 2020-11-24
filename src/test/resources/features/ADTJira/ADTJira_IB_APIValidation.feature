@@ -1,7 +1,7 @@
 @6IBValidation_ADTJira
 Feature: ADTJira_IB_Validation
 
-
+@adttask
 Scenario: ADTJIRA_Task 
 	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "ADT JIRA" 
