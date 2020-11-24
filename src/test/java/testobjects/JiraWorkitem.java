@@ -288,7 +288,7 @@ import java.util.Random;
 						}
 						else if(ReleaseOrSprint.contains("Sprint"))
 						{
-							click(JiraUIMap.BacklogIcon_Img);
+							clickJS(JiraUIMap.BacklogIcon_Img);
 							Thread.sleep(10000);
 							ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
 							String SprintName = getAttribute(JiraUIMap.SprintName_Statictxt, "data-fieldvalue");
