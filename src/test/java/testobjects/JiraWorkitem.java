@@ -265,11 +265,11 @@ import java.util.Random;
 					String newReleasewithAppendedNumb = wii.ReleaseName+randomNumbForRelease;
 					int randomNumbForSrpint = 100 + rnd.nextInt(900);
 					
-					
+//					release
 						if(ReleaseOrSprint.contains("Release"))
 						{
 							waitPageToLoad();
-							click(JiraUIMap.Releases_Link);
+							clickJS(JiraUIMap.Releases_Link);
 							waitPageToLoad();
 							Thread.sleep(3000);
 							if(CheckIfElementExists(JiraUIMap.ReleaseVersionName_txtBox))
@@ -277,7 +277,7 @@ import java.util.Random;
 							enterText(JiraUIMap.ReleaseVersionName_txtBox,newReleasewithAppendedNumb);
 							enterText(JiraUIMap.ReleaseStartDate_txtBox,wii.ReleaseStartDate);
 							enterText(JiraUIMap.ReleaseEndDate_txtBox,wii.ReleaseEndDate);
-							click(JiraUIMap.AddRelease_btn);
+							clickJS(JiraUIMap.AddRelease_btn);
 							waitPageToLoad();
 							Baseclass.getInstance().Jira_ReleaseName =newReleasewithAppendedNumb;
 							Baseclass.getInstance().Jira_ReleaseStartDate= wii.ReleaseStartDate;
@@ -292,7 +292,7 @@ import java.util.Random;
 							Thread.sleep(10000);
 							ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
 							String SprintName = getAttribute(JiraUIMap.SprintName_Statictxt, "data-fieldvalue");
-							click(JiraUIMap.SprintName_Statictxt);
+							clickJS(JiraUIMap.SprintName_Statictxt);
 							Thread.sleep(2000);
 							ClearTextAndEnterData("Sprint"+randomNumbForSrpint);
 							Thread.sleep(4000);
