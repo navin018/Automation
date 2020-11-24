@@ -824,18 +824,19 @@ public static void checkAndAddTest(){
 						//get the status of the pipeline. success or not
 						if(getText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_pipelineName_statictxt,  String.valueOf(i), "int")).contains("Success"))
 						{
-							if(IBorOB.equalsIgnoreCase("IB"))
-							{
-								clickJS(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column5_ManageIntegrationParamters_statictxt,  String.valueOf(i), "int"));
-								datamismatch = verifyProjectNameProjectKey(toolname);
-								if(datamismatch)
-									finaldeploy=true;
-								clickJS(ProductConfigUIMap.CloseAttributesWidow_btn);
-							}
-							if(IBorOB.equalsIgnoreCase("OB"))
-							{
-								//do nothing. as project name and project key attributes are missing
-							}
+							//as per suseela, we need not touch the pipeline if the status of the pipeline is success
+		//							if(IBorOB.equalsIgnoreCase("IB"))
+		//							{
+		//								clickJS(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column5_ManageIntegrationParamters_statictxt,  String.valueOf(i), "int"));
+		//								datamismatch = verifyProjectNameProjectKey(toolname);
+		//								if(datamismatch)
+		//									finaldeploy=true;
+		//								clickJS(ProductConfigUIMap.CloseAttributesWidow_btn);
+		//							}
+		//							if(IBorOB.equalsIgnoreCase("OB"))
+		//							{
+		//								//do nothing. as project name and project key attributes are missing
+		//							}
 						}
 						else
 							finaldeploy=true;
@@ -848,7 +849,8 @@ public static void checkAndAddTest(){
 				}
 				
 			if(finaldeploy)
-				Baseclass.getInstance().DeployPipeline=true;
+//				Baseclass.getInstance().DeployPipeline=true;
+				Assert.fail("Pipeline/Pipelines missing or not in Success state for the tool "+toolname);
 				
 		}
 		catch(Exception e)
