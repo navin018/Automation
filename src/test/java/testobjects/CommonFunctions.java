@@ -1,5 +1,6 @@
 package testobjects;
 
+import static utilities.reporting.LogUtil.logger;
 import static utilities.reporting.Reporting.create_logs_and_report;
 
 import static utilities.selenium.SeleniumDSL.*;
@@ -56,6 +57,7 @@ public class CommonFunctions {
 			 Thread.sleep(10000);
 			 if(response.getStatusCode()!=200)
 				 {
+					logger.info("Got "+response.getStatusCode()+" reponse code for "+env+" for the Token Generation ");
 						 Assert.fail("Got "+response.getStatusCode()+" reponse code for "+env+" for the Token Generation ");
 						
 				 }

@@ -21,7 +21,8 @@ public static By Yes_btn=By.xpath("//input[@type='submit'][@class='button ext-bu
 public static By SettingIcon_Image = By.xpath("//span[@title='Settings']");
 public static By AdminSetting_statictxt= By.xpath("//div[@title='Admin Settings']");
 
-
+public static By PickAnAccount_staticTxt = By.xpath("//div[text()='Pick an account']");
+public static By UserAnotherAccount_link = By.xpath("//div[text()='Use another account']");
 
 public static By DC_Drpdwn= By.xpath("//span[@class='c-icons__text-sub']");
 public static By ScopeSelectorEnterTxt_txtbox= By.xpath("//input[@placeholder='Enter minimum three characters to search...']");

@@ -9,6 +9,7 @@ import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
 import net.lightbody.bmp.proxy.CaptureType;
 
+import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
 import utilities.general.Property;
 
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.exec.ExecuteException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +32,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import uiMap.MyWizardMappingRuleUIMap;
 import uiMap.MyWizardUIMap;
-
+import uiMap.ProductConfigUIMap;
+import uiMap.SecurityTestsUIMap;
 import utilities.selenium.DriverFactory;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
@@ -64,18 +67,25 @@ public class MyWizardHomePage {
 		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		 
 		//if creds are remebered but needs to be selected
-         String username = Property.getProperty("MyWizard_Username");
-         String[] username_sp = username.split("@");
-         if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username")))
-         {
-             clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username"));
-         }
+//         String username = Property.getProperty("MyWizard_Username");
+//         String[] username_sp = username.split("@");
+		 if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccountnew_link, Property.getProperty("MyWizard_Username"), "username")))
+		 {
+			 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccountnew_link, Property.getProperty("MyWizard_Username"), "username"));
+				Thread.sleep(5000);
+		 }
+//         if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username")))
+//         {
+//             clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username"));
+//         }
          
          ExpWaitForCondition(MyWizardUIMap.scopeSelector_drpdown);
+         Thread.sleep(3000);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue loading home page");
 			Assert.fail("Issue loading home page");
 		}
 		}
@@ -204,6 +214,7 @@ public class MyWizardHomePage {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue selecting client or DC");
 			Assert.fail("Issue selecting client or DC");
 		}
 	}
@@ -222,10 +233,124 @@ public class MyWizardHomePage {
 		}
 		   catch(Exception e)
 	    {
+			   logger.info("Either tile "+tile+" not found or issue loading the tile");
 	    	Assert.fail("Either tile "+tile+" not found or issue loading the tile");
 	  
 	    	e.printStackTrace();
 	    }
+	}
+
+	public static void VerifyIfTileisLoaded(String TilePageName) throws Exception {
+		switch(TilePageName){
+		case "Product Configuration":
+		case "Account Management":
+		case "Organization (Delivery) Structure Type":
+		case "AppServices Configuration":
+		case "Team Configuration":
+		case "Access Role":
+		case "Dataflow Tracking":
+		case "Client Configuration":
+		case "Iteration Reconciliation":
+		case "Event & Notification":
+			
+		
+				try{
+				ExpWaitForCondition(ProductConfigUIMap.searchBox_txtbox);
+					}
+				catch(Exception e)
+					{
+					e.printStackTrace();
+					throw new Exception("Could you not load page : "+TilePageName, e);
+					}
+		break;
+		case "Lifecycle Template Configuration":
+			
+			try{
+			ExpWaitForCondition(ProductConfigUIMap.LifecycletemplateConfig_statictxt);
+				}
+			catch(Exception e)
+				{
+				e.printStackTrace();
+				throw new Exception("Could you not load page : "+TilePageName, e);
+				}
+	break;
+	
+	case "DIY AD Automation":
+			
+			try{
+			ExpWaitForCondition(ProductConfigUIMap.ContractOnBoarding_statictxt);
+				}
+			catch(Exception e)
+				{
+				e.printStackTrace();
+				throw new Exception("Could you not load page : "+TilePageName, e);
+				}
+	break;
+
+		case "my Queries":
+
+			try{
+			ExpWaitForCondition(SecurityTestsUIMap.MyQueries_statictxt);
+				}
+			catch(Exception e)
+				{
+				e.printStackTrace();
+				throw new Exception("Could you not load page : "+TilePageName, e);
+				}
+			break;
+			
+		case "Data Upload":
+
+			try{
+			ExpWaitForCondition(SecurityTestsUIMap.DataUpload_statictxt);
+				}
+			catch(Exception e)
+				{
+				e.printStackTrace();
+				throw new Exception("Could you not load page : "+TilePageName, e);
+				}
+			break;
+			
+		case "Generic Uploader":
+
+			try{
+			ExpWaitForCondition(SecurityTestsUIMap.GenericUploader_statictxt);
+				}
+			catch(Exception e)
+				{
+				e.printStackTrace();
+				throw new Exception("Could you not load page : "+TilePageName, e);
+				}
+			break;
+			
+		case "Metrics Engine":
+
+			try{
+			ExpWaitForCondition(SecurityTestsUIMap.MetricsEngine_statictxt);
+				}
+			catch(Exception e)
+				{
+				e.printStackTrace();
+				throw new Exception("Could you not load page : "+TilePageName, e);
+				}
+			break;
+			
+		case "Virtual Assistant":
+
+			try{
+				Thread.sleep(5000);
+			ExpWaitForCondition(SecurityTestsUIMap.VirtualAgents_statictxt);
+				}
+			catch(Exception e)
+				{
+				e.printStackTrace();
+				throw new Exception("Could you not load page : "+TilePageName, e);
+				}
+			break;
+	default:
+		
+		}
+		
 	}
 
 	

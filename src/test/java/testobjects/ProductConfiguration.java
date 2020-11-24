@@ -87,7 +87,10 @@ public class ProductConfiguration extends Baseclass {
 					
 					ExpWaitForCondition(ProductConfigUIMap.EditProductInstance_statictxt);
 					if(!CheckIfElementExists(ProductConfigUIMap.EditProductInstance_statictxt))
+					{
+						logger.info("Product instance page for tool "+toolname+" not loaded");
 						Assert.fail("Product instance page for tool "+toolname+" not loaded");
+					}
 				}
 			}
 		}
@@ -108,7 +111,10 @@ public class ProductConfiguration extends Baseclass {
 				
 				ExpWaitForCondition(ProductConfigUIMap.EditProductInstance_statictxt);
 				if(!CheckIfElementExists(ProductConfigUIMap.EditProductInstance_statictxt))
+				{
+					logger.info("Product instance page for tool "+toolname+" not loaded");
 					Assert.fail("Product instance page for tool "+toolname+" not loaded");
+				}
 			}
 			
 		}
@@ -130,7 +136,10 @@ public class ProductConfiguration extends Baseclass {
 				
 				ExpWaitForCondition(ProductConfigUIMap.EditProductInstance_statictxt);
 				if(!CheckIfElementExists(ProductConfigUIMap.EditProductInstance_statictxt))
+				{
+					logger.info("Product instance page for tool "+toolname+" not loaded");
 					Assert.fail("Product instance page for tool "+toolname+" not loaded");
+				}
 			}
 			
 		}
@@ -152,17 +161,23 @@ public class ProductConfiguration extends Baseclass {
 				
 				ExpWaitForCondition(ProductConfigUIMap.EditProductInstance_statictxt);
 				if(!CheckIfElementExists(ProductConfigUIMap.EditProductInstance_statictxt))
+				{
+					logger.info("Product instance page for tool "+toolname+" not loaded");
 					Assert.fail("Product instance page for tool "+toolname+" not loaded");
+				}
 			}
 			
 		}
-			else
+			else{
+				logger.info("Entered Tool doesnt exists on Product Configuration page");
 				Assert.fail("Entered Tool doesnt exists on Product Configuration page");
+			}
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Assert.fail("Issue with Prod config page");
+			logger.info("Issue loading Prod config page");
+			Assert.fail("Issue loading Prod config page");
 		}
 	}
 	
@@ -178,6 +193,7 @@ public class ProductConfiguration extends Baseclass {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("could not load section "+sectionaname+" in page product config"); 
 			Assert.fail("could not load section "+sectionaname+" in page product config"); 
 		}
 	}
@@ -221,6 +237,7 @@ public class ProductConfiguration extends Baseclass {
 		catch(Exception e)
 		{
 				e.printStackTrace();
+				logger.info("Issues adding product instance extension details for the given tool "+toolname);
 				Assert.fail("Issues adding product instance extension details for the given tool "+toolname);
 		}
 	}
@@ -263,7 +280,10 @@ public class ProductConfiguration extends Baseclass {
 					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.getSelectedBoardValueFromDropDown_L1_DC_drpdown, Property.getProperty("MyWizard_DC_L1") , "DCname"),Property.getProperty("Board_ID"));
 					}
 					else
+					{
+						logger.info("no data in dropdown to select from for L1 DC");
 						Assert.fail("no data in dropdown to select from for L1 DC");
+					}
 	
 			}
 			//expand DC L2 
@@ -296,7 +316,10 @@ public class ProductConfiguration extends Baseclass {
 					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.getSelectedBoardValueFromDropDown_L2_DC_drpdown, Property.getProperty("MyWizard_DC_L2") , "programname"),Property.getProperty("Board_ID"));
 					}
 					else
+					{
+						logger.info("no data in dropdown to select from for L2 DC");
 						Assert.fail("no data in dropdown to select from for L2 DC");
+					}
 				}
 			}	
 		}
@@ -326,8 +349,10 @@ public class ProductConfiguration extends Baseclass {
 					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.getSelectedProjectValueFromDropDown_L1_DC_drpdown, Property.getProperty("MyWizard_DC_L1") , "DCname"),Property.getProperty("ProductInstanceProject"));
 					
 					}
-					else
+					else{
+						logger.info("no data in dropdown to select from for L1 DC");
 						Assert.fail("no data in dropdown to select from for L1 DC");
+					}
 	
 			}
 			//expand DC L2 
@@ -358,8 +383,10 @@ public class ProductConfiguration extends Baseclass {
 					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.getSelectedProjectValueFromDropDown_L2_DC_drpdown, Property.getProperty("MyWizard_DC_L2") , "programname"),Property.getProperty("ProductInstanceProject"));
 					
 					}
-					else
+					else{
+						logger.info("no data in dropdown to select from for L2 DC");
 						Assert.fail("no data in dropdown to select from for L2 DC");
+					}
 				}
 			}	
 		}
@@ -367,6 +394,7 @@ public class ProductConfiguration extends Baseclass {
 		catch(Exception e)
 		{
 				e.printStackTrace();
+				logger.info("Issue selecting the Delivery cosntruct association");
 				Assert.fail("Issue selecting the Delivery cosntruct association");
 		}
 	}
@@ -401,6 +429,7 @@ public class ProductConfiguration extends Baseclass {
 		catch(Exception e)
 		{
 				e.printStackTrace();
+				logger.info("Issue adding product instance entity details");
 				Assert.fail("Issue adding product instance entity details");
 				
 		}
@@ -441,6 +470,7 @@ public class ProductConfiguration extends Baseclass {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue adding TeamArea entity in product instance entities section");
 			Assert.fail("Issue adding TeamArea entity in product instance entities section");
 		}
 		
@@ -483,6 +513,7 @@ public class ProductConfiguration extends Baseclass {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue adding Requirement entity in product instance entities section");
 			Assert.fail("Issue adding Requirement entity in product instance entities section");
 		}
 		
@@ -537,6 +568,7 @@ public class ProductConfiguration extends Baseclass {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue adding Workitem entity in product instance entities section");
 			Assert.fail("Issue adding Workitem entity in product instance entities section");
 		}
 		
@@ -578,6 +610,7 @@ public class ProductConfiguration extends Baseclass {
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("Issue adding Interation entity in product instance entities section");
 		Assert.fail("Issue adding Interation entity in product instance entities section");
 	}
 	
@@ -620,6 +653,7 @@ public class ProductConfiguration extends Baseclass {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue adding Deliverable entity in product instance entities section");
 			Assert.fail("Issue adding Deliverable entity in product instance entities section");
 		}
 		
@@ -662,6 +696,7 @@ public static void checkAndAddTest(){
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue adding Test entity in product instance entities section");
 			Assert.fail("Issue adding Test entity in product instance entities section");
 		}
 		
@@ -715,6 +750,7 @@ public static void checkAndAddTest(){
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue adding Workitem entity in product instance entities section");
 			Assert.fail("Issue adding Workitem entity in product instance entities section");
 		}
 		
@@ -735,6 +771,8 @@ public static void checkAndAddTest(){
 		catch(Exception e)
 		{
 				e.printStackTrace();
+				grabScreenshot();
+				logger.info("Problem saving Product Instance");
 				Assert.fail("Problem saving Product Instance");
 		}
 		
@@ -794,13 +832,19 @@ public static void checkAndAddTest(){
 									finaldeploy=true;
 								clickJS(ProductConfigUIMap.CloseAttributesWidow_btn);
 							}
+							if(IBorOB.equalsIgnoreCase("OB"))
+							{
+								//do nothing. as project name and project key attributes are missing
+							}
 						}
 						else
 							finaldeploy=true;
 						
 					}
-					else
+					else{
+						logger.info("Pipeline "+pipelines[i]+" missing for tool "+toolname);
 						Assert.fail("Pipeline "+pipelines[i]+" missing for tool "+toolname);
+					}
 				}
 				
 			if(finaldeploy)
@@ -810,6 +854,7 @@ public static void checkAndAddTest(){
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue verfying pipelines for tool "+toolname);
 			Assert.fail("Issue verfying pipelines for tool "+toolname);
 		}
 	}
@@ -835,8 +880,10 @@ public static void checkAndAddTest(){
 							}
 							
 						}
-						else
+						else{
+							logger.info("pipelines not present for the tool "+toolname);
 							Assert.fail("pipelines not present for the tool "+toolname);
+						}
 						
 					}
 					if(IBorOB.equalsIgnoreCase("OB"))
@@ -877,6 +924,7 @@ public static void checkAndAddTest(){
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue verfiying the pipelines for the tool "+toolname);
 			Assert.fail("Issue verfiying the pipelines for the tool "+toolname);
 		}
 		
@@ -940,12 +988,15 @@ public static void verifyPipelines(String IBorOB,String toolname){
 			
 		}
 	
-		else
+		else{
+			logger.info("Entered tool doesnt exist in Product Config page");
 			Assert.fail("Entered tool doesnt exist in Product Config page");
+		}
 		}
 		catch(Exception e)
 		{
 				e.printStackTrace();
+				logger.info("Problem verifying pipeline "+IBorOB+" for tool "+toolname);
 				Assert.fail("Problem verifying pipeline "+IBorOB+" for tool "+toolname);
 		}
 		
@@ -1020,6 +1071,7 @@ public static void checkWorkItemsPipeline(String IBorOB,String toolname){
 	catch(Exception e)
 	{
 			e.printStackTrace();
+			logger.info("Issue checking/loading the "+IBorOB+" workitem pipeline for tool "+toolname);
 			Assert.fail("Issue checking/loading the "+IBorOB+" workitem pipeline for tool "+toolname);
 	}
 	
@@ -1058,6 +1110,7 @@ public static void checkIterationsPipeline(String toolname){
 	catch(Exception e)
 	{
 			e.printStackTrace();
+			logger.info("Issue checking/loading the Iteration pipeline for tool "+toolname);
 			Assert.fail("Issue checking/loading the Iteration pipeline for tool "+toolname);
 	}
 	
@@ -1095,6 +1148,7 @@ public static void checkTeamsPipeline(String toolname){
 	catch(Exception e)
 	{
 			e.printStackTrace();
+			logger.info("Issue checking/loading the Teams pipeline for "+toolname);
 			Assert.fail("Issue checking/loading the Teams pipeline for "+toolname);
 	}
 	
@@ -1140,6 +1194,7 @@ public static void addWorkItemPipeline(String IBorOB,String toolname){
 	catch(Exception e)
 	{
 			e.printStackTrace();
+			logger.info("Problem adding "+IBorOB+" workitem pieline for tool "+toolname);
 			Assert.fail("Problem adding "+IBorOB+" workitem pieline for tool "+toolname);
 	}
 }
@@ -1165,6 +1220,7 @@ public static void addWorkItemPipeline(String IBorOB,String toolname){
 		catch(Exception e)
 		{
 				e.printStackTrace();
+				logger.info("Problem adding Iterations pipeline for tool "+toolname);
 				Assert.fail("Problem adding Iterations pipeline for tool "+toolname);
 		}
 		
@@ -1190,6 +1246,7 @@ public static void addWorkItemPipeline(String IBorOB,String toolname){
 		catch(Exception e)
 		{
 				e.printStackTrace();
+				logger.info("Problem adding Team pipeline for "+toolname);
 				Assert.fail("Problem adding Team pipeline for "+toolname);
 		}
 		
@@ -1251,6 +1308,7 @@ public static void verifyWorkItemAttributes(String IBorOB,String toolname){
 		catch(Exception e)
 		{
 				e.printStackTrace();
+				logger.info("Problem verifying attributes for "+IBorOB+" pipeline for "+toolname);
 				Assert.fail("Problem verifying attributes for "+IBorOB+" pipeline for "+toolname);
 		}
 		
@@ -1283,6 +1341,7 @@ public static void verifyIterationAttributes(String toolname){
 	catch(Exception e)
 	{
 			e.printStackTrace();
+			logger.info("Problem verifying Iteration attributes for "+toolname);
 			Assert.fail("Problem verifying Iteration attributes for "+toolname);
 	}
 	
@@ -1315,6 +1374,7 @@ public static void verifyTeamAttributes(String toolname){
 	catch(Exception e)
 	{
 			e.printStackTrace();
+			logger.info("Problem verifying Teams attributes for "+toolname);
 			Assert.fail("Problem verifying Teams attributes for "+toolname);
 	}
 	
@@ -1619,6 +1679,7 @@ public static void verifyAttributesFromExcel(String fileloc,String sheetname, St
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Problem verifying attributes from excel for tool "+toolname);
 			Assert.fail("Problem verifying attributes from excel for tool "+toolname);
 		}
 	
@@ -1680,6 +1741,7 @@ public static void addWorkItemAttributes(String IBorOB,String toolname){
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue adding workitem attributes for "+IBorOB+" pipeline for tool "+toolname);
 		Assert.fail("issue adding workitem attributes for "+IBorOB+" pipeline for tool "+toolname);
 	}
 
@@ -1712,6 +1774,7 @@ public static void addIterationAttributes(String toolname){
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue adding Iteration pipeline attributes for tool "+toolname);
 		Assert.fail("issue adding Iteration pipeline attributes for tool "+toolname);
 	}
 
@@ -1744,6 +1807,7 @@ public static void addTeamAttributes(String toolname){
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue adding Teams pipeline attributes for tool "+toolname);
 		Assert.fail("issue adding Teams pipeline attributes for tool "+toolname);
 	}
 
@@ -1890,6 +1954,7 @@ public static void AddAttributesFromExcel(String sheetname,String toolname){
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue adding Attributes from excel sheet "+ sheetname+" for tool "+toolname);
 		Assert.fail("issue adding Attributes from excel sheet "+ sheetname+" for tool "+toolname);
 	}
 }
@@ -1919,6 +1984,7 @@ public static String getAttributeValueFromExcel(String attributename,String shee
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue fetching Attribute "+attributename+ " from excel sheet "+ sheetname);
 		Assert.fail("issue fetching Attribute "+attributename+ " from excel sheet "+ sheetname);
 		return "";
 	}
@@ -1977,11 +2043,14 @@ public static void deploypipelines(String toolname){
 				}
 			}
 		}
-		if(!overallDeploymentStatus)
+		if(!overallDeploymentStatus){
+			logger.info("pipeline Deployment failed for "+toolname);
 			Assert.fail("pipeline Deployment failed for "+toolname);
+		}
 	}
 	catch(Exception e){
 		e.printStackTrace();
+		logger.info("Deploying pipelines failed");
 		Assert.fail("Deploying pipelines failed");
 	}
 	
@@ -2510,6 +2579,7 @@ public static void verifyClientNativeDetails(String toolname){
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("Issue verfying the client native details for tool "+toolname);
 		Assert.fail("Issue verfying the client native details for tool "+toolname);
 	}
  
@@ -2550,6 +2620,7 @@ public static void verifyEntityProperty(String property, int totalrowcount,List<
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue verifying entity property "+currentProperty + "for entity "+Entity);
 		Assert.fail("issue verifying entity property "+currentProperty + "for entity "+Entity);
 	}
 	
@@ -2580,6 +2651,7 @@ public static void verifyEntityPropertyForCategory(String property,int totalrowc
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue verifying entity property "+currentProperty + "for entity "+Entity);
 		Assert.fail("issue verifying entity property "+currentProperty + "for entity "+Entity);
 	}
 	
@@ -2613,6 +2685,7 @@ public static void verifyEntityPropertyGUId(String property, int totalrowcount,L
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue verifying entity property GUID "+currentPropertyGUId + "for entity "+Entity);
 		Assert.fail("issue verifying entity property GUID "+currentPropertyGUId + "for entity "+Entity);
 	}
 	
@@ -2644,6 +2717,7 @@ public static void verifyEntityPropertyGUIdForCategory(String property,int total
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue verifying entity property GUID "+currentPropertyGUId + "for entity "+Entity);
 		Assert.fail("issue verifying entity property GUID "+currentPropertyGUId + "for entity "+Entity);
 	}
 	
@@ -2677,6 +2751,7 @@ public static void navigateToEntityPropertyTable(String EntityProperty){
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue navigating to "+EntityProperty+"for entity "+Entity);
 		Assert.fail("issue navigating to "+EntityProperty+"for entity "+Entity);
 	}
 }
@@ -2699,6 +2774,7 @@ public static String getEntityUID(String Entity)
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("Issue getting entityUID details from the excel");
 		Assert.fail("Issue getting entityUID details from the excel");
 	}
 	return null;
@@ -2723,6 +2799,7 @@ public static String getWorkItemTypeUId(String Entity)
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("Issue getting workitemUID details from the excel");
 		Assert.fail("Issue getting workitemUID details from the excel");
 	}
 	return null;
@@ -2755,6 +2832,7 @@ public static String getWorkItemTypeUId(String Entity)
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue fetching data from excel for the tool "+toolname);
 			Assert.fail("Issue fetching data from excel for the tool "+toolname);
 		}
 		return null;
@@ -2799,8 +2877,10 @@ public static String getWorkItemTypeUId(String Entity)
 					Thread.sleep(2000);
 					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.getSelectedBoardValueFromDropDown_L1_DC_drpdown, Property.getProperty("MyWizard_DC_L1") , "DCname"),Property.getProperty("Board_ID"));
 					}
-					else
+					else{
+						logger.info("no data in dropdown to select from for L1 DC");
 						Assert.fail("no data in dropdown to select from for L1 DC");
+					}
 	
 			}
 			
@@ -2826,8 +2906,10 @@ public static String getWorkItemTypeUId(String Entity)
 					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.getSelectedProjectValueFromDropDown_L1_DC_drpdown, Property.getProperty("MyWizard_DC_L1") , "DCname"),Property.getProperty("ProductInstanceProject"));
 					
 					}
-					else
+					else{
+						logger.info("no data in dropdown to select from for L1 DC");
 						Assert.fail("no data in dropdown to select from for L1 DC");
+					}
 	
 			}
 		
@@ -2836,6 +2918,7 @@ public static String getWorkItemTypeUId(String Entity)
 		catch(Exception e)
 		{
 				e.printStackTrace();
+				logger.info("Issue selecting the Delivery cosntruct association");
 				Assert.fail("Issue selecting the Delivery cosntruct association");
 		}
 	

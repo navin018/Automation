@@ -1,5 +1,6 @@
 package stepDefs;
 
+import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
 
 import org.testng.Assert;
@@ -76,8 +77,10 @@ public class MyWizardSteps {
 		{
 			MappingRules.VerifyAndAddRulesIfMissing("myWizard-TFS",TFSScrum_WorkItems,TFS_NonWorkItems);
 		}
-		else
-			Assert.fail("tool not found");
+		else{
+			logger.info("Entered tool not found for mapping rules");
+			Assert.fail("Entered tool not found for mapping rules");
+		}
 	
 	}
 

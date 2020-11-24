@@ -507,7 +507,7 @@ public static String PrepareOutBoundBodyWithRequiredDataAndGetCorrelationID(Stri
 		  
 		  	DocumentContext finaljson=null;
 		  	UUID GUid = Generators.timeBasedGenerator().generate();
-		  	if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")))
+		  	if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable")))
 		  			{
 		   finaljson = json.set("WorkItems[0].CorrelationUId", GUid.toString());
 		   finaljson = json.set("WorkItems[0].ItemState", 1);
@@ -534,17 +534,29 @@ public static String PrepareOutBoundBodyWithRequiredDataAndGetCorrelationID(Stri
 	   finaljson = json.set("Requirements[0].Title", getTitle(toolname,workitem)+"_OB");
 	   finaljson = json.set("Requirements[0].ModifiedAtSourceOn", (new Random().nextInt(2)+2024+"-"+String.format("%02d", Integer.valueOf(String.valueOf(new Random().nextInt(12)+1)))+"-"+String.format("%02d", Integer.valueOf(String.valueOf(new Random().nextInt(28)+1)))+"T18:48:07.6972433"));
   			}
+			
+			if((workitem.equalsIgnoreCase("Deliverable")))
+  			{
+	   finaljson = json.set("Deliverables[0].CorrelationUId", GUid.toString());
+	   finaljson = json.set("Deliverables[0].ItemState", 1);
+	   finaljson = json.set("Deliverables[0].CreatedByApp", "myWizard.IssueManagement");
+	   finaljson = json.set("Deliverables[0].ModifiedByApp", "myWizard.IssueManagement");
+	   finaljson = json.set("Deliverables[0].Title", getTitle(toolname,workitem)+"_OB");
+	   finaljson = json.set("Deliverables[0].ModifiedAtSourceOn", (new Random().nextInt(2)+2024+"-"+String.format("%02d", Integer.valueOf(String.valueOf(new Random().nextInt(12)+1)))+"-"+String.format("%02d", Integer.valueOf(String.valueOf(new Random().nextInt(28)+1)))+"T18:48:07.6972433"));
+  			}
 		  	
 		   JSONParser parser = new JSONParser();
 		   JSONObject jsonObject = (JSONObject) parser.parse(finaljson.jsonString());
 		   
 		   String requiredNode_WorkItemNodeOnly=null;
-			if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")))
+			if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable")))
 				requiredNode_WorkItemNodeOnly = (String) jsonObject.get("WorkItems").toString();
 			if(workitem.equalsIgnoreCase("Test"))
 			requiredNode_WorkItemNodeOnly = (String) jsonObject.get("Tests").toString();
 			if((workitem.equalsIgnoreCase("Requirement")))
 				requiredNode_WorkItemNodeOnly = (String) jsonObject.get("Requirements").toString();
+			if((workitem.equalsIgnoreCase("Deliverable")))
+				requiredNode_WorkItemNodeOnly = (String) jsonObject.get("Deliverables").toString();
 //		   System.out.println(requiredNode_WorkItemNodeOnly.substring(1, requiredNode_WorkItemNodeOnly.length() - 1));
 		   requiredNode_WorkItemNodeOnly = requiredNode_WorkItemNodeOnly.substring(1, requiredNode_WorkItemNodeOnly.length() - 1);
 			 FileWriter filetowrite = new FileWriter(temprepsonsefile);
@@ -584,12 +596,14 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				
 				
 				String posturlmerge="";
-				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")))
+				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable")))
 				posturlmerge = mywizURL+"/v1/MergeWorkItem?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Test"))
 					posturlmerge = mywizURL+"/v1/Test1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Requirement"))
 					posturlmerge = mywizURL+"/v1/Requirement?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
+				else if(workitem.equalsIgnoreCase("Deliverable"))
+					posturlmerge = mywizURL+"/v1/Deliverable?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				
 				
 				
@@ -601,7 +615,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 //				response.jsonPath().get
 				int updatecount = response.jsonPath().get("MergeResult.UpdateCount");
 //				System.out.println("updatecount: "+updatecount);
-//				 Assert.assertEquals(updatecount, 1); 
+				 Assert.assertEquals(updatecount, 1); 
 
 			}
 			catch(Exception e)

@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 public class MyWizardMappingRuleUIMap {
 	
 
-public static By SaveRule_btn= By.xpath("//button[text()='Save']");
+public static By SaveRule_btn= By.xpath("//button[@class='btn btn-primary' and text()='Save']");
 public static By xpathrule_txtbox= By.xpath("//textarea[@name='xpathrule']");
 public static By RuleTypeStandard_Option= By.xpath("//span[text()='Standard']");
 public static By RuleTypeAdvanced_Option= By.xpath("//span[text()='Advanced']");

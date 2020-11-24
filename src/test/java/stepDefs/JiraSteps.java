@@ -15,6 +15,7 @@ public class JiraSteps {
 		if(!workitem_sp[0].equalsIgnoreCase("SubTask"))
 		{
 		Thread.sleep(3000);
+		ExpWaitForCondition(JiraUIMap.Create_link);
 		click(JiraUIMap.Create_link);
 		ExpWaitForCondition(JiraUIMap.CreateIssue_Statictxt);
 		waitPageToLoad();

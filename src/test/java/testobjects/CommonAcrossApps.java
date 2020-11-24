@@ -1,6 +1,7 @@
 package testobjects;
 
 import static org.testng.Assert.assertTrue;
+import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
 
 import java.io.File;
@@ -9,6 +10,8 @@ import java.io.FileWriter;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+
+import com.jcraft.jsch.Logger;
 
 import uiMap.JiraUIMap;
 import uiMap.MyWizardUIMap;
@@ -20,10 +23,9 @@ public class CommonAcrossApps {
 	public static void loginToJira(){
 		try{
 			Thread.sleep(3000);
-			sendEsc();
 			driver().get(Property.getProperty("JiraURL"));
 			waitPageToLoad();
-		
+			Thread.sleep(10000);
 //			if(Property.getProperty("JiraURL").contains("adt"))
 //			 click(JiraUIMap.login_btn);
 //			 waitPageToLoad();
@@ -42,9 +44,14 @@ public class CommonAcrossApps {
 			
 			//code change after browser remembering the login details
 			
-			if(CheckIfElementExists(JiraUIMap.login_btn))
+			if(CheckIfElementExists(JiraUIMap.login_btn)){
 				clickJS(JiraUIMap.login_btn);
-			driver().manage().window().maximize();
+				 enterText(JiraUIMap.UserName_txtbox,Property.getProperty("Username"));
+				 enterText(JiraUIMap.Pwd_txtbox,Property.getProperty("Password"));
+				 Thread.sleep(3000);
+				 clickJS(JiraUIMap.login_btn1);	
+			}
+//			driver().manage().window().maximize();
 			 waitPageToLoad();
 			 
 			 
@@ -69,73 +76,193 @@ public class CommonAcrossApps {
 			
 			driver().get(Property.getProperty("MyWizard_URL"));
 			waitPageToLoad();
-			driver().manage().window().maximize();
+			Thread.sleep(10000);
+//			driver().manage().window().maximize();
 			
-			//check if the creds need to be entered
-			if(CheckIfElementExists(MyWizardUIMap.signIn_txtbox))
+			
+			//if sign in with email id page shows up
+			if(CheckIfElementExists(MyWizardUIMap.signIn_txtbox)){
+				enterText(MyWizardUIMap.signIn_txtbox, Property.getProperty("MyWizard_Username"));
+				clickJS(MyWizardUIMap.Next_btn);
+				ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+				 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+				 click(MyWizardUIMap.signIn_btn1);
+				 Thread.sleep(10000);
+			}
+			
+			//if pick an account page shows up
+			if(CheckIfElementExists(MyWizardUIMap.PickAnAccount_staticTxt)){
+			clickJS(MyWizardUIMap.UserAnotherAccount_link);
+			Thread.sleep(5000);
+			ExpWaitForCondition(MyWizardUIMap.signIn_txtbox);
+			enterText(MyWizardUIMap.signIn_txtbox, Property.getProperty("MyWizard_Username"));
+			clickJS(MyWizardUIMap.Next_btn);
+			ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+			 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+			 click(MyWizardUIMap.signIn_btn1);
+			 Thread.sleep(10000);
+			}
+			
+			
+			
+			//if stay signed in page shows up
+			if(CheckIfElementExists(MyWizardUIMap.Yes_btn))	
 			{
-				enterText(MyWizardUIMap.signIn_txtbox,Property.getProperty("MyWizard_Username"));
-				 click(MyWizardUIMap.Next_btn);
-				 waitPageToLoad();
-				 enterText(MyWizardUIMap.Pwd_txtbox,Property.getProperty("MyWizard_Password"));
-				 click(MyWizardUIMap.signIn_btn);
-				 waitPageToLoad();
-				 Thread.sleep(5000);
-//				 ExpWaitForCondition(MyWizardUIMap.Yes_btn);
-				 if(CheckIfElementExists(MyWizardUIMap.Yes_btn))
-				 click(MyWizardUIMap.Yes_btn);
-				 Thread.sleep(15000);
-				 waitPageToLoad();
-				 Thread.sleep(5000);
+				clickJS(MyWizardUIMap.Yes_btn);
 			}
-	
 			
+//-------------------------------removing this part as we have got a dedicated user id			
+////			//check if the creds need to be entered
+//			if(CheckIfElementExists(MyWizardUIMap.signIn_txtbox))
+//			{
+//				enterText(MyWizardUIMap.signIn_txtbox,Property.getProperty("MyWizard_Username"));
+//				 click(MyWizardUIMap.Next_btn);
+//				 waitPageToLoad();
+//				 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+//				 click(MyWizardUIMap.signIn_btn1);
+//				 waitPageToLoad();
+//				 Thread.sleep(5000);
+////				 ExpWaitForCondition(MyWizardUIMap.Yes_btn);
+//				 if(CheckIfElementExists(MyWizardUIMap.Yes_btn))
+//				 click(MyWizardUIMap.Yes_btn);
+//				 Thread.sleep(15000);
+//				 waitPageToLoad();
+//				 Thread.sleep(5000);
+//			}
+////	
+////			
+////			
+////			//if creds are forgotten
+//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount_link, Property.getProperty("MyWizard_Username"), "username")))
+//			{ 
+//				click(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount_link, Property.getProperty("MyWizard_Username"), "username"));
+//				Thread.sleep(2000);
+//				if(CheckIfElementExists(MyWizardUIMap.Pwd_txtbox1))
+//					 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+//			 click(MyWizardUIMap.signIn_btn1);
+//			 ExpWaitForCondition(MyWizardUIMap.Yes_btn);
+//			 click(MyWizardUIMap.Yes_btn);
+//			 Thread.sleep(4000);
+//			}
+//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			 
+//			 //if creds are remembered but needs to be selected
+//			 Thread.sleep(10000);
+////			 String username = Property.getProperty("MyWizard_Username");
+////			 String[] username_sp = username.split("@");
+//			 if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccountnew_link, Property.getProperty("MyWizard_Username"), "username")))
+//			 {
+//				 click(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccountnew_link, Property.getProperty("MyWizard_Username"), "username"));
+//					Thread.sleep(5000);
+//					if(CheckIfElementExists(MyWizardUIMap.Pwd_txtbox1))
+//						 {
+//						enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+//						 click(MyWizardUIMap.signIn_btn1);
+////						 ExpWaitForCondition(MyWizardUIMap.Yes_btn);
+////						 click(MyWizardUIMap.Yes_btn);
+//						 }
+//				 
+//				 Thread.sleep(4000);
+//			 }
+//			 
+//			 //if username is already present and password needs to be entered
+//			 if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.enteredUsername_txtbox, Property.getProperty("MyWizard_Username"), "username")))
+//			 {
+//				 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+//				 click(MyWizardUIMap.signIn_btn1);
+//			 }
 			
-			//if creds are forgotten
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount_link, Property.getProperty("MyWizard_Username"), "username")))
-			{ 
-				click(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount_link, Property.getProperty("MyWizard_Username"), "username"));
-				Thread.sleep(2000);
-				if(CheckIfElementExists(MyWizardUIMap.Pwd_txtbox))
-					 enterText(MyWizardUIMap.Pwd_txtbox,Property.getProperty("MyWizard_Password"));
-			 click(MyWizardUIMap.signIn_btn);
-			 ExpWaitForCondition(MyWizardUIMap.Yes_btn);
-			 click(MyWizardUIMap.Yes_btn);
-			 Thread.sleep(4000);
-			}
+//-------------------------------removing this part as we have got a dedicated user id	
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 
-			 //if creds are remembered but needs to be selected
-			 String username = Property.getProperty("MyWizard_Username");
-			 String[] username_sp = username.split("@");
-			 if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username")))
-			 {
-			 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username"));
-			 }
-			 
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 
-			//code for AI fusion page
-//			 ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
-//				
-//				if(CheckIfElementExists(MyWizardUIMap.SettingIcon_Image))
-//					ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
-//				else
-//					Thread.sleep(20000);
-//				if(!CheckIfElementExists(MyWizardUIMap.SettingIcon_Image))
-//					Assert.fail("My Wizard page is either slow or app is down");
+			 ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
+//			 
+			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("MyWizard page could not be loaded");
 			Assert.fail("MyWizard page could not be loaded");
 		}
-	
-	
-}
+	}
+	//OG Login with old UI(without @ds.dev.accenture login
+//	public static void LoginToMyWizard(){
+//		try{
+//			
+//			driver().get(Property.getProperty("MyWizard_URL"));
+//			waitPageToLoad();
+//			driver().manage().window().maximize();
+			
+			//check if the creds need to be entered
+//			if(CheckIfElementExists(MyWizardUIMap.signIn_txtbox))
+//			{
+//				enterText(MyWizardUIMap.signIn_txtbox,Property.getProperty("MyWizard_Username"));
+//				 click(MyWizardUIMap.Next_btn);
+//				 waitPageToLoad();
+//				 enterText(MyWizardUIMap.Pwd_txtbox,Property.getProperty("MyWizard_Password"));
+//				 click(MyWizardUIMap.signIn_btn);
+//				 waitPageToLoad();
+//				 Thread.sleep(5000);
+////				 ExpWaitForCondition(MyWizardUIMap.Yes_btn);
+//				 if(CheckIfElementExists(MyWizardUIMap.Yes_btn))
+//				 click(MyWizardUIMap.Yes_btn);
+//				 Thread.sleep(15000);
+//				 waitPageToLoad();
+//				 Thread.sleep(5000);
+//			}
+//	
+//			
+//			
+//			//if creds are forgotten
+//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount_link, Property.getProperty("MyWizard_Username"), "username")))
+//			{ 
+//				click(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount_link, Property.getProperty("MyWizard_Username"), "username"));
+//				Thread.sleep(2000);
+//				if(CheckIfElementExists(MyWizardUIMap.Pwd_txtbox))
+//					 enterText(MyWizardUIMap.Pwd_txtbox,Property.getProperty("MyWizard_Password"));
+//			 click(MyWizardUIMap.signIn_btn);
+//			 ExpWaitForCondition(MyWizardUIMap.Yes_btn);
+//			 click(MyWizardUIMap.Yes_btn);
+//			 Thread.sleep(4000);
+//			}
+//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			 
+//			 //if creds are remembered but needs to be selected
+//			 Thread.sleep(10000);
+//			 String username = Property.getProperty("MyWizard_Username");
+//			 String[] username_sp = username.split("@");
+//			 if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username")))
+//			 {
+//			 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.PickAnAccount1_link, username_sp[0], "username"));
+//			 }
+//			 
+//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			 ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
+//			 
+//			//code for AI fusion page
+////			 ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
+////				
+////				if(CheckIfElementExists(MyWizardUIMap.SettingIcon_Image))
+////					ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
+////				else
+////					Thread.sleep(20000);
+////				if(!CheckIfElementExists(MyWizardUIMap.SettingIcon_Image))
+////					Assert.fail("My Wizard page is either slow or app is down");
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//			Assert.fail("MyWizard page could not be loaded");
+//		}
+//	
+//	
+//}
 public static void LoginToTFS()
 {
 	try{

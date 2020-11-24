@@ -5,6 +5,8 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 import static utilities.selenium.SeleniumDSL.*;
 import static utilities.general.Property.*;
+import static utilities.reporting.LogUtil.logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -114,7 +116,8 @@ import java.util.Random;
 				
 				}
 			catch(Exception e) {
-				e.printStackTrace();	
+				e.printStackTrace();
+				logger.info("Issue creating workitem "+workItem + " for the given tool");
 				Assert.fail("Issue creating workitem "+workItem + " for the given tool");
 				
 				}
@@ -139,6 +142,7 @@ import java.util.Random;
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				logger.info("issue selecting the "+workitem+" for the given tool");
 				Assert.fail("issue selecting the "+workitem+" for the given tool");
 			}
 		
@@ -163,6 +167,7 @@ import java.util.Random;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				logger.info("Issue selecting the project for the given tool");
 				Assert.fail("Issue selecting the project for the given tool");
 			}
 			}
@@ -245,6 +250,7 @@ import java.util.Random;
 			} catch (Exception e) {
 		
 				e.printStackTrace();
+				logger.info("Issue capturing workitem details for "+workitem+ " for the given tool");
 				Assert.fail("Issue capturing workitem details for "+workitem+ " for the given tool");
 			}
 		}
@@ -298,6 +304,7 @@ import java.util.Random;
 				
 				catch (Exception e) {
 					e.printStackTrace();
+					logger.info("Issues in creating release or sprint");
 					Assert.fail("Issues in creating release or sprint");
 				}
 				}
@@ -449,6 +456,7 @@ import java.util.Random;
 			sa.assertAll();
 			
 				} catch (Exception e) {
+					logger.info("Issue with OB validation");
 					System.out.println("Issue with OB validation");
 					e.printStackTrace();
 				}
@@ -487,6 +495,7 @@ import java.util.Random;
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("Issues deleting test automation data ");
 				Assert.fail("Issues deleting test automation data ");
 			}
 			
@@ -578,6 +587,7 @@ import java.util.Random;
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Could not verify release/sprint for "+AppName);
 			Assert.fail("Could not verify release/sprint for "+AppName);
 			
 			
@@ -621,6 +631,7 @@ public static void CreateTeam(String Team) {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue adding Team in the tool JIRA");
 			Assert.fail("Issue adding Team in the tool JIRA");
 		}
 

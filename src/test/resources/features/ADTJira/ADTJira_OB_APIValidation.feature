@@ -23,7 +23,7 @@ Scenario: ADTJIRA_Impediment
 
 	And i verify the "Outbound" "Impediment" details for "ADT JIRA" 
 
-	
+
 Scenario: ADTJIRA_Issue
 
 	And i verify the "Outbound" "Issue" details for "ADT JIRA" 
@@ -38,16 +38,15 @@ Scenario: ADTJIRA_Feature
 
 	And i verify the "Outbound" "Feature" details for "ADT JIRA" 
 	
-	
+
 Scenario: ADTJIRA_SubTask 
 
 	And i verify the "Outbound" "SubTask" details for "ADT JIRA" 
 	
-
+@del
 Scenario: ADTJIRA_ Deliverable 
 
 	And i verify the "Outbound" "Deliverable" details for "ADT JIRA" 
-	
 
 Scenario: ADTJIRA_Test 
 
@@ -60,7 +59,4 @@ Scenario: ADTJIRA_Requirement
 	And i verify the "Outbound" "Requirement" details for "ADT JIRA" 
 	
 	
-@SendTestReportMail
-Scenario: SendTestReportEmail
 
-And i send the test report email	

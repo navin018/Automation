@@ -5,6 +5,8 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 import static utilities.selenium.SeleniumDSL.*;
 import static utilities.general.Property.*;
+import static utilities.reporting.LogUtil.logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -95,6 +97,7 @@ import java.util.Random;
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("Issue verifying/adding workitems rules for tool "+toolname);
 				Assert.fail("Issue verifying/adding workitems rules for tool "+toolname);
 			}
 				
@@ -124,6 +127,7 @@ import java.util.Random;
 				catch(Exception e)
 				{
 					e.printStackTrace();
+					logger.info("Issue verifying/adding non-workitems rules for tool "+toolname);
 					Assert.fail("Issue verifying/adding non-workitems rules for tool "+toolname);
 				}
 				
@@ -132,6 +136,7 @@ import java.util.Random;
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("issue verfying/adding rules for tool "+toolname);
 				Assert.fail("issue verfying/adding rules for tool "+toolname);
 			}
 		}
@@ -232,6 +237,7 @@ import java.util.Random;
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("issue getting parent node for "+noOfNonWorkItems);
 				Assert.fail("issue getting parent node for "+noOfNonWorkItems);
 			}
 			return null;
@@ -287,6 +293,7 @@ import java.util.Random;
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("issue adding  "+Entity+" rules for  "+toolname);
 				Assert.fail("issue adding  "+Entity+" rules for  "+toolname);
 			}
 		}
@@ -319,6 +326,7 @@ import java.util.Random;
 				clear(MyWizardMappingRuleUIMap.xpathrule_txtbox);
 				String rulename ="("+ "Project='"+Property.getProperty("RulesForProject")+"')";
 				enterText(MyWizardMappingRuleUIMap.xpathrule_txtbox,rulename);
+				Thread.sleep(2000);
 				clickJS(MyWizardMappingRuleUIMap.SaveRule_btn);
 				Thread.sleep(1000);
 				ExpWaitForCondition(MyWizardMappingRuleUIMap.RuleSavedSuccesfully_statictxt);
@@ -331,6 +339,7 @@ import java.util.Random;
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("Issue verfying rules for "+Entity_NonWorkItem+" for the given tool "+toolname);
 				Assert.fail("Issue verfying rules for "+Entity_NonWorkItem+" for the given tool "+toolname);
 			}
 		}
