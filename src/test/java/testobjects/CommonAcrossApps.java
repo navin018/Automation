@@ -287,7 +287,7 @@ public static void UpdateWorkItemExternalIDsForApps(String appname)
 {
 
 try{
-			System.out.println("updating workitemexternalIDs");
+			System.out.println("updating task workitemexternalIDs");
 			if(appname.equalsIgnoreCase("jira")){
 			  String WorkItemEx_FileLoc = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
