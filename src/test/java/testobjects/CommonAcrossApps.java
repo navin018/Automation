@@ -291,7 +291,7 @@ try{
 			if(appname.equalsIgnoreCase("jira")){
 			  String WorkItemEx_FileLoc = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
-						+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs.json";
+						+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs1.json";
 			  
 			  
 			JSONObject jsonObject = new JSONObject();
