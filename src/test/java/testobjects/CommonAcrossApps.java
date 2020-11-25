@@ -287,7 +287,7 @@ public static void UpdateWorkItemExternalIDsForApps(String appname)
 {
 
 try{
-			
+			System.out.println("updating workitemexternalIDs");
 			if(appname.equalsIgnoreCase("jira")){
 			  String WorkItemEx_FileLoc = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
@@ -320,8 +320,8 @@ try{
 		    FileWriter file = new FileWriter(WorkItemEx_FileLoc);
 	         file.write(jsonObject.toJSONString());
 	         file.close();
-	         driver().close();
-	         driver().quit();
+//	         driver().close();
+//	         driver().quit();
 		}
 		}
 		catch (Exception e) {
