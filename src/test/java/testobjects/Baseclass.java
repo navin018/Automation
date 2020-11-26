@@ -15,7 +15,7 @@ Baseclass(){
 	public static Baseclass getInstance(){
 		return base;
 	}
-	public String WorkItemExternalId_Task = "BOM-4578";
+	public String WorkItemExternalId_Task;
 	public String WorkItemExternalId_Story;
 	public String WorkItemExternalId_Risk;
 	public String WorkItemExternalId_Epic;

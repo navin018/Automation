@@ -190,6 +190,7 @@ import java.util.Random;
 				case "task":
 				case "Task":
 				Baseclass.getInstance().WorkItemExternalId_Task = toGetID1[1];
+				System.out.println("Created task ID is "+toGetID1[1]);
 				break;
 				case "story":
 				case "Story":

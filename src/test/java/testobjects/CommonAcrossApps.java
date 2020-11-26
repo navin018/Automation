@@ -7,6 +7,7 @@ import static utilities.selenium.SeleniumDSL.*;
 import java.io.File;
 import java.io.FileWriter;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -291,12 +292,12 @@ try{
 			if(appname.equalsIgnoreCase("jira")){
 			  String WorkItemEx_FileLoc = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
-						+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs1.json";
+						+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs.json";
 			  
 			  
 			JSONObject jsonObject = new JSONObject();
 			
-	
+			
 		    jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);
 		    jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
 		    jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
@@ -316,9 +317,11 @@ try{
 		    jsonObject.put("WorkItemExternalId_SprintName", Baseclass.getInstance().Jira_SprintName);
 		    jsonObject.put("WorkItemExternalId_Team", Baseclass.getInstance().Jira_ComponentName);
 		    
-		  
+		
+		    
 		    FileWriter file = new FileWriter(WorkItemEx_FileLoc);
 	         file.write(jsonObject.toJSONString());
+	         file.flush();
 	         file.close();
 //	         driver().close();
 //	         driver().quit();
