@@ -118,9 +118,9 @@ Scenario Outline: ADTJira_RulesValidation
 		
 @5WorkItemCreation_ADTJira		
 Scenario Outline: ADTJira_WorkitemCcreation 
-#	Given i login to application "<applicationname>" 
-#	Then i select a Project for "<applicationname>" 
-#	And i create a "<task>" in Jira 
+	Given i login to application "<applicationname>" 
+	Then i select a Project for "<applicationname>" 
+	And i create a "<task>" in Jira 
 #	And i create a "<story>" in Jira 
 #	And i create a "<risk>" in Jira 
 #	And i create a "<bug>" in Jira 

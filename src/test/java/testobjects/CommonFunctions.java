@@ -62,6 +62,7 @@ public class CommonFunctions {
 						
 				 }
 				 Assert.assertEquals(response.getStatusCode(), 200);
+				 logger.info("token gen comlpete");
 				 JsonPath js = response.jsonPath();
 					String token = js.get("access_token");
 					Property.setProperty("Token", token);

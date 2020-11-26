@@ -12,6 +12,8 @@ public static By Next_btn=By.xpath("//input[@type='submit']");
 public static By skip_btn=By.xpath("//input[@type='button'][@value='Skip']");
 public static By Yes_btn=By.xpath("//input[@type='submit'][@value='Yes']");
 
+public static String pickAnExistingAccount_statictxt = "//div[text()='{username}']";
+
 public static By signInPwd_txtbox=By.xpath("//input[@id='passwordInput' and @name='Password']");
 public static By signIn_btn=By.xpath("//span[@id='submitButton']");
 
@@ -19,7 +21,7 @@ public static By Create_link=By.xpath("//a[@id='create_link']");
 public static By CreateIssue_Statictxt=By.xpath("//h2[@title='Create Issue']");
 public static By CreateWokitem_dropdown=By.xpath("//input[@id='issuetype-field']");
 public static By SelectProject_dropdown=By.xpath("//input[@id='project-field']");
-
+public static By ConfirmYourIndentity_txt = By.xpath("//span[text()='Confirm Your Identity']");
 
 public static By Summary_txtBox=By.xpath("//input[@name='summary']");
 

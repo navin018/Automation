@@ -79,7 +79,7 @@ import java.util.UUID;
 					if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") ))
 						{
 						WorkItemExternalId = getWorkItemExternalID(workitem,toolname);
-						System.out.println("workitem id from json file is "+WorkItemExternalId);
+//						System.out.println("workitem id from json file is "+WorkItemExternalId);
 						String getWorkitemType = "WorkItemTypeUId_"+workitem;
 						if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team")))
 						 WorkItemTypeUId = Property.getProperty(getWorkitemType);

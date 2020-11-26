@@ -47,14 +47,50 @@ public class CommonAcrossApps {
 			
 			if(CheckIfElementExists(JiraUIMap.login_btn)){
 				clickJS(JiraUIMap.login_btn);
-				 enterText(JiraUIMap.UserName_txtbox,Property.getProperty("Username"));
-				 enterText(JiraUIMap.Pwd_txtbox,Property.getProperty("Password"));
-				 Thread.sleep(3000);
-				 clickJS(JiraUIMap.login_btn1);	
+				Thread.sleep(10000);
+				//if pick an account screen shows up
+				if(CheckIfElementExists(prepareWebElementWithDynamicXpath(JiraUIMap.pickAnExistingAccount_statictxt, Property.getProperty("Username"), "username")))
+				{
+					clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.pickAnExistingAccount_statictxt, Property.getProperty("Username"), "username"));
+					ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+					 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("Password"));
+					 click(MyWizardUIMap.signIn_btn1);
+					 Thread.sleep(10000);
+					 	if(CheckIfElementExists(JiraUIMap.ConfirmYourIndentity_txt))
+					 	{
+					 		Assert.fail("login issues to JIRA. need to enter symantec pin");
+					 	}
+					 	if(CheckIfElementExists(MyWizardUIMap.Yes_btn))	
+						{
+							clickJS(MyWizardUIMap.Yes_btn);
+						}
+					 	
+				}
 			}
-//			driver().manage().window().maximize();
-			 waitPageToLoad();
-			 
+				
+				
+				
+				
+				
+//				if(CheckIfElementExists(MyWizardUIMap.UserAnotherAccount_link))
+//					{
+//						//if user another account shows up
+//						enterText(MyWizardUIMap.signIn_txtbox,Property.getProperty("Username")+"@ds.dev.accenture.com");
+//						clickJS(MyWizardUIMap.Next_btn);
+//						ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+//						 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+//						 click(MyWizardUIMap.signIn_btn1);
+//						 Thread.sleep(10000);
+//						
+//					}
+//				 enterText(JiraUIMap.UserName_txtbox,Property.getProperty("Username"));
+//				 enterText(JiraUIMap.Pwd_txtbox,Property.getProperty("Password"));
+//				 Thread.sleep(3000);
+//				 clickJS(JiraUIMap.login_btn1);	
+//			}
+////			driver().manage().window().maximize();
+//			 waitPageToLoad();
+//			 
 			 
 			
 			 waitPageToLoad();
@@ -64,6 +100,7 @@ public class CommonAcrossApps {
 			 
 			 
 			 assertTrue(CheckIfElementExists(JiraUIMap.Create_link));
+			 System.out.println("login to jira successful");
 		}
 		catch(Exception e)
 		{
