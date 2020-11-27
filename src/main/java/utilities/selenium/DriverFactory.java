@@ -152,7 +152,7 @@ public class DriverFactory {
 //    				String cmd = "chrome.exe -remote-debugging-port=9014 --user-data-dir=\"C:\\Users\\sonal.harish.nagda\\workspace\\almPT\\src\\test\\resources\\testdata\\chrome_Test_Profile\"";
 //    			Runtime run1 = Runtime.getRuntime();
 //    			Process pr1 = run1.exec(cmd);
-//				Thread.sleep(5000);
+				Thread.sleep(5000);
     				
     				String cmd1 = "taskkill /F /IM chrome.exe /T";
         			String cmd2 = "taskkill /F /IM chromedriver.exe /T";
