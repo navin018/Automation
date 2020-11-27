@@ -106,10 +106,10 @@ Scenario Outline: SEI_ADTJira_OB_Pipelines
 @4Rules_ADTJira
 Scenario Outline: ADTJira_RulesValidation
 	Given i login to application "<applicationname>" 
-	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
-	And i click on tile "Product Instance Entity Rule Config"
-	Then i select client and DC for "<applicationname>"  
-	And i verify and add the rules if missing for the "<toolname>" 
+#	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+#	And i click on tile "Product Instance Entity Rule Config"
+#	Then i select client and DC for "<applicationname>"  
+#	And i verify and add the rules if missing for the "<toolname>" 
 	
 	
 	Examples: 
