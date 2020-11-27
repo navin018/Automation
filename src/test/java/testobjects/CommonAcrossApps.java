@@ -27,6 +27,7 @@ public class CommonAcrossApps {
 			driver().get(Property.getProperty("JiraURL"));
 			waitPageToLoad();
 			Thread.sleep(10000);
+			grabScreenshotForExtentReport();
 //			if(Property.getProperty("JiraURL").contains("adt"))
 //			 click(JiraUIMap.login_btn);
 //			 waitPageToLoad();
@@ -42,7 +43,7 @@ public class CommonAcrossApps {
 //			 ExpWaitForCondition(JiraUIMap.Yes_btn);
 //			 click(JiraUIMap.Yes_btn);
 //			
-			
+			grabScreenshotForExtentReport();
 			//code change after browser remembering the login details
 			
 			if(CheckIfElementExists(JiraUIMap.login_btn)){
@@ -94,6 +95,7 @@ public class CommonAcrossApps {
 			 
 			
 			 waitPageToLoad();
+			 grabScreenshotForExtentReport();
 			 ExpWaitForCondition(JiraUIMap.Create_link);
 			 
 			 
