@@ -96,11 +96,12 @@ public class APICaller {
 		
 		String userPassword = "admin123" + ":" + "adminpw123";
 		@SuppressWarnings("restriction")
-		String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());			
+//		String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());			
+
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		con.setRequestProperty("Authorization","Basic"+encoding);
+		con.setRequestProperty("Authorization","Basic"+"encoding");
 
 		// Request header
 		con.setUseCaches(false);
