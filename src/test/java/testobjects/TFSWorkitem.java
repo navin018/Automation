@@ -8,6 +8,8 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 import static utilities.selenium.SeleniumDSL.*;
 import static utilities.general.Property.*;
+import static utilities.reporting.LogUtil.logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -105,6 +107,7 @@ import java.util.Random;
 				
 			} catch (Exception e) {
 				System.out.println("Problems with TFS project load");
+				logger.info("Problems with TFS project load");
 				e.printStackTrace();
 			}
 			}

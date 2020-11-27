@@ -75,10 +75,10 @@ Scenario Outline: SEI_ADOPJira_IB_Pipelines
 	And i check if the field "RealTimeConfigChanges" is "Enabled" 
 	And i navigate to "GatewayManager/ToolGateway Integration Parameters" section 
 	And i verify the existing "IB" pipelines if present and add them if missing for "<toolname>" 
-	And i hit the save button in Product Config page 
-	And i select the "ADOP JIRA" in Manage Product Configuration page 
-	And i navigate to "GatewayManager/ToolGateway Integration Parameters" section 
-	And i deploy the pipelines and verify if successful for "<toolname>" 
+#	And i hit the save button in Product Config page 
+#	And i select the "ADOP JIRA" in Manage Product Configuration page 
+#	And i navigate to "GatewayManager/ToolGateway Integration Parameters" section 
+#	And i deploy the pipelines and verify if successful for "<toolname>" 
 	
 	Examples: 
 		| applicationname |toolname|
@@ -94,10 +94,10 @@ Scenario Outline: SEI_ADOPJira_OB_Pipelines
 	And i check if the field "RealTimeConfigChanges" is "Enabled" 
 	And i navigate to "GatewayManager/ToolGateway Integration Parameters" section 
 	And i verify the existing "OB" pipelines if present and add them if missing for "<toolname>" 
-	And i hit the save button in Product Config page 
-	And i select the "ADOP JIRA" in Manage Product Configuration page 
-	And i navigate to "GatewayManager/ToolGateway Integration Parameters" section 
-	And i deploy the pipelines and verify if successful for "<toolname>" 
+#	And i hit the save button in Product Config page 
+#	And i select the "ADOP JIRA" in Manage Product Configuration page 
+#	And i navigate to "GatewayManager/ToolGateway Integration Parameters" section 
+#	And i deploy the pipelines and verify if successful for "<toolname>" 
 	
 	Examples: 
 		| applicationname |toolname|
