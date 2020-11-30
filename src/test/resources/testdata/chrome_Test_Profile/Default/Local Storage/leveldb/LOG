@@ -1,18 +1,3 @@
-2020/11/04-11:35:54.662 dd8 Reusing MANIFEST C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Local Storage\leveldb/MANIFEST-000001
-2020/11/04-11:35:54.676 dd8 Recovering log #191
-2020/11/04-11:35:54.676 dd8 Reusing old log C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Local Storage\leveldb/000191.log 
-2020/11/04-11:45:07.734 31b4 Level-0 table #195: started
-2020/11/04-11:45:07.742 31b4 Level-0 table #195: 155212 bytes OK
-2020/11/04-11:45:07.754 31b4 Delete type=0 #191
-2020/11/04-14:46:14.058 4040 Level-0 table #197: started
-2020/11/04-14:46:14.062 4040 Level-0 table #197: 14229 bytes OK
-2020/11/04-14:46:14.069 4040 Delete type=0 #194
-2020/11/04-14:46:14.071 349c Compacting 4@0 + 1@1 files
-2020/11/04-14:46:14.079 349c Generated table #198@0: 150 keys, 233374 bytes
-2020/11/04-14:46:14.079 349c Compacted 4@0 + 1@1 files => 233374 bytes
-2020/11/04-14:46:14.082 349c compacted to: files[ 0 1 1 0 0 0 0 ]
-2020/11/04-14:46:14.083 349c Delete type=2 #186
-2020/11/04-14:46:14.083 349c Delete type=2 #188
-2020/11/04-14:46:14.083 349c Delete type=2 #192
-2020/11/04-14:46:14.083 349c Delete type=2 #195
-2020/11/04-14:46:14.083 349c Delete type=2 #197
+2020/11/30-12:04:03.825 3984 Reusing MANIFEST C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Local Storage\leveldb/MANIFEST-000001
+2020/11/30-12:04:03.834 3984 Recovering log #29
+2020/11/30-12:04:03.835 3984 Reusing old log C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Local Storage\leveldb/000029.log 

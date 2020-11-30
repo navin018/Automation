@@ -164,7 +164,7 @@ public class DriverFactory {
         			Process pr = run.exec(cmd1);
         			Process pr2 = run.exec(cmd2);
         			Thread.sleep(3000);
-//        			Process pr3 = run.exec(cmd3);
+        			Process pr3 = run.exec(cmd3);
         			Thread.sleep(3000);
 
     			}
@@ -179,7 +179,7 @@ public class DriverFactory {
     			 options.addArguments("--disable-extensions");
     			 options.addArguments("--disable-popup-blocking");
     			 options.addArguments("test-type");
-//     		    options.setExperimentalOption("debuggerAddress", "localhost:9014");
+     		    options.setExperimentalOption("debuggerAddress", "localhost:9014");
     			
     			options.setBinary(Property.getProperty("chromeBinary"));
     			cap.setCapability(ChromeOptions.CAPABILITY, options);

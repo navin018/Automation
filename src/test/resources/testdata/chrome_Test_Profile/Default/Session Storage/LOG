@@ -1,21 +1,3 @@
-2020/11/04-11:35:54.812 3dc8 Reusing MANIFEST C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Session Storage/MANIFEST-000001
-2020/11/04-11:35:54.813 3dc8 Recovering log #981
-2020/11/04-11:35:54.814 3dc8 Reusing old log C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Session Storage/000981.log 
-2020/11/04-11:37:09.823 d48 Level-0 table #985: started
-2020/11/04-11:37:09.834 d48 Level-0 table #985: 31657 bytes OK
-2020/11/04-11:37:09.845 d48 Delete type=0 #981
-2020/11/04-14:22:06.622 349c Level-0 table #987: started
-2020/11/04-14:22:06.635 349c Level-0 table #987: 38269 bytes OK
-2020/11/04-14:22:06.658 349c Delete type=0 #984
-2020/11/04-14:22:09.901 3c9c Level-0 table #989: started
-2020/11/04-14:22:09.919 3c9c Level-0 table #989: 842413 bytes OK
-2020/11/04-14:22:09.923 3c9c Delete type=0 #986
-2020/11/04-14:22:09.924 3c9c Compacting 4@0 + 1@1 files
-2020/11/04-14:22:09.955 3c9c Generated table #990@0: 375 keys, 901069 bytes
-2020/11/04-14:22:09.955 3c9c Compacted 4@0 + 1@1 files => 901069 bytes
-2020/11/04-14:22:09.958 3c9c compacted to: files[ 0 1 1 0 0 0 0 ]
-2020/11/04-14:22:09.958 3c9c Delete type=2 #980
-2020/11/04-14:22:09.958 3c9c Delete type=2 #982
-2020/11/04-14:22:09.958 3c9c Delete type=2 #985
-2020/11/04-14:22:09.958 3c9c Delete type=2 #987
-2020/11/04-14:22:09.958 3c9c Delete type=2 #989
+2020/11/30-12:04:20.924 3984 Reusing MANIFEST C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Session Storage/MANIFEST-000001
+2020/11/30-12:04:20.926 3984 Recovering log #81
+2020/11/30-12:04:20.927 3984 Reusing old log C:\Users\sonal.harish.nagda\ART\ART_TestAutomationCode\src\test\resources\testdata\chrome_Test_Profile\Default\Session Storage/000081.log 
