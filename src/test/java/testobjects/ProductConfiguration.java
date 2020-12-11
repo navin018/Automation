@@ -850,7 +850,10 @@ public static void checkAndAddTest(){
 				
 			if(finaldeploy)
 //				Baseclass.getInstance().DeployPipeline=true;
+			{
+				logger.info("Pipeline/Pipelines missing or not in Success state for the tool "+toolname);
 				Assert.fail("Pipeline/Pipelines missing or not in Success state for the tool "+toolname);
+			}
 				
 		}
 		catch(Exception e)
@@ -902,14 +905,49 @@ public static void checkAndAddTest(){
 				}
 				if(toolname.contains("TFS"))
 				{
-					if(IBorOB.equalsIgnoreCase("IB"))
+					if(totalNoRow>=1)
 					{
+						;
+						if(IBorOB.equalsIgnoreCase("IB"))
+						{
+							
+							if(toolname.equalsIgnoreCase("TFS Scrum"))
+							{
+							
+								String[] pipelines = {"TFS-Scrum-US-Inbound","TFS-Scrum-ITR-US-Inbound","TFS-Scrum-Team-US-Inbound"};
+								verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+							}
+							if(toolname.equalsIgnoreCase("TFS Agile"))
+							{
+							
+								String[] pipelines = {"TFS-Agile-US-Inbound","TFS-Agile-ITR-US-Inbound","TFS-Agile-Team-US-Inbound"};
+								verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+							}
 						
-					}
-					if(IBorOB.equalsIgnoreCase("OB"))
-					{
+						}
+						if(IBorOB.equalsIgnoreCase("OB"))
+						{
+							if(toolname.equalsIgnoreCase("TFS Scrum"))
+							{
+								String[] pipelines = {"TFS-Scrum-US-Outbound"};
+								verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+					
+							}
+							if(toolname.equalsIgnoreCase("TFS Agile"))
+							{
+								String[] pipelines = {"TFS-Agile-US-Outbound"};
+								verifyIfPipelinesExists(pipelines,toolname,IBorOB);
 						
+							}
+							
+							
+						}
 					}
+					else{
+						logger.info("pipelines not present for the tool "+toolname);
+						Assert.fail("pipelines not present for the tool "+toolname);
+					}
+					
 				}
 				if(toolname.contains("MSPS"))
 				{

@@ -28,6 +28,8 @@ Baseclass(){
 	public String WorkItemExternalId_SubTask;
 	public String WorkItemExternalId_TestCase;
 	public String WorkItemExternalId_ProductBacklog;
+	public String WorkItemExternalId_Action;
+	public String WorkItemExternalId_Decision;
 	public String WorkItemExternalId_Test;
 	public static List<SecurityHeaders> SH = new ArrayList<>();
 	 

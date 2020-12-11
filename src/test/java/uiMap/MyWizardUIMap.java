@@ -8,6 +8,7 @@ public class MyWizardUIMap {
 	
 
 public static By signIn_txtbox=By.xpath("//input[@type='email' and @name='loginfmt']");
+public static By signInWithUserNameSaved_txtbox=By.xpath("//input[@type='email' and @name='UserName']");
 public static By Next_btn=By.xpath("//input[@type='submit']");
 public static String enteredUsername_txtbox = "//input[@placeholder='Enterprise ID' and @value='{username}']";
 public static By Pwd_txtbox=By.xpath("//input[@type='password' and @name='passwd']");

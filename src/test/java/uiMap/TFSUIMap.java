@@ -29,7 +29,7 @@ public static By WorkitemTitleSearch_statictxt = By.xpath("//span[@class='search
 
 public static By WorkItemtxt_static = By.xpath("//div[@class='bolt-menuitem-cell-content bolt-menuitem-cell-text'][text()='Work items']");
 public static By settingsIcon_Img = By.xpath("//span[contains(@class,'navigation-icon flex-row flex-center justify-center flex-noshrink fabric-icon ms-Icon--Settings medium')]");
-public static By ProjectConfiguration_link = By.xpath("//span[@data-content='Project configuration']");
+public static By ProjectConfiguration_link = By.xpath("//span[text()='Project configuration']");
 public static By NewChild_link = By.xpath("//span[text()='New child']");
 public static By IterationName_txtbox = By.xpath("//input[@id='fieldName']");
 public static By StartDate_txtbox = By.xpath("//input[@id='fieldStartDate']");

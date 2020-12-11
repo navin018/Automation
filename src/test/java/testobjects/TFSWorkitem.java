@@ -60,15 +60,16 @@ import java.util.Random;
 				+ File.separator + "src" + File.separator + "test" + File.separator
 				+ "resources" + File.separator + "testdata" + File.separator + "TFS" + File.separator + "JSON" + File.separator ;
 		
-	public	static void CreateWorkitem(String workItem) {
-		
-	try	{
+	public	static void CreateWorkitem(String workItem) throws IOException, InterruptedException, Exception {
 		 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workItem);
-		 
 		 String workItem_sp []  = workItem.split("_");
-		String workitemPath = Workitem_Img_path+workItem_sp[0].toLowerCase()+".jpg";
+			String workitemPath = Workitem_Img_path+workItem_sp[0].toLowerCase()+".png";
+	try	{
+		
+		 Thread.sleep(3000);
 		click(TFSUIMap.plusIcon_btn);
 		Thread.sleep(2000);
+		driver().manage().window().maximize();
 		Screen s = new Screen();
 		Pattern workitemImg = new Pattern(workitemPath);
 		s.click(workitemImg);
@@ -81,8 +82,29 @@ import java.util.Random;
 		CaptureWorkitemID(workItem);
 		}
 			catch(Exception e) {
-				e.printStackTrace();	
 				
+//				e.printStackTrace();	
+				try{
+				Screen s = new Screen();
+				Pattern newworkitem = new Pattern(Workitem_Img_path+"newworkitem.png");
+				s.hover(newworkitem);
+				Thread.sleep(2000);
+				Pattern workitemImg = new Pattern(workitemPath);
+				s.click(workitemImg);
+				Thread.sleep(5000);
+				System.out.println(wi.Summary);
+				enterText(TFSUIMap.title_txtbox,wi.Summary);
+				Thread.sleep(1000);
+				click(TFSUIMap.save_drpdown);
+				Thread.sleep(2000);
+				click(TFSUIMap.save_btn);
+				CaptureWorkitemID(workItem);
+				}
+				catch(Exception e1)
+				{
+					e1.printStackTrace();
+					logger.info("Issue creating workitem "+workItem);
+				}
 				}
 			
 		}
@@ -128,6 +150,11 @@ import java.util.Random;
 						Baseclass.getInstance().WorkItemExternalId_Epic =  getText(TFSUIMap.captureWorkItemID_statictxt);
 						click(TFSUIMap.close_btn);
 						break;
+				case "risk":
+					
+					Baseclass.getInstance().WorkItemExternalId_Risk =  getText(TFSUIMap.captureWorkItemID_statictxt);
+					click(TFSUIMap.close_btn);
+					break;
 				case "feature":
 				
 						Baseclass.getInstance().WorkItemExternalId_Feature =getText(TFSUIMap.captureWorkItemID_statictxt);
@@ -160,9 +187,24 @@ import java.util.Random;
 						break;
 				case "productbacklog":
 				
-						Baseclass.getInstance().WorkItemExternalId_ProductBacklog =getText(TFSUIMap.captureWorkItemID_statictxt);
+						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID_statictxt);
 						click(TFSUIMap.close_btn);
 						break;
+				case "action":
+					
+					Baseclass.getInstance().WorkItemExternalId_Action =getText(TFSUIMap.captureWorkItemID_statictxt);
+					click(TFSUIMap.close_btn);
+					break;
+				case "decision":
+					
+					Baseclass.getInstance().WorkItemExternalId_Decision =getText(TFSUIMap.captureWorkItemID_statictxt);
+					click(TFSUIMap.close_btn);
+					break;
+				case "deliverable":
+					
+					Baseclass.getInstance().WorkItemExternalId_Deliverable =getText(TFSUIMap.captureWorkItemID_statictxt);
+					click(TFSUIMap.close_btn);
+					break;
 				default:
 			        throw new IllegalArgumentException("Invalid workitem: " + workitem);	
 				}

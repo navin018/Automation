@@ -22,7 +22,7 @@ import org.testng.asserts.SoftAssert;
 
 import dataobjects.WorkItemDO;
 import dataobjects.WorkItemExternalIDDO;
-import javassist.bytecode.stackmap.BasicBlock.Catch;
+//import javassist.bytecode.stackmap.BasicBlock.Catch;
 import testobjects.Baseclass;
 import uiMap.JiraUIMap;
 

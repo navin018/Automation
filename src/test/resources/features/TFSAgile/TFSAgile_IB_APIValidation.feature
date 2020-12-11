@@ -3,7 +3,7 @@ Feature: TFSAgile_IB_Validation
 
 
 Scenario: TFSAgile_Task 
-
+	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "TFS Agile" 
 	
 
@@ -35,9 +35,27 @@ Scenario: TFSAgile_Feature
 Scenario: TFSAgile_ReleaseAndSprint 
 
 	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Agile" 
+
+
+Scenario: TFSAgile_TestCase
+	 
+	And i verify the "Inbound" "TestCase" details for "TFS Agile" 
 	
 
-Scenario: TFSAgile_TestCase(code pending)
+Scenario: TFSAgile_Risk
+	 
+	And i verify the "Inbound" "Risk" details for "TFS Agile" 			
+
+
+Scenario: TFSAgile_Deliverable
+	 
+	And i verify the "Inbound" "Deliverable" details for "TFS Agile"
 	
-	And i verify the "Inbound" "TestCase" details for "TFS Agile" 
-			
+	
+Scenario: TFSAgile_Action
+	
+	And i verify the "Inbound" "Action" details for "TFS Agile"
+	
+	
+Scenario: TFSAgile_Decision
+	And i verify the "Inbound" "Decision" details for "TFS Agile"

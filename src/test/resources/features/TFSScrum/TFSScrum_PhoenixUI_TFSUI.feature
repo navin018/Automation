@@ -1,7 +1,7 @@
-Feature: PhoenixUI_TFSAgileUI
+Feature: PhoenixUI_TFSScrumUI
 
-@0Delete_TestData_TFSAgile     
-Scenario Outline: Delete_TestData_TFSAgile
+@0Delete_TestData_TFSScrum     
+Scenario Outline: Delete_TestData_TFSScrum
     Given i login to application "<applicationname>"
     Then i select a Project for "<applicationname>"
     Then i delete the test automation data for query "DeleteAutomationTestData"
@@ -11,8 +11,8 @@ Scenario Outline: Delete_TestData_TFSAgile
       | TFS             | 
 
 
-@1PreRequisites_TFSAgile
-Scenario Outline: ProdConfigCheck_TFSAgile 
+@1PreRequisites_TFSScrum
+Scenario Outline: ProdConfigCheck_TFSScrum 
 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
@@ -35,8 +35,8 @@ Scenario Outline: ProdConfigCheck_TFSAgile
 		| MyWizard        |MyWizard-TFS|
 
 		
-@2ClientNative_TFSAgile	
-Scenario Outline: Client_Native_TFSAgile(!Iteraion) 
+@2ClientNative_TFSScrum	
+Scenario Outline: Client_Native_TFSScrum(!Iteraion) 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
 	And i click on tile "Product Configuration" 
@@ -49,11 +49,11 @@ Scenario Outline: Client_Native_TFSAgile(!Iteraion)
 
 		Examples: 
 		| applicationname |toolname|
-		| MyWizard        |TFS Agile|	
+		| MyWizard        |TFS Scrum|	
 
 
-@2ClientNative_TFSAgile		
-Scenario Outline: Client_Native_TFSAgile(iteration) 
+@2ClientNative_TFSScrum		
+Scenario Outline: Client_Native_TFSScrum(iteration) 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
 	And i click on tile "Product Configuration" 
@@ -66,10 +66,10 @@ Scenario Outline: Client_Native_TFSAgile(iteration)
 #	
 	Examples: 
 		| applicationname |toolname|
-		| MyWizard        |TFS Agile_Iteration|
+		| MyWizard        |TFS Scrum_Iteration|
 
-@3SEI_TFSAgile
-Scenario Outline: SEI_TFSAgile_IB_Pipelines 
+@3SEI_TFSScrum
+Scenario Outline: SEI_TFSScrum_IB_Pipelines 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
 	And i click on tile "Product Configuration" 
@@ -85,10 +85,10 @@ Scenario Outline: SEI_TFSAgile_IB_Pipelines
 #	
 	Examples: 
 		| applicationname |toolname|
-		| MyWizard        |TFS Agile|
+		| MyWizard        |TFS Scrum|
 
-@3SEI_TFSAgile		
-Scenario Outline: SEI_TFSAgile_OB_Pipelines 
+@3SEI_TFSScrum		
+Scenario Outline: SEI_TFSScrum_OB_Pipelines 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
 	And i click on tile "Product Configuration" 
@@ -105,10 +105,10 @@ Scenario Outline: SEI_TFSAgile_OB_Pipelines
 
 	Examples: 
 		| applicationname |toolname|
-		| MyWizard        |TFS Agile|
+		| MyWizard        |TFS Scrum|
 
-@4Rules_TFSAgile
-Scenario Outline: TFSAgile_RulesValidation
+@4Rules_TFSScrum
+Scenario Outline: TFSScrum_RulesValidation
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "Product Instance Entity Rule Config"
@@ -118,34 +118,35 @@ Scenario Outline: TFSAgile_RulesValidation
 	
 	Examples: 
 		| applicationname |toolname|
-		| MyWizard        |TFS Agile|
+		| MyWizard        |TFS Scrum|
 		
-@5WorkItemCreation_TFSAgile		
-Scenario Outline: TFSAgile_WorkitemCcreation 
+@5WorkItemCreation_TFSScrum		
+Scenario Outline: TFSScrum_WorkitemCcreation 
 Given i login to application "<applicationname>"
     Then i select a Project for "<applicationname>"
     And i create a "<bug>" in TFS
     And i create a "<Epic>" in TFS
     And i create a "<Feature>" in TFS
     And i create a "<Issue>" in TFS
+     And i create a "<Risk>" in TFS
     And i create a "<Task>" in TFS
     And i create a "<TestCase>" in TFS
-    And i create a "<Story>" in TFS
- 	And i create a "<Risk>" in TFS
+    And i create a "<ProductBacklog>" in TFS
     And i create a "<Action>" in TFS
     And i create a "<Decision>" in TFS
     And i create a "<Deliverable>" in TFS
+     And i create a "<Impediment>" in TFS
 #    And i create "<Release>" and "<Sprint>" in TFS
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
 	And i put a explicit wait of "600000" 
 	And i generate a token for "DevTest" environment 
 	
 	    Examples: 
-      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|
+      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|ProductBacklog|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|ProductBacklog_01|
 
-@8TFSAgile_OB_ValidationInTool
-Scenario Outline: TFSAgile_OB_ValidationInTool
+@8TFSScrum_OB_ValidationInTool
+Scenario Outline: TFSScrum_OB_ValidationInTool
     Given i login to application "<applicationname>"
    Then i select a Project for "<applicationname>"
     And i validate the outbound flow

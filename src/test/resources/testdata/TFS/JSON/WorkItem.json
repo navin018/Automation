@@ -43,6 +43,22 @@
 			"Summary": "TestCase_AutomationData",
 			"Description": "TestCase_Description"
 		},
+		"Deliverable_01": {
+			"Summary": "Deliverable_AutomationData",
+			"Description": "Deliverable_Description"
+		},
+			"Risk_01": {
+			"Summary": "Risk_AutomationData",
+			"Description": "Risk_Description"
+		},
+		"Decision_01": {
+			"Summary": "Decision_AutomationData",
+			"Description": "Decision_Description"
+		},
+		"Action_01": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Description"
+		},
 		"ProductBacklog_01": {
 			"Summary": "ProductBacklog_AutomationData",
 			"Description": "ProductBacklog_Description"
