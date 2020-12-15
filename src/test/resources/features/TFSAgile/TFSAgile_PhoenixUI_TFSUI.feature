@@ -135,14 +135,15 @@ Given i login to application "<applicationname>"
     And i create a "<Action>" in TFS
     And i create a "<Decision>" in TFS
     And i create a "<Deliverable>" in TFS
+     And i create a "<Milestone>" in TFS
 #    And i create "<Release>" and "<Sprint>" in TFS
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
 	And i put a explicit wait of "600000" 
 	And i generate a token for "DevTest" environment 
 	
 	    Examples: 
-      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|
+      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|
 
 @8TFSAgile_OB_ValidationInTool
 Scenario Outline: TFSAgile_OB_ValidationInTool

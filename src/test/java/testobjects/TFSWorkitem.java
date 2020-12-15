@@ -200,6 +200,11 @@ import java.util.Random;
 					Baseclass.getInstance().WorkItemExternalId_Decision =getText(TFSUIMap.captureWorkItemID_statictxt);
 					click(TFSUIMap.close_btn);
 					break;
+				case "milestone":
+					
+					Baseclass.getInstance().WorkItemExternalId_Milestone =getText(TFSUIMap.captureWorkItemID_statictxt);
+					click(TFSUIMap.close_btn);
+					break;
 				case "deliverable":
 					
 					Baseclass.getInstance().WorkItemExternalId_Deliverable =getText(TFSUIMap.captureWorkItemID_statictxt);

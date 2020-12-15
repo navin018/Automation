@@ -55,3 +55,7 @@ Scenario: TFSScrum_Impediment
 	
 Scenario: TFSScrum_Decision
 	And i verify the "Outbound" "Decision" details for "TFS Scrum"
+
+Scenario: TFSScrum_Milestone
+	
+	And i verify the "Outbound" "Milestone" details for "TFS Scrum" 	

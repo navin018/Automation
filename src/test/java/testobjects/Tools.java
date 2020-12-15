@@ -81,7 +81,7 @@ import java.util.UUID;
 						WorkItemExternalId = getWorkItemExternalID(workitem,toolname);
 //						System.out.println("workitem id from json file is "+WorkItemExternalId);
 						String getWorkitemType = "WorkItemTypeUId_"+workitem;
-						if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision")))
+						if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")))
 						 WorkItemTypeUId = Property.getProperty(getWorkitemType);
 						
 						}
@@ -154,7 +154,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 			try{
 				String WorkItemTypeUId=null;
 				String WorkItemExternalId =getWorkItemExternalID(workitem,toolname);
-				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision")))
+				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")))
 				{
 				String getWorkitemType = "WorkItemTypeUId_"+workitem;
 				WorkItemTypeUId = Property.getProperty(getWorkitemType);
@@ -174,7 +174,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				
 				 
 				 String WorkItemOrDeliverableOrIterationOrTestOrRequirement="";
-				 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision")))
+				 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")))
 					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="WorkItems"; 
 				 if(workitem.equalsIgnoreCase("Deliverable"))
 					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Deliverables";
@@ -189,7 +189,9 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 if(workitem.equalsIgnoreCase("Action"))
 					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Actions";		 
 				 if(workitem.equalsIgnoreCase("Decision"))
-					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Decisions";		 
+					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Decisions";	
+				 if(workitem.equalsIgnoreCase("Milestone"))
+					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Milestones";	
 				 Response response = PostRequesttoGetIBResponse(WorkItemTypeUId, WorkItemExternalId, workitem, "Flat", toolname);
 			 
 				 JsonPath js = response.jsonPath();
@@ -231,7 +233,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 
 				 //DeliveryConstructUId for WorkItems 
 				 List<Object> DCUid=null;
-				 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision")))
+				 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")))
 					 {
 						 
 					 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
@@ -261,6 +263,11 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 {
 					 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
 				 DCUid = js.getList("Decisions.DecisionDeliveryConstructs.DeliveryConstructUId");	
+				 }
+				 if(workitem.equalsIgnoreCase("Milestone"))
+				 {
+					 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
+				 DCUid = js.getList("Milestones.MilestoneDeliveryConstructs.DeliveryConstructUId");	
 				 }
 					//DeliveryConstructUId for Requirement 
 				 if(workitem.equalsIgnoreCase("Requirement"))
@@ -361,7 +368,7 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	 if(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equalsIgnoreCase(""))
 			Assert.fail("WorkItem "+workitem+ " not created for tool "+toolname);
 	 
-	 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")  || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision")))
+	 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")  || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")))
 	 {
 	 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
 	 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
@@ -430,6 +437,13 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
 		 requestParams.put("DecisionExternalId",WorkItemExternalId);
 		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Decisions";
+	 }
+	 if(workitem.equalsIgnoreCase("Milestone"))
+	 {
+		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 requestParams.put("MilestoneExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Milestones";
 	 }
 	
 	 
@@ -552,7 +566,7 @@ public static String PrepareOutBoundBodyWithRequiredDataAndGetCorrelationID(Stri
 		  
 		  	DocumentContext finaljson=null;
 		  	UUID GUid = Generators.timeBasedGenerator().generate();
-		  	if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision")))
+		  	if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") ))
 		  			{
 		   finaljson = json.set("WorkItems[0].CorrelationUId", GUid.toString());
 		   finaljson = json.set("WorkItems[0].ItemState", 1);
@@ -591,6 +605,16 @@ public static String PrepareOutBoundBodyWithRequiredDataAndGetCorrelationID(Stri
 		   finaljson = json.set("Decisions[0].ModifiedAtSourceOn", (new Random().nextInt(2)+2024+"-"+String.format("%02d", Integer.valueOf(String.valueOf(new Random().nextInt(12)+1)))+"-"+String.format("%02d", Integer.valueOf(String.valueOf(new Random().nextInt(28)+1)))+"T18:48:07.6972433"));
   			}
 			
+			if((workitem.equalsIgnoreCase("Milestone")))
+  			{
+		   finaljson = json.set("Milestones[0].CorrelationUId", GUid.toString());
+		   finaljson = json.set("Milestones[0].ItemState", 1);
+		   finaljson = json.set("Milestones[0].CreatedByApp", "myWizard.IssueManagement");
+		   finaljson = json.set("Milestones[0].ModifiedByApp", "myWizard.IssueManagement");
+		   finaljson = json.set("Milestones[0].Title", getTitle(toolname,workitem)+"_OB");
+		   finaljson = json.set("Milestones[0].ModifiedAtSourceOn", (new Random().nextInt(2)+2024+"-"+String.format("%02d", Integer.valueOf(String.valueOf(new Random().nextInt(12)+1)))+"-"+String.format("%02d", Integer.valueOf(String.valueOf(new Random().nextInt(28)+1)))+"T18:48:07.6972433"));
+  			}
+			
 			
 			if((workitem.equalsIgnoreCase("Requirement")))
   			{
@@ -616,7 +640,7 @@ public static String PrepareOutBoundBodyWithRequiredDataAndGetCorrelationID(Stri
 		   JSONObject jsonObject = (JSONObject) parser.parse(finaljson.jsonString());
 		   
 		   String requiredNode_WorkItemNodeOnly=null;
-			if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("TestCase")  || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision")))
+			if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("TestCase")  || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") ))
 				requiredNode_WorkItemNodeOnly = (String) jsonObject.get("WorkItems").toString();
 			if(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("TestCase"))
 			requiredNode_WorkItemNodeOnly = (String) jsonObject.get("Tests").toString();
@@ -626,6 +650,8 @@ public static String PrepareOutBoundBodyWithRequiredDataAndGetCorrelationID(Stri
 				requiredNode_WorkItemNodeOnly = (String) jsonObject.get("Actions").toString();
 			if((workitem.equalsIgnoreCase("Decision")))
 				requiredNode_WorkItemNodeOnly = (String) jsonObject.get("Decisions").toString();
+			if((workitem.equalsIgnoreCase("Milestone")))
+				requiredNode_WorkItemNodeOnly = (String) jsonObject.get("Milestones").toString();
 			if((workitem.equalsIgnoreCase("Deliverable")))
 				requiredNode_WorkItemNodeOnly = (String) jsonObject.get("Deliverables").toString();
 //		   System.out.println(requiredNode_WorkItemNodeOnly.substring(1, requiredNode_WorkItemNodeOnly.length() - 1));
@@ -667,7 +693,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				
 				
 				String posturlmerge="";
-				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action")  || workitem.equalsIgnoreCase("Decision")))
+				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action")  || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")))
 				posturlmerge = mywizURL+"/v1/MergeWorkItem?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("TestCase"))
 					posturlmerge = mywizURL+"/v1/Test1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
@@ -677,6 +703,8 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					posturlmerge = mywizURL+"/v1/Action?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Decision"))
 					posturlmerge = mywizURL+"/v1/Decision?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
+				else if(workitem.equalsIgnoreCase("Milestone"))
+					posturlmerge = mywizURL+"/v1/Milestone?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Deliverable"))
 					posturlmerge = mywizURL+"/v1/Deliverable?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				

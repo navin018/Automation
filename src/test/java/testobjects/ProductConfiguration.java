@@ -408,6 +408,8 @@ public class ProductConfiguration extends Baseclass {
 				ProductConfiguration.checkAndAddIteration();
 				ProductConfiguration.checkAndAddRequirement();
 				ProductConfiguration.checkAndAddTeamArea();
+				ProductConfiguration.checkAndAddMilesStone();
+				ProductConfiguration.checkAndAddTestResult();
 				
 			}
 			if(toolname.equalsIgnoreCase("ADOP JIRA"))
@@ -421,7 +423,11 @@ public class ProductConfiguration extends Baseclass {
 				ProductConfiguration.checkAndAddWorkItemsForTFS();
 				ProductConfiguration.checkAndAddIteration();
 				ProductConfiguration.checkAndAddTest();
-				
+				ProductConfiguration.checkAndAddDeliverable();
+				ProductConfiguration.checkAndAddMilesStone();
+				ProductConfiguration.checkAndAddTeamArea();
+				ProductConfiguration.checkAndAddAction();
+				ProductConfiguration.checkAndAddDecision();
 			}
 			
 			
@@ -476,6 +482,175 @@ public class ProductConfiguration extends Baseclass {
 		
 		
 	}
+	
+	private static void checkAndAddTestResult() {
+		try{
+				
+				boolean TestResult = false;
+				int totalNoRow = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+				//check if Requirement exists
+				if(totalNoRow>1)
+				{
+									
+						for(int i=1;i<totalNoRow;i++)
+						{
+							 if(getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(i), "int")).equalsIgnoreCase("TestResult"))
+							 {
+								 TestResult = true;
+							 	break;
+							 }
+						}
+				}
+				
+				
+				
+				//if Iteration entity is missing in UI
+				if(!TestResult)
+				{
+					int currentrowCount = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+					clickJS(ProductConfigUIMap.AddEntity_link);
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(currentrowCount), "int"),"TestResult");
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_InboundOutbound_drpdown,String.valueOf(currentrowCount), "int"),"Inbound");
+				}
+			
+			}
+			
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("Issue adding TeamResult entity in product instance entities section");
+				Assert.fail("Issue adding TeamResult entity in product instance entities section");
+			}
+			
+			
+		}
+	
+	
+	private static void checkAndAddAction() {
+		try{
+				
+				boolean Action = false;
+				int totalNoRow = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+				//check if Action exists
+				if(totalNoRow>1)
+				{
+									
+						for(int i=1;i<totalNoRow;i++)
+						{
+							 if(getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(i), "int")).equalsIgnoreCase("Action"))
+							 {
+								 Action = true;
+							 	break;
+							 }
+						}
+				}
+				
+				
+				
+				//if MilesStone entity is missing in UI
+				if(!Action)
+				{
+					int currentrowCount = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+					clickJS(ProductConfigUIMap.AddEntity_link);
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(currentrowCount), "int"),"Action");
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_InboundOutbound_drpdown,String.valueOf(currentrowCount), "int"),"Inbound and Outbound");
+				}
+			
+			}
+			
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("Issue adding Action entity in product instance entities section");
+				Assert.fail("Issue adding Action entity in product instance entities section");
+			}
+			
+			
+		}
+	
+	private static void checkAndAddMilesStone() {
+		try{
+				
+				boolean MilesStone = false;
+				int totalNoRow = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+				//check if MilesStone exists
+				if(totalNoRow>1)
+				{
+									
+						for(int i=1;i<totalNoRow;i++)
+						{
+							 if(getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(i), "int")).equalsIgnoreCase("Milestone"))
+							 {
+								 MilesStone = true;
+							 	break;
+							 }
+						}
+				}
+				
+				
+				
+				//if MilesStone entity is missing in UI
+				if(!MilesStone)
+				{
+					int currentrowCount = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+					clickJS(ProductConfigUIMap.AddEntity_link);
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(currentrowCount), "int"),"Milestone");
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_InboundOutbound_drpdown,String.valueOf(currentrowCount), "int"),"Inbound and Outbound");
+				}
+			
+			}
+			
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("Issue adding MilesStone entity in product instance entities section");
+				Assert.fail("Issue adding MilesStone entity in product instance entities section");
+			}
+			
+			
+		}
+	
+	private static void checkAndAddDecision() {
+		try{
+				
+				boolean Decision = false;
+				int totalNoRow = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+				//check if Decision exists
+				if(totalNoRow>1)
+				{
+									
+						for(int i=1;i<totalNoRow;i++)
+						{
+							 if(getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(i), "int")).equalsIgnoreCase("Decision"))
+							 {
+								 Decision = true;
+							 	break;
+							 }
+						}
+				}
+				
+				
+				
+				//if Decision entity is missing in UI
+				if(!Decision)
+				{
+					int currentrowCount = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+					clickJS(ProductConfigUIMap.AddEntity_link);
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(currentrowCount), "int"),"Decision");
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_InboundOutbound_drpdown,String.valueOf(currentrowCount), "int"),"Inbound and Outbound");
+				}
+			
+			}
+			
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("Issue adding Decision entity in product instance entities section");
+				Assert.fail("Issue adding Decision entity in product instance entities section");
+			}
+			
+			
+		}
 
 	private static void checkAndAddRequirement() {
 		
@@ -2697,6 +2872,34 @@ public static void verifyEntityPropertyForCategory(String property,int totalrowc
 	
 }
 
+public static void verifyDefaultPropertySelected(String property, int totalrowcount,List<Object> currentPropertyGUId){
+	
+	try{
+		boolean DefaultPropertySelected = false;
+		 for(int p=1;p<totalrowcount;p++)
+		  {
+			  if(isSelected(prepareWebElementWithDynamicXpath(ProductConfigUIMap.DefaultProperty_chkbox, String.valueOf(p), "int")))
+					  {
+					  DefaultPropertySelected=true;
+					  break;
+					  }
+			 
+		  }
+		 if(!DefaultPropertySelected) {
+				clickJS(prepareWebElementWithDynamicXpath(ProductConfigUIMap.DefaultProperty_chkbox,"1","int"));
+			}
+		 
+		 
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		logger.info("issue selecting default property for entity "+Entity);
+//		Assert.fail("issue verifying entity property GUID "+currentPropertyGUId + "for entity "+Entity);
+	}
+	
+}
+
 public static void verifyEntityPropertyGUId(String property, int totalrowcount,List<Object> currentPropertyGUId){
 	
 	try{
@@ -2730,6 +2933,8 @@ public static void verifyEntityPropertyGUId(String property, int totalrowcount,L
 	}
 	
 }
+
+
 
 public static void verifyEntityPropertyGUIdForCategory(String property,int totalrowcount,List<Object> currentPropertyGUId){
 	

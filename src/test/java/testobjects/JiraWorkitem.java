@@ -239,6 +239,10 @@ import java.util.Random;
 				case "SubTask":
 				Baseclass.getInstance().WorkItemExternalId_SubTask = toGetID1[1];
 				break;
+				case "Milestone":
+				case "milestone":
+				Baseclass.getInstance().WorkItemExternalId_Milestone = toGetID1[1];
+				break;
 				default:
 			        throw new IllegalArgumentException("Invalid workitem: " + workitem_type[0]);	
 				}

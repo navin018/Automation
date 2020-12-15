@@ -59,6 +59,10 @@
 			"Summary": "Action_AutomationData",
 			"Description": "Action_Description"
 		},
+		"Milestone_01": {
+			"Summary": "Milestone_AutomationData",
+			"Description": "Milestone_Description"
+		},
 		"ProductBacklog_01": {
 			"Summary": "ProductBacklog_AutomationData",
 			"Description": "ProductBacklog_Description"

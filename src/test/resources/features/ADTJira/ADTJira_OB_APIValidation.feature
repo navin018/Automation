@@ -43,7 +43,7 @@ Scenario: ADTJIRA_SubTask
 
 	And i verify the "Outbound" "SubTask" details for "ADT JIRA" 
 	
-@del
+
 Scenario: ADTJIRA_ Deliverable 
 
 	And i verify the "Outbound" "Deliverable" details for "ADT JIRA" 
@@ -58,5 +58,7 @@ Scenario: ADTJIRA_Requirement
 
 	And i verify the "Outbound" "Requirement" details for "ADT JIRA" 
 	
-	
+Scenario: ADTJIRA_Milestone
+	And i generate a token for "DevTest" environment 
+	And i verify the "Outbound" "Milestone" details for "ADT JIRA" 
 

@@ -53,3 +53,6 @@ Scenario: TFSAgile_Deliverable
 	
 	And i verify the "Outbound" "Deliverable" details for "TFS Agile" 	
 
+Scenario: TFSAgile_Milestone
+	
+	And i verify the "Outbound" "Milestone" details for "TFS Agile" 	

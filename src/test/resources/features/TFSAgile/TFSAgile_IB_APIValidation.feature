@@ -59,3 +59,7 @@ Scenario: TFSAgile_Action
 	
 Scenario: TFSAgile_Decision
 	And i verify the "Inbound" "Decision" details for "TFS Agile"
+	
+		
+Scenario: TFSAgile_Milestone
+	And i verify the "Inbound" "Milestone" details for "TFS Agile"

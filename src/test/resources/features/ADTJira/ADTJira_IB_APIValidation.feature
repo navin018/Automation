@@ -62,10 +62,13 @@ Scenario: ADTJIRA_Requirement
 	And i verify the "Inbound" "Requirement" details for "ADT JIRA" 
 	
 
+Scenario: ADTJIRA_Milestone 
+	
+	And i verify the "Inbound" "Milestone" details for "ADT JIRA" 
+
 Scenario: ADTJIRA_Team 
 
-	And i verify the "Inbound" "Team" details for "ADT JIRA" 
-	
+	And i verify the "Inbound" "Team" details for "ADT JIRA" 	
 
 Scenario: ADTJIRA_ReleaseAndSprint 
 
