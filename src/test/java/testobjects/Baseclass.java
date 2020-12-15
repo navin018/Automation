@@ -31,6 +31,7 @@ Baseclass(){
 	public String WorkItemExternalId_Action;
 	public String WorkItemExternalId_Decision;
 	public String WorkItemExternalId_Test;
+	public String WorkItemExternalId_Milestone;
 	public static List<SecurityHeaders> SH = new ArrayList<>();
 	 
 	
@@ -59,12 +60,13 @@ Baseclass(){
 	public String RMP_SprintEndDate;
 	
 	public boolean SecurityTestsResults;
+	public boolean workitemcreation_fail;
 	
 	
 	
 	
-	
-	
+
+
 	public boolean isSecurityTestsResults() {
 		return SecurityTestsResults;
 	}
@@ -74,6 +76,7 @@ Baseclass(){
 		SecurityTestsResults = securityTestsResults;
 	}
 	public static HashMap<String,List<Object>> ClientNativeMatch;
+	
 	
 	public int RandomNumbForMappingRule;
 	

@@ -27,7 +27,7 @@ public class CommonAcrossApps {
 			driver().get(Property.getProperty("JiraURL"));
 			waitPageToLoad();
 			Thread.sleep(10000);
-			grabScreenshotForExtentReport();
+//			grabScreenshotForExtentReport();
 //			if(Property.getProperty("JiraURL").contains("adt"))
 //			 click(JiraUIMap.login_btn);
 //			 waitPageToLoad();
@@ -43,7 +43,7 @@ public class CommonAcrossApps {
 //			 ExpWaitForCondition(JiraUIMap.Yes_btn);
 //			 click(JiraUIMap.Yes_btn);
 //			
-			grabScreenshotForExtentReport();
+//			grabScreenshotForExtentReport();
 			//code change after browser remembering the login details
 			
 			if(CheckIfElementExists(JiraUIMap.login_btn)){
@@ -95,7 +95,7 @@ public class CommonAcrossApps {
 			 
 			
 			 waitPageToLoad();
-			 grabScreenshotForExtentReport();
+//			 grabScreenshotForExtentReport();
 			 ExpWaitForCondition(JiraUIMap.Create_link);
 			 
 			 
@@ -107,6 +107,7 @@ public class CommonAcrossApps {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			grabScreenshotForExtentReport();
 			Assert.fail("Problem logging in to JIRA");
 		}
 	}
@@ -119,6 +120,14 @@ public class CommonAcrossApps {
 			Thread.sleep(10000);
 //			driver().manage().window().maximize();
 			
+			
+			if(CheckIfElementExists(MyWizardUIMap.signInWithUserNameSaved_txtbox)){
+				clear(MyWizardUIMap.signInWithUserNameSaved_txtbox);
+				enterText(MyWizardUIMap.signInWithUserNameSaved_txtbox, Property.getProperty("MyWizard_Username"));
+				 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+				 click(MyWizardUIMap.signIn_btn1);
+				 Thread.sleep(10000);
+			}
 			
 			//if sign in with email id page shows up
 			if(CheckIfElementExists(MyWizardUIMap.signIn_txtbox)){
@@ -308,13 +317,13 @@ public static void LoginToTFS()
 	try{
 		driver().get(Property.getProperty("TFS_URL"));
 		waitPageToLoad();
-		driver().manage().window().maximize();
-		enterText(TFSUIMap.signIn_txtbox,Property.getProperty("TFSUsername"));
-		 click(TFSUIMap.Next_btn);
-		 waitPageToLoad();
-		 enterText(TFSUIMap.Pwd_txtbox,Property.getProperty("TFSPassword"));
-		 click(TFSUIMap.signIn_btn);
-		 waitPageToLoad();
+//		driver().manage().window().maximize();
+//		enterText(TFSUIMap.signIn_txtbox,Property.getProperty("TFSUsername"));
+//		 click(TFSUIMap.Next_btn);
+//		 waitPageToLoad();
+//		 enterText(TFSUIMap.Pwd_txtbox,Property.getProperty("TFSPassword"));
+//		 click(TFSUIMap.signIn_btn);
+//		 waitPageToLoad();
 	}
 	catch(Exception e)
 	{
@@ -349,7 +358,7 @@ try{
 		    jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
 		    jsonObject.put("WorkItemExternalId_Test", Baseclass.getInstance().WorkItemExternalId_Test);
 		    jsonObject.put("WorkItemExternalId_SubTask", Baseclass.getInstance().WorkItemExternalId_SubTask);
-		    
+		    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
 		    jsonObject.put("WorkItemExternalId_ReleaseName", Baseclass.getInstance().Jira_ReleaseName);
 		    jsonObject.put("WorkItemExternalId_ReleaseStartDate", Baseclass.getInstance().Jira_ReleaseStartDate);
 		    jsonObject.put("WorkItemExternalId_ReleaseEndDate", Baseclass.getInstance().Jira_ReleaseEndDate);
@@ -391,6 +400,10 @@ try{
 	    jsonObject.put("WorkItemExternalId_Epic", CommonFunctions.SpiltWorkitem(Baseclass.getInstance().WorkItemExternalId_Epic));
 	    jsonObject.put("WorkItemExternalId_ProductBacklog", CommonFunctions.SpiltWorkitem(Baseclass.getInstance().WorkItemExternalId_ProductBacklog));
 	    jsonObject.put("WorkItemExternalId_Bug", CommonFunctions.SpiltWorkitem(Baseclass.getInstance().WorkItemExternalId_Bug));
+	    jsonObject.put("WorkItemExternalId_Action", CommonFunctions.SpiltWorkitem(Baseclass.getInstance().WorkItemExternalId_Action));
+	    jsonObject.put("WorkItemExternalId_Decision", CommonFunctions.SpiltWorkitem(Baseclass.getInstance().WorkItemExternalId_Decision));
+	    jsonObject.put("WorkItemExternalId_Risk", CommonFunctions.SpiltWorkitem(Baseclass.getInstance().WorkItemExternalId_Risk));
+	    jsonObject.put("WorkItemExternalId_Deliverable", CommonFunctions.SpiltWorkitem(Baseclass.getInstance().WorkItemExternalId_Deliverable));
 
 	    jsonObject.put("TFS_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
 		jsonObject.put("TFS_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);

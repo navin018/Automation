@@ -133,12 +133,14 @@ Scenario Outline: ADTJira_WorkitemCcreation
 	And i create a "<epic>" in Jira 
 	And i create a "<subtask>" in Jira 
 	And i create a "<milestone>" in Jira 
-#	And i create an "<Release>" in Jira 
-#	And i create an "<Sprint>" in Jira 
-#	And i create an "<Team>" in Jira 
+##	And i create an "<Release>" in Jira 
+##	And i create an "<Sprint>" in Jira 
+##	And i create an "<Team>" in Jira 
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" 
+	And i check the overall status of workitem creation for "<applicationname>"
 	And i put a explicit wait of "600000" 
 #	And i generate a token for "DevTest" environment 
+	
 	
 	Examples: 
 		| applicationname | task    | story    | risk    |Requirement| Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|milestone|

@@ -22,7 +22,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.AssertionFailedError;
 import testobjects.*;
-import testobjects.CommonFunctions;
 import uiMap.JiraUIMap;
 import uiMap.TFSUIMap;
 import uiMap.MyWizardUIMap;
@@ -86,7 +85,10 @@ public class CommonSteps {
 	@Then("^i select a Project for \"([^\"]*)\"$")
 	public void iSelectAProject(String AppName) throws Throwable {
 		if(AppName.equalsIgnoreCase("jira"))
+		{
 		JiraWorkitem.SelectProject();
+		Baseclass.getInstance().workitemcreation_fail = false;
+		}
 		if(AppName.equalsIgnoreCase("TFS"))
 			TFSWorkitem.SelectProject();
 	}
@@ -115,6 +117,19 @@ public class CommonSteps {
 	public void generateToken(String Env) throws Throwable {
 		try{
 			CommonFunctions.generateToken(Env);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Then("^i check the overall status of workitem creation for \"([^\"]*)\"$")
+	public void checkoverallstatusofworkitemcreation(String Env) throws Throwable {
+		try{
+			CommonFunctions.checkoverallstatusofworkitemcreation(Env);
 			
 		}
 		catch(Exception e)

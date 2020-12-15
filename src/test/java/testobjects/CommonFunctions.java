@@ -76,6 +76,12 @@ public class CommonFunctions {
 		}
 	}
 
+	public static void checkoverallstatusofworkitemcreation(String env) {
+		if(Baseclass.getInstance().workitemcreation_fail)
+			Assert.fail("Issue with workitem creation for "+env);
+		
+	}
+
 	
 	
 	
