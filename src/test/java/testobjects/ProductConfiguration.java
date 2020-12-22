@@ -1051,7 +1051,7 @@ public static void checkAndAddTest(){
 							
 							if(toolname.equalsIgnoreCase("ADT JIRA"))
 							{
-							String[] pipelines = {"JIRA-US-Inbound","JIRA-ITR-US-Inbound", "JIRA-TEAMS-US-Inbound"};
+							String[] pipelines = {"JIRA-ITR-US-Inbound","JIRA-TEAMS-US-Inbound","JIRA-US-Inbound", };
 							verifyIfPipelinesExists(pipelines,toolname,IBorOB);
 							}
 							if(toolname.equalsIgnoreCase("ADOP JIRA"))

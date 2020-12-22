@@ -120,20 +120,20 @@ Scenario Outline: ADTJira_RulesValidation
 Scenario Outline: ADTJira_WorkitemCcreation 
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
-#	And i create a "<task>" in Jira 
-#	And i create a "<story>" in Jira 
-#	And i create a "<risk>" in Jira 
-#	And i create a "<bug>" in Jira 
-#	And i create a "<issue>" in Jira 
-#	And i create a "<feature>" in Jira 
-#	And i create a "<impediment>" in Jira 
-#	And i create a "<deliverable>" in Jira 
-#	And i create a "<Requirement>" in Jira 
-#	And i create a "<Test>" in Jira
-#	And i create a "<epic>" in Jira 
-##	And i create a "<subtask>" in Jira 
-#	And i create a "<milestone>" in Jira 
-#	And i create a "<Action>" in Jira
+	And i create a "<task>" in Jira 
+	And i create a "<story>" in Jira 
+	And i create a "<risk>" in Jira 
+	And i create a "<bug>" in Jira 
+	And i create a "<issue>" in Jira 
+	And i create a "<feature>" in Jira 
+	And i create a "<impediment>" in Jira 
+	And i create a "<deliverable>" in Jira 
+	And i create a "<Requirement>" in Jira 
+	And i create a "<Test>" in Jira
+	And i create a "<epic>" in Jira 
+#	And i create a "<subtask>" in Jira 
+	And i create a "<milestone>" in Jira 
+	And i create a "<Action>" in Jira
 	And i create a "<TestExecution>" in Jira
 	And i create entity "<TestForTestExec>" in Jira 
 
@@ -152,7 +152,7 @@ Scenario Outline: ADTJira_WorkitemCcreation
 
 @8ADTJira_OB_ValidationInTool
 Scenario Outline: ADTJira_OB_ValidationInTool
-#   And i put a explicit wait of "600000" 
+   And i put a explicit wait of "600000" 
    Given i login to application "<applicationname>"
    Then i select a Project for "<applicationname>"
     And i validate the outbound flow for "<applicationname>"
