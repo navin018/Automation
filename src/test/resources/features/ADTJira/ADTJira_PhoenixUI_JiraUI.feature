@@ -131,7 +131,7 @@ Scenario Outline: ADTJira_WorkitemCcreation
 	And i create a "<Requirement>" in Jira 
 	And i create a "<Test>" in Jira
 	And i create a "<epic>" in Jira 
-	And i create a "<subtask>" in Jira 
+#	And i create a "<subtask>" in Jira 
 	And i create a "<milestone>" in Jira 
 	And i create a "<Action>" in Jira
 	And i create a "<TestExecution>" in Jira
@@ -152,7 +152,7 @@ Scenario Outline: ADTJira_WorkitemCcreation
 
 @8ADTJira_OB_ValidationInTool
 Scenario Outline: ADTJira_OB_ValidationInTool
-   And i put a explicit wait of "600000" 
+#   And i put a explicit wait of "600000" 
    Given i login to application "<applicationname>"
    Then i select a Project for "<applicationname>"
     And i validate the outbound flow for "<applicationname>"

@@ -39,9 +39,9 @@ Scenario: ADTJIRA_Feature
 	And i verify the "Outbound" "Feature" details for "ADT JIRA" 
 	
 
-Scenario: ADTJIRA_SubTask 
-
-	And i verify the "Outbound" "SubTask" details for "ADT JIRA" 
+#Scenario: ADTJIRA_SubTask 
+#
+#	And i verify the "Outbound" "SubTask" details for "ADT JIRA" 
 	
 
 Scenario: ADTJIRA_ Deliverable 
