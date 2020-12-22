@@ -197,71 +197,87 @@ import java.util.Random;
 				case "task":
 				case "Task":
 				Baseclass.getInstance().WorkItemExternalId_Task = toGetID1[1];
-				System.out.println("Created task ID is "+toGetID1[1]);
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "story":
 				case "Story":
 				Baseclass.getInstance().WorkItemExternalId_Story = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "risk":
 				case "Risk":
 				Baseclass.getInstance().WorkItemExternalId_Risk = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "issue":
 				case "Issue":
 				Baseclass.getInstance().WorkItemExternalId_Issue = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "bug":
 				case "Bug":
 				Baseclass.getInstance().WorkItemExternalId_Bug = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "feature":
 				case "Feature":
 				Baseclass.getInstance().WorkItemExternalId_Feature = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				case "new feature":
 				case "New Feature":
 				Baseclass.getInstance().WorkItemExternalId_Feature = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "impediment":
 				case "Impediment":
 				Baseclass.getInstance().WorkItemExternalId_Impediment = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "deliverable":
 				case "Deliverable":
 				Baseclass.getInstance().WorkItemExternalId_Deliverable = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "requirement":
 				case "Requirement":
 				Baseclass.getInstance().WorkItemExternalId_Requirement = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "test":
 				case "Test":
 				Baseclass.getInstance().WorkItemExternalId_Test = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "TestForTestExec":
 				case "testForTestExec":
 				Baseclass.getInstance().WorkItemExternalId_TestExecution = Baseclass.getInstance().WorkItemExternalId_TestExecution+"_"+toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				
 				break;
 				case "epic":
 				case "Epic":
 				Baseclass.getInstance().WorkItemExternalId_Epic = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "subtask":
 				case "SubTask":
 				Baseclass.getInstance().WorkItemExternalId_SubTask = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "Milestone":
 				case "milestone":
 				Baseclass.getInstance().WorkItemExternalId_Milestone = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "Action":
 				case "action":
 				Baseclass.getInstance().WorkItemExternalId_Action = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "test execution":
 				case "Test Execution":
 				Baseclass.getInstance().WorkItemExternalId_TestExecution = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
 				doubleClick(JiraUIMap.SearchBoxHomePage_txtbox);
 				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);

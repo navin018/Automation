@@ -27,9 +27,9 @@ public class JiraSteps  {
 		else
 		{
 			waitPageToLoad();
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 			click(JiraUIMap.WorkItemExternalID_txt);
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 			click(JiraUIMap.CreateSubTask_btn);
 			JiraWorkitem.CreateWorkitem(workitem);
 			JiraWorkitem.CaptureWorkitemID(workitem);
