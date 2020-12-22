@@ -1,7 +1,6 @@
 @7OBValidation_ADTJira
 Feature: ADTJira_OB_Validation
    
-
 Scenario: ADTJIRA_Task
 
 	And i verify the "Outbound" "Task" details for "ADT JIRA" 
@@ -70,3 +69,5 @@ Scenario: ADTJIRA_Action
 Scenario: ADTJIRA_TestExecution
 	
 	And i verify the "Outbound" "Test Execution" details for "ADT JIRA" 
+
+

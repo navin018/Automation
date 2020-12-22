@@ -481,7 +481,7 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	 response = request.post(PostUrl);
 	 else if(workitem.equalsIgnoreCase("Team"))
 		 response = request.get(PostUrl); 
-	 System.out.println(response.getBody().asString());
+//	 System.out.println(response.getBody().asString());
 	 if(response.getStatusCode()!=200)
 	 {
 		 if(response.getStatusCode()==401)

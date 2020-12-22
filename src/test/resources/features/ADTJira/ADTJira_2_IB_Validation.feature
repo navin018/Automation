@@ -5,7 +5,6 @@ Feature: ADTJira_IB_Validation
 Scenario: ADTJIRA_Task 
 	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "ADT JIRA" 
-	
 
 Scenario: ADTJIRA_Epic 
 
@@ -79,12 +78,7 @@ Scenario: ADTJIRA_Team
 
 	And i verify the "Inbound" "Team" details for "ADT JIRA" 	
 
-Scenario: ADTJIRA_ReleaseAndSprint 
+#Scenario: ADTJIRA_ReleaseAndSprint 
+#
+#	And i verify the "Inbound" "ReleaseAndSprint" details for "ADT JIRA" 
 
-	And i verify the "Inbound" "ReleaseAndSprint" details for "ADT JIRA" 
-	
-
-	
-	
-	
-			
