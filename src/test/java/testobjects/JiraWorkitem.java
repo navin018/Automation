@@ -784,7 +784,9 @@ public static void associateTestExecution(String workitem) {
 		clickJS(JiraUIMap.ExistingTestExecution_statictxt);
 		Thread.sleep(2000);
 		ExpWaitForCondition(JiraUIMap.TestExecution_txtbox);
-		enterText(JiraUIMap.TestExecution_txtbox,Baseclass.getInstance().WorkItemExternalId_TestExecution.split("_")[0]);
+		Thread.sleep(4000);
+//		enterText(JiraUIMap.TestExecution_txtbox,Baseclass.getInstance().WorkItemExternalId_TestExecution.split("_")[0]);
+		enterTextUsingAction(JiraUIMap.TestExecution_txtbox,Baseclass.getInstance().WorkItemExternalId_TestExecution.split("_")[0]);
 		Thread.sleep(3000);
 		sendEnter(JiraUIMap.TestExecution_txtbox);
 		sendEnter(JiraUIMap.TestExecution_txtbox);
