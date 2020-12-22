@@ -93,7 +93,7 @@ public class CommonSteps {
 	
 	@Then("^i select a Project for \"([^\"]*)\"$")
 	public void iSelectAProject(String AppName) throws Throwable {
-		if(AppName.equalsIgnoreCase("jira"))
+		if(AppName.equalsIgnoreCase("jira") || AppName.equalsIgnoreCase("ADT Jira"))
 		{
 		JiraWorkitem.SelectProject();
 		Baseclass.getInstance().workitemcreation_fail = false;
