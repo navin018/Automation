@@ -1,7 +1,7 @@
 @6IBValidation_ADTJira
 Feature: ADTJira_IB_Validation
 
-@adttask
+
 Scenario: ADTJIRA_Task 
 	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "ADT JIRA" 
@@ -65,6 +65,15 @@ Scenario: ADTJIRA_Requirement
 Scenario: ADTJIRA_Milestone 
 	
 	And i verify the "Inbound" "Milestone" details for "ADT JIRA" 
+	
+Scenario: ADTJIRA_Action
+	
+	And i verify the "Inbound" "Action" details for "ADT JIRA"
+	
+
+Scenario: ADTJIRA_TestExecution 
+	
+	And i verify the "Inbound" "Test Execution" details for "ADT JIRA" 
 
 Scenario: ADTJIRA_Team 
 

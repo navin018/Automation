@@ -12,10 +12,7 @@ public class TFSSteps {
 	   TFSWorkitem.CreateWorkitem(workitem);
 	}
 
-	@Then("^i validate the outbound flow for \"([^\"]*)\"$")
-	public void iValidateTheOutboundFlow(String application) throws Throwable {
-		TFSWorkitem.ValidateOB();
-	}
+	
 	
 	@Then("^i create \"([^\"]*)\" and \"([^\"]*)\" in TFS$")
 	public void i_create_and_in_TFS(String Release, String Sprint) throws Throwable {

@@ -32,6 +32,7 @@ Baseclass(){
 	public String WorkItemExternalId_Decision;
 	public String WorkItemExternalId_Test;
 	public String WorkItemExternalId_Milestone;
+	public String WorkItemExternalId_TestExecution;
 	public static List<SecurityHeaders> SH = new ArrayList<>();
 	 
 	

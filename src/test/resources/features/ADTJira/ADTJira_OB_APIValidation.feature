@@ -58,7 +58,15 @@ Scenario: ADTJIRA_Requirement
 
 	And i verify the "Outbound" "Requirement" details for "ADT JIRA" 
 	
+
 Scenario: ADTJIRA_Milestone
-	And i generate a token for "DevTest" environment 
+	
 	And i verify the "Outbound" "Milestone" details for "ADT JIRA" 
 
+Scenario: ADTJIRA_Action
+	
+	And i verify the "Outbound" "Action" details for "ADT JIRA" 
+
+Scenario: ADTJIRA_TestExecution
+	
+	And i verify the "Outbound" "Test Execution" details for "ADT JIRA" 

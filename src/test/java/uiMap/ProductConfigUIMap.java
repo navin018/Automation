@@ -90,6 +90,7 @@ public class ProductConfigUIMap {
 	public static String Column2_AttributeName_statictxt = "//span[text()='Add Parameter']//following::table[@class='table phx-manage-prod-table ui-treetable-table-mod']//tbody//tr[{int}]/td[2]";
 	public static String Column5_AttributeValue_statictxt = "//span[text()='Add Parameter']//following::table[@class='table phx-manage-prod-table ui-treetable-table-mod']//tbody//tr[{int}]/td[5]";
 	public static String Column7_ManageIntegrationParams_Img = "//table[@class='table phx-manage-prod-table ui-treetable-table-mod']/tbody/tr[{int}]/td[7]/following::a[@class='mx-1 ng-star-inserted' and @title='Manage ProductInstance Integration Parameters'][1]";
+	public static String DefaultProperty_chkbox = "//span[text()='Add Entity Property Value']//following::table[1]//tr[{int}]//td[5]/input";
 	public static By ParameterValue_txtbox = By.xpath("//label[text()='Parameter Value ']//following::textarea[1]");
 	public static By ContinueToSaveParamter_btn = By.xpath("//button[@title='Continue to Save Parameter']");
 	public static By IsRealtimeConfigChangesEnabled_btn = By.xpath("//label[text()='Is Realtime Config Changes Enabled ?']//following::span[text()='Yes'][1]");

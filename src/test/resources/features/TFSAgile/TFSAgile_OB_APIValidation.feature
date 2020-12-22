@@ -29,7 +29,10 @@ Scenario: TFSAgile_Bug
 Scenario: TFSAgile_Feature 
 
 	And i verify the "Outbound" "Feature" details for "TFS Agile" 
-	
+
+Scenario: TFSAgile_Requirement 
+
+	And i verify the "Outbound" "Requirement" details for "TFS Agile" 	
 
 Scenario: TFSAgile_TestCase
 	

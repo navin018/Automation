@@ -41,6 +41,7 @@ public class CommonSteps {
 		switch(AppName)
 		{
 			case "Jira":
+			case "ADT Jira":
 			{
 				CommonAcrossApps.loginToJira();
 				
@@ -81,6 +82,14 @@ public class CommonSteps {
 		
 		}	
 		
+	
+	@Then("^i validate the outbound flow for \"([^\"]*)\"$")
+	public void iValidateTheOutboundFlow(String application) throws Throwable {
+		if(application.contains("Jira"))
+			JiraWorkitem.ValidateOB(application);
+		if(application.equalsIgnoreCase("TFS"))
+			TFSWorkitem.ValidateOB(application);
+	}
 	
 	@Then("^i select a Project for \"([^\"]*)\"$")
 	public void iSelectAProject(String AppName) throws Throwable {

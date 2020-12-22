@@ -31,6 +31,10 @@ Scenario: TFSAgile_Feature
 
 	And i verify the "Inbound" "Feature" details for "TFS Agile" 
 	
+Scenario: TFSAgile_Requirement
+
+	And i verify the "Inbound" "Requirement" details for "TFS Agile"
+	
 
 Scenario: TFSAgile_ReleaseAndSprint 
 

@@ -79,7 +79,19 @@
 			"Summary": "Milestone_AutomationData",
 			"Description": "Milestone_Description"
 		},
+		"Action_01": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Description"
+		},
+		"Test Execution_01": {
+			"Summary": "Test Execution_AutomationData",
+			"Description": "Test Execution_Description"
+		},
 		"Test_01": {
+			"Summary": "Test_AutomationData",
+			"Description": "Test_Description"
+		},
+		"TestForTestExec_01": {
 			"Summary": "Test_AutomationData",
 			"Description": "Test_Description"
 		},

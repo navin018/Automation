@@ -451,6 +451,14 @@ public class SeleniumDSL {
 	public static void enterText(By by, String val)  {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(val);
     }
+	
+	public static void enterTextUsingAction(By by, String val)  {
+	
+		Actions performAct = new Actions(driver()); 
+		performAct.sendKeys(driver().findElement(by),val).build().perform();
+    }
+	
+	
 	public static void enterText1(By by, Keys val)  {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(val);
     }

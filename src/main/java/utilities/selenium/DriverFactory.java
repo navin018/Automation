@@ -158,13 +158,13 @@ public class DriverFactory {
         			String cmd2 = "taskkill /F /IM chromedriver.exe /T";
         			String chromeProfile = System.getProperty("user.dir")+"\\src\\test\\resources\\testdata\\chrome_Test_Profile\\";
 //        			String cmd3 = "chrome.exe -remote-debugging-port=9014 --user-data-dir=\"C:\\Users\\sonal.harish.nagda\\Downloads\\Selenium\\chrome_Test_Profile\"";
-        			String cmd3 = "chrome.exe -remote-debugging-port=9014 --user-data-dir=\""+chromeProfile;
+//        			String cmd3 = "chrome.exe -remote-debugging-port=9014 --user-data-dir=\""+chromeProfile;
 //        			System.out.println(cmd3);
         			Runtime run = Runtime.getRuntime();
         			Process pr = run.exec(cmd1);
         			Process pr2 = run.exec(cmd2);
         			Thread.sleep(3000);
-        			Process pr3 = run.exec(cmd3);
+//        			Process pr3 = run.exec(cmd3);
         			Thread.sleep(3000);
 
     			}
@@ -179,7 +179,7 @@ public class DriverFactory {
     			 options.addArguments("--disable-extensions");
     			 options.addArguments("--disable-popup-blocking");
     			 options.addArguments("test-type");
-     		    options.setExperimentalOption("debuggerAddress", "localhost:9014");
+//     		    options.setExperimentalOption("debuggerAddress", "localhost:9014");
     			
     			options.setBinary(Property.getProperty("chromeBinary"));
     			cap.setCapability(ChromeOptions.CAPABILITY, options);

@@ -25,6 +25,7 @@ public static By close_btn = By.xpath("//span[@class='ui-button-icon-primary ui-
 public static By plusIcon_btn = By.xpath("//span[contains(@class,'Add medium')]");
 
 public static By SearchBoxHomePage_txtbox = By.xpath("//input[@id='l1-search-input']");
+public static By WorkItemExternalIDTitle_txt = By.xpath("//span[@class='search-suggestion-title text-ellipsis']");
 public static By WorkitemTitleSearch_statictxt = By.xpath("//span[@class='search-suggestion-icon flex-row flex-noshrink']//following::span[1]");
 
 public static By WorkItemtxt_static = By.xpath("//div[@class='bolt-menuitem-cell-content bolt-menuitem-cell-text'][text()='Work items']");

@@ -51,12 +51,12 @@ public class MyWizardSteps {
 		String[] JIRA_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue", "Risk"};
 //		String[] JIRA_WorkItems = {"Task", "Epic"};
 		
-		String[] ADTJira_NonWorkItems = {"Test","Deliverable","Requirement","Iteration"};
+		String[] ADTJira_NonWorkItems = {"Test","Deliverable","Requirement","Iteration","Action","TestResult","Test","Milestone"};
 		
 		String[] ADOPJira_NonWorkItems = {"Iteration"};
-		String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue"};
-		String[] TFSScrum_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment"};
-		String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable"};
+		String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue","Risk"};
+		String[] TFSScrum_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue","Risk"};
+		String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable","Action","TestResult","Milestone","Decision"};
 	
 //		String[] JIRA_WorkItems = {};
 //		String[] ADTJira_NonWorkItems = {"Deliverable","Iteration"};

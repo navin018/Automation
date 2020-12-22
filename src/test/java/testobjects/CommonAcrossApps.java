@@ -27,6 +27,7 @@ public class CommonAcrossApps {
 			driver().get(Property.getProperty("JiraURL"));
 			waitPageToLoad();
 			Thread.sleep(10000);
+			ExpWaitForCondition(JiraUIMap.login_btn);
 //			grabScreenshotForExtentReport();
 //			if(Property.getProperty("JiraURL").contains("adt"))
 //			 click(JiraUIMap.login_btn);
@@ -45,6 +46,30 @@ public class CommonAcrossApps {
 //			
 //			grabScreenshotForExtentReport();
 			//code change after browser remembering the login details
+			if(CheckIfElementExists(JiraUIMap.login_btn)){
+				clickJS(JiraUIMap.login_btn);
+				Thread.sleep(10000);
+				enterText(MyWizardUIMap.signIn_txtbox,Property.getProperty("Username"));
+				clickJS(MyWizardUIMap.Next_btn);
+				ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+				 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("Password"));
+				 click(MyWizardUIMap.signIn_btn1);
+				 Thread.sleep(10000);
+					if(CheckIfElementExists(MyWizardUIMap.Yes_btn))	
+					{
+						clickJS(MyWizardUIMap.Yes_btn);
+					}
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			if(CheckIfElementExists(JiraUIMap.login_btn)){
 				clickJS(JiraUIMap.login_btn);
@@ -359,6 +384,8 @@ try{
 		    jsonObject.put("WorkItemExternalId_Test", Baseclass.getInstance().WorkItemExternalId_Test);
 		    jsonObject.put("WorkItemExternalId_SubTask", Baseclass.getInstance().WorkItemExternalId_SubTask);
 		    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
+		    jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
+		    jsonObject.put("WorkItemExternalId_TestExecution", Baseclass.getInstance().WorkItemExternalId_TestExecution);
 		    jsonObject.put("WorkItemExternalId_ReleaseName", Baseclass.getInstance().Jira_ReleaseName);
 		    jsonObject.put("WorkItemExternalId_ReleaseStartDate", Baseclass.getInstance().Jira_ReleaseStartDate);
 		    jsonObject.put("WorkItemExternalId_ReleaseEndDate", Baseclass.getInstance().Jira_ReleaseEndDate);

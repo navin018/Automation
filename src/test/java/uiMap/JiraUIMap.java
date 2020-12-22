@@ -48,6 +48,12 @@ public static By WorkItemExternalID_txt=By.xpath("//div[@class='quick-search-sec
 public static By WorkItemExternalIDTitle_txt=By.xpath("//img[@class='quick-search-item-image']//following::span[1]");
 
 public static By SearchBoxHomePage_txtbox=By.xpath("//input[@id='quickSearchInput']");
+public static By ExecuteIn_statictxt=By.xpath("//span[text()='Execute In']");
+public static By TestExecution_txtbox=By.xpath("//textarea[@id='raven-field-issuepicker-textarea']");
+public static By AddTestExecution_btn=By.xpath("//input[@value='Add' and @id='issue-selector-form-submit']");
+public static By AssociatedSuccess_txt=By.xpath("//div[@class='aui-message closeable aui-message-success']");
+
+public static By ExistingTestExecution_statictxt=By.xpath("//a[@title='Existing Test Execution']");
 public static By ViewAllProject_link = By.xpath("//a[@id='project_view_all_link_lnk']");
 public static By SearchBoxAllPorjects_txtbox=By.xpath("//input[@id='project-filter-text']");
 public static By ProjectKey_Statictxt = By.xpath("//table[@class='aui']//tbody//tr[1]//td[2]");

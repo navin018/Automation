@@ -6,10 +6,11 @@ import cucumber.api.java.en.Then;
 import uiMap.JiraUIMap;
 import testobjects.*;
 
-public class JiraSteps {
+public class JiraSteps  {
 	
 	@Then("^i create a \"([^\"]*)\" in Jira$")
 	public void iCreateAInJira(String workitem) throws Throwable {
+		
 		String workitem_sp[] = workitem.split("_");
 		
 		if(!workitem_sp[0].equalsIgnoreCase("SubTask"))
@@ -35,6 +36,27 @@ public class JiraSteps {
 		}
 	}
 
+	@Then("^i create entity \"([^\"]*)\" in Jira$")
+	public void iCreateEntityInJira(String workitem) throws Throwable {
+		
+		String workitem_sp[] = workitem.split("_");
+		
+		if(workitem_sp[0].equalsIgnoreCase("TestForTestExec"))
+		{
+		Thread.sleep(3000);
+		ExpWaitForCondition(JiraUIMap.Create_link);
+		click(JiraUIMap.Create_link);
+		ExpWaitForCondition(JiraUIMap.CreateIssue_Statictxt);
+		waitPageToLoad();
+	
+		JiraWorkitem.SelectWorkItemtype("Test");
+		JiraWorkitem.CreateWorkitem(workitem);
+		JiraWorkitem.CaptureWorkitemID(workitem);
+		JiraWorkitem.associateTestExecution(workitem);
+		}
+		
+	}
+
 	
 
 	@Then("^i create an \"([^\"]*)\" in Jira$")
@@ -46,11 +68,11 @@ public class JiraSteps {
 	}
 	
 	
-
-	@Then("^i validate the outbound flow$")
-	public void iValidateTheOutboundFlow() throws Throwable {
-		JiraWorkitem.ValidateOB();
-	}
+//
+//	@Then("^i validate the outbound flow for \"([^\"]*)\" $")
+//	public void iValidateTheOutboundFlow(String appname) throws Throwable {
+//		JiraWorkitem.ValidateOB(appname);
+//	}
 
 	@Then("^i delete the test automation data$")
 	public void i_delete_the_test_automation_data() throws Throwable {

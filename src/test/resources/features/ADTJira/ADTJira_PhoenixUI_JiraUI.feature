@@ -106,10 +106,10 @@ Scenario Outline: SEI_ADTJira_OB_Pipelines
 @4Rules_ADTJira
 Scenario Outline: ADTJira_RulesValidation
 	Given i login to application "<applicationname>" 
-#	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
-#	And i click on tile "Product Instance Entity Rule Config"
-#	Then i select client and DC for "<applicationname>"  
-#	And i verify and add the rules if missing for the "<toolname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "Product Instance Entity Rule Config"
+	Then i select client and DC for "<applicationname>"  
+	And i verify and add the rules if missing for the "<toolname>" 
 	
 	
 	Examples: 
@@ -129,10 +129,14 @@ Scenario Outline: ADTJira_WorkitemCcreation
 	And i create a "<impediment>" in Jira 
 	And i create a "<deliverable>" in Jira 
 	And i create a "<Requirement>" in Jira 
-	And i create a "<Test>" in Jira 
+	And i create a "<Test>" in Jira
 	And i create a "<epic>" in Jira 
 	And i create a "<subtask>" in Jira 
 	And i create a "<milestone>" in Jira 
+	And i create a "<Action>" in Jira
+	And i create a "<TestExecution>" in Jira
+	And i create entity "<TestForTestExec>" in Jira 
+
 ##	And i create an "<Release>" in Jira 
 ##	And i create an "<Sprint>" in Jira 
 ##	And i create an "<Team>" in Jira 
@@ -143,17 +147,18 @@ Scenario Outline: ADTJira_WorkitemCcreation
 	
 	
 	Examples: 
-		| applicationname | task    | story    | risk    |Requirement| Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|milestone|
-		| Jira            | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|
+		| applicationname | task    | story    | risk    |Requirement| Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|milestone|TestExecution|Action|TestForTestExec|
+		| Jira            | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|Test Execution_01|Action_01|TestForTestExec_01|
 
 @8ADTJira_OB_ValidationInTool
 Scenario Outline: ADTJira_OB_ValidationInTool
-    Given i login to application "<applicationname>"
+   And i put a explicit wait of "600000" 
+   Given i login to application "<applicationname>"
    Then i select a Project for "<applicationname>"
-    And i validate the outbound flow
+    And i validate the outbound flow for "<applicationname>"
 
     Examples: 
       | applicationname | 
-      | Jira            | 
+      | ADT Jira            | 
 		
 		

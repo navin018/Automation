@@ -68,6 +68,7 @@ import java.util.Random;
 				 
 				String workItemSplit[] = workItem.split("_");
 				switch(workItemSplit[0]){
+
 				case "risk":
 				case "Risk":
 					if(Property.getProperty("JiraURL").contains("uat.alm.accenture"))
@@ -118,8 +119,8 @@ import java.util.Random;
 			catch(Exception e) {
 				e.printStackTrace();
 				logger.info("Issue creating workitem "+workItem + " for the given tool");
-				Assert.fail("Issue creating workitem "+workItem + " for the given tool");
-				
+//				Assert.fail("Issue creating workitem "+workItem + " for the given tool");
+				Baseclass.getInstance().workitemcreation_fail = true;
 				}
 			
 		}
@@ -143,7 +144,8 @@ import java.util.Random;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				logger.info("issue selecting the "+workitem+" for the given tool");
-				Assert.fail("issue selecting the "+workitem+" for the given tool");
+				Baseclass.getInstance().workitemcreation_fail = true;
+//				Assert.fail("issue selecting the "+workitem+" for the given tool");
 			}
 		
 			
@@ -157,8 +159,11 @@ import java.util.Random;
 				click(JiraUIMap.ViewAllProject_link);
 				Thread.sleep(10000);
 //				
-			
-				enterText(JiraUIMap.SearchBoxAllPorjects_txtbox, Property.getProperty("JiraProject"));
+				ExpWaitForCondition(JiraUIMap.SearchBoxAllPorjects_txtbox);
+				doubleClick(JiraUIMap.SearchBoxAllPorjects_txtbox);
+				Thread.sleep(2000);
+//				enterText(JiraUIMap.SearchBoxAllPorjects_txtbox, Property.getProperty("JiraProject"));
+				enterTextUsingAction(JiraUIMap.SearchBoxAllPorjects_txtbox, Property.getProperty("JiraProject"));
 				Thread.sleep(5000);
 				Assert.assertEquals(getText(JiraUIMap.ProjectKey_Statictxt), Property.getProperty("JiraProject"),"Entered project "+Property.getProperty("JiraProject")+ " not found");
 					click(JiraUIMap.ProjectToSelect_Statictxt);
@@ -179,6 +184,8 @@ import java.util.Random;
 				String workitem_type[] =workitem.split("_");
 				if(workitem_type[0].contains("Feature") && Property.getProperty("JiraURL").contains("uat.alm.accenture"))
 					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Feature");
+				else if(workitem_type[0].equalsIgnoreCase("TestForTestExec"))
+					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Test");
 				else
 					enterText(JiraUIMap.SearchBoxHomePage_txtbox,workitem_type[0]);
 				Thread.sleep(3000);
@@ -231,6 +238,11 @@ import java.util.Random;
 				case "Test":
 				Baseclass.getInstance().WorkItemExternalId_Test = toGetID1[1];
 				break;
+				case "TestForTestExec":
+				case "testForTestExec":
+				Baseclass.getInstance().WorkItemExternalId_TestExecution = Baseclass.getInstance().WorkItemExternalId_TestExecution+"_"+toGetID1[1];
+				
+				break;
 				case "epic":
 				case "Epic":
 				Baseclass.getInstance().WorkItemExternalId_Epic = toGetID1[1];
@@ -242,6 +254,17 @@ import java.util.Random;
 				case "Milestone":
 				case "milestone":
 				Baseclass.getInstance().WorkItemExternalId_Milestone = toGetID1[1];
+				break;
+				case "Action":
+				case "action":
+				Baseclass.getInstance().WorkItemExternalId_Action = toGetID1[1];
+				break;
+				case "test execution":
+				case "Test Execution":
+				Baseclass.getInstance().WorkItemExternalId_TestExecution = toGetID1[1];
+				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
+				doubleClick(JiraUIMap.SearchBoxHomePage_txtbox);
+				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
 				break;
 				default:
 			        throw new IllegalArgumentException("Invalid workitem: " + workitem_type[0]);	
@@ -256,7 +279,8 @@ import java.util.Random;
 		
 				e.printStackTrace();
 				logger.info("Issue capturing workitem details for "+workitem+ " for the given tool");
-				Assert.fail("Issue capturing workitem details for "+workitem+ " for the given tool");
+//				Assert.fail("Issue capturing workitem details for "+workitem+ " for the given tool");
+				Baseclass.getInstance().workitemcreation_fail = true;
 			}
 		}
 			
@@ -314,11 +338,13 @@ import java.util.Random;
 				}
 				}
 			
-		public static void ValidateOB() {
+		public static void ValidateOB(String appname) {
 		try {
+			String WorkItemEx_FileLoc="";
+			String Wk_OB;
 			
-			String WorkItemEx_FileLoc = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" +  File.separator  + "WorkItemExternalIDs.json";
-			String Wk_OB = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" +  File.separator  + "OB_Validation.json";
+			WorkItemEx_FileLoc = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" +  File.separator  + "WorkItemExternalIDs.json";
+			Wk_OB = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" +  File.separator  + "OB_Validation.json";
 			
 			JSONParser jsonParser = new JSONParser();
 			
@@ -326,143 +352,229 @@ import java.util.Random;
 			JSONObject jsonObject1 = (JSONObject) jsonParser.parse(new FileReader(Wk_OB));
 			
 			SoftAssert sa = new SoftAssert();
+			String[] ADTJIRA_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Impediment", "Issue", "Risk", "Test", "Deliverable", "Requirement", "Milestone","Action"};
+			String[] ADOPJira_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Impediment", "Issue", "Risk"};
+		
+			if(appname.equalsIgnoreCase("ADT Jira"))
+				
+			{
+					
+					for(String entity:ADTJIRA_ItemsToVerify )
+					{
+						if((String) jsonObject.get("WorkItemExternalId_"+entity)!=null)
+						{
+							String value = (String) jsonObject.get("WorkItemExternalId_"+entity);
+							enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+							Thread.sleep(2000);
+		//					assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
+							sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get(entity+"_Title"));
+							clear(JiraUIMap.SearchBoxHomePage_txtbox);
+						}
+						else 
+						{
+							throw new NullPointerException(entity+" value is null for app "+appname);
+						}
+					}
 			
-			if((String) jsonObject.get("WorkItemExternalId_Task")!=null)
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Task");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(2000);
-//				assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			else 
-			{
-				throw new NullPointerException("Task value is null");
-			}
-			
-			if((String) jsonObject.get("WorkItemExternalId_Impediment")!=null)
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Impediment");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Impediment_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			else 
-			{
-				throw new NullPointerException("Impediment value is null");
-			}
-			if((String) jsonObject.get("WorkItemExternalId_Story")!=null)
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Story");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Story_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			else 
-			{
-				throw new NullPointerException("Story value is null");
-			}
-			if((String) jsonObject.get("WorkItemExternalId_Epic")!=null)
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Epic");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Epic_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			else 
-			{
-				throw new NullPointerException("Epic value is null");
 			}
 			
-			if((String) jsonObject.get("WorkItemExternalId_Risk")!=null)
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Risk");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Risk_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			else 
-			{
-				throw new NullPointerException("Risk value is null");
-			}
+			if(appname.equalsIgnoreCase("ADOP Jira"))
+							
+						{
+								
+								for(String entity:ADOPJira_ItemsToVerify )
+								{
+									if((String) jsonObject.get("WorkItemExternalId_"+entity)!=null)
+									{
+										String value = (String) jsonObject.get("WorkItemExternalId_"+entity);
+										enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+										Thread.sleep(2000);
+					//					assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
+										sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get(entity+"_Title"));
+										clear(JiraUIMap.SearchBoxHomePage_txtbox);
+									}
+									else 
+									{
+										throw new NullPointerException(entity+" value is null for app "+appname);
+									}
+								}
+						
+						}
 			
-			if((String) jsonObject.get("WorkItemExternalId_Bug")!=null)
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Bug");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Bug_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			else 
-			{
-				throw new NullPointerException("Bug value is null");
-			}
-			if((String) jsonObject.get("WorkItemExternalId_Issue")!=null)
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Issue");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Issue_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			else 
-			{
-				throw new NullPointerException("Issue value is null");
-			}
-			if((String) jsonObject.get("WorkItemExternalId_Feature")!=null)
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Feature");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Feature_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			else 
-			{
-				throw new NullPointerException("Feature value is null");
-			}	
-			if((String) jsonObject.get("WorkItemExternalId_Requirement")!=null)
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Requirement");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Requirement_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			else 
-			{
-				throw new NullPointerException("Requirement value is null");
-			}	
 			
-			if((String) jsonObject.get("WorkItemExternalId_Deliverable")!=null && !Property.getProperty("JiraURL").contains("adt"))
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_Deliverable");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Deliverable_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
-			
-			if((String) jsonObject.get("WorkItemExternalId_SubTask")!=null && !Property.getProperty("JiraURL").contains("adt"))
-			{
-				String value = (String) jsonObject.get("WorkItemExternalId_SubTask");
-				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
-				Thread.sleep(1000);
-				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("SubTask_Title"));
-				clear(JiraUIMap.SearchBoxHomePage_txtbox);
-			}
+//			if((String) jsonObject.get("WorkItemExternalId_Task")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Task");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(2000);
+////				assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Task value is null");
+//			}
+//			
+//			if((String) jsonObject.get("WorkItemExternalId_Impediment")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Impediment");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Impediment_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Impediment value is null");
+//			}
+//			if((String) jsonObject.get("WorkItemExternalId_Story")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Story");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Story_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Story value is null");
+//			}
+//			if((String) jsonObject.get("WorkItemExternalId_Epic")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Epic");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Epic_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Epic value is null");
+//			}
+//			
+//			if((String) jsonObject.get("WorkItemExternalId_Risk")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Risk");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Risk_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Risk value is null");
+//			}
+//			
+//			if((String) jsonObject.get("WorkItemExternalId_Bug")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Bug");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Bug_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Bug value is null");
+//			}
+//			if((String) jsonObject.get("WorkItemExternalId_Issue")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Issue");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Issue_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Issue value is null");
+//			}
+//			if((String) jsonObject.get("WorkItemExternalId_Feature")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Feature");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Feature_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Feature value is null");
+//			}	
+//			if((String) jsonObject.get("WorkItemExternalId_Requirement")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Requirement");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Requirement_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Requirement value is null");
+//			}	
+//			
+//			if((String) jsonObject.get("WorkItemExternalId_Action")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Action");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Action_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Action value is null");
+//			}	
+//			if((String) jsonObject.get("WorkItemExternalId_Milestone")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Milestone");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Milestone_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Milestone value is null");
+//			}	
+//			
+//			if((String) jsonObject.get("WorkItemExternalId_Test")!=null)
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Test");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Test_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			else 
+//			{
+//				throw new NullPointerException("Test value is null");
+//			}	
+//			if((String) jsonObject.get("WorkItemExternalId_Deliverable")!=null && !Property.getProperty("JiraURL").contains("adt"))
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_Deliverable");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Deliverable_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
+//			
+//			if((String) jsonObject.get("WorkItemExternalId_SubTask")!=null && !Property.getProperty("JiraURL").contains("adt"))
+//			{
+//				String value = (String) jsonObject.get("WorkItemExternalId_SubTask");
+//				enterText(JiraUIMap.SearchBoxHomePage_txtbox,value);
+//				Thread.sleep(1000);
+//				sa.assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("SubTask_Title"));
+//				clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//			}
 			
 			sa.assertAll();
 			
 				} catch (Exception e) {
-					logger.info("Issue with OB validation");
-					System.out.println("Issue with OB validation");
+					logger.info("Issue with OB validation for app "+appname);
+					System.out.println("Issue with OB validation for app"+appname);
 					e.printStackTrace();
 				}
 			finally{
@@ -642,4 +754,32 @@ public static void CreateTeam(String Team) {
 
 		
 	}
+
+public static void associateTestExecution(String workitem) {
+	
+	try{
+		
+		clickJS(JiraUIMap.SearchBoxHomePage_txtbox);
+		Thread.sleep(4000);
+		enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Test");
+		clickJS(JiraUIMap.WorkItemExternalID_txt);
+		Thread.sleep(4000);
+		clickJS(JiraUIMap.ExecuteIn_statictxt);
+		clickJS(JiraUIMap.ExistingTestExecution_statictxt);
+		Thread.sleep(2000);
+		ExpWaitForCondition(JiraUIMap.TestExecution_txtbox);
+		enterText(JiraUIMap.TestExecution_txtbox,Baseclass.getInstance().WorkItemExternalId_TestExecution.split("_")[0]);
+		Thread.sleep(3000);
+		sendEnter(JiraUIMap.TestExecution_txtbox);
+		sendEnter(JiraUIMap.TestExecution_txtbox);
+		Thread.sleep(3000);
+//		clickJS(JiraUIMap.AddTestExecution_btn);
+		Thread.sleep(3000);
+		ExpWaitForCondition(JiraUIMap.AssociatedSuccess_txt);
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+}
 	}

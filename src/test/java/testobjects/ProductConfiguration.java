@@ -410,7 +410,8 @@ public class ProductConfiguration extends Baseclass {
 				ProductConfiguration.checkAndAddTeamArea();
 				ProductConfiguration.checkAndAddMilesStone();
 				ProductConfiguration.checkAndAddTestResult();
-				
+				ProductConfiguration.checkAndAddAction();
+				ProductConfiguration.checkAndAddTest();
 			}
 			if(toolname.equalsIgnoreCase("ADOP JIRA"))
 			{
@@ -855,7 +856,7 @@ public static void checkAndAddTest(){
 					
 			}
 			
-			//if Deliverable entity is missing in UI
+			//if Test entity is missing in UI
 			if(!Test)
 			{
 				int currentrowCount = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
