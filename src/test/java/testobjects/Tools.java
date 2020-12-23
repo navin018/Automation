@@ -5,6 +5,8 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 import static utilities.selenium.SeleniumDSL.*;
 import static utilities.general.Property.*;
+import static utilities.reporting.LogUtil.logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -88,6 +90,7 @@ import java.util.UUID;
 				}catch(Exception e)
 					{
 						e.printStackTrace();
+						logger.info("Could not get WorkItemExternalId for "+workitem+" for the tool "+toolname);
 						Assert.fail("Could not get WorkItemExternalId for "+workitem+" for the tool "+toolname);
 					}
 				if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
@@ -101,6 +104,7 @@ import java.util.UUID;
 					catch(Exception e)
 					{
 						e.printStackTrace();
+						logger.info("Could not get ReleaseName or SprintName for "+workitem+" for the tool "+toolname);
 						Assert.fail("Could not get ReleaseName or SprintName for "+workitem+" for the tool "+toolname);
 					}
 				}
@@ -110,6 +114,7 @@ import java.util.UUID;
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("Could not verify "+workitem+" for tool "+toolname+". ");
 				Assert.fail("Could not verify "+workitem+" for tool "+toolname+". ");
 			}
 			}
@@ -139,10 +144,12 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 			WorkItemExternalId = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
 			WorkItemExternalId = WorkItemExternalId + "&" + (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
 		}
-		 if(!WorkItemExternalId.equalsIgnoreCase(null))
+		 if(!(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equals("")))
 			 return WorkItemExternalId;
-		 else
+		 else{
+				logger.info("Workitem "+workitem+" was not created for tool "+toolname);
 			 Assert.fail("Workitem "+workitem+" was not created for tool "+toolname);
+		 }
 	}
 	catch(Exception e)
 	{
@@ -230,6 +237,8 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 String TitleFromAPI = js.getString(WorkItemOrDeliverableOrIterationOrTestOrRequirement+"[0].Title");
 //				 System.out.println(TitleFromAPI);
 //				 System.out.println(workitem_title);
+				 if(!TitleFromAPI.equals(workitem_title))
+					 logger.info("title mismatch for workitem "+workitem +" for the given tool "+toolname);
 				 Assert.assertEquals(TitleFromAPI, workitem_title,"title mismatch for workitem "+workitem +" for the given tool "+toolname);
 				
 				 }
@@ -345,6 +354,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 					 catch(Exception e)
 					 {
 						e.printStackTrace();
+						logger.info("Issue verfying release/sprint for tool "+toolname);
 						Assert.fail("Issue verfying release/sprint for tool "+toolname);
 					 
 					 }
@@ -352,6 +362,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("Issue verfying IB response for "+workitem+ " for toolname "+toolname);
 				Assert.fail("Issue verfying IB response for "+workitem+ " for toolname "+toolname);
 			}
 		}
@@ -485,7 +496,8 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	 if(response.getStatusCode()!=200)
 	 {
 		 if(response.getStatusCode()==401)
-			 Assert.fail("Got "+response.getStatusCode()+" reponse code for "+workitem+" for the given tool "+toolname + " please refresh the token");
+			 logger.info("Got "+response.getStatusCode()+" reponse code for "+workitem+" for the given tool "+toolname);
+//			 Assert.fail("Got "+response.getStatusCode()+" reponse code for "+workitem+" for the given tool "+toolname + " please refresh the token");
 			Assert.fail("Got "+response.getStatusCode()+" reponse code for "+workitem+" for the given tool "+toolname);
 	 }
 	 Assert.assertEquals(response.getStatusCode(), 200);
@@ -749,6 +761,8 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 //				response.jsonPath().get
 				int updatecount = response.jsonPath().get("MergeResult.UpdateCount");
 //				System.out.println("updatecount: "+updatecount);
+				if(!(updatecount==1))
+					logger.info("update count for workitem "+workitem+ " is 0. OB issue for the given tool "+toolname);
 				 Assert.assertEquals(updatecount, 1); 
 
 			}
@@ -774,6 +788,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("Data mismatch for release date for the tool "+toolname);
 				Assert.fail("Data mismatch for release date for the tool "+toolname);
 			}
 		}
@@ -790,14 +805,19 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				String workitem_title = getTitle(toolname, workitem);
 				int  totalrecordcount = js.get("TotalRecordCount");
 				String TitleFromAPI = js.getString("WorkItems"+"[0].Title");
+				if(!TitleFromAPI.equals(workitem_title))
+					logger.info("title mismatch for workitem "+workitem +" for the given tool "+toolname);
 				Assert.assertEquals(TitleFromAPI, workitem_title,"title mismatch for workitem "+workitem +" for the given tool "+toolname);
 				Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
 				List<Object>  DCUid = js.getList("WorkItems.WorkItemDeliveryConstructs.DeliveryConstructUId");
+				if(!DCUid.toString().contains(Property.getProperty("DeliveryConstructUId_L2")))
+					logger.info(workitem+" is not associated to the required DCUId for tool "+toolname);
 				  Assert.assertTrue(!DCUid.toString().contains(Property.getProperty("DeliveryConstructUId_L2")),workitem+" is not associated to the required DCUId for tool "+toolname);
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("Problem verifying the Dc Removal scenario for toolname "+toolname);
 				Assert.fail("Problem verifying the Dc Removal scenario for toolname "+toolname);
 			}
 		}

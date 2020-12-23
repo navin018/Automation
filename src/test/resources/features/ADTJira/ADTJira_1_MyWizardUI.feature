@@ -12,7 +12,7 @@ Scenario Outline: Delete_TestData_ADTJira
       
       
 @1PreRequisites_ADTJira
-Scenario Outline: ADTJIRA_ProdConfigCheck 
+Scenario Outline: ADTJIRA_ProdConfigCheckInUI 
 
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage"
@@ -66,7 +66,7 @@ Scenario Outline: Client_Native_ADTJIRA(iteration)
 		| MyWizard        |ADT JIRA_Iteration|
 
 @3SEI_ADTJira
-Scenario Outline: SEI_ADTJira_IB_Pipelines 
+Scenario Outline: SEI_ADTJira_IB_Pipelines_UI
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
 	And i click on tile "Product Configuration" 
@@ -85,7 +85,7 @@ Scenario Outline: SEI_ADTJira_IB_Pipelines
 		| MyWizard        |ADT JIRA|
 
 @3SEI_ADTJira		
-Scenario Outline: SEI_ADTJira_OB_Pipelines 
+Scenario Outline: SEI_ADTJIRA_OB_Pipelines_UI 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
 	And i click on tile "Product Configuration" 
@@ -104,7 +104,7 @@ Scenario Outline: SEI_ADTJira_OB_Pipelines
 		| MyWizard        |ADT JIRA|
 
 @4Rules_ADTJira
-Scenario Outline: ADTJira_RulesValidation
+Scenario Outline: ADTJIRA_RulesValidationInUI
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "Product Instance Entity Rule Config"
@@ -117,7 +117,7 @@ Scenario Outline: ADTJira_RulesValidation
 		| MyWizard        |ADT JIRA|
 		
 @5WorkItemCreation_ADTJira		
-Scenario Outline: ADTJira_WorkitemCcreation 
+Scenario Outline: ADTJIRA_WorkitemCcreationInUI
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
 	And i create a "<task>" in Jira 

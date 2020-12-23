@@ -74,9 +74,9 @@ Scenario: ADTJIRA_TestExecution
 	
 	And i verify the "Inbound" "Test Execution" details for "ADT JIRA" 
 
-Scenario: ADTJIRA_Team 
-
-	And i verify the "Inbound" "Team" details for "ADT JIRA" 	
+#Scenario: ADTJIRA_Team 
+#
+#	And i verify the "Inbound" "Team" details for "ADT JIRA" 	
 
 #Scenario: ADTJIRA_ReleaseAndSprint 
 #
