@@ -4,6 +4,8 @@ import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 
 import utilities.general.Property;
@@ -25,7 +27,10 @@ import testobjects.*;
 import uiMap.JiraUIMap;
 import uiMap.TFSUIMap;
 import uiMap.MyWizardUIMap;
-
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 public class CommonSteps {
 	
 	@Given("^i close the browser session")
@@ -33,6 +38,19 @@ public class CommonSteps {
 		driver().quit();
 	}
 
+	@Given("^i load the project properties file$")
+	public void iLoginToApplicationWith1(String AppName) throws Throwable {
+		String propsPath = System.getProperty("user.dir")+File.separator+"Properties"+File.separator;
+		String toolname = Property.getTool("Tool");
+
+		if(toolname.trim().equalsIgnoreCase("TFS Agile")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"TFSAgile.properties"),new File(propsPath+"testsuccess.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("ADT Jira")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADTJira.properties"),new File(propsPath+"testsuccess.properties"));
+		}
+		  
+	}
 	
 	@Given("^i login to application \"([^\"]*)\"$")
 	public void iLoginToApplicationWith(String AppName) throws Throwable {
@@ -57,7 +75,7 @@ public class CommonSteps {
 			case "TFS":
 			case "tfs":
 			{
-				CommonAcrossApps.LoginToTFS();
+//				CommonAcrossApps.LoginToTFS();
 				
 			}
 			break;
@@ -99,7 +117,11 @@ public class CommonSteps {
 		Baseclass.getInstance().workitemcreation_fail = false;
 		}
 		if(AppName.equalsIgnoreCase("TFS"))
+		{
 			TFSWorkitem.SelectProject();
+			String currentproject_sp[] = driver().getCurrentUrl().split(Property.getProperty("TFS_URL")+"/");
+			Baseclass.getInstance().TFSProject = currentproject_sp[1];
+		}
 	}
 	
 	@Then("^i verify the Release and Sprint for \"([^\"]*)\"$")

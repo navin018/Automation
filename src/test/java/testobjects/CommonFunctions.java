@@ -1,11 +1,11 @@
 package testobjects;
-
+import java.io.*; 
+import java.util.*; 
 import static utilities.reporting.LogUtil.logger;
 import static utilities.reporting.Reporting.create_logs_and_report;
 
 import static utilities.selenium.SeleniumDSL.*;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -39,6 +39,37 @@ public class CommonFunctions {
 			return null;
 }
 
+	public static void copyFileContentFromOneFileToAnother(File A, File B) throws IOException { 
+        FileInputStream in = new FileInputStream(A); 
+        FileOutputStream out = new FileOutputStream(B); 
+  
+        try { 
+  
+            int n; 
+  
+            // read() function to read the 
+            // byte of data 
+            while ((n = in.read()) != -1) { 
+                // write() function to write 
+                // the byte of data 
+                out.write(n); 
+            } 
+        } 
+        finally { 
+            if (in != null) { 
+  
+                // close() function to close the 
+                // stream 
+                in.close(); 
+            } 
+            // close() function to close 
+            // the stream 
+            if (out != null) { 
+                out.close(); 
+            } 
+        } 
+        System.out.println("File Copied"); 
+    } 
 	public static void generateToken(String env) throws IOException {
 		try{
 		switch(env){

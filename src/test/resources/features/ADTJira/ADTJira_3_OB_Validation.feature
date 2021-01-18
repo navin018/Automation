@@ -1,8 +1,9 @@
 @7OBValidation_ADTJira
 Feature: ADTJira_OB_Validation
    
+ 
 Scenario: ADTJIRA_Task
-
+		And i generate a token for "DevTest" environment 
 	And i verify the "Outbound" "Task" details for "ADT JIRA" 
 
 Scenario: ADTJIRA_Epic 
@@ -14,6 +15,7 @@ Scenario: ADTJIRA_Story
 
 	And i verify the "Outbound" "Story" details for "ADT JIRA" 
 
+@risk
 Scenario: ADTJIRA_Risk 
 
 	And i verify the "Outbound" "Risk" details for "ADT JIRA" 
@@ -43,7 +45,7 @@ Scenario: ADTJIRA_Feature
 #	And i verify the "Outbound" "SubTask" details for "ADT JIRA" 
 	
 
-Scenario: ADTJIRA_ Deliverable 
+Scenario: ADTJIRA_Deliverable 
 
 	And i verify the "Outbound" "Deliverable" details for "ADT JIRA" 
 
@@ -66,8 +68,8 @@ Scenario: ADTJIRA_Action
 	
 	And i verify the "Outbound" "Action" details for "ADT JIRA" 
 
-Scenario: ADTJIRA_TestExecution
-	
-	And i verify the "Outbound" "Test Execution" details for "ADT JIRA" 
+#Scenario: ADTJIRA_TestExecution
+#	
+#	And i verify the "Outbound" "Test Execution" details for "ADT JIRA" 
 
 

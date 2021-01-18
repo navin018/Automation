@@ -458,6 +458,13 @@ public class SeleniumDSL {
 		performAct.sendKeys(driver().findElement(by),val).build().perform();
     }
 	
+	public static void HoverUsingAction(By by, String val)  {
+		
+		Actions performAct = new Actions(driver()); 
+		performAct.moveToElement(driver().findElement(by)).build().perform();
+//		.sendKeys(driver().findElement(by),val).build().perform();
+    }
+	
 	
 	public static void enterText1(By by, Keys val)  {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(val);

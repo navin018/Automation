@@ -27,6 +27,7 @@ Baseclass(){
 	public String WorkItemExternalId_Deliverable;
 	public String WorkItemExternalId_SubTask;
 	public String WorkItemExternalId_TestCase;
+	public String WorkItemExternalId_TestCase_TE;
 	public String WorkItemExternalId_ProductBacklog;
 	public String WorkItemExternalId_Action;
 	public String WorkItemExternalId_Decision;
@@ -43,6 +44,9 @@ Baseclass(){
 	public String TFS_SprintName;
 	public String TFS_SprintStartDate;
 	public String TFS_SprintEndDate;
+	public String TFSProject;
+	public String WorkItemExternalId_TestPlan;
+	public String RunID;
 	
 	public String Jira_ReleaseName;
 	public String Jira_ReleaseStartDate;

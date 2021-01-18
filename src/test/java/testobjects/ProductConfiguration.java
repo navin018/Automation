@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -987,6 +988,39 @@ public static void checkAndAddTest(){
 	
 	return true;
 	}
+	
+	
+	public static void verifyIfPipelinesExists1(String[] pipelines,String toolname,String IBorOB){
+		int totalNoRow = getDataRowCount(ProductConfigUIMap.SEI_table);
+		boolean pipelinenotfound = false;
+		boolean pipelinefound = true;
+		List<String> list_pipeline = Arrays.asList(pipelines);
+
+			for(int i=1;i<totalNoRow;i++){
+				String currentpipeline = getText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_pipelineName_statictxt, String.valueOf(i), "int"));
+				boolean stringExists = substringExistsInArray(currentpipeline, pipelines);
+			if(!stringExists)
+				pipelinenotfound=true;
+				}
+
+		
+		if(pipelinenotfound)
+		{
+			logger.info("Pipeline/Pipelines missing or not in Success state for the tool "+toolname);
+			Assert.fail("Pipeline/Pipelines missing or not in Success state for the tool "+toolname);
+		}
+		
+	}
+	
+		
+	public static boolean substringExistsInArray(String inputStr, String[] items) {
+        return Arrays.stream(items).parallel().anyMatch(inputStr::contains);
+     }
+
+     public static Optional getFirstMatchingSubstring(String inputStr, String[] items) {
+       return Arrays.stream(items).parallel().filter(inputStr::contains).findAny();
+     }
+	
 	public static void verifyIfPipelinesExists(String[] pipelines,String toolname,String IBorOB){
 		
 		try{
@@ -1051,15 +1085,24 @@ public static void checkAndAddTest(){
 							
 							if(toolname.equalsIgnoreCase("ADT JIRA"))
 							{
-							String[] pipelines = {"JIRA-ITR-US-Inbound","JIRA-TEAMS-US-Inbound","JIRA-US-Inbound", };
-							verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+							String[] pipelines = {"JIRA-ITR-US-Inbound","JIRA-TEAMS-US-Inbound","JIRA-US-Inbound"};
+							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
 							}
 							if(toolname.equalsIgnoreCase("ADOP JIRA"))
 							{
 							String[] pipelines = {"JIRA-US-Inbound","JIRA-ITR-US-Inbound", "JIRA-Team-US-Inbound"};
-							verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
 							}
-							
+							if(toolname.equalsIgnoreCase("TFS Agile"))
+							{
+							String[] pipelines = {"TFS-Agile-US-Inbound","TFS-Agile-ITR-US-Inbound", "TFS-Agile-Team-US-Inbound"};
+							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
+							}
+							if(toolname.equalsIgnoreCase("TFS Scrum"))
+							{
+							String[] pipelines = {"TFS-Scrum-US-Inbound","TFS-Scrum-ITR-US-Inbound", "TFS-Scrum-Team-US-Inbound"};
+							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
+							}
 						}
 						else{
 							logger.info("pipelines not present for the tool "+toolname);
@@ -1071,8 +1114,21 @@ public static void checkAndAddTest(){
 					{
 						if(totalNoRow>=1)
 						{
+							if(toolname.contains("JIRA"))
+							{
 							String[] pipelines = {"JIRA-US-Outbound"};
-							verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
+							}
+							if(toolname.contains("TFS Agile"))
+							{
+							String[] pipelines = {"TFS-Agile-US-Outbound"};
+							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
+							}
+							if(toolname.contains("TFS Scrum"))
+							{
+							String[] pipelines = {"TFS-Scrum-US-Outbound"};
+							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
+							}
 						}
 						else
 							Assert.fail("pipelines not present for the tool "+toolname);

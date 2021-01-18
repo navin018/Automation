@@ -336,11 +336,17 @@ import java.util.Random;
 							clickJS(JiraUIMap.BacklogIcon_Img);
 							Thread.sleep(10000);
 							ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
-							String SprintName = getAttribute(JiraUIMap.SprintName_Statictxt, "data-fieldvalue");
-							clickJS(JiraUIMap.SprintName_Statictxt);
-							Thread.sleep(2000);
+//							String SprintName = getAttribute(JiraUIMap.SprintName_Statictxt, "data-fieldvalue");]
+							clickJS(JiraUIMap.EditSprintDots_button);
+							clickJS(JiraUIMap.EditSprint_link);
+							ExpWaitForCondition(JiraUIMap.SprintName_txt);
+							
+//							clickJS(By.xpath("//a[@class='aui-button js-sprint-actions-trigger'][1]/span[1]"));
+//							clickJS(JiraUIMap.SprintName_Statictxt);
+//							Thread.sleep(2000);
 							ClearTextAndEnterData("Sprint"+randomNumbForSrpint);
 							Thread.sleep(4000);
+//							clickJS(JiraUIMap.SaveSprint_btn);
 //							click(JiraUIMap.BacklogIcon_Img);
 							Baseclass.getInstance().Jira_SprintName = "Sprint"+randomNumbForSrpint;
 						}

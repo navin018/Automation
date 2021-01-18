@@ -51,4 +51,9 @@ public class Property {
 		return getProperties(propsPath).getProperty(key);
 	}
 	
+	public static String getTool(String key) throws IOException {
+		String propsPath = System.getProperty("user.dir")+File.separator+"Properties"+File.separator+"Tool.properties";
+		return getProperties(propsPath).getProperty(key);
+	}
+	
 }

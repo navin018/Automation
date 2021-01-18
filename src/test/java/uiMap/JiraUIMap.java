@@ -120,4 +120,9 @@ public static By UserName_txtbox = By.xpath("//input[@name='os_username']");
 public static By Pwd_txtbox = By.xpath("//input[@name='os_password']");
 public static By login_btn1 = By.xpath("//input[@name='login' and @value='Log In']");
 
+public static By EditSprintDots_button = By.xpath("//a[@class='aui-button js-sprint-actions-trigger'][1]/span[1]");
+public static By EditSprint_link = By.xpath("//a[text()='Edit sprint']");
+public static By SprintName_txt = By.xpath("//label[@for='ghx-sprint-name']//following::input[1]");
+public static By SaveSprint_btn = By.xpath("//button[@type='submit' and text()='Save']");
+
 }
