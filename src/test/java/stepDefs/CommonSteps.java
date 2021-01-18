@@ -44,7 +44,7 @@ public class CommonSteps {
 		String toolname = Property.getTool("Tool");
 
 		if(toolname.trim().equalsIgnoreCase("TFS Agile")){
-			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"TFSAgile.properties"),new File(propsPath+"testsuccess.properties"));
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"TFSAgile.properties"),new File(propsPath+"project.properties"));
 		}
 		if(toolname.trim().equalsIgnoreCase("ADT Jira")){
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADTJira.properties"),new File(propsPath+"project.properties"));

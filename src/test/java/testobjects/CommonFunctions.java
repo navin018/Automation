@@ -68,7 +68,8 @@ public class CommonFunctions {
                 out.close(); 
             } 
         } 
-        System.out.println("File Copied"); 
+        System.out.println("Property File loaded"); 
+        logger.info("Property File loaded"); 
     } 
 	public static void generateToken(String env) throws IOException {
 		try{

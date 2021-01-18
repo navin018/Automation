@@ -1,1 +1,0 @@
-var pkiClientExtension;pkiClientExtension.datasetProperties=pkiClientExtension.datasetProperties||{};pkiClientExtension.datasetProperties.supportsFlavorConfiguration="true";

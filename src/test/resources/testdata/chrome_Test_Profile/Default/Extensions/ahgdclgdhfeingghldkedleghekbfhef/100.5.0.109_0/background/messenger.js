@@ -1,1 +1,0 @@
-(function(){chrome.runtime.onConnect.addListener(function(a){console.debug("+onConnect(",a,")");var b=new pkiClientExtension.commonMessenger.MessageHandler(a.sender.url);a.onMessage.addListener(function(c){console.debug("port.onMessage:",c);b.processMessage(c).then(function(b){a.postMessage(b)})});a.onDisconnect.addListener(function(){b.onDetach()})})})();

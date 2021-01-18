@@ -1,1 +1,0 @@
-(function(b){console.debug("+content/detection.js");var a=b.createElement("span");a.style.display="none";a.id="__symantecPKIClientDetector";a.innerHTML="__PRESENT";b.body.appendChild(a);console.debug("-content/detection.js")})(window.document);
