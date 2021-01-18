@@ -45,7 +45,7 @@ Scenario: Check for the security headers
 	And i click on "backtodashboard" button 
 	And i "update" the vulnerabilites details into excel 
 	And i verify the overall securitytest results 
-	
+#	
 @SecurityTest_OrgDelStructureConfig 
 Scenario: Check for the security headers 
 	Given i login to application "MyWizard" 
@@ -236,9 +236,9 @@ Scenario: Check for the security headers
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Metrics Engine" 
 	And the user check for the duplicate security headers and missing security headers for "Metrics Engine" 
-	And i click on "Associate Clients" button 
-	And the user check for the duplicate security headers and missing security headers for "Metrics Engine/Associate Clients" 
-	And i click on "Close Associate Clients page" button 
+#	And i click on "Associate Clients" button 
+#	And the user check for the duplicate security headers and missing security headers for "Metrics Engine/Associate Clients" 
+#	And i click on "Close Associate Clients page" button 
 	And i click on "Go Back" button 
 	And i "update" the vulnerabilites details into excel 
 	And i verify the overall securitytest results 
@@ -249,6 +249,7 @@ Scenario: Check for the security headers
 Scenario: Check for the security headers 
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
+	Then i select client and DC for "<applicationname>" 
 	And i click on tile "Generic Uploader" 
 	And the user check for the duplicate security headers and missing security headers for "Generic Uploader" 
 	#	And i click on "Select DataEntity Dropdown" button 
@@ -304,10 +305,10 @@ Scenario: Check for the security headers
 	And i click on "Enable Usecases" button 
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Enable Usecases" 
 	And i click on "Back to Overall Setup Progress" button 
-	#Add users not clickable
-#	And i click on "Add Users" button 
-	#And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Add Users" 
-#	And i click on "Back to Overall Setup Progress" button 
+			#Add users not clickable
+		#	And i click on "Add Users" button 
+			#And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Add Users" 
+		#	And i click on "Back to Overall Setup Progress" button 
 	And i click on "Back to DIY AD Automation" button 
 	And i click on "OnbaordClientToolExplore" button 
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/OnbaordClientToolExplore" 

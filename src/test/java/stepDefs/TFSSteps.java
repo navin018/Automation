@@ -9,7 +9,12 @@ public class TFSSteps {
 	
 	@Then("^i create a \"([^\"]*)\" in TFS$")
 	public void i_create_a_in_TFS(String workitem) throws Throwable {
-	   TFSWorkitem.CreateWorkitem(workitem);
+//	   TFSWorkitem.CreateWorkitem(workitem);
+		if(!(workitem.contains("TestResult")))
+	   TFSWorkitem.CreateWorkitem1(workitem);
+
+		if(workitem.equalsIgnoreCase("TestResult"))
+		TFSWorkitem.CreateTestResult(workitem);
 	}
 
 	

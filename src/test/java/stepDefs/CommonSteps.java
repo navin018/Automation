@@ -39,7 +39,7 @@ public class CommonSteps {
 	}
 
 	@Given("^i load the project properties file$")
-	public void iLoginToApplicationWith1(String AppName) throws Throwable {
+	public void iloadpropertyFile() throws Throwable {
 		String propsPath = System.getProperty("user.dir")+File.separator+"Properties"+File.separator;
 		String toolname = Property.getTool("Tool");
 
@@ -47,7 +47,7 @@ public class CommonSteps {
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"TFSAgile.properties"),new File(propsPath+"testsuccess.properties"));
 		}
 		if(toolname.trim().equalsIgnoreCase("ADT Jira")){
-			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADTJira.properties"),new File(propsPath+"testsuccess.properties"));
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADTJira.properties"),new File(propsPath+"project.properties"));
 		}
 		  
 	}

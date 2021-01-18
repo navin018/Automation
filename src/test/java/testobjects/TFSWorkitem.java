@@ -4,6 +4,8 @@ import org.sikuli.script.Screen;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import com.fasterxml.jackson.databind.deser.Deserializers.Base;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
@@ -36,6 +38,7 @@ import org.json.simple.parser.JSONParser;
  
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -143,73 +146,74 @@ import java.util.Random;
 				
 				case "bug":
 				
-						Baseclass.getInstance().WorkItemExternalId_Bug = getText(TFSUIMap.captureWorkItemID_statictxt);
-						click(TFSUIMap.close_btn);
+						Baseclass.getInstance().WorkItemExternalId_Bug = getText(TFSUIMap.captureWorkItemID1_statictxt);
+//						click(TFSUIMap.close_btn);
 						break;
 				case "epic":
 				
-						Baseclass.getInstance().WorkItemExternalId_Epic =  getText(TFSUIMap.captureWorkItemID_statictxt);
-						click(TFSUIMap.close_btn);
+						Baseclass.getInstance().WorkItemExternalId_Epic =  getText(TFSUIMap.captureWorkItemID1_statictxt);
+//						click(TFSUIMap.close_btn);
 						break;
 				case "risk":
 					
-					Baseclass.getInstance().WorkItemExternalId_Risk =  getText(TFSUIMap.captureWorkItemID_statictxt);
-					click(TFSUIMap.close_btn);
+					Baseclass.getInstance().WorkItemExternalId_Risk =  getText(TFSUIMap.captureWorkItemID1_statictxt);
+//					click(TFSUIMap.close_btn);
 					break;
 				case "feature":
 				
-						Baseclass.getInstance().WorkItemExternalId_Feature =getText(TFSUIMap.captureWorkItemID_statictxt);
-						click(TFSUIMap.close_btn);
+						Baseclass.getInstance().WorkItemExternalId_Feature =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//						click(TFSUIMap.close_btn);
 						break;
 				case "issue":
 				
-						Baseclass.getInstance().WorkItemExternalId_Issue =getText(TFSUIMap.captureWorkItemID_statictxt);
-						click(TFSUIMap.close_btn);
+						Baseclass.getInstance().WorkItemExternalId_Issue =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//						click(TFSUIMap.close_btn);
 						break;
 				case "task":
 				
-						Baseclass.getInstance().WorkItemExternalId_Task =getText(TFSUIMap.captureWorkItemID_statictxt);
-						click(TFSUIMap.close_btn);
+						Baseclass.getInstance().WorkItemExternalId_Task =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//						click(TFSUIMap.close_btn);
 						break;
 				case "story":
+				case "user story":
 				
-						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID_statictxt);
-						click(TFSUIMap.close_btn);
+						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//						click(TFSUIMap.close_btn);
 						break;
 				case "testcase":
 				
-						Baseclass.getInstance().WorkItemExternalId_TestCase =getText(TFSUIMap.captureWorkItemID_statictxt);
-						click(TFSUIMap.close_btn);
+						Baseclass.getInstance().WorkItemExternalId_TestCase =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//						click(TFSUIMap.close_btn);
 						break;
 				case "impediment":
 				
-						Baseclass.getInstance().WorkItemExternalId_Impediment =getText(TFSUIMap.captureWorkItemID_statictxt);
-						click(TFSUIMap.close_btn);
+						Baseclass.getInstance().WorkItemExternalId_Impediment =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//						click(TFSUIMap.close_btn);
 						break;
 				case "productbacklog":
 				
-						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID_statictxt);
-						click(TFSUIMap.close_btn);
+						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//						click(TFSUIMap.close_btn);
 						break;
 				case "action":
 					
-					Baseclass.getInstance().WorkItemExternalId_Action =getText(TFSUIMap.captureWorkItemID_statictxt);
-					click(TFSUIMap.close_btn);
+					Baseclass.getInstance().WorkItemExternalId_Action =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//					click(TFSUIMap.close_btn);
 					break;
 				case "decision":
 					
-					Baseclass.getInstance().WorkItemExternalId_Decision =getText(TFSUIMap.captureWorkItemID_statictxt);
-					click(TFSUIMap.close_btn);
+					Baseclass.getInstance().WorkItemExternalId_Decision =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//					click(TFSUIMap.close_btn);
 					break;
 				case "milestone":
 					
-					Baseclass.getInstance().WorkItemExternalId_Milestone =getText(TFSUIMap.captureWorkItemID_statictxt);
-					click(TFSUIMap.close_btn);
+					Baseclass.getInstance().WorkItemExternalId_Milestone =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//					click(TFSUIMap.close_btn);
 					break;
 				case "deliverable":
 					
-					Baseclass.getInstance().WorkItemExternalId_Deliverable =getText(TFSUIMap.captureWorkItemID_statictxt);
-					click(TFSUIMap.close_btn);
+					Baseclass.getInstance().WorkItemExternalId_Deliverable =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//					click(TFSUIMap.close_btn);
 					break;
 				default:
 			        throw new IllegalArgumentException("Invalid workitem: " + workitem);	
@@ -625,6 +629,92 @@ import java.util.Random;
 				Assert.fail("Issue verifying release and sprint for TFS");
 			}
 			
+		}
+
+		public static void CreateWorkitem1(String workitem) {
+			try{
+				 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
+//			String currentproject_sp[] = driver().getCurrentUrl().split(Property.getProperty("TFS_URL")+"/");
+//			String currentproject = currentproject_sp[1];
+				 String workitemURL;
+				if(workitem.contains("TestCase")) 
+			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Test Case";
+				else if(workitem.contains("Story"))
+			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"User Story";
+				else
+				workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+workitem.split("_")[0];
+			driver().get(workitemURL);
+			ExpWaitForCondition(TFSUIMap.title_txtbox);
+			enterText(TFSUIMap.title_txtbox,wi.Summary);
+			Thread.sleep(2000);
+			singleClick(TFSUIMap.save_btn);
+			Thread.sleep(5000);
+			CaptureWorkitemID(workitem);
+//			Thread.sleep(4000);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+		public static void CreateTestResult(String workitem) {
+			try{
+				
+				clickJS(TFSUIMap.TestPlan_link);
+				ExpWaitForCondition(TFSUIMap.ALlTestPlan_link);
+				clickJS(TFSUIMap.ALlTestPlan_link);
+				ExpWaitForCondition(TFSUIMap.NewTestPlan_link);
+				clickJS(TFSUIMap.NewTestPlan_link);
+				Thread.sleep(5000);
+				int randomNumbForTestPlan = 1000 + new Random().nextInt(9000);
+				Baseclass.getInstance().WorkItemExternalId_TestPlan= "TestPlan"+randomNumbForTestPlan;
+				enterText(TFSUIMap.TestPlanName_txtbox,"TestPlan"+randomNumbForTestPlan);
+				Thread.sleep(5000);
+				clickJS(TFSUIMap.CreateTestPlan_btn);
+				Thread.sleep(5000);
+				clickJS(TFSUIMap.NewTestCase_btn);
+				Thread.sleep(5000);
+				Baseclass.getInstance().WorkItemExternalId_TestCase_TE = "TestCase"+randomNumbForTestPlan;
+				
+				enterText(TFSUIMap.TestCaseTitle_txtbox,"TestCase"+randomNumbForTestPlan);
+				Thread.sleep(5000);
+				clickJS(TFSUIMap.SaveAndClose_btn);
+				Thread.sleep(5000);
+				clickJS(TFSUIMap.ExecuteTestCase_link);
+				clickJS(TFSUIMap.SelectTestCase_chkbox);
+				
+				
+				Thread.sleep(3000);
+				click(prepareWebElementWithDynamicXpath(TFSUIMap.createdTest_txt, "TestCase"+randomNumbForTestPlan , "TCName"));
+				clickJS(TFSUIMap.More_link);
+				Thread.sleep(3000);
+				
+				clickJS(TFSUIMap.MarkOutcome_link);
+				Thread.sleep(5000);
+				singleClick(TFSUIMap.Passtest_link);
+
+				click(prepareWebElementWithDynamicXpath(TFSUIMap.createdTest_txt, "TestCase"+randomNumbForTestPlan , "TCName"));
+				clickJS(TFSUIMap.More_link);
+				Thread.sleep(3000);
+				clickJS(TFSUIMap.ViewTestResult_link);
+				Thread.sleep(5000);
+//				String winHandleBefore = driver().getWindowHandle();
+				for(String winHandle : driver().getWindowHandles()){
+				    driver().switchTo().window(winHandle);
+				}
+				String urltogetTestResult = driver().getCurrentUrl();
+				String testid = urltogetTestResult.split("resultId=")[1];
+				String runid = urltogetTestResult.split("resultSummary&runId=")[1].split("&")[0];
+				Baseclass.getInstance().RunID = runid;
+				Baseclass.getInstance().WorkItemExternalId_TestExecution=testid+"-"+runid;
+				
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("Issue creating Test Result in TFS");
+			}
 		}
 	}
 

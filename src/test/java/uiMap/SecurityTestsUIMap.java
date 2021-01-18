@@ -70,7 +70,7 @@ public static By MetricsEngine_statictxt = By.xpath("//a[text()='Metrics Engine'
 public static By ConfigContractExplore_btn = By.xpath("//div[@class='card-header configure']//following::button[1]");
 public static By SelfEnabledAutomationExplore_btn = By.xpath("//div[@class='card-header self-enable']//following::button[1]");
 public static By OnbaordClientToolExplore_btn = By.xpath("//div[@class='card-header onboard']//following::button[1]");
-public static By BacktoDIYADAutomation_btn = By.xpath("//div[@title='Back to DIY AD Automation']");
+public static By BacktoDIYADAutomation_btn = By.xpath("//div[text()='Back to DIY AD Automation']");
 
 public static By SelectFunctions_btn = By.xpath("//li[@class='parentDC phx-cob-sdc-hide ng-star-inserted' or @class='parentDC phx-cob-sdc-hide'][1]/following::a[@class='active' or @class='inactive'][1]");
 public static By IntegrateTools_btn = By.xpath("//li[@class='parentDC phx-cob-sdc-hide ng-star-inserted' or @class='parentDC phx-cob-sdc-hide'][1]/following::a[@class='active' or @class='inactive'][2]");
