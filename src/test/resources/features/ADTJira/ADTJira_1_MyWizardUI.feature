@@ -132,7 +132,7 @@ Scenario Outline: ADTJIRA_WorkitemCreationInUI
 	And i create a "<Requirement>" in Jira 
 	And i create a "<Test>" in Jira
 	And i create a "<epic>" in Jira 
-	And i create a "<subtask>" in Jira 
+#	And i create a "<subtask>" in Jira 
 	And i create a "<milestone>" in Jira 
 	And i create a "<Action>" in Jira
 	And i create a "<TestExecution>" in Jira
@@ -144,7 +144,7 @@ Scenario Outline: ADTJIRA_WorkitemCreationInUI
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" 
 	And i check the overall status of workitem creation for "<applicationname>"
 	And i put a explicit wait of "900000" 
-	And i generate a token for "DevTest" environment 
+#	And i generate a token for "DevTest" environment 
 	
 	
 	Examples: 
