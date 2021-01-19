@@ -559,7 +559,7 @@ public static String getTitle(String toolname,String workitem){
 			{
 				testDataPath_WorkItem = testDataPath + "TFS" + File.separator + "JSON" +  File.separator  ;
 			}
-			if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Test Execution")))
+			if(!(workitem.equalsIgnoreCase("ReleaseAndSprint")))
 			{
 			 wi = DataManager.getData(testDataPath_WorkItem, "WorkItem",WorkItemDO.class).item.get(workitem+"_01");
 			return wi.Summary;
@@ -763,17 +763,17 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				else if(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("TestCase"))
 					posturlmerge = mywizURL+"/v1/Test1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Requirement"))
-					posturlmerge = mywizURL+"/v1/Requirement?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
+					posturlmerge = mywizURL+"/v1/Requirement1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Action"))
-					posturlmerge = mywizURL+"/v1/Action?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
+					posturlmerge = mywizURL+"/v1/Action1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Decision"))
 					posturlmerge = mywizURL+"/v1/Decision?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Milestone"))
-					posturlmerge = mywizURL+"/v1/Milestone?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
+					posturlmerge = mywizURL+"/v1/Milestone1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Test Execution"))
 					posturlmerge = mywizURL+"/v1/TestResult?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Deliverable"))
-					posturlmerge = mywizURL+"/v1/Deliverable?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
+					posturlmerge = mywizURL+"/v1/Deliverable1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				
 				
 				

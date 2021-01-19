@@ -49,6 +49,12 @@ public class CommonSteps {
 		if(toolname.trim().equalsIgnoreCase("ADT Jira")){
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADTJira.properties"),new File(propsPath+"project.properties"));
 		}
+		if(toolname.trim().equalsIgnoreCase("ADOP Jira")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADOPJira.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("TFS Scrum")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"TFSScrum.properties"),new File(propsPath+"project.properties"));
+		}
 		  
 	}
 	
@@ -75,7 +81,7 @@ public class CommonSteps {
 			case "TFS":
 			case "tfs":
 			{
-//				CommonAcrossApps.LoginToTFS();
+				CommonAcrossApps.LoginToTFS();
 				
 			}
 			break;
