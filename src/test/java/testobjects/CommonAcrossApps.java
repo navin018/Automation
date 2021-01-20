@@ -343,12 +343,15 @@ public static void LoginToTFS()
 		driver().get(Property.getProperty("TFS_URL"));
 		waitPageToLoad();
 //		driver().manage().window().maximize();
-//		enterText(TFSUIMap.signIn_txtbox,Property.getProperty("TFSUsername"));
-//		 click(TFSUIMap.Next_btn);
-//		 waitPageToLoad();
-//		 enterText(TFSUIMap.Pwd_txtbox,Property.getProperty("TFSPassword"));
-//		 click(TFSUIMap.signIn_btn);
-//		 waitPageToLoad();
+		Thread.sleep(4000);
+		ExpWaitForCondition(TFSUIMap.signIn_txtbox);
+		enterText(TFSUIMap.signIn_txtbox,Property.getProperty("TFSUsername"));
+		 click(TFSUIMap.Next_btn);
+		 waitPageToLoad();
+		 ExpWaitForCondition(TFSUIMap.Pwd_txtbox);
+		 enterText(TFSUIMap.Pwd_txtbox,Property.getProperty("TFSPassword"));
+		 click(TFSUIMap.signIn_btn);
+		 waitPageToLoad();
 	}
 	catch(Exception e)
 	{
@@ -436,6 +439,7 @@ try{
 	    jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
 	    jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
 	    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
+	    jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
 	    
 	    jsonObject.put("TFS_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
 		jsonObject.put("TFS_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);

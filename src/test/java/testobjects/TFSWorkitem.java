@@ -122,6 +122,7 @@ import java.util.Random;
 			try {
 				
 				waitPageToLoad();
+				ExpWaitForCondition(TFSUIMap.searchProject_txtbox);
 				enterText(TFSUIMap.searchProject_txtbox,Property.getProperty("TFSProject"));
 				waitPageToLoad();
 				Thread.sleep(5000);
@@ -208,6 +209,11 @@ import java.util.Random;
 				case "milestone":
 					
 					Baseclass.getInstance().WorkItemExternalId_Milestone =getText(TFSUIMap.captureWorkItemID1_statictxt);
+//					click(TFSUIMap.close_btn);
+					break;
+				case "requirement":
+					
+					Baseclass.getInstance().WorkItemExternalId_Requirement =getText(TFSUIMap.captureWorkItemID1_statictxt);
 //					click(TFSUIMap.close_btn);
 					break;
 				case "deliverable":
