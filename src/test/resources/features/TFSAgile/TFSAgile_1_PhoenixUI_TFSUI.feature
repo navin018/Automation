@@ -125,25 +125,25 @@ Scenario Outline: TFSAgile_WorkitemCreation
 	Given i load the project properties file
 	Given i login to application "<applicationname>"
     Then i select a Project for "<applicationname>"
-    And i create a "<bug>" in TFS
-    And i create a "<Epic>" in TFS
-    And i create a "<Feature>" in TFS
-    And i create a "<Issue>" in TFS
-    And i create a "<Task>" in TFS
-    And i create a "<TestCase>" in TFS
- 	And i create a "<Risk>" in TFS
-    And i create a "<Action>" in TFS
-    And i create a "<Decision>" in TFS
-    And i create a "<Deliverable>" in TFS
-      And i create a "<Requirement>" in TFS
-     And i create a "<Milestone>" in TFS
-     And i create a "<Story>" in TFS
-#     And i create a "<TestResult>" in TFS
-  
- And i create "<Release>" and "<Sprint>" in TFS
-    And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
-	And i put a explicit wait of "900000" 
-	And i generate a token for "DevTest" environment 
+#    And i create a "<bug>" in TFS
+#    And i create a "<Epic>" in TFS
+#    And i create a "<Feature>" in TFS
+#    And i create a "<Issue>" in TFS
+#    And i create a "<Task>" in TFS
+#    And i create a "<TestCase>" in TFS
+# 	And i create a "<Risk>" in TFS
+#    And i create a "<Action>" in TFS
+#    And i create a "<Decision>" in TFS
+#    And i create a "<Deliverable>" in TFS
+#      And i create a "<Requirement>" in TFS
+#     And i create a "<Milestone>" in TFS
+#     And i create a "<Story>" in TFS
+##     And i create a "<TestResult>" in TFS
+#  
+# And i create "<Release>" and "<Sprint>" in TFS
+#    And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
+#	And i put a explicit wait of "900000" 
+#	And i generate a token for "DevTest" environment 
 	
 	    Examples: 
       | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|
