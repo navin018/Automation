@@ -279,6 +279,7 @@ import java.util.Random;
 							Thread.sleep(2000);
 		//					assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
 							sa.assertEquals(getText(TFSUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get(entity+"_Title"));
+							Thread.sleep(4000);
 							clear(JiraUIMap.SearchBoxHomePage_txtbox);
 						}
 						else 
@@ -662,6 +663,8 @@ import java.util.Random;
 			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Test Case";
 				else if(workitem.contains("Story"))
 			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"User Story";
+				else if(workitem.contains("ProductBacklog"))
+					 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Product Backlog Item";
 				else
 				workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+workitem.split("_")[0];
 			driver().get(workitemURL);
