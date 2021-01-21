@@ -352,7 +352,8 @@ public static void LoginToTFS()
 		 enterText(TFSUIMap.Pwd_txtbox,Property.getProperty("TFSPassword"));
 		 click(TFSUIMap.signIn_btn);
 		 waitPageToLoad();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
+		grabScreenshotForExtentReport();
 		ExpWaitForCondition(TFSUIMap.searchProject_txtbox);
 		System.out.println("login to TFS successful");
 	}
