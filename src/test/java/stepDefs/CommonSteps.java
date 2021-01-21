@@ -112,7 +112,7 @@ public class CommonSteps {
 	public void iValidateTheOutboundFlow(String application) throws Throwable {
 		if(application.contains("Jira"))
 			JiraWorkitem.ValidateOB(application);
-		if(application.equalsIgnoreCase("TFS"))
+		if(application.contains("TFS"))
 			TFSWorkitem.ValidateOB(application);
 	}
 	
