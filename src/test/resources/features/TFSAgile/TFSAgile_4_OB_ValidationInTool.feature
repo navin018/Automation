@@ -1,6 +1,7 @@
+@8TFSAgile_OB_ValidationInTool
 Feature: TFSAgile_OB_ToolValidation 
 
-@8TFSAgile_OB_ValidationInTool 
+ 
 Scenario Outline: ADTJira_OB_ValidationInTool 
 	And i put a explicit wait of "600000" 
 	Given i login to application "<applicationname>" 
