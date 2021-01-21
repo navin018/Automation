@@ -280,7 +280,9 @@ import java.util.Random;
 		//					assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
 							sa.assertEquals(getText(TFSUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get(entity+"_Title"));
 							Thread.sleep(4000);
-							clear(JiraUIMap.SearchBoxHomePage_txtbox);
+							doubleClick(TFSUIMap.SearchBoxHomePage_txtbox);
+							sendBackSpace(TFSUIMap.SearchBoxHomePage_txtbox);
+//							clear(JiraUIMap.SearchBoxHomePage_txtbox);
 						}
 						else 
 						{

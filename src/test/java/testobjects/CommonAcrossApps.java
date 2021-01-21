@@ -356,6 +356,7 @@ public static void LoginToTFS()
 		grabScreenshotForExtentReport();
 		ExpWaitForCondition(TFSUIMap.searchProject_txtbox);
 		System.out.println("login to TFS successful");
+		
 	}
 	catch(Exception e)
 	{
@@ -436,7 +437,7 @@ try{
 	    jsonObject.put("WorkItemExternalId_Impediment", Baseclass.getInstance().WorkItemExternalId_Impediment);
 	    jsonObject.put("WorkItemExternalId_Feature", Baseclass.getInstance().WorkItemExternalId_Feature);
 	    jsonObject.put("WorkItemExternalId_Epic",Baseclass.getInstance().WorkItemExternalId_Epic);
-	    jsonObject.put("WorkItemExternalId_ProductBacklog",Baseclass.getInstance().WorkItemExternalId_ProductBacklog);
+	    jsonObject.put("WorkItemExternalId_Story",Baseclass.getInstance().WorkItemExternalId_Story);
 	    jsonObject.put("WorkItemExternalId_Bug", Baseclass.getInstance().WorkItemExternalId_Bug);
 	    jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
 	    jsonObject.put("WorkItemExternalId_Decision",Baseclass.getInstance().WorkItemExternalId_Decision);
