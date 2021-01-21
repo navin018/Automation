@@ -1,7 +1,7 @@
-Feature: TFSAgile_OB_ToolValidation 
+Feature: ADOPJira_OB_ToolValidation 
 
-@8TFSAgile_OB_ValidationInTool 
-Scenario Outline: ADTJira_OB_ValidationInTool 
+@8ADOPJira_OB_ValidationInTool 
+Scenario Outline: ADOPJira_OB_ValidationInTool 
 	And i put a explicit wait of "600000" 
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
@@ -9,4 +9,4 @@ Scenario Outline: ADTJira_OB_ValidationInTool
 	
 	Examples: 
 		| applicationname | 
-		| TFS Agile            |
+		| ADOP Jira            | 

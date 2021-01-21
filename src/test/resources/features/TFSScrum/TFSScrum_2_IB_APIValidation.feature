@@ -1,7 +1,7 @@
 @6IBValidation_TFSScrum
 Feature: TFSScrum_IB_Validation
 
-@testok
+
 Scenario: TFSScrum_Task 
 	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "TFS Scrum" 

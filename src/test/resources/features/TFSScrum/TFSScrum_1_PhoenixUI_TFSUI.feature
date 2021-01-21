@@ -13,7 +13,7 @@ Scenario Outline: Delete_TestData_TFSScrum
 
 @1PreRequisites_TFSScrum
 Scenario Outline: ProdConfigCheck_TFSScrum 
-
+	Given i load the project properties file
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "Product Configuration"
@@ -122,6 +122,7 @@ Scenario Outline: TFSScrum_RulesValidation
 		
 @5WorkItemCreation_TFSScrum		
 Scenario Outline: TFSScrum_WorkitemCcreation 
+Given i load the project properties file
 Given i login to application "<applicationname>"
     Then i select a Project for "<applicationname>"
     And i create a "<bug>" in TFS
@@ -138,21 +139,12 @@ Given i login to application "<applicationname>"
      And i create a "<Impediment>" in TFS
 #    And i create "<Release>" and "<Sprint>" in TFS
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
-	And i put a explicit wait of "600000" 
+	And i put a explicit wait of "900000" 
 	And i generate a token for "DevTest" environment 
 	
 	    Examples: 
       | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|ProductBacklog|
       | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|ProductBacklog_01|
 
-@8TFSScrum_OB_ValidationInTool
-Scenario Outline: TFSScrum_OB_ValidationInTool
-    Given i login to application "<applicationname>"
-   Then i select a Project for "<applicationname>"
-    And i validate the outbound flow
-
- Examples: 
-      | applicationname | 
-      | TFS             |
 		
 		

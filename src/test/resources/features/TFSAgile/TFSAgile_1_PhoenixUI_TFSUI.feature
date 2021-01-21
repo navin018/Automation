@@ -138,12 +138,12 @@ Scenario Outline: TFSAgile_WorkitemCreation
       And i create a "<Requirement>" in TFS
      And i create a "<Milestone>" in TFS
      And i create a "<Story>" in TFS
-     And i create a "<TestResult>" in TFS
+#     And i create a "<TestResult>" in TFS
   
  And i create "<Release>" and "<Sprint>" in TFS
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
-	And i put a explicit wait of "600000" 
-
+	And i put a explicit wait of "900000" 
+	And i generate a token for "DevTest" environment 
 	
 	    Examples: 
       | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|

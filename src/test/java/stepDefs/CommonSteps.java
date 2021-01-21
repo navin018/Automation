@@ -77,7 +77,8 @@ public class CommonSteps {
 				CommonAcrossApps.LoginToMyWizard();
 			}
 			break;
-			
+			case "TFS Agile":
+			case "TFS Scrum":
 			case "TFS":
 			case "tfs":
 			{
@@ -122,7 +123,7 @@ public class CommonSteps {
 		JiraWorkitem.SelectProject();
 		Baseclass.getInstance().workitemcreation_fail = false;
 		}
-		if(AppName.equalsIgnoreCase("TFS"))
+		if(AppName.equalsIgnoreCase("TFS Scrum") || AppName.equalsIgnoreCase("TFS Agile") || AppName.contains("TFS") || AppName.contains("tfs"))
 		{
 			TFSWorkitem.SelectProject();
 			String currentproject_sp[] = driver().getCurrentUrl().split(Property.getProperty("TFS_URL")+"/");

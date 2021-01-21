@@ -13,7 +13,7 @@ Scenario Outline: Delete_TestData_ADOPJira
       
 @1PreRequisites_ADOPJira
 Scenario Outline: ProdConfigCheck_ADOPJIRA 
-
+	Given i load the project properties file 
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage"
 	And i click on tile "Product Configuration" 
@@ -118,21 +118,22 @@ Scenario Outline: ADOPJira_RulesValidation
 		
 @5WorkItemCreation_ADOPJira		
 Scenario Outline: ADOPJira_WorkitemCcreation 
+Given i load the project properties file 
 Given i login to application "<applicationname>"
     Then i select a Project for "<applicationname>"
-	    And i create a "<feature>" in Jira
-	    And i create a "<task>" in Jira
-	    And i create a "<story>" in Jira
-	    And i create a "<risk>" in Jira
-	    And i create a "<bug>" in Jira
-	    And i create a "<impediment>" in Jira
-	    And i create a "<epic>" in Jira
-	    And i create a "<issue>" in Jira
-	    And i create an "<Release>" in Jira
-    	And i create an "<Sprint>" in Jira
+	And i create a "<feature>" in Jira 
+	And i create a "<task>" in Jira 
+	And i create a "<story>" in Jira 
+	And i create a "<risk>" in Jira 
+	And i create a "<bug>" in Jira 
+	And i create a "<impediment>" in Jira 
+	And i create a "<epic>" in Jira 
+	And i create a "<issue>" in Jira 
+	And i create an "<Release>" in Jira 
+	And i create an "<Sprint>" in Jira 
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
     And i check the overall status of workitem creation for "<applicationname>"
-	And i put a explicit wait of "600000" 
+	And i put a explicit wait of "900000" 
 	And i generate a token for "DevTest" environment 
 	
 	  Examples: 
@@ -141,6 +142,7 @@ Given i login to application "<applicationname>"
 
 @8ADOPJira_OB_ValidationInTool
 Scenario Outline: ADOPJira_OB_ValidationInTool
+And i put a explicit wait of "600000" 
     Given i login to application "<applicationname>"
    Then i select a Project for "<applicationname>"
     And i validate the outbound flow

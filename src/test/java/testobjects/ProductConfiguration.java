@@ -1147,13 +1147,13 @@ public static void checkAndAddTest(){
 							{
 							
 								String[] pipelines = {"TFS-Scrum-US-Inbound","TFS-Scrum-ITR-US-Inbound","TFS-Scrum-Team-US-Inbound"};
-								verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+								verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
 							}
 							if(toolname.equalsIgnoreCase("TFS Agile"))
 							{
 							
 								String[] pipelines = {"TFS-Agile-US-Inbound","TFS-Agile-ITR-US-Inbound","TFS-Agile-Team-US-Inbound"};
-								verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+								verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
 							}
 						
 						}
@@ -1162,13 +1162,13 @@ public static void checkAndAddTest(){
 							if(toolname.equalsIgnoreCase("TFS Scrum"))
 							{
 								String[] pipelines = {"TFS-Scrum-US-Outbound"};
-								verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+								verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
 					
 							}
 							if(toolname.equalsIgnoreCase("TFS Agile"))
 							{
 								String[] pipelines = {"TFS-Agile-US-Outbound"};
-								verifyIfPipelinesExists(pipelines,toolname,IBorOB);
+								verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
 						
 							}
 							

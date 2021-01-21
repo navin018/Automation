@@ -1,6 +1,6 @@
-Feature: TFSAgile_OB_ToolValidation 
+Feature: TFSScrum_OB_ToolValidation 
 
-@8TFSAgile_OB_ValidationInTool 
+@8TFSScrum_OB_ValidationInTool 
 Scenario Outline: ADTJira_OB_ValidationInTool 
 	And i put a explicit wait of "600000" 
 	Given i login to application "<applicationname>" 
@@ -9,4 +9,4 @@ Scenario Outline: ADTJira_OB_ValidationInTool
 	
 	Examples: 
 		| applicationname | 
-		| TFS Agile            |
+		| TFS Scrum            |
