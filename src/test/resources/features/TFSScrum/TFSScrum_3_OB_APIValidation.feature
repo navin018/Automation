@@ -39,7 +39,10 @@ Scenario: TFSScrum_TestCase
 	 
 	And i verify the "Outbound" "Risk" details for "TFS Scrum" 			
 
-
+Scenario: TFSScrum_Requirement
+	 
+	And i verify the "Outbound" "Requirement" details for "TFS Scrum"
+	
 Scenario: TFSScrum_Deliverable
 	 
 	And i verify the "Outbound" "Deliverable" details for "TFS Scrum"

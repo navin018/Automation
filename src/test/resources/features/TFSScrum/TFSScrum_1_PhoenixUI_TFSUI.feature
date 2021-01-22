@@ -1,4 +1,4 @@
-Feature: PhoenixUI_TFSScrumUI
+Feature: Phoenix UI_TFS Scrum UI
 
 @0Delete_TestData_TFSScrum     
 Scenario Outline: Delete_TestData_TFSScrum

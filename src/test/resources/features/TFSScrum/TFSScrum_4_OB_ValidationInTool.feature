@@ -1,7 +1,7 @@
-Feature: TFSScrum_OB_ToolValidation 
+Feature: TFS Scrum_OB_Tool Validation 
 
 @8TFSScrum_OB_ValidationInTool 
-Scenario Outline: ADTJira_OB_ValidationInTool 
+Scenario Outline: TFSScrum_OB_ValidationInTool 
 	And i put a explicit wait of "600000" 
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
