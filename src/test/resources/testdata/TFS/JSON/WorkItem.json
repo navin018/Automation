@@ -68,8 +68,8 @@
 			"Description": "Requirement_Description"
 		},
 		"ProductBacklog_01": {
-			"Summary": "ProductBacklog_AutomationData",
-			"Description": "ProductBacklog_Description"
+			"Summary": "Story_AutomationData",
+			"Description": "Story_Description"
 		},
 		"Release_01": {
 			"IterationName": "Release_AutomationData",

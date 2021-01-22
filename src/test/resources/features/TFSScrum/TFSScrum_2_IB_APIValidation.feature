@@ -40,8 +40,8 @@ Scenario: TFSScrum_ReleaseAndSprint
 Scenario: TFSScrum_TestCase
 	
 	And i verify the "Inbound" "TestCase" details for "TFS Scrum" 
-	
-	Scenario: TFSScrum_Risk
+
+Scenario: TFSScrum_Risk
 	 
 	And i verify the "Inbound" "Risk" details for "TFS Scrum" 			
 
@@ -54,14 +54,16 @@ Scenario: TFSScrum_Deliverable
 Scenario: TFSScrum_Action
 	
 	And i verify the "Inbound" "Action" details for "TFS Scrum"
-	
+
 Scenario: TFSScrum_Impediment
 	
 	And i verify the "Inbound" "Impediment" details for "TFS Scrum"
 	
 Scenario: TFSScrum_Decision
 	And i verify the "Inbound" "Decision" details for "TFS Scrum"
-			
+
+Scenario: TFSScrum_Requirement
+	And i verify the "Inbound" "Requirement" details for "TFS Scrum"		
 			
 Scenario: TFSScrum_Milestone
 	And i verify the "Inbound" "Milestone" details for "TFS Scrum"
