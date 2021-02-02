@@ -111,6 +111,12 @@
 		"ReleaseEndDate":"30/dec/20",
 		"ReleaseDescription":"Release_Description"		
 		},
+		"Release_02":{
+		"ReleaseName": "Release_AutomationData",
+		"ReleaseStartDate":"7/1/2021",
+		"ReleaseEndDate":"8/1/2021",
+		"ReleaseDescription":"Release_Description"		
+		},
 		"Sprint_01":{
 		"SprintStartDate":"/dec/21 8:42 AM",
 		"SprintEndDate":"/dec/21 8:43 AM"

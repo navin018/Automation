@@ -49,6 +49,12 @@ public class CommonSteps {
 		if(toolname.trim().equalsIgnoreCase("ADT Jira")){
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADTJira.properties"),new File(propsPath+"project.properties"));
 		}
+		if(toolname.trim().equalsIgnoreCase("Rally")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"Rally.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("Cloud Jira")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"CloudJira.properties"),new File(propsPath+"project.properties"));
+		}
 		if(toolname.trim().equalsIgnoreCase("ADOP Jira")){
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADOPJira.properties"),new File(propsPath+"project.properties"));
 		}
@@ -71,6 +77,13 @@ public class CommonSteps {
 				
 			}
 			break;
+			case "Cloud Jira":
+			case "cloud jira":
+			{
+				CommonAcrossApps.loginToCloudJira();
+				
+			}
+			break;
 			case "MyWizard":
 			case "mywizard":
 			{
@@ -83,6 +96,14 @@ public class CommonSteps {
 			case "tfs":
 			{
 				CommonAcrossApps.LoginToTFS();
+				
+			}
+			break;
+			
+			case "Rally":
+			case "rally":
+			{
+				CommonAcrossApps.LoginToRally();
 				
 			}
 			break;
@@ -121,6 +142,16 @@ public class CommonSteps {
 		if(AppName.equalsIgnoreCase("jira") || AppName.equalsIgnoreCase("ADT Jira"))
 		{
 		JiraWorkitem.SelectProject();
+		Baseclass.getInstance().workitemcreation_fail = false;
+		}
+		if(AppName.equalsIgnoreCase("cloud jira"))
+		{
+		JiraWorkitem.SelectProjectForCloudJira();
+		Baseclass.getInstance().workitemcreation_fail = false;
+		}
+		if(AppName.equalsIgnoreCase("Rally"))
+		{
+		RallyWorkitem.SelectProjectForrally(AppName);
 		Baseclass.getInstance().workitemcreation_fail = false;
 		}
 		if(AppName.equalsIgnoreCase("TFS Scrum") || AppName.equalsIgnoreCase("TFS Agile") || AppName.contains("TFS") || AppName.contains("tfs"))

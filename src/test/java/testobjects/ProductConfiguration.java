@@ -94,6 +94,33 @@ public class ProductConfiguration extends Baseclass {
 					}
 				}
 			}
+			
+			if(toolname.equalsIgnoreCase("Cloud Jira") || toolname.equalsIgnoreCase("CLOUD JIRA"))
+			{
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				enterText(ProductConfigUIMap.searchBox_txtbox,"Atlassian JIRA");
+				Thread.sleep(3000);
+				if(CheckIfElementExists(prepareWebElementWithDynamicXpath(ProductConfigUIMap.ToolSugestions_statictxt, "Atlassian JIRA", "toolname")))
+				{
+				
+					click(ProductConfigUIMap.plusIcon_btn);
+					Thread.sleep(1000);
+					click(ProductConfigUIMap.plusIcon_btn);
+					Thread.sleep(2000);
+					if(CheckIfElementExists(prepareWebElementWithDynamicXpath(ProductConfigUIMap.toolnameInstance_statixtxt, "JIRA-Intel Corporation", "toolname")))
+					{doubleClick(prepareWebElementWithDynamicXpath(ProductConfigUIMap.toolnameInstance_statixtxt, "JIRA-Intel Corporation", "toolname"));
+						ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+						Thread.sleep(2000);
+						
+						ExpWaitForCondition(ProductConfigUIMap.EditProductInstance_statictxt);
+						if(!CheckIfElementExists(ProductConfigUIMap.EditProductInstance_statictxt))
+						{
+							logger.info("Product instance page for tool "+toolname+" not loaded");
+							Assert.fail("Product instance page for tool "+toolname+" not loaded");
+						}
+					}
+				}
+		}
 		}
 		else if(toolname.equalsIgnoreCase("MYWIZARD-TFS"))
 		{

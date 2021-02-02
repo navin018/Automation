@@ -16,6 +16,7 @@ import com.jcraft.jsch.Logger;
 
 import uiMap.JiraUIMap;
 import uiMap.MyWizardUIMap;
+import uiMap.RallyUIMap;
 import uiMap.TFSUIMap;
 import utilities.general.Property;
 
@@ -139,7 +140,7 @@ public class CommonAcrossApps {
 	
 	public static void LoginToMyWizard(){
 		try{
-			
+						
 			driver().get(Property.getProperty("MyWizard_URL"));
 			waitPageToLoad();
 			Thread.sleep(10000);
@@ -371,7 +372,7 @@ public static void UpdateWorkItemExternalIDsForApps(String appname)
 try{
 			System.out.println("updating workitemexternalIDs");
 			 String WorkItemEx_FileLoc="";
-			if(appname.equalsIgnoreCase("jira")){
+			if(appname.contains("jira") || appname.contains("Jira") || appname.contains("JIRA")){
 			  WorkItemEx_FileLoc = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
 						+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs.json";
@@ -504,6 +505,48 @@ try{
 	}
 	
 	
+	}
+	}
+
+public static void loginToCloudJira() {
+try{
+	Thread.sleep(3000);
+	driver().get("chrome://settings/clearBrowserData");
+	driver().get(Property.getProperty("JiraURL"));
+	waitPageToLoad();
+	ExpWaitForCondition(JiraUIMap.CloudJiraEmailID_txtbox);
+		enterText(JiraUIMap.CloudJiraEmailID_txtbox,Property.getProperty("Username"));
+		clickJS(JiraUIMap.CloudJiraCtn_btn);
+		ExpWaitForCondition(JiraUIMap.CloudJiraPwd_txtbox);
+		 enterText(JiraUIMap.CloudJiraPwd_txtbox,Property.getProperty("Password"));
+		 click(JiraUIMap.CloudJiraLogIn_btn);
+		 Thread.sleep(10000);
+		 ExpWaitForCondition(JiraUIMap.CloudJiraCreate_btn);
+}
+catch(Exception e)
+{
+	e.printStackTrace();
+	Assert.fail("Issue loading/logging into Cloud Jira");
+
+}
+}
+
+public static void LoginToRally() {
+	try{
+	Thread.sleep(3000);
+	driver().get(Property.getProperty("RallyURL"));
+	waitPageToLoad();
+	ExpWaitForCondition(RallyUIMap.username_txtbox);
+		enterText(RallyUIMap.username_txtbox,Property.getProperty("Username"));
+		 enterText(RallyUIMap.password_txtbox,Property.getProperty("Password"));
+		 click(RallyUIMap.signin_btn);
+		 Thread.sleep(10000);
+		 ExpWaitForCondition(RallyUIMap.plan_link);
+}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		Assert.fail("issue logging into Rally");
 	}
 	}
 }

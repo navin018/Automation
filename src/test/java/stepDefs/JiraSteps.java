@@ -1,9 +1,13 @@
 package stepDefs;
 import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
+
+
+
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import uiMap.JiraUIMap;
+import utilities.general.Property;
 import testobjects.*;
 
 public class JiraSteps  {
@@ -35,6 +39,21 @@ public class JiraSteps  {
 			JiraWorkitem.CaptureWorkitemID(workitem);
 		}
 	}
+	
+	@Then("^i create a \"([^\"]*)\" in CloudJira$")
+	public void iCreateAInCloudJira(String workitem) throws Throwable {
+		
+		String workitem_sp[] = workitem.split("_");
+		ExpWaitForCondition(JiraUIMap.CloudJiraCreate_link);
+		click(JiraUIMap.CloudJiraCreate_link);
+		ExpWaitForCondition(JiraUIMap.CloudJiraCreateIssue_Statictxt);
+		waitPageToLoad();
+		JiraWorkitem.SelectWorkItemtype(workitem);
+		JiraWorkitem.CreateWorkitem(workitem);
+		JiraWorkitem.CaptureWorkitemIDForCloudJira(workitem);
+		
+	
+	}
 
 	@Then("^i create entity \"([^\"]*)\" in Jira$")
 	public void iCreateEntityInJira(String workitem) throws Throwable {
@@ -62,7 +81,12 @@ public class JiraSteps  {
 	@Then("^i create an \"([^\"]*)\" in Jira$")
 	public void iCreateAnInJira(String ReleaseOrTeam) throws Throwable {
 		if(ReleaseOrTeam.contains("Release") || ReleaseOrTeam.contains("release") || ReleaseOrTeam.contains("Sprint") || ReleaseOrTeam.contains("sprint"))
-		JiraWorkitem.CreateRelease(ReleaseOrTeam);
+			{
+			if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
+			JiraWorkitem.CreateRelease(ReleaseOrTeam);
+			if(Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
+				JiraWorkitem.CreateReleaseForCloudJira(ReleaseOrTeam);
+			}
 		if(ReleaseOrTeam.contains("Team") || ReleaseOrTeam.contains("team"))
 			JiraWorkitem.CreateTeam(ReleaseOrTeam);	
 	}

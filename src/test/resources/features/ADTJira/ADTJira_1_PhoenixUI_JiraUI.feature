@@ -140,7 +140,7 @@ Scenario Outline: ADTJIRA_WorkitemCreationInUI
 #
 	And i create an "<Release>" in Jira 
 	And i create an "<Sprint>" in Jira 
-##	And i create an "<Team>" in Jira 
+#	And i create an "<Team>" in Jira 
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" 
 	And i check the overall status of workitem creation for "<applicationname>"
 	And i put a explicit wait of "900000" 

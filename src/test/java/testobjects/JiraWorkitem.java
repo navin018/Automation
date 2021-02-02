@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -104,6 +105,7 @@ import java.util.Random;
 					break;
 				case "epic":
 				case "Epic":
+					if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
 					enterText(JiraUIMap.EpicName_txtBox, wi.EpicName);
 					Thread.sleep(1000);
 					break;
@@ -132,10 +134,10 @@ import java.util.Random;
 			try {
 			String workitem_type[] =workitem.split("_");
 				waitPageToLoad();
-				click(JiraUIMap.CreateWokitem_dropdown);
-//				Thread.sleep(1000);
+				doubleClick(JiraUIMap.CreateWokitem_dropdown);
+				Thread.sleep(1000);
 				sendBackSpace(JiraUIMap.CreateWokitem_dropdown);
-//				Thread.sleep(2000);
+				Thread.sleep(2000);
 				enterText(JiraUIMap.CreateWokitem_dropdown,workitem_type[0]);
 				sendEnter(JiraUIMap.CreateWokitem_dropdown);
 				waitPageToLoad();
@@ -299,6 +301,56 @@ import java.util.Random;
 				Baseclass.getInstance().workitemcreation_fail = true;
 			}
 		}
+			
+			
+			public static void CaptureWorkitemIDForCloudJira(String workitem) {
+				try {
+					
+					String workitem_type[] =workitem.split("_");
+//					if(workitem_type[0].contains("Feature") && Property.getProperty("JiraURL").contains("uat.alm.accenture"))
+//						enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Feature");
+					ExpWaitForCondition(JiraUIMap.CloudJiraGetIssueID_statictxt);
+					String workitemID = getText(JiraUIMap.CloudJiraGetIssueID_statictxt);
+					
+					
+					switch(workitem_type[0]){
+					
+					case "task":
+					case "Task":
+					Baseclass.getInstance().WorkItemExternalId_Task = workitemID;
+					System.out.println("Created "+workitem+" ID is "+workitemID);
+					break;
+					case "story":
+					case "Story":
+					Baseclass.getInstance().WorkItemExternalId_Story = workitemID;
+					System.out.println("Created "+workitem+" ID is "+workitemID);
+					break;
+					
+					case "bug":
+					case "Bug":
+					Baseclass.getInstance().WorkItemExternalId_Bug = workitemID;
+					System.out.println("Created "+workitem+" ID is "+workitemID);
+					break;
+					
+					case "epic":
+					case "Epic":
+					Baseclass.getInstance().WorkItemExternalId_Epic = workitemID;
+					System.out.println("Created "+workitem+" ID is "+workitemID);
+					break;
+					
+				
+					default:
+				        throw new IllegalArgumentException("Invalid workitem: " + workitem_type[0]);	
+					}
+					
+				} catch (Exception e) {
+			
+					e.printStackTrace();
+					logger.info("Issue capturing workitem details for "+workitem+ " for the given tool");
+//					Assert.fail("Issue capturing workitem details for "+workitem+ " for the given tool");
+					Baseclass.getInstance().workitemcreation_fail = true;
+				}
+			}
 			
 			public static void CreateRelease(String ReleaseOrSprint) {
 				try {
@@ -805,5 +857,125 @@ public static void associateTestExecution(String workitem) {
 	{
 		e.printStackTrace();
 	}
+}
+
+public static void SelectProjectForCloudJira() {
+	try {
+		Thread.sleep(2000);
+		waitPageToLoad();
+		click(JiraUIMap.CloudJiraProjects_link);
+		click(JiraUIMap.CloudJiraViewALlProjects_link);
+		Thread.sleep(10000);
+//		
+		ExpWaitForCondition(JiraUIMap.CloudJiraSearchProject_txtbox);
+		doubleClick(JiraUIMap.CloudJiraSearchProject_txtbox);
+		Thread.sleep(2000);
+//		enterText(JiraUIMap.SearchBoxAllPorjects_txtbox, Property.getProperty("JiraProject"));
+		enterTextUsingAction(JiraUIMap.CloudJiraSearchProject_txtbox, Property.getProperty("JiraProject"));
+		Thread.sleep(5000);
+		Assert.assertEquals(getText(JiraUIMap.CloudJiraProjectKey_Statictxt), Property.getProperty("JiraProject"),"Entered project "+Property.getProperty("JiraProject")+ " not found");
+			click(JiraUIMap.CloudJiraProjectKey_Statictxt);
+
+		waitPageToLoad();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		logger.info("Issue selecting the project for the given tool");
+		Assert.fail("Issue selecting the project for the given tool");
+	}
+	
+}
+
+public static void CreateReleaseForCloudJira(String ReleaseOrSprint) {
+	try {
+		Random rnd = new Random();
+		WorkItemDO wii = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(ReleaseOrSprint);
+		
+		//generate random dates(sprint start date and end date) and release name
+		int randomNumbForRelease = 1000 + rnd.nextInt(9000);
+		String newReleasewithAppendedNumb = wii.ReleaseName+randomNumbForRelease;
+		int randomNumbForSrpint = 100 + rnd.nextInt(900);
+		
+//		release
+			if(ReleaseOrSprint.contains("Release"))
+			{
+				waitPageToLoad();
+				Thread.sleep(5000);
+				click(JiraUIMap.CloudJiraReleases_Link);
+				waitPageToLoad();
+				Thread.sleep(3000);
+				clickJS(JiraUIMap.CloudJiraReleaseCreateVersion_Link);
+//				Thread.sleep(3000);
+//				singleClick(JiraUIMap.CloudJiraReleaseName_txtBox);
+				Thread.sleep(5000);
+				enterTextUsingAction(JiraUIMap.CloudJiraReleaseName_txtBox,newReleasewithAppendedNumb);
+				
+				
+				Thread.sleep(2000);
+				clickJS(JiraUIMap.CloudJiraStartDateIcon);
+
+				Thread.sleep(2000);
+				clickJS(JiraUIMap.CloudJiraNextMonthIcon);
+
+				Thread.sleep(2000);
+				clickJS(JiraUIMap.CloudJiraSelectReleaseStartDate);
+
+				String releasestartdate = getText(JiraUIMap.CloudJiraGetReleaseStartDate);
+
+				Thread.sleep(3000);
+				
+				clickJS(JiraUIMap.CloudJiraStartDateIcon);
+
+				Thread.sleep(2000);
+				clickJS(JiraUIMap.CloudJiraNextMonthIcon);
+
+				Thread.sleep(2000);
+				clickJS(JiraUIMap.CloudJiraSelectReleaseEndDate);
+
+				String releaseenddate =getText(JiraUIMap.CloudJiraGetReleaseEndDate);
+
+				System.out.println(releaseenddate);
+				System.out.println(releasestartdate);
+				 String startDateString = releasestartdate;
+				    SimpleDateFormat sdf = new SimpleDateFormat("M/dd/yyyy");
+				    SimpleDateFormat sdf2 = new SimpleDateFormat("d/MMM/YY");
+				    System.out.println(sdf2.format(sdf.parse(releasestartdate)));
+				    System.out.println(sdf2.format(sdf.parse(releaseenddate)));
+
+				clickJS(JiraUIMap.CloudJiraSaveRelease_btn);
+				waitPageToLoad();
+				Baseclass.getInstance().Jira_ReleaseName =newReleasewithAppendedNumb;
+				Baseclass.getInstance().Jira_ReleaseStartDate= sdf2.format(sdf.parse(releasestartdate));
+				Baseclass.getInstance().Jira_ReleaseEndDate = sdf2.format(sdf.parse(releaseenddate));
+				
+			}
+			else if(ReleaseOrSprint.contains("Sprint"))
+			{
+				clickJS(JiraUIMap.BacklogIcon_Img);
+//				Thread.sleep(10000);
+				ExpWaitForCondition(JiraUIMap.CloudJiraEditSprintDots_Img);
+				clickJS(JiraUIMap.CloudJiraEditSprintDots_Img);
+				clickJS(JiraUIMap.CloudJiraEditSprint_Img);
+				ExpWaitForCondition(JiraUIMap.CloudJiraSprintName_txt);
+				String currentsprintname = getValue(JiraUIMap.CloudJiraSprintName_txt);
+//				clickJS(By.xpath("//a[@class='aui-button js-sprint-actions-trigger'][1]/span[1]"));
+//				clickJS(JiraUIMap.SprintName_Statictxt);
+//				Thread.sleep(2000);
+				ClearTextAndEnterData(currentsprintname+"_"+randomNumbForSrpint);
+				Thread.sleep(4000);
+//				clickJS(JiraUIMap.SaveSprint_btn);
+//				click(JiraUIMap.BacklogIcon_Img);
+				Baseclass.getInstance().Jira_SprintName = currentsprintname+"_"+randomNumbForSrpint;
+			}
+
+	} 
+	
+	catch (Exception e) {
+		e.printStackTrace();
+		logger.info("Issues in creating release or sprint");
+		Assert.fail("Issues in creating release or sprint");
+	}
+
+	
 }
 	}

@@ -23,6 +23,15 @@ public class MyWizardSteps {
 		
 	}
 	
+	@Then("^i select client and DC for \"([^\"]*)\" for pipelines$")
+	public void i_select_client_and_DC_for_pipelines(String appname) throws Throwable {
+		
+		MyWizardHomePage.SelectClientAndDCForPipelines();
+	
+	
+		
+	}
+	
 	@Then("^i select only the client for \"([^\"]*)\"$")
 	public void i_select_only_the_client_for(String arg1) throws Throwable {
 	
