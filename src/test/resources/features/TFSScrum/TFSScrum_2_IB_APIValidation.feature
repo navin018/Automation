@@ -3,6 +3,7 @@ Feature: TFSScrum_IB_Validation
 
 
 Scenario: TFSScrum_Task 
+Given i load the project properties file
 	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "TFS Scrum" 
 	
@@ -32,9 +33,9 @@ Scenario: TFSScrum_Feature
 	And i verify the "Inbound" "Feature" details for "TFS Scrum" 
 	
 
-Scenario: TFSScrum_ReleaseAndSprint 
-
-	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Scrum" 
+#Scenario: TFSScrum_ReleaseAndSprint 
+#
+#	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Scrum" 
 	
 
 Scenario: TFSScrum_TestCase
