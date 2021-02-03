@@ -24,7 +24,7 @@ public static By CreateWokitem_dropdown=By.xpath("//input[@id='issuetype-field']
 public static By SelectProject_dropdown=By.xpath("//input[@id='project-field']");
 public static By ConfirmYourIndentity_txt = By.xpath("//span[text()='Confirm Your Identity']");
 
-public static By Summary_txtBox=By.xpath("//input[@name='summary']");
+public static By Summary_txtBox=By.xpath("//input[@name='summary' and @id='summary']");
 
 public static By CollapsedSideBar_icon=By.xpath("//input[@name='summary']");
 
