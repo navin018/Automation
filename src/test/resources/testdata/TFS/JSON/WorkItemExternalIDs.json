@@ -1,16 +1,1 @@
-{"TFS_SprintName":"Sprint__AutomationData_Donot_Edit7395",
-"WorkItemExternalId_Task":"178763",
-"WorkItemExternalId_ProductBacklog":"178765",
-"WorkItemExternalId_Epic":"178760",
-"WorkItemExternalId_Bug":"178759",
-"WorkItemExternalId_Issue":null,
-"WorkItemExternalId_Impediment":"178762",
-"TFS_SprintStartDate":"2\/1\/2023",
-"WorkItemExternalId_TestCase":"178764",
-"WorkItemExternalId_Story":null,
-"TFS_ReleaseName":"Release__AutomationData_Donot_Edit8277",
-"TFS_ReleaseEndDate":"12\/1\/2023",
-"TFS_ReleaseStartDate":"1\/1\/2023",
-"TFS_SprintEndDate":"5\/1\/2023",
-"WorkItemExternalId_Feature":"178761"
-}
+{"WorkItemExternalId_ReleaseStartDate":"1\/1\/2023","WorkItemExternalId_Task":"218407","WorkItemExternalId_TestExecution":null,"WorkItemExternalId_ReleaseEndDate":"12\/1\/2023","WorkItemExternalId_Epic":"218402","WorkItemExternalId_Milestone":"218415","WorkItemExternalId_Decision":"218412","WorkItemExternalId_Requirement":"218416","WorkItemExternalId_Bug":"218401","WorkItemExternalId_Issue":"218404","WorkItemExternalId_Impediment":"218414","WorkItemExternalId_ReleaseName":"Release_AutomationData2658","WorkItemExternalId_Action":"218411","TFS_SprintStartDate":"2\/1\/2023","WorkItemExternalId_TestPlan":null,"WorkItemExternalId_TestCase":"218408","WorkItemExternalId_Story":"218410","WorkItemExternalId_Deliverable":"218413","WorkItemExternalId_Risk":"218406","RunID":null,"TFS_SprintEndDate":"5\/1\/2023","WorkItemExternalId_TestCase_TE":null,"WorkItemExternalId_Feature":"218403","WorkItemExternalId_SprintName":"Sprint_AutomationData7152"}
