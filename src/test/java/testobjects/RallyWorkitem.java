@@ -103,11 +103,19 @@ import java.util.Random;
 		}
 
 		public static void CreateRelease() {
+			try{
+				
 			clickJS(RallyUIMap.plan_link);
 			clickJS(RallyUIMap.Timeboxes_link);
 			clickJS(RallyUIMap.Timesboxes_drpdown);
-//			clickJS(RallyUIMap.iter);
+			clickJS(RallyUIMap.TimesboxesDrpdownSelectRelease_drpdown);
+			ExpWaitForCondition(RallyUIMap.AddNew_btn);
 			
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 	
 

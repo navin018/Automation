@@ -801,6 +801,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 		{
 			try{
 				
+				if(toolname.contains("Jira") || toolname.contains("JIRA")){
 			String[] ReleaseDateFromAPI_sp	= ReleaseDateFromAPI.split("T");
 			
 			Date date = new SimpleDateFormat("d/MMM/yy").parse(ReleaseDateFromJSON);
@@ -808,6 +809,17 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 //			System.out.println(sdfDestination.format(date).toString());
 //			System.out.println(ReleaseDateFromAPI_sp[0]);
 			Assert.assertEquals(ReleaseDateFromAPI_sp[0],sdfDestination.format(date).toString(),"Release dates mistmatch for tool "+toolname);
+				}
+				else if(toolname.contains("TFS") || toolname.contains("tfs"))
+				{
+					String[] ReleaseDateFromAPI_sp	= ReleaseDateFromAPI.split("T");
+					
+					Date date = new SimpleDateFormat("MM/d/yyyy").parse(ReleaseDateFromJSON);
+					SimpleDateFormat sdfDestination = new SimpleDateFormat("yyyy-MM-dd");
+//					System.out.println(sdfDestination.format(date).toString());
+//					System.out.println(ReleaseDateFromAPI_sp[0]);
+					Assert.assertEquals(ReleaseDateFromAPI_sp[0],sdfDestination.format(date).toString(),"Release dates mistmatch for tool "+toolname);
+				}
 			}
 			catch(Exception e)
 			{

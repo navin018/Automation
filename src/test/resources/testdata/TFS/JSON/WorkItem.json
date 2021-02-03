@@ -73,8 +73,8 @@
 		},
 		"Release_01": {
 			"IterationName": "Release_AutomationData",
-			"StartDate": "1/1/2023",
-			"EndDate": "12/1/2023"
+			"ReleaseStartDate": "1/1/2023",
+			"ReleaseEndDate": "12/1/2023"
 		},
 		"Sprint_01": {
 			"IterationName": "Sprint_AutomationData",

@@ -276,10 +276,13 @@ import java.util.Random;
 						{
 							Thread.sleep(5000);
 							String value = (String) jsonObject.get("WorkItemExternalId_"+entity);
+							singleClick(TFSUIMap.SearchBoxHomePage_txtbox);
+							ExpWaitForCondition(By.xpath("//div[text()='Recent work items']"));
 							enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-							Thread.sleep(2000);
-							if(CheckIfElementExists(By.xpath("//div[contains(text(),'No work item results found')]")))
-								enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
+//							Thread.sleep(2000);
+							ExpWaitForCondition(By.xpath("//div[text()='Work items']"));
+//							if(CheckIfElementExists(By.xpath("//div[contains(text(),'No work item results found')]")))
+//								enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
 		//					assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
 							sa.assertEquals(getText(TFSUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get(entity+"_Title"));
 							Thread.sleep(4000);
@@ -462,8 +465,9 @@ import java.util.Random;
 		
 		public static void CreateReleaseAndSprint(String Release,String Sprint){
 			try {
-			
+			Thread.sleep(4000);
 			click(TFSUIMap.settingsIcon_Img);
+			Thread.sleep(4000);
 			click(TFSUIMap.ProjectConfiguration_link);
 			Thread.sleep(4000);
 			ExpWaitForCondition(TFSUIMap.NewChild_link);
@@ -478,8 +482,8 @@ import java.util.Random;
 			String newReleasewithAppendedNumb = wi_release.IterationName+randomNumbForRelease;
 			clear(TFSUIMap.IterationName_txtbox);
 			enterText(TFSUIMap.IterationName_txtbox,newReleasewithAppendedNumb);
-			enterText(TFSUIMap.StartDate_txtbox,wi_release.StartDate);
-			enterText(TFSUIMap.EndDate_txtbox,wi_release.EndDate);
+			enterText(TFSUIMap.StartDate_txtbox,wi_release.ReleaseStartDate);
+			enterText(TFSUIMap.EndDate_txtbox,wi_release.ReleaseEndDate);
 			click(TFSUIMap.saveAndClose_btn);
 			
 			//enter sprint data
@@ -496,8 +500,8 @@ import java.util.Random;
 			click(TFSUIMap.saveAndClose_btn);
 			
 			Baseclass.getInstance().TFS_ReleaseName = newReleasewithAppendedNumb;
-			Baseclass.getInstance().TFS_ReleaseStartDate= wi_release.StartDate;
-			Baseclass.getInstance().TFS_ReleaseEndDate = wi_release.EndDate;
+			Baseclass.getInstance().TFS_ReleaseStartDate= wi_release.ReleaseStartDate;
+			Baseclass.getInstance().TFS_ReleaseEndDate = wi_release.ReleaseEndDate;
 			Baseclass.getInstance().TFS_SprintName = newSprintwithAppendedNumb;
 			Baseclass.getInstance().TFS_SprintStartDate = wi_sprint.StartDate;
 			Baseclass.getInstance().TFS_SprintEndDate = wi_sprint.EndDate;

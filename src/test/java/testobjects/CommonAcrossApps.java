@@ -447,12 +447,20 @@ try{
 	    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
 	    jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
 	    
-	    jsonObject.put("TFS_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
-		jsonObject.put("TFS_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);
-		jsonObject.put("TFS_ReleaseEndDate",Baseclass.getInstance().TFS_ReleaseEndDate);
-		jsonObject.put("TFS_SprintName",Baseclass.getInstance().TFS_SprintName);
+//	    jsonObject.put("TFS_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
+//		jsonObject.put("TFS_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);
+//		jsonObject.put("TFS_ReleaseEndDate",Baseclass.getInstance().TFS_ReleaseEndDate);
+//		jsonObject.put("TFS_SprintName",Baseclass.getInstance().TFS_SprintName);
+//		jsonObject.put("TFS_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
+//		jsonObject.put("TFS_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
+	    
+		jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
+		jsonObject.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);
+		jsonObject.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().TFS_ReleaseEndDate);
+		jsonObject.put("WorkItemExternalId_SprintName",Baseclass.getInstance().TFS_SprintName);
 		jsonObject.put("TFS_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
 		jsonObject.put("TFS_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
+		
 		
 		 jsonObject.put("WorkItemExternalId_TestPlan", Baseclass.getInstance().WorkItemExternalId_TestPlan);
 		    jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);

@@ -34,6 +34,8 @@ public static By Defects_link=By.xpath("//div[text()='Defects']");
 public static By Timeboxes_link=By.xpath("//span[text()='Timeboxes']");
 
 public static By Timesboxes_drpdown=By.xpath("//div[contains(@class,'SavedView')]//preceding::span[@class='smb-Select-selectedValue'][1]");
+public static By TimesboxesDrpdownSelectReleases_drpdown=By.xpath("//div[@class='smb-DropdownItem-contentWrapper']//following::span[text()='Releases'][1]");
+public static By TimesboxesDrpdownSelectIterations_drpdown=By.xpath("//span[@class='smb-DropdownItem-text'][text()='Iterations']");
 public static By TimesboxesDrpdownSelectRelease_drpdown=By.xpath("//div[contains(@class,'SavedView')]//preceding::span[@class='smb-Select-selectedValue'][1]");
 public static By SelectReleaseFromDrpdown=By.xpath("//span[text()='Releases']");
 public static By ReleaseStartDate_DatePicker=By.xpath("//div[contains(@class,'smb-TextInput smb-TextInput--iconPlacementEnd smb-TextInput--hasIcon smb-TextInput--xs is-readOnly')]");

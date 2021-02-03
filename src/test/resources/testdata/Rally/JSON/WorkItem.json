@@ -107,8 +107,8 @@
 		},
 		"Release_01":{
 		"ReleaseName": "Release_AutomationData",
-		"ReleaseStartDate":"1/feb/22",
-		"ReleaseEndDate":"2/feb/22",
+		"ReleaseStartDate":"1/dec/20",
+		"ReleaseEndDate":"30/dec/20",
 		"ReleaseDescription":"Release_Description"		
 		},
 		"Release_02":{
