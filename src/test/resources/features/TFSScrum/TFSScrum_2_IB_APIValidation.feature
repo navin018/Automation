@@ -33,9 +33,9 @@ Scenario: TFSScrum_Feature
 	And i verify the "Inbound" "Feature" details for "TFS Scrum" 
 	
 
-#Scenario: TFSScrum_ReleaseAndSprint 
-#
-#	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Scrum" 
+Scenario: TFSScrum_ReleaseAndSprint 
+
+	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Scrum" 
 	
 
 Scenario: TFSScrum_TestCase
