@@ -61,6 +61,7 @@ import java.util.Random;
 			try	{
 				 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workItem);
 				 workitem_title = wi.Summary;
+				 Thread.sleep(5000);
 				 enterText(JiraUIMap.Summary_txtBox,wi.Summary);
 				 
 				 Thread.sleep(1000);
