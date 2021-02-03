@@ -49,17 +49,14 @@ public class CommonAcrossApps {
 			//code change after browser remembering the login details
 			if(CheckIfElementExists(JiraUIMap.login_btn)){
 				clickJS(JiraUIMap.login_btn);
-				Thread.sleep(10000);
+				ExpWaitForCondition(MyWizardUIMap.signIn_txtbox);
 				enterText(MyWizardUIMap.signIn_txtbox,Property.getProperty("Username"));
 				clickJS(MyWizardUIMap.Next_btn);
 				ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
 				 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("Password"));
 				 click(MyWizardUIMap.signIn_btn1);
-				 Thread.sleep(10000);
-					if(CheckIfElementExists(MyWizardUIMap.Yes_btn))	
-					{
+				ExpWaitForCondition(MyWizardUIMap.Yes_btn);
 						clickJS(MyWizardUIMap.Yes_btn);
-					}
 			}
 			
 			
@@ -345,6 +342,8 @@ public static void LoginToTFS()
 		waitPageToLoad();
 //		driver().manage().window().maximize();
 		Thread.sleep(4000);
+//		String parent=driver().getWindowHandle();
+//		driver().switchTo().window(parent);
 		ExpWaitForCondition(TFSUIMap.signIn_txtbox);
 		enterText(TFSUIMap.signIn_txtbox,Property.getProperty("TFSUsername"));
 		 click(TFSUIMap.Next_btn);
