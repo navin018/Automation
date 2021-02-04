@@ -101,7 +101,7 @@ import java.util.Random;
 					break;
 				case "story":
 				case "Story":
-					enterText(JiraUIMap.StoryPoints_txtbox, wi.StoryPoints);
+//					enterText(JiraUIMap.StoryPoints_txtbox, wi.StoryPoints);
 					Thread.sleep(1000);
 					break;
 				case "epic":
