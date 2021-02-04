@@ -36,10 +36,10 @@ Scenario: TFSAgile_Requirement
 
 	And i verify the "Inbound" "Requirement" details for "TFS Agile"
 	
-#@RS
-#Scenario: TFSAgile_ReleaseAndSprint 
-#
-#	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Agile" 
+
+Scenario: TFSAgile_ReleaseAndSprint 
+
+	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Agile" 
 
 
 Scenario: TFSAgile_TestCase
