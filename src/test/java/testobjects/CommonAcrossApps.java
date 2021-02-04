@@ -342,8 +342,8 @@ public static void LoginToTFS()
 		waitPageToLoad();
 //		driver().manage().window().maximize();
 		Thread.sleep(4000);
-//		String parent=driver().getWindowHandle();
-//		driver().switchTo().window(parent);
+		String parent=driver().getWindowHandle();
+		driver().switchTo().window(parent);
 		ExpWaitForCondition(TFSUIMap.signIn_txtbox);
 		enterText(TFSUIMap.signIn_txtbox,Property.getProperty("TFSUsername"));
 		 click(TFSUIMap.Next_btn);
