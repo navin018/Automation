@@ -306,15 +306,31 @@ import java.util.Random;
 					{
 						if((String) jsonObject.get("WorkItemExternalId_"+entity)!=null)
 						{
+							
+							Thread.sleep(5000);
 							String value = (String) jsonObject.get("WorkItemExternalId_"+entity);
+							singleClick(TFSUIMap.SearchBoxHomePage_txtbox);
+							ExpWaitForCondition(By.xpath("//div[text()='Recent work items']"));
 							enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-							Thread.sleep(2000);
+//							Thread.sleep(2000);
+							ExpWaitForCondition(By.xpath("//div[text()='Work items']"));
+//							if(CheckIfElementExists(By.xpath("//div[contains(text(),'No work item results found')]")))
+//								enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
 		//					assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
 							sa.assertEquals(getText(TFSUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get(entity+"_Title"));
 							Thread.sleep(4000);
 							doubleClick(TFSUIMap.SearchBoxHomePage_txtbox);
 							sendBackSpace(TFSUIMap.SearchBoxHomePage_txtbox);
 //							clear(JiraUIMap.SearchBoxHomePage_txtbox);
+//							String value = (String) jsonObject.get("WorkItemExternalId_"+entity);
+//							enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
+//							Thread.sleep(2000);
+//		//					assertEquals(getText(JiraUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get("Task_Title"));
+//							sa.assertEquals(getText(TFSUIMap.WorkItemExternalIDTitle_txt), (String) jsonObject1.get(entity+"_Title"));
+//							Thread.sleep(4000);
+//							doubleClick(TFSUIMap.SearchBoxHomePage_txtbox);
+//							sendBackSpace(TFSUIMap.SearchBoxHomePage_txtbox);
+////							clear(JiraUIMap.SearchBoxHomePage_txtbox);
 						}
 						else 
 						{

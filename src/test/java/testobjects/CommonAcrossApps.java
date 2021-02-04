@@ -47,12 +47,15 @@ public class CommonAcrossApps {
 //			
 //			grabScreenshotForExtentReport();
 			//code change after browser remembering the login details
+			String parent=driver().getWindowHandle();
+			driver().switchTo().window(parent);
 			if(CheckIfElementExists(JiraUIMap.login_btn)){
 				clickJS(JiraUIMap.login_btn);
 				ExpWaitForCondition(MyWizardUIMap.signIn_txtbox);
 				enterText(MyWizardUIMap.signIn_txtbox,Property.getProperty("Username"));
 				clickJS(MyWizardUIMap.Next_btn);
 				ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+				Thread.sleep(3000);
 				 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("Password"));
 				 click(MyWizardUIMap.signIn_btn1);
 				ExpWaitForCondition(MyWizardUIMap.Yes_btn);
