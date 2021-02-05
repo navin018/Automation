@@ -200,9 +200,14 @@ import java.util.Random;
 //				
 //				String toGetID1[] = toGetID.split("browse/");
 				
-				ExpWaitForCondition((By.xpath("//a[@class='js-issue-link']"))); 
-				String toGetID = getText(By.xpath("//a[@class='js-issue-link']"));
+//				ExpWaitForCondition((By.xpath("//a[@class='js-issue-link']"))); 
+//				String toGetID = getText(By.xpath("//a[@class='js-issue-link']"));
 				
+
+				ExpWaitForCondition((By.xpath("//a[@class='issue-created-key issue-link']"))); 
+				String splittogetID = getText(By.xpath("//a[@class='issue-created-key issue-link']"));
+				String[] splittogetID1 = splittogetID.split(" ");
+				String toGetID = splittogetID1[1];
 				switch(workitem_type[0]){
 				
 				case "task":
