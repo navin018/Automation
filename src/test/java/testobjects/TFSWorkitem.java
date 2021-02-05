@@ -340,132 +340,7 @@ import java.util.Random;
 			
 			}
 			
-//			if((String.valueOf(jsonObject.get("WorkItemExternalId_Task")))!=null)
-//			{
-//				String value = (String.valueOf(jsonObject.get("WorkItemExternalId_Task")));
-//				enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//				Thread.sleep(2000);
-//				waitPageToLoad();			
-//				ExpWaitForCondition(TFSUIMap.WorkItemtxt_static);
-//				assertEquals(getText(TFSUIMap.WorkitemTitleSearch_statictxt),(String) jsonObject1.get("Task_Title"));
-//				clear(TFSUIMap.SearchBoxHomePage_txtbox);
-//			}
-//			else 
-//			{
-//				throw new NullPointerException("Task value is null");
-//			}
-//			if((String.valueOf(jsonObject.get("WorkItemExternalId_Bug")))!=null)
-//			{
-//				String value = (String.valueOf(jsonObject.get("WorkItemExternalId_Bug")));
-//				enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//				Thread.sleep(2000);
-//				waitPageToLoad();			
-//				ExpWaitForCondition(TFSUIMap.WorkItemtxt_static);
-//				assertEquals(getText(TFSUIMap.WorkitemTitleSearch_statictxt),(String) jsonObject1.get("Bug_Title"));
-//				clear(TFSUIMap.SearchBoxHomePage_txtbox);
-//			}
-//			else 
-//			{
-//				throw new NullPointerException("Bug value is null");
-//			}
-//			if((String.valueOf(jsonObject.get("WorkItemExternalId_Epic")))!=null)
-//			{
-//				String value = (String.valueOf(jsonObject.get("WorkItemExternalId_Epic")));
-//				enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//				Thread.sleep(2000);
-//				waitPageToLoad();			
-//				ExpWaitForCondition(TFSUIMap.WorkItemtxt_static);
-//				assertEquals(getText(TFSUIMap.WorkitemTitleSearch_statictxt),(String) jsonObject1.get("Epic_Title"));
-//				clear(TFSUIMap.SearchBoxHomePage_txtbox);
-//			}
-//			else 
-//			{
-//				throw new NullPointerException("Epic value is null");
-//			}
-//			if((String.valueOf(jsonObject.get("WorkItemExternalId_Feature")))!=null)
-//			{
-//				String value = (String.valueOf(jsonObject.get("WorkItemExternalId_Feature")));
-//				enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//				Thread.sleep(2000);
-//				waitPageToLoad();			
-//				ExpWaitForCondition(TFSUIMap.WorkItemtxt_static);
-//				assertEquals(getText(TFSUIMap.WorkitemTitleSearch_statictxt),(String) jsonObject1.get("Feature_Title"));
-//				clear(TFSUIMap.SearchBoxHomePage_txtbox);
-//			}
-//			else 
-//			{
-//				throw new NullPointerException("Feature value is null");
-//			}
-//			if((String.valueOf(jsonObject.get("WorkItemExternalId_Issue")))!=null)
-//			{
-//				String value = (String.valueOf(jsonObject.get("WorkItemExternalId_Issue")));
-//				enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//				Thread.sleep(2000);
-//				waitPageToLoad();			
-//				ExpWaitForCondition(TFSUIMap.WorkItemtxt_static);
-//				assertEquals(getText(TFSUIMap.WorkitemTitleSearch_statictxt),(String) jsonObject1.get("Issue_Title"));
-//				clear(TFSUIMap.SearchBoxHomePage_txtbox);
-//			}
-//			else 
-//			{
-//				throw new NullPointerException("Issue value is null");
-//			}
-//			if((String.valueOf(jsonObject.get("WorkItemExternalId_TestCase")))!=null)
-//			{
-//				String value = (String.valueOf(jsonObject.get("WorkItemExternalId_TestCase")));
-//				enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//				Thread.sleep(2000);
-//				waitPageToLoad();			
-//				ExpWaitForCondition(TFSUIMap.WorkItemtxt_static);
-//				assertEquals(getText(TFSUIMap.WorkitemTitleSearch_statictxt),(String) jsonObject1.get("TestCase_Title"));
-//				clear(TFSUIMap.SearchBoxHomePage_txtbox);
-//			}
-//			else 
-//			{
-//				throw new NullPointerException("TestCase value is null");
-//			}
-//			if((String.valueOf(jsonObject.get("WorkItemExternalId_Story")))!=null)
-//			{
-//				String value = (String.valueOf(jsonObject.get("WorkItemExternalId_Story")));
-//				enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//				Thread.sleep(2000);
-//				waitPageToLoad();			
-//				ExpWaitForCondition(TFSUIMap.WorkItemtxt_static);
-//				assertEquals(getText(TFSUIMap.WorkitemTitleSearch_statictxt),(String) jsonObject1.get("Story_Title"));
-//				clear(TFSUIMap.SearchBoxHomePage_txtbox);
-//			}
-//			else 
-//			{
-//				throw new NullPointerException("Story value is null");
-//			}
-//			if((String.valueOf(jsonObject.get("WorkItemExternalId_Impediment")))!=null)
-//			{
-//				String value = (String.valueOf(jsonObject.get("WorkItemExternalId_Impediment")));
-//				enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//				Thread.sleep(2000);
-//				waitPageToLoad();			
-//				ExpWaitForCondition(TFSUIMap.WorkItemtxt_static);
-//				assertEquals(getText(TFSUIMap.WorkitemTitleSearch_statictxt),(String) jsonObject1.get("Impediment_Title"));
-//				clear(TFSUIMap.SearchBoxHomePage_txtbox);
-//			}
-//			else 
-//			{
-//				throw new NullPointerException("Impediment value is null");
-//			}
-//			if((String.valueOf(jsonObject.get("WorkItemExternalId_ProductBacklog")))!=null)
-//			{
-//				String value = (String.valueOf(jsonObject.get("WorkItemExternalId_ProductBacklog")));
-//				enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//				Thread.sleep(2000);
-//				waitPageToLoad();			
-//				ExpWaitForCondition(TFSUIMap.WorkItemtxt_static);
-//				assertEquals(getText(TFSUIMap.WorkitemTitleSearch_statictxt),(String) jsonObject1.get("ProductBacklog_Title"));
-//				clear(TFSUIMap.SearchBoxHomePage_txtbox);
-//			}
-//			else 
-//			{
-//				throw new NullPointerException("ProductBacklog value is null");
-//			}
+
 				sa.assertAll();
 				
 		} catch (Exception e) {
@@ -484,6 +359,12 @@ import java.util.Random;
 			Thread.sleep(4000);
 			click(TFSUIMap.settingsIcon_Img);
 			Thread.sleep(4000);
+			if(!CheckIfElementExists(TFSUIMap.ProjectConfiguration_link))
+			{	
+			click(TFSUIMap.settingsIcon_Img);
+			Thread.sleep(10000);
+			}
+			ExpWaitForCondition(TFSUIMap.ProjectConfiguration_link);
 			click(TFSUIMap.ProjectConfiguration_link);
 			Thread.sleep(4000);
 			ExpWaitForCondition(TFSUIMap.NewChild_link);
@@ -526,6 +407,7 @@ import java.util.Random;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				logger.info("Issue creating release/sprint");
 			}	
 			
 		}
@@ -697,6 +579,7 @@ import java.util.Random;
 				workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+workitem.split("_")[0];
 			driver().get(workitemURL);
 			Thread.sleep(5000);
+			//putting this piece of code as workitem url wasnt loading
 			if(CheckIfElementExists(TFSUIMap.title_txtbox))
 			{
 				Thread.sleep(5000);
@@ -718,8 +601,14 @@ import java.util.Random;
 				CaptureWorkitemID(workitem);
 			}
 			else
+				{
+				driver().get(workitemURL);
+				Thread.sleep(5000);
+				}
+			if(!CheckIfElementExists(TFSUIMap.title_txtbox))
+			{
 				logger.info("page not loading for workitem "+workitem);
-			
+			}
 			waitPageToLoad();
 			
 			
