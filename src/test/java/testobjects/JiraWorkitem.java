@@ -309,6 +309,7 @@ import java.util.Random;
 				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
 				doubleClick(JiraUIMap.SearchBoxHomePage_txtbox);
 				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
+				Thread.sleep(3000);
 				
 			} catch (Exception e) {
 		
