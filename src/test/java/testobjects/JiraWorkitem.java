@@ -197,7 +197,7 @@ import java.util.Random;
 					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Test");
 				else
 					enterText(JiraUIMap.SearchBoxHomePage_txtbox,workitem_type[0]);
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 				ExpWaitForCondition(JiraUIMap.WorkItemExternalID_txt);
 				String toGetID = getAttribute(JiraUIMap.WorkItemExternalID_txt,"href");
 				
