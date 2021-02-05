@@ -696,12 +696,33 @@ import java.util.Random;
 				else
 				workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+workitem.split("_")[0];
 			driver().get(workitemURL);
-			ExpWaitForCondition(TFSUIMap.title_txtbox);
-			enterText(TFSUIMap.title_txtbox,wi.Summary);
-			Thread.sleep(2000);
-			singleClick(TFSUIMap.save_btn);
 			Thread.sleep(5000);
-			CaptureWorkitemID(workitem);
+			if(CheckIfElementExists(TFSUIMap.title_txtbox))
+			{
+				Thread.sleep(5000);
+				ExpWaitForCondition(TFSUIMap.title_txtbox);
+				enterText(TFSUIMap.title_txtbox,wi.Summary);
+				Thread.sleep(2000);
+				singleClick(TFSUIMap.save_btn);
+				Thread.sleep(5000);
+				CaptureWorkitemID(workitem);
+			}
+			else if(CheckIfElementExists(TFSUIMap.title_txtbox))
+			{
+				Thread.sleep(5000);
+				ExpWaitForCondition(TFSUIMap.title_txtbox);
+				enterText(TFSUIMap.title_txtbox,wi.Summary);
+				Thread.sleep(2000);
+				singleClick(TFSUIMap.save_btn);
+				Thread.sleep(5000);
+				CaptureWorkitemID(workitem);
+			}
+			else
+				logger.info("page not loading for workitem "+workitem);
+			
+			waitPageToLoad();
+			
+			
 //			Thread.sleep(4000);
 			}
 			catch(Exception e)
