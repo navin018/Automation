@@ -118,6 +118,8 @@ import java.util.Random;
 				}
 				
 				click(JiraUIMap.Create_btn);
+				ExpWaitForElementToDisappear(JiraUIMap.Create_btn);
+//				grabScreenshotForExtentReport();
 //				 Thread.sleep(10000);
 //				 ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
 //				 waitPageToLoad();
@@ -189,111 +191,111 @@ import java.util.Random;
 			try {
 				
 				String workitem_type[] =workitem.split("_");
-//				if(workitem_type[0].contains("Feature") && Property.getProperty("JiraURL").contains("uat.alm.accenture"))
-//					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Feature");
-//				else if(workitem_type[0].equalsIgnoreCase("TestForTestExec"))
-//					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Test");
-//				else
-//					enterText(JiraUIMap.SearchBoxHomePage_txtbox,workitem_type[0]);
-//				Thread.sleep(3000);
-//				String toGetID = getAttribute(JiraUIMap.WorkItemExternalID_txt,"href");
-//				
-//				String toGetID1[] = toGetID.split("browse/");
+				if(workitem_type[0].contains("Feature") && Property.getProperty("JiraURL").contains("uat.alm.accenture"))
+					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Feature");
+				else if(workitem_type[0].equalsIgnoreCase("TestForTestExec"))
+					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Test");
+				else
+					enterText(JiraUIMap.SearchBoxHomePage_txtbox,workitem_type[0]);
+				Thread.sleep(3000);
+				String toGetID = getAttribute(JiraUIMap.WorkItemExternalID_txt,"href");
+				
+				String toGetID1[] = toGetID.split("browse/");
 				
 //				ExpWaitForCondition((By.xpath("//a[@class='js-issue-link']"))); 
 //				String toGetID = getText(By.xpath("//a[@class='js-issue-link']"));
 				
 
-				ExpWaitForCondition((By.xpath("//a[@class='issue-created-key issue-link']"))); 
-				String splittogetID = getText(By.xpath("//a[@class='issue-created-key issue-link']"));
-				String[] splittogetID1 = splittogetID.split(" ");
-				String toGetID = splittogetID1[1];
+//				ExpWaitForCondition((By.xpath("//a[@class='issue-created-key issue-link' || @class='js-issue-link']"))); 
+//				String splittogetID = getText(By.xpath("//a[@class='issue-created-key issue-link' ||  @class='js-issue-link']"));
+//				String[] splittogetID1 = splittogetID.split(" ");
+//				String toGetID = splittogetID1[1];
 				switch(workitem_type[0]){
 				
 				case "task":
 				case "Task":
-				Baseclass.getInstance().WorkItemExternalId_Task = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Task = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "story":
 				case "Story":
-				Baseclass.getInstance().WorkItemExternalId_Story = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Story = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "risk":
 				case "Risk":
-				Baseclass.getInstance().WorkItemExternalId_Risk = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Risk = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "issue":
 				case "Issue":
-				Baseclass.getInstance().WorkItemExternalId_Issue = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Issue = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "bug":
 				case "Bug":
-				Baseclass.getInstance().WorkItemExternalId_Bug = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Bug = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "feature":
 				case "Feature":
-				Baseclass.getInstance().WorkItemExternalId_Feature = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Feature = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				case "new feature":
 				case "New Feature":
-				Baseclass.getInstance().WorkItemExternalId_Feature = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Feature = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "impediment":
 				case "Impediment":
-				Baseclass.getInstance().WorkItemExternalId_Impediment = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Impediment = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "deliverable":
 				case "Deliverable":
-				Baseclass.getInstance().WorkItemExternalId_Deliverable = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Deliverable = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "requirement":
 				case "Requirement":
-				Baseclass.getInstance().WorkItemExternalId_Requirement = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Requirement = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "test":
 				case "Test":
-				Baseclass.getInstance().WorkItemExternalId_Test = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Test = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "TestForTestExec":
 				case "testForTestExec":
-				Baseclass.getInstance().WorkItemExternalId_TestExecution = Baseclass.getInstance().WorkItemExternalId_TestExecution+"_"+toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_TestExecution = Baseclass.getInstance().WorkItemExternalId_TestExecution+"_"+toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				
 				break;
 				case "epic":
 				case "Epic":
-				Baseclass.getInstance().WorkItemExternalId_Epic = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Epic = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "subtask":
 				case "SubTask":
-				Baseclass.getInstance().WorkItemExternalId_SubTask = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_SubTask = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "Milestone":
 				case "milestone":
-				Baseclass.getInstance().WorkItemExternalId_Milestone = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Milestone = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "Action":
 				case "action":
-				Baseclass.getInstance().WorkItemExternalId_Action = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_Action = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				break;
 				case "test execution":
 				case "Test Execution":
-				Baseclass.getInstance().WorkItemExternalId_TestExecution = toGetID;
-				System.out.println("Created "+workitem+" ID is "+toGetID);
+				Baseclass.getInstance().WorkItemExternalId_TestExecution = toGetID1[1];
+				System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
 				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
 				doubleClick(JiraUIMap.SearchBoxHomePage_txtbox);
 				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
