@@ -342,9 +342,9 @@ public static void LoginToTFS()
 {
 	try{
 		driver().get(Property.getProperty("TFS_URL"));
-		waitPageToLoad();
+	
 //		driver().manage().window().maximize();
-		Thread.sleep(4000);
+		Thread.sleep(20000);
 		String parent=driver().getWindowHandle();
 		driver().switchTo().window(parent);
 		ExpWaitForCondition(TFSUIMap.signIn_txtbox);
