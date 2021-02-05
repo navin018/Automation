@@ -118,7 +118,7 @@ import java.util.Random;
 				}
 				
 				click(JiraUIMap.Create_btn);
-				ExpWaitForElementToDisappear(JiraUIMap.Create_btn);
+//				ExpWaitForElementToDisappear(JiraUIMap.Create_btn);
 //				grabScreenshotForExtentReport();
 //				 Thread.sleep(10000);
 //				 ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
