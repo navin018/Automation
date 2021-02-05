@@ -109,7 +109,7 @@ import java.util.Random;
 				case "Epic":
 					if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
 					{
-						Thread.sleep(5000);
+					Thread.sleep(5000);
 					enterText(JiraUIMap.EpicName_txtBox, wi.EpicName);
 					Thread.sleep(1000);
 					}
