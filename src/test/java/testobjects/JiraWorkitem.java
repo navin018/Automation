@@ -128,6 +128,7 @@ import java.util.Random;
 				}
 			catch(Exception e) {
 				e.printStackTrace();
+				grabScreenshotForExtentReport();
 				logger.info("Issue creating workitem "+workItem + " for the given tool");
 //				Assert.fail("Issue creating workitem "+workItem + " for the given tool");
 				Baseclass.getInstance().workitemcreation_fail = true;
