@@ -14,7 +14,7 @@ public class JiraSteps  {
 	
 	@Then("^i create a \"([^\"]*)\" in Jira$")
 	public void iCreateAInJira(String workitem) throws Throwable {
-		
+		try{
 		String workitem_sp[] = workitem.split("_");
 		
 		if(!workitem_sp[0].equalsIgnoreCase("SubTask"))
@@ -37,6 +37,12 @@ public class JiraSteps  {
 			click(JiraUIMap.CreateSubTask_btn);
 			JiraWorkitem.CreateWorkitem(workitem);
 			JiraWorkitem.CaptureWorkitemID(workitem);
+		}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			grabScreenshotForExtentReport();
 		}
 	}
 	
