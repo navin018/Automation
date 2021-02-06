@@ -110,7 +110,8 @@ import java.util.Random;
 					if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
 					{
 					Thread.sleep(5000);
-					enterText(JiraUIMap.EpicName_txtBox, wi.EpicName);
+					clickJS(JiraUIMap.EpicName_txtBox);
+					enterTextUsingAction(JiraUIMap.EpicName_txtBox, wi.EpicName);
 					Thread.sleep(1000);
 					}
 					break;
