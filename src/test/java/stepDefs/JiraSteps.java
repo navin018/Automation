@@ -21,7 +21,7 @@ public class JiraSteps  {
 		{
 		Thread.sleep(3000);
 		ExpWaitForCondition(JiraUIMap.Create_link);
-		click(JiraUIMap.Create_link);
+		clickJS(JiraUIMap.Create_link);
 		ExpWaitForCondition(JiraUIMap.CreateIssue_Statictxt);
 		waitPageToLoad();
 		JiraWorkitem.SelectWorkItemtype(workitem);
