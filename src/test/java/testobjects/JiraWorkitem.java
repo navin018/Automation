@@ -121,8 +121,8 @@ import java.util.Random;
 					
 				}
 				
-				click(JiraUIMap.Create_btn);
-				ExpWaitForElementToDisappear(JiraUIMap.CreateIssue_Statictxt);
+				clickJS(JiraUIMap.Create_btn);
+//				ExpWaitForElementToDisappear(JiraUIMap.CreateIssue_Statictxt);
 //				ExpWaitForElementToDisappear(JiraUIMap.Create_btn);
 //				grabScreenshotForExtentReport();
 //				 Thread.sleep(10000);
