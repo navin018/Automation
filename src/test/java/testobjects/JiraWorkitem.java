@@ -125,7 +125,7 @@ import java.util.Random;
 //				ExpWaitForElementToDisappear(JiraUIMap.CreateIssue_Statictxt);
 //				ExpWaitForElementToDisappear(JiraUIMap.Create_btn);
 //				grabScreenshotForExtentReport();
-//				 Thread.sleep(10000);
+				 Thread.sleep(10000);
 //				 ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
 //				 waitPageToLoad();
 				
