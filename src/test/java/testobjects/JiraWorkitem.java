@@ -127,7 +127,7 @@ import java.util.Random;
 //				grabScreenshotForExtentReport();
 				 Thread.sleep(10000);
 //				 ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
-//				 waitPageToLoad();
+				 waitPageToLoad();
 				
 				}
 			catch(Exception e) {
