@@ -279,7 +279,7 @@ import java.util.Random;
 							singleClick(TFSUIMap.SearchBoxHomePage_txtbox);
 							ExpWaitForCondition(By.xpath("//div[text()='Recent work items']"));
 							enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
-//							Thread.sleep(2000);
+							Thread.sleep(5000);
 							ExpWaitForCondition(By.xpath("//div[text()='Work items']"));
 //							if(CheckIfElementExists(By.xpath("//div[contains(text(),'No work item results found')]")))
 //								enterText(TFSUIMap.SearchBoxHomePage_txtbox,value);
