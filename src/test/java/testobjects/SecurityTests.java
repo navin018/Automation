@@ -661,6 +661,13 @@ public class SecurityTests extends Baseclass{
 		
 	}
 
+	public static void AddDC() {
+		clickJS(SecurityTestsUIMap.PPM_RadioBtn);
+		clickJS(SecurityTestsUIMap.AddDC_btn);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		enterText(SecurityTestsUIMap.enterDCName_txtbox, "TestDCForSecurityTest");
+	}
+
 	
 
 }

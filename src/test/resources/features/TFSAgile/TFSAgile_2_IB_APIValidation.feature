@@ -5,6 +5,7 @@ Feature: TFSAgile_IB_Validation
 Scenario: TFSAgile_Task 
 
 	And i generate a token for "DevTest" environment 
+	Given i load the project properties file
 	And i verify the "Inbound" "Task" details for "TFS Agile" 
 	
 
@@ -27,7 +28,7 @@ Scenario: TFSAgile_Bug
 
 	And i verify the "Inbound" "Bug" details for "TFS Agile" 
 	
-
+@f
 Scenario: TFSAgile_Feature 
 
 	And i verify the "Inbound" "Feature" details for "TFS Agile" 
@@ -36,11 +37,6 @@ Scenario: TFSAgile_Requirement
 
 	And i verify the "Inbound" "Requirement" details for "TFS Agile"
 	
-
-Scenario: TFSAgile_ReleaseAndSprint 
-
-	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Agile" 
-
 
 Scenario: TFSAgile_TestCase
 	 
@@ -68,6 +64,10 @@ Scenario: TFSAgile_Decision
 		
 Scenario: TFSAgile_Milestone
 	And i verify the "Inbound" "Milestone" details for "TFS Agile"
+	
+Scenario: TFSAgile_ReleaseAndSprint 
+
+	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Agile" 
 
 #	Scenario: TFSAgile_TestResult
 #	And i verify the "Inbound" "Test Execution" details for "TFS Agile"

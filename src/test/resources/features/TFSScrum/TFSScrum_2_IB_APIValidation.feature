@@ -33,9 +33,7 @@ Scenario: TFSScrum_Feature
 	And i verify the "Inbound" "Feature" details for "TFS Scrum" 
 	
 
-Scenario: TFSScrum_ReleaseAndSprint 
 
-	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Scrum" 
 	
 
 Scenario: TFSScrum_TestCase
@@ -68,3 +66,7 @@ Scenario: TFSScrum_Requirement
 			
 Scenario: TFSScrum_Milestone
 	And i verify the "Inbound" "Milestone" details for "TFS Scrum"
+	
+Scenario: TFSScrum_ReleaseAndSprint 
+
+	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Scrum" 

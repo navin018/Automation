@@ -20,6 +20,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import com.fasterxml.uuid.Generators;
 import com.jayway.jsonpath.Configuration;
@@ -83,7 +84,7 @@ import java.util.UUID;
 						WorkItemExternalId = getWorkItemExternalID(workitem,toolname);
 //						System.out.println("workitem id from json file is "+WorkItemExternalId);
 						String getWorkitemType = "WorkItemTypeUId_"+workitem;
-						if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Test Execution") ))
+						if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request") ))
 						 WorkItemTypeUId = Property.getProperty(getWorkitemType);
 						
 						}
@@ -119,11 +120,53 @@ import java.util.UUID;
 			}
 			}
 
+public static String getWorkItemExternalID_custom(String workitem, String toolname,String clientDCToConsider){
+	
+	try{
+		String testDataPath_WorkItemExternalIDs="";
+		if((toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("Jira") || toolname.contains("JIRA")))
+		{
+			if(clientDCToConsider.equalsIgnoreCase("ChangeProjectFromOne"))
+				testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			else if(clientDCToConsider.equalsIgnoreCase("ChangeProjectToAnother"))
+			testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDsForMoveProjOrIssue.json" ;
+		}
+		else if((toolname.equalsIgnoreCase("TFS Agile") || toolname.equalsIgnoreCase("TFS Scrum")))
+		{
+			testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDsForMoveProjOrIssue.json" ;
+		}
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
+		JSONObject jsonObject = (JSONObject) obj;
+		String WorkItemExternalId="";
+		if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Test Execution")))
+			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem);
+		else if(workitem.equalsIgnoreCase("Test Execution"))
+			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_TestExecution");
+		if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
+		{
+			WorkItemExternalId = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
+			WorkItemExternalId = WorkItemExternalId + "&" + (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
+		}
+		 if(!(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equals("")))
+			 return WorkItemExternalId;
+		 else{
+				logger.info("Workitem "+workitem+" was not created for tool "+toolname);
+			 Assert.fail("Workitem "+workitem+" was not created for tool "+toolname);
+		 }
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return "";
+}	
+
 public static String getWorkItemExternalID(String workitem, String toolname){
 	
 	try{
 		String testDataPath_WorkItemExternalIDs="";
-		if((toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("ADOP Jira")))
+		if((toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("Jira") || toolname.contains("JIRA")))
 		{
 			testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 		}
@@ -135,10 +178,12 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 		Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
 		JSONObject jsonObject = (JSONObject) obj;
 		String WorkItemExternalId="";
-		if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Test Execution")))
+		if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request") ))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem);
 		else if(workitem.equalsIgnoreCase("Test Execution"))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_TestExecution");
+		else if(workitem.equalsIgnoreCase("Work Request"))
+			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_WorkRequest");
 		if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
 		{
 			WorkItemExternalId = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
@@ -183,7 +228,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				
 				 
 				 String WorkItemOrDeliverableOrIterationOrTestOrRequirement="";
-				 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution")))
+				 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request")))
 					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="WorkItems"; 
 				 if(workitem.equalsIgnoreCase("Deliverable"))
 					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Deliverables";
@@ -203,8 +248,15 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Milestones";
 				 if(workitem.equalsIgnoreCase("Test Execution"))
 					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="TestResults";	
-				 Response response = PostRequesttoGetIBResponse(WorkItemTypeUId, WorkItemExternalId, workitem, "Flat", toolname);
-			 
+				 if(workitem.equalsIgnoreCase("Work Request"))
+					 WorkItemOrDeliverableOrIterationOrTestOrRequirement="ChangeRequests";	
+				 
+				 Response response=null;
+				 if(!workitem.equalsIgnoreCase("Work Request"))
+				 response = PostRequesttoGetIBResponse(WorkItemTypeUId, WorkItemExternalId, workitem, "Flat", toolname);
+				 else if(workitem.equalsIgnoreCase("Work Request"))
+					 response = PostRequesttoGetIBResponse(WorkItemTypeUId, WorkItemExternalId, workitem, "NonFlat", toolname);
+				 
 				 JsonPath js = response.jsonPath();
 				 
 				 String responsebody = response.getBody().asString();
@@ -246,7 +298,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 
 				 //DeliveryConstructUId for WorkItems 
 				 List<Object> DCUid=null;
-				 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution")))
+				 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request")))
 					 {
 						 
 					 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
@@ -286,6 +338,11 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 {
 					 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
 				 DCUid = js.getList("TestResults.TestResultDeliveryConstructs.DeliveryConstructUId");	
+				 }
+				 if(workitem.equalsIgnoreCase("Work Request"))
+				 {
+					 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
+				 DCUid = js.getList("ChangeRequests.ChangeRequestDeliveryConstructs.DeliveryConstructUId");	
 				 }
 					//DeliveryConstructUId for Requirement 
 				 if(workitem.equalsIgnoreCase("Requirement"))
@@ -344,11 +401,23 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 								 }
 						
 							 }
-							 if(!releasefound)
-								 Assert.fail("Release not flown for "+toolname);
-							 if(!sprintfound)
-								 Assert.fail("Sprint not flown for "+toolname);
+//							 if(!releasefound)
+//								 Assert.fail("Release not flown for "+toolname);
+//							 if(!sprintfound)
+//								 Assert.fail("Sprint not flown for "+toolname);
+							 SoftAssert sa = new SoftAssert();
+							 if(!releasefound){
+								 sa.assertEquals(releasefound, true,"Release not flown for "+toolname);
+//								 Assert.fail("Release not flown for "+toolname);
+								 }
+							
+							 if(!sprintfound){
+								 sa.assertEquals(sprintfound, true,"Sprint not flown for "+toolname);
+//								 Assert.fail("Sprint not flown for "+toolname);
+							 }
 						
+							 sa.assertAll();
+									 
 						 }
 				 }
 					 catch(Exception e)
@@ -388,7 +457,7 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	 if(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equalsIgnoreCase(""))
 			Assert.fail("WorkItem "+workitem+ " not created for tool "+toolname);
 	 
-	 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")  || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution")))
+	 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")  || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request")))
 	 {
 	 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
 	 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
@@ -474,6 +543,14 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="TestResults";
 	 }
 	
+	 if(workitem.equalsIgnoreCase("Work Request"))
+	 {
+		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 requestParams.put("ChangeRequestExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="ChangeRequests";
+		 													  
+	 }
 	 
 	 request.body(requestParams.toJSONString());
 	 String QueryType="";
@@ -507,6 +584,179 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	 {
 		 int totalrecordcount = response.jsonPath().get("TotalRecordCount");
 		 Assert.assertEquals(totalrecordcount, 1,workitem+ " not flown for IB "+toolname);	
+	 }
+	
+
+	 
+//	 JsonPath js = response.jsonPath();
+	 
+//	 String responsebody = response.getBody().asString();
+//	 System.out.println(responsebody);
+	 
+	
+	 return response;
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return null;
+}		
+
+
+public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,String WorkItemExternalId,String workitem,String FlatNonFlarURL,String toolname,String clientDCToConsider){
+	try{
+	RequestSpecification request = RestAssured.given();
+ 	
+	 request.header("Content-Type", "application/json")
+	        .header("Authorization","Bearer "+Property.getToken("Token"))
+	        .header("AppServiceUId",Property.getProperty("AppServiceUId"));
+	 
+	 JSONObject requestParams = new JSONObject();
+	 
+	 String PostUrl="";
+	 String mywizURL = Property.getProperty("MyWizard_URL");
+	 String[] mywizURL_Sp = mywizURL.split(".com");
+	 mywizURL = mywizURL_Sp[0]+".com/core";
+	 mywizURL = mywizURL.replace("mywizard", "mywizardapi");
+	 String WorkItemOrDeliverableOrIterationOrTestOrRequirement="";
+	 
+	 if(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equalsIgnoreCase(""))
+			Assert.fail("WorkItem "+workitem+ " not created for tool "+toolname);
+	 
+	 if(clientDCToConsider.equalsIgnoreCase("ChangeProjectFromOne"))
+	 {
+		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+	 }
+	 else if(clientDCToConsider.equalsIgnoreCase("ChangeProjectToAnother"))
+	 {
+		 requestParams.put("ClientUId", Property.getProperty("ClientUId_DeleteFunctionality")); 
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_DeleteFunctionality"));
+	 }
+	 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")  || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution")))
+	 {
+//	 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//	 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+	 requestParams.put("WorkItemTypeUId",WorkItemTypeUId);
+	//if WorkItemExternalId is equals to null, assert fail
+	 requestParams.put("WorkItemExternalId", WorkItemExternalId);
+	
+	 WorkItemOrDeliverableOrIterationOrTestOrRequirement="WorkItems";
+					 
+	
+	
+	 }
+	 if(workitem.equalsIgnoreCase("Deliverable") )
+	 {
+//		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 requestParams.put("DeliverableExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Deliverables";				 
+	 }
+	 if(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("TestCase")  )
+	 {
+//		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 requestParams.put("TestExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Tests";				 
+	 }
+
+	 if(workitem.equalsIgnoreCase("Requirement") )
+	 {
+//		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 requestParams.put("RequirementExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Requirements";				 
+	 }
+	 if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
+	 {
+//		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Iterations";	
+	 }
+	 if(workitem.equalsIgnoreCase("Team"))
+	 {
+//		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="DeliveryConstructsByDeliveryConstructType";	
+	 }
+	 if(workitem.equalsIgnoreCase("Action"))
+	 {
+//		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 requestParams.put("ActionExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Actions";
+	 }
+	 
+	 if(workitem.equalsIgnoreCase("Decision"))
+	 {
+//		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 requestParams.put("DecisionExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Decisions";
+	 }
+	 if(workitem.equalsIgnoreCase("Milestone"))
+	 {
+//		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 requestParams.put("MilestoneExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Milestones";
+	 }
+	 
+	 if(workitem.equalsIgnoreCase("Test Execution"))
+	 {
+//		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
+//		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_L2"));
+		 requestParams.put("TestResultExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="TestResults";
+	 }
+	
+	 
+	 request.body(requestParams.toJSONString());
+	 String QueryType="";
+	 if(FlatNonFlarURL.equalsIgnoreCase("Flat"))
+		 QueryType = "Query/Flat";
+	 if(FlatNonFlarURL.equalsIgnoreCase("NonFlat"))
+		 QueryType = "Query";
+	 String ClientUId="";
+	 String deliveryConstructUId="";
+	 if(clientDCToConsider.equalsIgnoreCase("ChangeProjectToAnother"))
+	 {
+		 ClientUId=Property.getProperty("ClientUId_DeleteFunctionality");
+		deliveryConstructUId=Property.getProperty("DeliveryConstructUId_DeleteFunctionality");
+	 }
+	 else if(clientDCToConsider.equalsIgnoreCase("ChangeProjectFromOne"))
+	 {
+		 ClientUId=Property.getProperty("ClientUId");
+			deliveryConstructUId=Property.getProperty("DeliveryConstructUId_L2");
+	 }
+	 if(!workitem.equalsIgnoreCase("Team"))
+		 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"/"+QueryType+"?clientUId="+ClientUId+"&deliveryConstructUId="+deliveryConstructUId+"&includeCompleteHierarchy=false";
+//		 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"/"+"?clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
+	 if(workitem.equalsIgnoreCase("Team"))
+		 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"?clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId=null&deliveryConstructTypeUId=00200020-0000-0000-0000-000000000000";
+	
+	 Response response=null;
+	 if(!workitem.equalsIgnoreCase("Team"))	
+	 response = request.post(PostUrl);
+	 else if(workitem.equalsIgnoreCase("Team"))
+		 response = request.get(PostUrl); 
+	 System.out.println(response.getBody().asString());
+	 if(response.getStatusCode()!=200)
+	 {
+		 if(response.getStatusCode()==401)
+			 logger.info("Got "+response.getStatusCode()+" reponse code for "+workitem+" for the given tool "+toolname);
+//			 Assert.fail("Got "+response.getStatusCode()+" reponse code for "+workitem+" for the given tool "+toolname + " please refresh the token");
+			Assert.fail("Got "+response.getStatusCode()+" reponse code for "+workitem+" for the given tool "+toolname);
+	 }
+	 Assert.assertEquals(response.getStatusCode(), 200);
+	 
+	 
+	 if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Team") ))
+	 {
+		 int totalrecordcount = response.jsonPath().get("TotalRecordCount");
+//		 Assert.assertEquals(totalrecordcount, 1,workitem+ " not flown for IB "+toolname);	
 	 }
 	
 
@@ -858,5 +1108,245 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 			}
 		}
 		
-	
+		
+		public static String SetEntityTypeForPostURL(String workitem){
+			
+			String WorkItemOrDeliverableOrIterationOrTestOrRequirement="";
+			 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("ReleaseAndSprint")  || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution")))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="WorkItems"; 
+			 if(workitem.equalsIgnoreCase("Deliverable"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Deliverables";
+			 if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Iterations";	
+			 if(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("TestCase"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Tests";	
+			 if(workitem.equalsIgnoreCase("Requirement"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Requirements";
+			 if(workitem.equalsIgnoreCase("Team"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="DeliveryConstructsByDeliveryConstructType";
+			 if(workitem.equalsIgnoreCase("Action"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Actions";		 
+			 if(workitem.equalsIgnoreCase("Decision"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Decisions";	
+			 if(workitem.equalsIgnoreCase("Milestone"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Milestones";
+			 if(workitem.equalsIgnoreCase("Test Execution"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="TestResults";	
+			 
+			 return WorkItemOrDeliverableOrIterationOrTestOrRequirement;
+		}
+		
+		public static void Verifyifworkitemisflown(String workitem, String flownOrDeleted, String toolname,String clientDCToConsider) {
+			try{
+				String WorkItemTypeUId="";
+				String ReleaseName ="";
+				String SprintName="";
+				String WorkItemExternalId="";
+				try{
+					if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") ))
+						{
+						WorkItemExternalId = getWorkItemExternalID_custom(workitem,toolname,clientDCToConsider);
+//						System.out.println("workitem id from json file is "+WorkItemExternalId);
+						String getWorkitemType = "WorkItemTypeUId_"+workitem;
+						if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Test Execution") ))
+						 WorkItemTypeUId = Property.getProperty(getWorkitemType);
+						
+						}
+				}catch(Exception e)
+					{
+						e.printStackTrace();
+						logger.info("Could not get WorkItemExternalId for "+workitem+" for the tool "+toolname);
+						Assert.fail("Could not get WorkItemExternalId for "+workitem+" for the tool "+toolname);
+					}
+				if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
+				{
+					try{
+					WorkItemExternalId = getWorkItemExternalID(workitem,toolname);
+					String[] WorkItemExternalId_Sp = WorkItemExternalId.toString().split("&");
+					ReleaseName = WorkItemExternalId_Sp[0];
+					SprintName = WorkItemExternalId_Sp[1];
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
+						logger.info("Could not get ReleaseName or SprintName for "+workitem+" for the tool "+toolname);
+						Assert.fail("Could not get ReleaseName or SprintName for "+workitem+" for the tool "+toolname);
+					}
+				}
+				
+				
+				String WorkItemOrDeliverableOrIterationOrTestOrRequirement=SetEntityTypeForPostURL(workitem);
+				
+				 Response response = PostRequesttoGetIBResponse_custom(WorkItemTypeUId, WorkItemExternalId, workitem, "Flat", toolname,clientDCToConsider);
+			 
+				 JsonPath js = response.jsonPath();
+				 
+				 String responsebody = response.getBody().asString();
+				 int totalrecordcount=0;
+				
+				 if(!workitem.equalsIgnoreCase("ReleaseAndSprint"))
+				 {
+					 totalrecordcount = js.get("TotalRecordCount");
+					 if(flownOrDeleted.equalsIgnoreCase("flown"))
+					 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
+					 else if(flownOrDeleted.equalsIgnoreCase("deleted"))
+						 Assert.assertEquals(totalrecordcount, 0,workitem +" not deleted for tool "+toolname);
+				 }
+				 if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
+				 {
+					 int size = response.jsonPath().getInt("Iterations.size()");
+//					 System.out.println(size);
+					 
+					 boolean releasefound = false;
+					 boolean sprintfound = false;
+							 for(int p=0; p<size;p++)
+							 {
+								 
+								 String name = response.jsonPath().getString("Iterations[" + p + "].Name");
+								 if(name.equalsIgnoreCase(ReleaseName))
+								 
+								 {
+									 releasefound=true;
+									 break;
+								}
+							}
+							
+							 for(int p=0; p<size;p++)
+							 {
+								 
+								 String name = response.jsonPath().getString("Iterations[" + p + "].Name");
+								 if(name.equalsIgnoreCase(SprintName))
+								 
+								 {
+									 sprintfound=true;
+									 break;
+								 }
+						
+							 }
+				SoftAssert sa = new SoftAssert();
+					 if(!releasefound && flownOrDeleted.equalsIgnoreCase("flown")){
+						 sa.assertEquals(releasefound, true,"Release not flown for "+toolname);
+//						 Assert.fail("Release not flown for "+toolname);
+						 }
+					 else if(releasefound && flownOrDeleted.equalsIgnoreCase("deleted")){
+						 sa.assertEquals(releasefound, false,"Release flown for "+toolname +" after deletion from the tool");
+//						 Assert.fail("Release flown for "+toolname +" after deletion from the tool");
+					 }
+					
+					 if(!sprintfound && flownOrDeleted.equalsIgnoreCase("flown")){
+						 sa.assertEquals(sprintfound, true,"Sprint not flown for "+toolname);
+//						 Assert.fail("Sprint not flown for "+toolname);
+					 }
+					 else if(sprintfound && flownOrDeleted.equalsIgnoreCase("deleted")){
+						 sa.assertEquals(sprintfound, false,"Sprint flown for "+toolname +" after deletion from the tool");
+//						 Assert.fail("Sprint flown for "+toolname +" after deletion from the tool");
+					 }
+					 sa.assertAll();
+							 
+				}
+		
+		}
+		
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("Could not verify "+workitem+" for tool "+toolname+". ");
+				Assert.fail("Could not verify "+workitem+" for tool "+toolname+". ");
+		}
+			
+			
+		
+		}
+
+		public static void VerifyWSJFFuncionality(String workitem, String toolname) {
+			try{
+			String WorkItemExternalId = getWorkItemExternalID(workitem,toolname);
+			 String WorkItemTypeUId = Property.getProperty("WorkItemTypeUId_"+workitem); //this is only for workitems
+			 
+			 String WorkItemOrDeliverableOrIterationOrTestOrRequirement=SetEntityTypeForPostURL(workitem);
+			 Response response = PostRequesttoGetIBResponse(WorkItemTypeUId, WorkItemExternalId, workitem, "NonFlat", toolname);
+			 String testDataPath="";
+			 if(toolname.contains("TFS"))
+			 {
+			  testDataPath = System.getProperty("user.dir")
+						+ File.separator + "src" + File.separator + "test" + File.separator
+						+ "resources" + File.separator + "testdata" + File.separator + "TFS" + File.separator + "JSON" +  File.separator;
+			 }
+			 else if(toolname.contains("Jira") | toolname.contains("JIRA"))
+			 {
+				 testDataPath = System.getProperty("user.dir")
+							+ File.separator + "src" + File.separator + "test" + File.separator
+							+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" +  File.separator;
+				
+				 }
+			 if(workitem.equalsIgnoreCase("Story") && toolname.contains("TFS"))
+				 workitem="ProductBacklog";
+			 String workitemToGetDetailsFor = workitem+"_wsjf";
+			 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitemToGetDetailsFor);
+			 System.out.println(wi.Priority);
+			int Priority = getPriorityWeightage(wi.Priority, toolname);
+			 
+			 Integer numerator = Integer.parseInt(wi.BusinessValue)+Priority+Integer.parseInt(wi.RiskReduction);
+			 Integer denom =  Integer.parseInt(wi.StoryPoints);
+			 float expectedWSJFValue = numerator/denom;
+			 System.out.println(expectedWSJFValue);
+			 List<ArrayList<String>> FieldNames = response.jsonPath().get("WorkItems.WorkItemExtensions.FieldName");
+			 for(ArrayList j:FieldNames)
+					 {
+						 if(j.contains("WSJF"))
+						 {
+							 List<ArrayList<String>> FieldValues = response.jsonPath().get("WorkItems.WorkItemExtensions.FieldValue");
+							 for(ArrayList<String> ae : FieldValues)
+							{
+								System.out.println(ae.get(j.indexOf("WSJF")));
+								float wsjf_API = Float.parseFloat((ae.get(j.indexOf("WSJF"))));
+								Assert.assertEquals(wsjf_API, expectedWSJFValue, "Mismatch in wsjf value for workitem "+workitem+ " for tool "+toolname);
+							}
+						 }
+						 else
+							 Assert.fail("WSJF tag missing in the response for workitem "+workitem+ " for tool "+toolname);
+					}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		public static int getPriorityWeightage(String Priority, String toolname){
+			int PriorityWeightage = 0;
+			if(toolname.contains("TFS")){
+				switch(Priority){
+					case "1":
+						PriorityWeightage = 20;
+						break;
+					case "2":
+						PriorityWeightage = 30;
+						break;
+					case "3":
+						PriorityWeightage = 40;
+						break;
+					case "4":
+						PriorityWeightage = 50;
+						break;
+				}
+			}
+			else if(toolname.contains("Jira") || toolname.contains("JIRA")){
+				switch(Priority){
+				case "Low":
+					PriorityWeightage = 20;
+					break;
+				case "Medium":
+					PriorityWeightage = 30;
+					break;
+				case "High":
+					PriorityWeightage = 40;
+					break;
+				case "Highest":
+					PriorityWeightage = 50;
+					break;
+				}
+			}
+			return PriorityWeightage;
+		}
 	}

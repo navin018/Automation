@@ -88,7 +88,7 @@ import java.util.Random;
 //			click(RallyUIMap.Name_txtBox);
 			enterText(RallyUIMap.Name_txtBox, workitem_title);
 			Thread.sleep(2000);
-			click(RallyUIMap.Create_btn);
+			clickJS(RallyUIMap.Create_btn);
 			}
 			catch(Exception e)
 			{
@@ -96,21 +96,43 @@ import java.util.Random;
 			}
 		}
 
-		public static void CaptureWorkitemID(String workitem) {
+		public static void CaptureWorkitemID(String workitem) throws InterruptedException {
 		ExpWaitForCondition(RallyUIMap.CofirmWorkitemAdded_Msg);
 		String workitemID = getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0];
 			System.out.println(workitem + "id is "+workitemID);
+			Thread.sleep(5000);
 		}
 
 		public static void CreateRelease() {
 			try{
+				WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get("Release_01");
+				
+				 workitem_title = wi.Summary;
 				
 			clickJS(RallyUIMap.plan_link);
 			clickJS(RallyUIMap.Timeboxes_link);
 			clickJS(RallyUIMap.Timesboxes_drpdown);
-			clickJS(RallyUIMap.TimesboxesDrpdownSelectRelease_drpdown);
-			ExpWaitForCondition(RallyUIMap.AddNew_btn);
-			
+//			clickJS(RallyUIMap.TimesboxesDrpdownSelectRelease_drpdown);
+			clickJS(RallyUIMap.SelectReleaseFromDrpdown);
+			Thread.sleep(5000);
+//			ExpWaitForCondition(RallyUIMap.AddNew_btn);
+			clickJS(RallyUIMap.AddNew_btn);
+			Thread.sleep(5000);
+//			ExpWaitForCondition(RallyUIMap.Name_txtBox);
+			doubleClick(RallyUIMap.Name_txtBox);
+			enterText(RallyUIMap.Name_txtBox, wi.ReleaseName);
+			singleClick(RallyUIMap.ReleaseStartDate_DatePicker);
+			singleClick(RallyUIMap.NextMonth_DatePicker);
+			singleClick(RallyUIMap.PickDayOneofMonth_DatePicker);
+			singleClick(RallyUIMap.ReleaseEndDate_DatePicker);
+			singleClick(RallyUIMap.NextMonthForReleaseEndDate_DatePicker);
+			singleClick(RallyUIMap.PickDayTwoofMonth_DatePicker);
+			System.out.println(getAttribute(RallyUIMap.getReleaseEndDate_txt, "value"));
+			System.out.println(getAttribute(RallyUIMap.getReleaseStartDate_txt, "value"));
+			singleClick(RallyUIMap.State_DrpDown);
+			singleClick(RallyUIMap.Planning_link);
+			singleClick(RallyUIMap.Create_btn);
+			ExpWaitForCondition(RallyUIMap.CofirmWorkitemAdded_Msg);
 			}
 			catch(Exception e)
 			{

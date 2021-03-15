@@ -12,6 +12,14 @@
 			"Summary": "Story_AutomationData",
 			"Description": "Story_Description"
 		},
+		"ProductBacklog_wsjf": {
+			"Summary": "Story_AutomationData",
+			"Description": "Story_Description",
+			"Priority":"2",
+			"BusinessValue":"2",
+			"RiskReduction":"2",
+			"StoryPoints":"1"
+		},
 		
 		"Epic_01": {
 			"EpicName": "Epic_AutomationData",

@@ -58,6 +58,8 @@ public class MyWizardSteps {
 	public void i_verify_rules(String toolname) throws Throwable {
 
 		String[] JIRA_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue", "Risk"};
+		String[] CloudJIRA_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment"};
+		String[] CloudJIRA_NonWorkItems = {"Iteration"};
 //		String[] JIRA_WorkItems = {"Task", "Epic"};
 		
 		String[] ADTJira_NonWorkItems = {"Test","Deliverable","Requirement","Iteration","Action","TestResult","Test","Milestone"};
@@ -81,6 +83,10 @@ public class MyWizardSteps {
 		else if(toolname.equalsIgnoreCase("TFS Agile"))
 		{
 			MappingRules.VerifyAndAddRulesIfMissing("myWizard-TFS",TFSAgile_WorkItems,TFS_NonWorkItems);
+		}
+		else if(toolname.equalsIgnoreCase("Cloud JIRA"))
+		{
+			MappingRules.VerifyAndAddRulesIfMissing("Cloud Jira",CloudJIRA_WorkItems,CloudJIRA_NonWorkItems);
 		}
 		else if(toolname.equalsIgnoreCase("TFS Scrum"))
 		{

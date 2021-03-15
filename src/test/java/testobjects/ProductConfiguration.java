@@ -94,8 +94,8 @@ public class ProductConfiguration extends Baseclass {
 					}
 				}
 			}
-			
-			if(toolname.equalsIgnoreCase("Cloud Jira") || toolname.equalsIgnoreCase("CLOUD JIRA"))
+		}	
+			if(toolname.equalsIgnoreCase("Cloud JIRA") || toolname.equalsIgnoreCase("CLOUD JIRA"))
 			{
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				enterText(ProductConfigUIMap.searchBox_txtbox,"Atlassian JIRA");
@@ -121,7 +121,7 @@ public class ProductConfiguration extends Baseclass {
 					}
 				}
 		}
-		}
+		
 		else if(toolname.equalsIgnoreCase("MYWIZARD-TFS"))
 		{
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -281,7 +281,7 @@ public class ProductConfiguration extends Baseclass {
 			//select + icon to expand the client
 			clickJS(prepareWebElementWithDynamicXpath(ProductConfigUIMap.PlusIconToExpandClientSelected_StaticTxt,Property.getProperty("MyWizard_Client"), "clientname"));
 			
-		if(toolname.equalsIgnoreCase("ADT JIRA") || toolname.equalsIgnoreCase("ADOP JIRA"))	
+		if(toolname.equalsIgnoreCase("ADT JIRA") || toolname.equalsIgnoreCase("ADOP JIRA") || toolname.equalsIgnoreCase("Cloud Jira"))	
 		{
 			//check if L1 DC is selected/ticked
 			WebElement checkbox_L1 = driver().findElement(prepareWebElementWithDynamicXpath(ProductConfigUIMap.checkL1DCcheckbox_checkbox, Property.getProperty("MyWizard_DC_L1"), "DCname"));
@@ -440,6 +440,7 @@ public class ProductConfiguration extends Baseclass {
 				ProductConfiguration.checkAndAddTestResult();
 				ProductConfiguration.checkAndAddAction();
 				ProductConfiguration.checkAndAddTest();
+				ProductConfiguration.checkAndAddWorkRequest();
 			}
 			if(toolname.equalsIgnoreCase("ADOP JIRA"))
 			{
@@ -457,6 +458,13 @@ public class ProductConfiguration extends Baseclass {
 				ProductConfiguration.checkAndAddTeamArea();
 				ProductConfiguration.checkAndAddAction();
 				ProductConfiguration.checkAndAddDecision();
+			}
+			if(toolname.equalsIgnoreCase("Cloud Jira"))
+			{
+				ProductConfiguration.checkAndAddWorkItemsForCloudJira();
+				ProductConfiguration.checkAndAddIteration();
+				ProductConfiguration.checkAndAddTeamArea();
+				
 			}
 			
 			
@@ -778,6 +786,61 @@ public class ProductConfiguration extends Baseclass {
 		
 	}
 	
+	public static void checkAndAddWorkItemsForCloudJira()
+	{
+		try{
+		int totalNoRow = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+		ArrayList<String> ADTJiraEntities = new ArrayList<>(Arrays.asList("Epic", "Feature", "UserStory", "Task", "Bug" , "Impediment"));
+		ArrayList<String> ActualWorkItemEntitiesOnUi = new ArrayList<>();
+		
+		
+		//check if all workitems exists
+		for(int i=1;i<totalNoRow;i++)
+		{
+			
+//			if(getDropdownValue(By.xpath("//span[text()='Add Entity']//following::table[1]//tbody//tr["+i+"]//td[1]//select[1]")).equalsIgnoreCase("WorkItem"))
+			if(getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(i), "int")).equalsIgnoreCase("WorkItem"))
+			{
+//				ActualWorkItemEntitiesOnUi.add(getDropdownValue(By.xpath("//span[text()='Add Entity']//following::table[1]//tbody//tr["+i+"]//td[2]//select[1]")));
+				ActualWorkItemEntitiesOnUi.add(getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column2_WorkItemType_drpdown,String.valueOf(i), "int")));
+				
+//					//system.out.println(getDropdownValue(By.xpath("//span[text()='Add Entity']//following::table[1]//tbody//tr["+i+"]//td[2]//select[1]")));
+				if(!getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_InboundOutbound_drpdown,String.valueOf(i), "int")).equalsIgnoreCase("Inbound and Outbound"))
+				{
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_InboundOutbound_drpdown,String.valueOf(i), "int"),"Inbound and Outbound");
+				}
+			}
+		}
+		
+	//after below step, ADTJiraEntities will contain elements that are missing in UI. 
+		ADTJiraEntities.removeAll(ActualWorkItemEntitiesOnUi);
+		//if size is 0, all elements are already present in UI. if not, add the elements
+		int y = totalNoRow-1;
+		if(ADTJiraEntities.size()!=0)
+		{
+			
+				for(int j=0; j<ADTJiraEntities.size(); j++)
+				{
+					clickJS(ProductConfigUIMap.AddEntity_link);
+					int x = y+1+j;
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(x), "int"),"WorkItem");
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column2_WorkItemType_drpdown,String.valueOf(x), "int"),ADTJiraEntities.get(j));
+					selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_InboundOutbound_drpdown,String.valueOf(x), "int"),"Inbound and Outbound");
+					
+				}
+			
+		}
+	}
+		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("Issue adding Workitem entity in product instance entities section");
+			Assert.fail("Issue adding Workitem entity in product instance entities section");
+		}
+		
+	}
+	
 	public static void checkAndAddIteration(){
 		
 	try{
@@ -905,6 +968,49 @@ public static void checkAndAddTest(){
 		}
 		
 		}
+
+public static void checkAndAddWorkRequest(){
+	
+	try{
+		boolean CR = false;
+		
+		int totalNoRow = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+		//check if deliverable exists
+		if(totalNoRow>1)
+		{
+				for(int i=1;i<totalNoRow;i++)
+				{
+				 if(getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(i), "int")).equalsIgnoreCase("ChangeRequest"))
+					 {
+					 CR = true;
+					 break;
+					 }
+				}
+			
+				
+		}
+		
+		//if CR entity is missing in UI
+		if(!CR)
+		{
+			int currentrowCount = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+			clickJS(ProductConfigUIMap.AddEntity_link);
+			selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(currentrowCount), "int"),"ChangeRequest");
+			selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_InboundOutbound_drpdown,String.valueOf(currentrowCount), "int"),"Inbound and Outbound");
+		}
+		
+	
+	
+	}
+	
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		logger.info("Issue adding CR entity in product instance entities section");
+		Assert.fail("Issue adding CR entity in product instance entities section");
+	}
+	}
+
 	public static void checkAndAddWorkItemsForTFS()
 	{
 		try{
@@ -1120,6 +1226,11 @@ public static void checkAndAddTest(){
 							String[] pipelines = {"JIRA-US-Inbound","JIRA-ITR-US-Inbound", "JIRA-Team-US-Inbound"};
 							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
 							}
+							if(toolname.equalsIgnoreCase("Cloud JIRA"))
+							{
+							String[] pipelines = {"CLOUDJIRA-US-Inbound","CLOUDJIRA-ITR-US-Inbound", "CLOUDJIRA-Team-US-Inbound"};
+							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
+							}
 							if(toolname.equalsIgnoreCase("TFS Agile"))
 							{
 							String[] pipelines = {"TFS-Agile-US-Inbound","TFS-Agile-ITR-US-Inbound", "TFS-Agile-Team-US-Inbound"};
@@ -1151,6 +1262,7 @@ public static void checkAndAddTest(){
 							String[] pipelines = {"TFS-Agile-US-Outbound"};
 							verifyIfPipelinesExists1(pipelines,toolname,IBorOB);
 							}
+							
 							if(toolname.contains("TFS Scrum"))
 							{
 							String[] pipelines = {"TFS-Scrum-US-Outbound"};

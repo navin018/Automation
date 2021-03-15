@@ -17,6 +17,7 @@ Baseclass(){
 	}
 	public String WorkItemExternalId_Task;
 	public String WorkItemExternalId_Story;
+	public String WorkItemExternalId_WorkRequest;
 	public String WorkItemExternalId_Risk;
 	public String WorkItemExternalId_Epic;
 	public String WorkItemExternalId_Bug;

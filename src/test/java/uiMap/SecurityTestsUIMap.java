@@ -79,6 +79,10 @@ public static By EnableUsecases_btn = By.xpath("//li[@class='parentDC phx-cob-sd
 public static By AddUsers_btn = By.xpath("//li[@class='parentDC phx-cob-sdc-hide ng-star-inserted' or @class='parentDC phx-cob-sdc-hide'][1]/following::a[@class='active' or @class='inactive'][5]");
 public static By GetStarted_btn = By.xpath("//li[@class='parentDC phx-cob-sdc-hide' or @class='parentDC phx-cob-sdc-hide'][1]/following::a[@class='active' or @class='inactive'][6]");
 public static By BacktoOverallSetup_btn = By.xpath("//div[text()='Back to Overall Setup Progress']");
-
+public static By PPM_RadioBtn = By.xpath("//label[text()='Portfolio, Program & Project Management (PMI - PPM)']");
+public static By AddDC_btn = By.xpath("//button[@title='Add Delivery Construct']");
+public static By enterDCName_txtbox = By.xpath("//input[@name='Portfolio']");
+public static By saveandClose_btn = By.xpath("//button[@title='Save & Close']");
+public static By deletePortfolio_btn = By.xpath("//a[@title='Delete Portfolio']");
 
 }

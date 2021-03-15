@@ -51,7 +51,11 @@ public class SecurityTestSteps {
 	 
 	}
 	
-	
+	@Given("^i add a DC$")
+	public void addDC() throws Throwable {
+		SecurityTests.AddDC();
+	 
+	}
 	
 
 }

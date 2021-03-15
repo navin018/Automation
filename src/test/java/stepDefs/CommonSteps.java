@@ -38,6 +38,7 @@ public class CommonSteps {
 		driver().quit();
 	}
 
+	
 	@Given("^i load the project properties file$")
 	public void iloadpropertyFile() throws Throwable {
 		String propsPath = System.getProperty("user.dir")+File.separator+"Properties"+File.separator;
@@ -72,6 +73,7 @@ public class CommonSteps {
 		{
 			case "Jira":
 			case "ADT Jira":
+			case "ADOP Jira":
 			{
 				CommonAcrossApps.loginToJira();
 				
@@ -127,6 +129,14 @@ public class CommonSteps {
 		
 		
 		}	
+	
+	@And("^i update the WorkItemExternalIDs into a JSON file for \"([^\"]*)\" for \"([^\"]*)\" functionality$")
+	public void iUpdateTheWorkItemExternalIDsIntoAJSONFile(String appname,String MoveProjectOrIssue) throws Throwable {
+		
+		CommonAcrossApps.UpdateWorkItemExternalIDsForAppsForMoveProjectOrIssue(appname);
+		
+		
+		}	
 		
 	
 	@Then("^i validate the outbound flow for \"([^\"]*)\"$")
@@ -139,7 +149,7 @@ public class CommonSteps {
 	
 	@Then("^i select a Project for \"([^\"]*)\"$")
 	public void iSelectAProject(String AppName) throws Throwable {
-		if(AppName.equalsIgnoreCase("jira") || AppName.equalsIgnoreCase("ADT Jira"))
+		if(AppName.equalsIgnoreCase("jira") || AppName.equalsIgnoreCase("ADT Jira") || AppName.contains("Jira"))
 		{
 		JiraWorkitem.SelectProject();
 		Baseclass.getInstance().workitemcreation_fail = false;
@@ -148,6 +158,7 @@ public class CommonSteps {
 		{
 		JiraWorkitem.SelectProjectForCloudJira();
 		Baseclass.getInstance().workitemcreation_fail = false;
+		Thread.sleep(20000);
 		}
 		if(AppName.equalsIgnoreCase("Rally"))
 		{

@@ -17,6 +17,13 @@ public static By searchProject_txtbox = By.xpath("//input[@aria-label='Filter pr
 public static String clickProject_statictxt= "//div[@class='project-name font-size-l font-weight-semibold text-ellipsis'][text()='{projectname}']";
 public static String VerifyProjectload_statictxt= "//H1[@class='project-name-container text-ellipsis title-l'][text()='{projectname}']";
 public static By title_txtbox = By.xpath("//input[@aria-label='Title Field']");
+
+public static By Priority_drpdown = By.xpath("//input[@aria-label='Priority']");
+public static By StoryPoints_txtbox = By.xpath("//input[@aria-label='Story Point']");
+public static By RiskReduction_txtbox = By.xpath("//input[@aria-label='Risk Reduction']");
+public static By BusinessValue_txtbox = By.xpath("//input[@aria-label='Business Value']");
+
+
 public static By save_drpdown = By.xpath("//div[@class='drop']");
 public static By save_btn = By.xpath("//span[@class='text'][text()='Save']");
 public static By captureWorkItemID_statictxt = By.xpath("//a[@class='caption']");

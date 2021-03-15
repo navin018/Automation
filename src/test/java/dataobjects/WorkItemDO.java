@@ -51,6 +51,26 @@ public class WorkItemDO {
 	public String StartDate;
 	public String EndDate;
 	
+	public String BusinessValue;
+	public String RiskReduction;
+	
+	public String getBusinessValue() {
+		return BusinessValue;
+	}
+
+	public void setBusinessValue(String businessValue) {
+		BusinessValue = businessValue;
+	}
+
+	public String getRiskReduction() {
+		return RiskReduction;
+	}
+
+	public void setRiskReduction(String riskReduction) {
+		RiskReduction = riskReduction;
+	}
+
+	
 	public String getSprintStartDate() {
 		return SprintStartDate;
 	}

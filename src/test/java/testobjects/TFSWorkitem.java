@@ -678,6 +678,55 @@ import java.util.Random;
 				logger.info("Issue creating Test Result in TFS");
 			}
 		}
+
+		public static void CreateWorkitemfornonsanity(String workitem) {
+			try{
+			 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
+			 String workitemURL;
+			 //navigate to the create WI url
+			 if(workitem.contains("TestCase")) 
+				 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Test Case";
+					else if(workitem.contains("Story"))
+				 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"User Story";
+					else if(workitem.contains("ProductBacklog"))
+						 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Product Backlog Item";
+					else
+					workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+workitem.split("_")[0];
+			 
+			 driver().get(workitemURL);
+				Thread.sleep(5000);
+				
+				//enter title
+				//putting this piece of code as workitem url wasnt loading
+				if(CheckIfElementExists(TFSUIMap.title_txtbox))
+				{
+					Thread.sleep(5000);
+					ExpWaitForCondition(TFSUIMap.title_txtbox);
+					enterText(TFSUIMap.title_txtbox,wi.Summary);
+					Thread.sleep(2000);
+				}
+				
+				if(workitem.contains("ProductBacklog")){
+					doubleClick(TFSUIMap.Priority_drpdown);
+					clear(TFSUIMap.Priority_drpdown);
+					enterText(TFSUIMap.Priority_drpdown,wi.Priority);
+					enterText(TFSUIMap.BusinessValue_txtbox, wi.BusinessValue);
+					enterText(TFSUIMap.RiskReduction_txtbox, wi.RiskReduction);
+					enterText(TFSUIMap.StoryPoints_txtbox, wi.StoryPoints);
+				}
+				
+				//save WI and capture details
+				singleClick(TFSUIMap.save_btn);
+				Thread.sleep(5000);
+				CaptureWorkitemID(workitem);
+				
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("issue creating "+workitem+" in TFS");
+			}
+		}
 	}
 
 	

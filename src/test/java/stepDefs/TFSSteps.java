@@ -17,7 +17,13 @@ public class TFSSteps {
 		TFSWorkitem.CreateTestResult(workitem);
 	}
 
-	
+	@Then("^i create a \"([^\"]*)\" in TFS for non-sanity$")
+	public void i_create_a_in_TFS_nonsanity(String workitem) throws Throwable {
+
+	   TFSWorkitem.CreateWorkitemfornonsanity(workitem);
+
+
+	}
 	
 	@Then("^i create \"([^\"]*)\" and \"([^\"]*)\" in TFS$")
 	public void i_create_and_in_TFS(String Release, String Sprint) throws Throwable {

@@ -17,6 +17,14 @@
 			"Priority": "Medium",
 			"StoryPoints": "5"
 		},
+		"Story_wsjf": {
+			"Summary": "Story_AutomationData",
+			"Description": "Story_Description",
+			"StoryPoints": "5",
+			"BusinessValue": "5",
+			"RiskReduction": "5",
+			"Priority": "Medium"
+		},
 		"Risk_01": {
 			"Summary": "Risk_AutomationData",
 			"Description": "Risk_Description"
@@ -100,6 +108,10 @@
 			"Description": "Deliverable_Description",
 			"Priority": "Medium"
 		},
+			"Work Request_01": {
+			"Summary": "WorkRequest_AutomationData",
+			"Description": "WorkRequest_Description"
+			},
 		"SubTask_01": {
 			"Summary": "SubTask_AutomationData",
 			"Description": "SubTask_Description",

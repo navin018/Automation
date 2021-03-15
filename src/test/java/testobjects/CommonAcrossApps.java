@@ -28,7 +28,7 @@ public class CommonAcrossApps {
 			driver().get(Property.getProperty("JiraURL"));
 			waitPageToLoad();
 //			Thread.sleep(10000);
-			ExpWaitForCondition(JiraUIMap.login_btn);
+//			ExpWaitForCondition(JiraUIMap.login_btn);			//uncomment this
 //			grabScreenshotForExtentReport();
 //			if(Property.getProperty("JiraURL").contains("adt"))
 //			 click(JiraUIMap.login_btn);
@@ -62,7 +62,16 @@ public class CommonAcrossApps {
 						clickJS(MyWizardUIMap.Yes_btn);
 			}
 			
-			
+			if(CheckIfElementExists(MyWizardUIMap.signIn_txtbox)){
+				enterText(MyWizardUIMap.signIn_txtbox,Property.getProperty("Username"));
+				clickJS(MyWizardUIMap.Next_btn);
+				ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+				Thread.sleep(3000);
+				 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("Password"));
+				 click(MyWizardUIMap.signIn_btn1);
+				ExpWaitForCondition(MyWizardUIMap.Yes_btn);
+						clickJS(MyWizardUIMap.Yes_btn);
+			}
 			
 			
 			
@@ -173,6 +182,7 @@ public class CommonAcrossApps {
 			enterText(MyWizardUIMap.signIn_txtbox, Property.getProperty("MyWizard_Username"));
 			clickJS(MyWizardUIMap.Next_btn);
 			ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+			Thread.sleep(5000);
 			 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
 			 click(MyWizardUIMap.signIn_btn1);
 			 Thread.sleep(10000);
@@ -406,7 +416,7 @@ try{
 		    jsonObject.put("WorkItemExternalId_SprintName", Baseclass.getInstance().Jira_SprintName);
 		    jsonObject.put("WorkItemExternalId_Team", Baseclass.getInstance().Jira_ComponentName);
 		    
-		
+		    jsonObject.put("WorkItemExternalId_WorkRequest", Baseclass.getInstance().WorkItemExternalId_WorkRequest);
 		    
 		    FileWriter file = new FileWriter(WorkItemEx_FileLoc);
 	         file.write(jsonObject.toJSONString());
@@ -559,4 +569,112 @@ public static void LoginToRally() {
 		Assert.fail("issue logging into Rally");
 	}
 	}
+
+public static void UpdateWorkItemExternalIDsForAppsForMoveProjectOrIssue(String appname) {
+	try{
+		System.out.println("updating workitemexternalIDs");
+		 String WorkItemEx_FileLoc="";
+		if(appname.contains("jira") || appname.contains("Jira") || appname.contains("JIRA")){
+		  WorkItemEx_FileLoc = System.getProperty("user.dir")
+					+ File.separator + "src" + File.separator + "test" + File.separator
+					+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDsForMoveProjOrIssue.json";
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		
+	    jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);
+	    jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
+	    jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
+	    jsonObject.put("WorkItemExternalId_Issue", Baseclass.getInstance().WorkItemExternalId_Issue);
+	    jsonObject.put("WorkItemExternalId_Impediment", Baseclass.getInstance().WorkItemExternalId_Impediment);
+	    jsonObject.put("WorkItemExternalId_Feature", Baseclass.getInstance().WorkItemExternalId_Feature);
+	    jsonObject.put("WorkItemExternalId_Epic", Baseclass.getInstance().WorkItemExternalId_Epic);
+	    jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
+	    jsonObject.put("WorkItemExternalId_Bug", Baseclass.getInstance().WorkItemExternalId_Bug);
+	    jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
+	    jsonObject.put("WorkItemExternalId_Test", Baseclass.getInstance().WorkItemExternalId_Test);
+	    jsonObject.put("WorkItemExternalId_SubTask", Baseclass.getInstance().WorkItemExternalId_SubTask);
+	    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
+	    jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
+	    jsonObject.put("WorkItemExternalId_TestExecution", Baseclass.getInstance().WorkItemExternalId_TestExecution);
+	  
+	    jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
+	 
+	    jsonObject.put("WorkItemExternalId_ReleaseName", Baseclass.getInstance().Jira_ReleaseName);
+	    jsonObject.put("WorkItemExternalId_ReleaseStartDate", Baseclass.getInstance().Jira_ReleaseStartDate);
+	    jsonObject.put("WorkItemExternalId_ReleaseEndDate", Baseclass.getInstance().Jira_ReleaseEndDate);
+	    jsonObject.put("WorkItemExternalId_SprintName", Baseclass.getInstance().Jira_SprintName);
+	    jsonObject.put("WorkItemExternalId_Team", Baseclass.getInstance().Jira_ComponentName);
+	    
+	
+	    
+	    FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+         file.write(jsonObject.toJSONString());
+         file.flush();
+         file.close();
+//         driver().close();
+//         driver().quit();
+	}
+	}
+	catch (Exception e) {
+		e.printStackTrace();
+		Assert.fail("could not write workitem IDs for "+appname );
+	}
+	
+	if(appname.equalsIgnoreCase("TFS"))
+	{
+		try{String WorkItemEx_FileLoc = System.getProperty("user.dir")
+				+ File.separator + "src" + File.separator + "test" + File.separator
+				+ "resources" + File.separator + "testdata" + File.separator + "TFS" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDsForMoveProjOrIssue.json";
+	  
+	  
+	JSONObject jsonObject = new JSONObject();
+	
+
+//System.out.println(CommonFunctions.SpiltWorkitem(Baseclass.getInstance().WorkItemExternalId_Bug));
+    jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);
+    jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
+    jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
+    jsonObject.put("WorkItemExternalId_TestCase_TE", Baseclass.getInstance().WorkItemExternalId_TestCase_TE);
+    jsonObject.put("WorkItemExternalId_Issue", Baseclass.getInstance().WorkItemExternalId_Issue);
+    jsonObject.put("WorkItemExternalId_Impediment", Baseclass.getInstance().WorkItemExternalId_Impediment);
+    jsonObject.put("WorkItemExternalId_Feature", Baseclass.getInstance().WorkItemExternalId_Feature);
+    jsonObject.put("WorkItemExternalId_Epic",Baseclass.getInstance().WorkItemExternalId_Epic);
+    jsonObject.put("WorkItemExternalId_Story",Baseclass.getInstance().WorkItemExternalId_Story);
+    jsonObject.put("WorkItemExternalId_Bug", Baseclass.getInstance().WorkItemExternalId_Bug);
+    jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
+    jsonObject.put("WorkItemExternalId_Decision",Baseclass.getInstance().WorkItemExternalId_Decision);
+    jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
+    jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
+    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
+    jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
+    
+
+    
+	jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
+	jsonObject.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);
+	jsonObject.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().TFS_ReleaseEndDate);
+	jsonObject.put("WorkItemExternalId_SprintName",Baseclass.getInstance().TFS_SprintName);
+	jsonObject.put("TFS_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
+	jsonObject.put("TFS_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
+	
+	
+	 jsonObject.put("WorkItemExternalId_TestPlan", Baseclass.getInstance().WorkItemExternalId_TestPlan);
+	    jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
+	    jsonObject.put("RunID", Baseclass.getInstance().RunID);
+	    jsonObject.put("WorkItemExternalId_TestExecution", Baseclass.getInstance().WorkItemExternalId_TestExecution);
+	
+    FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+     file.write(jsonObject.toJSONString());
+     file.close();
+     driver().close();
+}
+
+catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+	Assert.fail("could not write workitem IDs for "+appname );
+}
+	}
+}
 }

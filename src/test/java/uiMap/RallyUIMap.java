@@ -20,7 +20,7 @@ public static By Create_btn=By.xpath("//span[text()='Create']");
 public static By userStories_link=By.xpath("//span[text()='User Stories']");
 public static By AddNew_btn=By.xpath("//span[text()='Add New']");
 //
-public static By Name_txtBox=By.xpath("//input[@aria-label='Name, This field is required']");
+public static By Name_txtBox=By.xpath("//span[text()='Name']//following::input[@placeholder='Enter a name'][1]");
 public static By NameClick_txtBox=By.xpath("//span[text()='Name']//following::input[1]");
 public static By CofirmWorkitemAdded_Msg=By.xpath("//span[contains(text(),'has been added')]");
 public static By GetWorkitemID_StaticTxt=By.xpath("//span[contains(text(),'has been added')]");
@@ -37,15 +37,18 @@ public static By Timesboxes_drpdown=By.xpath("//div[contains(@class,'SavedView')
 public static By TimesboxesDrpdownSelectReleases_drpdown=By.xpath("//div[@class='smb-DropdownItem-contentWrapper']//following::span[text()='Releases'][1]");
 public static By TimesboxesDrpdownSelectIterations_drpdown=By.xpath("//span[@class='smb-DropdownItem-text'][text()='Iterations']");
 public static By TimesboxesDrpdownSelectRelease_drpdown=By.xpath("//div[contains(@class,'SavedView')]//preceding::span[@class='smb-Select-selectedValue'][1]");
-public static By SelectReleaseFromDrpdown=By.xpath("//span[text()='Releases']");
-public static By ReleaseStartDate_DatePicker=By.xpath("//div[contains(@class,'smb-TextInput smb-TextInput--iconPlacementEnd smb-TextInput--hasIcon smb-TextInput--xs is-readOnly')]");
-public static By NextMonth_DatePicker=By.xpath("//div[contains(@class,'smb-TextInput smb-TextInput--iconPlacementEnd smb-TextInput--hasIcon smb-TextInput--xs is-readOnly')]//following::span[@class='smb-Button-icon smb-Button-icon--center'][2]");
-////
+public static By SelectReleaseFromDrpdown=By.xpath("//li[contains(@aria-label,'Iterations')]//following::span[text()='Releases']");
+public static By ReleaseStartDate_DatePicker=By.xpath("//span[text()='Release Start Date']//following::*[@class='smb-TextInput-icon smb-SvgIcon smb-SvgIcon--calendar smb-TextInput-icon'][1]");
+public static By NextMonth_DatePicker=By.xpath("//span[@class='smb-Button-icon smb-Button-icon--center']//following::*[@class='smb-SvgIcon smb-SvgIcon--chevronRight']");
+public static By NextMonthForReleaseEndDate_DatePicker=By.xpath("//span[@class='smb-Button-icon smb-Button-icon--center']//following::*[@class='smb-SvgIcon smb-SvgIcon--chevronRight']");
+//
 public static By PickDayOneofMonth_DatePicker = By.xpath("//div[@class='DayPicker-Day DayPicker-Day--outside']//following::div[@class='DayPicker-Day'][1]");
-public static By ReleaseEndDate_DatePicker=By.xpath("//div[@class='smb-TextInput smb-TextInput--iconPlacementEnd smb-TextInput--hasIcon smb-TextInput--xs is-empty is-readOnly']");
+public static By ReleaseEndDate_DatePicker=By.xpath("//span[text()='Release Date']//following::*[@class='smb-TextInput-icon smb-SvgIcon smb-SvgIcon--calendar smb-TextInput-icon'][1]");
 public static By PickDayTwoofMonth_DatePicker=By.xpath("//div[@class='DayPicker-Day DayPicker-Day--outside']//following::div[@class='DayPicker-Day'][2]");
 public static By State_DrpDown=By.xpath("//span[text()='State']//following::span[@class='smb-Select-selectedValue'][1]");
 public static By Planning_link = By.xpath("//span[text()='Planning']");
+public static By getReleaseStartDate_txt = By.xpath("//span[text()='Release Start Date']//following::input[@placeholder='select date'][1]");
+public static By getReleaseEndDate_txt = By.xpath("//span[text()='Release Date']//following::input[@placeholder='select date'][1]");
 //
 //
 public static By Iterations_link=By.xpath("//span[text()='Iterations']");

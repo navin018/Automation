@@ -201,6 +201,10 @@ import java.util.Random;
 					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Feature");
 				else if(workitem_type[0].equalsIgnoreCase("TestForTestExec"))
 					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Test");
+				else if(workitem_type[0].equalsIgnoreCase("Work Request"))
+				{singleClick((JiraUIMap.SearchBoxHomePage_txtbox));
+			
+				}
 				else
 					enterText(JiraUIMap.SearchBoxHomePage_txtbox,workitem_type[0]);
 				Thread.sleep(5000);
@@ -245,6 +249,11 @@ import java.util.Random;
 				case "story":
 				case "Story":
 				Baseclass.getInstance().WorkItemExternalId_Story = toGetID1[1];
+				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				break;
+				case "work request":
+				case "Work Request":
+				Baseclass.getInstance().WorkItemExternalId_WorkRequest = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
 				break;
 				case "risk":
@@ -353,7 +362,7 @@ import java.util.Random;
 //						enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Feature");
 					ExpWaitForCondition(JiraUIMap.CloudJiraGetIssueID_statictxt);
 					String workitemID = getText(JiraUIMap.CloudJiraGetIssueID_statictxt);
-					
+					Thread.sleep(5000);
 					
 					switch(workitem_type[0]){
 					
@@ -428,22 +437,28 @@ import java.util.Random;
 						}
 						else if(ReleaseOrSprint.contains("Sprint"))
 						{
-							clickJS(JiraUIMap.BacklogIcon_Img);
-							Thread.sleep(10000);
-							ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
-//							String SprintName = getAttribute(JiraUIMap.SprintName_Statictxt, "data-fieldvalue");]
-							clickJS(JiraUIMap.EditSprintDots_button);
-							clickJS(JiraUIMap.EditSprint_link);
-							ExpWaitForCondition(JiraUIMap.SprintName_txt);
-							
-//							clickJS(By.xpath("//a[@class='aui-button js-sprint-actions-trigger'][1]/span[1]"));
-//							clickJS(JiraUIMap.SprintName_Statictxt);
-//							Thread.sleep(2000);
-							ClearTextAndEnterData("Sprint"+randomNumbForSrpint);
-							Thread.sleep(4000);
-//							clickJS(JiraUIMap.SaveSprint_btn);
-//							click(JiraUIMap.BacklogIcon_Img);
-							Baseclass.getInstance().Jira_SprintName = "Sprint"+randomNumbForSrpint;
+							if(Property.getProperty("JiraURL").contains("adtjira001eu")){
+								clickJS(JiraUIMap.BacklogIcon_Img);
+								Thread.sleep(10000);
+								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
+								ScrollIntoView(JiraUIMap.CreateSprint_btn);
+								clickJS(JiraUIMap.CreateSprint_btn);
+								ExpWaitForCondition(JiraUIMap.NewSprintName_txt);
+								clear(JiraUIMap.NewSprintName_txt);
+								enterText(JiraUIMap.NewSprintName_txt, "Sprint_"+randomNumbForSrpint);
+								clickJS(JiraUIMap.CreateNewSprint_btn);
+								ExpWaitForElementToDisappear(JiraUIMap.CreateNewSprint_btn);
+								Baseclass.getInstance().Jira_SprintName = "Sprint_"+randomNumbForSrpint;
+						}
+							else if(Property.getProperty("JiraURL").contains("uat.alm.accenture.com")){
+								clickJS(JiraUIMap.BacklogIcon_Img);
+								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
+								clickJS(JiraUIMap.CurrentSprintToBeEdited_txt);	
+								String currentsprintname = getAttribute(JiraUIMap.CurrentSprintToBeEdited_txt, "data-fieldvalue");
+								ClearTextAndEnterData(currentsprintname+"_"+randomNumbForSrpint);
+								Thread.sleep(4000);
+								Baseclass.getInstance().Jira_SprintName = currentsprintname+"_"+randomNumbForSrpint;
+							}
 						}
 	
 				} 
@@ -699,13 +714,14 @@ import java.util.Random;
 			}
 		}
 
-		public static void DeleteTestAutomationData(){
+		public static void DeleteTestAutomationData(String releaseOrWorkitems,String toolname){
+			if(releaseOrWorkitems.equalsIgnoreCase("workitems") && !toolname.equalsIgnoreCase("Cloud Jira")){
 			try{
 				
 				Thread.sleep(4000);
-//				click(JiraUIMap.Issues_link);
+				click(JiraUIMap.Issues_link);
 				click(JiraUIMap.ViewALlIssuesAndFilters_link);
-				clear(JiraUIMap.advancedSearch_txtbox);
+//				clear(JiraUIMap.advancedSearch_txtbox);
 				String createQuery = "project = "+Property.getProperty("JiraProject")+" AND summary ~ \"_AutomationData\" AND summary !~ \"AutomationData_Donot_Edit\"";
 				enterText(JiraUIMap.advancedSearch_txtbox, createQuery);
 				click(JiraUIMap.Search_btn);
@@ -733,6 +749,137 @@ import java.util.Random;
 				Assert.fail("Issues deleting test automation data ");
 			}
 			
+			}
+			if(releaseOrWorkitems.equalsIgnoreCase("workitems") && toolname.equalsIgnoreCase("Cloud Jira")){
+				try{
+					
+					String testDataPath_WorkItemExternalIDs = testDataPath + "WorkItemExternalIDs.json" ;
+					JSONParser parser = new JSONParser();
+					Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
+					JSONObject jsonObject = (JSONObject) obj;
+					String TaskID = (String) jsonObject.get("WorkItemExternalId_"+"Task");
+					String StoryID = (String) jsonObject.get("WorkItemExternalId_"+"Story");
+					String BugID = (String) jsonObject.get("WorkItemExternalId_"+"Bug");
+					String EpicID = (String) jsonObject.get("WorkItemExternalId_"+"Epic");
+					String WI[] = {TaskID,StoryID,BugID,EpicID};
+					for(int i=0;i<WI.length;i++)
+					{
+						String currentWI = WI[i];
+						enterText(JiraUIMap.CloudJiraSearchWorkItem_txtbox,WI[i]);
+						Thread.sleep(3000);
+						clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.CloudJiraclickWorkitemFromSearch_link, WI[i], "id"));
+						ExpWaitForCondition(JiraUIMap.ActiontheWorkItem_link);
+						clickJS(JiraUIMap.ActiontheWorkItem_link);
+						clickJS(JiraUIMap.delete_link);
+						clickJS(JiraUIMap.delete_link);
+						Thread.sleep(5000);
+						
+					}
+					
+									
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					logger.info("Issues deleting test automation data ");
+					Assert.fail("Issues deleting test automation data ");
+				}}
+			else if(releaseOrWorkitems.equalsIgnoreCase("release") && !toolname.equalsIgnoreCase("Cloud Jira")){
+				try{
+					clickJS(JiraUIMap.Releases_Link);
+//					ExpWaitForCondition(JiraUIMap.ReleaseVersionName_txtBox);
+					waitPageToLoad();
+					Thread.sleep(3000);
+					String testDataPath_WorkItemExternalIDs = testDataPath + "WorkItemExternalIDs.json" ;
+					JSONParser parser = new JSONParser();
+					Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
+					JSONObject jsonObject = (JSONObject) obj;
+					String Releasename = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
+					enterText(JiraUIMap.Filterwithreleasename_txtbox, Releasename);
+					Thread.sleep(5000);
+					clickJS(JiraUIMap.ActionRelease_btn);
+					clickJS(JiraUIMap.DeleteRelease_link);
+					ExpWaitForCondition(JiraUIMap.DeleteReleaseConfirmationBox);
+					clickJS(JiraUIMap.DeleteReleaseConfirm_btn);
+					ExpWaitForCondition(JiraUIMap.ReleaseDeletedConfirmationMSg);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+					Assert.fail("Issue deleting release for "+toolname+ "for the delete functionality test");
+				}}
+				else if(releaseOrWorkitems.equalsIgnoreCase("release") && toolname.equalsIgnoreCase("Cloud Jira")){
+					try{
+						clickJS(JiraUIMap.Releases_Link);
+						ExpWaitForCondition(JiraUIMap.searchRelease_txtBox);
+						waitPageToLoad();
+						
+						String testDataPath_WorkItemExternalIDs = testDataPath + "WorkItemExternalIDs.json" ;
+						JSONParser parser = new JSONParser();
+						Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
+						JSONObject jsonObject = (JSONObject) obj;
+						String Releasename = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
+						enterText(JiraUIMap.searchRelease_txtBox, Releasename);
+						Thread.sleep(5000);
+						clickJS(JiraUIMap.ActionReleaseCloudJira_btn);
+						clickJS(JiraUIMap.DeleteReleaseCloudJira_link);
+						ExpWaitForCondition(JiraUIMap.DeleteReleaseConfirmationBox_CloudJira);
+//						clickJS(JiraUIMap.DeleteReleaseConfirm_btn);
+//						ExpWaitForCondition(JiraUIMap.ReleaseDeletedConfirmationMSg);
+					}
+					catch (Exception e) {
+						e.printStackTrace();
+						Assert.fail("Issue deleting release for "+toolname+ "for the delete functionality test");
+					}}
+					else if(releaseOrWorkitems.equalsIgnoreCase("sprint") && toolname.equalsIgnoreCase("Cloud Jira")){
+						try{
+							clickJS(JiraUIMap.BacklogIcon_Img);
+//							Thread.sleep(10000);
+							ExpWaitForCondition(JiraUIMap.CloudJiraEditSprintDots_Img);
+							
+							String testDataPath_WorkItemExternalIDs = testDataPath + "WorkItemExternalIDs.json" ;
+							JSONParser parser = new JSONParser();
+							Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
+							JSONObject jsonObject = (JSONObject) obj;
+							String SprintName = (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
+							
+							clickJS(JiraUIMap.CloudJiraEditSprintDots_Img);
+							clickJS(JiraUIMap.CloudJiraDeleteSprint_link);
+							ExpWaitForCondition(JiraUIMap.CloudJiraConfirmSprintDelete_btn);
+							clickJS(JiraUIMap.CloudJiraConfirmSprintDelete_btn);
+						
+						}
+						catch (Exception e) {
+							e.printStackTrace();
+							Assert.fail("Issue deleting sprint for "+toolname+ "for the delete functionality test");
+						}}
+						else if(releaseOrWorkitems.equalsIgnoreCase("sprint") && !toolname.equalsIgnoreCase("Cloud Jira")){
+							try{
+								clickJS(JiraUIMap.BacklogIcon_Img);
+//								Thread.sleep(10000);
+								ExpWaitForCondition(JiraUIMap.CloudJiraEditSprintDots_Img);
+								
+								String testDataPath_WorkItemExternalIDs = testDataPath + "WorkItemExternalIDs.json" ;
+								JSONParser parser = new JSONParser();
+								Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
+								JSONObject jsonObject = (JSONObject) obj;
+								String SprintName = (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
+								
+//								clickJS(JiraUIMap.CloudJiraEditSprintDots_Img);
+//								clickJS(JiraUIMap.CloudJiraDeleteSprint_link);
+//								ExpWaitForCondition(JiraUIMap.CloudJiraConfirmSprintDelete_btn);
+//								clickJS(JiraUIMap.CloudJiraConfirmSprintDelete_btn);
+								
+								ScrollIntoView(prepareWebElementWithDynamicXpath(JiraUIMap.SprintToBedeleted_txt, SprintName, "SprintName"));
+								clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.ActionSpecificSprint_btn, SprintName, "SprintName"));
+								clickJS(JiraUIMap.CloudJiraDeleteSprint_link);
+								click(JiraUIMap.ConfirmDeleteSprint_btn);
+								ExpWaitForElementToDisappear(JiraUIMap.ConfirmDelete_btn);
+							}
+							catch (Exception e) {
+								e.printStackTrace();
+								Assert.fail("Issue deleting sprint for "+toolname+ "for the delete functionality test");
+							}
+			}
 			
 		}
 		
@@ -951,7 +1098,8 @@ public static void CreateReleaseForCloudJira(String ReleaseOrSprint) {
 //				Thread.sleep(3000);
 //				singleClick(JiraUIMap.CloudJiraReleaseName_txtBox);
 				Thread.sleep(5000);
-				enterTextUsingAction(JiraUIMap.CloudJiraReleaseName_txtBox,newReleasewithAppendedNumb);
+//				highlight(JiraUIMap.CloudJiraReleaseName_txtBox);
+				enterText(JiraUIMap.CloudJiraReleaseName_txtBox,newReleasewithAppendedNumb);
 				
 				
 				Thread.sleep(2000);
@@ -997,7 +1145,8 @@ public static void CreateReleaseForCloudJira(String ReleaseOrSprint) {
 				clickJS(JiraUIMap.BacklogIcon_Img);
 //				Thread.sleep(10000);
 				ExpWaitForCondition(JiraUIMap.CloudJiraEditSprintDots_Img);
-				clickJS(JiraUIMap.CloudJiraEditSprintDots_Img);
+				doubleClick(JiraUIMap.CloudJiraEditSprintDots_Img);
+				Thread.sleep(5000);
 				clickJS(JiraUIMap.CloudJiraEditSprint_Img);
 				ExpWaitForCondition(JiraUIMap.CloudJiraSprintName_txt);
 				String currentsprintname = getValue(JiraUIMap.CloudJiraSprintName_txt);
@@ -1006,7 +1155,7 @@ public static void CreateReleaseForCloudJira(String ReleaseOrSprint) {
 //				Thread.sleep(2000);
 				ClearTextAndEnterData(currentsprintname+"_"+randomNumbForSrpint);
 				Thread.sleep(4000);
-//				clickJS(JiraUIMap.SaveSprint_btn);
+				clickJS(JiraUIMap.UpdateSprint_btn);
 //				click(JiraUIMap.BacklogIcon_Img);
 				Baseclass.getInstance().Jira_SprintName = currentsprintname+"_"+randomNumbForSrpint;
 			}
@@ -1021,4 +1170,232 @@ public static void CreateReleaseForCloudJira(String ReleaseOrSprint) {
 
 	
 }
+
+public static void openworkiteminjira(String workitem,String toolname) {
+	try{
+		String urltonavigate="";
+		if(toolname.equalsIgnoreCase("ADT Jira"))
+			urltonavigate = Property.getProperty("JiraURL").split("secure")[0]+"browse";
+		if(toolname.equalsIgnoreCase("ADOP Jira"))
+			urltonavigate = Property.getProperty("JiraURL")+"/browse";
+		if(toolname.equalsIgnoreCase("Cloud Jira"))
+			urltonavigate = Property.getProperty("JiraURL").split("secure")[0]+"/browse";
+	String testDataPath_WorkItemExternalIDs="";
+	if(toolname.contains("Jira") || toolname.contains("JIRA"))
+	testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+	String WorkItemExternalId = Tools.getWorkItemExternalID(workitem.split("_")[0], toolname);
+	
+			goURL(urltonavigate+"/"+WorkItemExternalId);
+	
+	Thread.sleep(5000);
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+}
+
+public static void changeProjectOrIssueTypeofWorkitem(String ProjectOrEntityType, String workitem,String toolname,String workitemTo) {
+	try{
+		if(!toolname.equalsIgnoreCase("Cloud Jira"))
+			{
+			ExpWaitForCondition(JiraUIMap.more_link);
+			clickJS(JiraUIMap.more_link);
+			}
+		if(toolname.equalsIgnoreCase("Cloud Jira"))
+			{
+			ExpWaitForCondition(JiraUIMap.ActiontheWorkItem_link);
+			clickJS(JiraUIMap.ActiontheWorkItem_link);
+			}
+			clickJS(JiraUIMap.move_link);
+	ExpWaitForCondition(JiraUIMap.moveIssue_txt);
+	if(ProjectOrEntityType.equalsIgnoreCase("Project")){
+	clickJS(JiraUIMap.newproject_drpdown);
+	sendBackSpace(JiraUIMap.newproject_drpdown);
+	enterText(JiraUIMap.newproject_drpdown,Property.getProperty("JiraMoveToProject"));
+	sendEnter(JiraUIMap.newproject_drpdown);
+	}
+	else if(ProjectOrEntityType.equalsIgnoreCase("EntityType"))
+	{
+	doubleClick(JiraUIMap.newentitytype_drpdown);
+	Thread.sleep(2000);
+	sendBackSpace(JiraUIMap.newentitytype_drpdown);
+	Thread.sleep(2000);
+	enterText(JiraUIMap.newentitytype_drpdown,workitemTo.split("_")[0]);
+	sendEnter(JiraUIMap.newentitytype_drpdown);
+	}
+	singleClick((JiraUIMap.NextMoveIssue_btn));
+	ExpWaitForCondition(JiraUIMap.updatefields_statictxt);
+	singleClick(JiraUIMap.NextMoveIssue_btn);
+	ExpWaitForCondition(JiraUIMap.MoveIssueConfirm_statictxt);
+	Thread.sleep(3000);
+	clickJS(JiraUIMap.MoveSubmit_btn);
+	String newWI_Id="";
+	if(!toolname.equalsIgnoreCase("Cloud Jira"))
+	{
+		ExpWaitForCondition(JiraUIMap.confirmProjectChange_statictxt);
+		newWI_Id = getText(JiraUIMap.confirmProjectChange_statictxt);
+		if(ProjectOrEntityType.equalsIgnoreCase("Project"))
+		captureWorkItems(workitem,newWI_Id);
+		if(ProjectOrEntityType.equalsIgnoreCase("entitytype"))
+			captureWorkItems(workitemTo,newWI_Id);
+	}
+	if(toolname.equalsIgnoreCase("Cloud Jira"))
+	{
+		ExpWaitForCondition(JiraUIMap.CloudJiraconfirmProjectChange_statictxt);
+		newWI_Id = getText(JiraUIMap.CloudJiraconfirmProjectChange_statictxt);
+		if(ProjectOrEntityType.equalsIgnoreCase("Project"))
+			captureWorkItems(workitem,newWI_Id);
+			if(ProjectOrEntityType.equalsIgnoreCase("entitytype"))
+				captureWorkItems(workitemTo,newWI_Id);
+	}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		logger.info("issue changing project type for "+workitem+" for tool "+toolname);
+	}
+}
+
+private static void captureWorkItems(String workitem, String newWI_Id) {
+//	String Workitem = workitem.split("_")[0];
+	switch(workitem.split("_")[0]){
+	
+	case "task":
+	case "Task":
+	Baseclass.getInstance().WorkItemExternalId_Task = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "story":
+	case "Story":
+	Baseclass.getInstance().WorkItemExternalId_Story = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "work request":
+	case "Work Request":
+	Baseclass.getInstance().WorkItemExternalId_WorkRequest = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "risk":
+	case "Risk":
+	Baseclass.getInstance().WorkItemExternalId_Risk = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "issue":
+	case "Issue":
+	Baseclass.getInstance().WorkItemExternalId_Issue = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "bug":
+	case "Bug":
+	Baseclass.getInstance().WorkItemExternalId_Bug = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "feature":
+	case "Feature":
+	Baseclass.getInstance().WorkItemExternalId_Feature = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	case "new feature":
+	case "New Feature":
+	Baseclass.getInstance().WorkItemExternalId_Feature = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "impediment":
+	case "Impediment":
+	Baseclass.getInstance().WorkItemExternalId_Impediment = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "deliverable":
+	case "Deliverable":
+	Baseclass.getInstance().WorkItemExternalId_Deliverable = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "requirement":
+	case "Requirement":
+	Baseclass.getInstance().WorkItemExternalId_Requirement = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "test":
+	case "Test":
+	Baseclass.getInstance().WorkItemExternalId_Test = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "TestForTestExec":
+	case "testForTestExec":
+	Baseclass.getInstance().WorkItemExternalId_TestExecution = Baseclass.getInstance().WorkItemExternalId_TestExecution+"_"+newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	
+	break;
+	case "epic":
+	case "Epic":
+	Baseclass.getInstance().WorkItemExternalId_Epic = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "subtask":
+	case "SubTask":
+	Baseclass.getInstance().WorkItemExternalId_SubTask = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "Milestone":
+	case "milestone":
+	Baseclass.getInstance().WorkItemExternalId_Milestone = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "Action":
+	case "action":
+	Baseclass.getInstance().WorkItemExternalId_Action = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	break;
+	case "test execution":
+	case "Test Execution":
+	Baseclass.getInstance().WorkItemExternalId_TestExecution = newWI_Id;
+	System.out.println("Created "+workitem.split("_")[0]+" ID is "+newWI_Id);
+	sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
+	doubleClick(JiraUIMap.SearchBoxHomePage_txtbox);
+	sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
+	break;
+	default:
+        throw new IllegalArgumentException("Invalid workitem: " + workitem.split("_")[0]);	
+	}
+	
+}
+
+public static void CreateWorkitemfornonsanity(String workitem) {
+	try	{
+		ExpWaitForCondition(JiraUIMap.Create_link);
+		clickJS(JiraUIMap.Create_link);
+		Thread.sleep(5000);
+		JiraWorkitem.SelectWorkItemtype(workitem);
+		 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
+		 workitem_title = wi.Summary;
+		ExpWaitForCondition(JiraUIMap.Summary_txtBox);
+		Thread.sleep(3000);
+		 enterTextUsingAction(JiraUIMap.Summary_txtBox,wi.Summary);
+		 Thread.sleep(1000);
+		String workItemSplit[] = workitem.split("_");
+		switch(workItemSplit[0]){
+		case "story":
+		case "Story":
+			enterText(JiraUIMap.StoryPoints_txtbox, wi.StoryPoints);
+			doubleClick(JiraUIMap.Priority_drpdown);
+			Thread.sleep(2000);
+			sendBackSpace(JiraUIMap.Priority_drpdown);
+			enterText(JiraUIMap.Priority_drpdown, wi.Priority);
+			sendEnter(JiraUIMap.Priority_drpdown);
+			clickJS(JiraUIMap.BusinessValue_drpdown);
+			System.out.println();
+			selectDropdownByText(JiraUIMap.BusinessValue_drpdown, wi.BusinessValue);
+			selectDropdownByText(JiraUIMap.RiskReduction_drpdown, wi.RiskReduction);
+			Thread.sleep(1000);
+			break;
+		}
+		clickJS(JiraUIMap.Create_btn);
+		JiraWorkitem.CaptureWorkitemID(workitem);
+	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			}
+		}
+
 	}

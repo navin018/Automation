@@ -184,7 +184,7 @@ Scenario: Check for the security headers
 Scenario: Check for the security headers 
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
-	And i click on tile "my Queries" 
+	And i click on tile "My Queries" 
 	And the user check for the duplicate security headers and missing security headers for "my Queries" 
 	And i click on link "New Query" under "my Queries page" 
 	And the user check for the duplicate security headers and missing security headers for "my Queries/New Query page" 
@@ -283,14 +283,17 @@ Scenario: Check for the security headers
 	Then i select only the client for "<applicationname>" 
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation" 
 	And i click on "ConfigContractExplore" button 
+	
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/ConfigContractExplore" 
-	And i click on link "Add Delivery Structure" under "DIY AD Automation/ConfigContractExplore page/Add Delivery Structure" 
+#	And i click on link "Add Delivery Structure" under "DIY AD Automation/ConfigContractExplore page/Add Delivery Structure"
+	And i add a DC 
 	And the user check for the duplicate security headers and missing security headers for "DIY Automation/Add Delivery Structure/ConfigContractExplore" 
-	And i click on "CloseAddDC" button 
+#	And i click on "CloseAddDC" button 
 	And i click on "Back to DIY AD Automation" button 
 	And i click on "SelfEnabledAutomationExplore" button 
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/SelfEnabledAutomationExplore" 
 	And i click on "Select Functions" button 
+	And i select the details for select function page
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/SelfEnabledAutomationExplore/Select Functions" 
 	And i click on link "Add Tool" under "Select Functions sub-page under SelfEnabledAutomationExplore page/DIY AD Automation tile" 
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/SelfEnabledAutomationExplore/Select Functions/Add tool" 
@@ -306,9 +309,9 @@ Scenario: Check for the security headers
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Enable Usecases" 
 	And i click on "Back to Overall Setup Progress" button 
 			#Add users not clickable
-		#	And i click on "Add Users" button 
-			#And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Add Users" 
-		#	And i click on "Back to Overall Setup Progress" button 
+			And i click on "Add Users" button 
+			And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Add Users" 
+			And i click on "Back to Overall Setup Progress" button 
 	And i click on "Back to DIY AD Automation" button 
 	And i click on "OnbaordClientToolExplore" button 
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/OnbaordClientToolExplore" 
