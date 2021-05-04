@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
@@ -458,7 +459,7 @@ public class SeleniumDSL {
 		performAct.sendKeys(driver().findElement(by),val).build().perform();
     }
 	
-	public static void HoverUsingAction(By by, String val)  {
+	public static void HoverUsingAction(By by)  {
 		
 		Actions performAct = new Actions(driver()); 
 		performAct.moveToElement(driver().findElement(by)).build().perform();
@@ -480,10 +481,52 @@ public class SeleniumDSL {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(Keys.ENTER);
     }
 	
+	public static void sendCtrlPlusPageDown()  {
+		Actions actionObj = new Actions(driver());
+		
+		actionObj.keyDown(Keys.CONTROL).sendKeys(Keys.PAGE_DOWN).keyUp(Keys.CONTROL).build().perform();
+		       
+    }
+	
 	public static void sendBackSpace(By by)  {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(Keys.BACK_SPACE);
     }
 	
+	public static void EnterTextUsingJS(By by,String val)  {
+		 WebElement element = driver().findElement(by);
+		JavascriptExecutor JS = (JavascriptExecutor)driver();
+		JS.executeScript("arguments[0].value='"+val+"';", element);
+    }
+	
+	public static void DragAndDropUsingJS(WebElement source,WebElement destination)  {
+		JavascriptExecutor js = (JavascriptExecutor)driver();
+		js.executeScript("function createEvent(typeOfEvent) {\n" + "var event =document.createEvent(\"CustomEvent\");\n"
+		                    + "event.initCustomEvent(typeOfEvent,true, true, null);\n" + "event.dataTransfer = {\n" + "data: {},\n"
+		                    + "setData: function (key, value) {\n" + "this.data[key] = value;\n" + "},\n"
+		                    + "getData: function (key) {\n" + "return this.data[key];\n" + "}\n" + "};\n" + "return event;\n"
+		                    + "}\n" + "\n" + "function dispatchEvent(element, event,transferData) {\n"
+		                    + "if (transferData !== undefined) {\n" + "event.dataTransfer = transferData;\n" + "}\n"
+		                    + "if (element.dispatchEvent) {\n" + "element.dispatchEvent(event);\n"
+		                    + "} else if (element.fireEvent) {\n" + "element.fireEvent(\"on\" + event.type, event);\n" + "}\n"
+		                    + "}\n" + "\n" + "function simulateHTML5DragAndDrop(element, destination) {\n"
+		                    + "var dragStartEvent =createEvent('dragstart');\n" + "dispatchEvent(element, dragStartEvent);\n"
+		                    + "var dropEvent = createEvent('drop');\n"
+		                    + "dispatchEvent(destination, dropEvent,dragStartEvent.dataTransfer);\n"
+		                    + "var dragEndEvent = createEvent('dragend');\n"
+		                    + "dispatchEvent(element, dragEndEvent,dropEvent.dataTransfer);\n" + "}\n" + "\n"
+		                    + "var source = arguments[0];\n" + "var destination = arguments[1];\n"
+		                    + "simulateHTML5DragAndDrop(source,destination);", source, destination);   }
+	
+	public static int RandomNumberGenerator(){
+		Random rnd = new Random();
+		return 1000 + rnd.nextInt(9000);
+	}
+	
+	public static void sendDelete()  {
+		Actions ac = new Actions(driver());
+		ac.sendKeys(Keys.DELETE);
+		ac.build().perform();
+    }
 	public static void sendTab(By by)  {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(Keys.TAB);
     }
@@ -621,12 +664,12 @@ public class SeleniumDSL {
 	}
 	
 	public static void ExpWaitForCondition(By by){
-		WebDriverWait wait = new WebDriverWait(driver(), 120);
+		WebDriverWait wait = new WebDriverWait(driver(), 360);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
 	
 	public static void ExpWaitForElementToDisappear(By by){
-		WebDriverWait wait = new WebDriverWait(driver(), 120);
+		WebDriverWait wait = new WebDriverWait(driver(), 360);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
 	}
 	
@@ -694,6 +737,11 @@ public class SeleniumDSL {
 	public static void doubleClick(By by) {
 		Actions action = new Actions(driver());
 		action.doubleClick(driver().findElement(by)).build().perform();
+	}
+	
+	public static void rightClick(By by) {
+		Actions action = new Actions(driver());
+		action.contextClick(driver().findElement(by)).build().perform();
 	}
 	public static void singleClick(By by) {
 		Actions action = new Actions(driver());
@@ -898,8 +946,19 @@ public class SeleniumDSL {
 	public static void ScrollIntoView(By by)
 	{
 		WebElement element = driver().findElement(by);
-		((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView();", element);
+		((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView(true);", element);
 	}
+	
+	public static void ScrollToEndOfPage()
+	{
+		((JavascriptExecutor) driver()).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
+	
+	public static void Scroll1()
+	{
+		((JavascriptExecutor) driver()).executeScript("scrollBy(0,250)");
+	}
+	
 	
 	 public static boolean isNullOrEmpty(String str) {
 	        if(str != null && !str.isEmpty())

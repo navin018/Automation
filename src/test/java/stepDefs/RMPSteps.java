@@ -27,12 +27,22 @@ public class RMPSteps {
 		
 	@Then("^i navigate to RMP page$")
 	public void i_navigate_to_RMP_page() throws Throwable {
-		  RMP.NavigateToRMPPage();
+		RMP.NavigateToRMPPage();
 	}
 	
-	@Then("^i and create Release and Sprint in RMP page$")
-	public void i_and_create_Release_and_Sprint_in_RMP_page() throws Throwable {
-		  RMP.AddReleaseAndSprint();
+	@Then("^i and create Release and Sprint in RMP page for \"([^\"]*)\" for the tool \"([^\"]*)\"$")
+	public void i_and_create_Release_and_Sprint_in_RMP_page(String typeofrecon,String toolname) throws Throwable {
+//		  RMP.AddReleaseAndSprint(typeofrecon,toolname);
+		  RMP.AddReleaseAndSprint1(typeofrecon,toolname);
 		  RMP.BaselineRoadMap();
+		  RMP.CaptureReleaseAndSprintDetails(toolname);
 	}
+	
+	
+	@Then("^i perform Manual Recon for \"([^\"]*)\" for tool \"([^\"]*)\"$")
+	public void i_perform_manualrecon(String ReleaseorSprint, String toolname) throws Throwable {
+		RMP.PerformManualRecon(ReleaseorSprint,toolname);
+	}
+
+	
 }

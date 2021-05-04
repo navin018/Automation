@@ -11,7 +11,7 @@ Feature: PhoenixUI_CloudJiraUI
 #      | Jira            | 
       
       
-@1PreRequisites_CloudJira
+@1PreRequisites_Rally
 Scenario Outline: ProdConfigCheck_CloudJIRA 
 	Given i load the project properties file 
 	Given i login to application "MyWizard" 
@@ -31,7 +31,7 @@ Scenario Outline: ProdConfigCheck_CloudJIRA
 	
 	Examples: 
 		| applicationname |toolname|
-		| MyWizard        |Cloud JIRA|
+		| MyWizard        |Rally|
 		
 @2ClientNative_CloudJira		
 Scenario Outline: Client_Native_CloudJIRA(!Iteraion) 
@@ -65,7 +65,7 @@ Scenario Outline: Client_Native_CloudJIRA(iteration)
 		| applicationname |toolname_Sheet|
 		| MyWizard        |Cloud JIRA_Iteration|
 
-@3SEI_CloudJira
+@3SEI_Rally
 Scenario Outline: SEI_CloudJira_IB_Pipelines 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
@@ -84,7 +84,7 @@ Scenario Outline: SEI_CloudJira_IB_Pipelines
 		| applicationname |toolname|
 		| MyWizard        |Cloud JIRA|
 
-@3SEI_CloudJira	
+@3SEI_Rally	
 Scenario Outline: SEI_CloudJira_OB_Pipelines 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
@@ -103,7 +103,7 @@ Scenario Outline: SEI_CloudJira_OB_Pipelines
 		| applicationname |toolname|
 		| MyWizard        |Cloud JIRA|
 
-@4Rules_CloudJira
+@4Rules_Rally
 Scenario Outline: CloudJira_RulesValidation
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
@@ -121,10 +121,10 @@ Scenario Outline: Rally_WorkitemCcreation
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
-#	And i create a "<story>" in Rally 
-#	And i create a "<task>" in Rally 
-#	And i create a "<bug>" in Rally 
-#	And i create a "<risk>" in Rally 
+	And i create a "<story>" in Rally 
+	And i create a "<task>" in Rally 
+	And i create a "<bug>" in Rally 
+	And i create a "<risk>" in Rally 
 	And i create a "<feature>" in Rally 
 	And i create a "<epic>" in Rally 
 	And i create a "<Release>" in Rally 

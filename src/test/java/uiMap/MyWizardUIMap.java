@@ -18,7 +18,7 @@ public static By Pwd_txtbox1=By.xpath("//input[@type='password' and @name='Passw
 public static By signIn_btn1=By.xpath("//span[@id='submitButton']");
 public static By Yes_btn=By.xpath("//input[@type='submit'][@class='button ext-button primary ext-primary']");
 
-
+public static By BackToDashboard_link = By.xpath("//div[text()='Back to Dashboard' or @title='Go Back']");
 public static By SettingIcon_Image = By.xpath("//span[@title='Settings']");
 public static By AdminSetting_statictxt= By.xpath("//div[@title='Admin Settings']");
 
@@ -30,8 +30,13 @@ public static By ScopeSelectorEnterTxt_txtbox= By.xpath("//input[@placeholder='E
 public static By DCMsg_StaticTxt= By.xpath("//div[@aria-label='Please select a Delivery Construct to proceed']");
 public static By ScopeSelectorArrow_Drpdown = By.xpath("//span[@class='-arrow-link js-dropdown'][@id='scopeSelector']");
 public static String SelectClient_statictxt = "//span[@class='node-name'][text()='{clientname}']";
+public static String SelectClient_statictxt_RMP = "//span[contains(text(),'{clientname}')]";
 public static String SelectDC_statictxt = "//span[@class='node-name'][text()='{dcname}']";
+public static String SelectDC_statictxt_RMP = "//div[contains(text(),'{dcname}')]";
+public static String SearchResultAccountManagement_statictxt = "//div[@col-id='DisplayName'] [text()='{userID}']";
 public static String SelectProgram_statictxt = "//span[@class='node-name'][text()='{programname}']";
+public static String SelectProgram_statictxt_RMP = "//div[contains(text(),'{programname}')]";
+public static String clientInAccountManagmentScreen = "//span[text()='Client/Delivery Construct Role(s)']//following::span[@class='node-name' and text()='{clientname}']//preceding::input[1]";
 
 public static String PickAnAccount_link = "//div[text()='{username}']";
 public static String PickAnAccountnew_link = "//div[@data-test-id='{username}']";
@@ -42,7 +47,8 @@ public static String PickAnAccount1_link = "//div[contains(text(),'{username}')]
 
 
 
-public static By scopeSelector_drpdown = By.xpath("//*[@id='scopeSelector']");
+public static By scopeSelector_drpdown = By.xpath("//*[@id='scopeSelector' or @class='scope-selector']");
+public static By scopeSelector_RMP_drpdown = By.xpath("//span[@class='scope-selector-toggle -arrow-link js-dropdown']");
 public static By apply_btn = By.xpath("//button[text()='Apply']");
 //public static By apply_btn = By.xpath("//button[text()=' Apply ']");
 
@@ -58,5 +64,23 @@ public static By UploadAll_link = By.xpath("//span[text()='Upload All']");
 
 public static By Upload_checkbox = By.xpath("//table//tbody//tr[1]//td[1]//input[@name='access-role']//following::span[1]");
 public static By UploadComplete_statictxt = By.xpath("//td[text()=' Completed ']");
+public static By MywizChromeNotification_btn = By.xpath("//input[@class='btn btn-primary ' and @value='Ok']");
+public static By MywizChromeNotification_btn1 = By.xpath("//button[@class='btn btn-primary ml-auto'][text()='Ok']");
+
+
+public static By selectmyquery = By.xpath("//span[text()='QueryToFetchIterationDetails_Automation']");
+public static By QueryValue_txtbox = By.xpath("//div[@comp-id='69']");
+public static By runQuery_btn = By.xpath("//span[text()='Run Query']");
+
+public static By QueryRunSuccess_Msg = By.xpath("//div[@aria-label='The complete records have been fetched from data base. You can view /export to CSV.']");
+public static By GetIterationExternalID_statictxt = By.xpath("//div[@row-id='0']/child::div[@col-id='IterationExternalId' and @role='gridcell'][1]");
+public static By GetIterationExternalID_MoreThanoneRow_statictxt = By.xpath("//div[@row-id='1']/child::div[@col-id='IterationExternalId' and @role='gridcell'][1]");
+public static By QueryValueInput_txtbox = By.xpath("//input[@class='ag-cell-edit-input']");
+public static By Search_txtbox = By.xpath("//input[@placeholder='Enter text to search the first 500 records']");
+
+public static By Save_btn = By.xpath("//button[@class='btn btn-primary' and text()='Save']");
+public static By BacktoOverallSetup_btn = By.xpath("//div[text()='Back to Overall Setup Progress']");
+public static By BacktoDIYADAutomation_btn = By.xpath("//div[text()='Back to DIY AD Automation']");
+//public static By BackToDashboard_link = By.xpath("//div[@title='Back to Dashboard' or @title='Go Back']");
 
 }

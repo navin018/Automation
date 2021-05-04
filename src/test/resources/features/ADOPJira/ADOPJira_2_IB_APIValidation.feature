@@ -4,6 +4,7 @@ Feature: ADOPJira_IB_Validation
 
 Scenario: ADOPJIRA_Task 
 	And i generate a token for "DevTest" environment 
+	
 	And i verify the "Inbound" "Task" details for "ADOP JIRA" 
 	
 
@@ -41,9 +42,15 @@ Scenario: ADOPJIRA_Feature
 	And i verify the "Inbound" "Feature" details for "ADOP JIRA" 
 	
 
-Scenario: ADOPJIRA_ReleaseAndSprint 
-
-	And i verify the "Inbound" "ReleaseAndSprint" details for "ADOP JIRA" 
+Scenario: ADOPJira_DIY_IBVerification_Release_Sprint 
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "my Queries"
+	Then i select client and DC for "<applicationname>"
+	And i capture the IterationExternalID for Iteration created from "tool" for tool "ADOP Jira" 
+	And i generate a token for "DevTest" environment 	
+	And i verify if "Release" has "flown" which was "NA" for "ADOP Jira" for "Normal" functionality
+	And i verify if "Sprint" has "flown" which was "NA" for "ADOP Jira" for "Normal" functionality
 	
 
 	

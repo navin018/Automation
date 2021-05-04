@@ -21,6 +21,8 @@ public static By signInPwd_txtbox=By.xpath("//input[@id='passwordInput' and @nam
 public static By signIn_btn=By.xpath("//span[@id='submitButton']");
 
 public static By Create_link=By.xpath("//a[@id='create_link']");
+public static By cancel_btn=By.xpath("//a[text()='Cancel']");
+
 public static By CreateIssue_Statictxt=By.xpath("//h2[@title='Create Issue']");
 public static By CreateWokitem_dropdown=By.xpath("//input[@id='issuetype-field']");
 public static By SelectProject_dropdown=By.xpath("//input[@id='project-field']");
@@ -44,7 +46,7 @@ public static By CreateSubTask_btn=By.xpath("//span[text()='Create sub-task']");
 public static By firstElementInSearchBox_staticTxt = By.xpath("//span[@class='quick-search-item-title'][@xpath='1']");
 
 
-public static By Project_link=By.xpath("//a[@title='View recent projects and browse a list of projects']");
+public static By Project_link=By.xpath("//*[@title='View recent projects and browse a list of projects' or text()='Projects']");
 public static String SelectProject_Link = "//a[contains(@href,'{ProjectName}')][@class='aui-icon-container'][contains(@id,'proj_lnk')]";
 public static String checkIfTeamCreated_link = "//a[text()='{teamname}']";
 public static By WorkItemExternalID_txt=By.xpath("//div[@class='quick-search-section-heading']//following::a[1]");
@@ -57,15 +59,18 @@ public static By AddTestExecution_btn=By.xpath("//input[@value='Add' and @id='is
 public static By AssociatedSuccess_txt=By.xpath("//div[@class='aui-message closeable aui-message-success']");
 
 public static By ExistingTestExecution_statictxt=By.xpath("//a[@title='Existing Test Execution']");
-public static By ViewAllProject_link = By.xpath("//a[@id='project_view_all_link_lnk']");
-public static By SearchBoxAllPorjects_txtbox=By.xpath("//input[@id='project-filter-text']");
+public static By ViewAllProject_link = By.xpath("//*[@id='project_view_all_link_lnk' or text()='View all projects']");
+public static By SearchBoxAllPorjects_txtbox=By.xpath("//input[@id='project-filter-text' or @aria-label='Search projects']");
 public static By ProjectKey_Statictxt = By.xpath("//table[@class='aui']//tbody//tr[1]//td[2]");
+public static String ProjectKeyCloudJira_Statictxt = "//span[text()='{projectname}']";
 public static By ProjectToSelect_Statictxt = By.xpath("//td[@class='cell-type-name']//a[1]");
 
 public static By DynamicWorkItemID_txt = By.xpath("//a[@class='issue-created-key issue-link'][contains(text(),'has been successfully created.')]");
 
 public static By StoryPoints_txtbox = By.xpath("//label[text()='Story Points']//following::input[1]");
-
+public static By SprintName_drpdown = By.xpath("//input[@id='customfield_10100-field']");
+public static By ReleaseName_drpdown = By.xpath("//textarea[@id='fixVersions-textarea']");
+public static String SprintOrReleaseNamePresent_drpdown = "//*[text()='{sprintreleasename}']";
 //public static By Releases_Link = By.xpath("//a[@class='aui-nav-item '][contains(@href,'release-page')]");
 public static By Releases_Link = By.xpath("//span[text()='Releases']");
 public static By SearchReleases_txtbox = By.xpath("//input[@id='version-filter-text']");
@@ -103,6 +108,8 @@ public static By ActiveSprint_Img = By.xpath("//span[@class='active-sprint-lozen
 
 public static By CreateSprint_btn = By.xpath("//button[text()='Create sprint']");
 public static By NewSprintName_txt = By.xpath("//input[@id='ghx-sprint-name']");
+public static By SprintStartDate_txt = By.xpath("//input[@id='ghx-sprint-start-date']");
+public static By SprintEndDate_txt = By.xpath("//input[@id='ghx-sprint-end-date']");
 public static By CreateNewSprint_btn = By.xpath("//button[@title='Press Ctrl+Alt+s to submit this form.']");
 
 

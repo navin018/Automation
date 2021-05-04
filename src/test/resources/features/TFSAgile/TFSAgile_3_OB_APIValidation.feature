@@ -59,3 +59,8 @@ Scenario: TFSAgile_Deliverable
 Scenario: TFSAgile_Milestone
 	
 	And i verify the "Outbound" "Milestone" details for "TFS Agile" 	
+
+	Scenario: TFSAgile_WorkRequest
+	
+	And i verify the "Outbound" "Work Request" details for "TFS Agile"
+	

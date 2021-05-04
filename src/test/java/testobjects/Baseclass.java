@@ -68,11 +68,13 @@ Baseclass(){
 	public boolean SecurityTestsResults;
 	public boolean workitemcreation_fail;
 	
+	public String release_IterationExternalID;
+	public String sprint_IterationExternalID;
 	
-	
-	
+	public String DCName;
 
-
+	public String CorrelationUID;
+	public String CorrelationUID_OB;
 	public boolean isSecurityTestsResults() {
 		return SecurityTestsResults;
 	}

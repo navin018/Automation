@@ -3,9 +3,11 @@ Feature: ADTJira_IB_Validation
 
 
 Scenario: ADTJIRA_Task 
-Given i load the project properties file 
+	Given i load the project properties file 
 	And i generate a token for "DevTest" environment 
-	And i verify the "Inbound" "Task" details for "ADT JIRA" 
+	And i verify the "Inbound" "Task" details for "ADT JIRA"
+	
+	 
 
 Scenario: ADTJIRA_Epic 
 
@@ -13,7 +15,6 @@ Scenario: ADTJIRA_Epic
 	
 
 Scenario: ADTJIRA_Story 
-
 	And i verify the "Inbound" "Story" details for "ADT JIRA" 
 
 
@@ -40,13 +41,6 @@ Scenario: ADTJIRA_Feature
 
 	And i verify the "Inbound" "Feature" details for "ADT JIRA" 
 	
-	
-
-#Scenario: ADTJIRA_SubTask 
-#
-#	And i verify the "Inbound" "SubTask" details for "ADT JIRA" 
-	
-
 Scenario: ADTJIRA_Deliverable 
 
 	And i verify the "Inbound" "Deliverable" details for "ADT JIRA" 
@@ -69,7 +63,10 @@ Scenario: ADTJIRA_Milestone
 Scenario: ADTJIRA_Action
 	
 	And i verify the "Inbound" "Action" details for "ADT JIRA"
-	
+
+	Scenario: ADTJIRA_WorkRequest
+ 
+	And i verify the "Inbound" "Work Request" details for "ADT JIRA"
 
 Scenario: ADTJIRA_TestExecution 
 	
@@ -80,7 +77,14 @@ Scenario: ADTJIRA_TestExecution
 #	And i verify the "Inbound" "Team" details for "ADT JIRA" 	
 
 
-Scenario: ADTJIRA_ReleaseAndSprint 
-
-	And i verify the "Inbound" "ReleaseAndSprint" details for "ADT JIRA" 
+Scenario: ADTJira_DIY_IBVerification_Release_Sprint 
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "my Queries"
+	Then i select client and DC for "<applicationname>"
+	And i capture the IterationExternalID for Iteration created from "tool" for tool "ADT Jira" 
+	And i generate a token for "DevTest" environment 	
+	And i verify if "Release" has "flown" which was "NA" for "ADT Jira" for "Normal" functionality
+	And i verify if "Sprint" has "flown" which was "NA" for "ADT Jira" for "Normal" functionality
+	
 

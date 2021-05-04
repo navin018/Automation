@@ -56,6 +56,8 @@ And i verify if "Mielstone" has "deleted" which was "NA" for "ADT JIRA" for "del
 Scenario: ADTJIRA_Action
 And i verify if "Action" has "deleted" which was "NA" for "ADT JIRA" for "delete" functionality 	
 	
+Scenario: ADTJIRA_WorkRequest_flow_afterDelete
+And i verify if "Work Request" has "deleted" which was "NA" for "ADT JIRA" for "delete" functionality
 	
 #confirmthis
 #Scenario: ADTJIRA_TestExecution_flow_afterDelete 

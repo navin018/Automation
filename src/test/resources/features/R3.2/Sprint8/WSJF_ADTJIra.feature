@@ -5,7 +5,7 @@ Scenario Outline: ADTJIra_WorkitemCcreation
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
-	And i create a "<Story>" in Jira for non-sanity 
+	And i create a "<Story>" in Jira for "WSJF functionality" 
 	# And i create a "<Requirement>" in TFS for non-sanity
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" 
 	

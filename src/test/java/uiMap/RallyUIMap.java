@@ -61,6 +61,13 @@ public static By PortfolioDrpdownSelectInitiative_drpdown=By.xpath("//div[text()
 
 public static By Feature_link=By.xpath("//span[text()='Feature']");
 public static By Initiative_link=By.xpath("//span[text()='Initiative']");
+public static By SearchWorkitem_txtbox=By.xpath("//input[@aria-label='Search Work Items']");
+public static String SearchResultforWorkitem_txt="//span[text()='{workitemid}']";
+public static By WorkitemopenedSuccess_txt=By.xpath("//h1[@id='entityId']");
+public static By changeStatusToNext_icon=By.xpath("//div[@class='chr-EditorsScheduleStates']//following::div[contains(@class,'chr-EditorsScheduleStates-block chr-EditorsScheduleStates-block--after')][1]");
+public static By SaveWorkitem_btn=By.xpath("//span[text()='Save']");
+
+
 //public static String SelectProject_Link = "//a[contains(@href,'{ProjectName}')][@class='aui-icon-container'][contains(@id,'proj_lnk')]";
 //public static String checkIfTeamCreated_link = "//a[text()='{teamname}']";
 //public static By WorkItemExternalID_txt=By.xpath("//div[@class='quick-search-section-heading']//following::a[1]");

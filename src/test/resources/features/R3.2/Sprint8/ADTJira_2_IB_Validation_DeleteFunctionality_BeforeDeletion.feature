@@ -53,16 +53,18 @@ And i verify if "Requirement" has "flown" which was "NA" for "ADT JIRA" for "del
 	
 
 Scenario: ADTJIRA_Milestone_flow_beforeDelete 
-And i verify if "Mielstone" has "flown" which was "NA" for "ADT JIRA" for "delete" functionality 
+And i verify if "Milestone" has "flown" which was "NA" for "ADT JIRA" for "delete" functionality 
 	
 Scenario: ADTJIRA_Action_flow_beforeDelete
 And i verify if "Action" has "flown" which was "NA" for "ADT JIRA" for "delete" functionality 	
 	
-	
-#confirmthis
+#confirm with swetha	
 #Scenario: ADTJIRA_TestExecution_flow_beforeDelete 
 #And i verify if "TestExecution" has "flown" which was "NA" for "ADT JIRA" for "delete" functionality
-	 
+	
+Scenario: ADTJIRA_WorkRequest_flow_beforeDelete
+And i verify if "Work Request" has "flown" which was "NA" for "ADT JIRA" for "delete" functionality
+ 
 
 Scenario: ADTJIRA_ReleaseAndSprint_flow_beforeDelete 
 And i verify if "ReleaseAndSprint" has "flown" which was "NA" for "ADT JIRA" for "delete" functionality

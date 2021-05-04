@@ -15,7 +15,7 @@ Scenario: ADTJIRA_Story
 
 	And i verify the "Outbound" "Story" details for "ADT JIRA" 
 
-@risk
+
 Scenario: ADTJIRA_Risk 
 
 	And i verify the "Outbound" "Risk" details for "ADT JIRA" 
@@ -40,11 +40,6 @@ Scenario: ADTJIRA_Feature
 	And i verify the "Outbound" "Feature" details for "ADT JIRA" 
 	
 
-#Scenario: ADTJIRA_SubTask 
-#
-#	And i verify the "Outbound" "SubTask" details for "ADT JIRA" 
-	
-
 Scenario: ADTJIRA_Deliverable 
 
 	And i verify the "Outbound" "Deliverable" details for "ADT JIRA" 
@@ -67,6 +62,9 @@ Scenario: ADTJIRA_Milestone
 Scenario: ADTJIRA_Action
 	
 	And i verify the "Outbound" "Action" details for "ADT JIRA" 
+	
+Scenario: ADTJIRA_WorkRequest
+	And i verify the "Outbound" "Work Request" details for "ADT JIRA" 
 
 #Scenario: ADTJIRA_TestExecution
 #	

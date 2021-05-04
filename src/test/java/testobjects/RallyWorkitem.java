@@ -29,6 +29,7 @@ import dataobjects.WorkItemExternalIDDO;
 import testobjects.Baseclass;
 import uiMap.JiraUIMap;
 import uiMap.RallyUIMap;
+import uiMap.TFSUIMap;
 import utilities.general.DataManager;
 import utilities.general.Property;
 import org.json.simple.JSONArray;
@@ -99,8 +100,59 @@ import java.util.Random;
 		public static void CaptureWorkitemID(String workitem) throws InterruptedException {
 		ExpWaitForCondition(RallyUIMap.CofirmWorkitemAdded_Msg);
 		String workitemID = getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0];
-			System.out.println(workitem + "id is "+workitemID);
-			Thread.sleep(5000);
+//			System.out.println(workitem + "id is "+workitemID);
+			Thread.sleep(3000);
+			try {
+				String workitem_sp[] = workitem.split("_");
+				switch(workitem_sp[0].toLowerCase()){
+				
+				case "bug":
+				
+						Baseclass.getInstance().WorkItemExternalId_Bug = getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0];
+						System.out.println(workitem+" id is "+getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0]);
+//						click(TFSUIMap.close_btn);
+						break;
+				case "epic":
+				
+						Baseclass.getInstance().WorkItemExternalId_Epic =  getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0];
+						System.out.println(workitem+" id is "+getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0]);
+//						click(TFSUIMap.close_btn);
+						break;
+				case "risk":
+					
+					Baseclass.getInstance().WorkItemExternalId_Risk =  getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0];
+					System.out.println(workitem+" id is "+getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0]);
+//					click(TFSUIMap.close_btn);
+					break;
+				case "feature":
+				
+						Baseclass.getInstance().WorkItemExternalId_Feature =getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0];
+						System.out.println(workitem+" id is "+getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0]);
+//						click(TFSUIMap.close_btn);
+						break;
+			
+				case "task":
+				
+						Baseclass.getInstance().WorkItemExternalId_Task =getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0];
+						System.out.println(workitem+" id is "+getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0]);
+//						click(TFSUIMap.close_btn);
+						break;
+				case "story":
+				case "user story":
+				
+						Baseclass.getInstance().WorkItemExternalId_Story =getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0];
+						System.out.println(workitem+" id is "+getText(RallyUIMap.GetWorkitemID_StaticTxt).split(":")[0]);
+//						click(TFSUIMap.close_btn);
+						break;
+				default:
+			        throw new IllegalArgumentException("Invalid workitem: " + workitem);	
+				}
+				
+				
+			} catch (Exception e) {
+				System.out.println("Issue with capturing workitem ID");
+				e.printStackTrace();
+			}
 		}
 
 		public static void CreateRelease() {
@@ -138,6 +190,34 @@ import java.util.Random;
 			{
 				e.printStackTrace();
 			}
+		}
+
+		public static void openworkitem(String workitem) {
+			try{
+			ExpWaitForCondition(RallyUIMap.plan_link);
+			clickJS(RallyUIMap.plan_link);
+			clickJS(RallyUIMap.userStories_link);
+			Thread.sleep(5000);
+			ExpWaitForCondition(RallyUIMap.SearchWorkitem_txtbox);
+			String WorkItemExternalId = Tools.getWorkItemExternalID(workitem.split("_")[0],"Rally");
+			enterText(RallyUIMap.SearchWorkitem_txtbox, WorkItemExternalId);
+			ExpWaitForCondition(prepareWebElementWithDynamicXpath(RallyUIMap.SearchResultforWorkitem_txt, WorkItemExternalId, "workitemid"));
+			clickJS(prepareWebElementWithDynamicXpath(RallyUIMap.SearchResultforWorkitem_txt, WorkItemExternalId, "workitemid"));
+			ExpWaitForCondition(RallyUIMap.WorkitemopenedSuccess_txt);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				Assert.fail("issue opening workitem in rally");
+				logger.info("issue opening workitem in rally");
+			}
+		}
+
+		public static void changeStatus(String status) {
+			clickJS(RallyUIMap.changeStatusToNext_icon);
+			clickJS(RallyUIMap.SaveWorkitem_btn);
+			
+			
 		}
 	
 

@@ -87,40 +87,16 @@ public class RallySteps  {
 	}
 	
 	
-
+	@Then("^i update the status of \"([^\"]*)\" to \"([^\"]*)\" in Rally$")
+	public void i_update_status_of_story(String workitem, String status) throws Throwable {
+		RallyWorkitem.openworkitem(workitem);
+		RallyWorkitem.changeStatus(status);
+	}
 
 
 
 	
-//
-//	@Then("^i create an \"([^\"]*)\" in Jira$")
-//	public void iCreateAnInJira(String ReleaseOrTeam) throws Throwable {
-//		if(ReleaseOrTeam.contains("Release") || ReleaseOrTeam.contains("release") || ReleaseOrTeam.contains("Sprint") || ReleaseOrTeam.contains("sprint"))
-//			{
-//			if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
-//			JiraWorkitem.CreateRelease(ReleaseOrTeam);
-//			if(Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
-//				JiraWorkitem.CreateReleaseForCloudJira(ReleaseOrTeam);
-//			}
-//		if(ReleaseOrTeam.contains("Team") || ReleaseOrTeam.contains("team"))
-//			JiraWorkitem.CreateTeam(ReleaseOrTeam);	
-//	}
-//	
-//	
-////
-////	@Then("^i validate the outbound flow for \"([^\"]*)\" $")
-////	public void iValidateTheOutboundFlow(String appname) throws Throwable {
-////		JiraWorkitem.ValidateOB(appname);
-////	}
-//
-//	@Then("^i delete the test automation data$")
-//	public void i_delete_the_test_automation_data() throws Throwable {
-//	   JiraWorkitem.DeleteTestAutomationData();
-//	   }
-//	
-//	@Then("^i copy existing workitem details for \"([^\"]*)\" into WorkItemExternalIDsFile$")
-//	public void i_copy_existing_workitem_details_for_into_WorkItemExternalIDsFile(String project) throws Throwable {
-//		JiraWorkitem.updateWorkItemExternalIDFile(project);
+
 //	}
 	
 

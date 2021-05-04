@@ -28,7 +28,7 @@ Scenario: TFSAgile_Bug
 
 	And i verify the "Inbound" "Bug" details for "TFS Agile" 
 	
-@f
+
 Scenario: TFSAgile_Feature 
 
 	And i verify the "Inbound" "Feature" details for "TFS Agile" 
@@ -65,9 +65,19 @@ Scenario: TFSAgile_Decision
 Scenario: TFSAgile_Milestone
 	And i verify the "Inbound" "Milestone" details for "TFS Agile"
 	
-Scenario: TFSAgile_ReleaseAndSprint 
-
-	And i verify the "Inbound" "ReleaseAndSprint" details for "TFS Agile" 
+Scenario: TFSAgile_WorkRequest
+	
+	And i verify the "Inbound" "Work Request" details for "TFS Agile"
+	
+Scenario: TFSAgile_DIY_IBVerification_Release_Sprint 
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "my Queries"
+	Then i select client and DC for "<applicationname>"
+	And i capture the IterationExternalID for Iteration created from "tool" for tool "TFS Agile" 
+	And i generate a token for "DevTest" environment 	
+	And i verify if "Release" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
+	And i verify if "Sprint" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
 
 #	Scenario: TFSAgile_TestResult
 #	And i verify the "Inbound" "Test Execution" details for "TFS Agile"

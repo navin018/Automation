@@ -62,3 +62,7 @@ Scenario: TFSScrum_Decision
 Scenario: TFSScrum_Milestone
 	
 	And i verify the "Outbound" "Milestone" details for "TFS Scrum" 	
+	
+Scenario: TFSScrum_WorkRequest
+	
+	And i verify the "Outbound" "Work Request" details for "TFS Scrum"
