@@ -31,7 +31,13 @@ public class APISteps {
 		Tools.VerifyOutBoundWorkitemDetails(workitem,toolname);
 		else Assert.fail("mention inbound or outbound only for workitem verification");
 	}
-
+	
+//	And i verify the "Outbound" flow for "Story" details for "ADT JIRA" for "DFT" functionality
+	@Then("^i verify the Outbound flow for \"([^\"]*)\" details for \"([^\"]*)\" for \"([^\"]*)\" functionality$")
+	public void iVerifyOutBoundFlowForSpecificFunctionality(String workitem,String toolname,String functionality) throws FileNotFoundException, IOException, ParseException {
+		Tools.VerifyOutboundForSpecificFunctionality(workitem,toolname,functionality);
+	
+	}
 	@Then("^i verify if \"([^\"]*)\" has \"([^\"]*)\" which was \"([^\"]*)\" for \"([^\"]*)\" for \"([^\"]*)\" functionality$")
 	public void iVerifyWorkitemDetailfordeletefunctionality(String workitem,String flownOrDeleted,String oldworkitemtype, String toolname,String functionality) throws FileNotFoundException, IOException, ParseException {
 		
@@ -41,7 +47,11 @@ public class APISteps {
 			Tools.Verifyifworkitemisflown(workitem,flownOrDeleted,toolname,functionality);
 		if(functionality.equalsIgnoreCase("WSJF"))
 			Tools.VerifyWSJFFuncionality(workitem,toolname);
+		if(functionality.equalsIgnoreCase("ScrumBan"))
+			Tools.VerifyScrumBanFuncionality(workitem,toolname,flownOrDeleted);
 		if(functionality.equalsIgnoreCase("ChangeProjectToAnother"))
+			Tools.Verifyifworkitemisflown(workitem,flownOrDeleted,toolname,functionality);
+		if(functionality.contains("Recon") || functionality.equalsIgnoreCase("DFT") || functionality.equalsIgnoreCase("DIY") || functionality.equalsIgnoreCase("Normal"))
 			Tools.Verifyifworkitemisflown(workitem,flownOrDeleted,toolname,functionality);
 	}
 	

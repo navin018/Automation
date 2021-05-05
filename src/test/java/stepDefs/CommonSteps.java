@@ -65,11 +65,17 @@ public class CommonSteps {
 		  
 	}
 	
+	@Given("^i capture the IterationExternalID for Iteration created from \"([^\"]*)\" for tool \"([^\"]*)\"$")
+	public void icaptureIterationExternalID(String toolOrRMP, String toolname) throws Throwable {
+		CommonFunctions.captureIterationExternalID(toolOrRMP, toolname);
+	}
+	
+	
 	@Given("^i login to application \"([^\"]*)\"$")
 	public void iLoginToApplicationWith(String AppName) throws Throwable {
 		
 		try{
-		switch(AppName)
+ 		switch(AppName)
 		{
 			case "Jira":
 			case "ADT Jira":
@@ -130,6 +136,8 @@ public class CommonSteps {
 		
 		}	
 	
+
+	
 	@And("^i update the WorkItemExternalIDs into a JSON file for \"([^\"]*)\" for \"([^\"]*)\" functionality$")
 	public void iUpdateTheWorkItemExternalIDsIntoAJSONFile(String appname,String MoveProjectOrIssue) throws Throwable {
 		
@@ -149,14 +157,15 @@ public class CommonSteps {
 	
 	@Then("^i select a Project for \"([^\"]*)\"$")
 	public void iSelectAProject(String AppName) throws Throwable {
-		if(AppName.equalsIgnoreCase("jira") || AppName.equalsIgnoreCase("ADT Jira") || AppName.contains("Jira"))
+		
+		if(AppName.equalsIgnoreCase("jira") || AppName.equalsIgnoreCase("ADT Jira") || AppName.equalsIgnoreCase("ADOP Jira"))
 		{
 		JiraWorkitem.SelectProject();
 		Baseclass.getInstance().workitemcreation_fail = false;
 		}
 		if(AppName.equalsIgnoreCase("cloud jira"))
 		{
-		JiraWorkitem.SelectProjectForCloudJira();
+		JiraWorkitem.selectCloudJiraProject();
 		Baseclass.getInstance().workitemcreation_fail = false;
 		Thread.sleep(20000);
 		}

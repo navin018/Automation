@@ -262,6 +262,12 @@ public class CommonAcrossApps {
 //-------------------------------removing this part as we have got a dedicated user id	
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 
+			 //notification icon mywizard works best in google chrome
+//			 if(CheckIfElementExists(MyWizardUIMap.MywizChromeNotification_btn))
+//			 {
+//				 clickJS(MyWizardUIMap.MywizChromeNotification_btn);
+//			 }
 			 ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
 //			 
 			
@@ -354,7 +360,7 @@ public static void LoginToTFS()
 		driver().get(Property.getProperty("TFS_URL"));
 	
 //		driver().manage().window().maximize();
-		Thread.sleep(20000);
+//		Thread.sleep(10000);
 		String parent=driver().getWindowHandle();
 		driver().switchTo().window(parent);
 		ExpWaitForCondition(TFSUIMap.signIn_txtbox);
@@ -384,12 +390,18 @@ public static void UpdateWorkItemExternalIDsForApps(String appname)
 try{
 			System.out.println("updating workitemexternalIDs");
 			 String WorkItemEx_FileLoc="";
+			 String WorkItemEx_FileLoc_ReleaseSprint="";
 			if(appname.contains("jira") || appname.contains("Jira") || appname.contains("JIRA")){
 			  WorkItemEx_FileLoc = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
 						+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs.json";
 			
+			  WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
+						+ File.separator + "src" + File.separator + "test" + File.separator
+						+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
+			  
 			JSONObject jsonObject = new JSONObject();
+			JSONObject jsonObject_releaseandsprintdetails = new JSONObject();
 			
 			
 		    jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);
@@ -407,21 +419,38 @@ try{
 		    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
 		    jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
 		    jsonObject.put("WorkItemExternalId_TestExecution", Baseclass.getInstance().WorkItemExternalId_TestExecution);
-		  
 		    jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
 		 
 		    jsonObject.put("WorkItemExternalId_ReleaseName", Baseclass.getInstance().Jira_ReleaseName);
 		    jsonObject.put("WorkItemExternalId_ReleaseStartDate", Baseclass.getInstance().Jira_ReleaseStartDate);
 		    jsonObject.put("WorkItemExternalId_ReleaseEndDate", Baseclass.getInstance().Jira_ReleaseEndDate);
 		    jsonObject.put("WorkItemExternalId_SprintName", Baseclass.getInstance().Jira_SprintName);
+		    jsonObject.put("WorkItemExternalId_SprintStartDate", Baseclass.getInstance().Jira_SprintStartDate);
+		    jsonObject.put("WorkItemExternalId_SprintEndDate", Baseclass.getInstance().Jira_SprintEndDate);
+		    
 		    jsonObject.put("WorkItemExternalId_Team", Baseclass.getInstance().Jira_ComponentName);
 		    
 		    jsonObject.put("WorkItemExternalId_WorkRequest", Baseclass.getInstance().WorkItemExternalId_WorkRequest);
 		    
-		    FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+		    
+		     FileWriter file = new FileWriter(WorkItemEx_FileLoc);
 	         file.write(jsonObject.toJSONString());
 	         file.flush();
 	         file.close();
+	         
+	         if(!(Baseclass.getInstance().Jira_ReleaseName==null || (Baseclass.getInstance().Jira_SprintName==null))){
+	 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseName", Baseclass.getInstance().Jira_ReleaseName);
+	 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseStartDate", Baseclass.getInstance().Jira_ReleaseStartDate);
+	 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseEndDate", Baseclass.getInstance().Jira_ReleaseEndDate);
+	 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintName", Baseclass.getInstance().Jira_SprintName);
+	 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintStartDate", Baseclass.getInstance().Jira_SprintStartDate);
+	 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintEndDate", Baseclass.getInstance().Jira_SprintEndDate);
+	 		    FileWriter file1 = new FileWriter(WorkItemEx_FileLoc_ReleaseSprint);
+	 	         file1.write(jsonObject_releaseandsprintdetails.toJSONString());
+	 	         file1.flush();
+	 	         file1.close();
+	 		    }
+	       
 //	         driver().close();
 //	         driver().quit();
 		}
@@ -433,15 +462,17 @@ try{
 		
 		if(appname.equalsIgnoreCase("TFS"))
 		{
-			try{String WorkItemEx_FileLoc = System.getProperty("user.dir")
+			try{
+				String WorkItemEx_FileLoc = System.getProperty("user.dir")
 					+ File.separator + "src" + File.separator + "test" + File.separator
 					+ "resources" + File.separator + "testdata" + File.separator + "TFS" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs.json";
-		  
+				 String WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
+							+ File.separator + "src" + File.separator + "test" + File.separator
+							+ "resources" + File.separator + "testdata" + File.separator + "TFS" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
 		  
 		JSONObject jsonObject = new JSONObject();
-		
+		JSONObject jsonObject_releaseandsprintdetails = new JSONObject();
 
-//System.out.println(CommonFunctions.SpiltWorkitem(Baseclass.getInstance().WorkItemExternalId_Bug));
 	    jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);
 	    jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
 	    jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
@@ -459,51 +490,58 @@ try{
 	    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
 	    jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
 	    
-//	    jsonObject.put("TFS_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
-//		jsonObject.put("TFS_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);
-//		jsonObject.put("TFS_ReleaseEndDate",Baseclass.getInstance().TFS_ReleaseEndDate);
-//		jsonObject.put("TFS_SprintName",Baseclass.getInstance().TFS_SprintName);
-//		jsonObject.put("TFS_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
-//		jsonObject.put("TFS_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
+		jsonObject.put("WorkItemExternalId_TestPlan", Baseclass.getInstance().WorkItemExternalId_TestPlan);
+		jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
+		jsonObject.put("RunID", Baseclass.getInstance().RunID);
+		jsonObject.put("WorkItemExternalId_TestExecution", Baseclass.getInstance().WorkItemExternalId_TestExecution);
 	    
 		jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
 		jsonObject.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);
 		jsonObject.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().TFS_ReleaseEndDate);
 		jsonObject.put("WorkItemExternalId_SprintName",Baseclass.getInstance().TFS_SprintName);
-		jsonObject.put("TFS_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
-		jsonObject.put("TFS_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
+		jsonObject.put("WorkItemExternalId_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
+		jsonObject.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
 		
-		
-		 jsonObject.put("WorkItemExternalId_TestPlan", Baseclass.getInstance().WorkItemExternalId_TestPlan);
-		    jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
-		    jsonObject.put("RunID", Baseclass.getInstance().RunID);
-		    jsonObject.put("WorkItemExternalId_TestExecution", Baseclass.getInstance().WorkItemExternalId_TestExecution);
-		
-	    FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+		 FileWriter file = new FileWriter(WorkItemEx_FileLoc);
          file.write(jsonObject.toJSONString());
          file.close();
-         driver().close();
+         
+
+		    
+		    if(!(Baseclass.getInstance().TFS_ReleaseName==null || (Baseclass.getInstance().TFS_SprintName==null))){
+		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
+		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);
+		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().TFS_ReleaseEndDate);
+		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintName",Baseclass.getInstance().TFS_SprintName);
+		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
+		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
+		
+       
+	         FileWriter file1 = new FileWriter(WorkItemEx_FileLoc_ReleaseSprint);
+	         file1.write(jsonObject_releaseandsprintdetails.toJSONString());
+	         file1.flush();
+	         file1.close();
 	}
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				Assert.fail("could not write workitem IDs for "+appname );
+			}
 	
-	catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		Assert.fail("could not write workitem IDs for "+appname );
-	}
-		}	
+	
+}	
 		
 		if(appname.equalsIgnoreCase("RMP"))
 		{
-			try{String FileLoc = System.getProperty("user.dir")
+			try{
+				String FileLoc = System.getProperty("user.dir")
 					+ File.separator + "src" + File.separator + "test" + File.separator
 					+ "resources" + File.separator + "testdata" + File.separator + "RMP" + File.separator + "JSON"+ File.separator + "ReleaseAndSprintDetails.json";
 		  
 		  
-		JSONObject jsonObject = new JSONObject();
+				JSONObject jsonObject = new JSONObject();
 		
-
-
-		    jsonObject.put("ReleaseName",Baseclass.getInstance().RMP_ReleaseName);
+			jsonObject.put("ReleaseName",Baseclass.getInstance().RMP_ReleaseName);
 			jsonObject.put("ReleaseStartDate",Baseclass.getInstance().RMP_ReleaseStartDate);
 			jsonObject.put("ReleaseEndDate",Baseclass.getInstance().RMP_ReleaseEndDate);
 			jsonObject.put("SprintName",Baseclass.getInstance().RMP_SprintName);
@@ -523,9 +561,48 @@ try{
 		e.printStackTrace();
 		Assert.fail("could not write release and sprint details for "+appname );
 	}
-	
-	
-	}
+		}
+		
+		if(appname.contains("Rally")){
+			try{
+			String  WorkItemEx_FileLoc = System.getProperty("user.dir")
+						+ File.separator + "src" + File.separator + "test" + File.separator
+						+ "resources" + File.separator + "testdata" + File.separator + "Rally" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs.json";
+			
+			JSONObject jsonObject = new JSONObject();
+			
+			
+		    jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);
+		    jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
+		    jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
+		    jsonObject.put("WorkItemExternalId_Issue", Baseclass.getInstance().WorkItemExternalId_Issue);
+		   
+		    jsonObject.put("WorkItemExternalId_Feature", Baseclass.getInstance().WorkItemExternalId_Feature);
+		    jsonObject.put("WorkItemExternalId_Epic", Baseclass.getInstance().WorkItemExternalId_Epic);
+		   
+		    jsonObject.put("WorkItemExternalId_Bug", Baseclass.getInstance().WorkItemExternalId_Bug);
+		   
+		 
+		    jsonObject.put("WorkItemExternalId_ReleaseName", Baseclass.getInstance().Jira_ReleaseName);
+		    jsonObject.put("WorkItemExternalId_ReleaseStartDate", Baseclass.getInstance().Jira_ReleaseStartDate);
+		    jsonObject.put("WorkItemExternalId_ReleaseEndDate", Baseclass.getInstance().Jira_ReleaseEndDate);
+		    jsonObject.put("WorkItemExternalId_SprintName", Baseclass.getInstance().Jira_SprintName);
+		    jsonObject.put("WorkItemExternalId_Team", Baseclass.getInstance().Jira_ComponentName);
+		    
+		  
+		    
+		    FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+	         file.write(jsonObject.toJSONString());
+	         file.flush();
+	         file.close();
+//	         driver().close();
+//	         driver().quit();
+		}
+			catch (Exception e) {
+				e.printStackTrace();
+				Assert.fail("could not write workitem IDs for "+appname );
+			}
+}
 	}
 
 public static void loginToCloudJira() {
@@ -621,7 +698,7 @@ public static void UpdateWorkItemExternalIDsForAppsForMoveProjectOrIssue(String 
 		Assert.fail("could not write workitem IDs for "+appname );
 	}
 	
-	if(appname.equalsIgnoreCase("TFS"))
+	if(appname.equalsIgnoreCase("TFS") || appname.contains("TFS"))
 	{
 		try{String WorkItemEx_FileLoc = System.getProperty("user.dir")
 				+ File.separator + "src" + File.separator + "test" + File.separator
@@ -677,4 +754,6 @@ catch (Exception e) {
 }
 	}
 }
+
+
 }

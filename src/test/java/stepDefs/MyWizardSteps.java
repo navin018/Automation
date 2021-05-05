@@ -17,7 +17,16 @@ public class MyWizardSteps {
 	@Then("^i select client and DC for \"([^\"]*)\"$")
 	public void i_select_client_and_DC(String appname) throws Throwable {
 		
-		MyWizardHomePage.SelectClientAndDC();
+    		MyWizardHomePage.SelectClientAndDC();
+	
+	
+		
+	}
+	
+	@Then("^i select client and DC for \"([^\"]*)\" for RMP$")
+	public void i_select_client_and_DC_RMP(String appname) throws Throwable {
+		
+		MyWizardHomePage.SelectClientAndDCForRMP();
 	
 	
 		
@@ -65,9 +74,9 @@ public class MyWizardSteps {
 		String[] ADTJira_NonWorkItems = {"Test","Deliverable","Requirement","Iteration","Action","TestResult","Test","Milestone"};
 		
 		String[] ADOPJira_NonWorkItems = {"Iteration"};
-		String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue","Risk"};
+		String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Issue","Risk"};
 		String[] TFSScrum_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue","Risk"};
-		String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable","Action","TestResult","Milestone","Decision"};
+		String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable","Action","TestResult","Milestone","Decision","ChangeRequest"};
 	
 //		String[] JIRA_WorkItems = {};
 //		String[] ADTJira_NonWorkItems = {"Deliverable","Iteration"};

@@ -18,7 +18,7 @@ public static By BasicDetails_AddAccountPage_statictxt=By.xpath("//span[text()='
 public static By BasicDetails_AccessRolePage_statictxt=By.xpath("//span[text()='Basic Details ']");
 public static By Cancel_AddAttributePage_btn = By.xpath("//button[@title='Close the popup and navigate to Delivery Construct Type']");
 public static String subpage_link = "//span[text()='{subpagelink}']";
-public static By BackToDashboard_link = By.xpath("//div[@title='Back to Dashboard' or @title='Go Back']");
+public static By BackToDashboard_link = By.xpath("//div[text()='Back to Dashboard' or @title='Go Back']");
 public static By Close_btn = By.xpath("//button[text()='Close']");
 public static By AssociateClients_btn = By.xpath("//button[text()='Associate Clients']");
 public static By CloseAssociateClients_btn = By.xpath("//button[@class='close']");

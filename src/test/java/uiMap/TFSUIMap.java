@@ -25,7 +25,9 @@ public static By BusinessValue_txtbox = By.xpath("//input[@aria-label='Business 
 
 
 public static By save_drpdown = By.xpath("//div[@class='drop']");
+//
 public static By save_btn = By.xpath("//span[@class='text'][text()='Save']");
+public static By saveandclose_btn = By.xpath("//span[text()='Save & Close']");
 public static By captureWorkItemID_statictxt = By.xpath("//a[@class='caption']");
 public static By captureWorkItemID1_statictxt = By.xpath("//span[@aria-label='ID Field']");
 public static By close_btn = By.xpath("//span[@class='ui-button-icon-primary ui-icon ui-icon-closethick']");
@@ -51,8 +53,8 @@ public static By saveAndClose_btn = By.xpath("//span[text()='Save and close']");
 public static String ReleaseRow_statictxt = "//div[text()='{releasename}']";
 public static String newSprint_statictxt = "//div[@class='grid-cell-contents-container'][text()='{releasename}']//preceding::div[@aria-label='Row actions'][1]";
 
-public static By Boards_link = By.xpath("//span[@class='navigation-text expanded-only text-ellipsis flex-row flex-grow'][text()='Boards']");
-public static By Queries_link = By.xpath("//span[@class='navigation-text expanded-only text-ellipsis flex-row flex-grow'][text()='Queries']");
+public static By Boards_link = By.xpath("//span[text()='Boards']");
+public static By Queries_link = By.xpath("//span[text()='Queries']");
 public static String DeletionQuery_link = "//div[@class='ms-TooltipHost host_2c77c47c'][text()='{queryname}']";
 public static By QueryExecutionComplete = By.xpath("//span[@class='vss-HubTextTile--primaryText']");
 public static By DeleteAutomationData_Btn = By.xpath("//span[text()='Delete']");
@@ -79,6 +81,26 @@ public static By Passtest_link = By.xpath("//*[contains(text(),'Mark Outcome')]/
 public static By MarkTestCaseResult_btn = By.xpath("//li[@aria-label='Mark test case result']");
 public static By ViewTestResult_link = By.xpath("//*[contains(text(),'View test result')]");
 public static String createdTest_txt = "//*[contains(text(),'{TCName}')]";
+public static String workitemIDInSearch_txt = "//span[contains(text(),'{workitemid}')]";
+
+public static By State_drpdown = By.xpath("//input[@aria-label='State Field']");
+public static By ActionWorkitem_btn = By.xpath("//span[@aria-label='Actions']");
+
+public static By DeleteWorkitem_btn = By.xpath("//span[text()='Delete']");
+public static By ConfirmDeleteWorkitem_PopUp = By.xpath("//span[text()='Delete work item(s)']");
+public static By DeleteReleaseSprint_btn = By.xpath("//span[text()='Delete']");
+public static By DeleteReleaseSprintConfirm_window = By.xpath("//span[text()='Delete iteration']");
+public static By ConfirmReleaseSprintDelete_btn = By.xpath("//span[text()='Delete path']");
+public static String ReleaseOrSprintAction_btn = "//div[text()='{ReleaseOrSprintName}']//preceding::span[@class='grid-context-menu-icon bowtie-icon bowtie-ellipsis'][1]";
+public static By ChangeEntityType_link = By.xpath("//span[text()='Change type...']");
+public static By ChangeProject_link = By.xpath("//span[text()='Move to team project']");
+public static By ChangeProjectTo_txtbox = By.xpath("//input[@id='destinationProject']");
+
+public static By EntityTypeTo_txtbox = By.xpath("//input[@id='availableTypes']");
+
+public static By Ok_btn = By.xpath("//button[@id='ok']");
+public static By Iteration_drpdown = By.xpath("//input[@aria-label='Iteration Path']");
+public static By Iteration_label = By.xpath("//label[text()='Ite']");
 
 
 

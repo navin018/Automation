@@ -21,6 +21,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import com.fasterxml.jackson.databind.deser.Deserializers.Base;
+
 import dataobjects.WorkItemDO;
 import dataobjects.WorkItemExternalIDDO;
 //import javassist.bytecode.stackmap.BasicBlock.Catch;
@@ -35,6 +37,7 @@ import org.json.simple.parser.JSONParser;
  
 import java.io.FileReader;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -446,9 +449,14 @@ import java.util.Random;
 								ExpWaitForCondition(JiraUIMap.NewSprintName_txt);
 								clear(JiraUIMap.NewSprintName_txt);
 								enterText(JiraUIMap.NewSprintName_txt, "Sprint_"+randomNumbForSrpint);
+								enterText(JiraUIMap.SprintStartDate_txt, wii.SprintStartDate);
+								enterText(JiraUIMap.SprintEndDate_txt, wii.SprintEndDate);
 								clickJS(JiraUIMap.CreateNewSprint_btn);
 								ExpWaitForElementToDisappear(JiraUIMap.CreateNewSprint_btn);
 								Baseclass.getInstance().Jira_SprintName = "Sprint_"+randomNumbForSrpint;
+								Baseclass.getInstance().Jira_SprintStartDate=wii.SprintStartDate;
+								Baseclass.getInstance().Jira_SprintEndDate=wii.SprintEndDate;
+															
 						}
 							else if(Property.getProperty("JiraURL").contains("uat.alm.accenture.com")){
 								clickJS(JiraUIMap.BacklogIcon_Img);
@@ -1049,32 +1057,7 @@ public static void associateTestExecution(String workitem) {
 	}
 }
 
-public static void SelectProjectForCloudJira() {
-	try {
-		Thread.sleep(2000);
-		waitPageToLoad();
-		click(JiraUIMap.CloudJiraProjects_link);
-		click(JiraUIMap.CloudJiraViewALlProjects_link);
-		Thread.sleep(10000);
-//		
-		ExpWaitForCondition(JiraUIMap.CloudJiraSearchProject_txtbox);
-		doubleClick(JiraUIMap.CloudJiraSearchProject_txtbox);
-		Thread.sleep(2000);
-//		enterText(JiraUIMap.SearchBoxAllPorjects_txtbox, Property.getProperty("JiraProject"));
-		enterTextUsingAction(JiraUIMap.CloudJiraSearchProject_txtbox, Property.getProperty("JiraProject"));
-		Thread.sleep(5000);
-		Assert.assertEquals(getText(JiraUIMap.CloudJiraProjectKey_Statictxt), Property.getProperty("JiraProject"),"Entered project "+Property.getProperty("JiraProject")+ " not found");
-			click(JiraUIMap.CloudJiraProjectKey_Statictxt);
 
-		waitPageToLoad();
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		logger.info("Issue selecting the project for the given tool");
-		Assert.fail("Issue selecting the project for the given tool");
-	}
-	
-}
 
 public static void CreateReleaseForCloudJira(String ReleaseOrSprint) {
 	try {
@@ -1360,7 +1343,7 @@ private static void captureWorkItems(String workitem, String newWI_Id) {
 	
 }
 
-public static void CreateWorkitemfornonsanity(String workitem) {
+public static void CreateWorkitemforWSJFfunctionality(String workitem) {
 	try	{
 		ExpWaitForCondition(JiraUIMap.Create_link);
 		clickJS(JiraUIMap.Create_link);
@@ -1397,5 +1380,74 @@ public static void CreateWorkitemfornonsanity(String workitem) {
 			e.printStackTrace();
 			}
 		}
+
+public static void selectCloudJiraProject() {
+	try {
+		Thread.sleep(2000);
+		waitPageToLoad();
+		click(JiraUIMap.Project_link);
+		click(JiraUIMap.ViewAllProject_link);
+	
+//		
+		ExpWaitForCondition(JiraUIMap.SearchBoxAllPorjects_txtbox);
+		doubleClick(JiraUIMap.SearchBoxAllPorjects_txtbox);
+		Thread.sleep(2000);
+//		enterText(JiraUIMap.SearchBoxAllPorjects_txtbox, Property.getProperty("JiraProject"));
+		enterTextUsingAction(JiraUIMap.SearchBoxAllPorjects_txtbox, Property.getProperty("JiraProject"));
+		Thread.sleep(5000);
+		Assert.assertEquals(getText(prepareWebElementWithDynamicXpath(JiraUIMap.ProjectKeyCloudJira_Statictxt,  Property.getProperty("JiraProject"), "projectname")), Property.getProperty("JiraProject"));
+		
+			click(prepareWebElementWithDynamicXpath(JiraUIMap.ProjectKeyCloudJira_Statictxt,  Property.getProperty("JiraProject"), "projectname"));
+
+		waitPageToLoad();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		logger.info("Issue selecting the project for the given tool");
+		Assert.fail("Issue selecting the project for the given tool");
+	}
+	
+}
+
+public static void CreateWorkitemForRecon(String workitem) {
+	try	{
+		ExpWaitForCondition(JiraUIMap.Create_link);
+		clickJS(JiraUIMap.Create_link);
+		Thread.sleep(5000);
+		JiraWorkitem.SelectWorkItemtype(workitem);
+		 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
+		 workitem_title = wi.Summary;
+		ExpWaitForCondition(JiraUIMap.Summary_txtBox);
+		Thread.sleep(3000);
+		 enterTextUsingAction(JiraUIMap.Summary_txtBox,wi.Summary);
+		 Thread.sleep(1000);
+		String workItemSplit[] = workitem.split("_");
+		switch(workItemSplit[0]){
+		case "story":
+		case "Story":
+			HashMap<String,String> sprintandreleasedetails = Tools.getReleaseAndSprintDetails("Jira");
+			enterText(JiraUIMap.SprintName_drpdown, sprintandreleasedetails.get("SprintName"));
+			ExpWaitForCondition(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, sprintandreleasedetails.get("SprintName"), "sprintreleasename"));
+			clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, sprintandreleasedetails.get("SprintName"), "sprintreleasename"));
+			
+			enterText(JiraUIMap.ReleaseName_drpdown, sprintandreleasedetails.get("ReleaseName"));
+			ExpWaitForCondition(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, sprintandreleasedetails.get("ReleaseName"), "sprintreleasename"));
+			clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, sprintandreleasedetails.get("ReleaseName"), "sprintreleasename"));
+			
+			
+			break;
+		}
+		clickJS(JiraUIMap.Create_btn);
+		Thread.sleep(10000);
+		ExpWaitForElementToDisappear(JiraUIMap.cancel_btn);
+		JiraWorkitem.CaptureWorkitemID(workitem);
+	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			}
+		}
+
+
 
 	}

@@ -9,11 +9,7 @@ import static utilities.selenium.SeleniumDSL.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
@@ -21,10 +17,26 @@ import org.testng.Assert;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import uiMap.MyWizardUIMap;
 import utilities.general.Property;
 
 public class CommonFunctions {
 	
+	public static String convertdatetogivenformat(String datetobeconverted,String fromdateformat,String todateformat){
+		
+		try{
+		SimpleDateFormat sdf = new SimpleDateFormat(fromdateformat);
+	    SimpleDateFormat sdf2 = new SimpleDateFormat(todateformat);
+	    return sdf2.format(sdf.parse(datetobeconverted));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("issue with date format or converting date format");
+			return "";
+		}
+		
+	}
 	public static String SpiltWorkitem(String fullworkitemID)
 	{
 		
@@ -112,6 +124,86 @@ public class CommonFunctions {
 		if(Baseclass.getInstance().workitemcreation_fail)
 			Assert.fail("Issue with workitem creation for "+env);
 		
+	}
+	
+	public static int GenerateRandomNumber()
+	{
+		Random rnd = new Random();
+		return (1000 + rnd.nextInt(9000));
+		
+	}
+	public static void captureIterationExternalID(String toolOrRMP, String toolname) {
+		try{
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		Thread.sleep(5000);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		ExpWaitForCondition(MyWizardUIMap.selectmyquery);
+		clickJS(MyWizardUIMap.selectmyquery);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		Thread.sleep(5000);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		String releasename="";
+		String sprintname="";
+		if(toolOrRMP.equalsIgnoreCase("tool")){
+		HashMap<String,String> hm = Tools.getReleaseAndSprintDetails(toolname);
+		releasename = hm.get("ReleaseName");
+		sprintname = hm.get("SprintName");
+		}
+		else if(toolOrRMP.equalsIgnoreCase("RMP"))
+		{
+			HashMap<String,String> hm = RMP.getReleaseAndSprintDetailsCreatedInRMP(toolname);
+			releasename = hm.get("ReleaseName_FromRMP");
+			sprintname = hm.get("SprintName_FromRMP");
+		}
+		doubleClick(MyWizardUIMap.QueryValue_txtbox);
+		Thread.sleep(4000);
+		
+		enterText(MyWizardUIMap.QueryValueInput_txtbox,releasename);
+		clickJS(MyWizardUIMap.runQuery_btn);
+		ExpWaitForCondition(MyWizardUIMap.QueryRunSuccess_Msg);
+		boolean morethanonerow_QueryResult = CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_MoreThanoneRow_statictxt);
+		if(morethanonerow_QueryResult)
+		{
+			Assert.fail("More than one row in search result for the searched release or sprint ID");
+		}
+		String release_IterationExternalID="";
+		if(CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_statictxt)){
+		release_IterationExternalID = getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+		}
+		else
+		{
+			Assert.fail("Release not flown for the tool"+toolname);
+		}
+		
+//		enter sprint details
+		clickJS(MyWizardUIMap.QueryValue_txtbox);
+		sendDelete();
+		Thread.sleep(4000);
+		enterText(MyWizardUIMap.QueryValueInput_txtbox,sprintname);
+		clickJS(MyWizardUIMap.runQuery_btn);
+		ExpWaitForCondition(MyWizardUIMap.QueryRunSuccess_Msg);
+		Thread.sleep(5000);
+		boolean morethanonerow_QueryResult_Sprint = CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_MoreThanoneRow_statictxt);
+		if(morethanonerow_QueryResult_Sprint)
+		{
+			Assert.fail("More than one row in search result for the searched sprint ID");
+		}
+		String sprint_IterationExternalID="";
+		if(CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_statictxt)){
+			sprint_IterationExternalID = getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+		}
+		else
+		{
+			Assert.fail("Sprint not flown for the tool"+toolname);
+		}
+		Baseclass.getInstance().release_IterationExternalID = release_IterationExternalID;
+		Baseclass.getInstance().sprint_IterationExternalID =sprint_IterationExternalID; 
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("issue running the query in myqueiries to fectch IterationExternalID");
+		}
 	}
 
 	

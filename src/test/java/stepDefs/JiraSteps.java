@@ -13,23 +13,25 @@ import testobjects.*;
 public class JiraSteps  {
 	
 	@Then("^i change the \"([^\"]*)\" of \"([^\"]*)\" in \"([^\"]*)\"$")
-	public void i_change_the_project_of_in(String Project, String workitem,String toolname) throws Throwable {
+	public void i_change_the_project_of_in(String ProjectOrEntityType, String workitem,String toolname) throws Throwable {
 		JiraWorkitem.openworkiteminjira(workitem,toolname);
-		JiraWorkitem.changeProjectOrIssueTypeofWorkitem(Project,workitem,toolname,"");
+		JiraWorkitem.changeProjectOrIssueTypeofWorkitem(ProjectOrEntityType,workitem,toolname,"");
 	}
 	
 //	i change the entitytype of "<story>" to "<milestone>" in "<applicationname>" 
 	@Then("^i change the \"([^\"]*)\" of \"([^\"]*)\" to \"([^\"]*)\" in \"([^\"]*)\"$")
-	public void i_change_the_entitytype(String EntityType, String workitemFrom,String workitemTo, String toolname) throws Throwable {
+	public void i_change_the_entitytype(String ProjectOrEntityType, String workitemFrom,String workitemTo, String toolname) throws Throwable {
 		JiraWorkitem.openworkiteminjira(workitemFrom,toolname);
-		JiraWorkitem.changeProjectOrIssueTypeofWorkitem(EntityType, workitemFrom,toolname,workitemTo);
+		JiraWorkitem.changeProjectOrIssueTypeofWorkitem(ProjectOrEntityType, workitemFrom,toolname,workitemTo);
 	}
 	
 	
-	@Then("^i create a \"([^\"]*)\" in Jira for non-sanity$")
-	public void i_create_a_in_Jira_nonsanity(String workitem) throws Throwable {
-
-	   JiraWorkitem.CreateWorkitemfornonsanity(workitem);
+	@Then("^i create a \"([^\"]*)\" in Jira for \"([^\"]*)\"$")
+	public void i_create_a_in_Jira_nonsanity(String workitem,String functionality) throws Throwable {
+		if(functionality.equalsIgnoreCase("WSJF functionality"))
+	   JiraWorkitem.CreateWorkitemforWSJFfunctionality(workitem);
+		if(functionality.equalsIgnoreCase("autorecon") || functionality.equalsIgnoreCase("manualrecon"))
+			 JiraWorkitem.CreateWorkitemForRecon(workitem);
 
 
 	}

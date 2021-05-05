@@ -30,9 +30,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import uiMap.DFTUIMap;
 import uiMap.MyWizardMappingRuleUIMap;
 import uiMap.MyWizardUIMap;
 import uiMap.ProductConfigUIMap;
+import uiMap.RMPUIMap;
 import uiMap.SecurityTestsUIMap;
 import utilities.selenium.DriverFactory;
 import net.lightbody.bmp.BrowserMobProxy;
@@ -48,7 +50,7 @@ public class MyWizardHomePage {
 		
 		Thread.sleep(4000);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		ExpWaitForElementToDisappear(MyWizardUIMap.DCMsg_StaticTxt);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		Thread.sleep(1000);
 		ExpWaitForElementToDisappear(MyWizardUIMap.DCMsg_StaticTxt);
 		ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
@@ -65,7 +67,11 @@ public class MyWizardHomePage {
 		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		
 		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		 
+		 //mywizard works best on google chrome handled
+		 if(CheckIfElementExists(MyWizardUIMap.MywizChromeNotification_btn1))
+		 {
+			 clickJS(MyWizardUIMap.MywizChromeNotification_btn1);
+		 }
 		//if creds are remebered but needs to be selected
 //         String username = Property.getProperty("MyWizard_Username");
 //         String[] username_sp = username.split("@");
@@ -209,6 +215,94 @@ public class MyWizardHomePage {
 		}
 	}
 	
+	public static void SelectClientAndDCForRMP(){
+		try{
+			
+			
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 clickJS(MyWizardUIMap.scopeSelector_RMP_drpdown);
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("MyWizard_Client"));
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 Thread.sleep(2000);
+			 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt_RMP,Property.getProperty("MyWizard_Client"),"clientname")))
+			 { 
+				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt_RMP,Property.getProperty("MyWizard_Client"),"clientname"));
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				 clear(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox);
+			 }
+			 else
+			 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_Client")+"doesnt exists");
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			waitPageToLoad();
+//			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,DC,"dcname")))
+			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt_RMP,Property.getProperty("MyWizard_DC_L1"),"dcname")))
+			{
+				clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt_RMP,Property.getProperty("MyWizard_DC_L1"),"dcname"));
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			}
+			else
+				 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_DC_L1")+"doesnt exists");
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 if(!Property.getProperty("MyWizard_DC_L2").equalsIgnoreCase("NA"))
+			 {
+				 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt_RMP,Property.getProperty("MyWizard_DC_L2"),"programname")))
+				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt_RMP,Property.getProperty("MyWizard_DC_L2"),"programname"));
+//				clickJS(prepareWebElementWithDynamicXpath2(MyWizardUIMap.SelectProgram_statictxt,DC,Program,"dcname","programname"));
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 }
+		
+			waitPageToLoad();
+			click(MyWizardUIMap.apply_btn);
+			Thread.sleep(60000);
+			if(!CheckIfElementExists(RMPUIMap.CreateNewRodMap_link))
+			{
+				refresh();
+				clickJS(MyWizardUIMap.scopeSelector_RMP_drpdown);
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				 enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("MyWizard_Client"));
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				 Thread.sleep(2000);
+				 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt_RMP,Property.getProperty("MyWizard_Client"),"clientname")))
+				 { 
+					 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt_RMP,Property.getProperty("MyWizard_Client"),"clientname"));
+					 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//					 clear(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox);
+				 }
+				 else
+				 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_Client")+"doesnt exists");
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				waitPageToLoad();
+//				if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,DC,"dcname")))
+				if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt_RMP,Property.getProperty("MyWizard_DC_L1"),"dcname")))
+				{
+					clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt_RMP,Property.getProperty("MyWizard_DC_L1"),"dcname"));
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				}
+				else
+					 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_DC_L1")+"doesnt exists");
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				 if(!Property.getProperty("MyWizard_DC_L2").equalsIgnoreCase("NA"))
+				 {
+					 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt_RMP,Property.getProperty("MyWizard_DC_L2"),"programname")))
+					 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt_RMP,Property.getProperty("MyWizard_DC_L2"),"programname"));
+//					clickJS(prepareWebElementWithDynamicXpath2(MyWizardUIMap.SelectProgram_statictxt,DC,Program,"dcname","programname"));
+					 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				 }
+			
+				waitPageToLoad();
+				click(MyWizardUIMap.apply_btn);
+			}
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("Issue selecting client or DC");
+			Assert.fail("Issue selecting client or DC");
+		}
+	}
+	
 	public static void SelectClientAndDCForPipelines(){
 		try{
 			
@@ -282,12 +376,12 @@ public class MyWizardHomePage {
 	public static void VerifyIfTileisLoaded(String TilePageName) throws Exception {
 		switch(TilePageName){
 		case "Product Configuration":
-		case "Account Management":
+		
 		case "Organization (Delivery) Structure Type":
 		case "AppServices Configuration":
 		case "Team Configuration":
 		case "Access Role":
-		case "Dataflow Tracking":
+		
 		case "Client Configuration":
 		case "Iteration Reconciliation":
 		case "Event & Notification":
@@ -313,11 +407,34 @@ public class MyWizardHomePage {
 				throw new Exception("Could you not load page : "+TilePageName, e);
 				}
 	break;
-	
+	case "Account Management":
+			
+			try{
+			ExpWaitForCondition(MyWizardUIMap.Search_txtbox);
+				}
+			catch(Exception e)
+				{
+				e.printStackTrace();
+				throw new Exception("Could you not load page : "+TilePageName, e);
+				}
+	break;
+		case "Dataflow Tracking":
+			try{
+				ExpWaitForCondition(DFTUIMap.Filter_Icon);
+					}
+				catch(Exception e)
+					{
+					e.printStackTrace();
+					throw new Exception("Could you not load page : "+TilePageName, e);
+					}
+		break;
+			
 	case "DIY AD Automation":
 			
 			try{
 			ExpWaitForCondition(ProductConfigUIMap.ContractOnBoarding_statictxt);
+			Thread.sleep(2000);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				}
 			catch(Exception e)
 				{

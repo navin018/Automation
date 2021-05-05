@@ -1,48 +1,34 @@
 package testobjects;
+import static org.testng.Assert.assertEquals;
+import static utilities.reporting.LogUtil.logger;
+import static utilities.selenium.SeleniumDSL.*;
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Random;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import com.fasterxml.jackson.databind.deser.Deserializers.Base;
-
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.fail;
-import static utilities.selenium.SeleniumDSL.*;
-import static utilities.general.Property.*;
-import static utilities.reporting.LogUtil.logger;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
 import dataobjects.WorkItemDO;
-import dataobjects.WorkItemExternalIDDO;
-import testobjects.Baseclass;
-import uiMap.JiraUIMap;
 import uiMap.TFSUIMap;
 import utilities.general.DataManager;
 import utilities.general.Property;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
- 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 	public class TFSWorkitem extends Baseclass{
 		private Baseclass base;
@@ -233,6 +219,11 @@ import java.util.Random;
 				case "deliverable":
 					
 					Baseclass.getInstance().WorkItemExternalId_Deliverable =getText(TFSUIMap.captureWorkItemID1_statictxt);
+					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+//					click(TFSUIMap.close_btn);
+					break;
+				case "changerequest":
+					Baseclass.getInstance().WorkItemExternalId_WorkRequest =getText(TFSUIMap.captureWorkItemID1_statictxt);
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
@@ -573,6 +564,8 @@ import java.util.Random;
 			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Test Case";
 				else if(workitem.contains("Story"))
 			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"User Story";
+				else if(workitem.contains("ChangeRequest"))
+					 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Change Request";
 				else if(workitem.contains("ProductBacklog"))
 					 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Product Backlog Item";
 				else
@@ -679,7 +672,7 @@ import java.util.Random;
 			}
 		}
 
-		public static void CreateWorkitemfornonsanity(String workitem) {
+		public static void CreateWorkitemforWSJFfunctionality(String workitem) {
 			try{
 			 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
 			 String workitemURL;
@@ -727,6 +720,192 @@ import java.util.Random;
 				logger.info("issue creating "+workitem+" in TFS");
 			}
 		}
+
+		public static void openworkitem(String workitem) {
+			try{
+				ExpWaitForCondition(TFSUIMap.SearchBoxHomePage_txtbox);
+			 String WorkItemExternalId = Tools.getWorkItemExternalID(workitem.split("_")[0],"TFS");
+			 Thread.sleep(3000);
+			 clearEnterText(TFSUIMap.SearchBoxHomePage_txtbox, WorkItemExternalId);
+//			 enterText(TFSUIMap.SearchBoxHomePage_txtbox, WorkItemExternalId);
+			 ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, WorkItemExternalId, "workitemid"));
+			 clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, WorkItemExternalId, "workitemid"));
+			 ExpWaitForCondition(TFSUIMap.captureWorkItemID1_statictxt);
+		}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				Assert.fail("issue opening workitem in TFS");
+				}
+			}
+
+		public static void changeStatus(String status) throws InterruptedException {
+		clearEnterText(TFSUIMap.State_drpdown, status);
+//			sendEsc();
+//			clickJS(TFSUIMap.title_txtbox);
+			Thread.sleep(3000);
+			singleClick(TFSUIMap.saveandclose_btn);
+		}
+
+		public static void deleteworkitem() {
+		ExpWaitForCondition(TFSUIMap.ActionWorkitem_btn);
+			clickJS(TFSUIMap.ActionWorkitem_btn);
+			clickJS(TFSUIMap.DeleteWorkitem_btn);
+			ExpWaitForCondition(TFSUIMap.ConfirmDeleteWorkitem_PopUp);
+			clickJS(TFSUIMap.DeleteWorkitem_btn);
+		}
+
+		public static void DeleteReleaseSprint() {
+			try{
+			click(TFSUIMap.settingsIcon_Img);
+			Thread.sleep(4000);
+			if(!CheckIfElementExists(TFSUIMap.ProjectConfiguration_link))
+			{	
+			click(TFSUIMap.settingsIcon_Img);
+			Thread.sleep(10000);
+			}
+			ExpWaitForCondition(TFSUIMap.ProjectConfiguration_link);
+			click(TFSUIMap.ProjectConfiguration_link);
+			Thread.sleep(4000);
+			ExpWaitForCondition(TFSUIMap.NewChild_link);
+			HashMap<String,String> ReleaseSrpintDetails = Tools.getReleaseAndSprintDetails("TFS");
+			String ReleaseName = ReleaseSrpintDetails.get("ReleaseName");
+			String SprintName = ReleaseSrpintDetails.get("SprintName");
+//			HoverUsingAction(prepareWebElementWithDynamicXpath(TFSUIMap.ReleaseOrSprintAction_btn, ReleaseName, "ReleaseOrSprintName"));
+			clickJS(By.xpath("//div[text()='TFS Agile1_ Client-Native']//preceding::span[@class='grid-context-menu-icon bowtie-icon bowtie-ellipsis'][1]"));
+//			sendCtrlPlusPageDown();
+//			ScrollToEndOfPage();
+			driver().findElement(By.xpath("//div[text()='Iterations']//following::div[text()='TFS Agile1_ Client-Native'][1]")).sendKeys(Keys.chord(Keys.CONTROL, Keys.PAGE_DOWN));
+//			Scroll1();
+//			ScrollIntoView(prepareWebElementWithDynamicXpath(TFSUIMap.ReleaseOrSprintAction_btn, ReleaseName, "ReleaseOrSprintName"));
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		  public static void scrollToElement(int x, int y) {
+
+		        JavascriptExecutor javScriptExecutor = (JavascriptExecutor) driver();
+
+		        javScriptExecutor.executeScript("window.scrollBy(" + x + ", " + y + ");");
+
+		    }
+
+		public static void changeProjectOrIssueTypeofWorkitem(String ProjectOrEntityType, String workitemFrom, String toolname, String workitemTo) {
+			try{
+				if(ProjectOrEntityType.equalsIgnoreCase("entitytype")){
+				clickJS(TFSUIMap.ActionWorkitem_btn);
+				clickJS(TFSUIMap.ChangeEntityType_link);
+				enterText(TFSUIMap.EntityTypeTo_txtbox,workitemTo);
+				sendEnter(TFSUIMap.EntityTypeTo_txtbox);
+				Thread.sleep(2000);
+				clickJS(TFSUIMap.Ok_btn);
+				Thread.sleep(2000);
+				clickJS(TFSUIMap.save_drpdown);
+				clickJS(TFSUIMap.save_btn);
+				CaptureWorkitemID(workitemTo);
+				}
+				if(ProjectOrEntityType.equalsIgnoreCase("project")){
+					clickJS(TFSUIMap.ActionWorkitem_btn);
+					clickJS(TFSUIMap.ChangeProject_link);
+					enterText(TFSUIMap.ChangeProjectTo_txtbox, Property.getProperty("TFSProject_ChangeProject"));
+					Thread.sleep(2000);
+					clickJS(TFSUIMap.Ok_btn);
+					Thread.sleep(2000);
+					clickJS(TFSUIMap.save_drpdown);
+					clickJS(TFSUIMap.save_btn);
+					CaptureWorkitemID(workitemFrom);
+					}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+		}
+
+		public static void CreateWorkitemAndAssociateReleaseSprint(String workitem) {
+			try{
+				 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
+//			String currentproject_sp[] = driver().getCurrentUrl().split(Property.getProperty("TFS_URL")+"/");
+//			String currentproject = currentproject_sp[1];
+				 String workitemURL;
+				if(workitem.contains("TestCase")) 
+			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Test Case";
+				else if(workitem.contains("Story"))
+			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"User Story";
+				else if(workitem.contains("ProductBacklog"))
+					 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Product Backlog Item";
+				else
+				workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+workitem.split("_")[0];
+			driver().get(workitemURL);
+			Thread.sleep(5000);
+			//putting this piece of code as workitem url wasnt loading
+			if(CheckIfElementExists(TFSUIMap.title_txtbox))
+			{
+				Thread.sleep(5000);
+				ExpWaitForCondition(TFSUIMap.title_txtbox);
+				enterText(TFSUIMap.title_txtbox,wi.Summary);
+				Thread.sleep(2000);
+				AssociateReleaseAndSprint(workitem);
+				singleClick(TFSUIMap.save_btn);
+				Thread.sleep(5000);
+				CaptureWorkitemID(workitem);
+			}
+			else if(CheckIfElementExists(TFSUIMap.title_txtbox))
+			{
+				Thread.sleep(5000);
+				ExpWaitForCondition(TFSUIMap.title_txtbox);
+				enterText(TFSUIMap.title_txtbox,wi.Summary);
+				Thread.sleep(2000);
+				singleClick(TFSUIMap.save_btn);
+				Thread.sleep(5000);
+				CaptureWorkitemID(workitem);
+			}
+			else
+				{
+				driver().get(workitemURL);
+				Thread.sleep(5000);
+				}
+			if(!CheckIfElementExists(TFSUIMap.title_txtbox))
+			{
+				logger.info("page not loading for workitem "+workitem);
+			}
+			waitPageToLoad();
+			
+			
+//			Thread.sleep(4000);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+		}
+
+		private static void AssociateReleaseAndSprint(String workitem) {
+			try{
+			HashMap<String,String> sprintandreleasedetails = Tools.getReleaseAndSprintDetails("TFS");
+			String releasename = sprintandreleasedetails.get("ReleaseName");
+			String sprintname = sprintandreleasedetails.get("SprintName");
+			Thread.sleep(5000);
+			click(TFSUIMap.Iteration_label);
+			Thread.sleep(2000);
+			sendBackSpace(TFSUIMap.Iteration_drpdown);
+			Thread.sleep(2000);
+			enterText(TFSUIMap.Iteration_drpdown, Property.getProperty("TFSProject")+"\\"+ releasename +"\\"+ sprintname);
+			sendEnter(TFSUIMap.Iteration_drpdown);
+			Thread.sleep(5000);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+	
+		
 	}
 
 	
