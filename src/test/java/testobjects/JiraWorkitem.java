@@ -459,6 +459,17 @@ import java.util.Random;
 															
 						}
 							else if(Property.getProperty("JiraURL").contains("uat.alm.accenture.com")){
+//								clickJS(JiraUIMap.BacklogIcon_Img);
+//								Thread.sleep(10000);
+//								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
+//								ScrollIntoView(JiraUIMap.CreateSprint_btn);
+//								clickJS(JiraUIMap.CreateSprint_btn);
+//								ExpWaitForCondition(JiraUIMap.ADOPSprintVisible_icon);
+//								HoverUsingAction(JiraUIMap.ADOPSprintVisible_icon);
+//								clickJS(JiraUIMap.EditADOPSprintName_txtbox);
+//								sendDelete();
+//								enterText(JiraUIMap.EditADOPSprintName_txtbox,"Sprint_"+randomNumbForSrpint);
+//								Baseclass.getInstance().Jira_SprintName = "Sprint_"+randomNumbForSrpint;
 								clickJS(JiraUIMap.BacklogIcon_Img);
 								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
 								clickJS(JiraUIMap.CurrentSprintToBeEdited_txt);	
@@ -492,7 +503,7 @@ import java.util.Random;
 			JSONObject jsonObject1 = (JSONObject) jsonParser.parse(new FileReader(Wk_OB));
 			
 			SoftAssert sa = new SoftAssert();
-			String[] ADTJIRA_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Impediment", "Issue", "Risk", "Test", "Deliverable", "Requirement", "Milestone","Action"};
+			String[] ADTJIRA_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Impediment", "Issue", "Risk", "Test", "Deliverable", "Requirement", "Milestone","Action","WorkRequest"};
 			String[] ADOPJira_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Impediment", "Issue", "Risk"};
 		
 			if(appname.equalsIgnoreCase("ADT Jira"))

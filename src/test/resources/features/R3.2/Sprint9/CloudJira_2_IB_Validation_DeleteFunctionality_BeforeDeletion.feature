@@ -24,5 +24,17 @@ And i generate a token for "DevTest" environment
 	And i verify if "ReleaseAndSprint" has "flown" which was "NA" for "Cloud JIRA" for "ChangeProjectFromOne" functionality
 
 	 
-	 
+ Scenario Outline:  CloudJIRA_ReleaseAndSprint
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "my Queries"
+	Then i select client and DC for "<applicationname>"
+	And i capture the IterationExternalID for Iteration created from "tool" for tool "Cloud Jira" 
+	And i generate a token for "DevTest" environment 	
+	And i verify if "Release" has "flown" which was "NA" for "Cloud Jira" for "Normal" functionality
+	And i verify if "Sprint" has "flown" which was "NA" for "Cloud Jira" for "Normal" functionality
+	
+		Examples: 
+		| applicationname |toolname|
+		| MyWizard        |Cloud JIRA|
 

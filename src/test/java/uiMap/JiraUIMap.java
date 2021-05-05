@@ -106,7 +106,7 @@ public static By NextReviewDate_txtBox = By.xpath("//input[@name='customfield_10
 
 public static By ActiveSprint_Img = By.xpath("//span[@class='active-sprint-lozenge aui-lozenge aui-lozenge-success']");
 
-public static By CreateSprint_btn = By.xpath("//button[text()='Create sprint']");
+public static By CreateSprint_btn = By.xpath("//button[text()='Create sprint' or text()='Create Sprint']");
 public static By NewSprintName_txt = By.xpath("//input[@id='ghx-sprint-name']");
 public static By SprintStartDate_txt = By.xpath("//input[@id='ghx-sprint-start-date']");
 public static By SprintEndDate_txt = By.xpath("//input[@id='ghx-sprint-end-date']");
@@ -219,6 +219,6 @@ public static By searchRelease_txtBox = By.xpath("//input[@data-test-id='searchf
 public static String SprintToBedeleted_txt = "//span[text()='{SprintName}']";
 public static String ActionSpecificSprint_btn = "//span[text()='{SprintName}']//following::span[@class='aui-icon ghx-iconfont aui-icon-small aui-iconfont-more'][1]";
 public static By ConfirmDeleteSprint_btn = By.xpath("//button[text()='Delete' or text()='Confirm']");
-
-
+public static By ADOPSprintVisible_icon = By.xpath("//span[contains(@data-fieldvalue,'Orphan Sprint Textual')]//following::div[text()='0 issues - '][1]");
+public static By EditADOPSprintName_txtbox = By.xpath("//span[contains(@data-fieldvalue,'Orphan Sprint Textual')]//following::div[text()='0 issues - '][1]//preceding::span[1]");
 }

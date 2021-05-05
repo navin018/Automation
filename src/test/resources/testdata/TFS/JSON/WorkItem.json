@@ -1,7 +1,7 @@
 {
 	"item": {
 
-		
+
 		"Task_01": {
 			"Summary": "Task_AutomationData",
 			"Description": "Task_Description"
@@ -15,12 +15,12 @@
 		"ProductBacklog_wsjf": {
 			"Summary": "Story_AutomationData",
 			"Description": "Story_Description",
-			"Priority":"2",
-			"BusinessValue":"2",
-			"RiskReduction":"2",
-			"StoryPoints":"1"
+			"Priority": "2",
+			"BusinessValue": "2",
+			"RiskReduction": "2",
+			"StoryPoints": "1"
 		},
-		
+
 		"Epic_01": {
 			"EpicName": "Epic_AutomationData",
 			"Summary": "Epic_AutomationData",
@@ -55,7 +55,7 @@
 			"Summary": "Deliverable_AutomationData",
 			"Description": "Deliverable_Description"
 		},
-			"Risk_01": {
+		"Risk_01": {
 			"Summary": "Risk_AutomationData",
 			"Description": "Risk_Description"
 		},
@@ -71,14 +71,14 @@
 			"Summary": "Milestone_AutomationData",
 			"Description": "Milestone_Description"
 		},
-			"Requirement_01": {
+		"Requirement_01": {
 			"Summary": "Requirement_AutomationData",
 			"Description": "Requirement_Description"
 		},
-			"ChangeRequest_01": {
+		"ChangeRequest_01": {
 			"Summary": "ChangeRequest_AutomationData",
 			"Description": "ChangeRequest_Description"
-		}
+		},
 		"ProductBacklog_01": {
 			"Summary": "Story_AutomationData",
 			"Description": "Story_Description"
@@ -93,8 +93,8 @@
 			"StartDate": "11/15/2021",
 			"EndDate": "11/22/2021"
 		}
-		
-		
+
+
 
 
 	}

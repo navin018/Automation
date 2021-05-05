@@ -460,7 +460,7 @@ try{
 			Assert.fail("could not write workitem IDs for "+appname );
 		}
 		
-		if(appname.equalsIgnoreCase("TFS"))
+		if(appname.equalsIgnoreCase("TFS") || appname.contains("TFS"))
 		{
 			try{
 				String WorkItemEx_FileLoc = System.getProperty("user.dir")
@@ -489,6 +489,9 @@ try{
 	    jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
 	    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
 	    jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
+	    jsonObject.put("WorkItemExternalId_WorkRequest", Baseclass.getInstance().WorkItemExternalId_WorkRequest);
+	    
+	    
 	    
 		jsonObject.put("WorkItemExternalId_TestPlan", Baseclass.getInstance().WorkItemExternalId_TestPlan);
 		jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);

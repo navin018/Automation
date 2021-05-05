@@ -36,8 +36,17 @@ Scenario: ADOPJIRA_Bug_flow_afterDelete
 And i verify if "Bug" has "deleted" which was "NA" for "ADOP JIRA" for "delete" functionality 
 
 
-Scenario: ADOPJIRA_ReleaseAndSprint_flow_afterDelete 
-And i verify if "ReleaseAndSprint" has "deleted" which was "NA" for "ADOP JIRA" for "delete" functionality
 	 
-	 
-
+Scenario Outline:  ADOPJIRA_ReleaseAndSprint_flow_afterDelete  
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "my Queries"
+	Then i select client and DC for "<applicationname>"
+	And i capture the IterationExternalID for Iteration created from "tool" for tool "ADOP Jira" 
+	And i generate a token for "DevTest" environment 	
+	And i verify if "Release" has "deleted" which was "NA" for "ADOP Jira" for "Normal" functionality
+	And i verify if "Sprint" has "deleted" which was "NA" for "ADOP Jira" for "Normal" functionality
+	
+		Examples: 
+		| applicationname |toolname|
+		| MyWizard        |ADOP JIRA|

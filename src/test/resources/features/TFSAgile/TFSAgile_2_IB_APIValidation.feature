@@ -69,7 +69,7 @@ Scenario: TFSAgile_WorkRequest
 	
 	And i verify the "Inbound" "Work Request" details for "TFS Agile"
 	
-Scenario: TFSAgile_DIY_IBVerification_Release_Sprint 
+Scenario Outline: TFSAgile_DIY_IBVerification_Release_Sprint 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -79,5 +79,9 @@ Scenario: TFSAgile_DIY_IBVerification_Release_Sprint
 	And i verify if "Release" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
 
+		Examples: 
+		| applicationname |toolname|
+		| MyWizard        |TFS Agile|
+		
 #	Scenario: TFSAgile_TestResult
 #	And i verify the "Inbound" "Test Execution" details for "TFS Agile"

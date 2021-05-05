@@ -547,8 +547,10 @@ public static HashMap<String, String> getReleaseAndSprintDetails(String toolname
 		ReleaseAndSprintDetails.put("ReleaseEndDate", ReleaseEndDate);
 		ReleaseAndSprintDetails.put("SprintName", SprintName);
 		if(toolname.contains("Jira") || toolname.contains("JIRA")){
+			if(!toolname.equalsIgnoreCase("ADOP Jira")){
 		ReleaseAndSprintDetails.put("SprintStartDate", SprintStartDate.split(" ")[0]);
 		ReleaseAndSprintDetails.put("SprintEndDate", SprintEndDate.split(" ")[0]);
+			}
 		}
 		else if(toolname.contains("TFS")){
 			ReleaseAndSprintDetails.put("SprintStartDate", SprintStartDate);
@@ -1437,10 +1439,12 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 								 
 								 {
 									 sprintfound=true;
+									 if(!toolname.equalsIgnoreCase("ADOP Jira")){
 									 String SprintStartDateFromAPI = response.jsonPath().getString("Iterations[" + p + "].StartOn");
 									 String SprintEndDateFromAPI = response.jsonPath().getString("Iterations[" + p + "].EndOn");
 									 CompareReleaseSprintDate(SprintStartDateFromAPI,SprintStartDate,toolname);
 									 CompareReleaseSprintDate(SprintEndDateFromAPI,SprintEndDate,toolname);
+									 }
 									 if(workitem.contains("SprintFromTool"))
 									 {
 //										 captureIterationExternalID_ReleaseAndSprint("Sprint", response.jsonPath(), p, toolname);

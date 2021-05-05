@@ -59,7 +59,7 @@ And i verify if "Requirement" has "flown" which was "NA" for "TFS Scrum" for "de
 Scenario: TFSScrum_WorkRequest_flow_beforeDelete 
 And i verify if "Work Request" has "flown" which was "NA" for "TFS Scrum" for "delete" functionality 
 
-Scenario: TFSScrum_Deletefunctionality_IBVerification_Release_Sprint
+Scenario Outline: TFSScrum_Deletefunctionality_IBVerification_Release_Sprint
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -69,4 +69,6 @@ Scenario: TFSScrum_Deletefunctionality_IBVerification_Release_Sprint
 	And i verify if "Release" has "flown" which was "NA" for "TFS Scrum" for "normal" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "TFS Scrum" for "normal" functionality
 	
-	
+	Examples: 
+		| applicationname |toolname|
+		| MyWizard        |TFS Scrum|	

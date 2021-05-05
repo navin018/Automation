@@ -72,7 +72,7 @@ Scenario: TFSAgile_WorkRequest
 	And i verify the "Inbound" "Work Request" details for "TFS Scrum"
 	
 	
-Scenario: TFSScrum_DIY_IBVerification_Release_Sprint 
+Scenario Outline: TFSScrum_DIY_IBVerification_Release_Sprint 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -81,3 +81,7 @@ Scenario: TFSScrum_DIY_IBVerification_Release_Sprint
 	And i generate a token for "DevTest" environment 	
 	And i verify if "Release" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
+	
+Examples: 
+		| applicationname |toolname|
+		| MyWizard        |TFS Scrum|

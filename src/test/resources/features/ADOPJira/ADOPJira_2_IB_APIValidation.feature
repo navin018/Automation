@@ -42,7 +42,8 @@ Scenario: ADOPJIRA_Feature
 	And i verify the "Inbound" "Feature" details for "ADOP JIRA" 
 	
 
-Scenario: ADOPJira_DIY_IBVerification_Release_Sprint 
+Scenario Outline: ADOPJira_DIY_IBVerification_Release_Sprint 
+	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -53,7 +54,9 @@ Scenario: ADOPJira_DIY_IBVerification_Release_Sprint
 	And i verify if "Sprint" has "flown" which was "NA" for "ADOP Jira" for "Normal" functionality
 	
 
-	
+	Examples: 
+		| applicationname |toolname|
+		| MyWizard        |ADOP JIRA|
 	
 	
 			

@@ -77,7 +77,7 @@ Scenario: ADTJIRA_TestExecution
 #	And i verify the "Inbound" "Team" details for "ADT JIRA" 	
 
 
-Scenario: ADTJira_DIY_IBVerification_Release_Sprint 
+Scenario Outline: ADTJira_DIY_IBVerification_Release_Sprint 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -87,4 +87,7 @@ Scenario: ADTJira_DIY_IBVerification_Release_Sprint
 	And i verify if "Release" has "flown" which was "NA" for "ADT Jira" for "Normal" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "ADT Jira" for "Normal" functionality
 	
+		Examples: 
+		| applicationname |toolname|
+		| MyWizard        |ADT JIRA|
 

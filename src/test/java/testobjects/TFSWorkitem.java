@@ -222,6 +222,7 @@ import utilities.general.Property;
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
+					
 				case "changerequest":
 					Baseclass.getInstance().WorkItemExternalId_WorkRequest =getText(TFSUIMap.captureWorkItemID1_statictxt);
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
@@ -252,8 +253,8 @@ import utilities.general.Property;
 			JSONObject jsonObject1 = (JSONObject) jsonParser.parse(new FileReader(Wk_OB));
 			
 			
-			String[] TFSAgile_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Issue", "Risk", "Deliverable", "Requirement", "Milestone","Action","Decision","TestCase"};
-			String[] TFSScrum_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Issue", "Risk", "Impediment","Deliverable","Milestone","Action","Decision","TestCase"};
+			String[] TFSAgile_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Issue", "Risk", "Deliverable", "Requirement", "Milestone","Action","Decision","TestCase","WorkRequest"};
+			String[] TFSScrum_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Issue", "Risk", "Impediment","Deliverable","Requirement","Milestone","Action","Decision","TestCase","WorkRequest"};
 			
 			SoftAssert sa = new SoftAssert();
 			
