@@ -150,10 +150,15 @@ public static String getWorkItemExternalID_custom(String workitem, String toolna
 		Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
 		JSONObject jsonObject = (JSONObject) obj;
 		String WorkItemExternalId="";
-		if(!(workitem.contains("Release") || workitem.contains("Sprint") || workitem.equalsIgnoreCase("Test Execution")))
+		
+		if(!(workitem.contains("Release") || workitem.contains("Sprint") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request") ))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem);
 		else if(workitem.equalsIgnoreCase("Test Execution"))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_TestExecution");
+		else if(workitem.equalsIgnoreCase("Work Request"))
+			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_WorkRequest");
+		
+		
 		if(workitem.contains("Release") || workitem.contains("Sprint"))
 		{
 			WorkItemExternalId = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
@@ -789,7 +794,7 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 		 requestParams.put("ClientUId", Property.getProperty("ClientUId_DeleteFunctionality")); 
 		 requestParams.put("DeliveryConstructUId", Property.getProperty("DeliveryConstructUId_DeleteFunctionality"));
 	 }
-	 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.contains("Release") ||  workitem.contains("Sprint") || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")  || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution")))
+	 if(!(workitem.equalsIgnoreCase("Deliverable") || workitem.contains("Release") ||  workitem.contains("Sprint") || workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement")  || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request")))
 	 {
 	 requestParams.put("WorkItemTypeUId",WorkItemTypeUId);
 	//if WorkItemExternalId is equals to null, assert fail
@@ -845,6 +850,12 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 	 {
 		 requestParams.put("TestResultExternalId",WorkItemExternalId);
 		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="TestResults";
+	 }
+	 
+	 if(workitem.equalsIgnoreCase("Work Request"))
+	 {
+		 requestParams.put("ChangeRequestExternalId",WorkItemExternalId);
+		 WorkItemOrDeliverableOrIterationOrTestOrRequirement="ChangeRequests";
 	 }
 	
 	 
@@ -1328,7 +1339,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 						WorkItemExternalId = getWorkItemExternalID_custom(workitem,toolname,functionality);
 //						System.out.println("workitem id from json file is "+WorkItemExternalId);
 						String getWorkitemType = "WorkItemTypeUId_"+workitem;
-						if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Test Execution") ))
+						if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Team") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request")))
 						 WorkItemTypeUId = Property.getProperty(getWorkitemType);
 						
 						}
@@ -1362,7 +1373,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					//plz check this with swetha. 
 				  response = PostRequesttoGetIBResponse_custom(WorkItemTypeUId, WorkItemExternalId, workitem, "Flat", toolname,functionality);
 				}
-				else if(functionality.equalsIgnoreCase("BeforeRecon") || functionality.equalsIgnoreCase("AfterRecon")  || functionality.equalsIgnoreCase("DFT")){
+				else if(functionality.equalsIgnoreCase("BeforeRecon") || functionality.equalsIgnoreCase("AfterRecon")  || functionality.equalsIgnoreCase("DFT") || workitem.equalsIgnoreCase("Work Request")){
 					 response = PostRequesttoGetIBResponse_custom(WorkItemTypeUId, WorkItemExternalId, workitem, "NonFlat", toolname,functionality);
 				}
 				else

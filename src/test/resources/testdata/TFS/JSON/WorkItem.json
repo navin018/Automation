@@ -75,9 +75,9 @@
 			"Summary": "Requirement_AutomationData",
 			"Description": "Requirement_Description"
 		},
-		"ChangeRequest_01": {
-			"Summary": "ChangeRequest_AutomationData",
-			"Description": "ChangeRequest_Description"
+		"Work Request_01": {
+			"Summary": "WorkRequest_AutomationData",
+			"Description": "WorkRequest_Description"
 		},
 		"ProductBacklog_01": {
 			"Summary": "Story_AutomationData",
