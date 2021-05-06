@@ -4,6 +4,7 @@ import org.testng.asserts.SoftAssert;
 
 import uiMap.DIYUIMap;
 import uiMap.DLMUIMap;
+import uiMap.MyWizardMappingRuleUIMap;
 import uiMap.MyWizardUIMap;
 import uiMap.ProductConfigUIMap;
 import uiMap.SecurityTestsUIMap;
@@ -40,8 +41,36 @@ public class DIY extends Baseclass{
 	
 	public static String testDataPath = System.getProperty("user.dir")
 			+ File.separator + "src" + File.separator + "test" + File.separator
-			+ "resources" + File.separator + "testdata" + File.separator + "DLM" + File.separator + "JSON" + File.separator ;
+			+ "resources" + File.separator + "testdata" + File.separator ;
 
+	public static String getDCName(String toolname, String functionality) {
+		try{
+		if(functionality.equalsIgnoreCase("DIY")){	
+			String DCDetailsFilePath="";
+				 if(toolname.contains("Jira") || toolname.contains("JIRA"))
+				 {
+					 DCDetailsFilePath = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "DCDetails.json" ;
+				 }
+				 else if(toolname.contains("TFS") || toolname.contains("tfs"))
+				 {
+					 DCDetailsFilePath = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "DCDetails.json" ;
+				 }
+				 
+				 JSONParser parser = new JSONParser();
+					Object obj = parser.parse(new FileReader(DCDetailsFilePath));
+					JSONObject jsonObject = (JSONObject) obj;
+					return ((String) jsonObject.get("DCName"));
+				}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	
 	public static void AddDC(String toolname) {
 		try{
 		clickJS(DIYUIMap.ConfigureContractExplore_btn);
@@ -594,7 +623,151 @@ public class DIY extends Baseclass{
 		
 	}
 
+	public static void SelectClientAndDC(String toolname) {
+		try{
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		 clickJS(MyWizardUIMap.scopeSelector_drpdown);
+		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		 enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("MyWizard_Client"));
+		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		 Thread.sleep(2000);
+		 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,Property.getProperty("MyWizard_Client"),"clientname")))
+		 { 
+			 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,Property.getProperty("MyWizard_Client"),"clientname"));
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			 clear(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox);
+		 }
+		 else
+		 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_Client")+"doesnt exists");
+		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		waitPageToLoad();
+	
+		if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,getDCName(toolname, "DIY"),"dcname")))
+		{
+			clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,getDCName(toolname, "DIY"),"dcname"));
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		}
+		else
+			 Assert.fail("Mentioned client "+getDCName(toolname, "DIY")+" doesnt exists");
+		clickJS(MyWizardUIMap.apply_btn);
+		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		}
+		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("Issue fetching DC details for tool "+toolname);
+		}
+	}
+
+	public static void DeactivateRules(String toolname) {
+		String[] JIRA_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue", "Risk"};
+		String[] CloudJIRA_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment"};
+		String[] CloudJIRA_NonWorkItems = {"Iteration"};
+//		String[] JIRA_WorkItems = {"Task", "Epic"};
+		
+		String[] ADTJira_NonWorkItems = {"Test","Deliverable","Requirement","Iteration","Action","TestResult","Test","Milestone","ChangeRequest"};
+		
+		String[] ADOPJira_NonWorkItems = {"Iteration"};
+		String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Issue","Risk"};
+		String[] TFSScrum_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue","Risk"};
+		String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable","Action","TestResult","Milestone","Decision","ChangeRequest"};
+	
+		
+		if(toolname.equalsIgnoreCase("ADT JIRA"))
+		{
+			DIY.DisableRules(toolname,JIRA_WorkItems,ADTJira_NonWorkItems);
+		}
+		else if(toolname.equalsIgnoreCase("ADOP JIRA"))
+		{
+			DIY.DisableRules(toolname,JIRA_WorkItems,ADOPJira_NonWorkItems);
+		}
+		else if(toolname.equalsIgnoreCase("TFS Agile"))
+		{
+			DIY.DisableRules("myWizard-TFS",TFSAgile_WorkItems,TFS_NonWorkItems);
+		}
+		else if(toolname.equalsIgnoreCase("Cloud JIRA"))
+		{
+			DIY.DisableRules("Cloud Jira",CloudJIRA_WorkItems,CloudJIRA_NonWorkItems);
+		}
+		else if(toolname.equalsIgnoreCase("TFS Scrum"))
+		{
+			DIY.DisableRules("myWizard-TFS",TFSScrum_WorkItems,TFS_NonWorkItems);
+		}
+		else{
+			logger.info("Entered tool not found for mapping rules");
+			Assert.fail("Entered tool not found for mapping rules");
+		}
+		
+	}
+
+	public static void DisableRules(String toolname,String[] workitems, String[] nonWorkitems){
+		try{
+			
+			clickJS(MyWizardMappingRuleUIMap.PageSize_statictxt);
+			clickJS(MyWizardMappingRuleUIMap.PageSize100_statictxt);
+			
+					for(String entity:workitems )
+					{
+						
+						if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.Entity_statictxt, entity, "workitem")))
+								{													
+									disablerule_entity(entity);
+								}
+					}
+					
+					for(String nonworkitem:nonWorkitems )
+					{
+						
+						if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.EntityForDIY_statictxt, nonworkitem, "nonworkitem")))
+						{
+							disablerule_nonworkitem(nonworkitem);
+						}
+					}
+		}
+	
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		logger.info("issue disabling the rule for tool "+toolname);
+	}
+
 	
 		
 	
+}
+
+	private static void disablerule_nonworkitem(String nonworkitem) {
+		try{
+			doubleClick(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.EntityForDIY_statictxt, nonworkitem, "nonworkitem"));
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			clickJS(MyWizardMappingRuleUIMap.InactiveRule_toggle);
+			clickJS(MyWizardMappingRuleUIMap.SaveRule_btn);
+			ExpWaitForCondition(MyWizardMappingRuleUIMap.RuleSavedSuccesfully_statictxt);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("issue disabling the rule for nonworkitem "+nonworkitem);
+			}
+		
+		
+	}
+
+	public static void disablerule_entity(String entity) {
+		try{
+		doubleClick(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.Entity_statictxt, entity, "workitem"));
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		clickJS(MyWizardMappingRuleUIMap.InactiveRule_toggle);
+		clickJS(MyWizardMappingRuleUIMap.SaveRule_btn);
+		ExpWaitForCondition(MyWizardMappingRuleUIMap.RuleSavedSuccesfully_statictxt);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("issue disabling the rule for entity "+entity);
+		}
+	}
 }

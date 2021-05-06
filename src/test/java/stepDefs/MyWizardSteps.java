@@ -78,8 +78,6 @@ public class MyWizardSteps {
 		String[] TFSScrum_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue","Risk"};
 		String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable","Action","TestResult","Milestone","Decision","ChangeRequest"};
 	
-//		String[] JIRA_WorkItems = {};
-//		String[] ADTJira_NonWorkItems = {"Deliverable","Iteration"};
 		
 		if(toolname.equalsIgnoreCase("ADT JIRA"))
 		{

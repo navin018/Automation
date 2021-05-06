@@ -16,9 +16,10 @@ public static By UseAdvancedRule_statictxt = By.xpath("//input[@name='useadvance
 public static By PageSize_statictxt = By.xpath("//span[text()='Page Size']");
 public static By PageSize100_statictxt = By.xpath("//a[text()='100']");
 public static String Entity_statictxt = "//div[text()='{workitem}' and @col-id='Client']";
+public static String EntityForDIY_statictxt = "//div[text()='{nonworkitem}' and @col-id='EntityName']";
 public static String NonWorkitem_statictxt = "//div[text()='{nonworkitem}' and @col-id='EntityName']";
 public static String NonWorkitemWithRow_statictxt = "//div[@row-index='{row}']/child::div[@col-id='ProductInstance'][1]";
-
+public static By InactiveRule_toggle = By.xpath("//input[@name='RuleStatusUId']//following::span[text()='InActive'][1]");
 public static By viewEdit_link = By.xpath("//span[text()='View/Edit']");
 
 public static By SearchWorkItemNonWorkItem_txtbox = By.xpath("//input[@placeholder='Search...']");

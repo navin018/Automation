@@ -741,6 +741,11 @@ import java.util.Random;
 				click(JiraUIMap.Issues_link);
 				click(JiraUIMap.ViewALlIssuesAndFilters_link);
 //				clear(JiraUIMap.advancedSearch_txtbox);
+				Thread.sleep(10000);
+				if(CheckIfElementExists(JiraUIMap.SwitchToAdvancedSearch_btn))
+				{
+					clickJS(JiraUIMap.SwitchToAdvancedSearch_btn);
+				}
 				String createQuery = "project = "+Property.getProperty("JiraProject")+" AND summary ~ \"_AutomationData\" AND summary !~ \"AutomationData_Donot_Edit\"";
 				enterText(JiraUIMap.advancedSearch_txtbox, createQuery);
 				click(JiraUIMap.Search_btn);

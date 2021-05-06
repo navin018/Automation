@@ -503,6 +503,18 @@ public class MyWizardHomePage {
 				throw new Exception("Could you not load page : "+TilePageName, e);
 				}
 			break;
+		case "Product Instance Entity Rule Config":
+
+			try{
+				Thread.sleep(5000);
+			ExpWaitForCondition(SecurityTestsUIMap.Search_txtbox);
+				}
+			catch(Exception e)
+				{
+				e.printStackTrace();
+				throw new Exception("Could you not load page : "+TilePageName, e);
+				}
+			break;
 	default:
 		
 		}

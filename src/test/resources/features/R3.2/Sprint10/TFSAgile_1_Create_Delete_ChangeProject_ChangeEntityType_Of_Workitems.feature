@@ -18,7 +18,7 @@ Scenario Outline: TFSAgile_WorkitemCreation
       And i create a "<Requirement>" in TFS
      And i create a "<Milestone>" in TFS
      And i create a "<Story>" in TFS
-       And i create a "<ChangeRequest>" in TFS
+        And i create a "<WorkRequest>" in TFS
 #     And i create a "<TestResult>" in TFS
 #  
  And i create "<Release>" and "<Sprint>" in TFS
@@ -27,8 +27,8 @@ Scenario Outline: TFSAgile_WorkitemCreation
 	And i generate a token for "DevTest" environment 
 	
 	    Examples: 
-      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|ChangeRequest|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|ChangeRequest_01|
+      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|WorkRequest_01|
 
 
 @2Delete_TestData_TFSAgile_DeleteFunctionality 

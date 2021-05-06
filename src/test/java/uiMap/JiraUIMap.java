@@ -121,6 +121,8 @@ public static By SprintEndDate_Statictxt = By.xpath("//div[@id='ghx-classificati
 public static By Issues_link =  By.xpath("//a[@title='Search for issues and view recent issues']");
 public static By ViewALlIssuesAndFilters_link = By.xpath("//a[text()='Search for issues']");
 public static By advancedSearch_txtbox = By.xpath("//textarea[@id='advanced-search']");
+
+public static By SwitchToAdvancedSearch_btn = By.xpath("//a[@original-title='Switch to advanced search using JQL']");
 public static By Search_btn = By.xpath("//button[@class='aui-button aui-button-primary search-button']");
 public static By SaveAsEnabaledPostSearchResult_btn = By.xpath("//button[@class='aui-button save-as-new-filter' and @aria-disabled='false']");
 public static By Tools_drpdown = By.xpath("//button[@class='aui-button aui-button-subtle header-tools header-operations jira-aui-dropdown2-trigger']");
@@ -135,7 +137,7 @@ public static By Operationsdetails_Statictxt = By.xpath("//h2[text()='Step 3 of 
 public static By UncheckSendEmail_chkbox = By.xpath("//label[@for='sendBulkNotificationCB']");
 public static By ConfirmationScreen_Statictxt = By.xpath("//h2[text()='Step 4 of 4: Confirmation']");
 public static By ConfirmDelete_btn = By.xpath("//input[@name='Confirm']");
-public static By DataDeletedConfirmationMsg_statictxt = By.xpath("//span[text()='Finished Just now.']");
+public static By DataDeletedConfirmationMsg_statictxt = By.xpath("//span[contains(text(),'Finished')]");
 public static By waitSpin_img = By.xpath("//div[@class='aui-spinner spinner']");
 public static By CreateDisabled_btn = By.xpath("//input[@name='Edit' and @value='Create' and @disabled='disabled']");
 

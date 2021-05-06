@@ -61,7 +61,22 @@ Examples:
 		| applicationname | task    | story    | risk    |Requirement| Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|milestone|TestExecution|Action|TestForTestExec|WorkRequest|
 		| Jira            | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|Test Execution_01|Action_01|TestForTestExec_01|Work Request_01|
 
-@7ADTJira_DIY_DeleteDC
+
+@7ADTJira_DIY_InactivateRules
+Scenario Outline: ADTJIRA_DIY_InactiveRules
+Given i load the project properties file 
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "Product Instance Entity Rule Config"
+	Then i select client and DC for DIY for "ADT Jira"	
+	And i deactivate the rules for "ADT Jira"
+	And i "delete" a DC for DIY for "ADT Jira"
+	
+	Examples: 
+		| applicationname |
+		| MyWizard        |
+
+@8ADTJira_DIY_DeleteDC
 Scenario: ADTJIRA_DI
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"

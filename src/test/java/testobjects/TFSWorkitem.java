@@ -565,7 +565,7 @@ import utilities.general.Property;
 			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Test Case";
 				else if(workitem.contains("Story"))
 			 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"User Story";
-				else if(workitem.contains("ChangeRequest"))
+				else if(workitem.contains("Work Request"))
 					 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Change Request";
 				else if(workitem.contains("ProductBacklog"))
 					 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Product Backlog Item";

@@ -907,7 +907,7 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 	return null;
 }		
 
-private static String getDCUid(String toolname, String functionality) {
+public static String getDCUid(String toolname, String functionality) {
 	try{
 	if(functionality.equalsIgnoreCase("DIY")){	
 		String DCDetailsFilePath="";
@@ -967,10 +967,14 @@ public static String getTitle(String toolname,String workitem){
 			{
 				testDataPath_WorkItem = testDataPath + "TFS" + File.separator + "JSON" +  File.separator  ;
 			}
-			if(!(workitem.equalsIgnoreCase("ReleaseAndSprint")))
+			if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("WorkRequest")))
 			{
 			 wi = DataManager.getData(testDataPath_WorkItem, "WorkItem",WorkItemDO.class).item.get(workitem+"_01");
 			return wi.Summary;
+			}
+			else if(workitem.equalsIgnoreCase("WorkRequest"))
+			{
+				wi = DataManager.getData(testDataPath_WorkItem, "WorkItem",WorkItemDO.class).item.get("Work Request"+"_01");
 			}
 			else if(workitem.equalsIgnoreCase("Test Execution") && toolname.contains("TFS"))
 			{

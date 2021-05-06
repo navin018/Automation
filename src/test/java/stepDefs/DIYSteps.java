@@ -19,6 +19,19 @@ public class DIYSteps {
 				DIY.DeleteDC(toolname);
 	}
 	
+	@Then("^i deactivate the rules for \"([^\"]*)\"$")
+	public void i_deactivate(String toolname) throws Throwable {
+		DIY.DeactivateRules(toolname);
+	}
+	
+	@Then("^i select client and DC for DIY for \"([^\"]*)\"$")
+	public void i_select_client_and_DC(String toolname) throws Throwable {
+		
+    		DIY.SelectClientAndDC(toolname);
+	
+	
+		
+	}
 	
 	@Then("^i test the connectivity for \"([^\"]*)\"$")
 	public void i_test_connectivity(String toolname) throws Throwable {

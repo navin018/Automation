@@ -53,10 +53,27 @@ Examples:
 		| applicationname | task    | story    | risk    |Requirement| Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|milestone|TestExecution|Action|TestForTestExec|WorkRequest|
 		| Jira            | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|Test Execution_01|Action_01|TestForTestExec_01|Work Request_01|
 
-@7ADOPJira_DIY_DeleteDC
-Scenario: ADOPJIRA_DI
+@7ADOPJira_DIY_InactivateRules
+Scenario Outline: ADOPJIRA_DIY_InactiveRules
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "Product Instance Entity Rule Config"
+	Then i select client and DC for DIY for "ADOP Jira"	
+	And i deactivate the rules for "ADOP Jira"
+	And i "delete" a DC for DIY for "ADOP Jira"
+	
+	Examples: 
+		| applicationname |
+		| MyWizard        |
+
+@8ADOPJira_DIY_DeleteDC
+Scenario Outline: ADOPJIRA_DIY_DeleteDC
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "DIY AD Automation" 
 	Then i select only the client for "<applicationname>"
 	And i "delete" a DC for DIY for "ADOP Jira"
+	
+	Examples: 
+		| applicationname |
+		| MyWizard        |
