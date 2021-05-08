@@ -328,7 +328,7 @@ public class SecurityTests extends Baseclass{
 				break;
 			case "Manage Delivery Construct Type":
 			case "Manage Teams":
-				ExpWaitForCondition(SecurityTestsUIMap.Search_txtbox);
+				ExpWaitForCondition(SecurityTestsUIMap.Search500_txtbox);
 				break;
 			case "Add Attribute":
 				ExpWaitForCondition(SecurityTestsUIMap.AddAttribute_statictxt);

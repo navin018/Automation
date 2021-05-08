@@ -42,7 +42,7 @@ Scenario Outline:  ADOPJIRA_ReleaseAndSprint_flow_afterDelete
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "tool" for tool "ADOP Jira" 
+	And i capture the IterationExternalID for deleted Iteration created from "tool" for tool "ADOP Jira" 
 	And i generate a token for "DevTest" environment 	
 	And i verify if "Release" has "deleted" which was "NA" for "ADOP Jira" for "Normal" functionality
 	And i verify if "Sprint" has "deleted" which was "NA" for "ADOP Jira" for "Normal" functionality

@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class ProductConfigUIMap {
 	
-	public static By searchBox_txtbox = By.xpath("//input[@placeholder='Search...']");
+	public static By searchBox_txtbox = By.xpath("//input[@placeholder='Search...' or @placeholder='Enter text to search the first 500 records']");
 	public static By LifecycletemplateConfig_statictxt = By.xpath("//a[text()='Lifecycle Template Configuration']");
 	public static By ContractOnBoarding_statictxt = By.xpath("//a[text()='DIY AD Automation']");
 	public static By plusIcon_btn = By.xpath("//i[@class='pi pi-fw pi-chevron-right']");

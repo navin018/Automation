@@ -65,6 +65,11 @@ public class CommonSteps {
 		  
 	}
 	
+	@Given("^i capture the IterationExternalID for deleted Iteration created from \"([^\"]*)\" for tool \"([^\"]*)\"$")
+	public void icaptureIterationExternalID_deletedIteration(String toolOrRMP, String toolname) throws Throwable {
+		CommonFunctions.setIterationExternalID(toolname);
+	}
+	
 	@Given("^i capture the IterationExternalID for Iteration created from \"([^\"]*)\" for tool \"([^\"]*)\"$")
 	public void icaptureIterationExternalID(String toolOrRMP, String toolname) throws Throwable {
 		CommonFunctions.captureIterationExternalID(toolOrRMP, toolname);

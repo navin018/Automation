@@ -48,6 +48,7 @@ public static By waitSign_Img = By.xpath("//div[@class='pva-metrics-loader']");
 
 
 public static By Search_txtbox = By.xpath("//input[@placeholder='Search...']");
+public static By Search500_txtbox = By.xpath("//input[@placeholder='Enter text to search the first 500 records']");
 public static By AddAttribute_statictxt = By.xpath("//h5[text()='Add Attribute']");
 public static By AddTile_statictxt = By.xpath("//h5[text()='Add Tile']");
 public static By AddTeam_statictxt = By.xpath("//span[text()='Team']");

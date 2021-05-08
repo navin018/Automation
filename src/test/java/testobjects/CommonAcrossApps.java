@@ -438,7 +438,8 @@ try{
 	         file.flush();
 	         file.close();
 	         
-	         if(!(Baseclass.getInstance().Jira_ReleaseName==null || (Baseclass.getInstance().Jira_SprintName==null))){
+//	         if(!(Baseclass.getInstance().Jira_ReleaseName.isEmpty() || Baseclass.getInstance().Jira_ReleaseName==null || Baseclass.getInstance().Jira_SprintName.isEmpty())) {
+	        	 {
 	 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseName", Baseclass.getInstance().Jira_ReleaseName);
 	 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseStartDate", Baseclass.getInstance().Jira_ReleaseStartDate);
 	 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseEndDate", Baseclass.getInstance().Jira_ReleaseEndDate);
@@ -454,7 +455,8 @@ try{
 //	         driver().close();
 //	         driver().quit();
 		}
-		}
+		
+}
 		catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("could not write workitem IDs for "+appname );

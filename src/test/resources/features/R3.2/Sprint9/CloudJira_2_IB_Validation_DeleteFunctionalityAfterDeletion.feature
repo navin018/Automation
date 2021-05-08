@@ -24,7 +24,7 @@ Scenario Outline:  CloudJIRA_ReleaseAndSprint
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "tool" for tool "Cloud Jira" 
+	And i capture the IterationExternalID for deleted Iteration created from "tool" for tool "Cloud Jira" 
 	And i generate a token for "DevTest" environment 	
 	And i verify if "Release" has "deleted" which was "NA" for "Cloud Jira" for "Normal" functionality
 	And i verify if "Sprint" has "deleted" which was "NA" for "Cloud Jira" for "Normal" functionality

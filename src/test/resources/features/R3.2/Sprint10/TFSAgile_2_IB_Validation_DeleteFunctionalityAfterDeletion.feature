@@ -61,7 +61,7 @@ Scenario Outline: TFSAgile_DeleteFunctionality_IBVerification_Release_Sprint
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "tool" for tool "TFS Agile" 
+	And i capture the IterationExternalID for deleted Iteration created from "tool" for tool "TFS Agile"
 	And i generate a token for "DevTest" environment 	
 	And i verify if "Release" has "deleted" which was "NA" for "TFS Agile" for "delete" functionality
 	And i verify if "Sprint" has "deleted" which was "NA" for "TFS Agile" for "delete" functionality

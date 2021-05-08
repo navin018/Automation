@@ -76,6 +76,7 @@ public class DIY extends Baseclass{
 		clickJS(DIYUIMap.ConfigureContractExplore_btn);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		clickJS(DIYUIMap.AddDC_link);
+		Thread.sleep(4000);
 		selectDropdownByText(DIYUIMap.DCType_drpdown, "Portfolio, Program & Project Management (PMI - PPM)");
 		clickJS(DIYUIMap.AddDC_btn);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -179,15 +180,18 @@ public class DIY extends Baseclass{
 				clickJS(DIYUIMap.Next_btn);
 				if(!getAttribute(DIYUIMap.selectedToolADTJira_checkbox, "checked").equalsIgnoreCase("true"))
 					clickJS(DIYUIMap.selectedToolADTJira_checkbox);
+				clickJS(DIYUIMap.Next_btn);
 				clickJS(DIYUIMap.SaveAndNext_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				Thread.sleep(5000);
+				clickJS(DIYUIMap.Yes_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				//stuff here
 				configuretools(toolname);
 				DataMappingCheck(toolname);
 				ExpWaitForCondition(DIYUIMap.SaveAndNext_btn);
 				EnableUseCases(toolname);
-				clickJS(DIYUIMap.SaveAndNext_btn);
+//				clickJS(DIYUIMap.SaveAndNext_btn);	//remove this
 				ExpWaitForCondition(DIYUIMap.SaveSuccess_Msg);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				AddUsers(toolname);
@@ -211,6 +215,8 @@ public class DIY extends Baseclass{
 				clickJS(DIYUIMap.Next_btn);
 				if(!getAttribute(DIYUIMap.selectedToolADOPJira_checkbox, "checked").equalsIgnoreCase("true"))
 					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
+				clickJS(DIYUIMap.Next_btn);
+				Thread.sleep(3000);
 				clickJS(DIYUIMap.Next_btn);
 				clickJS(DIYUIMap.SaveAndNext_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -363,6 +369,7 @@ public class DIY extends Baseclass{
 				clickJS(DIYUIMap.SaveAndNext_btn);
 				clickJS(DIYUIMap.SaveSuccess_Msg);
 				ExpWaitForCondition(DIYUIMap.SaveAndNext_btn);
+				Thread.sleep(5000);
 			
 		}
 		catch(Exception e)

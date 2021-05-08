@@ -36,17 +36,18 @@ public class DIYSteps {
 	@Then("^i test the connectivity for \"([^\"]*)\"$")
 	public void i_test_connectivity(String toolname) throws Throwable {
 		DIY.TestConnectivity(toolname);
-	}
-	
-	@Then("^i enter self enabled automation details for \"([^\"]*)\"$")
-	public void i_enter_selfenabledautomationdetails(String toolname) throws Throwable {
-		DIY.AddSelfEnabledAutomationDetails(toolname);
 		clickJS(MyWizardUIMap.BacktoOverallSetup_btn);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		clickJS(MyWizardUIMap.BacktoDIYADAutomation_btn);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		clickJS(MyWizardUIMap.BackToDashboard_link);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+
+	}
+	
+	@Then("^i enter self enabled automation details for \"([^\"]*)\"$")
+	public void i_enter_selfenabledautomationdetails(String toolname) throws Throwable {
+		DIY.AddSelfEnabledAutomationDetails(toolname);
 	}
 	
 	@Then("^i remove the role \"([^\"]*)\" for user \"([^\"]*)\"$")

@@ -19,20 +19,20 @@ Scenario Outline: ADTJIRA_WorkitemCreationInUI
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
-#	And i create a "<epic>" in Jira 
-#	And i create a "<task>" in Jira 
-#	And i create a "<story>" in Jira 
-#	And i create a "<risk>" in Jira 
-#	And i create a "<bug>" in Jira 
-#	And i create a "<issue>" in Jira 
-#	And i create a "<feature>" in Jira 
-#	And i create a "<impediment>" in Jira 
-#	And i create a "<deliverable>" in Jira 
-#	And i create a "<Requirement>" in Jira 
-#	And i create a "<Test>" in Jira
-#	And i create a "<milestone>" in Jira 
-#	And i create a "<Action>" in Jira
-#	And i create a "<WorkRequest>" in Jira
+	And i create a "<epic>" in Jira 
+	And i create a "<task>" in Jira 
+	And i create a "<story>" in Jira 
+	And i create a "<risk>" in Jira 
+	And i create a "<bug>" in Jira 
+	And i create a "<issue>" in Jira 
+	And i create a "<feature>" in Jira 
+	And i create a "<impediment>" in Jira 
+	And i create a "<deliverable>" in Jira 
+	And i create a "<Requirement>" in Jira 
+	And i create a "<Test>" in Jira
+	And i create a "<milestone>" in Jira 
+	And i create a "<Action>" in Jira
+	And i create a "<WorkRequest>" in Jira
 	And i create an "<Release>" in Jira 
 	And i create an "<Sprint>" in Jira 
 #	And i create an "<Team>" in Jira 

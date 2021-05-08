@@ -11,6 +11,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 
@@ -21,6 +23,10 @@ import uiMap.MyWizardUIMap;
 import utilities.general.Property;
 
 public class CommonFunctions {
+	
+	public static String testDataPath = System.getProperty("user.dir")
+			+ File.separator + "src" + File.separator + "test" + File.separator
+			+ "resources" + File.separator + "testdata" + File.separator;
 	
 	public static String convertdatetogivenformat(String datetobeconverted,String fromdateformat,String todateformat){
 		
@@ -198,12 +204,64 @@ public class CommonFunctions {
 		}
 		Baseclass.getInstance().release_IterationExternalID = release_IterationExternalID;
 		Baseclass.getInstance().sprint_IterationExternalID =sprint_IterationExternalID; 
+		writeIterationExternalIDs(release_IterationExternalID,sprint_IterationExternalID,toolname);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 			logger.info("issue running the query in myqueiries to fectch IterationExternalID");
 		}
+	}
+	public static void writeIterationExternalIDs(String release_IterationExternalID, String sprint_IterationExternalID,
+			String toolname) {
+		
+		try{
+		String writeIterationExternalIDs_Details="";
+		
+			if(toolname.contains("Jira") || toolname.contains("JIRA")){
+				writeIterationExternalIDs_Details = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "IterationExternalIDs.json" ;
+			}
+			else if(toolname.contains("TFS") || toolname.contains("Tfs")){
+				writeIterationExternalIDs_Details = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "IterationExternalIDs.json" ;
+			}
+		
+			FileReader reader = new FileReader(writeIterationExternalIDs_Details);
+	        JSONParser jsonParser = new JSONParser();
+	        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+	        jsonObject.put("IterationExternalID_Release",release_IterationExternalID);
+	        jsonObject.put("IterationExternalID_Sprint",sprint_IterationExternalID);
+	        FileOutputStream outputStream = new FileOutputStream(writeIterationExternalIDs_Details);
+			 byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	public static void setIterationExternalID(String toolname) {
+		
+		String FileToFetch="";
+			try{
+			if(toolname.contains("Jira") || toolname.contains("JIRA")){
+				FileToFetch = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "IterationExternalIDs.json" ;
+			}
+			else if(toolname.contains("TFS") || toolname.contains("Tfs")){
+				FileToFetch = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "IterationExternalIDs.json" ;
+			}
+			JSONParser parser = new JSONParser();
+			Object obj = parser.parse(new FileReader(FileToFetch));
+			JSONObject jsonObject = (JSONObject) obj;
+			
+			Baseclass.getInstance().release_IterationExternalID= (String) jsonObject.get("IterationExternalID_Release");
+			Baseclass.getInstance().sprint_IterationExternalID = (String) jsonObject.get("IterationExternalID_Sprint");
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 
 	
