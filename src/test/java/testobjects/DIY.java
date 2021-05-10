@@ -192,7 +192,7 @@ public class DIY extends Baseclass{
 				ExpWaitForCondition(DIYUIMap.SaveAndNext_btn);
 				EnableUseCases(toolname);
 //				clickJS(DIYUIMap.SaveAndNext_btn);	//remove this
-				ExpWaitForCondition(DIYUIMap.SaveSuccess_Msg);
+//				ExpWaitForCondition(DIYUIMap.SaveSuccess_Msg);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				AddUsers(toolname);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);

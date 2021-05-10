@@ -53,7 +53,7 @@ public static By AddAttribute_statictxt = By.xpath("//h5[text()='Add Attribute']
 public static By AddTile_statictxt = By.xpath("//h5[text()='Add Tile']");
 public static By AddTeam_statictxt = By.xpath("//span[text()='Team']");
 public static By AddProduct_statictxt = By.xpath("//a[text()='Add Product']");
-public static By AddStageTemplate_statictxt = By.xpath("//a[text()='Add Lifecycle Template ']");
+public static By AddStageTemplate_statictxt = By.xpath("//span[text()='Add Stage Template']");
 public static By AddAccessRole_statictxt = By.xpath("//a[text()='Add Access Role']");
 public static By AddEditIterationRecon_statictxt = By.xpath("//a[text()='Add/Edit Iteration Reconciliation']");
 public static By MyQueries_statictxt = By.xpath("//a[text()='My Queries']");

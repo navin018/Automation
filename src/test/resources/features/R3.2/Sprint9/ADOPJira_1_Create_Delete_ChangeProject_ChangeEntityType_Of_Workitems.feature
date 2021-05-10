@@ -39,7 +39,7 @@ Scenario Outline: ADOPJira_WorkitemCreation
 
 @2ChangeProjectAndEntityTypeOfWorkItems_ADOPJira 
 Scenario Outline: ADTJIRA_ChangeProjectOfWorkitems 
-	#Given i load the project properties file 
+	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
 	And i change the "project" of "<task>" in "<applicationname>" 

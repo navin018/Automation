@@ -141,6 +141,7 @@ Scenario: Check for the security headers
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Product Instance Entity Rule Config" 
+		And i select client and DC for "MyWizard"
 	And the user check for the duplicate security headers and missing security headers for "Product Instance Entity Rule Config" 
 	And i click on link "Add Rule" under "Product Instance Entity Rule Config" 
 	And the user check for the duplicate security headers and missing security headers for "Product Instance Entity Rule Config/Add Rule" 
@@ -170,7 +171,8 @@ Scenario: Check for the security headers
 Scenario: Check for the security headers 
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
-	And i click on tile "Iteration Reconciliation" 
+	And i click on tile "Iteration Reconciliation"
+	And i select client and DC for "MyWizard" 
 	And the user check for the duplicate security headers and missing security headers for "Iteration Reconciliation" 
 	And i click on link "Add Iteration Reconciliation" under "Iteration Reconciliation" 
 	And the user check for the duplicate security headers and missing security headers for "Iteration Reconciliation/Add Iteration Reconciliation" 
@@ -184,7 +186,7 @@ Scenario: Check for the security headers
 Scenario: Check for the security headers 
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
-	And i click on tile "My Queries" 
+	And i click on tile "my Queries" 
 	And the user check for the duplicate security headers and missing security headers for "my Queries" 
 	And i click on link "New Query" under "my Queries page" 
 	And the user check for the duplicate security headers and missing security headers for "my Queries/New Query page" 
@@ -236,6 +238,7 @@ Scenario: Check for the security headers
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Metrics Engine" 
 	And the user check for the duplicate security headers and missing security headers for "Metrics Engine" 
+	#i commented this for some reASON
 #	And i click on "Associate Clients" button 
 #	And the user check for the duplicate security headers and missing security headers for "Metrics Engine/Associate Clients" 
 #	And i click on "Close Associate Clients page" button 
@@ -275,83 +278,60 @@ Scenario: Check for the security headers
 	And i verify the overall securitytest results 
 	
 	
-@SecurityTest_DIYADAutomation 
+@1ADTJira_DIY_RemoveUserRoleInAccountManagement_SecurityTest
+Scenario Outline: ADTJIRA_RemoveUserRole_DIY 
+	Given i load the project properties file 
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "Account Management"
+	And i remove the role "Client Admin" for user "sonal.harish.nagda@accenture.com"
+
+Examples: 
+		| applicationname |
+		| MyWizard        |
+
+	
+@SecurityTest_DIYADAutomation
 Scenario: Check for the security headers 
+	Given i load the project properties file
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "DIY AD Automation" 
 	Then i select only the client for "<applicationname>" 
-	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation" 
-	And i click on "ConfigContractExplore" button 
-	
-	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/ConfigContractExplore" 
-#	And i click on link "Add Delivery Structure" under "DIY AD Automation/ConfigContractExplore page/Add Delivery Structure"
-	And i add a DC 
-	And the user check for the duplicate security headers and missing security headers for "DIY Automation/Add Delivery Structure/ConfigContractExplore" 
-#	And i click on "CloseAddDC" button 
-	And i click on "Back to DIY AD Automation" button 
-	And i click on "SelfEnabledAutomationExplore" button 
-	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/SelfEnabledAutomationExplore" 
-	And i click on "Select Functions" button 
-	And i select the details for select function page
-	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/SelfEnabledAutomationExplore/Select Functions" 
-	And i click on link "Add Tool" under "Select Functions sub-page under SelfEnabledAutomationExplore page/DIY AD Automation tile" 
-	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/SelfEnabledAutomationExplore/Select Functions/Add tool" 
-	And i click on "CloseAddDC" button 
-	And i click on "Back to Overall Setup Progress" button 
-	And i click on "Integrate Tools" button 
-	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Integrate Tools" 
-	And i click on "Back to Overall Setup Progress" button 
-	And i click on "Data Mapping" button 
-	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Data Mapping" 
-	And i click on "Back to Overall Setup Progress" button 
-	And i click on "Enable Usecases" button 
-	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Enable Usecases" 
-	And i click on "Back to Overall Setup Progress" button 
-			#Add users not clickable
-			And i click on "Add Users" button 
-			And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/Add Users" 
-			And i click on "Back to Overall Setup Progress" button 
-	And i click on "Back to DIY AD Automation" button 
+	And i "create" a DC for DIY for "ADT Jira"	
+	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/HomePage"
+	And i enter self enabled automation details for "ADT Jira"
+	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/CreateDCPage"
+	And i click on "Back to Overall Setup Progress" button
+	And i click on "Back to DIY AD Automation" button
 	And i click on "OnbaordClientToolExplore" button 
-	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/OnbaordClientToolExplore" 
+	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/OnbaordClientToolExplorePage"
 	And i click on "Back to DIY AD Automation" button 
-	And i click on "backtodashboard" button 
+	And i click on "backtodashboard" button
+	And i make a note of the DC created for "ADT Jira" 
 	And i "update" the vulnerabilites details into excel 
-	And i verify the overall securitytest results 
+	And i verify the overall securitytest results
 	
 	
-@SecurityTest_VirtualAssistant 
-Scenario: Check for the security headers 
-	Given i login to application "MyWizard" 
-	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
-	And i click on tile "Virtual Assistant" 
-	#	And the user check for the duplicate security headers and missing security headers for "Virtual Assistant Tile"
+@ADTJira_DIY_InactivateRules
+Scenario Outline: ADTJIRA_DIY_InactiveRules
+Given i load the project properties file 
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "Product Instance Entity Rule Config"
+	Then i select client and DC for DIY for "ADT Jira"	
+	And i deactivate the rules for "ADT Jira"
+	And i "delete" a DC for DIY for "ADT Jira"
 	
-	And i click on "Metrics Dashboard setting" button 
-	#	And the user check for the duplicate security headers and missing security headers for "Metrics Dashboard setting page under Virtual Assistant Tile"
-	And i click on "Process Builder" button 
-	#	And the user check for the duplicate security headers and missing security headers for "Process Builder page under Virtual Assistant Tile"
-	And i click on "Metrics Dashboard setting" button 
-	And i click on "VABack" button 
-	And i click on "notifications" button 
-	#	And the user check for the duplicate security headers and missing security headers for "Notifications page under Virtual Assistant Tile"
-	And i click on "AttentionArea" button 
-	#	And the user check for the duplicate security headers and missing security headers for "AttentionArea page under Virtual Assistant Tile"
-	And i click on "VASettings" button 
-	And i click on "Query" button 
-	#	And the user check for the duplicate security headers and missing security headers for "Query page under Virtual Assistant Tile"
-	And i click on "VABack" button 
-	And i click on "VASettings" button 
-	And i click on "Recommendation" button 
-	#	And the user check for the duplicate security headers and missing security headers for "Recommendation page under Virtual Assistant Tile"
-	And i click on "VABack" button 
-	And i click on "VASettings" button 
-	And i click on "Entity" button 
-	#	And the user check for the duplicate security headers and missing security headers for "Entity page under Virtual Assistant Tile"
-	And i click on "VABack" button 
-	And i click on "VASettings" button 
-	And i click on "ruleBuilder" button 
-	#	And the user check for the duplicate security headers and missing security headers for "ruleBuilder page under Virtual Assistant Tile"
-	And i click on "VABack" button 
-	And i navigate to HomePage
+	Examples: 
+		| applicationname |
+		| MyWizard        |
+
+@8ADTJira_DIY_DeleteDC
+Scenario: ADTJIRA_DI
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "DIY AD Automation" 
+	Then i select only the client for "<applicationname>"
+	And i "delete" a DC for DIY for "ADT Jira"	
+	 

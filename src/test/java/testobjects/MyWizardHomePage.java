@@ -482,7 +482,9 @@ public class MyWizardHomePage {
 		case "Metrics Engine":
 
 			try{
-			ExpWaitForCondition(SecurityTestsUIMap.MetricsEngine_statictxt);
+				ArrayList<String> tabs2 = new ArrayList<String> (driver().getWindowHandles());
+				 driver().switchTo().window(tabs2.get(1));
+				 ExpWaitForCondition(SecurityTestsUIMap.MetricsEngine_statictxt);
 				}
 			catch(Exception e)
 				{
