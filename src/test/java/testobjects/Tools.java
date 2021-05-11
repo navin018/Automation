@@ -203,13 +203,14 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 		JSONObject jsonObject = (JSONObject) obj;
 		String WorkItemExternalId="";
 		
-		if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request") ))
+		if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request") || workitem.equalsIgnoreCase("ProductBacklog")))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem);
 		else if(workitem.equalsIgnoreCase("Test Execution"))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_TestExecution");
 		else if(workitem.equalsIgnoreCase("Work Request"))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_WorkRequest");
-		
+		else if(workitem.equalsIgnoreCase("ProductBacklog"))
+			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_Story");
 		String ReleaseName="";
 		String SprintName="";
 		

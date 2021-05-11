@@ -20,7 +20,7 @@ Scenario Outline: TFSAgile_WorkitemCreation
      And i create a "<Story>" in TFS
         And i create a "<WorkRequest>" in TFS
 #     And i create a "<TestResult>" in TFS
-#  
+  
  And i create "<Release>" and "<Sprint>" in TFS
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
 	And i put a explicit wait of "900000" 
@@ -28,7 +28,7 @@ Scenario Outline: TFSAgile_WorkitemCreation
 	
 	    Examples: 
       | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|WorkRequest_01|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_02 | Sprint_02 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|WorkRequest_01|
 
 
 @2Delete_TestData_TFSAgile_DeleteFunctionality 
@@ -49,13 +49,13 @@ Scenario Outline: Delete_TestData_TFSAgile
 	And i delete "<Requirement>" in TFS 
 	And i delete "<Milestone>" in TFS 
 	And i delete "<Story>" in TFS
-	And i delete "<ChangeRequest>" in TFS
+	And i delete "<WorkRequest>" in TFS
 	
-#	And i delete "ReleaseAndSprint" in TFS	//pending piece of code 	
+	And i delete "ReleaseAndSprint" in TFS	 	
 
 	Examples: 
-		| applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|ChangeRequest|
-		| TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|ChangeRequest_01|
+		| applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|
+		| TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|Work Request_01|
 		
 		
 
@@ -66,11 +66,11 @@ Scenario Outline: TFSAgile_ChangeProjectOfWorkitems
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
 	And i change the "project" of "<bug>" in TFS
-	And i change the "project" of "<task>" in TFS
-	And i change the "project" of "<epic>" in TFS
-	And i change the "project" of "<feature>" in TFS
+	And i change the "project" of "<Task>" in TFS
+	And i change the "project" of "<Epic>" in TFS
+	And i change the "project" of "<Feature>" in TFS
 	And i change the "project" of "<Issue>" in TFS
-	And i change the "project" of "<TestCase>" in TFS
+
 	And i change the "project" of "<Risk>" in TFS
 	And i change the "project" of "<Milestone>" in TFS
 	And i change the "project" of "<Action>" in TFS
@@ -78,12 +78,12 @@ Scenario Outline: TFSAgile_ChangeProjectOfWorkitems
 	And i change the "project" of "<Deliverable>" in TFS
 	And i change the "project" of "<Requirement>" in TFS
 	And i change the "project" of "<Story>" in TFS		 
-	And i change the "project" of "<ChangeRequest>" in TFS
+	And i change the "project" of "<WorkRequest>" in TFS
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" for "moveProjectOrIssue" functionality 
 
    Examples: 
-      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|ChangeRequest|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|ChangeRequest_01|
+      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|Work Request_01|
 
 						
 @4ChangeEntityTypeOfWorkItems_TFSAgile 

@@ -32,10 +32,6 @@ Scenario: TFSAgile_DeliverableFlow_ProjectChange
 	And i verify if "Deliverable" has "deleted" which was "NA" for "TFS Agile" for "ChangeProjectFromOne" functionality 
 	And i verify if "Deliverable" has "flown" which was "NA" for "TFS Agile" for "ChangeProjectToAnother" functionality 
 
-Scenario: TFSAgile_TestCaseFlow_ProjectChange 
-	And i verify if "TestCase" has "deleted" which was "NA" for "TFS Agile" for "ChangeProjectFromOne" functionality 
-	And i verify if "TestCase" has "flown" which was "NA" for "TFS Agile" for "ChangeProjectToAnother" functionality 
-
 Scenario: TFSAgile_ActionFlow_ProjectChange 
 	And i verify if "Action" has "deleted" which was "NA" for "TFS Agile" for "ChangeProjectFromOne" functionality 
 	And i verify if "Action" has "flown" which was "NA" for "TFS Agile" for "ChangeProjectToAnother" functionality 

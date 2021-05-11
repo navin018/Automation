@@ -26,12 +26,7 @@ Scenario: TFSScrum_ProductBacklog_flow_beforeDelete
 
 Scenario: TFSScrum_Risk_flow_beforeDelete 
 	And i verify if "Risk" has "flown" which was "NA" for "TFS Scrum" for "delete" functionality 
-	 
-	
 
-Scenario: TFSScrum_TestCase_flow_beforeDelete 
-	And i verify if "TestCase" has "flown" which was "NA" for "TFS Scrum" for "delete" functionality 
-	 
 
 Scenario: TFSScrum_Issue_flow_beforeDelete 
 And i verify if "Issue" has "flown" which was "NA" for "TFS Scrum" for "delete" functionality 

@@ -24,11 +24,6 @@ Scenario: TFSAgile_Story_flow_afterDelete
 Scenario: TFSAgile_Risk_flow_afterDelete 
 	And i verify if "Risk" has "deleted" which was "NA" for "TFS Agile" for "delete" functionality 
 	 
-	
-
-Scenario: TFSAgile_TestCase_flow_afterDelete 
-	And i verify if "TestCase" has "deleted" which was "NA" for "TFS Agile" for "delete" functionality 
-	 
 
 Scenario: TFSAgile_Issue_flow_afterDelete 
 And i verify if "Issue" has "deleted" which was "NA" for "TFS Agile" for "delete" functionality 

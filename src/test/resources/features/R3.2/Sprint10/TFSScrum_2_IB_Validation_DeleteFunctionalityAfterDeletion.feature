@@ -28,10 +28,6 @@ Scenario: TFSScrum_Risk_flow_afterDelete
 Scenario: TFSScrum_Impediment_flow_afterDelete 
 	And i verify if "Impediment" has "deleted" which was "NA" for "TFS Scrum" for "delete" functionality 	
 
-Scenario: TFSScrum_TestCase_flow_afterDelete 
-	And i verify if "TestCase" has "deleted" which was "NA" for "TFS Scrum" for "delete" functionality 
-	 
-
 Scenario: TFSScrum_Issue_flow_afterDelete 
 And i verify if "Issue" has "deleted" which was "NA" for "TFS Scrum" for "delete" functionality 
 	 

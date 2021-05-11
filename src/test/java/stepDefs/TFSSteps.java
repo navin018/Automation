@@ -1,6 +1,9 @@
 package stepDefs;
 import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
+
+import org.openqa.selenium.By;
+
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import uiMap.JiraUIMap;
@@ -41,6 +44,7 @@ public class TFSSteps {
 	public void i_change_the_project_of_in(String ProjectOrEntityType, String workitem) throws Throwable {
 		TFSWorkitem.openworkitem(workitem);
 		TFSWorkitem.changeProjectOrIssueTypeofWorkitem(ProjectOrEntityType,workitem,"TFS","");
+		
 	}
 	
 	@Then("^i change the \"([^\"]*)\" of \"([^\"]*)\" to \"([^\"]*)\" in TFS$")
@@ -57,7 +61,7 @@ public class TFSSteps {
 		}
 		else{
 			TFSWorkitem.openworkitem(workitem);
-			TFSWorkitem.deleteworkitem();
+			TFSWorkitem.deleteworkitem(workitem);
 		}
 	}
 	

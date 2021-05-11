@@ -28,8 +28,8 @@ Scenario Outline: TFSScrum_WorkitemCreation
 	And i generate a token for "DevTest" environment 
 	
 Examples: 
-      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|WorkRequest_01|
+      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | ProductBacklog    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |ProductBacklog_01 | Release_02 | Sprint_02 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|Work Request_01|
 
 @2Delete_TestData_TFSScrum_DeleteFunctionality 
 Scenario Outline: Delete_TestData_TFSScrum 
@@ -50,13 +50,13 @@ Scenario Outline: Delete_TestData_TFSScrum
 	And i delete "<Milestone>" in TFS 
 	And i delete "<Impediment>" in TFS 
 	And i delete "<ProductBacklog>" in TFS 
-	And i delete "<ChangeRequest>" in TFS
-#	And i delete "ReleaseAndSprint" in TFS	//pending piece of code 	
+	And i delete "<WorkRequest>" in TFS
+	And i delete "ReleaseAndSprint" in TFS	 		
 
 
-	     Examples: 
-      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|ProductBacklog|Milestone|Requirement|ChangeRequest|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|ProductBacklog_01|Milestone_01|Requirement_01|ChangeRequest_01|
+Examples: 
+      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | ProductBacklog    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |ProductBacklog_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|Work Request_01|
 
 		
 
@@ -70,8 +70,7 @@ Scenario Outline: TFSScrum_ChangeProjectOfWorkitems
 	And i change the "project" of "<task>" in TFS
 	And i change the "project" of "<epic>" in TFS
 	And i change the "project" of "<feature>" in TFS
-	And i change the "project" of "<Issue>" in TFS
-	And i change the "project" of "<TestCase>" in TFS
+	And i change the "project" of "<Issue>" in TFS	
 	And i change the "project" of "<Risk>" in TFS
 	And i change the "project" of "<Milestone>" in TFS
 	And i change the "project" of "<Action>" in TFS
@@ -79,12 +78,12 @@ Scenario Outline: TFSScrum_ChangeProjectOfWorkitems
 	And i change the "project" of "<Deliverable>" in TFS
 	And i change the "project" of "<Requirement>" in TFS
 	And i change the "project" of "<ProductBacklog>" in TFS		
-	And i change the "project" of "<ChangeRequest>" in TFS
+	And i change the "project" of "<WorkRequest>" in TFS
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" for "moveProjectOrIssue" functionality 
 
        Examples: 
-      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|ProductBacklog|Milestone|Requirement|ChangeRequest|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|ProductBacklog_01|Milestone_01|Requirement_01|ChangeRequest_01|
+      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|ProductBacklog|Milestone|Requirement|WorkRequest|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|ProductBacklog_01|Milestone_01|Requirement_01|Work Request_01|
 
 						
 @4ChangeEntityTypeOfWorkItems_TFSScrum 
@@ -97,7 +96,7 @@ Scenario Outline: TFSScrum_ChangeProjectOfWorkitems
 	And i change the "entitytype" of "<epic>" to "<Requirement>" in TFS 
 	And i change the "entitytype" of "<Decision>" to "<feature>" in TFS 
 	And i change the "entitytype" of "<Risk>" to "<Issue>" in TFS 
-	And i change the "entitytype" of "<TestCase>" to "<ProductBacklog>" in TFS 
+	 
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" for "moveProjectOrIssue" functionality
 
  

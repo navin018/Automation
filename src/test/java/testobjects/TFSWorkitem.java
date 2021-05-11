@@ -133,99 +133,101 @@ import utilities.general.Property;
 				
 				case "bug":
 				
-						Baseclass.getInstance().WorkItemExternalId_Bug = getText(TFSUIMap.captureWorkItemID1_statictxt);
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+						Baseclass.getInstance().WorkItemExternalId_Bug = getText(TFSUIMap.captureWorkItemID2_statictxt);
+						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
 						break;
 				case "epic":
 				
-						Baseclass.getInstance().WorkItemExternalId_Epic =  getText(TFSUIMap.captureWorkItemID1_statictxt);
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+						Baseclass.getInstance().WorkItemExternalId_Epic =  getText(TFSUIMap.captureWorkItemID2_statictxt);
+						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
 						break;
 				case "risk":
 					
-					Baseclass.getInstance().WorkItemExternalId_Risk =  getText(TFSUIMap.captureWorkItemID1_statictxt);
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+					Baseclass.getInstance().WorkItemExternalId_Risk =  getText(TFSUIMap.captureWorkItemID2_statictxt);
+					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
 				case "feature":
 				
-						Baseclass.getInstance().WorkItemExternalId_Feature =getText(TFSUIMap.captureWorkItemID1_statictxt);
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+						Baseclass.getInstance().WorkItemExternalId_Feature =getText(TFSUIMap.captureWorkItemID2_statictxt);
+						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
 						break;
 				case "issue":
 				
-						Baseclass.getInstance().WorkItemExternalId_Issue =getText(TFSUIMap.captureWorkItemID1_statictxt);
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+						Baseclass.getInstance().WorkItemExternalId_Issue =getText(TFSUIMap.captureWorkItemID2_statictxt);
+						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
 						break;
 				case "task":
 				
-						Baseclass.getInstance().WorkItemExternalId_Task =getText(TFSUIMap.captureWorkItemID1_statictxt);
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+						Baseclass.getInstance().WorkItemExternalId_Task =getText(TFSUIMap.captureWorkItemID2_statictxt);
+						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
 						break;
 				case "story":
 				case "user story":
 				
-						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID1_statictxt);
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID2_statictxt);
+						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
 						break;
 				case "testcase":
 				
-						Baseclass.getInstance().WorkItemExternalId_TestCase =getText(TFSUIMap.captureWorkItemID1_statictxt);
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+						Baseclass.getInstance().WorkItemExternalId_TestCase =getText(TFSUIMap.captureWorkItemID2_statictxt);
+						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
 						break;
 				case "impediment":
 				
-						Baseclass.getInstance().WorkItemExternalId_Impediment =getText(TFSUIMap.captureWorkItemID1_statictxt);
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+						Baseclass.getInstance().WorkItemExternalId_Impediment =getText(TFSUIMap.captureWorkItemID2_statictxt);
+						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
 						break;
 				case "productbacklog":
 				
-						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID1_statictxt);
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID2_statictxt);
+						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
 						break;
 				case "action":
 					
-					Baseclass.getInstance().WorkItemExternalId_Action =getText(TFSUIMap.captureWorkItemID1_statictxt);
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+					Baseclass.getInstance().WorkItemExternalId_Action =getText(TFSUIMap.captureWorkItemID2_statictxt);
+					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
 				case "decision":
 					
-					Baseclass.getInstance().WorkItemExternalId_Decision =getText(TFSUIMap.captureWorkItemID1_statictxt);
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+					Baseclass.getInstance().WorkItemExternalId_Decision =getText(TFSUIMap.captureWorkItemID2_statictxt);
+					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
 				case "milestone":
 					
-					Baseclass.getInstance().WorkItemExternalId_Milestone =getText(TFSUIMap.captureWorkItemID1_statictxt);
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+					Baseclass.getInstance().WorkItemExternalId_Milestone =getText(TFSUIMap.captureWorkItemID2_statictxt);
+					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
 				case "requirement":
 					
-					Baseclass.getInstance().WorkItemExternalId_Requirement =getText(TFSUIMap.captureWorkItemID1_statictxt);
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+					Baseclass.getInstance().WorkItemExternalId_Requirement =getText(TFSUIMap.captureWorkItemID2_statictxt);
+					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
 				case "deliverable":
 					
-					Baseclass.getInstance().WorkItemExternalId_Deliverable =getText(TFSUIMap.captureWorkItemID1_statictxt);
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+					Baseclass.getInstance().WorkItemExternalId_Deliverable =getText(TFSUIMap.captureWorkItemID2_statictxt);
+					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
 					
 				case "changerequest":
-					Baseclass.getInstance().WorkItemExternalId_WorkRequest =getText(TFSUIMap.captureWorkItemID1_statictxt);
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID1_statictxt));
+				case "workrequest":
+				case "work request":
+					Baseclass.getInstance().WorkItemExternalId_WorkRequest =getText(TFSUIMap.captureWorkItemID2_statictxt);
+					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
 				default:
@@ -748,12 +750,33 @@ import utilities.general.Property;
 			singleClick(TFSUIMap.saveandclose_btn);
 		}
 
-		public static void deleteworkitem() {
+		public static void deleteworkitem(String workitem) {
+			try{
 		ExpWaitForCondition(TFSUIMap.ActionWorkitem_btn);
 			clickJS(TFSUIMap.ActionWorkitem_btn);
+			
+			
+			if(workitem.contains("TestCase") || workitem.contains("Testcase"))
+				{
+				clickJS(TFSUIMap.PermanentDeleteWorkitem_btn);
+					ExpWaitForCondition(TFSUIMap.deleteTestCase_txtbox);
+					clickJS(TFSUIMap.deleteTestCase_txtbox);
+					String WorkItemExternalId = Tools.getWorkItemExternalID(workitem.split("_")[0],"TFS");
+					enterText(TFSUIMap.deleteTestCase_txtbox,WorkItemExternalId);
+					clickJS(TFSUIMap.ConfirmDeleteWorkitem_btn);
+				}
+				else{
 			clickJS(TFSUIMap.DeleteWorkitem_btn);
 			ExpWaitForCondition(TFSUIMap.ConfirmDeleteWorkitem_PopUp);
-			clickJS(TFSUIMap.DeleteWorkitem_btn);
+			clickJS(TFSUIMap.ConfirmDeleteWorkitem_btn);
+			Thread.sleep(3000);
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("issue deleting workitem in TFS");
+			}
 		}
 
 		public static void DeleteReleaseSprint() {
@@ -772,13 +795,18 @@ import utilities.general.Property;
 			HashMap<String,String> ReleaseSrpintDetails = Tools.getReleaseAndSprintDetails("TFS");
 			String ReleaseName = ReleaseSrpintDetails.get("ReleaseName");
 			String SprintName = ReleaseSrpintDetails.get("SprintName");
+			
+			
+			
+				singleClick(prepareWebElementWithDynamicXpath(TFSUIMap.ReleaseOrSprint_Row, ReleaseName, "ReleaseOrSprintName"));
+				Thread.sleep(2000);
 //			HoverUsingAction(prepareWebElementWithDynamicXpath(TFSUIMap.ReleaseOrSprintAction_btn, ReleaseName, "ReleaseOrSprintName"));
-			clickJS(By.xpath("//div[text()='TFS Agile1_ Client-Native']//preceding::span[@class='grid-context-menu-icon bowtie-icon bowtie-ellipsis'][1]"));
-//			sendCtrlPlusPageDown();
-//			ScrollToEndOfPage();
-			driver().findElement(By.xpath("//div[text()='Iterations']//following::div[text()='TFS Agile1_ Client-Native'][1]")).sendKeys(Keys.chord(Keys.CONTROL, Keys.PAGE_DOWN));
-//			Scroll1();
-//			ScrollIntoView(prepareWebElementWithDynamicXpath(TFSUIMap.ReleaseOrSprintAction_btn, ReleaseName, "ReleaseOrSprintName"));
+			clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.ReleaseOrSprintAction_btn, ReleaseName, "ReleaseOrSprintName"));
+			Thread.sleep(2000);
+			clickJS(TFSUIMap.DeleteAutomationData_Btn);
+			ExpWaitForCondition(TFSUIMap.DeletePath_btn);
+			clickJS(TFSUIMap.DeletePath_btn);
+			
 			}
 			catch(Exception e)
 			{
@@ -798,6 +826,7 @@ import utilities.general.Property;
 				if(ProjectOrEntityType.equalsIgnoreCase("entitytype")){
 				clickJS(TFSUIMap.ActionWorkitem_btn);
 				clickJS(TFSUIMap.ChangeEntityType_link);
+				
 				enterText(TFSUIMap.EntityTypeTo_txtbox,workitemTo);
 				sendEnter(TFSUIMap.EntityTypeTo_txtbox);
 				Thread.sleep(2000);
@@ -810,8 +839,13 @@ import utilities.general.Property;
 				if(ProjectOrEntityType.equalsIgnoreCase("project")){
 					clickJS(TFSUIMap.ActionWorkitem_btn);
 					clickJS(TFSUIMap.ChangeProject_link);
+					Thread.sleep(4000);
+					if(!CheckIfElementExists(prepareWebElementWithDynamicXpath(TFSUIMap.ChangedProj_statictxt, Property.getProperty("TFSProject_ChangeProject"), "newproj"))){
+				
+//					clear(TFSUIMap.ChangeProject_link);
 					enterText(TFSUIMap.ChangeProjectTo_txtbox, Property.getProperty("TFSProject_ChangeProject"));
 					Thread.sleep(2000);
+					}
 					clickJS(TFSUIMap.Ok_btn);
 					Thread.sleep(2000);
 					clickJS(TFSUIMap.save_drpdown);

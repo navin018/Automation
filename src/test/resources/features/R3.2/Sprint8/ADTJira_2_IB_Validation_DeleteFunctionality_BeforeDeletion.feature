@@ -43,8 +43,8 @@ And i verify if "Feature" has "flown" which was "NA" for "ADT JIRA" for "delete"
 Scenario: ADTJIRA_Deliverable_flow_beforeDelete 
 And i verify if "_Deliverable" has "flown" which was "NA" for "ADT JIRA" for "delete" functionality 
 	
-Scenario: ADTJIRA_Test_flow_beforeDelete 
-And i verify if "Test" has "flown" which was "NA" for "ADT JIRA" for "delete" functionality 
+#Scenario: ADTJIRA_Test_flow_beforeDelete 
+#And i verify if "Test" has "flown" which was "NA" for "ADT JIRA" for "delete" functionality 
 	
 
 Scenario: ADTJIRA_Requirement_flow_beforeDelete 
