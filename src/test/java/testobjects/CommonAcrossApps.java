@@ -681,6 +681,7 @@ public static void UpdateWorkItemExternalIDsForAppsForMoveProjectOrIssue(String 
 	    jsonObject.put("WorkItemExternalId_TestExecution", Baseclass.getInstance().WorkItemExternalId_TestExecution);
 	  
 	    jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
+	    jsonObject.put("WorkItemExternalId_WorkRequest", Baseclass.getInstance().WorkItemExternalId_WorkRequest);
 	 
 	    jsonObject.put("WorkItemExternalId_ReleaseName", Baseclass.getInstance().Jira_ReleaseName);
 	    jsonObject.put("WorkItemExternalId_ReleaseStartDate", Baseclass.getInstance().Jira_ReleaseStartDate);
@@ -730,7 +731,7 @@ public static void UpdateWorkItemExternalIDsForAppsForMoveProjectOrIssue(String 
     jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
     jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
     jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
-    
+    jsonObject.put("WorkItemExternalId_WorkRequest", Baseclass.getInstance().WorkItemExternalId_WorkRequest);
 
     
 	jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);

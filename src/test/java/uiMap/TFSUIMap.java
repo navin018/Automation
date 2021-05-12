@@ -31,7 +31,7 @@ public static By save_btn = By.xpath("//span[@class='text'][text()='Save']");
 public static By saveandclose_btn = By.xpath("//span[text()='Save & Close']");
 public static By captureWorkItemID_statictxt = By.xpath("//a[@class='caption']");
 public static By captureWorkItemID1_statictxt = By.xpath("//span[@aria-label='ID Field'][1]");
-public static By captureWorkItemID2_statictxt = By.xpath("//span[@aria-label='ID Field'][1] | //div[@class='form-body']//following::span[@aria-label='ID Field'][1]");
+public static By captureWorkItemID2_statictxt = By.xpath("//*[@id='witc_75_txt']/preceding::span[@aria-label='ID Field'][1]");
 public static By close_btn = By.xpath("//span[@class='ui-button-icon-primary ui-icon ui-icon-closethick']");
 
 public static By plusIcon_btn = By.xpath("//span[contains(@class,'Add medium')]");
@@ -86,7 +86,7 @@ public static By ViewTestResult_link = By.xpath("//*[contains(text(),'View test 
 public static String createdTest_txt = "//*[contains(text(),'{TCName}')]";
 public static String workitemIDInSearch_txt = "//span[contains(text(),'{workitemid}')]";
 
-public static By State_drpdown = By.xpath("//input[@aria-label='State Field']");
+public static By State_drpdown = By.xpath("//label[@for='witc_77_txt']");
 public static By ActionWorkitem_btn = By.xpath("//span[@aria-label='Actions']");
 
 public static By DeleteWorkitem_btn = By.xpath("//span[text()='Delete']");

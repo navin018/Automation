@@ -825,15 +825,24 @@ import utilities.general.Property;
 			try{
 				if(ProjectOrEntityType.equalsIgnoreCase("entitytype")){
 				clickJS(TFSUIMap.ActionWorkitem_btn);
+				ExpWaitForCondition(TFSUIMap.ChangeEntityType_link);
 				clickJS(TFSUIMap.ChangeEntityType_link);
 				
-				enterText(TFSUIMap.EntityTypeTo_txtbox,workitemTo);
+				ExpWaitForCondition(TFSUIMap.EntityTypeTo_txtbox);
+				clickJS(TFSUIMap.EntityTypeTo_txtbox);
+				clear(TFSUIMap.EntityTypeTo_txtbox);
+				enterText(TFSUIMap.EntityTypeTo_txtbox,workitemTo.split("_")[0]);
 				sendEnter(TFSUIMap.EntityTypeTo_txtbox);
 				Thread.sleep(2000);
 				clickJS(TFSUIMap.Ok_btn);
 				Thread.sleep(2000);
+				singleClick(TFSUIMap.State_drpdown);
+				sendPageDown();
+				sendPageDown();
+				sendEntr();
 				clickJS(TFSUIMap.save_drpdown);
 				clickJS(TFSUIMap.save_btn);
+				Thread.sleep(3000);
 				CaptureWorkitemID(workitemTo);
 				}
 				if(ProjectOrEntityType.equalsIgnoreCase("project")){

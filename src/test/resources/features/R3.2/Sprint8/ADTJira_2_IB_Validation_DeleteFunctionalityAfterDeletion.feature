@@ -39,7 +39,7 @@ And i verify if "Feature" has "deleted" which was "NA" for "ADT JIRA" for "delet
 	 
 	
 Scenario: ADTJIRA_Deliverable_flow_afterDelete 
-And i verify if "_Deliverable" has "deleted" which was "NA" for "ADT JIRA" for "delete" functionality 
+And i verify if "Deliverable" has "deleted" which was "NA" for "ADT JIRA" for "delete" functionality 
 	
 #Scenario: ADTJIRA_Test_flow_afterDelete 
 #And i verify if "Test" has "deleted" which was "NA" for "ADT JIRA" for "delete" functionality 
