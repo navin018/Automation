@@ -10,7 +10,7 @@ Scenario Outline: TFSAgile_WorkitemCreation
     And i create a "<Feature>" in TFS
     And i create a "<Issue>" in TFS
     And i create a "<Task>" in TFS
-    And i create a "<TestCase>" in TFS
+
  	And i create a "<Risk>" in TFS
     And i create a "<Action>" in TFS
     And i create a "<Decision>" in TFS
@@ -28,7 +28,7 @@ Scenario Outline: TFSAgile_WorkitemCreation
 	
 	    Examples: 
       | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_02 | Sprint_02 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|WorkRequest_01|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_02 | Sprint_02 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|Work Request_01|
 
 
 @2Delete_TestData_TFSAgile_DeleteFunctionality 

@@ -67,9 +67,9 @@ Scenario Outline: TFSScrum_ChangeProjectOfWorkitems
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
 	And i change the "project" of "<bug>" in TFS
-	And i change the "project" of "<task>" in TFS
-	And i change the "project" of "<epic>" in TFS
-	And i change the "project" of "<feature>" in TFS
+	And i change the "project" of "<Task>" in TFS
+	And i change the "project" of "<Epic>" in TFS
+	And i change the "project" of "<Feature>" in TFS
 	And i change the "project" of "<Issue>" in TFS	
 	And i change the "project" of "<Risk>" in TFS
 	And i change the "project" of "<Milestone>" in TFS
@@ -92,7 +92,7 @@ Scenario Outline: TFSScrum_ChangeProjectOfWorkitems
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
 	And i change the "entitytype" of "<bug>" to "<Milestone>" in TFS 
-	And i change the "entitytype" of "<task>" to "<Action>" in TFS 
+	And i change the "entitytype" of "<Task>" to "<Action>" in TFS 
 	And i change the "entitytype" of "<epic>" to "<Requirement>" in TFS 
 	And i change the "entitytype" of "<Decision>" to "<feature>" in TFS 
 	And i change the "entitytype" of "<Risk>" to "<Issue>" in TFS 

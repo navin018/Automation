@@ -54,7 +54,9 @@ And i verify if "Requirement" has "flown" which was "NA" for "TFS Scrum" for "de
 Scenario: TFSScrum_WorkRequest_flow_beforeDelete 
 And i verify if "Work Request" has "flown" which was "NA" for "TFS Scrum" for "delete" functionality 
 
+
 Scenario Outline: TFSScrum_Deletefunctionality_IBVerification_Release_Sprint
+	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"

@@ -884,7 +884,7 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 		 deliveryConstructUId=DCUid;
 	 }
 	 if(!workitem.equalsIgnoreCase("Team"))
-		 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"/"+QueryType+"?clientUId="+ClientUId+"&deliveryConstructUId="+deliveryConstructUId+"&includeCompleteHierarchy=false";
+		 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"/"+QueryType+"?clientUId="+ClientUId+"&deliveryConstructUId="+deliveryConstructUId+"&includeCompleteHierarchy=true";
 //		 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"/"+"?clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 	 if(workitem.equalsIgnoreCase("Team"))
 		 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"?clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId=null&deliveryConstructTypeUId=00200020-0000-0000-0000-000000000000";

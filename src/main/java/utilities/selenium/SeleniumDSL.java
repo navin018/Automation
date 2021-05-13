@@ -527,6 +527,16 @@ public class SeleniumDSL {
 		ac.sendKeys(Keys.DELETE);
 		ac.build().perform();
     }
+	public static void sendPageDown()  {
+		Actions ac = new Actions(driver());
+		ac.sendKeys(Keys.PAGE_DOWN);
+		ac.build().perform();
+    }
+	public static void sendEntr()  {
+		Actions ac = new Actions(driver());
+		ac.sendKeys(Keys.ENTER);
+		ac.build().perform();
+    }
 	public static void sendTab(By by)  {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(Keys.TAB);
     }
