@@ -10,6 +10,7 @@ public class DFTUIMap {
 public static By Filter_Icon=By.xpath("//a[@title='Filter']");
 public static By processed_checkbox=By.xpath("//span[text()='Processed']");
 public static By EndDate_txtbox=By.xpath("//*[text()='End Date']//following::input[@placeholder='DD/MM/YYYY']");
+public static By StartDate_txtbox=By.xpath("//*[text()='Start Date']//following::input[@placeholder='DD/MM/YYYY']");
 public static By Apply_btn=By.xpath("//a[text()='Apply']");
 public static By Searchbox_txtbox=By.xpath("//input[@placeholder='Enter text to search the first 500 records']");
 public static String SearchResultForGivenCorrelationUID_txt="//span[text()='{CorrelationUId}']";

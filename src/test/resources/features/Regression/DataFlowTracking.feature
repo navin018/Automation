@@ -6,8 +6,8 @@ Scenario Outline: ADTJIra_WorkitemCcreation
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
 	And i create a "<Story>" in Jira 
-	# And i create a "<Requirement>" in TFS for non-sanity
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" 
+	And i put a explicit wait of "600000"
 	
 	
 	Examples: 

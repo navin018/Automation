@@ -15,6 +15,7 @@ Examples:
 
 @2ADTJira_DIY_CreateDC
 Scenario Outline: ADTJIRA_DIY_CreateDC 
+	Given i load the project properties file
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "DIY AD Automation" 
@@ -64,13 +65,14 @@ Examples:
 
 @7ADTJira_DIY_InactivateRules
 Scenario Outline: ADTJIRA_DIY_InactiveRules
-Given i load the project properties file 
+
+	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "Product Instance Entity Rule Config"
 	Then i select client and DC for DIY for "ADT Jira"	
 	And i deactivate the rules for "ADT Jira"
-	And i "delete" a DC for DIY for "ADT Jira"
+
 	
 	Examples: 
 		| applicationname |
@@ -78,6 +80,7 @@ Given i load the project properties file
 
 @8ADTJira_DIY_DeleteDC
 Scenario: ADTJIRA_DI
+	Given i load the project properties file
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "DIY AD Automation" 

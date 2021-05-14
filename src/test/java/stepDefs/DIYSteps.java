@@ -22,20 +22,23 @@ public class DIYSteps {
 	@Then("^i deactivate the rules for \"([^\"]*)\"$")
 	public void i_deactivate(String toolname) throws Throwable {
 		DIY.DeactivateRules(toolname);
+		clickJS(MyWizardUIMap.BackToDashboard_link);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 	}
 	
 	@Then("^i select client and DC for DIY for \"([^\"]*)\"$")
 	public void i_select_client_and_DC(String toolname) throws Throwable {
 		
     		DIY.SelectClientAndDC(toolname);
-	
+    		Thread.sleep(3000);
+    		refresh();
 	
 		
 	}
 	
 	@Then("^i test the connectivity for \"([^\"]*)\"$")
 	public void i_test_connectivity(String toolname) throws Throwable {
-		DIY.TestConnectivity(toolname);
+//		DIY.TestConnectivity(toolname);
 		clickJS(MyWizardUIMap.BacktoOverallSetup_btn);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		clickJS(MyWizardUIMap.BacktoDIYADAutomation_btn);

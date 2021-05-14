@@ -313,7 +313,7 @@ Scenario: Check for the security headers
 	And i verify the overall securitytest results
 	
 	
-@ADTJira_DIY_InactivateRules
+@ADTJira_SecurityTest_InactivateRules
 Scenario Outline: ADTJIRA_DIY_InactiveRules
 Given i load the project properties file 
 	Given i login to application "<applicationname>" 
@@ -327,7 +327,7 @@ Given i load the project properties file
 		| applicationname |
 		| MyWizard        |
 
-@8ADTJira_DIY_DeleteDC
+@8ADTJira_SecurityTest_DeleteDC
 Scenario: ADTJIRA_DI
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"

@@ -55,12 +55,13 @@ Examples:
 
 @7ADOPJira_DIY_InactivateRules
 Scenario Outline: ADOPJIRA_DIY_InactiveRules
+Given i load the project properties file
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "Product Instance Entity Rule Config"
 	Then i select client and DC for DIY for "ADOP Jira"	
 	And i deactivate the rules for "ADOP Jira"
-	And i "delete" a DC for DIY for "ADOP Jira"
+	
 	
 	Examples: 
 		| applicationname |

@@ -67,7 +67,7 @@ Scenario Outline: TFSAgile_DIY_InactiveRules
 	And i click on tile "Product Instance Entity Rule Config"
 	Then i select client and DC for DIY for "TFS Agile"	
 	And i deactivate the rules for "TFS Agile"
-	And i "delete" a DC for DIY for "TFS Agile"
+	
 	
 	Examples: 
 		| applicationname |

@@ -92,6 +92,16 @@
 			"IterationName": "Sprint_AutomationData",
 			"StartDate": "11/15/2021",
 			"EndDate": "11/22/2021"
+		},
+		"Release_02": {
+			"IterationName": "Release_AutomationData",
+			"ReleaseStartDate": "1/1/2019",
+			"ReleaseEndDate": "2/15/2019"
+		},
+		"Sprint_02": {
+			"IterationName": "Sprint_AutomationData",
+			"StartDate": "1/2/2019",
+			"EndDate": "1/12/2019"
 		}
 
 

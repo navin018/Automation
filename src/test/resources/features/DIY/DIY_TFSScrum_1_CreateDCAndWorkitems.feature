@@ -69,7 +69,7 @@ Scenario Outline: TFSScrum_DIY_InactiveRules
 	And i click on tile "Product Instance Entity Rule Config"
 	Then i select client and DC for DIY for "TFS Scrum"	
 	And i deactivate the rules for "TFS Scrum"
-	And i "delete" a DC for DIY for "TFS Scrum"
+	
 	
 	Examples: 
 		| applicationname |

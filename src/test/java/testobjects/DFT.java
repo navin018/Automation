@@ -17,6 +17,7 @@ import static utilities.selenium.SeleniumDSL.*;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -47,10 +48,31 @@ public class DFT extends Baseclass{
 		try{
 			clickJS(DFTUIMap.Filter_Icon);
 			clickJS(DFTUIMap.processed_checkbox);
+			
+			
+			Calendar cal = Calendar.getInstance();
+		    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		    String enddate = dateFormat.format(cal.getTime());
+
+		    cal.add(Calendar.DATE, -1);
+		    String startdate = dateFormat.format(cal.getTime());  
+		    
+		    
+//			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+//		    Date date = new Date();
+		    
+		   
+		    
+			clickJS(DFTUIMap.StartDate_txtbox);
+			clear(DFTUIMap.StartDate_txtbox);
+			
+			enterText(DFTUIMap.StartDate_txtbox,startdate);
+			
 			clickJS(DFTUIMap.EndDate_txtbox);
-			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		    Date date = new Date();
-		    ClearTextAndEnterData(dateFormat.format(date));
+			clear(DFTUIMap.EndDate_txtbox);
+			enterText(DFTUIMap.EndDate_txtbox,enddate);
+			
+		    
 		    clickJS(DFTUIMap.Apply_btn);
 		    ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		    Thread.sleep(2000);
@@ -83,10 +105,10 @@ public class DFT extends Baseclass{
     	try{
     		SoftAssert sa = new SoftAssert();
     		
-//    	ExpWaitForCondition(prepareWebElementWithDynamicXpath(DFTUIMap.SearchResultForGivenCorrelationUID_txt, Baseclass.getInstance().CorrelationUID, "CorrelationUId"));
+    	ExpWaitForCondition(prepareWebElementWithDynamicXpath(DFTUIMap.SearchResultForGivenCorrelationUID_txt, Baseclass.getInstance().CorrelationUID, "CorrelationUId"));
     		if(!CheckIfElementExists(prepareWebElementWithDynamicXpath(DFTUIMap.SearchResultForGivenCorrelationUID_txt, CorrelationUID, "CorrelationUId")))
     		{
-//    			Assert.fail("the workitem is not showing up in the DFT tile for toolname "+toolname);
+    			Assert.fail("the workitem is not showing up in the DFT tile for toolname "+toolname);
     		}
     	singleClick(DFTUIMap.ActionWorkitem_icon);
     	Thread.sleep(3000);
@@ -95,41 +117,35 @@ public class DFT extends Baseclass{
     	for(WebElement icon:icons)
     	{
     		System.out.println(icon.getAttribute("style"));
-    		sa.assertEquals(icon.getAttribute("style"), "fill: rgb(78, 175, 78)");
+    		sa.assertEquals(icon.getAttribute("style"), "fill: rgb(78, 175, 78);","one of the icons in the DFT tile is not green for "+inboundOrOutbound+" flow");
     	}
     	
 
     	if(inboundOrOutbound.equalsIgnoreCase("inbound"))
     	{
-//        	Assert.assertEquals(icons.size(), "something to be put here");
+        	Assert.assertEquals(icons.size(), 5, "one of the systems missing for the ibound flow in the DFT diagram");
 
 			    	if(!CheckIfElementExists(DFTUIMap.Jira_icon))
 					{
-				//		sa.assertEquals(true, false, "tool name not shown in detailed flow diagram for "+toolname);
+						sa.assertEquals(true, false, "tool name not shown in detailed flow diagram for "+toolname);
 					}
 					if(!CheckIfElementExists(DFTUIMap.myWizardGatewayManager_icon))
 					{
-				//		sa.assertEquals(true, false, "myWizardGatewayManager icon not shown in detailed flow diagram for "+toolname);
+						sa.assertEquals(true, false, "myWizardGatewayManager icon not shown in detailed flow diagram for "+toolname);
 					}
 					if(!CheckIfElementExists(DFTUIMap.myWizardENS1_icon))
 					{
-				//		sa.assertEquals(true, false, "myWizardENS icon not shown in detailed flow diagram for "+toolname);
+						sa.assertEquals(true, false, "myWizardENS icon not shown in detailed flow diagram for "+toolname);
 					}
 					if(!CheckIfElementExists(DFTUIMap.myWizard_icon))
 					{
-				//		sa.assertEquals(true, false, "myWizard icon not shown in detailed flow diagram for "+toolname);
+						sa.assertEquals(true, false, "myWizard icon not shown in detailed flow diagram for "+toolname);
 					}
 					if(!CheckIfElementExists(DFTUIMap.myWizardENS2_icon))
 					{
-				//		sa.assertEquals(true, false, "myWizardENS icon not shown in detailed flow diagram for "+toolname);
+						sa.assertEquals(true, false, "myWizardENS icon not shown in detailed flow diagram for "+toolname);
 					}
 					
-//			    	ExpWaitForCondition(DFTUIMap.Jira_icon));
-//			    	ExpWaitForCondition(By.xpath("//*[text()='myWizard-GatewayManager']"));
-//			    	ExpWaitForCondition(By.xpath("//*[@class='node']//following::*[text()='myWizard-ENS'][1]"));
-//			    	ExpWaitForCondition(By.xpath("//*[@class='node']//following::*[text()='myWizard'][1]"));
-//			    	ExpWaitForCondition(By.xpath("//*[@class='node']//following::*[text()='myWizard-ENS'][2]"));
-//			    	ExpWaitForCondition(By.xpath("//*[text()='myWizard-ENS']"));
 			    			    	
 			    	sa.assertAll();
 			    	clickJS(DFTUIMap.closeDFTdetailedWindow_btn);
@@ -144,28 +160,25 @@ public class DFT extends Baseclass{
     	}
     	else if(inboundOrOutbound.equalsIgnoreCase("outbound"))
     	{
-//        	Assert.assertEquals(icons.size(), "something to be put here");
+        	Assert.assertEquals(icons.size(), 4);
     		
     		if(!CheckIfElementExists(DFTUIMap.myWizardRequirementsManagement_icon))
 			{
-		//		sa.assertEquals(true, false, "myWizardRequirementsManagement icon not shown in detailed flow diagram for OB for "+toolname);
+				sa.assertEquals(true, false, "myWizardRequirementsManagement icon not shown in detailed flow diagram for OB for "+toolname);
 			}
     		if(!CheckIfElementExists(DFTUIMap.myWizard_icon))
 			{
-		//		sa.assertEquals(true, false, "myWizard icon not shown in detailed flow diagram for OB for "+toolname);
+				sa.assertEquals(true, false, "myWizard icon not shown in detailed flow diagram for OB for "+toolname);
 			}
     		if(!CheckIfElementExists(DFTUIMap.myWizardENS1_icon))
 			{
-		//		sa.assertEquals(true, false, "myWizardENS icon not shown in detailed flow diagram for OB for "+toolname);
+				sa.assertEquals(true, false, "myWizardENS icon not shown in detailed flow diagram for OB for "+toolname);
 			}
     		if(!CheckIfElementExists(DFTUIMap.myWizardGatewayManager_icon))
 			{
-		//		sa.assertEquals(true, false, "myWizardGatewayManager icon not shown in detailed flow diagram for "+toolname);
+				sa.assertEquals(true, false, "myWizardGatewayManager icon not shown in detailed flow diagram for "+toolname);
 			}
-		    //span[text()='myWizard.RequirementsManagement']
-	    	//*[@class='node']//following::*[text()='myWizard'][1]
-	    	//*[@class='node']//following::*[text()='myWizard-ENS'][1]
-	    	//*[text()='myWizard-GatewayManager']
+		
 
     	}
     	}
@@ -173,7 +186,7 @@ public class DFT extends Baseclass{
     	{
     		e.printStackTrace();
     		logger.info("either workitem not flown or the given workitem is not shown up in the DFT tile for the tool "+toolname);
-//    		Assert.fail("either workitem not flown or the given workitem is not shown up in the DFT tile for the tool "+toolname);
+    		Assert.fail("either workitem not flown or the given workitem is not shown up in the DFT tile for the tool "+toolname);
     	}
 		
 	}
