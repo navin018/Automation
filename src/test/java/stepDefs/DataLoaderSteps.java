@@ -34,8 +34,8 @@ public class DataLoaderSteps {
 	
 	@Then("^i prepare the excel data for \"([^\"]*)\" DataLoader$")
 	public void i_prepare_the_excel_data_for_DataLoader_on_environment(String dataload_type) throws Throwable {
-		 
-			DataLoader.prepareExcelFilePathtoBeUploaded(dataload_type);
+	
+		 DataLoader.prepareExcelFilePathtoBeUploaded(dataload_type);
 		}
 		
 	

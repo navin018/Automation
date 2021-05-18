@@ -100,8 +100,8 @@ Scenario Outline: TFSAgile_ChangeProjectOfWorkitems
 
  
 	Examples: 
-		| applicationname | task    |	 story    | risk    |Requirement| 		Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|Milestone|TestExecution|Action|TestForTestExec|WorkRequest|
-		| TFS Agile          | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|Test Execution_01|Action_01|TestForTestExec_01|Work Request_01|
+		| applicationname | task    |	 story    | risk    |Requirement| 		Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|Milestone|TestExecution|Action|TestForTestExec|WorkRequest|Decision|
+		| TFS Agile          | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|Test Execution_01|Action_01|TestForTestExec_01|Work Request_01|Decision_01|
 								
 								
 								

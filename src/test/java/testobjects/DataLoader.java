@@ -1,76 +1,144 @@
 package testobjects;
 
 import static org.testng.Assert.assertTrue;
-import static utilities.selenium.SeleniumDSL.ExpWaitForCondition;
-import static utilities.selenium.SeleniumDSL.ExpWaitForElementToDisappear;
 import static utilities.selenium.SeleniumDSL.*;
-import static utilities.selenium.SeleniumDSL.clickJS;
-import static utilities.selenium.SeleniumDSL.highlight;
-import static utilities.selenium.SeleniumDSL.isEnabled;
-import static utilities.selenium.SeleniumDSL.selectDropdownByText;
-import static utilities.selenium.SeleniumDSL.singleClick;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.time.Instant;
 import java.util.Random;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.json.simple.JSONObject;
 
-import junit.framework.Assert;
+
+
+import uiMap.GenericUploaderUIMap;
 import uiMap.MyWizardUIMap;
-
+import utilities.general.Property;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.testng.Assert;
 public class DataLoader {
 	
-	public static void PrepareExcelFileAndWriteEntityIDToJSON(String[] entities, String Excelfilepath,String dataload_type){
+	public static void PrepareExcelFileForGenericUploaderAndWriteEntityIDToJSON(String entity){
 
 		try{
 			
-	String ExcelWithUpdatedEntityIDPath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
+		String Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"Excel"+  File.separator + entity+".xlsx" ;
 		FileInputStream fis = new FileInputStream(new File(Excelfilepath));
 		XSSFWorkbook workbook = new XSSFWorkbook (fis);
 		
-		JSONObject jsonObject = new JSONObject();
-		String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "JSON"+ File.separator + "DataLoaderJSON.json";
+		 
+		String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator+ "JSON"+ File.separator + "GenericUploader.json";
 		
-		for(String entity: entities)
+		String workitemID="";
+		String EntityIDForJSON="";
+		XSSFSheet sheet = workbook.getSheet(entity);
+//		Random rnd = new Random();
+//		int randomNumb = 10000 + rnd.nextInt(90000);
+//		 workitemID = Property.getProperty("JiraProject")+"-"+randomNumb;
+		
+		String title = entity+"_AutomationData_GenericUploader";
+		String Project = Property.getProperty("JiraProject");
+	String time = Instant.now().toString().substring(0, 19)+"Z";
+		if(!(entity.equalsIgnoreCase("Action") | entity.equalsIgnoreCase("Iteration")))
+			{
+			workitemID = Tools.getWorkItemExternalID(entity, "ADT Jira");
+				sheet.getRow(1).getCell(0).setCellValue(workitemID);
+				sheet.getRow(1).getCell(2).setCellValue(title);
+				sheet.getRow(1).getCell(4).setCellValue(Project);
+				sheet.getRow(1).getCell(12).setCellValue(time);
+			}
+		else if(entity.equalsIgnoreCase("Action"))
 		{
-			XSSFSheet sheet = workbook.getSheet(entity);
-			Random rnd = new Random();
-			int randomNumb = 10000000 + rnd.nextInt(90000000);
-			sheet.getRow(1).getCell(0).setCellValue(randomNumb);
-			String entityWithWorkItemExternalID = "WorkItemExternalId_"+entity;
-			 jsonObject.put(entityWithWorkItemExternalID, randomNumb);	
-			 if(dataload_type.equalsIgnoreCase("AD") && entity.equalsIgnoreCase("Test"))
-				 workbook.getSheet("TestSteps").getRow(1).getCell(7).setCellValue(randomNumb);
-
+			workitemID = Tools.getWorkItemExternalID(entity, "ADT Jira");
+			sheet.getRow(1).getCell(0).setCellValue(workitemID);
+			sheet.getRow(1).getCell(2).setCellValue(title);
+			sheet.getRow(1).getCell(11).setCellValue(time);
 		}
-	
-		if(dataload_type.equalsIgnoreCase("AD"))
-			ExcelWithUpdatedEntityIDPath = ExcelWithUpdatedEntityIDPath+"AD.xlsx";
+		else if(entity.equalsIgnoreCase("Iteration"))
+		{
+			
+			sheet.getRow(1).getCell(0).setCellValue(Integer.parseInt(Baseclass.getInstance().release_IterationExternalID));
+			sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
+			sheet.getRow(1).getCell(4).setCellValue(Project);
+			sheet.getRow(1).getCell(8).setCellValue(time);
+			sheet.getRow(1).getCell(13).setCellValue("Release");
+			
+			sheet.getRow(2).getCell(0).setCellValue(Integer.parseInt(Baseclass.getInstance().sprint_IterationExternalID));
+			sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
+			sheet.getRow(2).getCell(4).setCellValue(Project);
+			sheet.getRow(2).getCell(8).setCellValue(time);
+			sheet.getRow(2).getCell(13).setCellValue("Sprint-DevelopmentSprint");
+			
+		}
 		
-		if(dataload_type.equalsIgnoreCase("Devops"))
-			ExcelWithUpdatedEntityIDPath = ExcelWithUpdatedEntityIDPath+"Devops.xlsx";
-		
-		
-		
-		FileOutputStream fos = new FileOutputStream(new File(ExcelWithUpdatedEntityIDPath));
+		FileOutputStream fos = new FileOutputStream(new File(Excelfilepath));
 		workbook.write(fos);
 		fis.close();
 	    fos.close();
 	    FileWriter file = new FileWriter(Entities_JSONFile);
-        file.write(jsonObject.toJSONString());
-        file.close();	
+     
 	
 	}
 	catch(Exception e)
 	{
-		Assert.fail("problem with excel file creation to be uploaded");
 		e.printStackTrace();
+		Assert.fail("problem with excel file creation to be uploaded");
+
 	}
+	}
+		public static void PrepareExcelFileAndWriteEntityIDToJSON(String[] entities, String Excelfilepath,String dataload_type){
+
+			try{
+				
+		String ExcelWithUpdatedEntityIDPath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
+			FileInputStream fis = new FileInputStream(new File(Excelfilepath));
+			XSSFWorkbook workbook = new XSSFWorkbook (fis);
+			
+			JSONObject jsonObject = new JSONObject();
+			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "JSON"+ File.separator + "DataLoaderJSON.json";
+			
+			for(String entity: entities)
+			{
+				XSSFSheet sheet = workbook.getSheet(entity);
+				Random rnd = new Random();
+				int randomNumb = 10000000 + rnd.nextInt(90000000);
+				sheet.getRow(1).getCell(0).setCellValue(randomNumb);
+				String entityWithWorkItemExternalID = "WorkItemExternalId_"+entity;
+				 jsonObject.put(entityWithWorkItemExternalID, randomNumb);	
+				 if(dataload_type.equalsIgnoreCase("AD") && entity.equalsIgnoreCase("Test"))
+					 workbook.getSheet("TestSteps").getRow(1).getCell(7).setCellValue(randomNumb);
+
+			}
+		
+			if(dataload_type.equalsIgnoreCase("AD"))
+				ExcelWithUpdatedEntityIDPath = ExcelWithUpdatedEntityIDPath+"AD.xlsx";
+			
+			if(dataload_type.equalsIgnoreCase("Devops"))
+				ExcelWithUpdatedEntityIDPath = ExcelWithUpdatedEntityIDPath+"Devops.xlsx";
+			
+			
+			
+			FileOutputStream fos = new FileOutputStream(new File(ExcelWithUpdatedEntityIDPath));
+			workbook.write(fos);
+			fis.close();
+		    fos.close();
+		    FileWriter file = new FileWriter(Entities_JSONFile);
+	        file.write(jsonObject.toJSONString());
+	        file.close();	
+		
+		}
+		catch(Exception e)
+		{
+			Assert.fail("problem with excel file creation to be uploaded");
+			e.printStackTrace();
+		}
 }
 		
 		public static void SelectEntitiyType(String dataload_type)
@@ -130,22 +198,31 @@ public class DataLoader {
 		public static void prepareExcelFilePathtoBeUploaded(String dataload_type)
 		{
 			try{
-			String[] entities_AD = {"Bug","Iteration","Requirement","Test","TestResult"};
-			String[] entities_Devops = {"CodeCommit","CodeBranch","Build","Deployment","Environment","TestResult"};
+			String ExcelToBePrepared="";
+//			String[] entities_AD = {"Bug","Iteration","Requirement","Test","TestResult"};
+//			String[] entities_Devops = {"CodeCommit","CodeBranch","Build","Deployment","Environment","TestResult"};
+//			String[] entities_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Iteration","Decision"};
+			String[] entities_GenericUploader = {"Iteration"};
 			
-			String ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
-			if(dataload_type.equalsIgnoreCase("AD"))
-				ExcelToBePrepared = ExcelToBePrepared+"AD.xlsx";
-		
-			if(dataload_type.equalsIgnoreCase("Devops"))
-				ExcelToBePrepared = ExcelToBePrepared+"Devops.xlsx";
+			ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
+			for(String entity:entities_GenericUploader)
+			{
+				PrepareExcelFileForGenericUploaderAndWriteEntityIDToJSON(entity);
+			}
 			
-			
-			
-			if(dataload_type.equalsIgnoreCase("AD"))
-			DataLoader.PrepareExcelFileAndWriteEntityIDToJSON(entities_AD,ExcelToBePrepared,dataload_type);
-			if(dataload_type.equalsIgnoreCase("Devops"))
-			DataLoader.PrepareExcelFileAndWriteEntityIDToJSON(entities_Devops,ExcelToBePrepared,dataload_type);		
+//			ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
+//			if(dataload_type.equalsIgnoreCase("AD"))
+//				ExcelToBePrepared = ExcelToBePrepared+"AD.xlsx";
+//		
+//			if(dataload_type.equalsIgnoreCase("Devops"))
+//				ExcelToBePrepared = ExcelToBePrepared+"Devops.xlsx";
+//			
+//			
+//			
+//			if(dataload_type.equalsIgnoreCase("AD"))
+//			DataLoader.PrepareExcelFileAndWriteEntityIDToJSON(entities_AD,ExcelToBePrepared,dataload_type);
+//			if(dataload_type.equalsIgnoreCase("Devops"))
+//			DataLoader.PrepareExcelFileAndWriteEntityIDToJSON(entities_Devops,ExcelToBePrepared,dataload_type);		
 			}
 			catch(Exception e)
 			{
@@ -153,6 +230,41 @@ public class DataLoader {
 				e.printStackTrace();
 			}
 			
+		}
+		public static void UploadFileForGenericUploader(String dataentity) {
+			try{
+			selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, dataentity);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			singleClick(GenericUploaderUIMap.DataMappingTemplate_drpdown);
+			Thread.sleep(2000);
+			clickJS(GenericUploaderUIMap.DataMappingTemplateOption_drpdown);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			singleClick(GenericUploaderUIMap.Upload_Img);
+			ExpWaitForCondition(GenericUploaderUIMap.Upload_btn);
+			singleClick(GenericUploaderUIMap.SelectFile_btn);
+			String ExcelFileLoc = System.getProperty("user.dir")+File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"DataLoader" + File.separator +"GenericUploader" + File.separator +"Excel"+ File.separator + dataentity+".xlsx";
+			String AutoITFileloc = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"AutoIT" + File.separator ;
+			String autoITExecutable = AutoITFileloc+"UploadFile_DataLoader.exe " +ExcelFileLoc;
+			Process process = Runtime.getRuntime().exec(autoITExecutable);
+			process.waitFor();
+//			clickJS(GenericUploaderUIMap.Upload_btn);
+//		    Thread.sleep(60000);
+			clickJS(GenericUploaderUIMap.Refresh_btn);
+			
+		    if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
+		    {
+		    	clickJS(GenericUploaderUIMap.Refresh_btn);
+		    	Thread.sleep(60000);
+		    	if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
+		    		Assert.fail("The record for entity "+dataentity+" could not be uplaoded in generic uploader");
+		    }
+
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				 Assert.fail("Issue uploading entity "+dataentity+ " in generic uploader");
+			}
 		}
 	}
 

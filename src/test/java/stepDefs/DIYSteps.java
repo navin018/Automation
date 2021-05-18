@@ -38,7 +38,7 @@ public class DIYSteps {
 	
 	@Then("^i test the connectivity for \"([^\"]*)\"$")
 	public void i_test_connectivity(String toolname) throws Throwable {
-//		DIY.TestConnectivity(toolname);
+		DIY.TestConnectivity(toolname);
 		clickJS(MyWizardUIMap.BacktoOverallSetup_btn);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		clickJS(MyWizardUIMap.BacktoDIYADAutomation_btn);
