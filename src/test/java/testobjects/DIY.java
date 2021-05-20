@@ -81,6 +81,7 @@ public class DIY extends Baseclass{
 		clickJS(DIYUIMap.AddDC_btn);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		String DCName = "DIYAutomation"+"_"+RandomNumberGenerator();
+		System.out.println(DCName);
 		enterText(DIYUIMap.PortfolionName_txtbox,DCName);
 		Baseclass.getInstance().DCName = DCName;
 		clickJS(DIYUIMap.ContractOpportunityDetails_btn);
@@ -222,7 +223,7 @@ public class DIY extends Baseclass{
 				clickJS(DIYUIMap.Yes_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				configuretools(toolname);
-				DataMappingCheck(toolname);
+			DataMappingCheck(toolname);
 				
 				EnableUseCases(toolname);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -322,6 +323,8 @@ public class DIY extends Baseclass{
 	private static void EnableUseCases(String toolname) {
 //		String appbundles[] = {"Planning & Program Management","Requirements, Product Backlog & Change Management","Release & Sprint Planning","Release / Sprint Execution","Analytics & Virtual Agent","Knowledge Management","Myconcerto","Governance"};
 		String appbundles[] = {"Planning & Program Management","Requirements, Product Backlog & Change Management","Release & Sprint Planning","Release / Sprint Execution","Analytics & Virtual Agent","Knowledge Management","Myconcerto"};
+		
+		ExpWaitForCondition(DIYUIMap.SelectuseCases_txt);
 		SoftAssert sa = new SoftAssert();
 		for(String appbundle: appbundles){
 			if(!CheckIfElementExists(prepareWebElementWithDynamicXpath(DIYUIMap.AppBundle_Icon, appbundle, "appbundle")))
@@ -678,7 +681,7 @@ public class DIY extends Baseclass{
 		
 		String[] ADTJira_NonWorkItems = {"Test","Deliverable","Requirement","Iteration","Action","TestResult","Test","Milestone","ChangeRequest"};
 		
-		String[] ADOPJira_NonWorkItems = {"Iteration"};
+		String[] ADOPJira_NonWorkItems = {"Iteration","Test"};
 		String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Issue","Risk"};
 		String[] TFSScrum_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue","Risk"};
 		String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable","Action","TestResult","Milestone","Decision","ChangeRequest"};
@@ -713,10 +716,19 @@ public class DIY extends Baseclass{
 
 	public static void DisableRules(String toolname,String[] workitems, String[] nonWorkitems){
 		try{
-			
+			ExpWaitForCondition(MyWizardMappingRuleUIMap.PageSize_statictxt);
 			clickJS(MyWizardMappingRuleUIMap.PageSize_statictxt);
 			clickJS(MyWizardMappingRuleUIMap.PageSize100_statictxt);
+			Thread.sleep(10000);
 			
+			if(!CheckIfElementExists(MyWizardMappingRuleUIMap.Rules_Table))
+					{
+					System.out.println("rules not displayed");
+						refresh();
+					}
+			else 
+			logger.info("rules present");
+			Thread.sleep(5000);
 					for(String entity:workitems )
 					{
 						
@@ -724,6 +736,8 @@ public class DIY extends Baseclass{
 								{													
 									disablerule_entity(entity);
 								}
+						else 
+							logger.info(entity+ " not found in the page");
 					}
 					
 					for(String nonworkitem:nonWorkitems )
@@ -732,7 +746,8 @@ public class DIY extends Baseclass{
 						if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.EntityForDIY_statictxt, nonworkitem, "nonworkitem")))
 						{
 							disablerule_nonworkitem(nonworkitem);
-						}
+						}else 
+							logger.info(nonworkitem+ " not found in the page");
 					}
 		}
 	
@@ -772,6 +787,8 @@ public class DIY extends Baseclass{
 		clickJS(MyWizardMappingRuleUIMap.InactiveRule_toggle);
 		clickJS(MyWizardMappingRuleUIMap.SaveRule_btn);
 		ExpWaitForCondition(MyWizardMappingRuleUIMap.RuleSavedSuccesfully_statictxt);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		Thread.sleep(2000);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		}
 		catch(Exception e)

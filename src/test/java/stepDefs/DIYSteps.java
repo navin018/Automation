@@ -32,7 +32,8 @@ public class DIYSteps {
     		DIY.SelectClientAndDC(toolname);
     		Thread.sleep(3000);
     		refresh();
-	
+    		Thread.sleep(10000);
+    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		
 	}
 	

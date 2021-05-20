@@ -29,24 +29,25 @@ public class DataLoader {
 
 		try{
 			
+			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" + File.separator + "WorkItemExternalIDs.json";	
 		String Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"Excel"+  File.separator + entity+".xlsx" ;
 		FileInputStream fis = new FileInputStream(new File(Excelfilepath));
 		XSSFWorkbook workbook = new XSSFWorkbook (fis);
 		
 		 
-		String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator+ "JSON"+ File.separator + "GenericUploader.json";
+		
 		
 		String workitemID="";
 		String EntityIDForJSON="";
 		XSSFSheet sheet = workbook.getSheet(entity);
-//		Random rnd = new Random();
-//		int randomNumb = 10000 + rnd.nextInt(90000);
+		Random rnd = new Random();
+		int randomNumb = 10000 + rnd.nextInt(90000);
 //		 workitemID = Property.getProperty("JiraProject")+"-"+randomNumb;
 		
 		String title = entity+"_AutomationData_GenericUploader";
 		String Project = Property.getProperty("JiraProject");
 	String time = Instant.now().toString().substring(0, 19)+"Z";
-		if(!(entity.equalsIgnoreCase("Action") | entity.equalsIgnoreCase("Iteration")))
+		if(!(entity.equalsIgnoreCase("Action") || entity.equalsIgnoreCase("Iteration") || entity.equalsIgnoreCase("Decision") || entity.equalsIgnoreCase("IterationForMyWizardInstance")))
 			{
 			workitemID = Tools.getWorkItemExternalID(entity, "ADT Jira");
 				sheet.getRow(1).getCell(0).setCellValue(workitemID);
@@ -60,6 +61,24 @@ public class DataLoader {
 			sheet.getRow(1).getCell(0).setCellValue(workitemID);
 			sheet.getRow(1).getCell(2).setCellValue(title);
 			sheet.getRow(1).getCell(11).setCellValue(time);
+		}
+		else if(entity.equalsIgnoreCase("Decision"))
+		{
+//			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" + File.separator + "WorkItemExternalIDs.json";
+			String workitemIDForDecision = "GNRIC-"+randomNumb;
+			sheet.getRow(1).getCell(0).setCellValue(workitemIDForDecision);
+			sheet.getRow(1).getCell(2).setCellValue(title);
+			sheet.getRow(1).getCell(10).setCellValue(time);
+				
+//				String Entities_JSONFile = "C:\\Users\\sonal.harish.nagda\\ART\\ART_TestAutomationCode\\src\\test\\resources\\testdata\\Jira\\JSON\\WorkItemExternalIDs.json";
+				FileReader reader = new FileReader(Entities_JSONFile);
+				JSONParser jsonParser = new JSONParser();
+			        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+			        jsonObject.put("WorkItemExternalId_Decision", workitemIDForDecision);        
+			        FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
+					byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+				
+									
 		}
 		else if(entity.equalsIgnoreCase("Iteration"))
 		{
@@ -77,12 +96,32 @@ public class DataLoader {
 			sheet.getRow(2).getCell(13).setCellValue("Sprint-DevelopmentSprint");
 			
 		}
+		else if(entity.equalsIgnoreCase("IterationForMyWizardInstance"))
+		{
+			
+			sheet.getRow(1).getCell(0).setCellValue(randomNumb);
+			Baseclass.getInstance().release_IterationExternalID= String.valueOf(randomNumb);
+			sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
+			sheet.getRow(1).getCell(8).setCellValue(time);
+			sheet.getRow(1).getCell(13).setCellValue("Release");
+			sheet.getRow(1).getCell(14).setCellValue("Agile");
+			sheet.getRow(1).getCell(15).setCellValue("Scrum");
+			
+			sheet.getRow(2).getCell(0).setCellValue(randomNumb+1);
+			Baseclass.getInstance().sprint_IterationExternalID= String.valueOf(randomNumb+1);
+			sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
+			sheet.getRow(1).getCell(8).setCellValue(time);
+			sheet.getRow(1).getCell(13).setCellValue("Sprint-DevelopmentSprint");
+			sheet.getRow(1).getCell(14).setCellValue("Agile");
+			sheet.getRow(1).getCell(15).setCellValue("Scrum");
+			
+		}
 		
 		FileOutputStream fos = new FileOutputStream(new File(Excelfilepath));
 		workbook.write(fos);
 		fis.close();
 	    fos.close();
-	    FileWriter file = new FileWriter(Entities_JSONFile);
+//	    FileWriter file = new FileWriter(Entities_JSONFile1);
      
 	
 	}
@@ -195,19 +234,36 @@ public class DataLoader {
 		}
 }
 		
-		public static void prepareExcelFilePathtoBeUploaded(String dataload_type)
+		public static void prepareExcelFilePathtoBeUploaded(String toolname, String dataload_type)
 		{
 			try{
 			String ExcelToBePrepared="";
 //			String[] entities_AD = {"Bug","Iteration","Requirement","Test","TestResult"};
 //			String[] entities_Devops = {"CodeCommit","CodeBranch","Build","Deployment","Environment","TestResult"};
-//			String[] entities_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Iteration","Decision"};
-			String[] entities_GenericUploader = {"Iteration"};
-			
+			String[] entities_ADTJira_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Iteration"};
+			String[] entities_MyWizardInstanceGenericUploader = {"Decision","IterationForMyWizardInstance"};
+			String[] entities_NoToolInstance_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Iteration"};
 			ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
-			for(String entity:entities_GenericUploader)
+			if(toolname.equalsIgnoreCase("ADT Jira"))
+					{
+				for(String entity:entities_ADTJira_GenericUploader)
+						{
+							PrepareExcelFileForGenericUploaderAndWriteEntityIDToJSON(entity);
+						}
+					}
+			else if(toolname.equalsIgnoreCase("myWizardInstance"))
+				{
+					for(String entity:entities_MyWizardInstanceGenericUploader)
+					{
+						PrepareExcelFileForGenericUploaderAndWriteEntityIDToJSON(entity);
+					}
+				}
+			else if(toolname.equalsIgnoreCase("NoToolInstance"))
 			{
-				PrepareExcelFileForGenericUploaderAndWriteEntityIDToJSON(entity);
+				for(String entity:entities_MyWizardInstanceGenericUploader)
+				{
+					PrepareExcelFileForGenericUploaderAndWriteEntityIDToJSON(entity);
+				}
 			}
 			
 //			ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
@@ -233,7 +289,10 @@ public class DataLoader {
 		}
 		public static void UploadFileForGenericUploader(String dataentity) {
 			try{
+			if(!dataentity.equalsIgnoreCase("IterationForMyWizardInstance"))	
 			selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, dataentity);
+			else if(dataentity.equalsIgnoreCase("IterationForMyWizardInstance"))
+				selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, "Iteration");	
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			singleClick(GenericUploaderUIMap.DataMappingTemplate_drpdown);
 			Thread.sleep(2000);

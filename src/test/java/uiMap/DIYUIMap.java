@@ -82,4 +82,5 @@ public static By DeleteDC_btn=By.xpath("//table[@class='ui-treetable-table']//fo
 public static By ConfirmDeleteDC_btn=By.xpath("//button[@title='Delete Delivery Construct'][text()='Yes']");
 public static By ConfirmChangingTool_btn=By.xpath("//span[contains(text(),'Do you want to change ')]//following::button[text()='Yes']");
 public static By Yes_btn=By.xpath("//button[text()='Yes']");
+public static By SelectuseCases_txt=By.xpath("//div[text()='SELECT USE CASES']");
 }

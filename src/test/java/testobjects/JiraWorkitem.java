@@ -129,7 +129,7 @@ import java.util.Random;
 //				ExpWaitForElementToDisappear(JiraUIMap.Create_btn);
 //				grabScreenshotForExtentReport();
 				 Thread.sleep(10000);
-//				 ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
+				 ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
 				 waitPageToLoad();
 				
 				}
@@ -1206,6 +1206,7 @@ public static void changeProjectOrIssueTypeofWorkitem(String ProjectOrEntityType
 			ExpWaitForCondition(JiraUIMap.ActiontheWorkItem_link);
 			clickJS(JiraUIMap.ActiontheWorkItem_link);
 			}
+		ExpWaitForCondition(JiraUIMap.move_link);
 			clickJS(JiraUIMap.move_link);
 	ExpWaitForCondition(JiraUIMap.moveIssue_txt);
 	if(ProjectOrEntityType.equalsIgnoreCase("Project")){
@@ -1463,6 +1464,20 @@ public static void CreateWorkitemForRecon(String workitem) {
 			e.printStackTrace();
 			}
 		}
+
+public static void SelectProjectInCreateWorkitemScreen() {
+	try{
+	clickJS(JiraUIMap.SelectProjectType_drpdown);
+	sendDelete();
+	enterText(JiraUIMap.SelectProjectType_drpdown,Property.getProperty("JiraProject"));
+	sendEnter(JiraUIMap.SelectProjectType_drpdown);
+	Thread.sleep(3000);
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+}
 
 
 

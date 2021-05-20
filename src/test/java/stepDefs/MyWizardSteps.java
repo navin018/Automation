@@ -22,6 +22,15 @@ public class MyWizardSteps {
 	
 		
 	}
+//	Then i select client and DC for for No Tool Instance
+	@Then("^i select client and DC for No Tool Instance$")
+	public void i_select_client_and_DCForNoToolInstance() throws Throwable {
+		
+    		MyWizardHomePage.SelectClientAndDCForNoToolInstance();
+	
+	
+		
+	}
 	
 	@Then("^i select client and DC for \"([^\"]*)\" for RMP$")
 	public void i_select_client_and_DC_RMP(String appname) throws Throwable {

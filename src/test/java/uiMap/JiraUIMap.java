@@ -14,7 +14,7 @@ public static By NextMoveIssue_btn=By.xpath("//input[@id='next_submit']");
 public static By MoveSubmit_btn=By.xpath("//input[@id='move_submit']");
 public static By skip_btn=By.xpath("//input[@type='button'][@value='Skip']");
 public static By Yes_btn=By.xpath("//input[@type='submit'][@value='Yes']");
-
+public static By SelectProjectType_drpdown = By.xpath("//input[@aria-controls='project-suggestions']");
 public static String pickAnExistingAccount_statictxt = "//div[text()='{username}']";
 
 public static By signInPwd_txtbox=By.xpath("//input[@id='passwordInput' and @name='Password']");
@@ -139,7 +139,7 @@ public static By ConfirmationScreen_Statictxt = By.xpath("//h2[text()='Step 4 of
 public static By ConfirmDelete_btn = By.xpath("//input[@name='Confirm']");
 public static By DataDeletedConfirmationMsg_statictxt = By.xpath("//span[contains(text(),'Finished')]");
 public static By waitSpin_img = By.xpath("//div[@class='aui-spinner spinner']");
-public static By CreateDisabled_btn = By.xpath("//input[@name='Edit' and @value='Create' and @disabled='disabled']");
+public static By CreateDisabled_btn = By.xpath("//input[@name='Edit' and @value='Create']");
 
 
 public static String SprintNameFromRMP_statictxt = "//span[@data-fieldname='sprintName' and @data-fieldvalue='{sprintname}']";
