@@ -79,10 +79,14 @@ Scenario Outline: ADTJIRA_DIY_InactiveRules
 		| MyWizard        |
 
 @8ADTJira_DIY_DeleteDC
-Scenario: ADTJIRA_DI
+Scenario Outline: ADTJIRA_DI
 	Given i load the project properties file
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "DIY AD Automation" 
 	Then i select only the client for "<applicationname>"
 	And i "delete" a DC for DIY for "ADT Jira"
+	
+		Examples: 
+		| applicationname |
+		| MyWizard        |

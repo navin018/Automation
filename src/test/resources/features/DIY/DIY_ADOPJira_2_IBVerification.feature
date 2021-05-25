@@ -37,7 +37,7 @@ Scenario: ADOPJIRA_Feature_flow_DIY
 And i verify if "Feature" has "flown" which was "NA" for "ADOP JIRA" for "DIY" functionality 
 	 
 	
-Scenario: ADOPJIRA_DIY_IBVerification_Release_Sprint 
+Scenario Outline: ADOPJIRA_DIY_IBVerification_Release_Sprint 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -47,3 +47,6 @@ Scenario: ADOPJIRA_DIY_IBVerification_Release_Sprint
 	And i verify if "Release" has "flown" which was "NA" for "ADOP Jira" for "DIY" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "ADOP Jira" for "DIY" functionality
 	
+	Examples: 
+		| applicationname |
+		| MyWizard        |

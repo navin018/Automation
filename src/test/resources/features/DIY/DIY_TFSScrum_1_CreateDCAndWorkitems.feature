@@ -41,7 +41,7 @@ Scenario Outline: TFSScrum_WorkitemCreation
     And i create a "<Task>" in TFS
     And i create a "<Risk>" in TFS
     And i create a "<Impediment>" in TFS
-    And i create a "<Story>" in TFS
+    And i create a "<ProductBacklog>" in TFS
     
     And i create a "<TestCase>" in TFS
     And i create a "<Action>" in TFS
@@ -51,7 +51,7 @@ Scenario Outline: TFSScrum_WorkitemCreation
      And i create a "<Milestone>" in TFS
      
  And i create a "<WorkRequest>" in TFS
-##     And i create a "<TestResult>" in TFS
+##     And i create a "<TestResult>" in TFSs
   
  And i create "<Release>" and "<Sprint>" in TFS
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
@@ -59,11 +59,12 @@ Scenario Outline: TFSScrum_WorkitemCreation
 	And i generate a token for "DevTest" environment 
 	
 	 	    Examples: 
-      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|
-      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|WorkRequest_01|
+      | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|ProductBacklog|
+      | TFS             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 |Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01|TestResult|Requirement_01|Work Request_01|ProductBacklog_01|
 
 @7TFSScrum_DIY_InactivateRules
 Scenario Outline: TFSScrum_DIY_InactiveRules
+Given i load the project properties file
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "Product Instance Entity Rule Config"
@@ -76,9 +77,13 @@ Scenario Outline: TFSScrum_DIY_InactiveRules
 		| MyWizard        |
 
 @8TFSScrum_DIY_DeleteDC
-Scenario: TFSScrum_DIY
+Scenario Outline: TFSScrum_DIY
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "DIY AD Automation" 
 	Then i select only the client for "<applicationname>"
 	And i "delete" a DC for DIY for "TFS Scrum"
+	
+		Examples: 
+		| applicationname |
+		| MyWizard        |

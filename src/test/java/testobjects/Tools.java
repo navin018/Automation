@@ -134,7 +134,7 @@ public static String getWorkItemExternalID_custom(String workitem, String toolna
 		String testDataPath_WorkItemExternalIDs="";
 		if((toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("Jira") || toolname.contains("JIRA")))
 		{
-			if(functionality.equalsIgnoreCase("ChangeProjectFromOne") || functionality.contains("Recon") || functionality.contains("DFT") || functionality.equalsIgnoreCase("DIY") || functionality.equalsIgnoreCase("normal"))
+			if(functionality.equalsIgnoreCase("ChangeProjectFromOne") || functionality.contains("Recon") || functionality.contains("DFT") || functionality.equalsIgnoreCase("DIY") || functionality.equalsIgnoreCase("normal") || functionality.contains("GenericUploader"))
 				testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 			else if(functionality.equalsIgnoreCase("ChangeProjectToAnother"))
 			testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDsForMoveProjOrIssue.json" ;
@@ -764,7 +764,7 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 			Assert.fail("WorkItem "+workitem+ " not created for tool "+toolname);
 	 
 	 String DCUid="";
-	 if(functionality.equalsIgnoreCase("ChangeProjectFromOne") || functionality.contains("Recon") || functionality.equalsIgnoreCase("DFT") || functionality.equalsIgnoreCase("DIY")  || functionality.equalsIgnoreCase("normal"))
+	 if(functionality.equalsIgnoreCase("ChangeProjectFromOne") || functionality.contains("Recon") || functionality.equalsIgnoreCase("DFT") || functionality.equalsIgnoreCase("DIY")  || functionality.equalsIgnoreCase("normal") || functionality.equalsIgnoreCase("GenericUploader") || functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance"))
 	 {
 		 requestParams.put("ClientUId", Property.getProperty("ClientUId")); 
 		 if(functionality.equalsIgnoreCase("DIY"))
@@ -787,6 +787,11 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 			 if(WorkItemExternalId.contains("Sprint"))
 				 requestParams.put("IterationExternalID", Baseclass.getInstance().sprint_IterationExternalID);
 		 }
+	 }
+	 else if(functionality.equalsIgnoreCase("GenericUploader_NoTool"))
+	 {
+		 requestParams.put("ClientUId", Property.getProperty("NoToolInstance_ClientUId"));  
+		 requestParams.put("DeliveryConstructUId", Property.getProperty("NoToolInstance_DeliveryConstructUId_L2"));  
 	 }
 	 
 	 
@@ -873,7 +878,7 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 		 ClientUId=Property.getProperty("ClientUId_DeleteFunctionality");
 		deliveryConstructUId=Property.getProperty("DeliveryConstructUId_DeleteFunctionality");
 	 }
-	 else if(functionality.equalsIgnoreCase("ChangeProjectFromOne") || functionality.contains("Recon") || functionality.equalsIgnoreCase("DFT")  || functionality.equalsIgnoreCase("normal"))
+	 else if(functionality.equalsIgnoreCase("ChangeProjectFromOne") || functionality.contains("Recon") || functionality.equalsIgnoreCase("DFT")  || functionality.equalsIgnoreCase("normal") || functionality.equalsIgnoreCase("GenericUploader") || functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance"))
 	 {
 		 ClientUId=Property.getProperty("ClientUId");
 			deliveryConstructUId=Property.getProperty("DeliveryConstructUId_L2");
@@ -882,6 +887,11 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 	 {
 		 ClientUId=Property.getProperty("ClientUId");
 		 deliveryConstructUId=DCUid;
+	 }
+	 else if(functionality.equalsIgnoreCase("GenericUploader_NoTool"))
+	 {
+		 ClientUId=Property.getProperty("NoToolInstance_ClientUId");
+		 deliveryConstructUId=Property.getProperty("NoToolInstance_DeliveryConstructUId_L2");;
 	 }
 	 if(!workitem.equalsIgnoreCase("Team"))
 		 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"/"+QueryType+"?clientUId="+ClientUId+"&deliveryConstructUId="+deliveryConstructUId+"&includeCompleteHierarchy=true";
@@ -1392,15 +1402,15 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					 else if(flownOrDeleted.equalsIgnoreCase("deleted"))
 						 Assert.assertEquals(totalrecordcount, 0,workitem +" not deleted for tool "+toolname);
 				 }
-				 if((workitem.contains("Release") || workitem.contains("Sprint")))
-				 {
-					 HashMap<String,String>ReleaseAndSprintDetails= getReleaseAndSprintDetails(toolname);
-					 String ReleaseName = ReleaseAndSprintDetails.get("ReleaseName");
-					 String ReleaseStartDate = ReleaseAndSprintDetails.get("ReleaseStartDate");
-					 String ReleaseEndDate = ReleaseAndSprintDetails.get("ReleaseEndDate");
-					 String SprintName = ReleaseAndSprintDetails.get("SprintName");
-					 String SprintStartDate = ReleaseAndSprintDetails.get("SprintStartDate");
-					 String SprintEndDate = ReleaseAndSprintDetails.get("SprintEndDate");
+				 if((workitem.contains("Release") || workitem.contains("Sprint")) && !functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance"))
+					 	 
+						 HashMap<String,String>ReleaseAndSprintDetails= getReleaseAndSprintDetails(toolname);
+						 String ReleaseName = ReleaseAndSprintDetails.get("ReleaseName");
+						 String ReleaseStartDate = ReleaseAndSprintDetails.get("ReleaseStartDate");
+						 String ReleaseEndDate = ReleaseAndSprintDetails.get("ReleaseEndDate");
+						 String SprintName = ReleaseAndSprintDetails.get("SprintName");
+						 String SprintStartDate = ReleaseAndSprintDetails.get("SprintStartDate");
+						 String SprintEndDate = ReleaseAndSprintDetails.get("SprintEndDate");
 
 					 
 					 int size = response.jsonPath().getInt("Iterations.size()");
@@ -1432,6 +1442,10 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 									 if(workitem.equalsIgnoreCase("ReleaseFromRMP"))
 									 {
 										 verifyIterationExternalID_ReleaseAndSprint("Release", Baseclass.getInstance().release_IterationExternalID, toolname);
+									 }
+									 if(functionality.equalsIgnoreCase("GenericUploader"))
+									 {
+										 verifyReleaseAndSprintDetailsForGenericUploader(workitem,response.jsonPath());
 									 }
 									 break;
 
@@ -1590,6 +1604,33 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					 VerifyDCAssociation(workitem,response.jsonPath(),totalrecordcount,toolname);
 					
 				 }
+				 if(functionality.equalsIgnoreCase("GenericUploader") && !workitem.equalsIgnoreCase("Release") && !workitem.equalsIgnoreCase("Sprint"))
+				 {
+					 VerifyWorkItemDetailsForGenericUploader(workitem,response.jsonPath(),totalrecordcount,toolname);
+				 }
+				 if(functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance") && (workitem.equalsIgnoreCase("Release") || workitem.equalsIgnoreCase("Sprint")))
+				 {
+					 String ReleaseOrSprintName = response.jsonPath().getString("Iterations[0].Name");
+					 int recordcount =response.jsonPath().get("TotalRecordCount"); 
+					 if(recordcount==1)
+					 {
+						 if(workitem.equalsIgnoreCase("Release"))
+						 {
+							
+							if(!ReleaseOrSprintName.equalsIgnoreCase("Release_AutomationData_GenericUploader"))
+							Assert.fail("Title mismatch for generic uploader for "+workitem);
+						 }
+						 else if(workitem.equalsIgnoreCase("Sprint"))
+						 {
+							 if(!ReleaseOrSprintName.equalsIgnoreCase("Sprint_AutomationData_GenericUploader"))
+								 Assert.fail("Title mismatch for generic uploader for "+workitem);
+						 }
+					 }
+					 else
+						 Assert.fail(workitem+" not flown for generic uploader test");
+								
+					 }
+				 
 			}
 			catch(Exception e)
 			{
@@ -1602,7 +1643,41 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 		
 		}
 
-		 //DeliveryConstructUId for WorkItems
+		 public static void verifyReleaseAndSprintDetailsForGenericUploader(String workitem, JsonPath jsonPath) {
+		
+			 if(workitem.equalsIgnoreCase("Release"))
+			 {
+				 System.out.println(jsonPath.getString("Iterations[0].Name"));
+				 Assert.assertEquals(jsonPath.getString("Iterations[0].Name"), "Release_AutomationData_GenericUploader","Mimatch in release name for generic uploader functionality");
+			 }
+			 else if(workitem.equalsIgnoreCase("Sprint"))
+			 {
+				 System.out.println(jsonPath.getString("Iterations[0].Name"));
+				 Assert.assertEquals(jsonPath.getString("Iterations[0].Name"), "Sprint_AutomationData_GenericUploader","Mimatch in sprint name for generic uploader functionality");
+			 }
+			
+		}
+
+		public static void VerifyWorkItemDetailsForGenericUploader(String workitem, JsonPath jsonPath,int totalrecordcount, String toolname) {
+			 
+			if(!workitem.equalsIgnoreCase("Decision"))
+			{
+				 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
+				 String TitleFromAPI = jsonPath.getString("WorkItems"+"[0].Title");
+//				 System.out.println(TitleFromAPI);
+//				 System.out.println(workitem_title);
+				 if(!TitleFromAPI.equals(workitem+"_AutomationData_GenericUploader"))
+					 logger.info("title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+				 Assert.assertEquals(TitleFromAPI, workitem+"_AutomationData_GenericUploader","title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+			}
+			else if(workitem.equalsIgnoreCase("Decision"))
+			{
+				
+			}
+			
+		}
+
+		//DeliveryConstructUId for WorkItems
 		public static void VerifyDCAssociation(String workitem, JsonPath js, int totalrecordcount,String toolname) {
 		 try{
 			 List<Object> DCUid=null;
@@ -2022,7 +2097,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				
 				
 				String posturlmerge="";
-				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action")  || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")  || workitem.equalsIgnoreCase("Test Execution")))
+				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("Deliverable") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action")  || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")  || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request")))
 				posturlmerge = mywizURL+"/v1/MergeWorkItem?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("TestCase"))
 					posturlmerge = mywizURL+"/v1/Test1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
@@ -2038,14 +2113,16 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					posturlmerge = mywizURL+"/v1/TestResult?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				else if(workitem.equalsIgnoreCase("Deliverable"))
 					posturlmerge = mywizURL+"/v1/Deliverable1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
-				
+				else if(workitem.equalsIgnoreCase("Work Request"))
+					posturlmerge = mywizURL+"/v1/ChangeRequest1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
+//				posturlmerge = mywizURL+"/v1/ChangeRequest1?"+"clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 				
 				
 				Response response = request.post(posturlmerge);
 //				System.out.println(response.getStatusCode());
 				 Assert.assertEquals(response.getStatusCode(), 200);
 				String responsebody = response.getBody().asString();
-//				System.out.println(responsebody);
+				System.out.println(responsebody);
 //				response.jsonPath().get
 				int updatecount = response.jsonPath().get("MergeResult.UpdateCount");
 //				System.out.println("updatecount: "+updatecount);

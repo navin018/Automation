@@ -76,6 +76,11 @@ public class CommonSteps {
 	}
 	
 	
+	@Given("^i set the IterationExternalID details into the baseclass for tool \"([^\"]*)\"$")
+	public void iSetIterationExternalIDDetails(String toolname) throws Throwable {
+		CommonFunctions.setIterationExternalID(toolname);
+	}
+	
 	@Given("^i login to application \"([^\"]*)\"$")
 	public void iLoginToApplicationWith(String AppName) throws Throwable {
 		

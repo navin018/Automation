@@ -62,7 +62,7 @@ And i verify if "Test Execution" has "flown" which was "NA" for "ADT JIRA" for "
 	 
  	
 
-Scenario: ADTJIRA_DIY_IBVerification_Release_Sprint 
+Scenario Outline: ADTJIRA_DIY_IBVerification_Release_Sprint 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -72,3 +72,6 @@ Scenario: ADTJIRA_DIY_IBVerification_Release_Sprint
 	And i verify if "Release" has "flown" which was "NA" for "ADT Jira" for "DIY" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "ADT Jira" for "DIY" functionality
 	
+		Examples: 
+		| applicationname |
+		| MyWizard        |

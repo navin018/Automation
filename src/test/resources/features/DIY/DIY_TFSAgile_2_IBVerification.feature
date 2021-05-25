@@ -1,6 +1,7 @@
 @4TFSAgile_DIY_IBVerfification
 Feature: TFSAgile_DIY_IBVerification 
 
+
 Scenario: TFSAgile_Task_flow_DIY 
 Given i load the project properties file 
 	And i generate a token for "DevTest" environment
@@ -37,7 +38,6 @@ And i verify if "TestCase" has "flown" which was "NA" for "TFS Agile" for "DIY" 
 Scenario: TFSAgile_Deliverable_flow_DIY 
 And i verify if "Deliverable" has "flown" which was "NA" for "TFS Agile" for "DIY" functionality 
 	
-	
 
 Scenario: TFSAgile_Action_flow_DIY 
 And i verify if "Action" has "flown" which was "NA" for "TFS Agile" for "DIY" functionality 
@@ -55,7 +55,7 @@ And i verify if "Milestone" has "flown" which was "NA" for "TFS Agile" for "DIY"
 Scenario: TFSAgile_WorkRequest_flow_DIY 
 And i verify if "Work Request" has "flown" which was "NA" for "TFS Agile" for "DIY" functionality 
 	
-Scenario: TFSAgile_DIY_IBVerification_Release_Sprint
+Scenario Outline: TFSAgile_DIY_IBVerification_Release_Sprint
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -65,3 +65,6 @@ Scenario: TFSAgile_DIY_IBVerification_Release_Sprint
 	And i verify if "Release" has "flown" which was "NA" for "TFS Agile" for "DIY" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "TFS Agile" for "DIY" functionality
 	
+		Examples: 
+		| applicationname |toolname|
+		| MyWizard        |TFS Agile|

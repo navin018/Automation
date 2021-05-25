@@ -23,9 +23,9 @@ public class GenericUploaderSteps  {
 		
 	}
 	
-	@Then("^i select the Data Entity as \"([^\"]*)\" and upload the excel file$")
-	public void i_select_the_Data_Entity_as(String dataentity) throws Throwable {
-		DataLoader.UploadFileForGenericUploader(dataentity);
+	@Then("^i select the Data Entity as \"([^\"]*)\" for \"([^\"]*)\" and upload the excel file$")
+	public void i_select_the_Data_Entity_as(String dataentity,String toolname) throws Throwable {
+		DataLoader.UploadFileForGenericUploader(dataentity,toolname);
 		
 			}
 	

@@ -51,7 +51,7 @@ public class APISteps {
 			Tools.VerifyScrumBanFuncionality(workitem,toolname,flownOrDeleted);
 		if(functionality.equalsIgnoreCase("ChangeProjectToAnother"))
 			Tools.Verifyifworkitemisflown(workitem,flownOrDeleted,toolname,functionality);
-		if(functionality.contains("Recon") || functionality.equalsIgnoreCase("DFT") || functionality.equalsIgnoreCase("DIY") || functionality.equalsIgnoreCase("Normal"))
+		if(functionality.contains("Recon") || functionality.equalsIgnoreCase("DFT") || functionality.equalsIgnoreCase("DIY") || functionality.equalsIgnoreCase("Normal") || functionality.contains("GenericUploader"))
 			Tools.Verifyifworkitemisflown(workitem,flownOrDeleted,toolname,functionality);
 	}
 	

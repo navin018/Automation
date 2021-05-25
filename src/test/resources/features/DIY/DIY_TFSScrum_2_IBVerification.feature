@@ -1,6 +1,7 @@
 @4TFSScrum_DIY_IBVerfification
 Feature: TFSScrum_DIY_IBVerification 
 
+
 Scenario: TFSScrum_Task_flow_DIY 
 Given i load the project properties file 
 	And i generate a token for "DevTest" environment
@@ -8,7 +9,7 @@ Given i load the project properties file
 
 
 Scenario: TFSScrum_Epic_flow_DIY 
-
+Given i load the project properties file 
 	And i verify if "Epic" has "flown" which was "NA" for "TFS Scrum" for "DIY" functionality 
 
 
@@ -58,10 +59,11 @@ And i verify if "Milestone" has "flown" which was "NA" for "TFS Scrum" for "DIY"
 Scenario: TFSScrum_Requirement_flow_DIY 
 And i verify if "Requirement" has "flown" which was "NA" for "TFS Scrum" for "DIY" functionality 
 	
+
 Scenario: TFSScrum_WorkRequest_flow_DIY 
 And i verify if "Work Request" has "flown" which was "NA" for "TFS Scrum" for "DIY" functionality 
 	
-Scenario: TFSScrum_DIY_IBVerification_Release_Sprint 
+Scenario Outline: TFSScrum_DIY_IBVerification_Release_Sprint 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -71,3 +73,6 @@ Scenario: TFSScrum_DIY_IBVerification_Release_Sprint
 	And i verify if "Release" has "flown" which was "NA" for "TFS Scrum" for "DIY" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "TFS Scrum" for "DIY" functionality
 	
+	Examples: 
+		| applicationname |
+		| MyWizard        |

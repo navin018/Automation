@@ -128,6 +128,7 @@ public class DIY extends Baseclass{
 		Thread.sleep(3000);
 		clickJS(DIYUIMap.Save_btn);
 		Thread.sleep(3000);
+		ExpWaitForCondition(DIYUIMap.SaveAndClose_btn);
 		clickJS(DIYUIMap.SaveAndClose_btn);
 		ExpWaitForCondition(DIYUIMap.DCSavedSuccess_Msg);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -320,11 +321,13 @@ public class DIY extends Baseclass{
 	
 	}
 
-	private static void EnableUseCases(String toolname) {
+	private static void EnableUseCases(String toolname) throws InterruptedException {
 //		String appbundles[] = {"Planning & Program Management","Requirements, Product Backlog & Change Management","Release & Sprint Planning","Release / Sprint Execution","Analytics & Virtual Agent","Knowledge Management","Myconcerto","Governance"};
 		String appbundles[] = {"Planning & Program Management","Requirements, Product Backlog & Change Management","Release & Sprint Planning","Release / Sprint Execution","Analytics & Virtual Agent","Knowledge Management","Myconcerto"};
-		
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		ExpWaitForCondition(DIYUIMap.SelectuseCases_txt);
+		ExpWaitForCondition(DIYUIMap.SaveAndNext_btn);
+		Thread.sleep(10000);
 		SoftAssert sa = new SoftAssert();
 		for(String appbundle: appbundles){
 			if(!CheckIfElementExists(prepareWebElementWithDynamicXpath(DIYUIMap.AppBundle_Icon, appbundle, "appbundle")))
@@ -346,7 +349,7 @@ public class DIY extends Baseclass{
 				String[] ADTJira_NonWorkItems = {"Test","Deliverable","Requirement","Iteration","Action","TestResult","Milestone","ChangeRequest"};
 				String[] ADOPJira_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue", "Risk"};
 				String[] ADOPJira_NonWorkItems = {"Iteration"};
-				String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Issue","Risk"};
+				String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Issue","Risk","Impediment"};
 				String[] TFSScrum_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue","Risk"};
 				String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable","Action","TestResult","Milestone","Decision","ChangeRequest","Requirement"};
 				
@@ -438,14 +441,16 @@ public class DIY extends Baseclass{
 
 	private static void checkifRuleExists(String workitemOrNonworkitem, String entity, String property) {
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		if(workitemOrNonworkitem.equalsIgnoreCase("workitem")){
-			if(!getDropdownValue(DIYUIMap.Project_drpdown).equalsIgnoreCase("Project Key"))
-			selectDropdownByText(DIYUIMap.Project_drpdown, "Project Key");
-		}
-		else if(workitemOrNonworkitem.equalsIgnoreCase("nonworkitem")){
-			if(!getDropdownValue(DIYUIMap.Project_drpdown).equalsIgnoreCase("Project"))
-		selectDropdownByText(DIYUIMap.Project_drpdown, "Project");
-		}
+//		if(workitemOrNonworkitem.equalsIgnoreCase("workitem")){
+//			if(!getDropdownValue(DIYUIMap.Project_drpdown).equalsIgnoreCase("Project Key"))
+//			selectDropdownByText(DIYUIMap.Project_drpdown, "Project Key");
+//		}
+//		else if(workitemOrNonworkitem.equalsIgnoreCase("nonworkitem")){
+//			if(!getDropdownValue(DIYUIMap.Project_drpdown).equalsIgnoreCase("Project"))
+//		selectDropdownByText(DIYUIMap.Project_drpdown, "Project");
+//		}
+		if(!(getDropdownValue(DIYUIMap.Project_drpdown).equalsIgnoreCase("Project Key") || getDropdownValue(DIYUIMap.Project_drpdown).equalsIgnoreCase("Project")))
+				selectByPartOfVisibleText(DIYUIMap.Project_drpdown, "Project");
 		if(!getDropdownValue(DIYUIMap.Operator_drpdown).equalsIgnoreCase("="))
 			selectDropdownByText(DIYUIMap.Operator_drpdown, "=");
 		
@@ -677,14 +682,14 @@ public class DIY extends Baseclass{
 		String[] JIRA_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue", "Risk"};
 		String[] CloudJIRA_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment"};
 		String[] CloudJIRA_NonWorkItems = {"Iteration"};
-//		String[] JIRA_WorkItems = {"Task", "Epic"};
 		
 		String[] ADTJira_NonWorkItems = {"Test","Deliverable","Requirement","Iteration","Action","TestResult","Test","Milestone","ChangeRequest"};
 		
 		String[] ADOPJira_NonWorkItems = {"Iteration","Test"};
-		String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Issue","Risk"};
+		String[] TFSAgile_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Issue","Risk","Impediment"};
 		String[] TFSScrum_WorkItems = {"Task", "Epic", "Feature", "UserStory", "Bug", "Impediment", "Issue","Risk"};
-		String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable","Action","TestResult","Milestone","Decision","ChangeRequest"};
+		String[] TFS_NonWorkItems = {"Iteration", "Test", "Deliverable","Action","TestResult","Milestone","Decision","ChangeRequest","Requirement"};
+
 	
 		
 		if(toolname.equalsIgnoreCase("ADT JIRA"))
@@ -764,12 +769,15 @@ public class DIY extends Baseclass{
 
 	private static void disablerule_nonworkitem(String nonworkitem) {
 		try{
+			ExpWaitForCondition(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.EntityForDIY_statictxt, nonworkitem, "nonworkitem"));
 			doubleClick(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.EntityForDIY_statictxt, nonworkitem, "nonworkitem"));
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			ExpWaitForCondition(MyWizardMappingRuleUIMap.InactiveRule_toggle);
 			clickJS(MyWizardMappingRuleUIMap.InactiveRule_toggle);
 			clickJS(MyWizardMappingRuleUIMap.SaveRule_btn);
 			ExpWaitForCondition(MyWizardMappingRuleUIMap.RuleSavedSuccesfully_statictxt);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			ExpWaitForCondition(MyWizardMappingRuleUIMap.Rules_Table);
 			}
 			catch(Exception e)
 			{
@@ -782,6 +790,7 @@ public class DIY extends Baseclass{
 
 	public static void disablerule_entity(String entity) {
 		try{
+		ExpWaitForCondition(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.Entity_statictxt, entity, "workitem"));
 		doubleClick(prepareWebElementWithDynamicXpath(MyWizardMappingRuleUIMap.Entity_statictxt, entity, "workitem"));
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		clickJS(MyWizardMappingRuleUIMap.InactiveRule_toggle);
@@ -790,6 +799,7 @@ public class DIY extends Baseclass{
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		Thread.sleep(2000);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		ExpWaitForCondition(MyWizardMappingRuleUIMap.Rules_Table);
 		}
 		catch(Exception e)
 		{

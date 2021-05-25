@@ -34,7 +34,7 @@ public static By RuleSavedSuccesfully_statictxt = By.xpath("//div[contains(text(
 
 
 public static String findParentNode_dynamicTxt = "(//div[@ref='eBodyContainer']//following::div[text()='{workitems_nonworkitems}'])[{int}]";
-public static By Rules_Table = By.xpath("//div[@class='ag-body-viewport-wrapper ag-layout-normal']");
+public static By Rules_Table = By.xpath("//div[@class='ag-body-viewport-wrapper ag-layout-normal']//following::div[@role='gridcell' and @col-id='Name'][contains(text(),'Data filter rule for Iteration')][1]");
 
 
 public static By AddRule_link = By.xpath("//span[text()='Add Rule']");
