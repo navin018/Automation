@@ -68,6 +68,7 @@ Baseclass(){
 	public boolean SecurityTestsResults;
 	public boolean workitemcreation_fail;
 	
+
 	public String release_IterationExternalID;
 	public String sprint_IterationExternalID;
 	
@@ -75,6 +76,8 @@ Baseclass(){
 
 	public String CorrelationUID;
 	public String CorrelationUID_OB;
+	
+	public String teamName;
 	public boolean isSecurityTestsResults() {
 		return SecurityTestsResults;
 	}
