@@ -1403,7 +1403,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 						 Assert.assertEquals(totalrecordcount, 0,workitem +" not deleted for tool "+toolname);
 				 }
 				 if((workitem.contains("Release") || workitem.contains("Sprint")) && !functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance"))
-					 	 
+				 {	 
 						 HashMap<String,String>ReleaseAndSprintDetails= getReleaseAndSprintDetails(toolname);
 						 String ReleaseName = ReleaseAndSprintDetails.get("ReleaseName");
 						 String ReleaseStartDate = ReleaseAndSprintDetails.get("ReleaseStartDate");
