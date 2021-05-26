@@ -1469,17 +1469,18 @@ public static void SelectProjectInCreateWorkitemScreen() {
 	try{
 	ExpWaitForCondition(JiraUIMap.SelectProjectType_drpdown);
 
-			ExpWaitForCondition(By.xpath("//ul[@aria-label='Recent Projects']"));
+//			ExpWaitForCondition(By.xpath("//ul[@aria-label='Recent Projects']"));
+			clickJS(JiraUIMap.SelectProjectType_drpdown);
 			if(CheckIfElementExists(prepareWebElementWithDynamicXpath(JiraUIMap.pickProject_drpdown, Property.getProperty("JiraProject").toLowerCase(), "project")))
 		
 					{
-						System.out.println("to select BOM");
+//						System.out.println("to select BOM");
 						Thread.sleep(2000);
 						doubleClick(prepareWebElementWithDynamicXpath(JiraUIMap.pickProject_drpdown, Property.getProperty("JiraProject").toLowerCase(), "project"));
 						Thread.sleep(1000);
 					}
 			else
-				sendEsc();
+				clickJS(JiraUIMap.CreateIssue_Statictxt);
 			Thread.sleep(1000);
 //		}
 	}
