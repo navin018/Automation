@@ -25,4 +25,11 @@ public static By myWizardENS2_icon=By.xpath("//*[@class='node']//following::*[te
 public static By myWizard_icon=By.xpath("//*[@class='node']//following::*[text()='myWizard'][1]");
 public static By myWizardRequirementsManagement_icon=By.xpath("//span[text()='myWizard.RequirementsManagement']");
 public static By closeDFTdetailedWindow_btn=By.xpath("//h6//following::button[@aria-label='Close']");
+public static By startDate_DatePicker=By.xpath("//*[text()='Start Date']//following::button[@class='btn btn-outline-secondary'][1]");
+public static By EndDate_DatePicker=By.xpath("//*[text()='End Date']//following::button[@class='btn btn-outline-secondary'][1]");
+public static By SelectMonth_Drpdown=By.xpath("//*[text()='Start Date']//following::select[@title='Select month'][1]");
+public static String StartDate_DayOfMonth="//*[text()='Start Date']//following::div[contains(@class,'btn-light') and text()='{day}'][1]";
+public static String EndDate_DayOfMonth="//*[text()='End Date']//following::div[contains(@class,'btn-light') and text()='{day}'][1]";
+
+
 }

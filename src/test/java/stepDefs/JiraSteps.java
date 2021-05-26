@@ -49,7 +49,9 @@ public class JiraSteps  {
 		Thread.sleep(5000);
 //		ExpWaitForCondition(JiraUIMap.CreateIssue_Statictxt);
 		waitPageToLoad();
-//		JiraWorkitem.SelectProjectInCreateWorkitemScreen();
+		if(Property.getProperty("JiraURL").contains("adtjira001eu")){
+		JiraWorkitem.SelectProjectInCreateWorkitemScreen();
+		}
 		JiraWorkitem.SelectWorkItemtype(workitem);
 		JiraWorkitem.CreateWorkitem(workitem);
 		JiraWorkitem.CaptureWorkitemID(workitem);

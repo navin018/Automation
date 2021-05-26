@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -49,30 +50,21 @@ public class DFT extends Baseclass{
 			clickJS(DFTUIMap.Filter_Icon);
 			clickJS(DFTUIMap.processed_checkbox);
 			
+			//start date
+			clickJS(DFTUIMap.startDate_DatePicker);
+			selectDropdownByText(DFTUIMap.SelectMonth_Drpdown, Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())); ;
 			
-			Calendar cal = Calendar.getInstance();
-		    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		    String enddate = dateFormat.format(cal.getTime());
+			Date today = new Date();Calendar cal = Calendar.getInstance();
+			int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+			clickJS(prepareWebElementWithDynamicXpath(DFTUIMap.StartDate_DayOfMonth, String.valueOf(dayOfMonth-1), "day"));
 
-		    cal.add(Calendar.DATE, -1);
-		    String startdate = dateFormat.format(cal.getTime());  
-		    
-		    
-//			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-//		    Date date = new Date();
-		    
-		   
-		    
-			clickJS(DFTUIMap.StartDate_txtbox);
-			clear(DFTUIMap.StartDate_txtbox);
+			//end date			
+			clickJS(DFTUIMap.EndDate_DatePicker);
+			selectDropdownByText(DFTUIMap.SelectMonth_Drpdown, Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())); ;
+			clickJS(prepareWebElementWithDynamicXpath(DFTUIMap.EndDate_DayOfMonth, String.valueOf(dayOfMonth), "day"));
 			
-			enterText(DFTUIMap.StartDate_txtbox,startdate);
 			
-			clickJS(DFTUIMap.EndDate_txtbox);
-			clear(DFTUIMap.EndDate_txtbox);
-			enterText(DFTUIMap.EndDate_txtbox,enddate);
-			
-		    
+	    
 		    clickJS(DFTUIMap.Apply_btn);
 		    ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		    Thread.sleep(2000);
@@ -105,7 +97,7 @@ public class DFT extends Baseclass{
     	try{
     		SoftAssert sa = new SoftAssert();
     		
-    	ExpWaitForCondition(prepareWebElementWithDynamicXpath(DFTUIMap.SearchResultForGivenCorrelationUID_txt, Baseclass.getInstance().CorrelationUID, "CorrelationUId"));
+//    	ExpWaitForCondition(prepareWebElementWithDynamicXpath(DFTUIMap.SearchResultForGivenCorrelationUID_txt, Baseclass.getInstance().CorrelationUID, "CorrelationUId"));
     		if(!CheckIfElementExists(prepareWebElementWithDynamicXpath(DFTUIMap.SearchResultForGivenCorrelationUID_txt, CorrelationUID, "CorrelationUId")))
     		{
     			Assert.fail("the workitem is not showing up in the DFT tile for toolname "+toolname);
@@ -123,7 +115,7 @@ public class DFT extends Baseclass{
 
     	if(inboundOrOutbound.equalsIgnoreCase("inbound"))
     	{
-        	Assert.assertEquals(icons.size(), 5, "one of the systems missing for the ibound flow in the DFT diagram");
+        	sa.assertEquals(icons.size(), 5, "one of the systems missing for the ibound flow in the DFT diagram");
 
 			    	if(!CheckIfElementExists(DFTUIMap.Jira_icon))
 					{
@@ -147,7 +139,7 @@ public class DFT extends Baseclass{
 					}
 					
 			    			    	
-			    	sa.assertAll();
+					sa.assertAll();
 			    	clickJS(DFTUIMap.closeDFTdetailedWindow_btn);
 			    	clickJS(DFTUIMap.Searchbox_txtbox);
 			    	clear(DFTUIMap.Searchbox_txtbox);
@@ -160,7 +152,7 @@ public class DFT extends Baseclass{
     	}
     	else if(inboundOrOutbound.equalsIgnoreCase("outbound"))
     	{
-        	Assert.assertEquals(icons.size(), 4);
+        	sa.assertEquals(icons.size(), 4);
     		
     		if(!CheckIfElementExists(DFTUIMap.myWizardRequirementsManagement_icon))
 			{
@@ -178,7 +170,7 @@ public class DFT extends Baseclass{
 			{
 				sa.assertEquals(true, false, "myWizardGatewayManager icon not shown in detailed flow diagram for "+toolname);
 			}
-		
+    		sa.assertAll();
 
     	}
     	}

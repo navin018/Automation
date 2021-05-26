@@ -12,7 +12,7 @@ Scenario Outline: ADTJIra_WorkitemCcreation
 	
 	Examples: 
 		| applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|ProductBacklog|Milestone|Requirement|
-		| Jira             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_WSJF | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|ProductBacklog_wsjf|Milestone_01|Requirement_01|
+		| Jira             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|ProductBacklog_wsjf|Milestone_01|Requirement_01|
 		
 @2ADTJira_DFT1
 Scenario Outline: something
@@ -25,6 +25,7 @@ Scenario Outline: something
 			And i select only the client for "<applicationname>"
 			And i check the DFT details for "Inbound" details for "ADT Jira"
 			And i verify the Outbound flow for "Story" details for "ADT JIRA" for "DFT" functionality 
+			And i put a explicit wait of "300000"
 			And i check the DFT details for "Outbound" details for "ADT Jira"
 Examples: 
 		| applicationname |toolname|

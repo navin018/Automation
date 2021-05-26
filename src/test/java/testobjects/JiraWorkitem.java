@@ -1467,15 +1467,27 @@ public static void CreateWorkitemForRecon(String workitem) {
 
 public static void SelectProjectInCreateWorkitemScreen() {
 	try{
-	clickJS(JiraUIMap.SelectProjectType_drpdown);
-	sendDelete();
-	enterText(JiraUIMap.SelectProjectType_drpdown,Property.getProperty("JiraProject"));
-	sendEnter(JiraUIMap.SelectProjectType_drpdown);
-	Thread.sleep(3000);
+	ExpWaitForCondition(JiraUIMap.SelectProjectType_drpdown);
+
+			ExpWaitForCondition(By.xpath("//ul[@aria-label='Recent Projects']"));
+			if(CheckIfElementExists(prepareWebElementWithDynamicXpath(JiraUIMap.pickProject_drpdown, Property.getProperty("JiraProject").toLowerCase(), "project")))
+		
+					{
+						System.out.println("to select BOM");
+						Thread.sleep(2000);
+						doubleClick(prepareWebElementWithDynamicXpath(JiraUIMap.pickProject_drpdown, Property.getProperty("JiraProject").toLowerCase(), "project"));
+						Thread.sleep(1000);
+					}
+			else
+				sendEsc();
+			Thread.sleep(1000);
+//		}
 	}
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue selecting the project in JIRA");
+		Assert.fail("issue selecting the project in JIRA");
 	}
 }
 

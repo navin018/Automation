@@ -1593,8 +1593,8 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 
 				 if(functionality.equalsIgnoreCase("DFT"))
 				 {
-					 String something = response.jsonPath().get("WorkItems[0].WorkItemDeliveryConstructs[0].CorrelationUId");
-					 System.out.println(something);
+					 String correlationUID = response.jsonPath().get("WorkItems[0].WorkItemDeliveryConstructs[0].CorrelationUId");
+					 System.out.println(correlationUID);
 					 Baseclass.getInstance().CorrelationUID = response.jsonPath().get("WorkItems[0].WorkItemDeliveryConstructs[0].CorrelationUId");
 					 
 				 }
