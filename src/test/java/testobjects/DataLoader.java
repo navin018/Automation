@@ -322,11 +322,11 @@ public class DataLoader {
 			String ExcelToBePrepared="";
 //			String[] entities_AD = {"Bug","Iteration","Requirement","Test","TestResult"};
 //			String[] entities_Devops = {"CodeCommit","CodeBranch","Build","Deployment","Environment","TestResult"};
-//			String[] entities_ADTJira_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Iteration"};
-			String[] entities_ADTJira_GenericUploader = {"Iteration"};
+			String[] entities_ADTJira_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Iteration"};
+//			String[] entities_ADTJira_GenericUploader = {"Iteration"};
 			String[] entities_MyWizardInstanceGenericUploader = {"Decision","IterationForMyWizardInstance"};
-//			String[] entities_NoToolInstance_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Decision","Iteration"};
-			String[] entities_NoToolInstance_GenericUploader = {"Decision"};
+			String[] entities_NoToolInstance_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Decision","Iteration"};
+//			String[] entities_NoToolInstance_GenericUploader = {"Decision"};
 			ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
 			if(toolname.equalsIgnoreCase("ADT Jira"))
 					{

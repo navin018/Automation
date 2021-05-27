@@ -59,8 +59,8 @@ public class RMP extends Baseclass{
 			   singleClick(RMPUIMap.LaunchRoadMapApp_Statictxt);
 			   Thread.sleep(30000);
 			  
-//			   ArrayList<String> tabs2 = new ArrayList<String> (driver().getWindowHandles());
-//				 driver().switchTo().window(tabs2.get(2));
+			   ArrayList<String> tabs2 = new ArrayList<String> (driver().getWindowHandles());
+				 driver().switchTo().window(tabs2.get(1));
 				 ExpWaitForElementToDisappear(RMPUIMap.LoadingPleaseWait_msg);
 				  ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			   ExpWaitForCondition(RMPUIMap.RA_link);
@@ -289,6 +289,7 @@ public class RMP extends Baseclass{
 				   }
 				   
 				   
+			   ExpWaitForCondition(RMPUIMap.CreateNewRodMap_link);
 			   ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			   clickJS(RMPUIMap.CreateNewRodMap_link);
 			   ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -409,6 +410,7 @@ public class RMP extends Baseclass{
 				click(RMPUIMap.SaveBaseline_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				click(RMPUIMap.Save_btn);
+
 				ExpWaitForCondition(RMPUIMap.RoadmapSaved_successMsg);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 //					 ExpWaitForCondition(RMPUIMap.RoadMapUpdated_msg);

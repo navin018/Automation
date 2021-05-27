@@ -1,9 +1,9 @@
-@3GenericUploader_NoTool_IBVerfification
+@7GenericUploader_NoTool_IBVerfification
 Feature: GenericUploader_NoTool_IBVerification 
 
 
 Scenario: NoTool_Task_flow_GenericUploader_NoTool 
-#Given i load the project properties file 
+	Given i load the project properties file 
 	And i generate a token for "DevTest" environment
 	And i verify if "Task" has "flown" which was "NA" for "ADT JIRA" for "GenericUploader_NoTool" functionality 
 

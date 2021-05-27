@@ -48,8 +48,8 @@ public static String PickAnAccount1_link = "//div[contains(text(),'{username}')]
 
 
 public static By scopeSelector_drpdown = By.xpath("//*[@id='scopeSelector' or @class='scope-selector']");
-public static By scopeSelector_RMP_drpdown = By.xpath("//span[@class='scope-selector-toggle -arrow-link js-dropdown']");
-public static By apply_btn = By.xpath("//button[text()='Apply']");
+public static By scopeSelector_RMP_drpdown = By.xpath("//*[@class='scope-selector-toggle -arrow-link js-dropdown' or @id='scopeSelector']");
+public static By apply_btn = By.xpath("//button[contains(text(),'Apply')]");
 //public static By apply_btn = By.xpath("//button[text()=' Apply ']");
 
 public static String Tile_statictxt = "//div[@class='tile-title'][text()='{tilename}']";

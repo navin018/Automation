@@ -180,10 +180,10 @@ public class TeamConfiguration extends Baseclass {
 		try{
 		enterText(TeamConfigUIMap.searchBox_txtBox, Baseclass.getInstance().teamName);
 		click(TeamConfigUIMap.delete_button);
-		//Thread.sleep(3000);
-		ArrayList<String> wHandles = new ArrayList<String>(driver().getWindowHandles());       
-        driver().switchTo().window(wHandles.get(1));
-		click(TeamConfigUIMap.confirmDelete_button);
+		ExpWaitForCondition(TeamConfigUIMap.confirmDelete_button);
+//		ArrayList<String> wHandles = new ArrayList<String>(driver().getWindowHandles());       
+//        driver().switchTo().window(wHandles.get(1));
+		singleClick(TeamConfigUIMap.confirmDelete_button);
 		ExpWaitForCondition(TeamConfigUIMap.deleteTeamSuccess_staticTxt);
 		System.out.println("Team deletion successful");
 		}

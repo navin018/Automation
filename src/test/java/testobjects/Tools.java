@@ -1660,7 +1660,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 
 		public static void VerifyWorkItemDetailsForGenericUploader(String workitem, JsonPath jsonPath,int totalrecordcount, String toolname) {
 			 
-			if(!workitem.equalsIgnoreCase("Decision"))
+			if(!(workitem.equalsIgnoreCase("Decision") ||  workitem.equalsIgnoreCase("Action")))
 			{
 				 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
 				 String TitleFromAPI = jsonPath.getString("WorkItems"+"[0].Title");
@@ -1672,7 +1672,23 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 			}
 			else if(workitem.equalsIgnoreCase("Decision"))
 			{
-				
+				 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
+				 String TitleFromAPI = jsonPath.getString("Decisions"+"[0].Title");
+//				 System.out.println(TitleFromAPI);
+//				 System.out.println(workitem_title);
+				 if(!TitleFromAPI.equals(workitem+"_AutomationData_GenericUploader"))
+					 logger.info("title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+				 Assert.assertEquals(TitleFromAPI, workitem+"_AutomationData_GenericUploader","title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+			}
+			else if(workitem.equalsIgnoreCase("Action"))
+			{
+				 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
+				 String TitleFromAPI = jsonPath.getString("Actions"+"[0].Title");
+//				 System.out.println(TitleFromAPI);
+//				 System.out.println(workitem_title);
+				 if(!TitleFromAPI.equals(workitem+"_AutomationData_GenericUploader"))
+					 logger.info("title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+				 Assert.assertEquals(TitleFromAPI, workitem+"_AutomationData_GenericUploader","title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
 			}
 			
 		}
@@ -1826,7 +1842,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 	        String IterationExternalIDFromTool_Release = (String) jsonObject.get("IterationExternalID_Release");
 	        String IterationExternalIDFromTool_Sprint = (String) jsonObject.get("IterationExternalID_Sprint");
 	        Assert.assertEquals(IterationExternalIDFromTool_Release, IterationExternalID_Release,"mismatch in IterationExternalID(Release) between tool and the ID in workitem for toolname "+toolname);
-//	        Assert.assertEquals(IterationExternalIDFromTool_Sprint, IterationExternalID_Sprint,"mismatch in IterationExternalID(Sprint) between tool and the ID in workitem for toolname "+toolname);
+	        Assert.assertEquals(IterationExternalIDFromTool_Sprint, IterationExternalID_Sprint,"mismatch in IterationExternalID(Sprint) between tool and the ID in workitem for toolname "+toolname);
 	        jsonObject.put("IterationUID_Release_WorkItem",IterationUID_Release);
 	        jsonObject.put("IterationExternalID_Release_WorkItem",IterationExternalID_Release);
 	        jsonObject.put("IterationUID_Sprint_WorkItem",IterationUID_Sprint);

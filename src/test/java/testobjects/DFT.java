@@ -47,26 +47,8 @@ public class DFT extends Baseclass{
 
 	public static void CheckIBOBDetails(String inboundOrOutbound, String toolname) {
 		try{
-			clickJS(DFTUIMap.Filter_Icon);
-			clickJS(DFTUIMap.processed_checkbox);
-			
-			//start date
-			clickJS(DFTUIMap.startDate_DatePicker);
-			selectDropdownByText(DFTUIMap.SelectMonth_Drpdown, Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())); ;
-			
-			Date today = new Date();Calendar cal = Calendar.getInstance();
-			int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
-			clickJS(prepareWebElementWithDynamicXpath(DFTUIMap.StartDate_DayOfMonth, String.valueOf(dayOfMonth-1), "day"));
+			applyfilters();
 
-			//end date			
-			clickJS(DFTUIMap.EndDate_DatePicker);
-			selectDropdownByText(DFTUIMap.SelectMonth_Drpdown, Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())); ;
-			clickJS(prepareWebElementWithDynamicXpath(DFTUIMap.EndDate_DayOfMonth, String.valueOf(dayOfMonth), "day"));
-			
-			
-	    
-		    clickJS(DFTUIMap.Apply_btn);
-		    ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		    Thread.sleep(2000);
 		    ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		    if(inboundOrOutbound.equalsIgnoreCase("inbound")){
@@ -90,6 +72,30 @@ public class DFT extends Baseclass{
 		{
 			e.printStackTrace();
 		}
+		
+	}
+
+	public static void applyfilters() {
+		clickJS(DFTUIMap.Filter_Icon);
+		clickJS(DFTUIMap.processed_checkbox);
+		
+		//start date
+		clickJS(DFTUIMap.startDate_DatePicker);
+		selectDropdownByText(DFTUIMap.SelectMonth_Drpdown, Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())); ;
+		
+		Date today = new Date();Calendar cal = Calendar.getInstance();
+		int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+		clickJS(prepareWebElementWithDynamicXpath(DFTUIMap.StartDate_DayOfMonth, String.valueOf(dayOfMonth-1), "day"));
+
+		//end date			
+		clickJS(DFTUIMap.EndDate_DatePicker);
+		selectDropdownByText(DFTUIMap.SelectMonth_Drpdown, Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())); ;
+		clickJS(prepareWebElementWithDynamicXpath(DFTUIMap.EndDate_DayOfMonth, String.valueOf(dayOfMonth), "day"));
+		
+		
+    
+	    clickJS(DFTUIMap.Apply_btn);
+	    ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		
 	}
 
@@ -169,6 +175,10 @@ public class DFT extends Baseclass{
     		if(!CheckIfElementExists(DFTUIMap.myWizardGatewayManager_icon))
 			{
 				sa.assertEquals(true, false, "myWizardGatewayManager icon not shown in detailed flow diagram for "+toolname);
+			}
+    		if(!CheckIfElementExists(DFTUIMap.Jira_icon))
+			{
+				sa.assertEquals(true, false, "Jira icon not shown in detailed flow diagram for "+toolname);
 			}
     		sa.assertAll();
 
