@@ -2080,6 +2080,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 if(functionality.equalsIgnoreCase("DFT"))
 				 {
 					 Baseclass.getInstance().CorrelationUID_OB = CorrelationUID;
+					 System.out.println(CorrelationUID);
 				 }
 				 RequestSpecification request = RestAssured.given();
 								 	
