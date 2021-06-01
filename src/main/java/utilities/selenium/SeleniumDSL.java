@@ -466,6 +466,18 @@ public class SeleniumDSL {
 //		.sendKeys(driver().findElement(by),val).build().perform();
     }
 	
+	public static void  mouseHoverJScript(WebElement HoverElement){
+		
+		String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
+		
+		
+//		WebElement element = driver().findElement(By);
+		JavascriptExecutor JS = (JavascriptExecutor)driver();
+		JS.executeScript(mouseOverScript,HoverElement);
+//		JS.executeScript("arguments[0].value='"+val+"';", element);
+	
+
+	}
 	
 	public static void enterText1(By by, Keys val)  {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(val);

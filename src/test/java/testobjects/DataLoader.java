@@ -32,7 +32,7 @@ public class DataLoader {
 			
 			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" + File.separator + "WorkItemExternalIDs.json";
 		String Excelfilepath="";
-		if(toolname.equalsIgnoreCase("ADT Jira"))	
+		if(toolname.equalsIgnoreCase("ADT Jira") ||  toolname.equalsIgnoreCase("myWizardInstance"))	
 		Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"Excel"+  File.separator + entity+".xlsx" ;
 		else if(toolname.equalsIgnoreCase("NoToolInstance"))
 			Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"Excel"+  File.separator + entity+".xlsx" ;	
@@ -72,7 +72,7 @@ public class DataLoader {
 				FileReader reader = new FileReader(Entities_JSONFile);
 				JSONParser jsonParser = new JSONParser();
 			    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-			    jsonObject.put("WorkItemExternalId_"+entity, randomNumber);        
+			    jsonObject.put("WorkItemExternalId_"+entity, String.valueOf(randomNumber));        
 			    FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
 				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
 			}
@@ -96,14 +96,14 @@ public class DataLoader {
 				FileReader reader = new FileReader(Entities_JSONFile);
 				JSONParser jsonParser = new JSONParser();
 			    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-			    jsonObject.put("WorkItemExternalId_"+entity, randomNumber);        
+			    jsonObject.put("WorkItemExternalId_"+entity, String.valueOf(randomNumber));      
 			    FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
 				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
 			}
 		}
 		else if(entity.equalsIgnoreCase("Decision"))
 		{
-			if(toolname.equalsIgnoreCase("ADT Jira"))
+			if(toolname.equalsIgnoreCase("myWizardInstance"))
 			{
 			String workitemIDForDecision = "GNRIC-"+randomNumb;
 			sheet.getRow(1).getCell(0).setCellValue(workitemIDForDecision);
@@ -129,7 +129,7 @@ public class DataLoader {
 				FileReader reader = new FileReader(Entities_JSONFile);
 				JSONParser jsonParser = new JSONParser();
 			    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-			    jsonObject.put("WorkItemExternalId_"+entity, randomNumber);        
+			    jsonObject.put("WorkItemExternalId_"+entity, String.valueOf(randomNumber));      
 			    FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
 				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
 			}
@@ -157,7 +157,7 @@ public class DataLoader {
 				Random rndnumb = new Random();
 				int randomNumber = 10000 + rndnumb.nextInt(90000);
 				sheet.getRow(1).getCell(0).setCellType(Cell.CELL_TYPE_NUMERIC);
-				sheet.getRow(1).getCell(0).setCellValue(randomNumber);
+				sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumber));
 				Baseclass.getInstance().release_IterationExternalID=String.valueOf(randomNumber);
 				sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
 				sheet.getRow(1).getCell(9).setCellValue(time);
@@ -165,7 +165,7 @@ public class DataLoader {
 				sheet.getRow(1).getCell(14).setCellValue("Agile");
 				sheet.getRow(1).getCell(15).setCellValue("Scrum");
 				
-				sheet.getRow(2).getCell(0).setCellValue(randomNumber+1);
+				sheet.getRow(2).getCell(0).setCellValue(String.valueOf(randomNumber+1));
 				sheet.getRow(1).getCell(0).setCellType(Cell.CELL_TYPE_NUMERIC);
 				Baseclass.getInstance().sprint_IterationExternalID=String.valueOf(randomNumber+1);
 				sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
@@ -187,7 +187,7 @@ public class DataLoader {
 			sheet.getRow(1).getCell(14).setCellValue("Agile");
 			sheet.getRow(1).getCell(15).setCellValue("Scrum");
 			
-			sheet.getRow(2).getCell(0).setCellValue(randomNumb+1);
+			sheet.getRow(2).getCell(0).setCellValue(String.valueOf(randomNumb+1));
 			Baseclass.getInstance().sprint_IterationExternalID= String.valueOf(randomNumb+1);
 			sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
 			sheet.getRow(1).getCell(8).setCellValue(time);

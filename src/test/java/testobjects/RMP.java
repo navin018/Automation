@@ -10,8 +10,10 @@ import static utilities.selenium.SeleniumDSL.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -312,25 +314,34 @@ public class RMP extends Baseclass{
 				
 				enterText(RMPUIMap.InitiaveDescription_txtbox, InitiaveName);
 				clear(RMPUIMap.InititaveOrReleaseOrSprintStartDate_txtbox);
-				enterText(RMPUIMap.InititaveOrReleaseOrSprintStartDate_txtbox, "01/10/2021");
+				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			    Date date = new Date();
+				enterText(RMPUIMap.InititaveOrReleaseOrSprintStartDate_txtbox, dateFormat.format(date));
 				clear(RMPUIMap.ReleaseOrSprintEndDate_txtbox);
 				enterText(RMPUIMap.ReleaseOrSprintEndDate_txtbox, "31/03/2022");
 				click(RMPUIMap.Apply_btn);
 				
 				
 				//add release in the roadmap
-				singleClick(RMPUIMap.plusIcon_Img);
+//				singleClick(RMPUIMap.plusIcon_Img);
+//				Thread.sleep(2000);
+//				singleClick(RMPUIMap.AddRelease_Link);
+//				   Thread.sleep(3000);
+				clickJS(RMPUIMap.MoreOptions_Img);
 				Thread.sleep(2000);
-				singleClick(RMPUIMap.AddRelease_Link);
-				   Thread.sleep(3000);
-				   enterText(RMPUIMap.InitiaveOrReleaseNAME_txtbox,releasename);
-				   clickJS(RMPUIMap.timelinerange_range);
-				   doubleClick(RMPUIMap.timelinerange_range);
-				   Thread.sleep(2000);
-				   clickJS(RMPUIMap.MoreOptionsForRelease_Img);
+				 HoverUsingAction(RMPUIMap.Add_Icon);
+				 singleClick(RMPUIMap.SelectRelease_link);
+				
+//				   enterText(RMPUIMap.InitiaveOrReleaseNAME_txtbox,releasename);
+//				   clickJS(RMPUIMap.timelinerange_range);
+//				   doubleClick(RMPUIMap.timelinerange_range);
+//				   Thread.sleep(2000);
+
+				 clickJS(RMPUIMap.MoreOptionsForRelease_Img);
 				   Thread.sleep(2000);
 				   singleClick(RMPUIMap.EditRelease_btn);
 				   Thread.sleep(2000);
+				   enterText(RMPUIMap.ReleaseNAME_txtbox,releasename);
 				   enterText(RMPUIMap.ReleaseDescription_txtbox, releasename);
 				
 			
@@ -361,10 +372,11 @@ public class RMP extends Baseclass{
 			   singleClick(RMPUIMap.AddSprint_Link);
 			   Thread.sleep(2000);
 //			   moveAndClick(RMPUIMap.Sprint_Icon, RMPUIMap.Sprint_Icon);
-			   HoverUsingAction(RMPUIMap.SprintArrow_icon);
+			   WebElement webe = driver().findElement(By.xpath("//div[@class='rm-timeline-header childborder cursor-grab']"));
+			   mouseHoverJScript(webe);
 			   clickJS(RMPUIMap.SprintArrow_icon);
 			   Thread.sleep(2000);
-			   singleClick(RMPUIMap.Edisprint_btn);
+			   singleClick(prepareWebElementWithDynamicXpath(RMPUIMap.Edisprint_btn, releasename, "releasename"));
 //			   HoverUsingAction(RMPUIMap.Sprint_Icon);
 //			   Thread.sleep(2000);
 //			doubleClick(RMPUIMap.Sprint_Icon);
@@ -507,14 +519,19 @@ public class RMP extends Baseclass{
 		clickJS(RMPUIMap.AddIterationRecon_link);
 		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		 HashMap<String,String> hm = Tools.getReleaseAndSprintDetails(toolname);
-		 String IterationName="";
+		 String ReleaseNameFromTool="";
+		 String SprintNameFromTool="";
+		 String ReleaseNameFromRMP="";
+		 String SprintNameFromRMP="";
 		 enterText(RMPUIMap.ManualReconName_txtbox,"ManualRecon_"+RandomNumberGenerator());
 		 if(ReleaseorSprint.equalsIgnoreCase("Release")){
-			 IterationName = hm.get("ReleaseName");
+			 ReleaseNameFromTool = hm.get("ReleaseName");
+			 ReleaseNameFromRMP = hm.get("ReleaseNameFromRMP");
 			 selectDropdownByText(RMPUIMap.IterationType_drpdown, "Release");
 		 }
 		 if(ReleaseorSprint.equalsIgnoreCase("Sprint")){
-			 IterationName = hm.get("SprintName");
+			 SprintNameFromTool = hm.get("SprintName");
+			 SprintNameFromRMP=hm.get("SprintNameFromRMP");
 			 selectDropdownByText(RMPUIMap.IterationType_drpdown, "Sprint-DevelopmentSprint");
 		 }
 				
@@ -523,16 +540,26 @@ public class RMP extends Baseclass{
 		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 
 		 try{
-		 	CheckIfElementExists(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_MyWizIntstance_txt, IterationName, "releaseorsprintname"));
-		 	CheckIfElementExists(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_tool_txt, IterationName, "releaseorsprintname"));
+//		 	CheckIfElementExists(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_MyWizIntstance_txt, ReleaseNameFromTool, "releaseorsprintname"));
+//		 	CheckIfElementExists(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_tool_txt, ReleaseNameFromTool, "releaseorsprintname"));
 		 }
 		 catch(Exception e)
 		 {
 			 e.printStackTrace();
 			 logger.info("the release or sprint doesnt exist in the mywizard or tool instance");
 		 }
-		 	WebElement source_mywizardintance =driver().findElement(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_MyWizIntstance_txt, IterationName, "releaseorsprintname"));
-		 	WebElement source_tool =driver().findElement(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_tool_txt, IterationName, "releaseorsprintname"));
+		 	Thread.sleep(5000);
+		 	WebElement source_mywizardintance=null;
+		 	WebElement source_tool = null;
+		 	if(ReleaseorSprint.equalsIgnoreCase("Release")){
+		 	source_mywizardintance =driver().findElement(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_MyWizIntstance_txt,ReleaseNameFromRMP , "releaseorsprintname"));
+		 	source_tool =driver().findElement(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_tool_txt, ReleaseNameFromTool, "releaseorsprintname"));
+		 	}
+		 	else if(ReleaseorSprint.equalsIgnoreCase("Sprint")){
+		 		source_mywizardintance =driver().findElement(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_MyWizIntstance_txt,SprintNameFromRMP , "releaseorsprintname"));
+			 	source_tool =driver().findElement(prepareWebElementWithDynamicXpath(RMPUIMap.ReleaseOrSprintName_tool_txt, SprintNameFromTool, "releaseorsprintname"));
+		 	}
+		
 		 	WebElement destination =driver().findElement(RMPUIMap.DropReleaseAndSprint_box);
 			DragAndDropUsingJS(source_mywizardintance, destination);
 			DragAndDropUsingJS(source_tool, destination);

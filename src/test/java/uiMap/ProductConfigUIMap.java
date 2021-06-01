@@ -53,6 +53,7 @@ public class ProductConfigUIMap {
 	public static By ProdInstanceEntityTable_table = By.xpath("//span[text()='Add Entity']//following::table[1]");
 	//
 	public static String Column1_WorkItem_Deliverable_drpdown = "//span[text()='Add Entity']//following::table[1]//tbody//tr[{int}]//td[1]//select[1]";
+	public static String Column3_Iteration_drpdown = "//span[text()='Add Entity']//following::table[1]//tbody//tr[{int}]//td[3]//select[1]";
 	public static String Column2_WorkItemType_drpdown = "//span[text()='Add Entity']//following::table[1]//tbody//tr[{int}]//td[2]//select[1]";
 	public static String Column3_InboundOutbound_drpdown = "//span[text()='Add Entity']//following::table[1]//tbody//tr[{int}]//td[3]//select[1]";
 	

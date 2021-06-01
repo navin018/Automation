@@ -65,7 +65,7 @@ public class myQueries extends Baseclass {
 	{
 		try{
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		click(myQueriesUIMap.NewQuery_text);
+		clickJS(myQueriesUIMap.NewQuery_text);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		String classAttribute_value = getAttribute(myQueriesUIMap.Standard_button,"class");
 		sa.assertEquals(classAttribute_value.contains("active"), 1,"Standard query is not selected"); //Verify that Standard Query is selected by default
@@ -92,7 +92,8 @@ public class myQueries extends Baseclass {
 		//ExpWaitForCondition(myQueriesUIMap.querySaved_txt);
 		clickJS(myQueriesUIMap.navigateToQueries_txt);
 		Thread.sleep(3000);
-		Assert.assertEquals(CheckIfElementExists(myQueriesUIMap.savedQuery_txt),true,"Query is not saved"); //Assert if the query is saved
+		ExpWaitForCondition(myQueriesUIMap.savedQuery_txt);
+//		Assert.assertEquals(CheckIfElementExists(myQueriesUIMap.savedQuery_txt),true,"Query is not saved"); //Assert if the query is saved
 		}
 		catch(Exception e)
 		{
@@ -109,14 +110,18 @@ public class myQueries extends Baseclass {
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		Thread.sleep(5000);
 		singleClick(myQueriesUIMap.NewClause_txt); //Adding a new clause
+		Thread.sleep(4000);
 		clickJS(myQueriesUIMap.conditionColumn_txt);
 		selectDropdownByText(myQueriesUIMap.conditionColumn_dropdown,"OR");
 		clickJS(myQueriesUIMap.Field_txtBox);
 		selectDropdownByValue(myQueriesUIMap.Field_dropdown,"Priority");
 		clickJS(myQueriesUIMap.value_txtbox2);
+		Thread.sleep(2000);
 		selectDropdownByValue(myQueriesUIMap.Value_dropdown,"Medium");
 		clickJS(myQueriesUIMap.RunQuery_button);
 		clickJS(myQueriesUIMap.SaveQuery_txt); //Resave the query
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		//ExpWaitForCondition(myQueriesUIMap.recordsRetrieved_staticTxt);
 		clickJS(myQueriesUIMap.navigateToQueries_txt);
 		

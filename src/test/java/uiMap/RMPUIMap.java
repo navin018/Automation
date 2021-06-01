@@ -52,7 +52,8 @@ public static By SprintEditOptions_btn = By.xpath("//span[contains(text(),'Sprin
 
 
 public static By EditInitiave_btn = By.xpath("//button[contains(@title,'Add Initiative')]");
-public static By EditRelease_btn = By.xpath("//a[@id='addPopup']//preceding::li[@data-original-title='Edit'][1]");
+//public static By EditRelease_btn = By.xpath("//a[@id='addPopup']//preceding::li[@data-original-title='Edit'][1]");
+public static By EditRelease_btn = By.xpath("//div[contains(@class,'rm-timeline-options')]/div/ul/li[4]/a[@data-original-title='Edit'][1]");
 public static By EditSprint_btn = By.xpath("//button[contains(@title,'Sprint')]");
 
 
@@ -81,7 +82,7 @@ public static By RoadMapTitle_txtbox = By.xpath("//input[@id='Title' and @name='
 public static By RoadMapUpdated_msg = By.xpath("//span[text()='Roadmap Updated Successfully']");
 public static By BaseLine_link = By.xpath("//a[@data-original-title='Baseline']");
 public static By Baseline_Alert = By.xpath("//button[text()='Proceed']");
-public static By BaselineSaved_msg = By.xpath("//span[text()='Baseline Saved Successfully']");
+public static By BaselineSaved_msg = By.xpath("//*[contains(text(),'Baseline Saved Successfully')]");
 public static By closeRoadMapMenu_btn = By.xpath("//button[@aria-label='Close']");
 //public static By ReleaseStartAndEndDate_txt = By.xpath("//div[@class='pointer-auto'][contains(@title,'Release')]");
 public static By ReleaseStartAndEndDate_txt = By.xpath("//a[contains(@class,'expandCollapseIcon')][contains(@data-original-title,'Release')]");
@@ -90,7 +91,7 @@ public static By SprintStartAndEndDate = By.xpath("//span[contains(@data-origina
 public static By InititaveOrReleaseOrSprintStartDate_txtbox = By.xpath("//input[@id='PlannedStartDate']");
 public static By ReleaseOrSprintEndDate_txtbox = By.xpath("//input[@id='PlannedEndDate']");
 public static By proceed_btn = By.xpath("//button[text()='Proceed']");
-public static By Save_btn = By.xpath("//button[text()='Save']");
+public static By Save_btn = By.xpath("//button[text()='Save' and contains(@class,'btn btn-primary')]");
 public static By AssetsView_btn = By.xpath("//button[text()=' Assets View ']");
 public static By RoadmapSaved_successMsg = By.xpath("//span[contains(text(),'Roadmap Saved Successfully')]");
 public static By AddIterationRecon_link = By.xpath("//span[text()='Add Iteration Reconciliation']");
@@ -109,14 +110,20 @@ public static By plusIcon_Img = By.xpath("//a[@id='addPopup']");
 public static By AddInititave_Link = By.xpath("//a[text()='Initiative']");
 public static By AddRelease_Link = By.xpath("//div[@class='dropdown-body']/child::a[text()='Release'][1]");
 public static By InitiaveOrReleaseNAME_txtbox = By.xpath("//input[contains(@class,'addFirstEntityInput')]");
+public static By ReleaseNAME_txtbox = By.xpath("//input[@id='ReleaseName']");
 public static By timelinerange_range = By.xpath("//div[@class='rm-timeline-range']");
 public static By MoreOptions_Img = By.xpath("//img[@data-original-title='More Options']");
 
 
-public static By MoreOptionsForRelease_Img = By.xpath("//div[contains(@class,'dropdown dropflat d-flex rm-timeline-options')]//following::img[@data-original-title='More Options'][1]");
-public static By Edisprint_btn = By.xpath("//div[contains(@data-original-title,'Sprint')]//following::a[@data-original-title='Edit'][1]");
+//public static By MoreOptionsForRelease_Img = By.xpath("//div[contains(@class,'dropdown dropflat d-flex rm-timeline-options')]//following::img[@data-original-title='More Options'][1]");
+public static By MoreOptionsForRelease_Img = By.xpath("//a[contains(@data-original-title,'Roadmap')]/following::*[@alt='more options'][2]");
+//div[contains(@class,'dropdown dropflat dropup d-flex rm-timeline-options alignMoreOptionPosition show')]/div/ul/li[4]
+
+//public static By Edisprint_btn = By.xpath("//div[contains(@data-original-title,'Sprint')]//following::a[@data-original-title='Edit'][1]");
+public static String Edisprint_btn = "//span[text()='{releasename}']/following::*[@data-original-title='Edit'][1]";
 public static By AddSprint_Link = By.xpath("//a[@id='addPopup']//preceding::a[text()='Sprint'][1]");
 public static By Add_Icon = By.xpath("//a[@data-original-title='Add']");
+public static By SelectRelease_link = By.xpath("//a[text()='Release']");
 
 public static By AddIconForSprint_Icon = By.xpath("//a[@id='addPopup']//preceding::a[@data-original-title='Add'][1]");
 public static By Sprint_Icon = By.xpath("//div[contains(@data-original-title,'Sprint')]");

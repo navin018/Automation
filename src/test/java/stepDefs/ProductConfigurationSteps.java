@@ -20,6 +20,10 @@ public class ProductConfigurationSteps {
 		ProductConfiguration.Navigatetosection(sectionname);
 	}
 
+		@Then("^i \"([^\"]*)\" outbound for entity Iteration for tool \"([^\"]*)\"$")
+		public void diableenableoutbound(String enableOrDisable,String toolname) throws Throwable {
+			ProductConfiguration.enabledisableIterationOutbound(enableOrDisable,toolname);
+		}
 	@Then("^i add Product Instance Extension\\(s\\) details in the page for \"([^\"]*)\"$")
 	public void i_add_Product_Instance_Extension_s_details_in_the_page_for(String toolname) throws Throwable {
 	    

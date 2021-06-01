@@ -196,10 +196,8 @@ public class ProductConfiguration extends Baseclass {
 			}
 			
 		}
-			else{
-				logger.info("Entered Tool doesnt exists on Product Configuration page");
-				Assert.fail("Entered Tool doesnt exists on Product Configuration page");
-			}
+//			
+
 		}
 		catch(Exception e)
 		{
@@ -3363,6 +3361,50 @@ public static String getWorkItemTypeUId(String Entity)
 				Assert.fail("Issue selecting the Delivery cosntruct association");
 		}
 	
+		
+	}
+
+	public static void enabledisableIterationOutbound(String enableOrDisable,String toolname) {
+		try{
+		
+			boolean Iteration = false;
+			int totalNoRow = getDataRowCount(ProductConfigUIMap.ProdInstanceEntityTable_table);
+			//check if deliverable and Iteration exists
+			if(totalNoRow>1)
+			{
+								
+					for(int i=1;i<totalNoRow;i++)
+					{
+						 if(getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column1_WorkItem_Deliverable_drpdown,String.valueOf(i), "int")).equalsIgnoreCase("Iteration"))
+						 {
+							 Iteration = true;
+							 	if(Iteration)
+							 		{	String currentoption = getDropdownValue(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_Iteration_drpdown,String.valueOf(i), "int"));
+							 			if(enableOrDisable.equalsIgnoreCase("Disable"))
+							 			selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_Iteration_drpdown,String.valueOf(i), "int"), "Inbound");
+							 			if(enableOrDisable.equalsIgnoreCase("Enable"))
+							 			selectDropdownByText(prepareWebElementWithDynamicXpath(ProductConfigUIMap.Column3_Iteration_drpdown,String.valueOf(i), "int"), "Inbound and Outbound");
+							 			break;
+							 		}
+							 		else
+							 			Assert.fail("Iteration row missing in the prod config entities section for tool "+toolname);
+							 		
+						 	
+						 }
+					}
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("issue updating iteration details for tool "+toolname);
+		}
+			
+			
+		
+			
+			
+		
 		
 	}
 

@@ -188,13 +188,14 @@ public class CommonFunctions {
 		enterText(MyWizardUIMap.QueryValueInput_txtbox,sprintname);
 		clickJS(MyWizardUIMap.runQuery_btn);
 		ExpWaitForCondition(MyWizardUIMap.QueryRunSuccess_Msg);
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		boolean morethanonerow_QueryResult_Sprint = CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_MoreThanoneRow_statictxt);
 		if(morethanonerow_QueryResult_Sprint)
 		{
 			Assert.fail("More than one row in search result for the searched sprint ID");
 		}
 		String sprint_IterationExternalID="";
+		Thread.sleep(5000);
 		if(CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_statictxt)){
 			sprint_IterationExternalID = getText(MyWizardUIMap.GetIterationExternalID_statictxt);
 		}

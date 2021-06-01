@@ -514,7 +514,7 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 	        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
 	        if(ReleaseOrSprint.equalsIgnoreCase("Release"))
 	        jsonObject.put("IterationExternalID_Release",IterationExternalID);
-	        else if(ReleaseOrSprint.equalsIgnoreCase("Release"))
+	        else if(ReleaseOrSprint.equalsIgnoreCase("Sprint"))
 	        jsonObject.put("IterationExternalID_Sprint",IterationExternalID);
 	        FileOutputStream outputStream = new FileOutputStream(testDataPath_WorkItemExternalIDs);
 			 byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
@@ -547,11 +547,15 @@ public static HashMap<String, String> getReleaseAndSprintDetails(String toolname
 			String SprintName = (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
 			String SprintStartDate = ((String) jsonObject.get("WorkItemExternalId_"+"SprintStartDate"));
 			String SprintEndDate = (String) jsonObject.get("WorkItemExternalId_"+"SprintEndDate");
+			String ReleaseNameFromRMP = (String) jsonObject.get("ReleaseName_FromRMP");
+			String SprintNameFromRMP = (String) jsonObject.get("SprintName_FromRMP");
 		HashMap<String,String> ReleaseAndSprintDetails = new HashMap<>();
 		ReleaseAndSprintDetails.put("ReleaseName", ReleaseName);
 		ReleaseAndSprintDetails.put("ReleaseStartDate", ReleaseStartDate);
 		ReleaseAndSprintDetails.put("ReleaseEndDate", ReleaseEndDate);
 		ReleaseAndSprintDetails.put("SprintName", SprintName);
+		ReleaseAndSprintDetails.put("ReleaseNameFromRMP", ReleaseNameFromRMP);
+		ReleaseAndSprintDetails.put("SprintNameFromRMP", SprintNameFromRMP);
 		if(toolname.contains("Jira") || toolname.contains("JIRA")){
 			if(!toolname.equalsIgnoreCase("ADOP Jira")){
 		ReleaseAndSprintDetails.put("SprintStartDate", SprintStartDate.split(" ")[0]);
@@ -1411,7 +1415,8 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 						 String SprintName = ReleaseAndSprintDetails.get("SprintName");
 						 String SprintStartDate = ReleaseAndSprintDetails.get("SprintStartDate");
 						 String SprintEndDate = ReleaseAndSprintDetails.get("SprintEndDate");
-
+						 String ReleaseNameFromRMP = ReleaseAndSprintDetails.get("ReleaseNameFromRMP");
+						 String SprintNameFromRMP = ReleaseAndSprintDetails.get("SprintNameFromRMP");
 					 
 					 int size = response.jsonPath().getInt("Iterations.size()");
 //					 System.out.println(size);
@@ -1426,7 +1431,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 							 {
 								 
 								 String name = response.jsonPath().getString("Iterations[" + p + "].Name");
-								 if(name.equalsIgnoreCase(ReleaseName))
+								 if(name.equalsIgnoreCase(ReleaseName) || name.equalsIgnoreCase(ReleaseNameFromRMP))
 								 
 								 {
 									 releasefound=true;
@@ -1465,7 +1470,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 							 {
 								 
 								 String name = response.jsonPath().getString("Iterations[" + p + "].Name");
-								 if(name.equalsIgnoreCase(SprintName))
+								 if(name.equalsIgnoreCase(SprintName) || name.equalsIgnoreCase(SprintNameFromRMP))
 								 
 								 {
 									 sprintfound=true;
@@ -1569,8 +1574,8 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					 {
 						 if(j.contains("ReleaseUId"))
 						 {
-							 List<ArrayList<String>> IdExternalValue = response.jsonPath().get("WorkItems.WorkItemAttributes.IdExternalValue");
-							 for(ArrayList<String> l : IdExternalValue)
+							 List<ArrayList<String>> Value = response.jsonPath().get("WorkItems.WorkItemAttributes.Value");
+							 for(ArrayList<String> l : Value)
 								{
 									 
 								 IterationExternalIDOfWorkitemAfterRecon_Release= l.get(j.indexOf("ReleaseUId"));
@@ -1579,8 +1584,8 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 						 }
 						 if(j.contains("IterationUId"))
 						 {
-							 List<ArrayList<String>> IdExternalValue = response.jsonPath().get("WorkItems.WorkItemAttributes.IdExternalValue");
-							 for(ArrayList<String> l : IdExternalValue)
+							 List<ArrayList<String>> Value = response.jsonPath().get("WorkItems.WorkItemAttributes.Value");
+							 for(ArrayList<String> l : Value)
 								{
 									 
 								 IterationExternalIDOfWorkitemAfterRecon_Sprint= l.get(j.indexOf("IterationUId"));

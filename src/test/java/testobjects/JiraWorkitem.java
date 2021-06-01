@@ -1442,14 +1442,18 @@ public static void CreateWorkitemForRecon(String workitem) {
 		switch(workItemSplit[0]){
 		case "story":
 		case "Story":
-			HashMap<String,String> sprintandreleasedetails = Tools.getReleaseAndSprintDetails("Jira");
-			enterText(JiraUIMap.SprintName_drpdown, sprintandreleasedetails.get("SprintName"));
-			ExpWaitForCondition(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, sprintandreleasedetails.get("SprintName"), "sprintreleasename"));
-			clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, sprintandreleasedetails.get("SprintName"), "sprintreleasename"));
+//			HashMap<String,String> sprintandreleasedetails = Tools.getReleaseAndSprintDetails("Jira");
+			enterText(JiraUIMap.SprintName_drpdown, Baseclass.getInstance().Jira_SprintName);
+			Thread.sleep(3000);
+			sendEntr();
+//			ExpWaitForCondition(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, Baseclass.getInstance().Jira_SprintName, "sprintreleasename"));
+//			clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, Baseclass.getInstance().Jira_SprintName, "sprintreleasename"));
 			
-			enterText(JiraUIMap.ReleaseName_drpdown, sprintandreleasedetails.get("ReleaseName"));
-			ExpWaitForCondition(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, sprintandreleasedetails.get("ReleaseName"), "sprintreleasename"));
-			clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, sprintandreleasedetails.get("ReleaseName"), "sprintreleasename"));
+			enterText(JiraUIMap.ReleaseName_drpdown, Baseclass.getInstance().Jira_ReleaseName);
+			Thread.sleep(3000);
+			sendEntr();
+//			ExpWaitForCondition(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, Baseclass.getInstance().Jira_ReleaseName, "sprintreleasename"));
+//			clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.SprintOrReleaseNamePresent_drpdown, Baseclass.getInstance().Jira_ReleaseName, "sprintreleasename"));
 			
 			
 			break;
