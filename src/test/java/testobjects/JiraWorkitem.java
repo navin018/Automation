@@ -1431,6 +1431,9 @@ public static void CreateWorkitemForRecon(String workitem) {
 		ExpWaitForCondition(JiraUIMap.Create_link);
 		clickJS(JiraUIMap.Create_link);
 		Thread.sleep(5000);
+		if(Property.getProperty("JiraURL").contains("adtjira001eu")){
+			JiraWorkitem.SelectProjectInCreateWorkitemScreen();
+		}
 		JiraWorkitem.SelectWorkItemtype(workitem);
 		 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
 		 workitem_title = wi.Summary;

@@ -53,7 +53,7 @@ Scenario Outline: AutoRecon_CreateReleaseAndSprintFromRMP
 	
 	
 @5ADTJira_Autorecon_IBVerificationofReleaseAndSprintCreatedFromRMP
-Scenario: ADTJIRA_AutoRecon_CheckifReleaseAndSprintFlown_CaptureIterationExternalId 
+Scenario Outline: ADTJIRA_AutoRecon_CheckifReleaseAndSprintFlown_CaptureIterationExternalId 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -63,6 +63,11 @@ Scenario: ADTJIRA_AutoRecon_CheckifReleaseAndSprintFlown_CaptureIterationExterna
 	And i verify if "ReleaseFromRMP" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
 	And i verify if "SprintFromRMP" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
 	And i put a explicit wait of "60000"
+	
+	Examples: 
+		| applicationname |applicationname1|
+		| MyWizard        |RMP|
+		
 			
 @7ADTJira_Autorecon_IBVerificationofStoryVerifyIterationUIdAfterRecon
 Scenario: ADTJIRA_AutoRecon_CheckifStoryFlown_VerifyIterationUIdAfterRecon 

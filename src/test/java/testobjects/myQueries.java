@@ -112,9 +112,13 @@ public class myQueries extends Baseclass {
 		singleClick(myQueriesUIMap.NewClause_txt); //Adding a new clause
 		Thread.sleep(4000);
 		clickJS(myQueriesUIMap.conditionColumn_txt);
+		Thread.sleep(2000);
 		selectDropdownByText(myQueriesUIMap.conditionColumn_dropdown,"OR");
+		Thread.sleep(2000);
 		clickJS(myQueriesUIMap.Field_txtBox);
+		Thread.sleep(2000);
 		selectDropdownByValue(myQueriesUIMap.Field_dropdown,"Priority");
+		Thread.sleep(2000);
 		clickJS(myQueriesUIMap.value_txtbox2);
 		Thread.sleep(2000);
 		selectDropdownByValue(myQueriesUIMap.Value_dropdown,"Medium");

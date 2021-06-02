@@ -65,7 +65,7 @@ Scenario Outline: ManualRecon_CreateReleaseAndSprintFromRMP
 		| MyWizard        |RMP|
 		
 @6ADTJira_Manualrecon_IBVerificationofReleaseAndSprintCreatedFromRMP
-Scenario: ADTJIRA_ManualRecon_CheckifReleaseAndSprintFlown_CaptureIterationExternalId 
+Scenario Outline: ADTJIRA_ManualRecon_CheckifReleaseAndSprintFlown_CaptureIterationExternalId 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
@@ -74,6 +74,11 @@ Scenario: ADTJIRA_ManualRecon_CheckifReleaseAndSprintFlown_CaptureIterationExter
 	And i generate a token for "DevTest" environment  
 	And i verify if "ReleaseFromRMP" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
 	And i verify if "SprintFromRMP" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
+	
+	Examples: 
+		| applicationname |applicationname1|
+		| MyWizard        |RMP|
+		
 			
 @7ADTJira_PerformManualrecon 
 Scenario Outline: ManualRecon_PerformManualRecon 
