@@ -54,7 +54,8 @@ And i verify the Outbound flow for "Milestone" details for "ADT JIRA" for "DIY" 
 Scenario: ADTJIRA_Action_flow_DIY
 And i verify the Outbound flow for "Action" details for "ADT JIRA" for "DIY" functionality
 
+
 Scenario: ADTJIRA_WorkRequest_flow_DIY
-And i verify the Outbound flow for "WorkRequest" details for "ADT JIRA" for "DIY" functionality
+And i verify the Outbound flow for "Work Request" details for "ADT JIRA" for "DIY" functionality
  	
 

@@ -698,9 +698,6 @@ import utilities.general.Property;
 				ExpWaitForCondition(TFSUIMap.title_txtbox);
 				enterText(TFSUIMap.title_txtbox,wi.Summary);
 				Thread.sleep(2000);
-				singleClick(TFSUIMap.save_btn);
-				Thread.sleep(5000);
-				CaptureWorkitemID(workitem);
 			}
 			else if(CheckIfElementExists(TFSUIMap.title_txtbox))
 			{
@@ -708,9 +705,6 @@ import utilities.general.Property;
 				ExpWaitForCondition(TFSUIMap.title_txtbox);
 				enterText(TFSUIMap.title_txtbox,wi.Summary);
 				Thread.sleep(2000);
-				singleClick(TFSUIMap.save_btn);
-				Thread.sleep(5000);
-				CaptureWorkitemID(workitem);
 			}
 			else
 				{
@@ -723,13 +717,161 @@ import utilities.general.Property;
 			}
 			waitPageToLoad();
 			
+			//priority
+			if(!wi.Priority.equalsIgnoreCase("NA"))
+			{
+				
+				EnterDataInTheField(wi.Priority,TFSUIMap.Priority_drpdown);
+			}
 			
-//			Thread.sleep(4000);
+			//severity
+			if(!wi.Severity.equalsIgnoreCase("NA"))
+			{
+				
+				EnterDataInTheField(wi.Severity,TFSUIMap.Severity_drpdown);
+			}
+			
+			//effort
+			if(!wi.Effort.equalsIgnoreCase("NA"))
+			{
+				
+				EnterDataInTheField(wi.Effort,TFSUIMap.Effort_txtbox);
+			}
+			
+			//ActualEffort
+			if(!wi.ActualEffort.equalsIgnoreCase("NA"))
+			{
+				
+				EnterDataInTheField(wi.ActualEffort,TFSUIMap.ActualEffort_txtbox);
+			}
+			
+			//remaining work
+			if(!wi.RemainingWork.equalsIgnoreCase("NA"))
+			{
+				
+				EnterDataInTheField(wi.RemainingWork,TFSUIMap.RemainingWork_txtbox);
+			}
+			
+			
+			
+			//BusinessValue
+			if(!wi.BusinessValue.equalsIgnoreCase("NA"))
+			{
+				
+				EnterDataInTheField(wi.BusinessValue,TFSUIMap.BusinessValue_txtbox);
+			}
+			
+			//Rank
+			if(!wi.Rank.equalsIgnoreCase("NA"))
+			{
+				
+				EnterDataInTheField(wi.Rank,TFSUIMap.Rank_txtbox);
+			}
+			
+			//Stack Rank
+			if(!wi.StackRank.equalsIgnoreCase("NA"))
+			{
+				
+				EnterDataInTheField(wi.StackRank,TFSUIMap.StackRank_txtbox);
+			}
+			
+			//Risk Reduction
+			if(!wi.RiskReduction.equalsIgnoreCase("NA"))
+			{
+				
+				EnterDataInTheField(wi.RiskReduction,TFSUIMap.RiskReduction_txtbox);
+			}
+			
+		
+			//Completed
+			if(!wi.Completed.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.Completed,TFSUIMap.Completed_txtbox);
+			}
+
+			//Completed work
+			if(!wi.CompletedWork.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.CompletedWork,TFSUIMap.CompletedWork_txtbox);
+			}
+			
+			//OriginalEstimate
+			if(!wi.OriginalEstimate.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.OriginalEstimate,TFSUIMap.OriginalEstimate_txtbox);
+			}
+			
+			//StoryPoints
+			if(!wi.StoryPoints.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.StoryPoints,TFSUIMap.StoryPoints_txtbox);
+			}
+			
+			
+			//TimeCriticality
+			if(!wi.TimeCriticality.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.TimeCriticality,TFSUIMap.TimeCriticality_txtbox);
+			}
+			
+			//Criticality
+			if(!wi.Criticality.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.Criticality,TFSUIMap.Criticality_txtbox);
+			}
+			
+			//Complexity
+			if(!wi.Complexity.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.Complexity,TFSUIMap.Complexity_txtbox);
+			}
+			
+			//CostEstimate
+			if(!wi.CostEstimate.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.CostEstimate,TFSUIMap.CostEstimate_txtbox);
+			}
+			
+			//CostApproved
+			if(!wi.CostApproved.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.CostApproved,TFSUIMap.CostApproved_txtbox);
+			}
+			
+			//Risk
+			if(!wi.Risk.equalsIgnoreCase("NA"))
+			{
+				EnterDataInTheField(wi.Risk,TFSUIMap.Risk_txtbox);
+			}
+				
+						
+			//save and capture workitem ID details
+			singleClick(TFSUIMap.save_btn);
+			Thread.sleep(5000);
+			CaptureWorkitemID(workitem);
+			
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
 			}
+		}
+
+		private static void EnterDataInTheField(String datatobeentered, By field) {
+			try{
+				
+				if(CheckIfElementExists(field)){
+					clickJS(field);
+					clear(field);
+					enterText(field,datatobeentered);
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("issue entering data in the field "+field);
+			}
+			
 		}
 
 		public static void CreateTestResult(String workitem) {

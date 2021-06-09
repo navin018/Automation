@@ -39,7 +39,7 @@ And i verify if "Feature" has "flown" which was "NA" for "ADT JIRA" for "DIY" fu
 	 
 	
 Scenario: ADTJIRA_Deliverable_flow_DIY 
-And i verify if "_Deliverable" has "flown" which was "NA" for "ADT JIRA" for "DIY" functionality 
+And i verify if "Deliverable" has "flown" which was "NA" for "ADT JIRA" for "DIY" functionality 
 	
 Scenario: ADTJIRA_Test_flow_DIY 
 And i verify if "Test" has "flown" which was "NA" for "ADT JIRA" for "DIY" functionality 

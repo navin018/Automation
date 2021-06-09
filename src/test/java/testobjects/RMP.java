@@ -421,15 +421,16 @@ public class RMP extends Baseclass{
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				click(RMPUIMap.SaveBaseline_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				ExpWaitForCondition(RMPUIMap.Save_btn);
 				click(RMPUIMap.Save_btn);
 
 				ExpWaitForCondition(RMPUIMap.RoadmapSaved_successMsg);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 //					 ExpWaitForCondition(RMPUIMap.RoadMapUpdated_msg);
-				if(typeofrecon.equalsIgnoreCase("ManualRecon")){
+//				if(typeofrecon.equalsIgnoreCase("ManualRecon")){
 				Baseclass.getInstance().RMP_ReleaseName = releasename;
 				Baseclass.getInstance().RMP_SprintName=sprintname;
-				}
+//				}
 //				Baseclass.getInstance().RMP_ReleaseStartDate=releasestartdate;
 //				Baseclass.getInstance().RMP_ReleaseEndDate=releaseenddate;
 

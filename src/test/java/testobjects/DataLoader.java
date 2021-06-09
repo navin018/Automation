@@ -174,6 +174,7 @@ public class DataLoader {
 				sheet.getRow(2).getCell(14).setCellValue("Agile");
 				sheet.getRow(2).getCell(15).setCellValue("Scrum");
 				
+				CommonFunctions.writeIterationExternalIDs(Baseclass.getInstance().release_IterationExternalID,Baseclass.getInstance().sprint_IterationExternalID,"ADT Jira");
 			}
 		}
 		else if(entity.equalsIgnoreCase("IterationForMyWizardInstance"))

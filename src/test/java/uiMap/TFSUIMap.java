@@ -20,10 +20,28 @@ public static String ChangedProj_statictxt= "//div[text()='{newproj}']";
 public static By title_txtbox = By.xpath("//input[@aria-label='Title Field']");
 public static By IterationPathNotFound_txt = By.xpath("//span[@class='info-text']");
 public static By Priority_drpdown = By.xpath("//input[@aria-label='Priority']");
-public static By StoryPoints_txtbox = By.xpath("//input[@aria-label='Story Point']");
+public static By Severity_drpdown = By.xpath("//input[@aria-label='Severity']");
+public static By StoryPoints_txtbox = By.xpath("//input[@aria-label='Story Points']");
 public static By RiskReduction_txtbox = By.xpath("//input[@aria-label='Risk Reduction']");
 public static By BusinessValue_txtbox = By.xpath("//input[@aria-label='Business Value']");
-
+public static By Effort_txtbox = By.xpath("//input[@aria-label='Effort']");
+public static By RemainingWork_txtbox = By.xpath("//input[@aria-label='Remaining Work']");
+public static By ActualEffort_txtbox = By.xpath("//input[@aria-label='Actual effort']");
+public static By OriginalEstimate_txtbox = By.xpath("//input[@aria-label='Original Estimate']");
+public static By TimeCriticality_txtbox = By.xpath("//input[@aria-label='Time Criticality']");
+public static By ValueArea_drpdown = By.xpath("//input[@aria-label='Value Area']");
+public static By Business_ValueArea_drpdown = By.xpath("//div[text()='Business']");
+public static By Rank_txtbox = By.xpath("//input[@aria-label='Rank']");
+public static By StackRank_txtbox = By.xpath("//input[@aria-label='Stack Rank']");
+public static By Completed_txtbox = By.xpath("//input[@aria-label='Completed']");
+public static By Criticality_txtbox = By.xpath("//input[@aria-label='Criticality']");
+public static By CostEstimate_txtbox = By.xpath("//input[@aria-label='Cost Estimate']");
+public static By CostApproved_txtbox = By.xpath("//input[@aria-label='Cost Approved']");
+public static By Risk_txtbox = By.xpath("//input[@aria-label='Risk']");
+public static By EffortAccenture_txtbox = By.xpath("//input[@aria-label='Effort Accenture']");
+public static By EffortClient_txtbox = By.xpath("//input[@aria-label='Effort Client']");
+public static By Complexity_txtbox = By.xpath("//input[@aria-label='Complexity']");
+public static By CompletedWork_txtbox = By.xpath("//input[@aria-label='Completed Work']");
 
 public static By save_drpdown = By.xpath("//li[@aria-label='More save options']//following::div[@class='drop'][1]");
 //

@@ -53,6 +53,8 @@ public class APISteps {
 			Tools.Verifyifworkitemisflown(workitem,flownOrDeleted,toolname,functionality);
 		if(functionality.contains("Recon") || functionality.equalsIgnoreCase("DFT") || functionality.equalsIgnoreCase("DIY") || functionality.equalsIgnoreCase("Normal") || functionality.contains("GenericUploader"))
 			Tools.Verifyifworkitemisflown(workitem,flownOrDeleted,toolname,functionality);
+		if(functionality.equalsIgnoreCase("NoTool_NorthStar"))
+			Tools.VerifyNorthStarEntities(workitem,flownOrDeleted,toolname);
 	}
 	
 	@Then("^i verify the \"([^\"]*)\" \"([^\"]*)\" details for \"([^\"]*)\" after removing DC$")

@@ -41,6 +41,9 @@ import uiMap.JiraUIMap;
 
 import utilities.general.DataManager;
 import utilities.general.Property;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -2077,7 +2080,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 			try{
 				String WorkItemTypeUId=null;
 				String WorkItemExternalId =getWorkItemExternalID(workitem,toolname);
-				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")  || workitem.equalsIgnoreCase("TestExecution")))
+				if(!(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("Requirement") || workitem.equalsIgnoreCase("TestCase") || workitem.equalsIgnoreCase("Action") || workitem.equalsIgnoreCase("Decision") || workitem.equalsIgnoreCase("Milestone")  || workitem.equalsIgnoreCase("TestExecution") || workitem.equalsIgnoreCase("Work Request")))
 				{
 				String getWorkitemType = "WorkItemTypeUId_"+workitem;
 				WorkItemTypeUId = Property.getProperty(getWorkitemType);
@@ -2157,6 +2160,138 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 			{
 				e.printStackTrace();
 			}
+		}
+
+		public static void VerifyNorthStarEntities(String workitem, String flownOrDeleted, String toolname) {
+
+			String WorkItemExternalId="";
+			String NorthStarEntityName="";
+			try{
+				switch(workitem.toLowerCase())
+					{
+					case "northstar":
+						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
+						NorthStarEntityName="NorthStars";
+						break;
+					case "businessunit":
+						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
+						NorthStarEntityName="BusinessUnits";
+						break;
+						
+					case "serviceline":
+						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
+						NorthStarEntityName="ServiceLines";
+						break;
+					case "businessprocess":
+						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
+						NorthStarEntityName="BPHNodes";
+						break;
+					case "itkpi":
+						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
+						NorthStarEntityName="KPIs";
+						break;
+					case "businesskpi":
+						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
+						NorthStarEntityName="KPIs";
+						break;
+					}
+				RequestSpecification request = RestAssured.given();
+			 	
+				 request.header("Content-Type", "application/json")
+				        .header("Authorization","Bearer "+Property.getToken("Token"))
+				        .header("AppServiceUId",Property.getProperty("AppServiceUId"));
+				 
+				 JSONObject requestParams = new JSONObject();
+				 
+				 String PostUrl="";
+				 String mywizURL = Property.getProperty("MyWizard_URL");
+				 String[] mywizURL_Sp = mywizURL.split(".com");
+				 mywizURL = mywizURL_Sp[0]+".com/core";
+				 mywizURL = mywizURL.replace("mywizard", "mywizardapi");
+				
+
+				 requestParams.put("ClientUId", Property.getProperty("NoToolInstance_ClientUId")); 
+				 requestParams.put("DeliveryConstructUId", Property.getProperty("NoToolInstance_DeliveryConstructUId_L2"));
+				 switch(workitem.toLowerCase())
+					{
+					case "northstar":
+						 requestParams.put("NorthStarExternalId",WorkItemExternalId);
+						break;
+					case "businessunit":
+						requestParams.put("BusinessUnitExternalId",WorkItemExternalId);
+						break;
+						
+					case "serviceline":
+						requestParams.put("ServiceLineExternalId",WorkItemExternalId);
+						break;
+					case "businessprocess":
+						requestParams.put("BPHNodeExternalID",WorkItemExternalId);
+						break;
+					case "itkpi":
+						requestParams.put("ITKPIExternalId",WorkItemExternalId);
+						break;
+					case "businesskpi":
+						requestParams.put("ITKPIExternalId",WorkItemExternalId);
+						break;
+					}
+				 PostUrl = mywizURL+"/v1/"+NorthStarEntityName+"/"+"Query"+"?clientUId="+Property.getProperty("NoToolInstance_ClientUId")+"&deliveryConstructUId="+Property.getProperty("NoToolInstance_DeliveryConstructUId_L2");
+				 Response response = request.post(PostUrl);
+				 JsonPath js = response.jsonPath();
+				 
+				 String responsebody = response.getBody().asString();
+				 System.out.println(response.getStatusCode());
+				 System.out.println(responsebody);
+				 int totalrecordcount=0;
+				
+			}catch(Exception e)
+				{
+					e.printStackTrace();
+					logger.info("Could not get WorkItemExternalId for "+workitem+" for the tool "+toolname);
+					Assert.fail("Could not get WorkItemExternalId for "+workitem+" for the tool "+toolname);
+				}
+			
+		}
+
+		public static int getWorkItemExternalID_NorthStarEntity(String workitem) {
+			try{
+			String Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"Excel"+  File.separator + "NorthStar_ClientRepository"+".xlsx" ;	
+			FileInputStream fis = new FileInputStream(new File(Excelfilepath));
+			XSSFWorkbook workbook = new XSSFWorkbook (fis);
+			XSSFSheet sheet = workbook.getSheet("NorthStar_ClientRepository");
+			
+			int rownum = 0;
+			switch(workitem.toLowerCase())
+			{
+			case "northstar":
+			rownum= 1;
+				break;
+			case "businessunit":
+				rownum= 2;
+				break;
+				
+			case "serviceline":
+				rownum= 3;
+				break;
+			case "businessprocess":
+				rownum= 4;
+				break;
+			case "businesskpi":
+				rownum= 5;
+				break;
+			case "itkpi":
+				rownum= 6;
+				break;
+			
+			}
+			System.out.println((int) sheet.getRow(rownum).getCell(14).getNumericCellValue());
+			return (int) sheet.getRow(rownum).getCell(14).getNumericCellValue();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			return 0;
+			
 		}
 	
 	}

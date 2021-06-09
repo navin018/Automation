@@ -53,6 +53,20 @@ public class WorkItemDO {
 	
 	public String BusinessValue;
 	public String RiskReduction;
+	public String Rank;
+	public String StackRank;
+	public String Effort;
+	public String RemainingWork;
+	public String ActualEffort;
+	public String Completed;
+	public String CompletedWork;
+	public String OriginalEstimate;
+	public String TimeCriticality;
+	public String Criticality;
+	public String Complexity;
+	public String CostEstimate;
+	public String CostApproved;
+	public String Risk;
 	
 	public String getBusinessValue() {
 		return BusinessValue;

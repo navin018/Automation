@@ -99,31 +99,7 @@ public class MyWizardHomePage {
 	public static void SelectOnlyClient(){
 		
 		try{
-//			DriverFactory.proxy.start();
-			 
-					 
-
-			//code for AI fusion page	
-			
-//			ArrayList<String> tabs = new ArrayList<String> (driver().getWindowHandles());
-//			 driver().switchTo().window(tabs.get(0));
-//			 click(MyWizardUIMap.SettingIcon_Image);
-//			 click(MyWizardUIMap.AdminSetting_statictxt);
-//			 waitPageToLoad();
-//			 Thread.sleep(10000);
-//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//			 String parentWindowHandle = driver().getWindowHandle();
-//			 driver().switchTo().window(parentWindowHandle);
-//			 
-//
-//			 ArrayList<String> tabs1 = new ArrayList<String> (driver().getWindowHandles());
-//			 
-//			 driver().switchTo().window(tabs1.get(2));
-			 
-			//code for AI fusion page
-			 
-			 
+		 
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 //			highlight(MyWizardUIMap.scopeSelector_drpdown);
 			 clickJS(MyWizardUIMap.scopeSelector_drpdown);
@@ -145,18 +121,7 @@ public class MyWizardHomePage {
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			 
 			 
-			// Write HAR Data in a File
-//			 DriverFactory.proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
-//			 DriverFactory.proxy.newHar("test");
-//			 Har har = DriverFactory.proxy.getHar();
-//				File harFile = new File("C:\\Users\\sonal.harish.nagda\\SeleniumEasy2.har");
-//				try {
-//					har.writeTo(harFile);
-//					DriverFactory.proxy.stop();
-//				} catch (IOException ex) {
-//					 System.out.println (ex.toString());
-//				     System.out.println("Could not find file ");
-//				}
+			
 		}
 		
 		catch(Exception e)
@@ -166,7 +131,70 @@ public class MyWizardHomePage {
 		}
 	
 	}
+	
 	public static void SelectClientAndDC(){
+		try{
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			boolean clientalreadyselected=false;
+			boolean DC_L1_Selected=false;
+			boolean DC_L2_Selected=false;
+			if(getAttribute(MyWizardUIMap.scopeSelector_drpdown, "title").contains(Property.getProperty("MyWizard_Client")))
+			{
+				clientalreadyselected=true;
+				if(getAttribute(MyWizardUIMap.scopeSelector_drpdown, "title").contains(Property.getProperty("MyWizard_DC_L1")))
+					DC_L1_Selected=true;
+				if(getAttribute(MyWizardUIMap.scopeSelector_drpdown, "title").contains(Property.getProperty("MyWizard_DC_L2")))
+					DC_L2_Selected=true;
+			}
+			
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 clickJS(MyWizardUIMap.scopeSelector_drpdown);
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("MyWizard_Client"));
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 Thread.sleep(2000);
+			 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,Property.getProperty("MyWizard_Client"),"clientname")))
+			 { 
+				 if(!clientalreadyselected)
+				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,Property.getProperty("MyWizard_Client"),"clientname"));
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				 clear(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox);
+			 }
+			 else
+			 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_Client")+"doesnt exists");
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			waitPageToLoad();
+//			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,DC,"dcname")))
+			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,Property.getProperty("MyWizard_DC_L1"),"dcname")))
+			{
+				if(!DC_L2_Selected)
+				clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,Property.getProperty("MyWizard_DC_L1"),"dcname"));
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			}
+			else
+				 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_DC_L1")+"doesnt exists");
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 if(!Property.getProperty("MyWizard_DC_L2").equalsIgnoreCase("NA"))
+			 {
+				 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt,Property.getProperty("MyWizard_DC_L2"),"programname")))
+					 if(!DC_L2_Selected)
+				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt,Property.getProperty("MyWizard_DC_L2"),"programname"));
+//				clickJS(prepareWebElementWithDynamicXpath2(MyWizardUIMap.SelectProgram_statictxt,DC,Program,"dcname","programname"));
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 }
+		
+			waitPageToLoad();
+			click(MyWizardUIMap.apply_btn);
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("Issue selecting client or DC");
+			Assert.fail("Issue selecting client or DC");
+		}
+	}
+	public static void SelectClientAndDC_OG(){
 		try{
 			
 			
@@ -218,7 +246,71 @@ public class MyWizardHomePage {
 	public static void SelectClientAndDCForRMP(){
 		try{
 			
+
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			boolean clientalreadyselected=false;
+			boolean DC_L1_Selected=false;
+			boolean DC_L2_Selected=false;
+			if(getAttribute(By.xpath("//div[@id='scopeSelector']"), "title").contains(Property.getProperty("MyWizard_Client")))
+			{
+				clientalreadyselected=true;
+				if(getAttribute(By.xpath("//div[@id='scopeSelector']"), "title").contains(Property.getProperty("MyWizard_DC_L1")))
+					DC_L1_Selected=true;
+				if(getAttribute(By.xpath("//div[@id='scopeSelector']"), "title").contains(Property.getProperty("MyWizard_DC_L2")))
+					DC_L2_Selected=true;
+			}
+			 clickJS(MyWizardUIMap.scopeSelector_RMP_drpdown);
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("MyWizard_Client"));
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 Thread.sleep(2000);
+			 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt_RMP,Property.getProperty("MyWizard_Client"),"clientname")))
+			 { 
+				 if(!clientalreadyselected)
+				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt_RMP,Property.getProperty("MyWizard_Client"),"clientname"));
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				 clear(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox);
+			 }
+			 else
+			 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_Client")+"doesnt exists");
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			waitPageToLoad();
+//			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,DC,"dcname")))
+			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt_RMP,Property.getProperty("MyWizard_DC_L1"),"dcname")))
+			{
+				if(!DC_L2_Selected)
+				clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt_RMP,Property.getProperty("MyWizard_DC_L1"),"dcname"));
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			}
+			else
+				 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_DC_L1")+"doesnt exists");
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 if(!Property.getProperty("MyWizard_DC_L2").equalsIgnoreCase("NA"))
+			 {
+				 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt_RMP,Property.getProperty("MyWizard_DC_L2"),"programname")))
+					 if(!DC_L2_Selected)
+				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt_RMP,Property.getProperty("MyWizard_DC_L2"),"programname"));
+//				clickJS(prepareWebElementWithDynamicXpath2(MyWizardUIMap.SelectProgram_statictxt,DC,Program,"dcname","programname"));
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 }
+		
+			waitPageToLoad();
+			click(MyWizardUIMap.apply_btn);
+
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("Issue selecting client or DC");
+			Assert.fail("Issue selecting client or DC");
+		}
+	}
+	
+	public static void SelectClientAndDCForRMP_og(){
+		try{
 			
+
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			 clickJS(MyWizardUIMap.scopeSelector_RMP_drpdown);
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -254,45 +346,7 @@ public class MyWizardHomePage {
 		
 			waitPageToLoad();
 			click(MyWizardUIMap.apply_btn);
-//			Thread.sleep(60000);
-//			if(!CheckIfElementExists(RMPUIMap.CreateNewRodMap_link))
-//			{
-//				refresh();
-//				clickJS(MyWizardUIMap.scopeSelector_RMP_drpdown);
-//				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//				 enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("MyWizard_Client"));
-//				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//				 Thread.sleep(2000);
-//				 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt_RMP,Property.getProperty("MyWizard_Client"),"clientname")))
-//				 { 
-//					 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt_RMP,Property.getProperty("MyWizard_Client"),"clientname"));
-//					 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-////					 clear(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox);
-//				 }
-//				 else
-//				 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_Client")+"doesnt exists");
-//				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//				waitPageToLoad();
-////				if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,DC,"dcname")))
-//				if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt_RMP,Property.getProperty("MyWizard_DC_L1"),"dcname")))
-//				{
-//					clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt_RMP,Property.getProperty("MyWizard_DC_L1"),"dcname"));
-//					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//				}
-//				else
-//					 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_DC_L1")+"doesnt exists");
-//				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//				 if(!Property.getProperty("MyWizard_DC_L2").equalsIgnoreCase("NA"))
-//				 {
-//					 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt_RMP,Property.getProperty("MyWizard_DC_L2"),"programname")))
-//					 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt_RMP,Property.getProperty("MyWizard_DC_L2"),"programname"));
-////					clickJS(prepareWebElementWithDynamicXpath2(MyWizardUIMap.SelectProgram_statictxt,DC,Program,"dcname","programname"));
-//					 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//				 }
-//			
-//				waitPageToLoad();
-//				click(MyWizardUIMap.apply_btn);
-//			}
+
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		}
 		catch(Exception e)
@@ -429,10 +483,10 @@ public class MyWizardHomePage {
 					}
 		break;
 			
-	case "DIY AD Automation":
+	case "Precomputation Engine":
 			
 			try{
-			ExpWaitForCondition(ProductConfigUIMap.ContractOnBoarding_statictxt);
+			ExpWaitForCondition(MyWizardUIMap.ComputationProcess_icon);
 			Thread.sleep(2000);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				}
@@ -442,6 +496,19 @@ public class MyWizardHomePage {
 				throw new Exception("Could you not load page : "+TilePageName, e);
 				}
 	break;
+	case "DIY AD Automation":
+		
+		try{
+		ExpWaitForCondition(ProductConfigUIMap.ContractOnBoarding_statictxt);
+		Thread.sleep(2000);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			}
+		catch(Exception e)
+			{
+			e.printStackTrace();
+			throw new Exception("Could you not load page : "+TilePageName, e);
+			}
+break;
 
 		case "my Queries":
 
@@ -470,6 +537,8 @@ public class MyWizardHomePage {
 		case "Generic Uploader":
 
 			try{
+				ArrayList<String> tabs2 = new ArrayList<String> (driver().getWindowHandles());
+				 driver().switchTo().window(tabs2.get(2));
 			ExpWaitForCondition(SecurityTestsUIMap.GenericUploader_statictxt);
 				}
 			catch(Exception e)
