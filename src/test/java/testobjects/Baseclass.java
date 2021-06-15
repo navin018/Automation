@@ -78,6 +78,8 @@ Baseclass(){
 	public String CorrelationUID_OB;
 	
 	public String teamName;
+	
+	public String TestProcess_Story;
 	public boolean isSecurityTestsResults() {
 		return SecurityTestsResults;
 	}
@@ -87,6 +89,7 @@ Baseclass(){
 		SecurityTestsResults = securityTestsResults;
 	}
 	public static HashMap<String,List<Object>> ClientNativeMatch;
+	
 	
 	
 	public int RandomNumbForMappingRule;

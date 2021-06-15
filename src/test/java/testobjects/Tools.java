@@ -2166,33 +2166,40 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 
 			String WorkItemExternalId="";
 			String NorthStarEntityName="";
+			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" + File.separator + "NorthStarWorkItemIDs.json";
 			try{
 				switch(workitem.toLowerCase())
 					{
 					case "northstar":
 						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
 						NorthStarEntityName="NorthStars";
+						UpdateNorthStarEntityID(workitem,WorkItemExternalId);
 						break;
 					case "businessunit":
 						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
 						NorthStarEntityName="BusinessUnits";
+						UpdateNorthStarEntityID(workitem,WorkItemExternalId);
 						break;
 						
 					case "serviceline":
 						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
 						NorthStarEntityName="ServiceLines";
+						UpdateNorthStarEntityID(workitem,WorkItemExternalId);
 						break;
 					case "businessprocess":
 						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
 						NorthStarEntityName="BPHNodes";
+						UpdateNorthStarEntityID(workitem,WorkItemExternalId);
 						break;
 					case "itkpi":
 						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
+						UpdateNorthStarEntityID(workitem,WorkItemExternalId);
 						NorthStarEntityName="KPIs";
 						break;
 					case "businesskpi":
 						WorkItemExternalId =Integer.toString(getWorkItemExternalID_NorthStarEntity(workitem));
 						NorthStarEntityName="KPIs";
+						UpdateNorthStarEntityID(workitem,WorkItemExternalId);
 						break;
 					}
 				RequestSpecification request = RestAssured.given();
@@ -2212,6 +2219,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 
 				 requestParams.put("ClientUId", Property.getProperty("NoToolInstance_ClientUId")); 
 				 requestParams.put("DeliveryConstructUId", Property.getProperty("NoToolInstance_DeliveryConstructUId_L2"));
+				
 				 switch(workitem.toLowerCase())
 					{
 					case "northstar":
@@ -2228,12 +2236,13 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 						requestParams.put("BPHNodeExternalID",WorkItemExternalId);
 						break;
 					case "itkpi":
-						requestParams.put("ITKPIExternalId",WorkItemExternalId);
+						requestParams.put("KPIExternalId",WorkItemExternalId);
 						break;
 					case "businesskpi":
-						requestParams.put("ITKPIExternalId",WorkItemExternalId);
+						requestParams.put("KPIExternalId",WorkItemExternalId);
 						break;
 					}
+				 request.body(requestParams.toJSONString());
 				 PostUrl = mywizURL+"/v1/"+NorthStarEntityName+"/"+"Query"+"?clientUId="+Property.getProperty("NoToolInstance_ClientUId")+"&deliveryConstructUId="+Property.getProperty("NoToolInstance_DeliveryConstructUId_L2");
 				 Response response = request.post(PostUrl);
 				 JsonPath js = response.jsonPath();
@@ -2241,7 +2250,34 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 String responsebody = response.getBody().asString();
 				 System.out.println(response.getStatusCode());
 				 System.out.println(responsebody);
-				 int totalrecordcount=0;
+				 switch(workitem.toLowerCase())
+					{
+					case "northstar":
+						 System.out.println(response.jsonPath().getString("NorthStars[0].Title"));
+						break;
+					case "businessunit":
+						 System.out.println(response.jsonPath().getString("BusinessUnits[0].Title"));
+						 VerifyassociationforNorthStarEntity(response.jsonPath(),"BusinessUnits.BusinessUnitAssociations.AssociationTypeUId","BusinessUnits.BusinessUnitAssociations.ItemExternalId",workitem,"NorthStar");
+						break;
+						
+					case "serviceline":
+						 System.out.println(response.jsonPath().getString("ServiceLines[0].Title"));
+						 VerifyassociationforNorthStarEntity(response.jsonPath(),"ServiceLines.ServiceLineAssociations.AssociationTypeUId","ServiceLines.ServiceLineAssociations.ItemExternalId",workitem,"BusinessUnit");
+						break;
+					case "businessprocess":
+						System.out.println(response.jsonPath().getString("BPHNodes[0].Title"));
+						 VerifyassociationforNorthStarEntity(response.jsonPath(),"BPHNodes.BPHNodeAssociations.AssociationTypeUId","BPHNodes.BPHNodeAssociations.ItemExternalId",workitem,"ServiceLine");
+						break;
+					case "businesskpi":
+						System.out.println(response.jsonPath().getString("KPIs[0].Title"));
+						 VerifyassociationforNorthStarEntity(response.jsonPath(),"KPIs.KPIAssociations.AssociationTypeUId","KPIs.KPIAssociations.ItemExternalId",workitem,"BusinessProcess");
+						break;
+					
+					case "itkpi":
+						System.out.println(response.jsonPath().getString("KPIs[0].Title"));
+						 VerifyassociationforNorthStarEntity(response.jsonPath(),"KPIs.KPIAssociations.AssociationTypeUId","KPIs.KPIAssociations.ItemExternalId",workitem,"BusinessKPI");
+						break;
+					}
 				
 			}catch(Exception e)
 				{
@@ -2252,12 +2288,69 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 			
 		}
 
+		public static void VerifyassociationforNorthStarEntity(JsonPath jsonPath, String AssociationTypeUId, String ItemExternalId,  String workitem,String parent) {
+			List<ArrayList<String>> AssociationtypeUid = jsonPath.get(AssociationTypeUId);
+			 for(ArrayList j:AssociationtypeUid)
+					 {
+						 if(j.contains("00200400-0010-0000-0000-000000000000"))
+						 {
+							 List<ArrayList<String>> itemexternalIDs =jsonPath.get(ItemExternalId);
+							 for(ArrayList<String> item : itemexternalIDs)
+							{
+								System.out.println(item.get(j.indexOf("00200400-0010-0000-0000-000000000000")));
+								Assert.assertEquals(item.get(j.indexOf("00200400-0010-0000-0000-000000000000")), ReadNorthStarWorkItemIDs(parent));
+//								
+							}
+						 }
+						 else
+							 Assert.fail("parent association missing for workitem "+workitem);
+					}
+			
+		}
+
+		public static String ReadNorthStarWorkItemIDs(String workitem) {
+			try{
+			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" + File.separator + "NorthStarWorkItemIDs.json";
+			FileReader reader = new FileReader(Entities_JSONFile);
+
+	        JSONParser jsonParser = new JSONParser();
+	        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+	        return (String) jsonObject.get(workitem);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			return "";
+	        
+		}
+
+		public static void UpdateNorthStarEntityID(String workitem, String workItemExternalId) {
+			try{
+			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" + File.separator + "NorthStarWorkItemIDs.json";
+			
+			FileReader reader = new FileReader(Entities_JSONFile);
+			JSONParser jsonParser = new JSONParser();
+		        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+		        jsonObject.put(workitem, workItemExternalId);        
+		        FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
+				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("issue writing northstar workitem IDs into the json file");
+			}
+			
+		}
+
 		public static int getWorkItemExternalID_NorthStarEntity(String workitem) {
 			try{
 			String Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"Excel"+  File.separator + "NorthStar_ClientRepository"+".xlsx" ;	
 			FileInputStream fis = new FileInputStream(new File(Excelfilepath));
 			XSSFWorkbook workbook = new XSSFWorkbook (fis);
-			XSSFSheet sheet = workbook.getSheet("NorthStar_ClientRepository");
+			XSSFSheet sheet = workbook.getSheetAt(0);
 			
 			int rownum = 0;
 			switch(workitem.toLowerCase())

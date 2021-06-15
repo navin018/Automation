@@ -3,13 +3,17 @@ package stepDefs;
 import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import cucumber.api.java.en.Then;
 import net.lightbody.bmp.proxy.CaptureType;
+import testobjects.Baseclass;
 import testobjects.MappingRules;
 import testobjects.MyWizardHomePage;
 import uiMap.MyWizardUIMap;
+import uiMap.SecurityTestsUIMap;
 import utilities.selenium.DriverFactory;
 
 public class MyWizardSteps {
@@ -22,6 +26,17 @@ public class MyWizardSteps {
 	
 		
 	}
+//	And i select client "PreComputationEngine_Client" with DC_L1 as "PreComputationEngine_DC_L1" and DC_L2 as "PreComputationEngine_DC_L2" 
+	@Then("^i select client \"([^\"]*)\" with DC_L1 as \"([^\"]*)\" and DC_L2 as \"([^\"]*)\"$")
+	public void i_select_client_and_DC_ForSpecificFunctionality(String client,String DC_L1,String DC_L2) throws Throwable {
+		
+    		MyWizardHomePage.SelectClientAndDCForSpecificFunctionality(client,DC_L1,DC_L2);
+	
+	
+		
+	}
+	
+	
 //	Then i select client and DC for for No Tool Instance
 	@Then("^i select client and DC for No Tool Instance$")
 	public void i_select_client_and_DCForNoToolInstance() throws Throwable {
