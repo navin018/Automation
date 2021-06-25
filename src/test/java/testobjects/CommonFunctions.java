@@ -16,10 +16,12 @@ import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 
+import dataobjects.WorkItemDO;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import uiMap.MyWizardUIMap;
+import utilities.general.DataManager;
 import utilities.general.Property;
 
 public class CommonFunctions {
@@ -43,6 +45,31 @@ public class CommonFunctions {
 		}
 		
 	}
+	
+	public static WorkItemDO GetFieldValueFromWorkItemJSON(String toolname, String workitem) {
+		try{
+			String testDataPath = System.getProperty("user.dir")+File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator;
+			
+			String testDataPath_WorkItemExternalIDs="";
+			if((toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("Jira") || toolname.contains("JIRA")))
+			{
+					testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItem.json" ;
+			}
+			
+			else if((toolname.equalsIgnoreCase("TFS Agile") || toolname.equalsIgnoreCase("TFS Scrum") || toolname.contains("TFS")))
+			{
+				testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator; 
+			}		
+				WorkItemDO wi = DataManager.getData(testDataPath_WorkItemExternalIDs, "WorkItem",WorkItemDO.class).item.get(workitem);
+				return wi;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static String SpiltWorkitem(String fullworkitemID)
 	{
 		

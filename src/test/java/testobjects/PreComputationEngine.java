@@ -66,13 +66,13 @@ import java.util.Random;
 				ExpWaitForCondition(PreComputationEngineUIMAP.Name_txtbox);
 				int RandomNumber = RandomNumberGenerator();
 				enterText(PreComputationEngineUIMAP.Name_txtbox,"Test_" + RandomNumber);
-				String entityName = "Test_Process_"+subEntity;
+				String entityName = "TestProcess_WSJF_"+subEntity+"#"+RandomNumber;
 				System.out.println(entityName);
 				//save entity name in baseclass
-					if(subEntity.contains("Story"))
-					{
-						Baseclass.getInstance().TestProcess_Story=entityName;    
-					}
+//					if(subEntity.contains("Story"))
+//					{
+						Baseclass.getInstance().TestProcessName=entityName;    
+//					}
 					
 				enterText(PreComputationEngineUIMAP.Description_txtbox,entityName);
 				Thread.sleep(2000);
@@ -110,15 +110,15 @@ import java.util.Random;
 			
 		}
 
-		public static void EditTestProcess(String SubEntity) {
+		public static void EditTestProcess(String SubEntity,String toolname) {
 			try{
 					String testprocessname ="";
 					//edit the process
 
-					if(SubEntity.contains("Story"))
-					{
-						testprocessname = Baseclass.getInstance().TestProcess_Story;    
-					}
+//					if(SubEntity.contains("Story"))
+//					{
+						testprocessname = Baseclass.getInstance().TestProcessName;    
+//					}
 					clickJS(PreComputationEngineUIMAP.viewmore_text);
 					clickJS(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_MoreOptions_Drpdown, testprocessname, "testprocessname"));
 					ExpWaitForCondition(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_Edit_Link,testprocessname, "testprocessname"));
@@ -204,12 +204,41 @@ import java.util.Random;
 							break;
 						
 						}
+					clickJS(PreComputationEngineUIMAP.SaveFormula_btn);
+					ExpWaitForCondition(PreComputationEngineUIMAP.SaveSuccess_Msg);
 				}
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
 			}
+		}
+
+		public static void MakeNoteOfTestProcessName(String SubEntity, String toolname) {
+			try{
+				String testDataPath = System.getProperty("user.dir")
+						+ File.separator + "src" + File.separator + "test" + File.separator
+						+ "resources" + File.separator + "testdata" + File.separator;
+				
+				String testDataPath_WorkItemExternalIDs="";
+				if((toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("Jira") || toolname.contains("JIRA")))
+				
+						testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "TestProcess_PreComputation_WSJF.json" ;
+				else if((toolname.equalsIgnoreCase("TFS Agile") || toolname.equalsIgnoreCase("TFS Scrum") || toolname.contains("TFS")))
+						testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "TestProcess_PreComputation_WSJF.json" ;
+				
+			FileReader reader = new FileReader(testDataPath_WorkItemExternalIDs);
+			JSONParser jsonParser = new JSONParser();
+		        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+		        jsonObject.put("TestProcess_WSJF_"+SubEntity, Baseclass.getInstance().TestProcessName);        
+		        FileOutputStream outputStream = new FileOutputStream(testDataPath_WorkItemExternalIDs);
+				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
 		}
 		
 		

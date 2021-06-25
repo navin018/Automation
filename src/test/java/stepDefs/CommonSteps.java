@@ -62,6 +62,9 @@ public class CommonSteps {
 		if(toolname.trim().equalsIgnoreCase("TFS Scrum")){
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"TFSScrum.properties"),new File(propsPath+"project.properties"));
 		}
+		if(toolname.trim().equalsIgnoreCase("APT")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"APT.properties"),new File(propsPath+"project.properties"));
+		}
 		  
 	}
 	
@@ -142,6 +145,13 @@ public class CommonSteps {
 	public void iUpdateTheWorkItemExternalIDsIntoAJSONFile(String appname) throws Throwable {
 		
 		CommonAcrossApps.UpdateWorkItemExternalIDsForApps(appname);
+		
+		
+		}	
+	@And("^i update the WorkItemExternalIDs into a JSON file for \"([^\"]*)\" for functionality \"([^\"]*)\"$")
+	public void iUpdateTheWorkItemExternalIDsIntoAJSONFileForSpecificFunctionality(String appname,String functionality) throws Throwable {
+		
+		CommonAcrossApps.UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(appname,functionality);
 		
 		
 		}	

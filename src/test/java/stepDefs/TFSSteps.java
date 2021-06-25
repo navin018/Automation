@@ -29,6 +29,8 @@ public class TFSSteps {
 		}
 				if(functionality.equalsIgnoreCase("autorecon") || functionality.equalsIgnoreCase("manualrecon"))
 					 TFSWorkitem.CreateWorkitemAndAssociateReleaseSprint(workitem);
+				if(functionality.equalsIgnoreCase("PreComputation_WSJF"))
+					TFSWorkitem.CreateWorkitemForPrecomputationEngine(workitem,functionality);
 
 
 

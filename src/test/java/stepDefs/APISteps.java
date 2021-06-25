@@ -65,9 +65,13 @@ public class APISteps {
 		Tools.VerifyOutBoundWorkitemDetails(workitem,toolname);
 		else Assert.fail("mention inbound or outbound only for workitem verification");
 	}
-	
-	
-	
+//	And i verify the "inbound" details for "Story_wsjf" for tool "TFS Scrum" using "flat" query whose client is "PreComputationEngine_ClientUId" and DC is "PreComputationEngine_DeliveryConstructUId_L2" for "WSJF" functionality
+	@Then("^i verify the \"([^\"]*)\" details for \"([^\"]*)\" for tool \"([^\"]*)\" using \"([^\"]*)\" query whose client is \"([^\"]*)\" and DC is \"([^\"]*)\" for \"([^\"]*)\" functionality$")
+	public void VerifyAPIResponse(String IBOrOB,String workitem, String toolname,String flatOrNonFlat,String clientUID, String DC,String functionality) throws FileNotFoundException, IOException, ParseException {
+		if(IBOrOB.equalsIgnoreCase("inbound"))
+		API.VerifyInBoundDetails(workitem,toolname,flatOrNonFlat,clientUID, DC,functionality);
+//		else(IBOrOB.equalsIgnoreCase("outbound"))
+		
 
 }
-;
+}

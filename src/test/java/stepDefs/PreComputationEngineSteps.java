@@ -60,13 +60,14 @@ public void i_a_Process_in_Precom_Tile(String arg1) throws Throwable {
 
 
 //Then i "add" a process of type "Compute" for entity "WorkItem" and subentity "ProductBacklog" and add the formula "StoryPoints / ( Priority * Rank )"
-@Given("^i \"([^\"]*)\" a process of type \"([^\"]*)\" for entity \"([^\"]*)\" and subentity \"([^\"]*)\" and add the formula \"([^\"]*)\"$")
-public void i_add_process_withformula(String addOrEditOrDelete,String AlertOrCompute,String entity,String SubEntity,String formula) throws Throwable {
+@Given("^i \"([^\"]*)\" a process of type \"([^\"]*)\" for entity \"([^\"]*)\" and subentity \"([^\"]*)\" and add the formula \"([^\"]*)\" for tool \"([^\"]*)\"$")
+public void i_add_process_withformula(String addOrEditOrDelete,String AlertOrCompute,String entity,String SubEntity,String formula,String toolname) throws Throwable {
 	try{
 		if(addOrEditOrDelete.equalsIgnoreCase("add")){
 				PreComputationEngine.CreateTestProcess(AlertOrCompute,entity,SubEntity);
-				PreComputationEngine.EditTestProcess(SubEntity);
+				PreComputationEngine.EditTestProcess(SubEntity,toolname);
 				PreComputationEngine.EnterFormula(formula);
+				PreComputationEngine.MakeNoteOfTestProcessName(SubEntity,toolname);
 		}
 	
 	}

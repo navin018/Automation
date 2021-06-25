@@ -23,6 +23,8 @@ public class PreComputationEngineUIMAP {
 	public static By Search =By.xpath("//input[@placeholder='Search']");
 	public static By Story_Readiness_txt =By.xpath("//div[text()='Story Readiness Assistant1']");
 	public static By Save_btn=By.xpath("//button[@title=' Save']");
+	public static By SaveFormula_btn=By.xpath("//img[@alt='Save']");
+	public static By SaveSuccess_Msg=By.xpath("//div[contains(text(),'Saved Successfully')]");
     public static By Search_Box =By.xpath("//input[@class='ng-valid ng-dirty ng-touched']");
     public static By cancel_btn =By.xpath("//button[@title='Cancel']");
     public static By empty_space =By.xpath("//div[@class='modal-body']");

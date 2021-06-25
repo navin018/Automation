@@ -87,6 +87,11 @@ public class MyWizardHomePage {
          
          ExpWaitForCondition(MyWizardUIMap.scopeSelector_drpdown);
          Thread.sleep(3000);
+         if(CheckIfElementExists(MyWizardUIMap.IUnderstand_checkbox))
+         {
+        	 clickJS(MyWizardUIMap.IUnderstand_checkbox);
+        	 clickJS(MyWizardUIMap.Confirm_btn);    	 
+         }
 		}
 		catch(Exception e)
 		{
@@ -537,8 +542,8 @@ break;
 		case "Generic Uploader":
 
 			try{
-				ArrayList<String> tabs2 = new ArrayList<String> (driver().getWindowHandles());
-				 driver().switchTo().window(tabs2.get(2));
+//				ArrayList<String> tabs2 = new ArrayList<String> (driver().getWindowHandles());
+//				 driver().switchTo().window(tabs2.get(2));
 			ExpWaitForCondition(SecurityTestsUIMap.GenericUploader_statictxt);
 				}
 			catch(Exception e)

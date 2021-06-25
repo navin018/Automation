@@ -206,7 +206,7 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 		JSONObject jsonObject = (JSONObject) obj;
 		String WorkItemExternalId="";
 		
-		if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request") || workitem.equalsIgnoreCase("ProductBacklog")))
+		if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.contains("Release") || workitem.contains("Sprint") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request") || workitem.equalsIgnoreCase("ProductBacklog")))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem);
 		else if(workitem.equalsIgnoreCase("Test Execution"))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_TestExecution");
@@ -214,24 +214,12 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_WorkRequest");
 		else if(workitem.equalsIgnoreCase("ProductBacklog"))
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_Story");
-		String ReleaseName="";
-		String SprintName="";
+	
 		
-		
-		if(workitem.equalsIgnoreCase("Release"))
+		if(workitem.contains("Release") || workitem.contains("Sprint"))
 		{
-			ReleaseName = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
-			String ReleaseStartDate = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseStartDate");
-			String ReleaseEndDate = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseEndDate");
-			WorkItemExternalId = ReleaseName+ "&" +ReleaseStartDate   + "&" +ReleaseEndDate;
-			
-		}
-		if(workitem.equalsIgnoreCase("Sprint"))
-		{
-			SprintName = (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
-		String SprintStartDate = (String) jsonObject.get("WorkItemExternalId_"+"SprintStartDate");
-		String SprintEndDate = (String) jsonObject.get("WorkItemExternalId_"+"SprintEndDate");
-		WorkItemExternalId = SprintName+ "&" +SprintStartDate   + "&" +SprintEndDate;
+			WorkItemExternalId = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
+			WorkItemExternalId = WorkItemExternalId + "&" + (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
 		}
 		 if(!(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equals("")))
 			 return WorkItemExternalId;

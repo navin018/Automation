@@ -86,4 +86,9 @@ public static By enterDCName_txtbox = By.xpath("//input[@name='Portfolio']");
 public static By saveandClose_btn = By.xpath("//button[@title='Save & Close']");
 public static By deletePortfolio_btn = By.xpath("//a[@title='Delete Portfolio']");
 
+public static String TestProcessName = "//h6[text()='{testprocessname}']";
+public static String TestProcess_MoreOptions_Drpdown = "//h6[text()='{testprocessname}']//following::a[@class='myw-action'][1]";
+public static String TestProcess_Edit_Link = "//h6[text()='{testprocessname}']//following::a[text()='Edit'][1]";
+
+
 }

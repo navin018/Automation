@@ -51,7 +51,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(BusinessValue+Priority)*CompletedWork"
+			"Formula":"(BusinessValue+Priority)*CompletedWork",
+			"WSJF":"0"
 		},
 		"Task_wsjf_Deno_0": {
 			"Summary": "Task_AutomationData",
@@ -75,7 +76,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"AVG(Priority+BusinessValue)/CompletedWork"
+			"Formula":"AVG(Priority+BusinessValue)/CompletedWork",
+			"WSJF":"null"
 		},
 		"Task_wsjf_Nume_0": {
 			"Summary": "Task_AutomationData",
@@ -99,7 +101,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"CompletedWork/(Priority*Rank)"
+			"Formula":"CompletedWork/(Priority*Rank)",
+			"WSJF":"0"
 		},
 		"Task_wsjf_Negative_Int": {
 			"Summary": "Task_AutomationData",
@@ -123,7 +126,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(Priority/BusinessValue)-RemainingWork"
+			"Formula":"(Priority/BusinessValue)-RemainingWork",
+			"WSJF":"-1.6"
 		},
 		"Task_wsjf_Decimal_Tool": {
 			"Summary": "Task_AutomationData",
@@ -147,7 +151,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"OriginalEstimate*RemainingWork"
+			"Formula":"OriginalEstimate*RemainingWork",
+			"WSJF":"0.35"
 		},
 
 		"Task_wsjf_Zero_Tool": {
@@ -172,7 +177,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"OriginalEstimate+CompletedWork"
+			"Formula":"OriginalEstimate+CompletedWork",
+			"WSJF":"0"
 		},
 		"Task_wsjf_Decimal_Output": {
 			"Summary": "Task_AutomationData",
@@ -196,7 +202,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Priority/BusinessValue"
+			"Formula":"Priority/BusinessValue",
+			"WSJF":"0.4"
 		},
 
 		"Story_01": {
@@ -226,32 +233,8 @@
 			"CostApproved":"NA",
 			"Risk":"1 - High"
 		},
-		"ProductBacklog_wsjf": {
-			"Summary": "Story_AutomationData",
-			"Description": "Story_Description",
-			"Priority": "2",
-			"Severity": "NA",
-			"Effort": "2",
-			"RemainingWork": "NA",
-			"ActualEffort": "NA",
-			"BusinessValue": "2",
-			"Rank": "1",
-			"StackRank": "2",
-			"RiskReduction": "2",
-			"StoryPoints": "1",
-			"Completed": "NA",
-			"CompletedWork": "NA",
-			"OriginalEstimate": "NA",
-			"TimeCriticality": "NA",
-			"Complexity": "NA",
-			"Criticality": "NA",
-			"CostEstimate":"NA",
-			"CostApproved":"NA",
-			"Risk":"NA"
-	
-		},
 		
-		"ProductBacklog_wsjf_Multiply_0": {
+		"Story_wsjf_Multiply_0": {
 			"Summary": "Story_AutomationData",
 			"Description": "Story_Description",
 			"Priority": "3",
@@ -273,10 +256,11 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"1 - High",
-			"Formula":"(BusinessValue+Priority)*StoryPoints"
+			"Formula":"(BusinessValue+Priority)*StoryPoints",
+			"WSJF":"0"
 			
 		},
-		"ProductBacklog_wsjf_Deno_0": {
+		"Story_wsjf_Deno_0": {
 			"Summary": "Story_AutomationData",
 			"Description": "Story_Description",
 			"Priority": "3",
@@ -298,9 +282,10 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"1 - High",
-			"Formula":"AVG(StoryPoints+BusinessValue)/RiskReduction"
+			"Formula":"AVG(StoryPoints+BusinessValue)/RiskReduction",
+			"WSJF":"null"
 		},
-		"ProductBacklog_wsjf_Nume_0": {
+		"Story_wsjf_Nume_0": {
 			"Summary": "Story_AutomationData",
 			"Description": "Story_Description",
 			"Priority": "3",
@@ -322,82 +307,10 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"1 - High",
-			"Formula":"StoryPoints/(Priority*Rank)"
+			"Formula":"StoryPoints/(Priority*Rank)",
+			"WSJF":"0"
 		},
-		"ProductBacklog_wsjf_Negative_Int": {
-			"Summary": "Story_AutomationData",
-			"Description": "Story_Description",
-			"Priority": "2",
-			"Severity": "NA",
-			"Effort": "NA",
-			"RemainingWork": "NA",
-			"ActualEffort": "NA",
-			"BusinessValue": "5",
-			"Rank": "NA",
-			"StackRank": "NA",
-			"RiskReduction": "NA",
-			"StoryPoints": "0",
-			"Completed": "NA",
-			"CompletedWork": "NA",
-			"OriginalEstimate": "NA",
-			"TimeCriticality": "NA",
-			"Complexity": "NA",
-			"Criticality": "NA",
-			"CostEstimate":"NA",
-			"CostApproved":"NA",
-			"Risk":"1 - High",
-			"Formula":"(Priority/BusinessValue)-StoryPoints"
-		
-		},
-		"ProductBacklog_wsjf_Decimal_Tool": {
-			"Summary": "Story_AutomationData",
-			"Description": "Story_Description",
-			"Priority": "NA",
-			"Severity": "NA",
-			"Effort": "0.5",
-			"RemainingWork": "NA",
-			"ActualEffort": "NA",
-			"BusinessValue": "NA",
-			"Rank": "NA",
-			"StackRank": "0.7",
-			"RiskReduction": "NA",
-			"StoryPoints": "NA",
-			"Completed": "NA",
-			"CompletedWork": "NA",
-			"OriginalEstimate": "NA",
-			"TimeCriticality": "NA",
-			"Complexity": "NA",
-			"Criticality": "NA",
-			"CostEstimate":"NA",
-			"CostApproved":"NA",
-			"Risk":"1 - High",
-			"Formula":"StackRank*Effort"
-		},
-		"ProductBacklog_wsjf_Zero_Tool": {
-			"Summary": "Story_AutomationData",
-			"Description": "Story_Description",
-			"Priority": "NA",
-			"Severity": "NA",
-			"Effort": "NA",
-			"RemainingWork": "NA",
-			"ActualEffort": "NA",
-			"BusinessValue": "NA",
-			"Rank": "0",
-			"StackRank": "NA",
-			"RiskReduction": "NA",
-			"StoryPoints": "0",
-			"Completed": "NA",
-			"CompletedWork": "NA",
-			"OriginalEstimate": "NA",
-			"TimeCriticality": "NA",
-			"Complexity": "NA",
-			"Criticality": "NA",
-			"CostEstimate":"NA",
-			"CostApproved":"NA",
-			"Risk":"1 - High",
-			"Formula":"Rank+StoryPoints"
-		},
-		"ProductBacklog_wsjf_Decimal_Output": {
+		"Story_wsjf_Negative_Int": {
 			"Summary": "Story_AutomationData",
 			"Description": "Story_Description",
 			"Priority": "2",
@@ -419,7 +332,109 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"1 - High",
-			"Formula":"Priority/BusinessValue"
+			"Formula":"(Priority/BusinessValue)-StoryPoints",
+			"WSJF":"-1.6"
+		
+		},
+		"Story_wsjf_Decimal_Tool": {
+			"Summary": "Story_AutomationData",
+			"Description": "Story_Description",
+			"Priority": "NA",
+			"Severity": "NA",
+			"Effort": "0.5",
+			"RemainingWork": "NA",
+			"ActualEffort": "NA",
+			"BusinessValue": "NA",
+			"Rank": "NA",
+			"StackRank": "0.7",
+			"RiskReduction": "NA",
+			"StoryPoints": "NA",
+			"Completed": "NA",
+			"CompletedWork": "NA",
+			"OriginalEstimate": "NA",
+			"TimeCriticality": "NA",
+			"Complexity": "NA",
+			"Criticality": "NA",
+			"CostEstimate":"NA",
+			"CostApproved":"NA",
+			"Risk":"1 - High",
+			"Formula":"StackRank*Effort",
+			"WSJF":"0.35"
+		},
+		"Story_wsjf_Zero_Tool": {
+			"Summary": "Story_AutomationData",
+			"Description": "Story_Description",
+			"Priority": "NA",
+			"Severity": "NA",
+			"Effort": "NA",
+			"RemainingWork": "NA",
+			"ActualEffort": "NA",
+			"BusinessValue": "NA",
+			"Rank": "0",
+			"StackRank": "NA",
+			"RiskReduction": "NA",
+			"StoryPoints": "0",
+			"Completed": "NA",
+			"CompletedWork": "NA",
+			"OriginalEstimate": "NA",
+			"TimeCriticality": "NA",
+			"Complexity": "NA",
+			"Criticality": "NA",
+			"CostEstimate":"NA",
+			"CostApproved":"NA",
+			"Risk":"1 - High",
+			"Formula":"Rank+StoryPoints",
+			"WSJF":"0"
+		},
+		"Story_wsjf_Decimal_Output": {
+			"Summary": "Story_AutomationData",
+			"Description": "Story_Description",
+			"Priority": "2",
+			"Severity": "NA",
+			"Effort": "NA",
+			"RemainingWork": "NA",
+			"ActualEffort": "NA",
+			"BusinessValue": "5",
+			"Rank": "NA",
+			"StackRank": "NA",
+			"RiskReduction": "NA",
+			"StoryPoints": "2",
+			"Completed": "NA",
+			"CompletedWork": "NA",
+			"OriginalEstimate": "NA",
+			"TimeCriticality": "NA",
+			"Complexity": "NA",
+			"Criticality": "NA",
+			"CostEstimate":"NA",
+			"CostApproved":"NA",
+			"Risk":"1 - High",
+			"Formula":"Priority/BusinessValue",
+			"WSJF":"0.4"
+		},
+		"Story_wsjf_UseFunction": {
+			"Summary": "Story_AutomationData",
+			"Description": "Story_Description",
+			"Priority": "2",
+			"Severity": "NA",
+			"Effort": "NA",
+			"RemainingWork": "NA",
+			"ActualEffort": "NA",
+			"BusinessValue": "5",
+			"Rank": "NA",
+			"StackRank": "NA",
+			"RiskReduction": "NA",
+			"StoryPoints": "2",
+			"Completed": "NA",
+			"CompletedWork": "NA",
+			"OriginalEstimate": "NA",
+			"TimeCriticality": "NA",
+			"Complexity": "NA",
+			"Criticality": "NA",
+			"CostEstimate":"NA",
+			"CostApproved":"NA",
+			"Risk":"1 - High",
+			"Formula":"Priority/BusinessValue",
+			"WSJF":"0.4"
 		},
 
 		"Epic_01": {
@@ -473,7 +488,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(BusinessValue+Priority)*StackRank"
+			"Formula":"(BusinessValue+Priority)*StackRank",
+			"WSJF":"0"
 		},
 		"Epic_wsjf_Deno_0": {
 			"EpicName": "Epic_AutomationData",
@@ -497,7 +513,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"AVG(BusinessValue,Priority)/StackRank"
+			"Formula":"AVG(BusinessValue,Priority)/StackRank",
+			"WSJF":"null"
 		},
 		"Epic_wsjf_Nume_0": {
 			"EpicName": "Epic_AutomationData",
@@ -521,7 +538,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"BusinessValue/(Priority*StackRank)"
+			"Formula":"BusinessValue/(Priority*StackRank)",
+			"WSJF":"0"
 		},
 		"Epic_wsjf_Negative_Int": {
 			"EpicName": "Epic_AutomationData",
@@ -545,7 +563,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(Priority/BusinessValue)-TimeCriticality"
+			"Formula":"(Priority/BusinessValue)-TimeCriticality",
+			"WSJF":"-1.6"
 		},
 		"Epic_wsjf_Decimal_Tool": {
 			"EpicName": "Epic_AutomationData",
@@ -569,7 +588,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Effort*StackRank"
+			"Formula":"Effort*StackRank",
+			"WSJF":"0.35"
 		},
 		"Epic_wsjf_Zero_Tool": {
 			"EpicName": "Epic_AutomationData",
@@ -593,7 +613,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"StackRank+TimeCriticality"
+			"Formula":"StackRank+TimeCriticality",
+			"WSJF":"0"
 		},
 		"Epic_wsjf_Decimal_Output": {
 			"EpicName": "Epic_AutomationData",
@@ -617,7 +638,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Priority/BusinessValue"
+			"Formula":"Priority/BusinessValue",
+			"WSJF":"0.4"
 		},
 		"Bug_01": {
 			"Summary": "Bug_AutomationData",
@@ -670,7 +692,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(BusinessValue+Priority)*StackRank"
+			"Formula":"(BusinessValue+Priority)*StackRank",
+			"WSJF":"0"
 		},
 		"Bug_wsjf_Deno_0": {
 			"Summary": "Bug_AutomationData",
@@ -694,7 +717,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"AVG(BusinessValue,Priority)/StackRank"
+			"Formula":"AVG(BusinessValue,Priority)/StackRank",
+			"WSJF":"null"
 		},
 		"Bug_wsjf_Nume_0": {
 			"Summary": "Bug_AutomationData",
@@ -718,7 +742,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"BusinessValue/(Priority*StackRank)"
+			"Formula":"BusinessValue/(Priority*StackRank)",
+			"WSJF":"0"
 		},
 		"Bug_wsjf_Negative_Int": {
 			"Summary": "Bug_AutomationData",
@@ -742,7 +767,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(Priority/BusinessValue)-Effort"
+			"Formula":"(Priority/BusinessValue)-Effort",
+			"WSJF":"-1.6"
 		},
 		"Bug_wsjf_Decimal_Tool": {
 			"Summary": "Bug_AutomationData",
@@ -766,7 +792,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Effort*StackRank"
+			"Formula":"Effort*StackRank",
+			"WSJF":"0.35"
 		},
 		"Bug_wsjf_Zero_Tool": {
 			"Summary": "Bug_AutomationData",
@@ -790,7 +817,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Effort+RemainingWork"
+			"Formula":"Effort+RemainingWork",
+			"WSJF":"0"
 		},
 		"Bug_wsjf_Decimal_Output": {
 			"Summary": "Bug_AutomationData",
@@ -814,7 +842,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Priority/BusinessValue"
+			"Formula":"Priority/BusinessValue",
+			"WSJF":"0.4"
 		},
 		"Feature_01": {
 			"Summary": "Feature_AutomationData",
@@ -867,7 +896,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(BusinessValue+Priority)*StackRank"
+			"Formula":"(BusinessValue+Priority)*StackRank",
+			"WSJF":"0"
 		},
 		"Feature_wsjf_Deno_0": {
 			"Summary": "Feature_AutomationData",
@@ -891,7 +921,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"AVG(BusinessValue,Priority)/StackRank"
+			"Formula":"AVG(BusinessValue,Priority)/StackRank",
+			"WSJF":"null"
 		},
 		"Feature_wsjf_Nume_0": {
 			"Summary": "Feature_AutomationData",
@@ -915,7 +946,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"BusinessValue/(Priority*StackRank)"
+			"Formula":"BusinessValue/(Priority*StackRank)",
+			"WSJF":"0"
 		},
 		"Feature_wsjf_Negative_Int": {
 			"Summary": "Feature_AutomationData",
@@ -939,7 +971,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(Priority/BusinessValue)-TimeCriticality"
+			"Formula":"(Priority/BusinessValue)-TimeCriticality",
+			"WSJF":"-3.6"
 		},
 		"Feature_wsjf_Decimal_Tool": {
 			"Summary": "Feature_AutomationData",
@@ -963,7 +996,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Effort*StackRank"
+			"Formula":"Effort*StackRank",
+			"WSJF":"0.35"
 		},
 		"Feature_wsjf_Zero_Tool": {
 			"Summary": "Feature_AutomationData",
@@ -987,7 +1021,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"StackRank+TimeCriticality"
+			"Formula":"StackRank+TimeCriticality",
+			"WSJF":"0"
 		},
 		"Feature_wsjf_Decimal_Output": {
 			"Summary": "Feature_AutomationData",
@@ -1011,7 +1046,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Priority/BusinessValue"
+			"Formula":"Priority/BusinessValue",
+			"WSJF":"0.4"
 		},
 		"Impediment_01": {
 			"Summary": "Impediment_AutomationData",
@@ -1062,7 +1098,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(BusinessValue+Priority)*StackRank"
+			"Formula":"(BusinessValue+Priority)*StackRank",
+			"WSJF":"0"
 		},
 		"Impediment_wsjf_Deno_0": {
 			"Summary": "Impediment_AutomationData",
@@ -1086,7 +1123,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"AVG(BusinessValue,Priority)/StackRank"
+			"Formula":"AVG(BusinessValue,Priority)/StackRank",
+			"WSJF":"null"
 		},
 		"Impediment_wsjf_Nume_0": {
 			"Summary": "Impediment_AutomationData",
@@ -1110,7 +1148,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"BusinessValue/(Priority*StackRank)"
+			"Formula":"BusinessValue/(Priority*StackRank)",
+			"WSJF":"0"
 		},
 		"Impediment_wsjf_Negative_Int": {
 			"Summary": "Impediment_AutomationData",
@@ -1134,7 +1173,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(Priority/BusinessValue)-StackRank"
+			"Formula":"(Priority/BusinessValue)-StackRank",
+			"WSJF":"-1.6"
 		},
 		"Impediment_wsjf_Zero_Tool": {
 			"Summary": "Impediment_AutomationData",
@@ -1158,7 +1198,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"BusinessValue+StackRank"
+			"Formula":"BusinessValue+StackRank",
+			"WSJF":"0"
 		},
 		"Impediment_wsjf_Decimal_Output": {
 			"Summary": "Impediment_AutomationData",
@@ -1182,7 +1223,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Priority/BusinessValue"
+			"Formula":"Priority/BusinessValue",
+			"WSJF":"0.4"
 		},
 		"Issue_01": {
 			"Summary": "Issue_AutomationData",
@@ -1288,7 +1330,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(OriginalEstimate+CompletedWork)*RemainingWork"
+			"Formula":"(OriginalEstimate+CompletedWork)*RemainingWork",
+			"WSJF":"0"
 		},
 		"Deliverable_wsjf_Deno_0": {
 			"Summary": "Deliverable_AutomationData",
@@ -1312,7 +1355,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(OriginalEstimate+CompletedWork)/RemainingWork"
+			"Formula":"(OriginalEstimate+CompletedWork)/RemainingWork",
+			"WSJF":"null"
 		},
 		"Deliverable_wsjf_Nume_0": {
 			"Summary": "Deliverable_AutomationData",
@@ -1336,7 +1380,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"RemainingWork/(OriginalEstimate+CompletedWork)"
+			"Formula":"RemainingWork/(OriginalEstimate+CompletedWork)",
+			"WSJF":"0"
 		},
 		"Deliverable_wsjf_Negative_Int": {
 			"Summary": "Deliverable_AutomationData",
@@ -1360,7 +1405,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"(OriginalEstimate/CompletedWork)-RemainingWork"
+			"Formula":"(OriginalEstimate/CompletedWork)-RemainingWork",
+			"WSJF":"-3.6"
 		},
 		"Deliverable_wsjf_Decimal_Tool": {
 			"Summary": "Deliverable_AutomationData",
@@ -1384,7 +1430,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"OriginalEstimate*CompletedWork"
+			"Formula":"OriginalEstimate*CompletedWork",
+			"WSJF":"0.35"
 		},
 		"Deliverable_wsjf_Zero_Tool": {
 			"Summary": "Deliverable_AutomationData",
@@ -1408,7 +1455,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"CompletedWork+RemainingWork"
+			"Formula":"CompletedWork+RemainingWork",
+			"WSJF":"0"
 		},
 		"Deliverable_wsjf_Decimal_Output": {
 			"Summary": "Deliverable_AutomationData",
@@ -1432,7 +1480,8 @@
 			"CostEstimate":"NA",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"CompletedWork/RemainingWork"
+			"Formula":"CompletedWork/RemainingWork",
+			"WSJF":"0.4"
 		},
 		"Risk_01": {
 			"Summary": "Risk_AutomationData",
@@ -1619,7 +1668,8 @@
 			"CostEstimate":"0",
 			"CostApproved":"100",
 			"Risk":"NA",
-			"Formula":"(CostApproved+Priority)*CostEstimate"
+			"Formula":"(CostApproved+Priority)*CostEstimate",
+			"WSJF":"0"
 		},
 		"Work Request_wsjf_Deno_0": {
 			"Summary": "WorkRequest_AutomationData",
@@ -1643,7 +1693,8 @@
 			"CostEstimate":"0",
 			"CostApproved":"100",
 			"Risk":"NA",
-			"Formula":"AVG(CostApproved,Priority)/CostEstimate"
+			"Formula":"AVG(CostApproved,Priority)/CostEstimate",
+			"WSJF":"null"
 		},
 		"Work Request_wsjf_Nume_0": {
 			"Summary": "WorkRequest_AutomationData",
@@ -1667,7 +1718,8 @@
 			"CostEstimate":"0",
 			"CostApproved":"100",
 			"Risk":"NA",
-			"Formula":"CostEstimate/(Priority*CostApproved)"
+			"Formula":"CostEstimate/(Priority*CostApproved)",
+			"WSJF":"0"
 		},
 		"Work Request_wsjf_Negative_Int": {
 			"Summary": "WorkRequest_AutomationData",
@@ -1691,7 +1743,8 @@
 			"CostEstimate":"100",
 			"CostApproved":"200",
 			"Risk":"NA",
-			"Formula":"(Priority/CostEstimate)-CostApproved"
+			"Formula":"(Priority/CostEstimate)-CostApproved",
+			"WSJF":"-199.8"
 		},
 		"Work Request_wsjf_Zero_Tool": {
 			"Summary": "WorkRequest_AutomationData",
@@ -1715,7 +1768,8 @@
 			"CostEstimate":"0",
 			"CostApproved":"0",
 			"Risk":"NA",
-			"Formula":"CostEstimate+CostApproved"
+			"Formula":"CostEstimate+CostApproved",
+			"WSJF":"0"
 		},
 		"Work Request_wsjf_Decimal_Output": {
 			"Summary": "WorkRequest_AutomationData",
@@ -1739,7 +1793,8 @@
 			"CostEstimate":"10",
 			"CostApproved":"NA",
 			"Risk":"NA",
-			"Formula":"Priority/CostEstimate"
+			"Formula":"Priority/CostEstimate",
+			"WSJF":"0.2"
 		},
 		"ProductBacklog_01": {
 			"Summary": "Story_AutomationData",

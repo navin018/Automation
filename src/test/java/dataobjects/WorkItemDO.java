@@ -68,6 +68,9 @@ public class WorkItemDO {
 	public String CostApproved;
 	public String Risk;
 	
+	
+	public String WSJF;
+	
 	public String getBusinessValue() {
 		return BusinessValue;
 	}

@@ -35,6 +35,7 @@ public static String SelectDC_statictxt = "//span[@class='node-name'][text()='{d
 public static String SelectDC_statictxt_RMP = "//div[contains(text(),'{dcname}')]";
 public static String SearchResultAccountManagement_statictxt = "//div[@col-id='DisplayName'] [text()='{userID}']";
 public static String SelectProgram_statictxt = "//span[@class='node-name'][text()='{programname}']";
+public static String SelectProject_statictxt = "//span[@class='node-name'][text()='{project}']";
 public static String SelectProgram_statictxt_RMP = "//div[contains(text(),'{programname}')]";
 public static String clientInAccountManagmentScreen = "//span[text()='Client/Delivery Construct Role(s)']//following::span[@class='node-name' and text()='{clientname}']//preceding::input[1]";
 
@@ -81,6 +82,6 @@ public static By Search_txtbox = By.xpath("//input[@placeholder='Enter text to s
 public static By Save_btn = By.xpath("//button[@class='btn btn-primary' and text()='Save']");
 public static By BacktoOverallSetup_btn = By.xpath("//div[text()='Back to Overall Setup Progress']");
 public static By BacktoDIYADAutomation_btn = By.xpath("//div[text()='Back to DIY AD Automation']");
-//public static By BackToDashboard_link = By.xpath("//div[@title='Back to Dashboard' or @title='Go Back']");
-
+public static By IUnderstand_checkbox = By.xpath("//label[text()='I Understand']");
+public static By Confirm_btn = By.xpath("//label[text()='I Understand']");
 }
