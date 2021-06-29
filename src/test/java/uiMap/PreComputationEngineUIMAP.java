@@ -45,7 +45,7 @@ public class PreComputationEngineUIMAP {
     public static By Formula_area =By.xpath("//textarea[@id='txtFormula']");
     public static By user2 =By.xpath("//span[@class='pce-select-chips']//following::span[text()='UserStory.UserStory.Task.BusinessValue']");
     public static By user1 =By.xpath("//span[text()='UserStory.UserStory.BusinessValue'][1]");
-    public static By clear_btn  =By.xpath("//a[@class='ml-auto lh-1']//following::*[text()='Clear']");
+    public static By clear_btn  =By.xpath("//*[@id='txtFormula']//preceding::a[text()='Clear'][1]");
 	 public static By Save_Img =By.xpath("//img[@alt='Save']");
 	 public static By back_btn =By.xpath("//a[contains(text(),'Compute Process for Node')]");
 	 

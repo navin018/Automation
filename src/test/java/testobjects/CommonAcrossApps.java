@@ -793,6 +793,8 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		jsonObject.put("WorkItemExternalId_Story_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Tool);
 		jsonObject.put("WorkItemExternalId_Story_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Zero_Tool);
 		jsonObject.put("WorkItemExternalId_Story_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Output);
+		jsonObject.put("WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_update);
+		
 		
 		jsonObject.put("WorkItemExternalId_Risk_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Multiply_0);
 		jsonObject.put("WorkItemExternalId_Risk_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Deno_0);
@@ -981,6 +983,8 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 	jsonObject.put("WorkItemExternalId_Story_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Tool);
 	jsonObject.put("WorkItemExternalId_Story_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Zero_Tool);
 	jsonObject.put("WorkItemExternalId_Story_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Output);
+	jsonObject.put("WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_update);
+	
 	
 	jsonObject.put("WorkItemExternalId_Risk_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Multiply_0);
 	jsonObject.put("WorkItemExternalId_Risk_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Deno_0);

@@ -1294,6 +1294,8 @@ import utilities.general.Property;
 								Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
 								break;
 							}
+							case("Story_wsjf_Negative_Int_UpdateWorkitem"):
+								Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem= getText(TFSUIMap.captureWorkItemID2_statictxt);
 							System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 							break;	
 				case "action":
@@ -1713,6 +1715,27 @@ import utilities.general.Property;
 			enterText(TFSUIMap.Iteration_drpdown, Property.getProperty("TFSProject")+"\\"+ releasename +"\\"+ sprintname);
 			sendEnter(TFSUIMap.Iteration_drpdown);
 			Thread.sleep(5000);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+		public static void UpdateWorkItemForPreComputation(String workitem, String functionality) {
+			try{
+			String workitemID = API.getWorkItemExternalIDForGivenFunctionality(workitem.split("_update")[0],"TFS",functionality);
+			ExpWaitForCondition(TFSUIMap.SearchBoxHomePage_txtbox);
+			clearEnterText(TFSUIMap.SearchBoxHomePage_txtbox, workitemID);
+			 ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, workitemID, "workitemid"));
+			 clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, workitemID, "workitemid"));
+			 ExpWaitForCondition(TFSUIMap.captureWorkItemID1_statictxt);
+			 
+			 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
+				
+			 //navigate to the create WI url
+			 EnterWorkItemDetails(workitem, "NA", wi);
+				CaptureWorkitemIDForPreComputationEngine(workitem);
 			}
 			catch(Exception e)
 			{

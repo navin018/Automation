@@ -21,8 +21,8 @@ public class TFSSteps {
 	}
 
 
-	@Then("^i create a \"([^\"]*)\" in TFS for \"([^\"]*)\"$")
-	public void i_create_a_in_TFS_nonsanity(String workitem,String functionality) throws Throwable {
+	@Then("^i \"([^\"]*)\" a \"([^\"]*)\" in TFS for \"([^\"]*)\"$")
+	public void i_create_a_in_TFS_nonsanity(String CreateOrUpdate, String workitem,String functionality) throws Throwable {
 		if(functionality.equalsIgnoreCase("WSJF functionality")){
 			//this is done only for story workitem
 			TFSWorkitem.CreateWorkitemforWSJFfunctionality(workitem);
@@ -30,8 +30,13 @@ public class TFSSteps {
 				if(functionality.equalsIgnoreCase("autorecon") || functionality.equalsIgnoreCase("manualrecon"))
 					 TFSWorkitem.CreateWorkitemAndAssociateReleaseSprint(workitem);
 				if(functionality.equalsIgnoreCase("PreComputation_WSJF"))
+					{
+					if(CreateOrUpdate.equalsIgnoreCase("create"))
+					
 					TFSWorkitem.CreateWorkitemForPrecomputationEngine(workitem,functionality);
-
+					else if(CreateOrUpdate.equalsIgnoreCase("update"))
+							TFSWorkitem.UpdateWorkItemForPreComputation(workitem,functionality);
+					}
 
 
 

@@ -103,7 +103,8 @@ Baseclass(){
 	public String WorkItemExternalId_Story_wsjf_Decimal_Tool;
 	public String WorkItemExternalId_Story_wsjf_Zero_Tool;
 	public String WorkItemExternalId_Story_wsjf_Decimal_Output;
-	
+	public String WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem;
+		
 	public String WorkItemExternalId_Epic_wsjf_Multiply_0;
 	public String WorkItemExternalId_Epic_wsjf_Deno_0;
 	public String WorkItemExternalId_Epic_wsjf_Nume_0;

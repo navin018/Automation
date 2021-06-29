@@ -65,10 +65,16 @@ public void i_add_process_withformula(String addOrEditOrDelete,String AlertOrCom
 	try{
 		if(addOrEditOrDelete.equalsIgnoreCase("add")){
 				PreComputationEngine.CreateTestProcess(AlertOrCompute,entity,SubEntity);
-				PreComputationEngine.EditTestProcess(SubEntity,toolname);
+				PreComputationEngine.EditNewTestProcess(SubEntity,toolname);
 				PreComputationEngine.EnterFormula(formula);
 				PreComputationEngine.MakeNoteOfTestProcessName(SubEntity,toolname);
 		}
+		if(addOrEditOrDelete.equalsIgnoreCase("edit")){
+			PreComputationEngine.GetTestProcess(SubEntity,toolname);
+			PreComputationEngine.EditExistingTestProcess(SubEntity,toolname);
+			PreComputationEngine.EnterFormula(formula);
+			PreComputationEngine.MakeNoteOfTestProcessName(SubEntity,toolname);
+	}
 	
 	}
 		catch(Exception e)

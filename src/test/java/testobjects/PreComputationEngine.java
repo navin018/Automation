@@ -20,6 +20,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+import org.xbill.DNS.utils.base16;
 
 import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 
@@ -110,7 +111,7 @@ import java.util.Random;
 			
 		}
 
-		public static void EditTestProcess(String SubEntity,String toolname) {
+		public static void EditNewTestProcess(String SubEntity,String toolname) {
 			try{
 					String testprocessname ="";
 					//edit the process
@@ -239,6 +240,47 @@ import java.util.Random;
 				e.printStackTrace();
 			}
 			
+		}
+
+		public static void GetTestProcess(String subEntity, String toolname) {
+		try{
+			String testDataPath = System.getProperty("user.dir")
+					+ File.separator + "src" + File.separator + "test" + File.separator
+					+ "resources" + File.separator + "testdata" + File.separator;
+			
+			String testDataPath_TestProcessID="";
+			if((toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("Jira") || toolname.contains("JIRA")))
+			
+				testDataPath_TestProcessID = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "TestProcess_PreComputation_WSJF.json" ;
+			else if((toolname.equalsIgnoreCase("TFS Agile") || toolname.equalsIgnoreCase("TFS Scrum") || toolname.contains("TFS")))
+				testDataPath_TestProcessID = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "TestProcess_PreComputation_WSJF.json" ;
+			
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(new FileReader(testDataPath_TestProcessID));
+		JSONObject jsonObject = (JSONObject) obj;
+		String testprocessname=(String) jsonObject.get("TestProcess_WSJF_"+subEntity);
+		Baseclass.getInstance().TestProcessName = testprocessname;
+		
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("issue getting testprocess name for the entity "+subEntity);
+		}
+			
+		}
+
+		public static void EditExistingTestProcess(String subEntity, String toolname) {
+			
+			String testprocessname = Baseclass.getInstance().TestProcessName;
+			clickJS(PreComputationEngineUIMAP.viewmore_text);
+			clickJS(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_MoreOptions_Drpdown, testprocessname, "testprocessname"));
+			ExpWaitForCondition(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_Edit_Link,testprocessname, "testprocessname"));
+			clickJS(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_Edit_Link,testprocessname, "testprocessname"));
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			clickJS(PreComputationEngineUIMAP.Editcalculation_btn);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			clickJS(PreComputationEngineUIMAP.clear_btn);
 		}
 		
 		
