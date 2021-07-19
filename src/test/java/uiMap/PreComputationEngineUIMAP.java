@@ -17,12 +17,13 @@ public class PreComputationEngineUIMAP {
 	public static By ProcessType_drpdown =By.xpath("//label[text()='Trigger Based On']//preceding::*[@name='processType'][1]");
 	public static By TriggerBasedOn_drpdown =By.xpath("//label[text()='Trigger Based On']//following::*[@id='Pre_TriggerType']");
 	public static By Entitytype_drpdown =By.xpath("//label[text()='Entity']//following::*[@id='Pre_EntityUId']");
+	public static By Entitytype_drpdown1 =By.xpath("//input[@role='combobox']");
 	public static By workitem_drpdown =By.xpath("//*[text()='Applications']//preceding::*[@name='wt'][1]");
 	 public static By Entityevent_drpdown =By.xpath("//*[text()='Entity Event Name']//following::*[@name='entityEvent'][2]");
 	public static By Application_dropdown =By.xpath("//span[@class='dropdown-btn']");
 	public static By Search =By.xpath("//input[@placeholder='Search']");
-	public static By Story_Readiness_txt =By.xpath("//div[text()='Story Readiness Assistant1']");
-	public static By Save_btn=By.xpath("//button[@title=' Save']");
+	public static By Story_Readiness_txt =By.xpath("//div[text()='Story Readiness Assistant']");
+	public static By Save_btn=By.xpath("//button[@title='Save']");
 	public static By SaveFormula_btn=By.xpath("//img[@alt='Save']");
 	public static By SaveSuccess_Msg=By.xpath("//div[contains(text(),'Saved Successfully')]");
     public static By Search_Box =By.xpath("//input[@class='ng-valid ng-dirty ng-touched']");
@@ -61,12 +62,14 @@ public class PreComputationEngineUIMAP {
 
 	 //added by sonal
 	 public static By BusinessValue_checkbox = By.xpath("//span[text()='BusinessValue']//preceding::input[1]");
-	 public static By BusinessValue_label = By.xpath("//span[@class='pce-select-chips']/child::,'BusinessValue')][1]");
+	 public static By BusinessValue_label = By.xpath("//span[@class='pce-select-chips']/child::span[contains(text(),'BusinessValue')]");
 	 public static By StoryPointEstimated_checkbox = By.xpath("	//span[text()='StoryPointEstimated']//preceding::input[1]");
 	 public static By StoryPointEstimated_label = By.xpath("//span[@class='pce-select-chips']/child::span[contains(text(),'StoryPointEstimated')][1]");
 	 public static By RiskReduction_checkbox = By.xpath("//span[text()='RiskReduction']//preceding::input[1]");	
 	 public static By RiskReduction_label = By.xpath("//span[@class='pce-select-chips']/child::span[contains(text(),'RiskReduction')][1]");
-	 public static By SelectFieldForEntity_dropdown = By.xpath("//span[text()='Select Field for UserStory Entity']//following::input[1]");
+	 public static By Level1AssociationToTask_drpdown = By.xpath("//span[text()='Level 1 Associated Entity']//following::select[1]");
+	 
+	 public static By SelectFieldForEntity_dropdown = By.xpath("//span[contains(text(),'Select Field for')]//following::input[1]");
 	 public static By SelectFieldForEntity_txt = By.xpath("//span[text()='Select Field for UserStory Entity']");
 
 	//OPERATORS

@@ -56,6 +56,73 @@ public class SecurityTestSteps {
 		SecurityTests.AddDC();
 	 
 	}
-	
+	@Given("^i enter all the mandatory details for \"([^\"]*)\"$")
+    public void i_enter_all_the_mandatory_details_for(String TileName) throws Throwable {
+        switch(TileName) {
+        
+        case "my Queries page":
+        SecurityTests.CreateQuery();
+        break;
+
+        case "Organization (Delivery) Structure Page":
+            SecurityTests.ActivateDeliveryStructureType();
+            break;
+        case "Team Configuration":
+            SecurityTests.CreateTeam();
+            break;
+        case "Account Management":
+          SecurityTests.ActivateAccount();
+          break;    
+        case "Product Instance Entity Rule Config":
+        	SecurityTests.InactivateRules();
+        	break;
+        case "Data Upload":
+            SecurityTests.SelectEntityType();
+            SecurityTests.UploadFile();
+            break;
+        case "Organization (Delivery) Structure Config":
+            SecurityTests.ActivateDC();
+            break;         
+        case "Client Configuration":
+        SecurityTests.ChangeDescriptionOfExistingClient();
+        break;
+        case "Product Configuration":
+        	SecurityTests.AddProductConfig();
+        	break;
+
+            
+        }
+
+    }
+
+
+    @Given("^i delete the data for \"([^\"]*)\"$")
+    public void i_delete_data_for_a_given_tile(String TileName) throws Throwable {
+       switch(TileName) {
+       case  "my Queries page":
+       SecurityTests.DeleteQuery();
+       break;
+       case "Organization (Delivery) Structure Page":
+            SecurityTests.InActivateDeliveryStructureType();
+       break;
+      case "Team":
+     SecurityTests.DeleteTeam();
+     break;
+    case "Account Management":
+    	SecurityTests.InactivateAccount();
+    	break;
+    case "Product Instance Entity Rule Config":
+        SecurityTests.ActivateRules();
+        break;   
+    case "Organization (Delivery) Structure Config":
+        SecurityTests.InActivateDC();
+        break;  
+    case "Product Configuration":
+    	SecurityTests.DeleteProductConfig();
+    	break;
+           }
+
+    }
+    
 
 }

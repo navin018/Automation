@@ -66,23 +66,27 @@ import java.util.Random;
 				singleClick(PreComputationEngineUIMAP.AddProcess_link);// Selects the add process icon
 				ExpWaitForCondition(PreComputationEngineUIMAP.Name_txtbox);
 				int RandomNumber = RandomNumberGenerator();
-				enterText(PreComputationEngineUIMAP.Name_txtbox,"Test_" + RandomNumber);
-				String entityName = "TestProcess_WSJF_"+subEntity+"#"+RandomNumber;
-				System.out.println(entityName);
+				String TestProcessName = "TestProcess_WSJF_"+subEntity+RandomNumber;
+				enterText(PreComputationEngineUIMAP.Name_txtbox,TestProcessName);
+//				String entityName = "TestProcess_WSJF_"+subEntity+"#"+RandomNumber;
+				System.out.println(TestProcessName);
 				//save entity name in baseclass
 //					if(subEntity.contains("Story"))
 //					{
-						Baseclass.getInstance().TestProcessName=entityName;    
+						Baseclass.getInstance().TestProcessName=TestProcessName;    
 //					}
 					
-				enterText(PreComputationEngineUIMAP.Description_txtbox,entityName);
+				enterText(PreComputationEngineUIMAP.Description_txtbox,TestProcessName);
 				Thread.sleep(2000);
 				selectDropdownByText(PreComputationEngineUIMAP.ProcessType_drpdown,alertOrCompute); // TYPE
 				Thread.sleep(2000);
 				selectByPartOfVisibleText(PreComputationEngineUIMAP.TriggerBasedOn_drpdown,"Data change");	// TRIGGER_BASED_ON
 //				selectDropdownByValue(PreComputationEngineUIMAP.TriggerBasedOn_drpdown,"00907020-0020-0000-0000-000000000000");  
 				Thread.sleep(2000);
-				selectByPartOfVisibleText(PreComputationEngineUIMAP.Entitytype_drpdown,entity);// ENTITY_TYPE
+//				selectByPartOfVisibleText(PreComputationEngineUIMAP.Entitytype_drpdown,entity);// ENTITY_TYPE
+				singleClick(PreComputationEngineUIMAP.Entitytype_drpdown);
+				enterText(PreComputationEngineUIMAP.Entitytype_drpdown1, entity);
+				sendEntr();
 //				selectDropdownByValue(PreComputationEngineUIMAP.Entitytype_drpdown,"00020040-0200-0000-0000-000000000000");  
 				Thread.sleep(2000);
 				if(subEntity.contains("Story"))
@@ -94,10 +98,10 @@ import java.util.Random;
 				selectDropdownByText(PreComputationEngineUIMAP.Entityevent_drpdown,"Merged");  //ENTITY_EVENT
 				Thread.sleep(2000);
 				singleClick(PreComputationEngineUIMAP.Application_dropdown);
-				enterText(PreComputationEngineUIMAP.Search,"Story Readiness Assistant1");  //APPLICATION_DROPDOWN
+				enterText(PreComputationEngineUIMAP.Search,"Story Readiness Assistant");  //APPLICATION_DROPDOWN
 				singleClick(PreComputationEngineUIMAP.Story_Readiness_txt);
 				Thread.sleep(2000);
-				clickJS(PreComputationEngineUIMAP.empty_area);
+				clickJS(PreComputationEngineUIMAP.empty_space);
 				singleClick(PreComputationEngineUIMAP.Save_btn);  //save
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				
@@ -120,21 +124,22 @@ import java.util.Random;
 //					{
 						testprocessname = Baseclass.getInstance().TestProcessName;    
 //					}
-					clickJS(PreComputationEngineUIMAP.viewmore_text);
-					clickJS(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_MoreOptions_Drpdown, testprocessname, "testprocessname"));
-					ExpWaitForCondition(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_Edit_Link,testprocessname, "testprocessname"));
-					clickJS(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_Edit_Link,testprocessname, "testprocessname"));
-					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		
-					//drag and drop node
-				
-					WebElement source = find(PreComputationEngineUIMAP.compute_node);
-		            WebElement destination = find(PreComputationEngineUIMAP.empty_area);
-		            DragAndDropUsingJS(source, destination);
-		            
-		            //enter node details
-		            enterText(PreComputationEngineUIMAP.definition_txtbox,"TestNode");
-					enterText(PreComputationEngineUIMAP.Result_storedin_txtbox,testprocessname);
+//					clickJS(PreComputationEngineUIMAP.viewmore_text);
+//					clickJS(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_MoreOptions_Drpdown, testprocessname, "testprocessname"));
+//					ExpWaitForCondition(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_Edit_Link,testprocessname, "testprocessname"));
+//					clickJS(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.TestProcess_Edit_Link,testprocessname, "testprocessname"));
+//					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//		
+//					//drag and drop node
+//				
+//					WebElement source = find(PreComputationEngineUIMAP.compute_node);
+//		            WebElement destination = find(PreComputationEngineUIMAP.empty_area);
+//		            DragAndDropUsingJS(source, destination);
+//		            
+//		            //enter node details
+//		            enterText(PreComputationEngineUIMAP.definition_txtbox,"TestNode");
+//					enterText(PreComputationEngineUIMAP.Result_storedin_txtbox,testprocessname);
+					System.out.println(getAttribute(PreComputationEngineUIMAP.Result_storedin_txtbox,"value"));
 		     		singleClick(PreComputationEngineUIMAP.configurecalculation_link);
 		//			singleClick(PreComUIMAP.Editcalculation_btn);
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -203,7 +208,12 @@ import java.util.Random;
 							clickJS(PreComputationEngineUIMAP.RiskReduction_checkbox);
 							clickJS(PreComputationEngineUIMAP.RiskReduction_label);
 							break;
-						
+						case("BusinessValue_Task"):
+							selectDropdownByText(PreComputationEngineUIMAP.Level1AssociationToTask_drpdown, "WorkItem-Task");
+							ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+							clickJS(PreComputationEngineUIMAP.SelectFieldForEntity_dropdown);
+							clickJS(PreComputationEngineUIMAP.BusinessValue_checkbox);
+							clickJS(PreComputationEngineUIMAP.BusinessValue_label);
 						}
 					clickJS(PreComputationEngineUIMAP.SaveFormula_btn);
 					ExpWaitForCondition(PreComputationEngineUIMAP.SaveSuccess_Msg);

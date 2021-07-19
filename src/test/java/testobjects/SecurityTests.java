@@ -1,5 +1,7 @@
 package testobjects;
 
+import static org.testng.Assert.assertTrue;
+import static utilities.reporting.LogUtil.logger;
 import static utilities.reporting.Reporting.create_logs_and_report;
 import static utilities.selenium.SeleniumDSL.*;
 
@@ -36,6 +38,8 @@ import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 
 import uiMap.MyWizardUIMap;
 import uiMap.SecurityTestsUIMap;
+import uiMap.TeamConfigUIMap;
+import uiMap.myQueriesUIMap;
 import utilities.general.Property;
 import utilities.selenium.DriverFactory;
 public class SecurityTests extends Baseclass{
@@ -668,6 +672,416 @@ public class SecurityTests extends Baseclass{
 		enterText(SecurityTestsUIMap.enterDCName_txtbox, "TestDCForSecurityTest");
 	}
 
+
+    public static void CreateQuery() {
+        try {
+            ExpWaitForCondition(SecurityTestsUIMap.NewQueryEditor_statictxt);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            selectDropdownByValue(myQueriesUIMap.Entity_dropdown,"00020040-0200-0000-0000-000000000000"); //Select the entity from entitytype dropdown
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            selectDropdownByValue(myQueriesUIMap.workItemType_dropdown,"00020040-0200-0010-0040-000000000000"); //Select the workitem from workitem dropdown
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            clickJS(myQueriesUIMap.Field_txtBox);
+            selectDropdownByValue(myQueriesUIMap.Field_dropdown,"Title"); //Select the Title attribute
+           
+            clickJS(myQueriesUIMap.Operator_txtBox);
+            selectDropdownByText(myQueriesUIMap.Operator_dropdown,"Contains"); // Select the operator
+           
+            enterText(myQueriesUIMap.value_txtbox1,"Automation");
+            clickJS(myQueriesUIMap.RunQuery_button);
+            //ExpWaitForCondition(myQueriesUIMap.recordsRetrieved_staticTxt); //Verify the toaster message
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            clickJS(myQueriesUIMap.SaveQuery_txt); //Save the query
+           
+            int RandomNumber = RandomNumberGenerator();
+            enterText(myQueriesUIMap.QueryName_txtbox,"Sample_" + RandomNumber);
+            Baseclass.getInstance().QueryName= "Sample_" + RandomNumber;
+            System.out.println(Baseclass.getInstance().QueryName);
+            clickJS(myQueriesUIMap.saveQuery_button);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            clickJS(myQueriesUIMap.navigateToQueries_txt);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            logger.info("Creation of query failed");
+            Assert.fail("Creation of query failed");
+        }   
+       
+    }
+    
+
+    public static void DeleteQuery() {
+    	try {
+           
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            String queryname ="";
+            queryname = Baseclass.getInstance().QueryName;       
+            singleClick(prepareWebElementWithDynamicXpath(SecurityTestsUIMap.Delete_icon, queryname,"queryname"));
+            singleClick(myQueriesUIMap.DeleteQueryYes_button);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+           
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            logger.info("Deletion of query failed");
+            Assert.fail("Deletion of query failed");
+        }   
+    }
+    
+    public static void InActivateDeliveryStructureType() {
+        try {
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            enterText(SecurityTestsUIMap.Search_text,"Automation_DoNotEdit"); 
+            doubleClick(SecurityTestsUIMap.title_text);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+             if(CheckIfElementExists(SecurityTestsUIMap.Inactive_btn))
+             {
+                 clickJS(SecurityTestsUIMap.Inactive_btn);
+             }
+             
+            singleClick(SecurityTestsUIMap.Save_btn);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            singleClick(SecurityTestsUIMap.Back_option);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+                    
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+             Assert.fail("Issue deactivating the Delivery structure type");
+        }    
+    
+        
+    }
+    
+    public static void ActivateDeliveryStructureType() {
+        try {
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            enterText(SecurityTestsUIMap.Search_text,"Automation_DoNotEdit"); 
+            doubleClick(SecurityTestsUIMap.title_text);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+             if(CheckIfElementExists(SecurityTestsUIMap.Active_btn))
+             {
+                 clickJS(SecurityTestsUIMap.Active_btn);
+             }
+             
+            singleClick(SecurityTestsUIMap.Save_btn);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//            ExpWaitForCondition(SecurityTestsUIMap.querySaved_txt);
+            singleClick(SecurityTestsUIMap.Back_option);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            }
+
+        catch(Exception e)
+        {
+            e.printStackTrace();
+             Assert.fail("Issue activating the Delivery structure type");
+        }    
+   
+    
+    }
+    
+    public static void CreateTeam() {
+        try {
+            ExpWaitForCondition(SecurityTestsUIMap.AddTeam_statictxt);
+            clickJS(SecurityTestsUIMap.AddTeam_statictxt);    
+            Baseclass.getInstance().teamName = "Team_" + RandomNumberGenerator();
+            System.out.println(Baseclass.getInstance().teamName);
+            ExpWaitForCondition(TeamConfigUIMap.teamName_txtBox);
+            enterText(TeamConfigUIMap.teamName_txtBox,Baseclass.getInstance().teamName);     
+            System.out.println(Baseclass.getInstance().teamName);
+            click(SecurityTestsUIMap.TeamSave_button);
+            System.out.println("Team Saved");
+
+    }
+        catch(Exception e){
+            e.printStackTrace();
+            Assert.fail("Issue in Creating Team");
+            
+        }
+    
+
+}
+public static void DeleteTeam() {
+    try {
+        ExpWaitForCondition(SecurityTestsUIMap.Team_Searchbox);
+        enterText(SecurityTestsUIMap.Team_Searchbox, Baseclass.getInstance().teamName);            
+        singleClick(SecurityTestsUIMap.delete_button);        
+        ExpWaitForCondition(SecurityTestsUIMap.confirmDelete_button);
+        singleClick(SecurityTestsUIMap.confirmDelete_button);        
+        System.out.println("Team deletion successful");
+
+}
+    catch(Exception e){
+        e.printStackTrace();
+        Assert.fail("Issue in Deleting Team");
+        
+    }
+}
+
+
+
+
+public static void ActivateAccount() {
+
+    try {
+
+        ExpWaitForCondition(SecurityTestsUIMap.SearchAccount_txtbox);
+        enterText(SecurityTestsUIMap.SearchAccount_txtbox,"AutomationAccount_DoNotEdit");
+//        ExpWaitForCondition(SecurityTestsUIMap.SearchAccount_txtbox);
+        doubleClick(SecurityTestsUIMap.Select_account);
+        click(SecurityTestsUIMap.Activate_btn);
+        click(SecurityTestsUIMap.Save_btn);
+        
+    }
+    catch(Exception e) {
+        e.printStackTrace();
+        Assert.fail("Issue In Activating Account");
+    }
+    
+}
+
+
+
+public static void InactivateAccount() {
+	try {
+		ExpWaitForCondition(SecurityTestsUIMap.SearchAccount_txtbox);		
+		enterText(SecurityTestsUIMap.SearchAccount_txtbox,"AutomationAccount_DoNotEdit");
+		doubleClick(SecurityTestsUIMap.Select_account);
+		click(SecurityTestsUIMap.InActivate_btn);
+		click(SecurityTestsUIMap.Save_btn);
+		
+	}
+	catch (Exception e) {
+		e.printStackTrace();
+		Assert.fail("Issue Inactivating Account");
+	}
 	
+}
+
+public static void InactivateRules() {
+		try {
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		enterText(SecurityTestsUIMap.Search_text,"Epic");
+		doubleClick(SecurityTestsUIMap.Epic_StaticTxt);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		if(CheckIfElementExists(SecurityTestsUIMap.Activerule_btn))
+		{
+		clickJS(SecurityTestsUIMap.Inactiverule_btn);
+		}
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		singleClick(SecurityTestsUIMap.Saverule_btn);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		}
+		catch (Exception e) {
+		e.printStackTrace();
+		logger.info("Issue Inactivating Rules");
+		Assert.fail("Issue Inactivating Rules");
+		
+		}
+}
+
+public static void ActivateRules() {
+		try {
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		enterText(SecurityTestsUIMap.Search_text,"Epic");
+		doubleClick(SecurityTestsUIMap.Epic_StaticTxt);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		if(CheckIfElementExists(SecurityTestsUIMap.Activerule_btn))
+		{
+		clickJS(SecurityTestsUIMap.Activerule_btn);
+		}
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		clickJS(SecurityTestsUIMap.Saverule_btn);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		
+		 }
+		catch (Exception e) {
+		e.printStackTrace();
+		Assert.fail("Issue Activating Rules");
+		}
+}
+
+
+​​​public static void SelectEntityType() {
+    try{
+        ExpWaitForCondition(SecurityTestsUIMap.SelectEntity_Drpdown);
+        ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img);
+
+ 
+
+        selectDropdownByText(SecurityTestsUIMap.SelectEntity_Drpdown,"AD Entities");
+        }
+        catch(Exception e)
+        {
+            Assert.fail("Could not select dataupload type from the dropdown");
+            e.printStackTrace();
+        }
+
+ 
+
+
+}
+
+ 
+
+public static void UploadFile() {
+    try{
+          String ExcelFileLoc = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
+         ExcelFileLoc = ExcelFileLoc+"AD.xlsx";
+            ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img1);
+            singleClick(SecurityTestsUIMap.Browse_btn);
+            Thread.sleep(5000);
+            
+            String AutoITFileloc = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"AutoIT" + File.separator ;
+            String autoITExecutable = AutoITFileloc+"UploadFile_DataLoader.exe " +ExcelFileLoc;
+            Process process = Runtime.getRuntime().exec(autoITExecutable);
+            process.waitFor();
+            Thread.sleep(6000);
+            highlight(SecurityTestsUIMap.Upload_checkbox);
+            clickJS(SecurityTestsUIMap.Upload_checkbox);
+            click(SecurityTestsUIMap.UploadAll_link);
+            Thread.sleep(3000);
+            ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img1);
+            assertTrue(isEnabled(SecurityTestsUIMap.UploadComplete_statictxt));
+            
+    }
+    catch(Exception e)
+    {
+    	e.printStackTrace();
+        Assert.fail("Issue with file upload");
+        
+    }
+}
+
+public static void ActivateDC() {
+    try {
+        enterText(SecurityTestsUIMap.DC_Searchbox,"Automationdata_donotedit");
+        ExpWaitForCondition(SecurityTestsUIMap.Dc_data);
+        doubleClick(SecurityTestsUIMap.Dc_data);
+        ExpWaitForCondition(SecurityTestsUIMap.DcActivate_button);
+        clickJS(SecurityTestsUIMap.DcActivate_button);
+        ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img1);
+        clickJS(SecurityTestsUIMap.DcSave_button);
+       
+        clickJS(SecurityTestsUIMap.BacktoManage_text);
+        if(CheckIfElementExists(SecurityTestsUIMap.Popup_Yes)){
+//            ExpWaitForElementToDisappear(SecurityTestsUIMap.Popup_Yes);
+            clickJS(SecurityTestsUIMap.Popup_Yes);
+//            clickJS(SecurityTestsUIMap.BacktoManage_text);
+            ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img1);
+   
+}
+    }
+       
+    catch(Exception e) {
+        e.printStackTrace();
+        Assert.fail("Issue In activating Account");
+    }
+   
+    }
+public static void InActivateDC() {
+    try {
+//        clear(SecurityTestsUIMap.DC_Searchbox);
+//        enterText(SecurityTestsUIMap.DC_Searchbox,"Automationdata_donotedit");
+        ExpWaitForCondition(SecurityTestsUIMap.Dc_data);
+        doubleClick(SecurityTestsUIMap.Dc_data);
+        ExpWaitForCondition(SecurityTestsUIMap.DcInactivate_button);
+        clickJS(SecurityTestsUIMap.DcInactivate_button);
+        ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img1);
+        singleClick(SecurityTestsUIMap.DcSave_button);       
+       
+        clickJS(SecurityTestsUIMap.BacktoManage_text);
+        if(CheckIfElementExists(SecurityTestsUIMap.Popup_Yes)){
+//            ExpWaitForElementToDisappear(SecurityTestsUIMap.Popup_Yes);
+            clickJS(SecurityTestsUIMap.Popup_Yes);
+//            clickJS(SecurityTestsUIMap.BacktoManage_text);
+            ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img1);
+        }
+       
+       
+       
+        ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img1);
+       
+   
+}
+    catch(Exception e) {
+        e.printStackTrace();
+        Assert.fail("Issue In Inactivating Account");
+    }
+   
+    }
+
+public static void ChangeDescriptionOfExistingClient() {
+			try {
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			enterText(SecurityTestsUIMap.Search_Textbox1,"Unknown@");
+			doubleClick(SecurityTestsUIMap.title_statictxt);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			clear(SecurityTestsUIMap.Descprition_txtarea);
+			enterText(SecurityTestsUIMap.Descprition_txtarea,"Unknown");
+			singleClick(SecurityTestsUIMap.Savedescription_btn);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			}
+		catch (Exception e) {
+		e.printStackTrace();
+		logger.info("Issue Changing the Description ");
+		Assert.fail("Issue Changing the Description ");
+}
+}
+
+
+public static void AddProductConfig() {
+		try {
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		enterText(SecurityTestsUIMap.Productname_txtbox,"ProdConfigData_Automation_DonotEdit");
+		selectDropdownByText(SecurityTestsUIMap.Vendor_drpdwn,"Accenture");
+		enterText(SecurityTestsUIMap.Productcode_txtbox,"87654321");
+		enterText(SecurityTestsUIMap.Shortdescription_txtbox,"Automation");
+		enterText(SecurityTestsUIMap.description_txtbox,"Automation_Sample");
+		selectDropdownByText(SecurityTestsUIMap.productCategory_drpdwn,"Tools");
+		selectDropdownByText(SecurityTestsUIMap.productSubcategory_drpdwn,"Devops");
+		selectDropdownByText(SecurityTestsUIMap.productSubmissioncategor_drpdwn,"ProductOnboarding");
+		selectDropdownByText(SecurityTestsUIMap.productType_drpdwn,"myWizard Applications");
+		selectDropdownByText(SecurityTestsUIMap.status_drpdwn,"General Availability (GA)");
+		singleClick(SecurityTestsUIMap.saveproduct_btn);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		}
+		catch (Exception e) {
+		e.printStackTrace();
+		logger.info("Issue Adding the Product in Prod Config page");
+		Assert.fail("Issue Adding the Productin Prod Config page");
+}
+}
+public static void DeleteProductConfig() {​​​
+​​​
+	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+	enterText(SecurityTestsUIMap.searchproductconfig_txt1,"ProdConfigData_Automation_DonotEdit");
+		if(CheckIfElementExists(SecurityTestsUIMap.ProductConfigName_txt))
+		{​​​
+		singleClick(SecurityTestsUIMap.deleteproduct_btn);
+		}​​​
+	else if(CheckIfElementExists(SecurityTestsUIMap.application_btn))
+		{​​​
+		singleClick(SecurityTestsUIMap.application_btn);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		singleClick(SecurityTestsUIMap.deleteproduct_btn);
+		}​​​
+		singleClick(SecurityTestsUIMap.deletionconfirmation_btn);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		singleClick(SecurityTestsUIMap.backtodashboard_btn);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+	}​​​
+	catch (Exception e) {​​​
+	e.printStackTrace();
+	logger.info("Issue Deleting the Product in product Config page ");
+	Assert.fail("Issue Deleting the Product in product Config page ");
+	}​​​
+
+}
+
 
 }

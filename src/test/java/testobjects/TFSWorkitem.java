@@ -10,6 +10,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -842,12 +844,74 @@ import utilities.general.Property;
 					{
 						EnterDataInTheField(wi.Risk,TFSUIMap.Risk_txtbox);
 					}
-			
+					
+					//Release and sprint
+					try{
+					switch(wi.Release){
+					case("NA"):
+						//do nothing
+						break;
+					case("None"):
+						clickJS(TFSUIMap.Iteration_label);
+						Thread.sleep(4000);
+						enterText(TFSUIMap.IterationName1_txtbox,Property.getProperty("TFSProject"));
+//						clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.IterationValue_drpdown, Property.getProperty("TFSProject"), "projectname"));
+						break;
+					case("PickFromBaseclass"):
+						clickJS(TFSUIMap.Iteration_label);
+						Thread.sleep(2000);
+						String ReleasePlusSprintName = Property.getProperty("TFSProject")+"\\"+Baseclass.getInstance().TFS_ReleaseName+"\\"+Baseclass.getInstance().TFS_SprintName;
+						enterText(TFSUIMap.IterationName1_txtbox,ReleasePlusSprintName);
+						sendEntr();
+						break;
+					default:
+						clickJS(TFSUIMap.Iteration_label);
+						String IterationDetails = Property.getProperty("TFS Scrum_Client-Native")+"\\"+wi.Release+"\\"+wi.Sprint;
+						enterText(TFSUIMap.IterationName1_txtbox, IterationDetails);
+						sendEntr();
+						break;
+					}
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
+						logger.info("issue tagging release/sprint for the workitem");
+					}
+//					if(!(wi.Release.equalsIgnoreCase("NA") && wi.Sprint.equalsIgnoreCase("NA")))
+//					{
+//						if(!wi.Release.equalsIgnoreCase("None") && !wi.Sprint.equalsIgnoreCase("None")){
+//						clickJS(TFSUIMap.Iteration_label);
+//						String IterationDetails = Property.getProperty("TFS Scrum_Client-Native")+"/"+wi.Release+"/"+wi.Sprint;
+//						enterText(TFSUIMap.Iteration_label, IterationDetails);
+//						sendEntr();
+//						}
+//					}
+//					if((wi.Release.equalsIgnoreCase("None") && wi.Sprint.equalsIgnoreCase("None")))
+//					{
+//						clickJS(TFSUIMap.Iteration_label);
+//						Thread.sleep(2000);
+//						clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.IterationValue_drpdown, Property.getProperty("TFSProject"), "projectname"));
+////						clickJS(TFSUIMap.Iteration_label);
+////						String IterationDetails = Property.getProperty("TFSProject");
+////						EnterTextUsingJS(By.xpath("//label[text()='Ite']//following::div[2]"), IterationDetails);
+//						System.out.println("hi");
+////						sendEntr();
+//					}
+					
 				
 						
 			//save and capture workitem ID details
 			singleClick(TFSUIMap.save_btn);
 			Thread.sleep(5000);
+			
+					if(!wi.State.equalsIgnoreCase("New"))
+					{
+						clickJS(TFSUIMap.State_drpdown1);
+						clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.StateValues_drpdown, wi.State, "state"));
+						Thread.sleep(2000);
+						singleClick(TFSUIMap.save_btn);
+						Thread.sleep(5000);
+					}	
 			}
 			catch(Exception e)
 			{
@@ -931,63 +995,20 @@ import utilities.general.Property;
 			}
 		}
 
-		public static void CreateWorkitemforWSJFfunctionality(String workitem) {
-			try{
-			 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
-			 String workitemURL;
-			 //navigate to the create WI url
-			 if(workitem.contains("TestCase")) 
-				 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Test Case";
-					else if(workitem.contains("Story"))
-				 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"User Story";
-					else if(workitem.contains("ProductBacklog"))
-						 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Product Backlog Item";
-					else
-					workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+workitem.split("_")[0];
-			 
-			 driver().get(workitemURL);
-				Thread.sleep(5000);
-				
-				//enter title
-				//putting this piece of code as workitem url wasnt loading
-				if(CheckIfElementExists(TFSUIMap.title_txtbox))
-				{
-					Thread.sleep(5000);
-					ExpWaitForCondition(TFSUIMap.title_txtbox);
-					enterText(TFSUIMap.title_txtbox,wi.Summary);
-					Thread.sleep(2000);
-				}
-				
-				if(workitem.contains("ProductBacklog")){
-					doubleClick(TFSUIMap.Priority_drpdown);
-					clear(TFSUIMap.Priority_drpdown);
-					enterText(TFSUIMap.Priority_drpdown,wi.Priority);
-					enterText(TFSUIMap.BusinessValue_txtbox, wi.BusinessValue);
-					enterText(TFSUIMap.RiskReduction_txtbox, wi.RiskReduction);
-					enterText(TFSUIMap.StoryPoints_txtbox, wi.StoryPoints);
-				}
-				
-				//save WI and capture details
-				singleClick(TFSUIMap.save_btn);
-				Thread.sleep(5000);
-				CaptureWorkitemID(workitem);
-				
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-				logger.info("issue creating "+workitem+" in TFS");
-			}
-		}
 		
 		public static String GoToWorkitemURL(String workitem){
 			try{
 			 String workitemURL;
 						if(workitem.contains("TestCase")) 
 							 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Test Case";
-								else if(workitem.contains("Story"))
+								else if(workitem.split("_")[0].contains("Story")){
 							 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"User Story";
-								else if(workitem.contains("ProductBacklog"))
+							 driver().get(workitemURL);
+							 Thread.sleep(5000);
+							 if(CheckIfElementExists(TFSUIMap.ServerError_txt))
+								 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Product Backlog Item";
+								}
+								else if(workitem.split("_")[0].contains("ProductBacklog"))
 									 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Product Backlog Item";
 								else
 								workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+workitem.split("_")[0];
@@ -1016,6 +1037,9 @@ import utilities.general.Property;
 				logger.info("issue creating "+workitem+" in TFS");
 			}
 		}
+		
+		
+		
 
 		public static void CaptureWorkitemIDForPreComputationEngine(String workitem) {
 			try {
@@ -1099,6 +1123,12 @@ import utilities.general.Property;
 								break;
 							case("Risk_wsjf_Decimal_Output"):
 								Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
+								break;
+							case("Risk_RAG_ToBeAssociatedToStory_Rule10"):
+								Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+								break;
+							case("Risk_RAG_ToBeAssociatedToStory_Rule11"):
+								Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11 = getText(TFSUIMap.captureWorkItemID2_statictxt);
 								break;
 							}
 							System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
@@ -1206,9 +1236,42 @@ import utilities.general.Property;
 						case("Story_wsjf_Decimal_Output"):
 							Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
 							break;
+						case("Story_wsjf_Negative_Int_UpdateWorkitem"):
+							Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						case("Story_wsjf_Multiply_0_UpdateFormula"):
+							Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Multiply_0_UpdateFormula= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;	
+						case("Story_RAG_StatusDone_Rule1"):
+							Baseclass.getInstance().WorkItemExternalId_Story_RAG_StatusDone_Rule1= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						case("Story_RAG_StatusInactivate_Rule2"):
+							Baseclass.getInstance().WorkItemExternalId_Story_RAG_StatusInactivate_Rule2= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						case("Story_RAG_NoAssociation_Rule3"):
+							Baseclass.getInstance().WorkItemExternalId_Story_RAG_NoAssociation_Rule3= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						case("Story_RAG_IterationTiming_Rule4"):
+							Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule4= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						case("Story_RAG_IterationTiming_Rule5"):
+							Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule5= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						case("Story_RAG_AssociatedIterationTiming_Rule7"):
+							Baseclass.getInstance().WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						case("Story_RAG_AssociatedToStory_Rule7"):
+							Baseclass.getInstance().WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						case("Story_RAG_PastIteration_Rule10"):
+							Baseclass.getInstance().WorkItemExternalId_Story_RAG_PastIteration_Rule10= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						case("Story_RAG_IterationTiming_Rule11"):
+							Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule11= getText(TFSUIMap.captureWorkItemID2_statictxt);
+						break;
+						
 						}
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-						break;	
 				case "testcase":
 				
 						switch(workitem){
@@ -1262,42 +1325,7 @@ import utilities.general.Property;
 							}
 							System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 							break;	
-					
-				case "productbacklog":
-							switch(workitem){
-							case("PrdoductBacklog_wsjf_Multiply_0"):
-							case("Story_wsjf_Multiply_0"):
-							Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("PrdoductBacklog_wsjf_Deno_0"):
-							case("Story_wsjf_Deno_0"):
-								Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("PrdoductBacklog_wsjf_Nume_0"):
-							case("Story_wsjf_Nume_0"):
-								Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("PrdoductBacklog_wsjf_Negative_Int"):
-							case("Story_wsjf_Negative_Int"):
-								Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("PrdoductBacklog_wsjf_Decimal_Tool"):
-							case("Story_wsjf_Decimal_Tool"):
-								Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("PrdoductBacklog_wsjf_Zero_Tool"):
-							case("Story_wsjf_Zero_Tool"):
-								Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("PrdoductBacklog_wsjf_Decimal_Output"):
-							case("Story_wsjf_Decimal_Output"):
-								Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							}
-							case("Story_wsjf_Negative_Int_UpdateWorkitem"):
-								Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem= getText(TFSUIMap.captureWorkItemID2_statictxt);
-							System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-							break;	
+							
 				case "action":
 					
 						switch(workitem){
@@ -1480,6 +1508,21 @@ import utilities.general.Property;
 //			 enterText(TFSUIMap.SearchBoxHomePage_txtbox, WorkItemExternalId);
 			 ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, WorkItemExternalId, "workitemid"));
 			 clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, WorkItemExternalId, "workitemid"));
+			 ExpWaitForCondition(TFSUIMap.captureWorkItemID1_statictxt);
+		}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				Assert.fail("issue opening workitem in TFS");
+				}
+			}
+		public static void openWorkitemUsingWorkitemID(String workitemID) {
+			try{
+				ExpWaitForCondition(TFSUIMap.SearchBoxHomePage_txtbox);
+			 clearEnterText(TFSUIMap.SearchBoxHomePage_txtbox, workitemID);
+//			 enterText(TFSUIMap.SearchBoxHomePage_txtbox, WorkItemExternalId);
+			 ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, workitemID, "workitemid"));
+			 clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, workitemID, "workitemid"));
 			 ExpWaitForCondition(TFSUIMap.captureWorkItemID1_statictxt);
 		}
 			catch(Exception e)
@@ -1724,7 +1767,7 @@ import utilities.general.Property;
 
 		public static void UpdateWorkItemForPreComputation(String workitem, String functionality) {
 			try{
-			String workitemID = API.getWorkItemExternalIDForGivenFunctionality(workitem.split("_update")[0],"TFS",functionality);
+			String workitemID = API.getWorkItemExternalIDForGivenFunctionality(workitem.split("_Update")[0],"TFS",functionality);
 			ExpWaitForCondition(TFSUIMap.SearchBoxHomePage_txtbox);
 			clearEnterText(TFSUIMap.SearchBoxHomePage_txtbox, workitemID);
 			 ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, workitemID, "workitemid"));
@@ -1742,6 +1785,147 @@ import utilities.general.Property;
 				e.printStackTrace();
 			}
 		}
+
+		public static void LinkWorkitems(String workitem, String workitem1,String linkingtype, String functionality) {
+			try{
+			String workitemID = API.getWorkItemExternalIDForGivenFunctionality(workitem,"TFS",functionality);
+			String workitemID1 = API.getWorkItemExternalIDForGivenFunctionality(workitem1,"TFS",functionality);
+		
+			
+			if(CheckIfElementExists(TFSUIMap.Close_btn))
+				clickJS(TFSUIMap.Close_btn);
+			
+			openWorkitemUsingWorkitemID(workitemID);
+			clickJS(TFSUIMap.Links_link);
+			clickJS(TFSUIMap.AddLink_link);
+			clickJS(TFSUIMap.Existingitem_link);
+			clickJS(TFSUIMap.LinkType_drpdown);
+//			clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.linkingType_txt, linkingtype, "linkingtype"));
+			enterText(TFSUIMap.LinkType_drpdown,linkingtype);
+			sendEntr();
+			enterText(TFSUIMap.workitemlinking_txtbox,workitemID1);
+			ExpWaitForCondition(TFSUIMap.searchedWorkitem_drpdown);
+			if(CheckIfElementExists(TFSUIMap.searchedWorkitem_drpdown)){
+//				clickJS(TFSUIMap.SearchBoxHomePage_txtbox);
+				sendEntr();
+			}
+			else
+				logger.info(workitemID1+ " i.e. "+workitem1+" doesnt show up in search in TFS");
+			clickJS(TFSUIMap.Ok_btn);
+			ExpWaitForCondition(TFSUIMap.saveandclose_btn);
+			singleClick(TFSUIMap.saveandclose_btn);
+			Thread.sleep(5000);
+			}
+			
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+		public static void CreateIterationForSpecificDuration(String releaseorSprint, int startdatefromtoday, int enddatefromtoday) {
+		try{
+			
+			if(releaseorSprint.equalsIgnoreCase("Release")){
+				int randomnumb = RandomNumberGenerator();
+				String releasename = "Release_AutomationData_"+randomnumb;
+				String sprintname = "Sprint_AutomationData_"+randomnumb;
+				Baseclass.getInstance().TFS_ReleaseName= releasename;
+				Baseclass.getInstance().TFS_SprintName= sprintname;
+				click(TFSUIMap.settingsIcon_Img);
+				Thread.sleep(4000);
+				if(!CheckIfElementExists(TFSUIMap.ProjectConfiguration_link))
+				{	
+				click(TFSUIMap.settingsIcon_Img);
+				Thread.sleep(10000);
+				}
+				ExpWaitForCondition(TFSUIMap.ProjectConfiguration_link);
+				click(TFSUIMap.ProjectConfiguration_link);
+				Thread.sleep(4000);
+				ExpWaitForCondition(TFSUIMap.NewChild_link);
+				click(TFSUIMap.NewChild_link);
+					Random rnd = new Random();
+					int randomNumbForRelease = 1000 + rnd.nextInt(9000);	
+				//enter release data
+			
+				clear(TFSUIMap.IterationName_txtbox);
+				
+				enterText(TFSUIMap.IterationName_txtbox,releasename);
+				enterText(TFSUIMap.StartDate_txtbox,getCalculatedDate(startdatefromtoday));
+				enterText(TFSUIMap.EndDate_txtbox,getCalculatedDate(enddatefromtoday));
+				click(TFSUIMap.saveAndClose_btn);
+			}
+			else if(releaseorSprint.equalsIgnoreCase("Sprint"))
+					{
+				Thread.sleep(3000);
+				move(prepareWebElementWithDynamicXpath(TFSUIMap.ReleaseRow_statictxt,Baseclass.getInstance().TFS_ReleaseName,"releasename"));
+				click(prepareWebElementWithDynamicXpath(TFSUIMap.newSprint_statictxt,Baseclass.getInstance().TFS_ReleaseName,"releasename"));
+				click(TFSUIMap.NewChild_link);
+				clear(TFSUIMap.IterationName_txtbox);
+				
+				enterText(TFSUIMap.IterationName_txtbox,Baseclass.getInstance().TFS_SprintName);
+				enterText(TFSUIMap.StartDate_txtbox,getCalculatedDate(startdatefromtoday));
+				enterText(TFSUIMap.EndDate_txtbox,getCalculatedDate(enddatefromtoday));
+				click(TFSUIMap.saveAndClose_btn);
+					}
+//				Baseclass.getInstance().TFS_ReleaseName=releasename;
+//				Baseclass.getInstance().TFS_SprintName=sprintname;
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+			
+		}
+
+		public static String getCalculatedDate(int duration) {
+			 SimpleDateFormat sdf = new SimpleDateFormat("M/dd/yyyy");
+			    Calendar c = Calendar.getInstance();
+			    c.setTime(new Date()); // Using today's date
+			    c.add(Calendar.DATE, duration); // Adding 5 days
+			    String output = sdf.format(c.getTime());
+//			    System.out.println(output);
+			    return output;
+		}
+
+//		public static void AssociateWorkitems(String workitem1, String workitem2, String relationship) {
+//			try{
+//				String workitemID = Baseclass.getInstance().workitem1;
+//				String workitemID1 = API.getWorkItemExternalIDForGivenFunctionality(workitem1,"TFS",functionality);
+//			
+//				
+//				if(CheckIfElementExists(TFSUIMap.Close_btn))
+//					clickJS(TFSUIMap.Close_btn);
+//				
+//				openWorkitemUsingWorkitemID(workitemID);
+//				clickJS(TFSUIMap.Links_link);
+//				clickJS(TFSUIMap.AddLink_link);
+//				clickJS(TFSUIMap.Existingitem_link);
+//				clickJS(TFSUIMap.LinkType_drpdown);
+////				clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.linkingType_txt, linkingtype, "linkingtype"));
+//				enterText(TFSUIMap.LinkType_drpdown,linkingtype);
+//				sendEntr();
+//				enterText(TFSUIMap.workitemlinking_txtbox,workitemID1);
+//				Thread.sleep(5000);
+//				if(CheckIfElementExists(TFSUIMap.searchedWorkitem_drpdown)){
+////					clickJS(TFSUIMap.SearchBoxHomePage_txtbox);
+//					sendEntr();
+//				}
+//				else
+//					logger.info(workitemID1+ " i.e. "+workitem1+" doesnt show up in search in TFS");
+//				clickJS(TFSUIMap.Ok_btn);
+//				singleClick(TFSUIMap.saveandclose_btn);
+//				Thread.sleep(5000);
+//				}
+//				
+//				catch(Exception e)
+//				{
+//					e.printStackTrace();
+//				}
+//			}
+			
+//		}
 
 	
 		

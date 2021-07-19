@@ -95,6 +95,10 @@ import java.util.Random;
 				 {
 					 validateWSJFFunctionality(Workitem,response,toolname);
 				 }
+				 if(functionality.equalsIgnoreCase("RAG"))
+				 {
+					 validateRAGFunctionality(Workitem,response,toolname);
+				 }
 				
 			}
 			catch(Exception e)
@@ -103,8 +107,44 @@ import java.util.Random;
 			}
 			}
 			
+		private static void validateRAGFunctionality(String workitem, Response response, String toolname) {
+			String ExpectedRAGValue = GetWSJF_RAG_Inference_ForWorkitem(toolname,workitem,"RAG");
+			String ExpectedInferenceValue = GetWSJF_RAG_Inference_ForWorkitem(toolname,workitem,"Inference");
+			List<ArrayList<String>> FieldNames = response.jsonPath().get("WorkItems.WorkItemExtensions.FieldName");
+			 for(ArrayList j:FieldNames)
+					 {
+						 if(j.contains("ragStatus"))
+						 {
+							 List<ArrayList<String>> FieldValues = response.jsonPath().get("WorkItems.WorkItemExtensions.FieldValue");
+							 for(ArrayList<String> ae : FieldValues)
+							{
+								System.out.println("ragStatus is "+ae.get(j.indexOf("ragStatus")));
+								String ragStatusfromAPI = ae.get(j.indexOf("ragStatus"));
+								Assert.assertEquals(ExpectedRAGValue, ragStatusfromAPI, "Mismatch in RAG value for workitem "+workitem+ " for tool "+toolname);
+							}
+						 }
+						 else
+							 Assert.fail("RAG tag missing in the response for workitem "+workitem+ " for tool "+toolname);
+						 if(j.contains("ragInference"))
+						 {
+							 List<ArrayList<String>> FieldValues = response.jsonPath().get("WorkItems.WorkItemExtensions.FieldValue");
+							 for(ArrayList<String> ae : FieldValues)
+							{
+								 System.out.println("ragInference is - "+ae.get(j.indexOf("ragInference")));
+									String InferenceStatusfromAPI = ae.get(j.indexOf("ragInference"));
+									Assert.assertEquals(InferenceStatusfromAPI, ExpectedInferenceValue,"Mismatch in ragInference value for workitem "+workitem+ " for tool "+toolname);
+							}
+						 }
+						 else
+							 Assert.fail("ragInference tag missing in the response for workitem "+workitem+ " for tool "+toolname);
+						 
+					}
+			}
+			
+		
+
 		public static void validateWSJFFunctionality(String workitem, Response response, String toolname) {
-			String ExpectedWSJFValue = GetWSJFForWorkitem(toolname,workitem);
+			String ExpectedWSJFValue = GetWSJF_RAG_Inference_ForWorkitem(toolname,workitem,"WSJF");
 			String testprocessname = GetTestProcessName(toolname,workitem);
 			List<ArrayList<String>> FieldNames = response.jsonPath().get("WorkItems.WorkItemExtensions.FieldName");
 			 for(ArrayList j:FieldNames)
@@ -116,7 +156,7 @@ import java.util.Random;
 							{
 								System.out.println(ae.get(j.indexOf(testprocessname)));
 								float wsjf_API = Float.parseFloat((ae.get(j.indexOf("testprocessname"))));
-//								Assert.assertEquals(ExpectedWSJFValue, wsjf_API, "Mismatch in wsjf value for workitem "+workitem+ " for tool "+toolname);
+								Assert.assertEquals(ExpectedWSJFValue, wsjf_API, "Mismatch in wsjf value for workitem "+workitem+ " for tool "+toolname);
 							}
 						 }
 						 else
@@ -142,7 +182,13 @@ import java.util.Random;
 		        JSONParser jsonParser = new JSONParser();
 		        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
 		        String testprocessname = (String) jsonObject.get("TestProcess_WSJF_"+workitem);
-		        return testprocessname;
+		        String testprocesstoreturn[] = testprocessname.split("_");
+				String testprocessnamewithoutSpecialChars = "";
+		        for(int i =0;i<testprocesstoreturn.length;i++)
+		        {
+		        	testprocessnamewithoutSpecialChars = testprocessnamewithoutSpecialChars.concat(testprocesstoreturn[i]);
+		        }
+		        return testprocessnamewithoutSpecialChars;
 			
 			}
 			catch(Exception e)
@@ -152,7 +198,7 @@ import java.util.Random;
 			return null;
 		}
 
-		public static String GetWSJFForWorkitem(String toolname, String workitem) {
+		public static String GetWSJF_RAG_Inference_ForWorkitem(String toolname, String workitem,String WSJF_RAG_Inference) {
 			try{
 				String testDataPath = System.getProperty("user.dir")+File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator;
 				
@@ -167,8 +213,13 @@ import java.util.Random;
 					testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator; 
 				}		
 					WorkItemDO wi = DataManager.getData(testDataPath_WorkItemExternalIDs, "WorkItem",WorkItemDO.class).item.get(workitem);
-					System.out.println(wi.WSJF);
+//					System.out.println(wi.WSJF);
+					if(WSJF_RAG_Inference.equalsIgnoreCase("WSJF"))
 					return wi.WSJF;
+					else if(WSJF_RAG_Inference.equalsIgnoreCase("RAG"))
+						return wi.RAG;
+					else if(WSJF_RAG_Inference.equalsIgnoreCase("Inference"))
+						return wi.Inference;
 			}
 			catch(Exception e)
 			{
@@ -187,22 +238,20 @@ import java.util.Random;
 					String testDataPath_WorkItemExternalIDs="";
 					if((toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("Jira") || toolname.contains("JIRA")))
 					{
-						if(functionality.equalsIgnoreCase("WSJF"))
+						if(functionality.contains("WSJF"))
 							testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_WSJF.json" ;
+						else if(functionality.contains("RAG"))
+							testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_RAG.json" ;
 						else
 						testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 					}
-					if((toolname.equalsIgnoreCase("Rally")))
-					{
-						if(functionality.equalsIgnoreCase("WSJF"))
-							testDataPath_WorkItemExternalIDs = testDataPath + "Rally" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_WSJF.json" ;
-						else
-						testDataPath_WorkItemExternalIDs = testDataPath + "Rally" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
-					}
+					
 					else if((toolname.equalsIgnoreCase("TFS Agile") || toolname.equalsIgnoreCase("TFS Scrum") || toolname.contains("TFS")))
 					{
-						if(functionality.equalsIgnoreCase("WSJF"))
+						if(functionality.contains("WSJF"))
 							testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_WSJF.json" ;
+						else if(functionality.contains("RAG"))
+							testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_RAG.json" ;
 						else
 						testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 					}
@@ -211,7 +260,7 @@ import java.util.Random;
 			JSONObject jsonObject = (JSONObject) obj;
 			String WorkItemExternalId="";
 			
-			if(functionality.equalsIgnoreCase("WSJF"))
+			if(functionality.contains("WSJF") || functionality.equalsIgnoreCase("RAG"))
 			{
 				WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem);
 			}

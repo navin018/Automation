@@ -90,5 +90,88 @@ public static String TestProcessName = "//h6[text()='{testprocessname}']";
 public static String TestProcess_MoreOptions_Drpdown = "//h6[text()='{testprocessname}']//following::a[@class='myw-action'][1]";
 public static String TestProcess_Edit_Link = "//h6[text()='{testprocessname}']//following::a[text()='Edit'][1]";
 
+//xpath by likhitha
+public static By Search_text = By.xpath("//input[@placeholder='Search...']");
+public static By Active_btn = By.xpath("//input[@name='status']//following::span[text()='Active']");
+public static By Inactive_btn= By.xpath("//input[@name='status']//following::span[text()='InActive']");
+public static By Save_btn = By.xpath("//button[@title='Save Delivery Construct Type']");
+public static By Cancel_btn = By.xpath("//button[@title='Cancel the changes and navigate to Manage Organization Structure']");
+public static By title_text = By.xpath("//span[@title='Automation_DoNotEdit']");
+public static By querySaved_txt=By.xpath("//div[contains(text(),'Delivery Structure Type saved successfully')]");
+public static By Back_option = By.xpath("//div[@title='Back to Manage Delivery Structure Type']");
+public static String Delete_icon= "//div[@id='collapseMyQueries']//table[@class='phx-myqueries-table']//tbody//tr[1]//td//a[@title='Delete Query']";
+public static By Epic_StaticTxt=By.xpath("//div[text()='Epic_TFS scrum']");
+public static By Saverule_btn=By.xpath("//button[@class='btn btn-primary'][text()='Save']");
+public static By Inactiverule_btn=By.xpath("//span[text()='InActive']");
+public static By Activerule_btn=By.xpath("//span[text()='Active']");
+//ClientConfig
+public static By Search_Textbox1=By.xpath("//input[@placeholder='Enter text to search the first 500 records']");
+public static By title_statictxt=By.xpath("//div[text()='Unknown@']");
+public static By Descprition_txtarea=By.xpath("//textarea[@name='Description']");
+public static By Savedescription_btn=By.xpath("//button[@class='btn btn-primary'][text()='Save']");
+//ProductConfig
+public static By Add_Product=By.xpath("//a[@title='Add Product']");
+public static By Productname_txtbox =By.xpath("//input[@name='name']");
+public static By Vendor_drpdwn=By.xpath("//select[@name='vendor']");
+public static By Productcode_txtbox=By.xpath("//input[@name='code']");
+public static By Shortdescription_txtbox=By.xpath("//textarea[@name='shortDescription']");
+public static By description_txtbox=By.xpath("//textarea[@name='description']");
+public static By productCategory_drpdwn =By.xpath("//select[@name='productCategory']");
+public static By productSubcategory_drpdwn=By.xpath("//select[@name='productSubcategory']");
+public static By productSubmissioncategor_drpdwn=By.xpath("//select[@name='productSubmissioncategory']");
+public static By productType_drpdwn=By.xpath("//select[@name='productType']");
+public static By status_drpdwn=By.xpath("//select[@name='status']");
+public static By saveproduct_btn=By.xpath("//button[@class='btn btn-primary'][text()='Save']");
+public static By backtoproductconfig_btn=By.xpath("//div[@title='Back to Manage Product Configuration']");
+public static By searchproductconfig_txt1=By.xpath("//input[@placeholder='Search...']");
+public static By application_btn=By.xpath("//span[text()='Applications']");
+public static By deleteproduct_btn=By.xpath("//a[@title='Delete Product']");
+public static By deletionconfirmation_btn=By.xpath("//button[@title='Click Yes to delete the Product']");
+public static By backtodashboard_btn=By.xpath("//div[@title='Back to Dashboard']");
+public static By ProductConfigName_txt=By.xpath("//span[@title='ProdConfigData_Automation_DonotEdit']");
+
+
+
+
+//xpath by sangeetha
+
+
+//Team configuration
+public static By Team_Searchbox=By.xpath("//input[@placeholder='Enter text to search the first 500 records']");
+public static By delete_button=By.xpath("//table[@class='ui-treetable-table']//tbody//tr[1]//td[6]//a[@title='Delete Team']");
+public static By confirmDelete_button=By.xpath("//div[@class='modal-footer']//button[text()='Yes']");
+public static By TeamSave_button=By.xpath("//button[text()='Save' ][@class='btn btn-primary']");
+//Data upload
+public static By SelectEntity_Drpdown=By.xpath("//*[@name='AppServiceGroup']");
+public static By Browse_btn = By.xpath("//input[@id='uploadFile']");
+public static By Upload_checkbox = By.xpath("//table//tbody//tr[1]//td[1]//input[@name='access-role']//following::span[1]");
+public static By UploadAll_link = By.xpath("//span[text()='Upload All']");
+public static By UploadComplete_statictxt = By.xpath("//td[text()=' Completed ']");
+public static By waitSign_Img1 = By.xpath("//div[@class='sk-ball-spin-clockwise']");
+public static By BacktoManage_text=By.xpath("//div[@title='Back to Manage Organization (Delivery) Structure']");
+//organisation delivery structure
+
+public static By DC_Searchbox = By.xpath("//input[@placeholder='Search...']");
+public static By Dc_data= By.xpath("//span[@title='Automationdata_donotedit']");
+public static By  DcActivate_button= By.xpath("//span[text()='Active'][@class='btn phx-label']");
+public static By  DcInactivate_button= By.xpath("//span[text()='InActive'][@class='btn phx-label']");
+public static By  DcSave_button= By.xpath("//button[@title='Save Delivery Construct']");
+public static By Popup_Yes=By.xpath("//button[@title='Click Yes to leave the form']");
+
+
+
+//Account management
+public static By SearchAccount_txtbox=By.xpath("//input[@placeholder='Enter text to search the first 500 records']");
+public static By Activate_btn=By.xpath("//span[text()='Active'][@class='btn phx-label']");
+public static By InActivate_btn=By.xpath("//span[text()='Inactive'][@class='btn phx-label']");
+public static By AccountManagementSave_btn=By.xpath("//button[@class='btn btn-primary'][text()='Save']");
+public static By Select_account=By.xpath("//div[@class='ag-cell ag-cell-not-inline-editing ag-cell-with-height ag-cell-value ag-column-hover ag-cell-focus'][text()='AutomationAccount_DoNotEdit']");
+public static By Select_account1=By.xpath("//div[text()='AutomationAccount_DoNotEdit']");
+
+
+
+
+
+
 
 }

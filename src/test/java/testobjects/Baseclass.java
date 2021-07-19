@@ -38,11 +38,11 @@ Baseclass(){
 	public static List<SecurityHeaders> SH = new ArrayList<>();
 	 
 	
-	public String TFS_ReleaseName;
+	public String TFS_ReleaseName="Release_AutomationData_64101";
 	
 	public String TFS_ReleaseStartDate;
 	public String TFS_ReleaseEndDate;
-	public String TFS_SprintName;
+	public String TFS_SprintName="Sprint_AutomationData_64101";
 	public String TFS_SprintStartDate;
 	public String TFS_SprintEndDate;
 	public String TFSProject;
@@ -104,6 +104,7 @@ Baseclass(){
 	public String WorkItemExternalId_Story_wsjf_Zero_Tool;
 	public String WorkItemExternalId_Story_wsjf_Decimal_Output;
 	public String WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem;
+	public String WorkItemExternalId_Story_wsjf_Multiply_0_UpdateFormula;
 		
 	public String WorkItemExternalId_Epic_wsjf_Multiply_0;
 	public String WorkItemExternalId_Epic_wsjf_Deno_0;
@@ -202,6 +203,21 @@ Baseclass(){
 	public String WorkItemExternalId_WorkRequest_wsjf_Decimal_Output;
 	
 	public String TestProcessName;
+	
+//	RAG
+	public String WorkItemExternalId_Story_RAG_StatusDone_Rule1;
+	public String WorkItemExternalId_Story_RAG_StatusInactivate_Rule2;
+	public String WorkItemExternalId_Story_RAG_NoAssociation_Rule3;
+	public String WorkItemExternalId_Story_RAG_IterationTiming_Rule4;
+	public String WorkItemExternalId_Story_RAG_IterationTiming_Rule5;
+	public String WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7;
+	public String WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7;
+	public String WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10;
+	public String WorkItemExternalId_Story_RAG_PastIteration_Rule10;
+	public String WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11;
+	public String WorkItemExternalId_Story_RAG_IterationTiming_Rule11;
+	
+	public String QueryName;
 	
 	
 	public boolean isSecurityTestsResults() {

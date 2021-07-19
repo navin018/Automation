@@ -8,7 +8,9 @@ Scenario: Check for the security headers
 	And i click on tile "Account Management" 
 	And the user check for the duplicate security headers and missing security headers for "Account Management" 
 	And i click on link "Add Account" under "Account Management" 
-	And the user check for the duplicate security headers and missing security headers for "Account Management/Add Account page " 
+	And i enter all the mandatory details for "Account Management"
+	And the user check for the duplicate security headers and missing security headers for "Account Management/Add Account page "
+	And i delete the data for  "Account Management"
 	And i click on "back" button 
 	And i click on link "View/Edit" under "Account Management" 
 	And the user check for the duplicate security headers and missing security headers for "Account Management/View Edit page" 
@@ -25,7 +27,9 @@ Scenario: Check for the security headers
 	And i click on tile "Organization (Delivery) Structure Type" 
 	And the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Type" 
 	And i click on link "Add Organization Structure Type" under "Organization (Delivery) Structure Page" 
-	Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Type/Add Organization Structure Type" 
+	And i enter all the mandatory details for "Organization (Delivery) Structure Page"
+	Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Type/Add Organization Structure Type"
+	And i delete the data for "Organization (Delivery) Structure Page" 
 	And i click on "back" button 
 	And i click on link "Manage Delivery Construct Type" under "Organization (Delivery) Structure Page" 
 	Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Type/Manage Delivery Construct" 
@@ -52,8 +56,10 @@ Scenario: Check for the security headers
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Organization (Delivery) Structure Config" 
 	And the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Config" 
-	And i click on link "Add Organization Structure" under "Organization (Delivery) Structure Config Page" 
-	Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Config/Add Organization Structure" 
+	And i click on link "Add Organization Structure" under "Organization (Delivery) Structure Config Page"
+    And i enter all the mandatory details for "Organization (Delivery) Structure Config"
+	Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Config/Add Organization Structure"
+	And i delete the data for "Organization (Delivery) Structure Config" 
 	And i click on "back" button 
 	And i click on link "Manage Teams" under "Organization (Delivery) Structure Config" 
 	Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Config/Manage Teams" 
@@ -111,8 +117,10 @@ Scenario: Check for the security headers
 	And i click on link "View/Edit" under "Team Configuration" 
 	And the user check for the duplicate security headers and missing security headers for "Team Configuration/View Edit page" 
 	And i click on "back" button 
-	And i click on link "Add Team" under "Team Configuration" 
-	And the user check for the duplicate security headers and missing security headers for "Team Configuration/Add Team page" 
+	And i click on link "Add Team" under "Team Configuration"
+	And i enter all the mandatory details for "Team Configuration"
+	And the user check for the duplicate security headers and missing security headers for "Team Configuration/Add Team page"
+	And i delete the data for "Team Configuration" 
 	And i click on "back" button 
 	And i click on "backtodashboard" button 
 	And i "update" the vulnerabilites details into excel 
@@ -127,8 +135,10 @@ Scenario: Check for the security headers
 	And i click on link "View/Edit" under "Product Configuration" 
 	And the user check for the duplicate security headers and missing security headers for "Product Configuration/View Edit page" 
 	And i click on "back" button 
-	And i click on link "Add Product" under "Product Configuration" 
-	And the user check for the duplicate security headers and missing security headers for "Product Configuration/Add Product page" 
+	And i click on link "Add Product" under "Product Configuration"
+	And i enter all the mandatory details for "Product Configuration" 
+	And the user check for the duplicate security headers and missing security headers for "Product Configuration/Add Product page"
+	And i delete the data for "Product Configuration" 
 	And i click on "back" button 
 	And i click on "backtodashboard" button 
 	And i "update" the vulnerabilites details into excel 
@@ -141,10 +151,12 @@ Scenario: Check for the security headers
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Product Instance Entity Rule Config" 
-		And i select client and DC for "MyWizard"
+	And i select client and DC for "MyWizard"
 	And the user check for the duplicate security headers and missing security headers for "Product Instance Entity Rule Config" 
 	And i click on link "Add Rule" under "Product Instance Entity Rule Config" 
-	And the user check for the duplicate security headers and missing security headers for "Product Instance Entity Rule Config/Add Rule" 
+	 And i enter all the mandatory details for "Product Instance Entity Rule Config"
+	And the user check for the duplicate security headers and missing security headers for "Product Instance Entity Rule Config/Add Rule"
+	And i delete the data for "Product Instance Entity Rule Config" 
 	And i click on "back" button 
 	And i click on "backtodashboard" button 
 	And i "update" the vulnerabilites details into excel 
@@ -189,7 +201,9 @@ Scenario: Check for the security headers
 	And i click on tile "my Queries" 
 	And the user check for the duplicate security headers and missing security headers for "my Queries" 
 	And i click on link "New Query" under "my Queries page" 
-	And the user check for the duplicate security headers and missing security headers for "my Queries/New Query page" 
+	And i enter all the mandatory details for "my Queries page" 
+	And the user check for the duplicate security headers and missing security headers for "my Queries/New Query page"
+	And i delete the data for  "my Queries page" 
 	And i click on "Go Back" button 
 	And i "update" the vulnerabilites details into excel 
 	And i verify the overall securitytest results 
@@ -210,6 +224,7 @@ Scenario: Check for the security headers
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Data Upload" 
+	And i enter all the mandatory details for "Data Upload"
 	And the user check for the duplicate security headers and missing security headers for "DataUpload" 
 	And i click on "Go Back" button 
 	And i "update" the vulnerabilites details into excel 
@@ -222,7 +237,8 @@ Scenario: Check for the security headers
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Client Configuration" 
 	And the user check for the duplicate security headers and missing security headers for "Client Configuration" 
-	And i click on link "View/Edit" under "Client Configuration" 
+	And i click on link "View/Edit" under "Client Configuration"
+	And i enter all the mandatory details for "Client Configuration" 
 	And the user check for the duplicate security headers and missing security headers for "Client Configuration/View Edit page" 
 	And i click on "Go Back" button 
 	And i click on link "Add Client" under "Client Configuration" 
@@ -254,9 +270,9 @@ Scenario: Check for the security headers
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	Then i select client and DC for "<applicationname>" 
 	And i click on tile "Generic Uploader" 
+	And i prepare the excel data for tool "ADT Jira" in "Generic Uploader" DataLoader
+	And i select the Data Entity as "Epic" for "ADT Jira" and upload the excel file
 	And the user check for the duplicate security headers and missing security headers for "Generic Uploader" 
-	#	And i click on "Select DataEntity Dropdown" button 
-	#	And i click on "Select Standard Template" button 
 	And i click on "View/Edit mapping" button 
 	And the user check for the duplicate security headers and missing security headers for "Generic Uploader/View Edit Page" 
 	And i click on "Go Back" button 
@@ -315,7 +331,7 @@ Scenario: Check for the security headers
 	
 @ADTJira_SecurityTest_InactivateRules
 Scenario Outline: ADTJIRA_DIY_InactiveRules
-Given i load the project properties file 
+	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "Product Instance Entity Rule Config"
@@ -327,11 +343,4 @@ Given i load the project properties file
 		| applicationname |
 		| MyWizard        |
 
-@8ADTJira_SecurityTest_DeleteDC
-Scenario: ADTJIRA_DI
-	Given i login to application "<applicationname>" 
-	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
-	And i click on tile "DIY AD Automation" 
-	Then i select only the client for "<applicationname>"
-	And i "delete" a DC for DIY for "ADT Jira"	
 	 

@@ -20,16 +20,21 @@ public class TFSSteps {
 		TFSWorkitem.CreateTestResult(workitem);
 	}
 
-
+//	And i "create" a "Story_wsjf_Decimal_AssociatedWith_Task" associated to "Task_wsjf_Deminal_Output" with linking as "Related" in TFS for "PreComputation_WSJF"
+	@Then("^i \"([^\"]*)\" a \"([^\"]*)\" associated to \"([^\"]*)\" with linking as \"([^\"]*)\" in TFS for \"([^\"]*)\"$")
+	public void i_create_workitems_with_associations(String CreateOrUpdate, String workitem,String workitem1, String linkingtype, String functionality) throws Throwable {
+		TFSWorkitem.CreateWorkitemForPrecomputationEngine(workitem,functionality);
+		TFSWorkitem.CreateWorkitemForPrecomputationEngine(workitem1,functionality);
+		CommonAcrossApps.UpdateWorkItemExternalIDsForAppsForSpecificFunctionality("TFS",functionality);
+		TFSWorkitem.LinkWorkitems(workitem,workitem1,linkingtype, functionality);
+	}
+	
 	@Then("^i \"([^\"]*)\" a \"([^\"]*)\" in TFS for \"([^\"]*)\"$")
 	public void i_create_a_in_TFS_nonsanity(String CreateOrUpdate, String workitem,String functionality) throws Throwable {
-		if(functionality.equalsIgnoreCase("WSJF functionality")){
-			//this is done only for story workitem
-			TFSWorkitem.CreateWorkitemforWSJFfunctionality(workitem);
-		}
+		
 				if(functionality.equalsIgnoreCase("autorecon") || functionality.equalsIgnoreCase("manualrecon"))
 					 TFSWorkitem.CreateWorkitemAndAssociateReleaseSprint(workitem);
-				if(functionality.equalsIgnoreCase("PreComputation_WSJF"))
+				if(functionality.equalsIgnoreCase("PreComputation_WSJF") || functionality.equalsIgnoreCase("PreComputation_RAG"))
 					{
 					if(CreateOrUpdate.equalsIgnoreCase("create"))
 					
@@ -92,4 +97,22 @@ public class TFSSteps {
 //	public void i_delete_the_test_automation_data(String releaseOrWorkitems,String toolname) throws Throwable {
 //	   TFSWorkitem.DeleteTestAutomationData(releaseOrWorkitems,toolname);
 //	   }
+	
+//	And i create a "Release" with start date as "-60" days from today and end date as "1" days from today in TFS 
+	@Then("^i create a \"([^\"]*)\" with start date as \"([^\"]*)\" days from today and end date as \"([^\"]*)\" days from today in TFS$")
+	public void i_createiteration(String releaseOrSprint, int startdate, int enddate) throws Throwable {
+		
+		TFSWorkitem.CreateIterationForSpecificDuration(releaseOrSprint, startdate,enddate);
+		
+		
+}
+	
+//	And i associate "WorkItemExternalId_Story_RAG_AssociatedSprintTiming_Rule7" to "WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7" with releationship "Parent" in TFS
+	@Then("^i associate \"([^\"]*)\" to \"([^\"]*)\" with relationship \"([^\"]*)\" for functionality \"([^\"]*)\" in TFS$")
+	public void associateworkitems(String workitem1,String workitem2, String relationship,String functionality) throws Throwable {
+		TFSWorkitem.LinkWorkitems(workitem1,workitem2,relationship, functionality);
+		
+		
+		
+}
 }

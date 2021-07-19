@@ -46,7 +46,7 @@ public static By CompletedWork_txtbox = By.xpath("//input[@aria-label='Completed
 public static By save_drpdown = By.xpath("//li[@aria-label='More save options']//following::div[@class='drop'][1]");
 //
 public static By save_btn = By.xpath("//span[@class='text'][text()='Save']");
-public static By saveandclose_btn = By.xpath("//span[text()='Save & Close']");
+public static By saveandclose_btn = By.xpath("//span[text()='Save & Close' or  text()='Save']");
 public static By captureWorkItemID_statictxt = By.xpath("//a[@class='caption']");
 public static By captureWorkItemID1_statictxt = By.xpath("//span[@aria-label='ID Field'][1]");
 //public static By captureWorkItemID2_statictxt = By.xpath("//span[@aria-label='ID Field'][1] | //div[@class='form-body']//following::span[@aria-label='ID Field'][1] | //span[@aria-label='ID Field'] | //a[@class='caption']//following::span[1]");
@@ -97,6 +97,7 @@ public static By CreateTestPlan_btn = By.xpath("//button[text()='Create']");
 public static By NewTestCase_btn = By.xpath("//span[text()='New Test Case']");
 public static By TestCaseTitle_txtbox = By.xpath("//input[@aria-label='Title Field']");
 public static By SaveAndClose_btn = By.xpath("//span[text()='Save & Close']");
+public static By Close_btn = By.xpath("//button[@title='Close']");
 public static By ExecuteTestCase_link = By.xpath("//span[text()='Execute']");
 public static By SelectTestCase_chkbox = By.xpath("//table[@class='testplans-hub-execute-tab-testpoints-table bolt-table bolt-table-show-lines bolt-list body-m relative scroll-hidden']//tbody/tr[3]/td[2]//following::span[1]");
 public static By RunForWebApplication_link = By.xpath("//span[text()='Run for web application']");
@@ -107,8 +108,17 @@ public static By MarkTestCaseResult_btn = By.xpath("//li[@aria-label='Mark test 
 public static By ViewTestResult_link = By.xpath("//*[contains(text(),'View test result')]");
 public static String createdTest_txt = "//*[contains(text(),'{TCName}')]";
 public static String workitemIDInSearch_txt = "//span[contains(text(),'{workitemid}')]";
+public static String linkingType_txt = "//span[contains(text(),'{linkingtype}')]";
+public static By Links_link = By.xpath("//li[@aria-label='Links']");
+public static By AddLink_link = By.xpath("//div[text()='No links have been added']//following::*[text()='Add link'][1]");
 
+public static By Existingitem_link = By.xpath("//span[text()='Existing item']");
+public static By LinkType_drpdown = By.xpath("//label[text()='Link type']//following::input[1]");
+public static By workitemlinking_txtbox = By.xpath("//input[@placeholder='Enter ID or search for work items']");
+public static By searchedWorkitem_drpdown = By.xpath("//div[contains(@class,'ms-Suggestions-item')]");
 public static By State_drpdown = By.xpath("//a[@class='caption']//following::label[@class='workitemcontrol-label' and text()='Stat'][2]");
+public static By State_drpdown1 = By.xpath("//input[@aria-label='State Field']");
+public static String StateValues_drpdown = "//Li[text()='{state}']";
 public static By ActionWorkitem_btn = By.xpath("//span[@aria-label='Actions']");
 
 public static By DeleteWorkitem_btn = By.xpath("//span[text()='Delete']");
@@ -130,10 +140,14 @@ public static By EntityTypeTo_txtbox = By.xpath("//input[@id='availableTypes']")
 
 public static By Ok_btn = By.xpath("//button[@id='ok']");
 public static By Iteration_drpdown = By.xpath("//input[@aria-label='Iteration Path']");
-public static By Iteration_label = By.xpath("//div[@class='work-item-view new-work-item-view']/following::label[text()='Ite'][1]");
+//public static By Iteration_label = By.xpath("//div[@class='work-item-view new-work-item-view']/following::label[text()='Ite'][1]");
+public static By Iteration_label = By.xpath("//label[text()='Ite'][1]");
 
 public static By deleteTestCase_txtbox = By.xpath("//input[@class='test-workitem-delete-inputbox']");
 
 public static By SelectProject_Drpdown = By.xpath("//label[@for='destinationProject']//following::div[@class='drop bowtie-chevron-down-light bowtie-icon'][1]");
+public static By ServerError_txt = By.xpath("//span[text()='Server error']");
+public static String IterationValue_drpdown = "//div[@class='treepicker-item']//child::div[text()='{projectname}']";
+public static By IterationName1_txtbox = By.xpath("//div[@class='treepicker-item']//following::input[@aria-label='Iteration Path'][1]");
 
 }

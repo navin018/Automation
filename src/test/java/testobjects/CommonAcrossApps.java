@@ -268,6 +268,11 @@ public class CommonAcrossApps {
 //			 {
 //				 clickJS(MyWizardUIMap.MywizChromeNotification_btn);
 //			 }
+			
+		     ExpWaitForCondition(MyWizardUIMap.IUnderstand_checkbox);
+		                clickJS(MyWizardUIMap.IUnderstand_checkbox);
+		                 clickJS(MyWizardUIMap.Confirm_btn);
+
 			 ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
 //			 
 			
@@ -766,18 +771,25 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		System.out.println("updating workitemexternalIDs");
 		 String WorkItemEx_FileLoc="";
 		 String WorkItemEx_FileLoc_ReleaseSprint="";
+		 String filename = "";
+		 if(functionality.equalsIgnoreCase("PreComputation_WSJF"))
+			 filename = "WorkItemExternalIDs_PreComputation_WSJF.json";
+		 else if(functionality.equalsIgnoreCase("PreComputation_RAG"))
+			 filename = "WorkItemExternalIDs_PreComputation_RAG.json";
 		if(appname.contains("jira") || appname.contains("Jira") || appname.contains("JIRA")){
 		  WorkItemEx_FileLoc = System.getProperty("user.dir")
 					+ File.separator + "src" + File.separator + "test" + File.separator
-					+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs_PreComputation_WSJF.json";
+					+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + filename;
 		
 //		  WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
 //					+ File.separator + "src" + File.separator + "test" + File.separator
 //					+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
 		  
-		JSONObject jsonObject = new JSONObject();
+		
 //		JSONObject jsonObject_releaseandsprintdetails = new JSONObject();
 		
+		if(functionality.equalsIgnoreCase("PreComputation_WSJF")){
+			JSONObject jsonObject = new JSONObject();
 		jsonObject.put("WorkItemExternalId_Task_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Multiply_0);
 		jsonObject.put("WorkItemExternalId_Task_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Deno_0);
 		jsonObject.put("WorkItemExternalId_Task_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Nume_0);
@@ -793,7 +805,7 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		jsonObject.put("WorkItemExternalId_Story_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Tool);
 		jsonObject.put("WorkItemExternalId_Story_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Zero_Tool);
 		jsonObject.put("WorkItemExternalId_Story_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Output);
-		jsonObject.put("WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_update);
+		jsonObject.put("WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem);
 		
 		
 		jsonObject.put("WorkItemExternalId_Risk_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Multiply_0);
@@ -908,45 +920,32 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		jsonObject.put("WorkItemExternalId_TestCase_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Zero_Tool);
 		jsonObject.put("WorkItemExternalId_TestCase_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Decimal_Output);
 		
+		  FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+	         file.write(jsonObject.toJSONString());
+	         file.flush();
+	         file.close();
+		}
+		else if(functionality.equalsIgnoreCase("PreComputation_RAG")){
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("WorkItemExternalId_Story_RAG_StatusDone_Rule1", Baseclass.getInstance().WorkItemExternalId_Story_RAG_StatusDone_Rule1);
+			jsonObject.put("WorkItemExternalId_Story_RAG_StatusInactivate_Rule2", Baseclass.getInstance().WorkItemExternalId_Story_RAG_StatusInactivate_Rule2);
+			jsonObject.put("WorkItemExternalId_Story_RAG_NoAssociation_Rule3", Baseclass.getInstance().WorkItemExternalId_Story_RAG_NoAssociation_Rule3);
+			jsonObject.put("WorkItemExternalId_Story_RAG_IterationTiming_Rule4", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule4);
+			jsonObject.put("WorkItemExternalId_Story_RAG_IterationTiming_Rule5", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule5);
+			jsonObject.put("WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7", Baseclass.getInstance().WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7);
+			jsonObject.put("WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7", Baseclass.getInstance().WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7);
+			jsonObject.put("WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10", Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10);
+			jsonObject.put("WorkItemExternalId_Story_RAG_PastIteration_Rule10", Baseclass.getInstance().WorkItemExternalId_Story_RAG_PastIteration_Rule10);
+			jsonObject.put("WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11", Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11);
+			jsonObject.put("WorkItemExternalId_Story_RAG_IterationTiming_Rule11", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule11);
+			
+			  FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+		         file.write(jsonObject.toJSONString());
+		         file.flush();
+		         file.close();
+		}
 		
-	    jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);
-	    jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
-	    jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
-	    jsonObject.put("WorkItemExternalId_Issue", Baseclass.getInstance().WorkItemExternalId_Issue);
-	    jsonObject.put("WorkItemExternalId_Impediment", Baseclass.getInstance().WorkItemExternalId_Impediment);
-	    jsonObject.put("WorkItemExternalId_Feature", Baseclass.getInstance().WorkItemExternalId_Feature);
-	    jsonObject.put("WorkItemExternalId_Epic", Baseclass.getInstance().WorkItemExternalId_Epic);
-	    jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
-	    jsonObject.put("WorkItemExternalId_Bug", Baseclass.getInstance().WorkItemExternalId_Bug);
-	    jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
-	    jsonObject.put("WorkItemExternalId_Test", Baseclass.getInstance().WorkItemExternalId_Test);
-	    jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
-	    jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
-	    jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
-	    jsonObject.put("WorkItemExternalId_WorkRequest", Baseclass.getInstance().WorkItemExternalId_WorkRequest);
-	    
-	    
-	     FileWriter file = new FileWriter(WorkItemEx_FileLoc);
-         file.write(jsonObject.toJSONString());
-         file.flush();
-         file.close();
-         
-//         if(!(Baseclass.getInstance().Jira_ReleaseName.isEmpty() || Baseclass.getInstance().Jira_ReleaseName==null || Baseclass.getInstance().Jira_SprintName.isEmpty())) {
-        	 {
-// 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseName", Baseclass.getInstance().Jira_ReleaseName);
-// 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseStartDate", Baseclass.getInstance().Jira_ReleaseStartDate);
-// 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseEndDate", Baseclass.getInstance().Jira_ReleaseEndDate);
-// 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintName", Baseclass.getInstance().Jira_SprintName);
-// 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintStartDate", Baseclass.getInstance().Jira_SprintStartDate);
-// 		    jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintEndDate", Baseclass.getInstance().Jira_SprintEndDate);
-// 		    FileWriter file1 = new FileWriter(WorkItemEx_FileLoc_ReleaseSprint);
-// 	         file1.write(jsonObject_releaseandsprintdetails.toJSONString());
-// 	         file1.flush();
-// 	         file1.close();
- 		    }
-       
-//         driver().close();
-//         driver().quit();
+
 	}
 	
 }
@@ -958,16 +957,23 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 	if(appname.equalsIgnoreCase("TFS") || appname.contains("TFS"))
 	{
 		try{
+			String filename = "";
+			 if(functionality.equalsIgnoreCase("PreComputation_WSJF"))
+				 filename = "WorkItemExternalIDs_PreComputation_WSJF.json";
+			 else if(functionality.equalsIgnoreCase("PreComputation_RAG"))
+				 filename = "WorkItemExternalIDs_PreComputation_RAG.json";
 			String WorkItemEx_FileLoc = System.getProperty("user.dir")
 				+ File.separator + "src" + File.separator + "test" + File.separator
-				+ "resources" + File.separator + "testdata" + File.separator + "TFS" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs_PreComputation_WSJF.json";
+				+ "resources" + File.separator + "testdata" + File.separator + "TFS" + File.separator + "JSON"+ File.separator + filename;
 //			 String WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
 //						+ File.separator + "src" + File.separator + "test" + File.separator
 //						+ "resources" + File.separator + "testdata" + File.separator + "TFS" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
 	  
-	JSONObject jsonObject = new JSONObject();
-	JSONObject jsonObject_releaseandsprintdetails = new JSONObject();
+//	JSONObject jsonObject = new JSONObject();
+//	JSONObject jsonObject_releaseandsprintdetails = new JSONObject();
 
+	if(functionality.equalsIgnoreCase("PreComputation_WSJF")){
+		JSONObject jsonObject = new JSONObject();
 	jsonObject.put("WorkItemExternalId_Task_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Multiply_0);
 	jsonObject.put("WorkItemExternalId_Task_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Deno_0);
 	jsonObject.put("WorkItemExternalId_Task_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Nume_0);
@@ -983,7 +989,7 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 	jsonObject.put("WorkItemExternalId_Story_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Tool);
 	jsonObject.put("WorkItemExternalId_Story_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Zero_Tool);
 	jsonObject.put("WorkItemExternalId_Story_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Decimal_Output);
-	jsonObject.put("WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_update);
+	jsonObject.put("WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem);
 	
 	
 	jsonObject.put("WorkItemExternalId_Risk_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Multiply_0);
@@ -1101,8 +1107,32 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 	 FileWriter file = new FileWriter(WorkItemEx_FileLoc);
      file.write(jsonObject.toJSONString());
      file.close();
-     
-		}
+	}
+	
+	else if(functionality.equalsIgnoreCase("PreComputation_RAG")){
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("WorkItemExternalId_Story_RAG_StatusDone_Rule1", Baseclass.getInstance().WorkItemExternalId_Story_RAG_StatusDone_Rule1);
+		jsonObject.put("WorkItemExternalId_Story_RAG_StatusInactivate_Rule2", Baseclass.getInstance().WorkItemExternalId_Story_RAG_StatusInactivate_Rule2);
+		jsonObject.put("WorkItemExternalId_Story_RAG_NoAssociation_Rule3", Baseclass.getInstance().WorkItemExternalId_Story_RAG_NoAssociation_Rule3);
+		jsonObject.put("WorkItemExternalId_Story_RAG_SprintTiming_Rule4", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule4);
+		jsonObject.put("WorkItemExternalId_Story_RAG_SprintTiming_Rule5", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule5);
+		
+		jsonObject.put("WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7", Baseclass.getInstance().WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7);
+		jsonObject.put("WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7", Baseclass.getInstance().WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7);
+		jsonObject.put("WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10", Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10);
+		jsonObject.put("WorkItemExternalId_Story_RAG_PastIteration_Rule10", Baseclass.getInstance().WorkItemExternalId_Story_RAG_PastIteration_Rule10);
+		jsonObject.put("WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11", Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11);
+		jsonObject.put("WorkItemExternalId_Story_RAG_IterationTiming_Rule11", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule11);
+		
+		
+		
+		
+		  FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+	         file.write(jsonObject.toJSONString());
+	         file.flush();
+	         file.close();
+	}
+	}
 		catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("could not write workitem IDs for "+appname );

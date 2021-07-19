@@ -14,8 +14,8 @@ public static String enteredUsername_txtbox = "//input[@placeholder='Enterprise 
 public static By Pwd_txtbox=By.xpath("//input[@type='password' and @name='passwd']");
 public static By signIn_btn=By.xpath("//input[@type='submit']");
 
-public static By Pwd_txtbox1=By.xpath("//input[@type='password' and @name='Password']");
-public static By signIn_btn1=By.xpath("//span[@id='submitButton']");
+public static By Pwd_txtbox1=By.xpath("//input[@type='password' and @name='passwd']");
+public static By signIn_btn1=By.xpath("//input[@id='idSIButton9']");
 public static By Yes_btn=By.xpath("//input[@type='submit'][@class='button ext-button primary ext-primary']");
 
 public static By BackToDashboard_link = By.xpath("//div[text()='Back to Dashboard' or @title='Go Back']");
@@ -82,6 +82,12 @@ public static By Search_txtbox = By.xpath("//input[@placeholder='Enter text to s
 public static By Save_btn = By.xpath("//button[@class='btn btn-primary' and text()='Save']");
 public static By BacktoOverallSetup_btn = By.xpath("//div[text()='Back to Overall Setup Progress']");
 public static By BacktoDIYADAutomation_btn = By.xpath("//div[text()='Back to DIY AD Automation']");
-public static By IUnderstand_checkbox = By.xpath("//label[text()='I Understand']");
-public static By Confirm_btn = By.xpath("//label[text()='I Understand']");
+//public static By IUnderstand_checkbox = By.xpath("//label[text()='I Understand']");
+//public static By Confirm_btn = By.xpath("//label[text()='I Understand']");
+public static By IUnderstand_checkbox = By.xpath("//input[@id='understand']");
+public static By Confirm_btn = By.xpath("//button[text()=' Confirm ']");
+
+public static By Dashboard_Checkbox = By.xpath("//span[text()='I Understand']");
+public static By Dashboard_Confirm_btn = By.xpath("//button[text()='Confirm']");
+
 }

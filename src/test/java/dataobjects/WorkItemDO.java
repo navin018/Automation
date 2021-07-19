@@ -70,6 +70,12 @@ public class WorkItemDO {
 	
 	
 	public String WSJF;
+	public String RAG;
+	public String Inference;
+	public String State;
+	
+	public String Release;
+	public String Sprint;
 	
 	public String getBusinessValue() {
 		return BusinessValue;
