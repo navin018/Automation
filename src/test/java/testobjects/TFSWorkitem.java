@@ -1811,6 +1811,7 @@ import utilities.general.Property;
 			}
 			else
 				logger.info(workitemID1+ " i.e. "+workitem1+" doesnt show up in search in TFS");
+			ExpWaitForCondition(TFSUIMap.Ok_btn);
 			clickJS(TFSUIMap.Ok_btn);
 			ExpWaitForCondition(TFSUIMap.saveandclose_btn);
 			singleClick(TFSUIMap.saveandclose_btn);

@@ -286,8 +286,10 @@ Scenario: Check for the security headers
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Lifecycle Template Configuration" 
 	And the user check for the duplicate security headers and missing security headers for "Lifecycle Template Configuration Tile" 
-	And i click on link "Add Stage Template" under "Lifecycle Template Configuration" 
-	And the user check for the duplicate security headers and missing security headers for "Lifecycle Template Configuration/Add Stage Template" 
+	And i click on link "Add Stage Template" under "Lifecycle Template Configuration"
+	And i enter all the mandatory details for "Lifecycle Template Configuration/Add Stage Template" 
+	And the user check for the duplicate security headers and missing security headers for "Lifecycle Template Configuration/Add Stage Template"
+	 And i delete the data for "Lifecycle Template Configuration/Add Stage Template" 
 	And i click on "Go Back" button 
 	And i click on "Go Back" button 
 	And i "update" the vulnerabilites details into excel 

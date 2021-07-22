@@ -905,27 +905,6 @@ public static void ActivateRules() {
 		}
 }
 
-
-​​​public static void SelectEntityType() {
-    try{
-        ExpWaitForCondition(SecurityTestsUIMap.SelectEntity_Drpdown);
-        ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img);
-
- 
-
-        selectDropdownByText(SecurityTestsUIMap.SelectEntity_Drpdown,"AD Entities");
-        }
-        catch(Exception e)
-        {
-            Assert.fail("Could not select dataupload type from the dropdown");
-            e.printStackTrace();
-        }
-
- 
-
-
-}
-
  
 
 public static void UploadFile() {
@@ -1056,31 +1035,94 @@ public static void AddProductConfig() {
 		Assert.fail("Issue Adding the Productin Prod Config page");
 }
 }
-public static void DeleteProductConfig() {​​​
-​​​
-	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-	enterText(SecurityTestsUIMap.searchproductconfig_txt1,"ProdConfigData_Automation_DonotEdit");
-		if(CheckIfElementExists(SecurityTestsUIMap.ProductConfigName_txt))
-		{​​​
-		singleClick(SecurityTestsUIMap.deleteproduct_btn);
-		}​​​
-	else if(CheckIfElementExists(SecurityTestsUIMap.application_btn))
-		{​​​
-		singleClick(SecurityTestsUIMap.application_btn);
-		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		singleClick(SecurityTestsUIMap.deleteproduct_btn);
-		}​​​
-		singleClick(SecurityTestsUIMap.deletionconfirmation_btn);
-		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		singleClick(SecurityTestsUIMap.backtodashboard_btn);
-		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-	}​​​
-	catch (Exception e) {​​​
-	e.printStackTrace();
-	logger.info("Issue Deleting the Product in product Config page ");
-	Assert.fail("Issue Deleting the Product in product Config page ");
-	}​​​
 
+public static void DeleteProductConfig() {
+try{
+    ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    enterText(SecurityTestsUIMap.searchproductconfig_txt1,"ProdConfigData_Automation_DonotEdit");
+        if(CheckIfElementExists(SecurityTestsUIMap.ProductConfigName_txt))
+        {
+        singleClick(SecurityTestsUIMap.deleteproduct_btn);
+        }
+    else if(CheckIfElementExists(SecurityTestsUIMap.application_btn))
+        {
+        singleClick(SecurityTestsUIMap.application_btn);
+        ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+        singleClick(SecurityTestsUIMap.deleteproduct_btn);
+        }
+        singleClick(SecurityTestsUIMap.deletionconfirmation_btn);
+        ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+        singleClick(SecurityTestsUIMap.backtodashboard_btn);
+        ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    }
+    catch (Exception e) {
+    e.printStackTrace();
+    logger.info("Issue Deleting the Product in product Config page ");
+    Assert.fail("Issue Deleting the Product in product Config page ");
+    }
+
+ 
+
+}
+
+public static void SelectEntityType() {
+    try{
+        ExpWaitForCondition(SecurityTestsUIMap.SelectEntity_Drpdown);
+        ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img);
+
+ 
+
+        selectDropdownByText(SecurityTestsUIMap.SelectEntity_Drpdown,"AD Entities");
+        }
+        catch(Exception e)
+        {
+            Assert.fail("Could not select dataupload type from the dropdown");
+            e.printStackTrace();
+        }
+
+ 
+
+
+}
+
+public static void Add_StageTemplate() {
+    try {
+        ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+        singleClick(SecurityTestsUIMap.AddStageTemplate_txt);
+        ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+        enterText(SecurityTestsUIMap.name_txtbox,"Automation_template"); 
+        selectDropdownByText(SecurityTestsUIMap.entityuid_drpdwn,"Deliverable");
+        clickJS(SecurityTestsUIMap.type_drpdwn1);
+        clickJS(SecurityTestsUIMap.type_checkbox);
+        singleClick(SecurityTestsUIMap.description_txtbox1);
+        enterText(SecurityTestsUIMap.stagename_txtbox,"Automation_Sample"); 
+        clear(SecurityTestsUIMap.completion_txtbox);
+        enterText(SecurityTestsUIMap.completion_txtbox,"100"); 
+        singleClick(SecurityTestsUIMap.savetemplate_btn);
+        ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+}
+    catch (Exception e) {
+        e.printStackTrace();
+        logger.info("Issue Adding Stage Template ");
+        Assert.fail("Issue Adding Stage Template ");
+    }
+}
+
+    public static void Delete_StageTemplate() {
+        try {
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+            enterText(SecurityTestsUIMap.name_textbox,"Automation_template");
+            singleClick(SecurityTestsUIMap.delete_symbol);
+            singleClick(SecurityTestsUIMap.yes_btn);
+            ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    }
+        catch (Exception e) {
+        e.printStackTrace();
+        logger.info("Issue Adding Stage Template ");
+        Assert.fail("Issue Adding Stage Template ");
+    }
+
+    
 }
 
 

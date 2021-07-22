@@ -89,7 +89,9 @@ public class SecurityTestSteps {
         case "Product Configuration":
         	SecurityTests.AddProductConfig();
         	break;
-
+        case "Lifecycle Template Configuration/Add Stage Template":
+            SecurityTests.Add_StageTemplate();
+            break;
             
         }
 
@@ -120,6 +122,10 @@ public class SecurityTestSteps {
     case "Product Configuration":
     	SecurityTests.DeleteProductConfig();
     	break;
+    case "Lifecycle Template Configuration/Add Stage Template":
+        SecurityTests.Delete_StageTemplate();
+        break;
+    	
            }
 
     }

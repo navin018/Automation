@@ -129,6 +129,20 @@ public static By deleteproduct_btn=By.xpath("//a[@title='Delete Product']");
 public static By deletionconfirmation_btn=By.xpath("//button[@title='Click Yes to delete the Product']");
 public static By backtodashboard_btn=By.xpath("//div[@title='Back to Dashboard']");
 public static By ProductConfigName_txt=By.xpath("//span[@title='ProdConfigData_Automation_DonotEdit']");
+//Lifecycle Template Configuration/Add Stage Template
+public static By AddStageTemplate_txt = By.xpath("//span[text()='Add Stage Template']");
+public static By name_txtbox =By.xpath("//input[@name='name']");
+public static By entityuid_drpdwn=By.xpath("//select[@id='entityUId']");
+public static By type_drpdwn1=By.xpath("//span[@class='dropdown-btn']");
+public static By type_checkbox=By.xpath("//div[text()='Architecture & component design']");
+public static By description_txtbox1=By.xpath("//input[@id='D_1']");
+public static By savetemplate_btn=By.xpath("//button[@class='btn btn-primary ng-star-inserted'][text()=' Save ']");
+public static By stagename_txtbox=By.xpath("//input[@id='S_1']");
+public static By completion_txtbox=By.xpath("//input[@id='P_1']");
+public static By delete_symbol=By.xpath("//div[@title='Delete']");
+public static By yes_btn=By.xpath("//button[text()='Yes']");
+public static By name_textbox=By.xpath("//table[@class='ui-treetable-scrollable-header-table']/thead/tr[2]/th[1]/input[1]");
+
 
 
 

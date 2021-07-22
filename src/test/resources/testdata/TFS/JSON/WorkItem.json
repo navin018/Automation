@@ -771,7 +771,7 @@
 			"Risk": "NA",
 			"State": "New",
 			"RAG": "Red",
-			"Inference": "1 Risks require attention",
+			"Inference": "Overdue User Story###1 Risks require attention:",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass"
 		},
