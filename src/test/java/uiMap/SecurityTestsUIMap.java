@@ -142,7 +142,46 @@ public static By completion_txtbox=By.xpath("//input[@id='P_1']");
 public static By delete_symbol=By.xpath("//div[@title='Delete']");
 public static By yes_btn=By.xpath("//button[text()='Yes']");
 public static By name_textbox=By.xpath("//table[@class='ui-treetable-scrollable-header-table']/thead/tr[2]/th[1]/input[1]");
-
+//Metrics Engine
+public static By AddConfig_statictxt=By.xpath("//img[@alt='Configuration']");
+public static By Filter_img=By.xpath("//img[@alt='Filter']");
+public static By Metrictyp_drpdwn=By.xpath("//select[@id='metricType_Drp']");
+public static By Category_drpdwn=By.xpath("//select[@id='category_Drp']");
+public static By Apply_btn=By.xpath("//button[@class='btn btn-primary'][text()='Apply']");
+public static By AddMeasure_img=By.xpath("//img[@alt='Add Measure']");
+public static By Measurename_txt=By.xpath("//input[@id='measureName']");
+public static By Measuredefinition_txt=By.xpath("//textarea[@id='definition']");
+public static By Entitycustom_drpdwn=By.xpath("//select[@id='entity_Custom_Drp']");
+public static By Functioncustom_drpdwn=By.xpath("//select[@id='function_Custom_Drp']");
+public static By Attribute_drpdwn=By.xpath("//select[@name='attributeData']");
+public static By Formuladiv_txtarea=By.xpath(" //div[@id='formulaDiv']");
+public static By Submit_btn=By.xpath("//a[@class='btn btn-secondary mr-3 ml-auto'][text()='Submit']");
+public static By AddMetric_img=By.xpath("//img[@alt='Add Metric']");
+public static By Metricname_txt=By.xpath("//input[@id='metricsName']");
+public static By Metriccode_txt=By.xpath("//input[@id='ME_metricCode_Custom_TxtBox']");
+public static By Metricdefinition_txt=By.xpath("//textarea[@id='definition']");
+public static By Metricunit_drpdwn=By.xpath("//select[@id='ME_unitOfMeasure_Custom_Drp']");
+public static By Threshold_drpdwn=By.xpath("//select[@id='ME_metricRagType_Custom_Drp']");
+public static By deliveryfunction_drpdwn=By.xpath("//select[@id='ME_metricDeliveryFunction_Custom_Drp']");
+public static By Metriccategory_Drpdwn=By.xpath("//select[@id='ME_metricCategory_Custom_Drp']");
+public static By next_btn=By.xpath("//img[@alt='Next ']");
+public static By value_txtarea=By.xpath("//input[@class='form-control ng-pristine ng-valid ng-star-inserted ng-touched'][@type='text']");
+public static By Metric_Name=By.xpath("//span[text()=' Automation_Testing ']");
+public static By Field_drpdwn=By.xpath("//select[@class='form-control w-90 ng-pristine ng-invalid ng-touched']");
+public static By Operator_drpdwn=By.xpath("//select[@class='form-control w-90 ng-untouched ng-pristine ng-invalid']");
+public static By samplemeasure_text1=By.xpath("//span[text()='⋮⋮ 0202 test ']");
+public static By samplemeasure_text2=By.xpath("//span[text()='⋮⋮ 11thjan0xxxxx']");
+public static By Formula_txtarea=By.xpath("//p[@id='imgNSpanParagraph']");
+public static By SaveasDraft_btn=By.xpath("btn btn-secondary mr-3 ml-auto");
+public static By Submit_btn1=By.xpath("//a[@class='btn btn-primary'][text()='Submit']");
+public static By Searchmeasure_txt=By.xpath("//input[@name='txtMeasureName']");
+public static By Measure_checkbox1=By.xpath("//label[@class='myw-checkbox']//following::input[@id='281a355f-0f7e-4a4f-9567-b0f2aa69005c']");
+public static By Search_img=By.xpath("//input[@id='searchCleartextbox']");
+public static By Delete_symbol=By.xpath("//a[@title='Delete']//following::*[@alt='Delete'][1]");
+public static By yes_btn1=By.xpath("//button[@class='btn btn-primary'][text()='Delete']");
+public static By Save_icon=By.xpath("//img[@alt='Save']");
+public static By Measure_checkbox2=By.xpath("//label[@class='myw-checkbox']//following::input[@id='d8904ffb-8bfe-4c95-ad7f-6381969f5d57']");
+public static By Condition_checkbox=By.xpath("//table[@class='table table-hover table-striped table-vmiddle myw-table']//tbody//tr[1]//td//span[1]");
 
 
 

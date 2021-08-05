@@ -23,6 +23,16 @@ public class GenericUploaderSteps  {
 		
 	}
 	
+
+	@Then("^i verify the entity prioritization for entity \"([^\"]*)\" in generic uploader tile for tool \"([^\"]*)\"$")
+	public void verifyentityPrioritization(String entity,String tool) throws Throwable {
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		DataLoader.verifyentityprioritization(entity,tool);		
+	}
+	
+	
+
+
 	@Then("^i select the Data Entity as \"([^\"]*)\" for \"([^\"]*)\" and upload the excel file$")
 	public void i_select_the_Data_Entity_as(String dataentity,String toolname) throws Throwable {
 		DataLoader.UploadFileForGenericUploader(dataentity,toolname);

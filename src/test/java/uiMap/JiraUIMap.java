@@ -22,8 +22,8 @@ public static String pickProject_drpdown = "//li[contains(@id,'{project}')]";
 //public static By pickProject_drpdown = By.xpath("//li[contains(@id,'bom')]");
 public static String pickAnExistingAccount_statictxt = "//div[text()='{username}']";
 
-public static By signInPwd_txtbox=By.xpath("//input[@id='passwordInput' and @name='Password']");
-public static By signIn_btn=By.xpath("//span[@id='submitButton']");
+//public static By signInPwd_txtbox=By.xpath("//input[@id='passwordInput' and @name='Password']");
+//public static By signIn_btn=By.xpath("//span[@id='submitButton']");
 
 public static By Create_link=By.xpath("//a[@id='create_link']");
 public static By cancel_btn=By.xpath("//a[text()='Cancel']");

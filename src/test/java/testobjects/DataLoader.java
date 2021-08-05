@@ -1,6 +1,7 @@
 package testobjects;
 
 import static org.testng.Assert.assertTrue;
+import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.time.Instant;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -23,7 +25,10 @@ import utilities.general.Property;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import com.jcraft.jsch.Logger;
 public class DataLoader {
 	
 	public static void PrepareExcelFileForGenericUploaderAndWriteEntityIDToJSON(String entity,String toolname){
@@ -49,19 +54,42 @@ public class DataLoader {
 		int randomNumb = 10000 + rnd.nextInt(90000);
 //		 workitemID = Property.getProperty("JiraProject")+"-"+randomNumb;
 		
-		String title = entity+"_AutomationData_GenericUploader";
-		String Project = Property.getProperty("JiraProject");
+	String title = entity+"_AutomationData_GenericUploader";
+	String Project = Property.getProperty("JiraProject");
 	String time = Instant.now().toString().substring(0, 19)+"Z";
-		if(!(entity.equalsIgnoreCase("Action") || entity.equalsIgnoreCase("Iteration") || entity.equalsIgnoreCase("Decision") || entity.equalsIgnoreCase("IterationForMyWizardInstance")))
-			{
-			if(toolname.equalsIgnoreCase("ADT Jira"))
-			{
-				workitemID = Tools.getWorkItemExternalID(entity, "ADT Jira");
-				sheet.getRow(1).getCell(0).setCellValue(workitemID);
-				sheet.getRow(1).getCell(2).setCellValue(title);
-				sheet.getRow(1).getCell(4).setCellValue(Project);
-				sheet.getRow(1).getCell(12).setCellValue(time);
-			}
+	String Phase="Plan";
+    String WorkStream="Security_AutomationData";
+    
+	if(!entity.equalsIgnoreCase("Iteration") || entity.equalsIgnoreCase("Decision") || entity.equalsIgnoreCase("IterationForMyWizardInstance"))
+    {
+    if(toolname.equalsIgnoreCase("ADT Jira"))
+    {
+        workitemID = Tools.getWorkItemExternalID(entity, "ADT Jira");
+        sheet.getRow(1).getCell(0).setCellValue(workitemID);
+        sheet.getRow(1).getCell(2).setCellValue(title);
+        sheet.getRow(1).getCell(4).setCellValue(Project);
+        sheet.getRow(1).getCell(12).setCellValue(time);
+        if(entity.equalsIgnoreCase("Bug")) {
+            sheet.getRow(1).getCell(39).setCellValue(Phase);
+            sheet.getRow(1).getCell(40).setCellValue(WorkStream);
+                           
+        }
+        else if(entity.equalsIgnoreCase("Action")) {
+            sheet.getRow(1).getCell(29).setCellValue(Phase);
+            sheet.getRow(1).getCell(30).setCellValue(WorkStream);
+                           
+        }
+        else if(entity.equalsIgnoreCase("Risk")) {
+            sheet.getRow(1).getCell(38).setCellValue(Phase);
+            sheet.getRow(1).getCell(39).setCellValue(WorkStream);
+                           
+        }
+        else if(entity.equals("Issue")) {
+            sheet.getRow(1).getCell(30).setCellValue(Phase);
+            sheet.getRow(1).getCell(31).setCellValue(WorkStream);
+                           
+        }
+    }
 			else if(toolname.equalsIgnoreCase("NoToolInstance"))
 			{
 				Random rndnumb = new Random();
@@ -372,6 +400,48 @@ public class DataLoader {
 			}
 			
 		}
+		
+		public static void verifyentityprioritization(String entity,String toolname) {
+		try{
+			
+		     //verify entity present in mywizardinstance
+			selectByPartOfVisibleText(GenericUploaderUIMap.ProductInstance_drpdown, "myWizardInstance");
+			List<WebElement> alldropdownvalues = getDropdownOptionsElements(GenericUploaderUIMap.DataEntity_drpdown);
+			boolean entitypresentInInstance=false;
+			for (int j = 0; j < alldropdownvalues.size(); j++) {
+		        if(alldropdownvalues.get(j).getText().equalsIgnoreCase(entity)){
+		        	entitypresentInInstance=true;
+		        	break;
+		        }
+			}
+		     if(!entitypresentInInstance){
+		    		logger.info("Entity "+entity+ "not present in mywizardinstance in generic uploader tile");
+		     		Assert.fail("Entity "+entity+ "not present in mywizardinstance in generic uploader tile");
+		    }
+		     
+		     //verify entity not present in adt jira
+		     boolean entitynotpresentIntool=false;
+		     selectByPartOfVisibleText(GenericUploaderUIMap.ProductInstance_drpdown, toolname);
+		     alldropdownvalues = getDropdownOptionsElements(GenericUploaderUIMap.DataEntity_drpdown);
+		     for (int j = 0; j < alldropdownvalues.size(); j++) {
+			        if(alldropdownvalues.get(j).getText().equalsIgnoreCase(entity)){
+			        	entitynotpresentIntool=true;
+			        	break;
+			        }
+				}
+			     if(entitynotpresentIntool){
+			    		logger.info("Entity "+entity+ "present in tool "+toolname+" in generic uploader tile");
+			     		Assert.fail("Entity "+entity+ "present in tool "+toolname+" in generic uploader tile");
+			    }
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Problem verifying entity in generic uploader tile");
+		
+		}	
+		}
+		
 		public static void UploadFileForGenericUploader(String dataentity,String toolname) {
 			try{
 			if(!dataentity.equalsIgnoreCase("IterationForMyWizardInstance"))	

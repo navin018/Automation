@@ -137,6 +137,17 @@ public class ProductConfigUIMap {
 
 	//realtimeconfig
 	public static By RealtimeConfig_input = By.xpath("//span[text()='Yes']//preceding-sibling::input[@name='isRealtimeConfigChangesEnabled']");
+	
+	public static String WorkItemType_drpdown = "//*[text()='{entity}']";
+	public static String DeleteWorkItemType_Icon = "//*[text()='{entity}']//following::a[@title='Delete'][1]";
+	public static String lastRowProdConfigEntity_dropdown = "//table[@class='table phx-manage-prod-table phx-fixed-headers']//tbody//tr[{int}]/td[1]";
+	public static String lastRowProdConfigEntityWorkItemType_dropdown = "//table[@class='table phx-manage-prod-table phx-fixed-headers']//tbody//tr[{int}]/td[2]";
+	public static String lastRowProdConfigEntityDataFlowDirection_dropdown = "//table[@class='table phx-manage-prod-table phx-fixed-headers']//tbody//tr[{int}]/td[3]";
+	public static String lastRowProdConfigEntityDescription_dropdown ="//table[@class='table phx-manage-prod-table phx-fixed-headers']//tbody//tr[{int}]/td[4]";
+	
+	public static By ConfirmEntityDelete_window = By.xpath("//h5[text()='Confirm Delete']");
+	public static By ConfirmDeleteYes_btn = By.xpath("//button[@title='Click Yes to delete the Entity']");
+	
 }
 
 

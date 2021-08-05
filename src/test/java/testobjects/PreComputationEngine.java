@@ -215,9 +215,9 @@ import java.util.Random;
 							clickJS(PreComputationEngineUIMAP.BusinessValue_checkbox);
 							clickJS(PreComputationEngineUIMAP.BusinessValue_label);
 						}
-					clickJS(PreComputationEngineUIMAP.SaveFormula_btn);
-					ExpWaitForCondition(PreComputationEngineUIMAP.SaveSuccess_Msg);
 				}
+				clickJS(PreComputationEngineUIMAP.SaveFormula_btn);
+				ExpWaitForCondition(PreComputationEngineUIMAP.SaveSuccess_Msg);
 			}
 			catch(Exception e)
 			{

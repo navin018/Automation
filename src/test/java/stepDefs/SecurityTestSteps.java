@@ -92,7 +92,10 @@ public class SecurityTestSteps {
         case "Lifecycle Template Configuration/Add Stage Template":
             SecurityTests.Add_StageTemplate();
             break;
-            
+        case "Metrics Engine":
+        	SecurityTests.Add_MeasureAndMetric();
+        	break;
+        	
         }
 
     }
@@ -125,6 +128,9 @@ public class SecurityTestSteps {
     case "Lifecycle Template Configuration/Add Stage Template":
         SecurityTests.Delete_StageTemplate();
         break;
+    case "Metrics Engine":
+    	SecurityTests.Delete_MeasureAndMetric();
+    	break;
     	
            }
 

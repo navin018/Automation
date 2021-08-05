@@ -185,16 +185,15 @@ public class CommonAcrossApps {
 			Thread.sleep(5000);
 			 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
 			 click(MyWizardUIMap.signIn_btn1);
-			 Thread.sleep(10000);
+//			 Thread.sleep(10000);
 			}
 			
 			
 			
 			//if stay signed in page shows up
-			if(CheckIfElementExists(MyWizardUIMap.Yes_btn))	
-			{
+			ExpWaitForCondition(MyWizardUIMap.Yes_btn);	
 				clickJS(MyWizardUIMap.Yes_btn);
-			}
+			
 			
 //-------------------------------removing this part as we have got a dedicated user id			
 ////			//check if the creds need to be entered
@@ -269,9 +268,9 @@ public class CommonAcrossApps {
 //				 clickJS(MyWizardUIMap.MywizChromeNotification_btn);
 //			 }
 			
-		     ExpWaitForCondition(MyWizardUIMap.IUnderstand_checkbox);
-		                clickJS(MyWizardUIMap.IUnderstand_checkbox);
-		                 clickJS(MyWizardUIMap.Confirm_btn);
+		     ExpWaitForCondition(MyWizardUIMap.Dashboard_Checkbox);
+		                clickJS(MyWizardUIMap.Dashboard_Checkbox);
+		                 clickJS(MyWizardUIMap.Dashboard_Confirm_btn);
 
 			 ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
 //			 
@@ -376,8 +375,10 @@ public static void LoginToTFS()
 		 enterText(TFSUIMap.Pwd_txtbox,Property.getProperty("TFSPassword"));
 		 click(TFSUIMap.signIn_btn);
 		 waitPageToLoad();
-		Thread.sleep(10000);
-		grabScreenshotForExtentReport();
+//		Thread.sleep(10000);
+		 ExpWaitForCondition(TFSUIMap.Yes_btn);       
+		 clickJS(TFSUIMap.Yes_btn);
+//		grabScreenshotForExtentReport();
 		ExpWaitForCondition(TFSUIMap.searchProject_txtbox);
 		System.out.println("login to TFS successful");
 		
@@ -1114,8 +1115,8 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		jsonObject.put("WorkItemExternalId_Story_RAG_StatusDone_Rule1", Baseclass.getInstance().WorkItemExternalId_Story_RAG_StatusDone_Rule1);
 		jsonObject.put("WorkItemExternalId_Story_RAG_StatusInactivate_Rule2", Baseclass.getInstance().WorkItemExternalId_Story_RAG_StatusInactivate_Rule2);
 		jsonObject.put("WorkItemExternalId_Story_RAG_NoAssociation_Rule3", Baseclass.getInstance().WorkItemExternalId_Story_RAG_NoAssociation_Rule3);
-		jsonObject.put("WorkItemExternalId_Story_RAG_SprintTiming_Rule4", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule4);
-		jsonObject.put("WorkItemExternalId_Story_RAG_SprintTiming_Rule5", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule5);
+		jsonObject.put("WorkItemExternalId_Story_RAG_IterationTiming_Rule4", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule4);
+		jsonObject.put("WorkItemExternalId_Story_RAG_IterationTiming_Rule5", Baseclass.getInstance().WorkItemExternalId_Story_RAG_IterationTiming_Rule5);
 		
 		jsonObject.put("WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7", Baseclass.getInstance().WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7);
 		jsonObject.put("WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7", Baseclass.getInstance().WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7);

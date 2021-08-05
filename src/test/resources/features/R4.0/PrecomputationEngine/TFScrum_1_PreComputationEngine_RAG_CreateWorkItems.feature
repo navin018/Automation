@@ -15,7 +15,7 @@ Scenario Outline: TFSScrum_WorkitemCreation_PreCompuation
 	And i create a "Release" with start date as "-60" days from today and end date as "1" days from today in TFS 
 	And i create a "Sprint" with start date as "-30" days from today and end date as "1" days from today in TFS 
 	And i "create" a "Story_RAG_IterationTiming_Rule4" in TFS for "PreComputation_RAG"
-#	
+	
 	#Rule5
 	And i create a "Release" with start date as "1" days from today and end date as "60" days from today in TFS 
 	And i create a "Sprint" with start date as "2" days from today and end date as "7" days from today in TFS 

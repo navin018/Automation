@@ -32,6 +32,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.joda.time.base.BaseLocal;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import com.fasterxml.jackson.databind.deser.Deserializers.Base;
@@ -1124,6 +1125,97 @@ public static void Add_StageTemplate() {
 
     
 }
+    	
+    public static void Delete_MeasureAndMetric() {
+    	try {
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	clickJS(SecurityTestsUIMap.Search_img);
+    	enterText(SecurityTestsUIMap.Search_img,"Automation_Testing");
+    	HoverUsingAction(SecurityTestsUIMap.Metric_Name);
+    	clickJS(SecurityTestsUIMap.Delete_symbol);
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	clickJS(SecurityTestsUIMap.yes_btn1);
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	clickJS(SecurityTestsUIMap.Save_icon);
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+
+
+    	}
+    	catch (Exception e) {
+    	e.printStackTrace();
+    	logger.info("Issue Deleting Measure And metric");
+    	Assert.fail("Issue Deleting Measure And metric");
+    	}
+
+
+    	}
+    
+    public static void Add_MeasureAndMetric() {
+    	try {
+    	// add measure
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	singleClick(SecurityTestsUIMap.Filter_img);
+    	selectDropdownByText(SecurityTestsUIMap.Metrictyp_drpdwn,"Custom");
+    	selectDropdownByText(SecurityTestsUIMap.Category_drpdwn,"Quality");
+    	singleClick(SecurityTestsUIMap.Apply_btn);
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	clickJS(SecurityTestsUIMap.AddMeasure_img);
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	enterText(SecurityTestsUIMap.Measurename_txt,"Automation_Sample");
+    	enterText(SecurityTestsUIMap.Measuredefinition_txt,"Automation_DonotEdit");
+    	selectDropdownByText(SecurityTestsUIMap.Entitycustom_drpdwn,"Deliverable");
+    	selectDropdownByText(SecurityTestsUIMap.Functioncustom_drpdwn,"Min");
+    	selectDropdownByText(SecurityTestsUIMap.Attribute_drpdwn,"ActualEndOn");
+    	// need to add the xpath of field and operator
+    	clickJS(SecurityTestsUIMap.Condition_checkbox);
+    	selectDropdownByText(SecurityTestsUIMap.Field_drpdwn," ID ");
+    	selectDropdownByText(SecurityTestsUIMap.Operator_drpdwn," = ");
+    	enterText(SecurityTestsUIMap.value_txtarea,"2");
+    	clickJS(SecurityTestsUIMap.Submit_btn);
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	// add metrics
+    	clickJS(SecurityTestsUIMap.AddMetric_img);
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	enterText(SecurityTestsUIMap.Metricname_txt,"Automation_Testing");
+    	int RandomNumber = RandomNumberGenerator();
+    	enterText(SecurityTestsUIMap.Metriccode_txt,"Automation_" + RandomNumber);
+//    	Baseclass.getInstance().MetricCode= "Automation_" + RandomNumber;
+    	enterText(SecurityTestsUIMap.Metricdefinition_txt,"Automation_SecurityTest");
+    	selectDropdownByText(SecurityTestsUIMap.Metricunit_drpdwn,"Number");
+    	selectDropdownByText(SecurityTestsUIMap.Threshold_drpdwn,"Trend");
+    	selectDropdownByText(SecurityTestsUIMap.deliveryfunction_drpdwn,"Analytics");
+    	selectDropdownByText(SecurityTestsUIMap.Category_drpdwn,"Quality");
+    	clickJS(SecurityTestsUIMap.next_btn);
+    	Thread.sleep(1000);
+    	enterText(SecurityTestsUIMap.Searchmeasure_txt,"11thjan0xxxxx");
+    	clickJS(SecurityTestsUIMap.Measure_checkbox2);
+    	clear(SecurityTestsUIMap.Searchmeasure_txt);
+    	enterText(SecurityTestsUIMap.Searchmeasure_txt,"0202 test ");
+    	clickJS(SecurityTestsUIMap.Measure_checkbox1);
+    	WebElement source = find(SecurityTestsUIMap.Measure_checkbox1);
+    	WebElement destination = find(SecurityTestsUIMap.Formula_txtarea);
+    	DragAndDropUsingJS(source, destination);
+    	singleClick(SecurityTestsUIMap.Formula_txtarea);
+    	clickAddButton();
+
+
+    	WebElement source1 = find(SecurityTestsUIMap.Measure_checkbox2);
+    	WebElement destination1 = find(SecurityTestsUIMap.Formula_txtarea);
+    	DragAndDropUsingJS(source1, destination1);
+    	clickJS(SecurityTestsUIMap.SaveasDraft_btn);
+    	clickJS(SecurityTestsUIMap.Submit_btn1);
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	clickJS(SecurityTestsUIMap.Save_icon);
+    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+    	}
+    	catch (Exception e) {
+    	e.printStackTrace();
+    	logger.info("Issue Adding Measure And metric");
+    	Assert.fail("Issue Adding Measure And metric");
+    	}
+
+    	}
+    
 
 
 }

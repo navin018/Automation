@@ -3408,5 +3408,47 @@ public static String getWorkItemTypeUId(String Entity)
 		
 	}
 
+	public static void RemoveOrAddEntity(String removeOradd, String entity) {
+		if(removeOradd.equalsIgnoreCase("Remove"))
+		{
+			try{
+
+				ExpWaitForCondition(ProductConfigUIMap.AddEntity_link);
+				if(CheckIfElementExists(prepareWebElementWithDynamicXpath(ProductConfigUIMap.WorkItemType_drpdown, entity, "entity")))
+				{
+					clickJS(prepareWebElementWithDynamicXpath(ProductConfigUIMap.DeleteWorkItemType_Icon, entity, "entity"));
+					ExpWaitForCondition(ProductConfigUIMap.ConfirmEntityDelete_window);
+					clickJS(ProductConfigUIMap.ConfirmDeleteYes_btn);
+					
+				}
+				else 
+					logger.info("given entity "+entity+" not present in the product instance entities section");
+				
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				logger.info("issue removing entity "+entity+" in prod config page for Entity prioritization functionality");
+				Assert.fail("issue removing entity "+entity+" in prod config page for Entity prioritization functionality");
+			}
+		}
+		else if(removeOradd.equalsIgnoreCase("Add"))
+		{
+			try{
+
+				ExpWaitForCondition(ProductConfigUIMap.AddEntity_link);
+ 
+					checkAndAddWorkItemsForJira();
+				}
+				
+		
+			catch(Exception e){
+				e.printStackTrace();
+				logger.info("issue adding entity "+entity+" in prod config page for Entity prioritization functionality");
+				Assert.fail("issue adding entity "+entity+" in prod config page for Entity prioritization functionality");
+			}
+		}
+		
+	}
+
 	
 }

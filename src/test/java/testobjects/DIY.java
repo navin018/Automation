@@ -484,7 +484,8 @@ public class DIY extends Baseclass{
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				ExpWaitForCondition(DIYUIMap.ProjectArea_txtbox);
 				clickJS(DIYUIMap.ProjectArea_txtbox);
-				enterText(DIYUIMap.ProjectArea_txtbox,Property.getProperty("ProductInstanceProject"));
+				//changing this since for DIY, we should select a new proj and not an existing project
+				enterText(DIYUIMap.ProjectArea_txtbox,Property.getProperty("ProductInstanceProjectForDIY"));
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				selectDropdownByText(DIYUIMap.methodology_drpdown, "Agile");
 				clickJS(DIYUIMap.SaveAndNext_btn);

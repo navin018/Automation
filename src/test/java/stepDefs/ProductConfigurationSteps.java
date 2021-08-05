@@ -20,6 +20,13 @@ public class ProductConfigurationSteps {
 		ProductConfiguration.Navigatetosection(sectionname);
 	}
 
+		
+		@Then("^i \"([^\"]*)\" entity \"([^\"]*)\" in the Product Instance Entities section$")
+		public void removeEntity_ProdInstanceEntitySection(String removeOradd,String Entity) throws Throwable {
+			ProductConfiguration.RemoveOrAddEntity(removeOradd,Entity);
+		}
+		
+		
 		@Then("^i \"([^\"]*)\" outbound for entity Iteration for tool \"([^\"]*)\"$")
 		public void diableenableoutbound(String enableOrDisable,String toolname) throws Throwable {
 			ProductConfiguration.enabledisableIterationOutbound(enableOrDisable,toolname);

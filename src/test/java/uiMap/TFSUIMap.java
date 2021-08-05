@@ -138,7 +138,7 @@ public static By ChangeProjectTo_txtbox = By.xpath("//input[@id='destinationProj
 
 public static By EntityTypeTo_txtbox = By.xpath("//input[@id='availableTypes']");
 
-public static By Ok_btn = By.xpath("//button[@id='ok']");
+public static By Ok_btn = By.xpath("//button[@id='ok' and @aria-disabled='false']");
 public static By Iteration_drpdown = By.xpath("//input[@aria-label='Iteration Path']");
 //public static By Iteration_label = By.xpath("//div[@class='work-item-view new-work-item-view']/following::label[text()='Ite'][1]");
 public static By Iteration_label = By.xpath("//label[text()='Ite'][1]");
@@ -149,5 +149,5 @@ public static By SelectProject_Drpdown = By.xpath("//label[@for='destinationProj
 public static By ServerError_txt = By.xpath("//span[text()='Server error']");
 public static String IterationValue_drpdown = "//div[@class='treepicker-item']//child::div[text()='{projectname}']";
 public static By IterationName1_txtbox = By.xpath("//div[@class='treepicker-item']//following::input[@aria-label='Iteration Path'][1]");
-
+public static By Yes_btn=By.xpath("//input[@id='idSIButton9']");
 }

@@ -80,7 +80,7 @@ import java.util.Random;
 					if(Property.getProperty("JiraURL").contains("uat.alm.accenture"))
 					{
 //						
-						 switchFrame(JiraUIMap.Description_iFrame);
+//						 switchFrame(JiraUIMap.Description_iFrame);	//iframe not present as per sangeetha
 						enterText(JiraUIMap.Description_txtBox,wi.Description);
 						Thread.sleep(1000);
 						 driver().switchTo().defaultContent();
@@ -94,7 +94,7 @@ import java.util.Random;
 				case "Issue":
 					if(Property.getProperty("JiraURL").contains("uat.alm.accenture"))
 					{
-						 switchFrame(JiraUIMap.Description_iFrame);
+//						 switchFrame(JiraUIMap.Description_iFrame);	//iframe not present as per sangeetha
 						 enterText(JiraUIMap.Description_txtBox,wi.Description);
 						 Thread.sleep(1000);
 						 driver().switchTo().defaultContent();

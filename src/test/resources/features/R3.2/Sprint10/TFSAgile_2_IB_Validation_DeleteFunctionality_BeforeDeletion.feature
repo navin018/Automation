@@ -51,6 +51,10 @@ And i verify if "Requirement" has "flown" which was "NA" for "TFS Agile" for "de
 Scenario: TFSAgile_WorkRequest_flow_beforeDelete 
 And i verify if "Work Request" has "flown" which was "NA" for "TFS Agile" for "delete" functionality 
 
+
+Scenario: TFSAgile_Team_flow_beforeDelete 
+And i verify if "Team" has "flown" which was "NA" for "TFS Agile" for "delete" functionality 
+
 Scenario Outline: TFSAgile_Deletefunctionality_IBVerification_Release_Sprint
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"

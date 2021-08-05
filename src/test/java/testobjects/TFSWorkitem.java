@@ -226,7 +226,11 @@ import utilities.general.Property;
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
 					break;
-					
+				case "impediment":
+                    Baseclass.getInstance().WorkItemExternalId_Impediment =getText(TFSUIMap.captureWorkItemID2_statictxt);
+                    System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
+//                    click(TFSUIMap.close_btn);
+                    break;
 				case "changerequest":
 				case "workrequest":
 				case "work request":
@@ -1001,6 +1005,9 @@ import utilities.general.Property;
 			 String workitemURL;
 						if(workitem.contains("TestCase")) 
 							 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"Test Case";
+						else if (workitem.contains("Work Request")) {
+							workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"change request";
+							}
 								else if(workitem.split("_")[0].contains("Story")){
 							 workitemURL = Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject+"/_workitems/create/"+"User Story";
 							 driver().get(workitemURL);
@@ -1791,7 +1798,7 @@ import utilities.general.Property;
 			String workitemID = API.getWorkItemExternalIDForGivenFunctionality(workitem,"TFS",functionality);
 			String workitemID1 = API.getWorkItemExternalIDForGivenFunctionality(workitem1,"TFS",functionality);
 		
-			
+		
 			if(CheckIfElementExists(TFSUIMap.Close_btn))
 				clickJS(TFSUIMap.Close_btn);
 			
@@ -1802,12 +1809,15 @@ import utilities.general.Property;
 			clickJS(TFSUIMap.LinkType_drpdown);
 //			clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.linkingType_txt, linkingtype, "linkingtype"));
 			enterText(TFSUIMap.LinkType_drpdown,linkingtype);
+			Thread.sleep(2000);
 			sendEntr();
 			enterText(TFSUIMap.workitemlinking_txtbox,workitemID1);
+			Thread.sleep(2000);
 			ExpWaitForCondition(TFSUIMap.searchedWorkitem_drpdown);
 			if(CheckIfElementExists(TFSUIMap.searchedWorkitem_drpdown)){
 //				clickJS(TFSUIMap.SearchBoxHomePage_txtbox);
 				sendEntr();
+				Thread.sleep(2000);
 			}
 			else
 				logger.info(workitemID1+ " i.e. "+workitem1+" doesnt show up in search in TFS");
@@ -1821,6 +1831,8 @@ import utilities.general.Property;
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				logger.info("Issue linking workitems");
+				Assert.fail("Issue linking workitems");
 			}
 		}
 
@@ -1855,6 +1867,7 @@ import utilities.general.Property;
 				enterText(TFSUIMap.StartDate_txtbox,getCalculatedDate(startdatefromtoday));
 				enterText(TFSUIMap.EndDate_txtbox,getCalculatedDate(enddatefromtoday));
 				click(TFSUIMap.saveAndClose_btn);
+				
 			}
 			else if(releaseorSprint.equalsIgnoreCase("Sprint"))
 					{
@@ -1868,6 +1881,7 @@ import utilities.general.Property;
 				enterText(TFSUIMap.StartDate_txtbox,getCalculatedDate(startdatefromtoday));
 				enterText(TFSUIMap.EndDate_txtbox,getCalculatedDate(enddatefromtoday));
 				click(TFSUIMap.saveAndClose_btn);
+				Thread.sleep(5000);
 					}
 //				Baseclass.getInstance().TFS_ReleaseName=releasename;
 //				Baseclass.getInstance().TFS_SprintName=sprintname;
@@ -1876,6 +1890,8 @@ import utilities.general.Property;
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			logger.info("Issue creating iteration for a specific duration");
+			Assert.fail("Issue creating iteration for a specific duration");
 		}
 			
 		}

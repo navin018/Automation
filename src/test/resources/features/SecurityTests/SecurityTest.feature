@@ -253,11 +253,9 @@ Scenario: Check for the security headers
 	Given i login to application "MyWizard" 
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Metrics Engine" 
+	 And i enter all the mandatory details for "Metrics Engine"
 	And the user check for the duplicate security headers and missing security headers for "Metrics Engine" 
-	#i commented this for some reASON
-#	And i click on "Associate Clients" button 
-#	And the user check for the duplicate security headers and missing security headers for "Metrics Engine/Associate Clients" 
-#	And i click on "Close Associate Clients page" button 
+   And i delete the data for "Metrics Engine"
 	And i click on "Go Back" button 
 	And i "update" the vulnerabilites details into excel 
 	And i verify the overall securitytest results 
