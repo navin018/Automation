@@ -26,7 +26,7 @@ public class WorkItemDO {
 	public String SprintStartDate;
 	public String SprintEndDate;
 	public String TeamName;
-	
+	public String TeamVerify;
 	
 	
 

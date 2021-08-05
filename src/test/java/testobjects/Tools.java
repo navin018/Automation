@@ -1021,6 +1021,36 @@ public static String getTitle(String toolname,String workitem){
 		}
 	return "";
 }
+
+public static String checkIfTeamVerificationRequired(String toolname,String workitem){
+	
+	try{
+		
+		String testDataPath_WorkItem="";
+		WorkItemDO  wi ;
+			if(toolname.equalsIgnoreCase("ADT JIRA") || toolname.equalsIgnoreCase("ADOP JIRA"))
+			{
+				testDataPath_WorkItem = testDataPath + "Jira" + File.separator + "JSON" +  File.separator  ;
+			}
+			if(toolname.equalsIgnoreCase("TFS Agile") || toolname.equalsIgnoreCase("TFS Scrum"))
+			{
+				testDataPath_WorkItem = testDataPath + "TFS" + File.separator + "JSON" +  File.separator  ;
+			}
+			
+			 wi = DataManager.getData(testDataPath_WorkItem, "WorkItem",WorkItemDO.class).item.get(workitem+"_TeamVerify");
+			if(!(wi==null))
+				return wi.TeamVerify;
+			else
+				logger.info("Workitem not present in JSON for team verification");
+			}
+	catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("Issue getting team verification details required from JSON file");
+		}
+	return null;
+
+}
 public static String PrepareOutBoundBodyWithRequiredDataAndGetCorrelationID(String toolname,String workitem)
 {
 	try{
@@ -1344,7 +1374,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 //				String SprintName="";
 				String WorkItemExternalId="";
 				try{
-					if(!((workitem.contains("Release") || workitem.contains("Sprint"))))
+					if(!((workitem.contains("Release") || workitem.contains("Sprint") )))
 						{
 						WorkItemExternalId = getWorkItemExternalID_custom(workitem,toolname,functionality);
 //						System.out.println("workitem id from json file is "+WorkItemExternalId);
@@ -1400,6 +1430,13 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
 					 else if(flownOrDeleted.equalsIgnoreCase("deleted"))
 						 Assert.assertEquals(totalrecordcount, 0,workitem +" not deleted for tool "+toolname);
+					 
+					 //this code is for team attached to the entity
+					 String checkIfTeamVerificationIsRequired = checkIfTeamVerificationRequired(toolname,workitem);
+					 if(checkIfTeamVerificationIsRequired.equalsIgnoreCase("Yes"))
+					 {
+						 //verify team details in workitems API
+					 }
 				 }
 				 if((workitem.contains("Release") || workitem.contains("Sprint")) && !functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance"))
 				 {	 
@@ -1725,10 +1762,36 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 								
 					 }
 				 
+				 
+				 //Team verification
 				 if(workitem.contains("Team"))
 				 {
-					 //code to be put
-				 }
+
+                     boolean Teamfound=false;
+                     SoftAssert sa = new SoftAssert();
+                     //to be changed by sanggetha to workitemjson file
+                     String teamName= Baseclass.getInstance().teamName;
+                     String TeamFromAPI=response.jsonPath().getString("DeliveryConstructs.Name");
+                     if(TeamFromAPI.contains(teamName)) {
+                         Teamfound=true;
+                        
+                     }
+                     if(Teamfound && flownOrDeleted.equalsIgnoreCase("flown")){
+                         sa.assertEquals(Teamfound, true,"Team flown for "+toolname);
+                         System.out.println("Team flown for "+toolname);
+                         }
+                 
+                     else if(!Teamfound && flownOrDeleted.equalsIgnoreCase("flown")){
+                         sa.assertEquals(Teamfound, true,"Team not flown for "+toolname);
+                         System.out.println("Team deleted for "+toolname);
+                         }
+                     else if (Teamfound && flownOrDeleted.equalsIgnoreCase("deleted")) {
+                         sa.assertEquals(Teamfound, false,"Team flown for "+toolname +" after deletion from the tool");
+                         System.out.println("Team flown for "+toolname +"after deletion from the tool");
+                     }
+                
+                 }
+				 
 				 }
 			}
 			catch(Exception e)
@@ -1736,7 +1799,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				e.printStackTrace();
 				logger.info("Could not verify "+workitem+" for tool "+toolname+". ");
 				Assert.fail("Could not verify "+workitem+" for tool "+toolname+". ");
-		}
+			}
 			
 			
 		

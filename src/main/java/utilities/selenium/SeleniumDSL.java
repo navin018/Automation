@@ -531,7 +531,7 @@ public class SeleniumDSL {
 	
 	public static int RandomNumberGenerator(){
 		Random rnd = new Random();
-		return 1000 + rnd.nextInt(9000);
+		return 10000 + rnd.nextInt(90000);
 	}
 	
 	public static void sendDelete()  {
@@ -539,6 +539,13 @@ public class SeleniumDSL {
 		ac.sendKeys(Keys.DELETE);
 		ac.build().perform();
     }
+	
+	public static void clickAddButton()  {
+		Actions ac = new Actions(driver());
+		ac.sendKeys(Keys.ADD);
+		ac.build().perform();
+    }
+	
 	public static void sendPageDown()  {
 		Actions ac = new Actions(driver());
 		ac.sendKeys(Keys.PAGE_DOWN);
@@ -547,6 +554,11 @@ public class SeleniumDSL {
 	public static void sendEntr()  {
 		Actions ac = new Actions(driver());
 		ac.sendKeys(Keys.ENTER);
+		ac.build().perform();
+    }
+	public static void sendBackSpace()  {
+		Actions ac = new Actions(driver());
+		ac.sendKeys(Keys.BACK_SPACE);
 		ac.build().perform();
     }
 	public static void sendTab(By by)  {
@@ -938,7 +950,7 @@ public class SeleniumDSL {
 		}
 //		System.out.println("Generated xpath is"+generatedXpath);
 		/*ExtentTestManager.logInfo("Generated xpath is"+generatedXpath);*/
-//    	logger.info("Generated xpath is"+generatedXpath);
+    	logger.info("Generated xpath is"+generatedXpath);
 		return generatedXpath;
 		
 	}

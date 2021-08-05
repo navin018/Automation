@@ -1,13 +1,1 @@
-{
-	"WorkItemExternalId_Story_RAG_StatusDone_Rule1": "260582",
-	"WorkItemExternalId_Story_RAG_StatusInactivate_Rule2": "260583",
-	"WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11": "260623",
-	"WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10": "260612",
-	"WorkItemExternalId_Story_RAG_PastIteration_Rule10": "260615",
-	"WorkItemExternalId_Story_RAG_NoAssociation_Rule3": "260584",
-	"WorkItemExternalId_Story_RAG_SprintTiming_Rule5": "260591",
-	"WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7": "260604",
-	"WorkItemExternalId_Story_RAG_IterationTiming_Rule11": "260624",
-	"WorkItemExternalId_Story_RAG_SprintTiming_Rule4": "260587",
-	"WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7": "260603"
-}
+{"WorkItemExternalId_Story_RAG_StatusDone_Rule1":null,"WorkItemExternalId_Story_RAG_StatusInactivate_Rule2":null,"WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11":null,"WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10":null,"WorkItemExternalId_Story_RAG_PastIteration_Rule10":null,"WorkItemExternalId_Story_RAG_IterationTiming_Rule5":null,"WorkItemExternalId_Story_RAG_IterationTiming_Rule4":null,"WorkItemExternalId_Story_RAG_NoAssociation_Rule3":null,"WorkItemExternalId_Story_RAG_AssociatedToStory_Rule7":"262394","WorkItemExternalId_Story_RAG_IterationTiming_Rule11":null,"WorkItemExternalId_Story_RAG_AssociatedIterationTiming_Rule7":"262392"}
