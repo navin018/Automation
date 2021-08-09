@@ -150,4 +150,28 @@ public static By ServerError_txt = By.xpath("//span[text()='Server error']");
 public static String IterationValue_drpdown = "//div[@class='treepicker-item']//child::div[text()='{projectname}']";
 public static By IterationName1_txtbox = By.xpath("//div[@class='treepicker-item']//following::input[@aria-label='Iteration Path'][1]");
 public static By Yes_btn=By.xpath("//input[@id='idSIButton9']");
+
+//TeamCreationDeletion- sangeetha
+//TFS team
+public static By Teams_text=By.xpath("//span[text()='Teams']");
+public static By NewTeam_btn=By.xpath("//button[@aria-label='New Team']");
+public static By Teamname_txtbox=By.xpath("//input[@placeholder='Team name']");
+public static By Createteam_txt=By.xpath("//span[text()='Create']");
+public static By projectsetting_text=By.xpath("//span[text()='Project settings']");
+public static By Addmember_txtbox=By.xpath("//input[@placeholder='Add members']");
+public static By Add_txt=By.xpath("//span[text()='Add']");    
+
+
+
+public static By filterteam_textbox=By.xpath("//input[@placeholder='Filter teams']");
+public static  String SelectTeam_text="//span[text()='{Teamname}']";
+public static By  Settings_text=By.xpath("//span[@data-content='Settings']");
+public static By  DeleteTeam_text=By.xpath("//span[text()='Delete Team']");
+public static By  Delete_btn=By.xpath("//span[text()='Delete']");
+
+
+
+public static By filter_searchbox=By.xpath("//input[@aria-label='Type / for a list of filters']");
+public static By SearchUsers_txtbox=By.xpath("//input[@aria-label='Search users']");
+public static By Unassigned_txtbox=By.xpath("//span[text()='Unassigned']");
 }

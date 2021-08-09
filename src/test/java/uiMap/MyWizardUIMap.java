@@ -21,7 +21,8 @@ public static By signIn_btn=By.xpath("//input[@type='submit']");
 public static By Pwd_txtbox1=By.xpath("//input[@name='Password' or @type='password' and @name='passwd']");
 public static By signIn_btn1=By.xpath("//*[@id='submitButton' or @id='idSIButton9']");
 
-public static By Yes_btn=By.xpath("//input[@type='submit'][@id='idSIButton9']");
+//public static By Yes_btn=By.xpath("//input[@type='submit'][@id='idSIButton9']");
+public static By Yes_btn=By.xpath("//input[@id='idSIButton9']");
 
 public static By BackToDashboard_link = By.xpath("//div[text()='Back to Dashboard' or @title='Go Back']");
 public static By SettingIcon_Image = By.xpath("//span[@title='Settings']");

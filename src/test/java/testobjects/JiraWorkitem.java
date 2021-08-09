@@ -443,7 +443,8 @@ import java.util.Random;
 							if(Property.getProperty("JiraURL").contains("adtjira001eu")){
 								clickJS(JiraUIMap.BacklogIcon_Img);
 								Thread.sleep(10000);
-								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
+//								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
+								ExpWaitForCondition(JiraUIMap.CreateSprint_btn);
 								ScrollIntoView(JiraUIMap.CreateSprint_btn);
 								clickJS(JiraUIMap.CreateSprint_btn);
 								ExpWaitForCondition(JiraUIMap.NewSprintName_txt);

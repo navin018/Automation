@@ -34,6 +34,8 @@ Scenario Outline: TFSAgile_DeleteFunctionalityReleaseAndSprintIBVerification_Cap
 
 @3TFSAgile_DeleteFunctionality_IBVerificationofActionVerifyiterationexternalid
 Scenario: TFSAgile_DeleteFunctionality_Story_CheckifStoryFlown_Verifyiterationexternalid 
+	
+	Given i load the project properties file
 	And i generate a token for "DevTest" environment 
 	And i verify if "Action" has "flown" which was "NA" for "TFS Agile" for "BeforeRecon" functionality
 	And i verify if "Story" has "flown" which was "NA" for "TFS Agile" for "BeforeRecon" functionality
@@ -63,7 +65,7 @@ Scenario Outline: ADTJIRA_AutoRecon_CheckifReleaseAndSprintFlown_CaptureIteratio
 	And i generate a token for "DevTest" environment  
 	And i verify if "ReleaseFromRMP" has "flown" which was "NA" for "TFS Agile" for "Recon" functionality
 	And i verify if "SprintFromRMP" has "flown" which was "NA" for "TFS Agile" for "Recon" functionality
-	And i put a explicit wait of "60000"
+
 	
 	Examples: 
 		| applicationname |applicationname1|
@@ -90,10 +92,6 @@ Scenario Outline: Delete_TestData_TFSAgile
 		
 @9TFSAgile_DeleteFunctionality_VerifyIfIterationIsNotShownInIterationAPI
 Scenario Outline: TFSAgile_DeleteFunctionality_IBVerification_Release_Sprint
-	Given i login to application "<applicationname>" 
-	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
-	And i click on tile "my Queries"
-	Then i select client and DC for "<applicationname>"
 	And i capture the IterationExternalID for deleted Iteration created from "tool" for tool "TFS Agile"
 	And i generate a token for "DevTest" environment 	
 	And i verify if "Release" has "deleted" which was "NA" for "TFS Agile" for "delete" functionality

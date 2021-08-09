@@ -121,6 +121,7 @@ import java.util.Random;
 								System.out.println("ragStatus is "+ae.get(j.indexOf("ragStatus")));
 								String ragStatusfromAPI = ae.get(j.indexOf("ragStatus"));
 								Assert.assertEquals(ragStatusfromAPI,ExpectedRAGValue, "Mismatch in RAG value for workitem "+workitem+ " for tool "+toolname);
+								
 							}
 						 }
 						 else

@@ -138,7 +138,7 @@ public class RMP extends Baseclass{
 				enterText(RMPUIMap.InitiaveName_txtbox, InitiaveName);
 				enterText(RMPUIMap.InitiaveDescription_txtbox, InitiaveName);
 				clear(RMPUIMap.InititaveOrReleaseOrSprintStartDate_txtbox);
-				enterText(RMPUIMap.InititaveOrReleaseOrSprintStartDate_txtbox, "01/10/2021");
+				enterText(RMPUIMap.InititaveOrReleaseOrSprintStartDate_txtbox, "01/01/2019");
 				clear(RMPUIMap.ReleaseOrSprintEndDate_txtbox);
 				enterText(RMPUIMap.ReleaseOrSprintEndDate_txtbox, "31/03/2022");
 				click(RMPUIMap.Apply_btn);
@@ -297,6 +297,16 @@ public class RMP extends Baseclass{
 			   ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			   clickJS(RMPUIMap.CreateNewRodMap_link);
 			   Thread.sleep(3000);
+			   
+			   //set roadmap timeline
+			   singleClick(RMPUIMap.Settings_Icon);
+			   enterText(RMPUIMap.RoadMapTitle_txtbox,"RoadMap"+randomNumb);
+			   clear(RMPUIMap.InititaveOrReleaseOrSprintStartDate_txtbox);
+			   enterText(RMPUIMap.InititaveOrReleaseOrSprintStartDate_txtbox,"01/01/2019");
+			   singleClick(RMPUIMap.Apply_btn);
+			   ExpWaitForCondition(RMPUIMap.proceed_btn);
+			   clickJS(RMPUIMap.proceed_btn);
+			   
 			   singleClick(RMPUIMap.plusIcon_Img);
 			   Thread.sleep(3000);
 			   singleClick(RMPUIMap.AddInititave_Link);
@@ -341,6 +351,7 @@ public class RMP extends Baseclass{
 				   Thread.sleep(2000);
 				   singleClick(RMPUIMap.EditRelease_btn);
 				   Thread.sleep(2000);
+				   ExpWaitForCondition(RMPUIMap.ReleaseNAME_txtbox);
 				   enterText(RMPUIMap.ReleaseNAME_txtbox,releasename);
 				   enterText(RMPUIMap.ReleaseDescription_txtbox, releasename);
 				
@@ -361,6 +372,8 @@ public class RMP extends Baseclass{
 			clear(RMPUIMap.ReleaseOrSprintEndDate_txtbox);
 			enterText(RMPUIMap.ReleaseOrSprintEndDate_txtbox,releaseenddate);
 			click(RMPUIMap.Apply_btn);
+			ExpWaitForCondition(RMPUIMap.proceed_btn);
+			clickJS(RMPUIMap.proceed_btn);
 			
 			
 			
@@ -376,7 +389,9 @@ public class RMP extends Baseclass{
 			   mouseHoverJScript(webe);
 			   clickJS(RMPUIMap.SprintArrow_icon);
 			   Thread.sleep(2000);
-			   singleClick(prepareWebElementWithDynamicXpath(RMPUIMap.Edisprint_btn, releasename, "releasename"));
+//			   singleClick(prepareWebElementWithDynamicXpath(RMPUIMap.Edisprint_btn, releasename, "releasename"));
+			   singleClick(prepareWebElementWithDynamicXpath(RMPUIMap.Edisprint_btn, InitiaveName, "releasename"));
+			   
 //			   HoverUsingAction(RMPUIMap.Sprint_Icon);
 //			   Thread.sleep(2000);
 //			doubleClick(RMPUIMap.Sprint_Icon);
@@ -412,19 +427,35 @@ public class RMP extends Baseclass{
 				click(RMPUIMap.Apply_btn);
 				
 				//review from here
+				//save roadmap
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-				clickJS(RMPUIMap.SaveBaseline_btn);
-				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-				
-				enterText(RMPUIMap.RoadMapTitle_txtbox,"RoadMap"+randomNumb);
-				click(RMPUIMap.Apply_btn);
-				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-				click(RMPUIMap.SaveBaseline_btn);
+				ExpWaitForCondition(RMPUIMap.Save1_btn);
+				clickJS(RMPUIMap.Save1_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				ExpWaitForCondition(RMPUIMap.Save_btn);
 				click(RMPUIMap.Save_btn);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				
+				//
+//				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				ExpWaitForCondition(RMPUIMap.SaveBaseline_btn);
+//				clickJS(RMPUIMap.SaveBaseline_btn);
+//				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				clickJS(RMPUIMap.proceed_btn);
+//				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				clickJS(RMPUIMap.save_btn);
+//				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				enterText(RMPUIMap.RoadMapTitle_txtbox,"RoadMap"+randomNumb);
+//				click(RMPUIMap.Apply_btn);
+//				clickJS(RMPUIMap.Save_btn);
+//				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				click(RMPUIMap.SaveBaseline_btn);
+//				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				clickJS(RMPUIMap.proceed_btn);
+//				ExpWaitForCondition(RMPUIMap.Save_btn);
+//				click(RMPUIMap.Save_btn);
 
-				ExpWaitForCondition(RMPUIMap.RoadmapSaved_successMsg);
+//				ExpWaitForCondition(RMPUIMap.RoadmapSaved_successMsg);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 //					 ExpWaitForCondition(RMPUIMap.RoadMapUpdated_msg);
 //				if(typeofrecon.equalsIgnoreCase("ManualRecon")){

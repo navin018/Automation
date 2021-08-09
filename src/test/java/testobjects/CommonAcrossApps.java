@@ -513,6 +513,8 @@ try{
 		jsonObject.put("WorkItemExternalId_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
 		jsonObject.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
 		
+		jsonObject.put("Team_Name",Baseclass.getInstance().teamName);
+		
 		 FileWriter file = new FileWriter(WorkItemEx_FileLoc);
          file.write(jsonObject.toJSONString());
          file.close();

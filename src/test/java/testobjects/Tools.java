@@ -167,7 +167,7 @@ public static String getWorkItemExternalID_custom(String workitem, String toolna
 			WorkItemExternalId = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
 			WorkItemExternalId = WorkItemExternalId + "&" + (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
 		}
-		if(!workitem.contains("Team")) 
+		if(!workitem.equalsIgnoreCase("Team")) 
 		{
 			if(!(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equals("")))
 			 return WorkItemExternalId;
@@ -175,6 +175,9 @@ public static String getWorkItemExternalID_custom(String workitem, String toolna
 				logger.info("Workitem "+workitem+" was not created for tool "+toolname);
 			 Assert.fail("Workitem "+workitem+" was not created for tool "+toolname);
 		 }
+			if(workitem.equalsIgnoreCase("Team"))
+				return (String) jsonObject.get("Team_Name"); 
+			
 		}
 	}
 	catch(Exception e)
@@ -1037,18 +1040,20 @@ public static String checkIfTeamVerificationRequired(String toolname,String work
 				testDataPath_WorkItem = testDataPath + "TFS" + File.separator + "JSON" +  File.separator  ;
 			}
 			
-			 wi = DataManager.getData(testDataPath_WorkItem, "WorkItem",WorkItemDO.class).item.get(workitem+"_TeamVerify");
+			 wi = DataManager.getData(testDataPath_WorkItem, "WorkItem",WorkItemDO.class).item.get(workitem.split("_")[0]+"_TeamVerify");
 			if(!(wi==null))
 				return wi.TeamVerify;
-			else
-				logger.info("Workitem not present in JSON for team verification");
+			else{
+				logger.info("Ignore Team verification for workitem "+workitem);
+				return "NA";
+			}
 			}
 	catch(Exception e)
 		{
 			e.printStackTrace();
 			logger.info("Issue getting team verification details required from JSON file");
 		}
-	return null;
+	return "NA";
 
 }
 public static String PrepareOutBoundBodyWithRequiredDataAndGetCorrelationID(String toolname,String workitem)
@@ -1433,9 +1438,10 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					 
 					 //this code is for team attached to the entity
 					 String checkIfTeamVerificationIsRequired = checkIfTeamVerificationRequired(toolname,workitem);
-					 if(checkIfTeamVerificationIsRequired.equalsIgnoreCase("Yes"))
+					 if(!checkIfTeamVerificationIsRequired.equalsIgnoreCase("NA"))
 					 {
 						 //verify team details in workitems API
+						 VerifyTeamDetailsForEntity(response.jsonPath(),workitem,toolname,flownOrDeleted);
 					 }
 				 }
 				 if((workitem.contains("Release") || workitem.contains("Sprint")) && !functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance"))
@@ -1555,110 +1561,68 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					 String jsonpathforValue="";
 					 String jsonpathorExternalValue="";
 					 
-					 if(!workitem.contains("Action")){
-						 jsonpathforName = "WorkItems.WorkItemAttributes.Name";
-						 jsonpathforValue = "WorkItems.WorkItemAttributes.IdValue";
-						 jsonpathorExternalValue = "WorkItems.WorkItemAttributes.IdExternalValue";
-					 }
-					 else if(workitem.contains("Action")){
-						 jsonpathforName = "Actions.ActionAttributes.Name";
-					 	jsonpathforValue = "Actions.ActionAttributes.IdValue";
-					 	jsonpathorExternalValue="Actions.ActionAttributes.IdExternalValue";
-					 }
-				 List<ArrayList<String>> DisplayNames= response.jsonPath().get(jsonpathforName);
-					System.out.println(DisplayNames.size());
-					 for(ArrayList j:DisplayNames)
-					 {
-						 
-						 if(j.contains("ReleaseUId"))
-						 {
-							 List<ArrayList<String>> IdValue = response.jsonPath().get(jsonpathforValue);
-							 List<ArrayList<String>> IdExternalValue = response.jsonPath().get(jsonpathorExternalValue);
-							 for(ArrayList<String> k : IdValue)
-							{
-								 
-								 IterationUID_Release= k.get(j.indexOf("ReleaseUId"));
-								System.out.println(IterationUID_Release);
-								
-							}
-							 for(ArrayList<String> l : IdExternalValue)
-								{
-									 
-								 IterationExternalID_Release= l.get(j.indexOf("ReleaseUId"));
-								 System.out.println(IterationExternalID_Release);
-								}
-						 }
-						 
-						 if(j.contains("IterationUId"))
-						 {
-							 List<ArrayList<String>> IdValue = response.jsonPath().get(jsonpathforValue);
-							 List<ArrayList<String>> IdExternalValue = response.jsonPath().get(jsonpathorExternalValue);
-							 for(ArrayList<String> k : IdValue)
-							{
-								 
-								 IterationUID_Sprint= k.get(j.indexOf("IterationUId"));
-								System.out.println(IterationUID_Sprint);
-								
-							}
-							 for(ArrayList<String> l : IdExternalValue)
-								{
-									 
-								 IterationExternalID_Sprint= l.get(j.indexOf("IterationUId"));
-								 System.out.println(IterationExternalID_Sprint);
-								}
-						 }
-					 }
 					 
-					 UpdateIterationUIDAndIterationExternalIDOfWorkitemAndCompareIterationExternalID(IterationUID_Release,IterationExternalID_Release,IterationUID_Sprint,IterationExternalID_Sprint,toolname);
+						 
+					 ArrayList<String> IterationDetails = getIterationUIDAndExternalIDForReleaseAndSprintAndVerifyTheSame(response.jsonPath(),workitem,toolname);
+					 System.out.println(IterationDetails);
+//						 UpdateIterationUIDAndIterationExternalIDOfWorkitemAndCompareIterationExternalID(IterationUID_Release,IterationExternalID_Release,IterationUID_Sprint,IterationExternalID_Sprint,toolname);
+					 UpdateIterationUIDAndIterationExternalIDOfWorkitemAndCompareIterationExternalID(IterationDetails.get(0),IterationDetails.get(1),IterationDetails.get(2),IterationDetails.get(3),toolname);	
+				
+					 
+			
+					 
+//					 UpdateIterationUIDAndIterationExternalIDOfWorkitemAndCompareIterationExternalID(IterationUID_Release,IterationExternalID_Release,IterationUID_Sprint,IterationExternalID_Sprint,toolname);
 				 }
 				 
 				 if(functionality.contains("AfterRecon"))
 				 {
-					 String IterationUID="";
-					 String IterationExternalIDOfWorkitemAfterRecon_Release="";
-					 String IterationExternalIDOfWorkitemAfterRecon_Sprint="";
-					 String jsonpathforName="";
-					 String jsonpathforValue="";
-					 String jsonpathorExternalValue="";
-					 List<ArrayList<String>> DisplayNames=null;
+//					 String IterationUID="";
+//					 String IterationExternalIDOfWorkitemAfterRecon_Release="";
+//					 String IterationExternalIDOfWorkitemAfterRecon_Sprint="";
+//					 String jsonpathforName="";
+//					 String jsonpathforValue="";
+//					 String jsonpathorExternalValue="";
+//					 List<ArrayList<String>> DisplayNames=null;
 					 
 					if(functionality.equalsIgnoreCase("AfterRecon")){ 
-					 if(!workitem.contains("Action")){
-						 jsonpathforName = "WorkItems.WorkItemAttributes.Name";
-						 jsonpathforValue = "WorkItems.WorkItemAttributes.IdValue";
-						 jsonpathorExternalValue = "WorkItems.WorkItemAttributes.IdExternalValue";
-					 }
-					 else if(workitem.contains("Action")){
-						 jsonpathforName = "Actions.ActionAttributes.Name";
-					 	jsonpathforValue = "Actions.ActionAttributes.IdValue";
-					 	jsonpathorExternalValue="Actions.ActionAttributes.IdExternalValue";
-					 }
-				  DisplayNames= response.jsonPath().get(jsonpathforName);
-//					List<ArrayList<String>> DisplayNames = response.jsonPath().get("WorkItems.WorkItemAttributes.Name");
-					 for(ArrayList j:DisplayNames)
-					 {
-						 if(j.contains("ReleaseUId"))
-						 {
-							 List<ArrayList<String>> Value = response.jsonPath().get(jsonpathforValue);
-							 for(ArrayList<String> l : Value)
-								{
-									 
-								 IterationExternalIDOfWorkitemAfterRecon_Release= l.get(j.indexOf("ReleaseUId"));
-								 System.out.println(IterationExternalIDOfWorkitemAfterRecon_Release);
-								}
-						 }
-						 if(j.contains("IterationUId"))
-						 {
-							 List<ArrayList<String>> Value = response.jsonPath().get(jsonpathforValue);
-							 for(ArrayList<String> l : Value)
-								{
-									 
-								 IterationExternalIDOfWorkitemAfterRecon_Sprint= l.get(j.indexOf("IterationUId"));
-								 System.out.println(IterationExternalIDOfWorkitemAfterRecon_Sprint);
-								}
-						 }
-					 }
-					 VerifyIterationExternalIDAfterReconForWorkitem(IterationExternalIDOfWorkitemAfterRecon_Release,IterationExternalIDOfWorkitemAfterRecon_Sprint,toolname);
+//					 if(!workitem.contains("Action")){
+//						 jsonpathforName = "WorkItems.WorkItemAttributes.Name";
+//						 jsonpathforValue = "WorkItems.WorkItemAttributes.IdValue";
+//						 jsonpathorExternalValue = "WorkItems.WorkItemAttributes.IdExternalValue";
+//					 }
+//					 else if(workitem.contains("Action")){
+//						 jsonpathforName = "Actions.ActionAttributes.Name";
+//					 	jsonpathforValue = "Actions.ActionAttributes.IdValue";
+//					 	jsonpathorExternalValue="Actions.ActionAttributes.IdExternalValue";
+//					 }
+//				  DisplayNames= response.jsonPath().get(jsonpathforName);
+////					List<ArrayList<String>> DisplayNames = response.jsonPath().get("WorkItems.WorkItemAttributes.Name");
+//					 for(ArrayList j:DisplayNames)
+//					 {
+//						 if(j.contains("ReleaseUId"))
+//						 {
+//							 List<ArrayList<String>> Value = response.jsonPath().get(jsonpathforValue);
+//							 for(ArrayList<String> l : Value)
+//								{
+//									 
+//								 IterationExternalIDOfWorkitemAfterRecon_Release= l.get(j.indexOf("ReleaseUId"));
+//								 System.out.println(IterationExternalIDOfWorkitemAfterRecon_Release);
+//								}
+//						 }
+//						 if(j.contains("IterationUId"))
+//						 {
+//							 List<ArrayList<String>> Value = response.jsonPath().get(jsonpathforValue);
+//							 for(ArrayList<String> l : Value)
+//								{
+//									 
+//								 IterationExternalIDOfWorkitemAfterRecon_Sprint= l.get(j.indexOf("IterationUId"));
+//								 System.out.println(IterationExternalIDOfWorkitemAfterRecon_Sprint);
+//								}
+//						 }
+//					 }
+						ArrayList<String> IterationDetails = getIterationUIDAndExternalIDForReleaseAndSprintAndVerifyTheSame(response.jsonPath(),workitem,toolname);	
+//					 VerifyIterationExternalIDAfterReconForWorkitem(IterationExternalIDOfWorkitemAfterRecon_Release,IterationExternalIDOfWorkitemAfterRecon_Sprint,toolname);
+						VerifyIterationExternalIDAfterReconForWorkitem(IterationDetails.get(0),IterationDetails.get(2),toolname);
 					}
 					
 					if(functionality.equalsIgnoreCase("AfterRecon&Delete"))
@@ -1671,10 +1635,10 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 							 }
 						}
 						else {
-							jsonpathforName = "WorkItems.WorkItemAttributes.Name";
-							jsonpathforValue = "WorkItems.WorkItemAttributes.Value";
-							jsonpathorExternalValue = "WorkItems.WorkItemAttributes.ExternalValue";
-							
+							String jsonpathforName = "WorkItems.WorkItemAttributes.Name";
+							String jsonpathforValue = "WorkItems.WorkItemAttributes.Value";
+							String 	jsonpathorExternalValue = "WorkItems.WorkItemAttributes.ExternalValue";
+							 List<ArrayList<String>> DisplayNames=null;
 						
 									DisplayNames= response.jsonPath().get(jsonpathforName);
 									System.out.println(DisplayNames.size());
@@ -1766,30 +1730,31 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 //Team verification
 				 if(workitem.contains("Team"))
 				 {
-
-                     boolean Teamfound=false;
+					 try{
+					 boolean Teamfound=false;
                      SoftAssert sa = new SoftAssert();
                      //to be changed by sanggetha to workitemjson file
-                     String teamName= Baseclass.getInstance().teamName;
+                     String teamNameFromTool=Tools.getWorkItemExternalID_custom(workitem,toolname,"normal");
                      String TeamFromAPI=response.jsonPath().getString("DeliveryConstructs.Name");
-                     if(TeamFromAPI.contains(teamName)) {
+                     if(TeamFromAPI.contains(teamNameFromTool)) {
                          Teamfound=true;
-                        
                      }
-                     if(Teamfound && flownOrDeleted.equalsIgnoreCase("flown")){
-                         sa.assertEquals(Teamfound, true,"Team flown for "+toolname);
-                         System.out.println("Team flown for "+toolname);
-                         }
-                 
-                     else if(!Teamfound && flownOrDeleted.equalsIgnoreCase("flown")){
+                         
+                    if(!Teamfound && flownOrDeleted.equalsIgnoreCase("flown")){
                          sa.assertEquals(Teamfound, true,"Team not flown for "+toolname);
-                         System.out.println("Team deleted for "+toolname);
+                         System.out.println("Team not flown for "+toolname);
                          }
                      else if (Teamfound && flownOrDeleted.equalsIgnoreCase("deleted")) {
                          sa.assertEquals(Teamfound, false,"Team flown for "+toolname +" after deletion from the tool");
                          System.out.println("Team flown for "+toolname +"after deletion from the tool");
                      }
-                
+					 }
+					 catch(Exception e)
+					 {
+						 e.printStackTrace();
+						 logger.info("Issue verifying team details in API");
+						 Assert.fail("Issue verifying team details in API");
+					 }
                  }
 				 
 				 }
@@ -1805,7 +1770,183 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 		
 		}
 
-		 public static void verifyReleaseAndSprintDetailsForGenericUploader(String workitem, JsonPath jsonPath) {
+		 
+
+public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem, String toolname,String flownOrDeleted) {
+             String checkIfTeamVerificationIsRequired="";
+            String teamName=getWorkItemExternalID_custom( workitem, toolname, "normal");
+             SoftAssert sa = new SoftAssert();
+             boolean flown=false;         
+           
+             
+             if(checkIfTeamVerificationIsRequired.equalsIgnoreCase("TeamCreatedInTool"))
+             {
+                 String TeamFromAPI="";//verify team details in workitems API
+                 if (workitem.equalsIgnoreCase("Epic")||(workitem.equalsIgnoreCase("Story"))) {
+                    
+                     TeamFromAPI=jsonPath.getString("WorkItems[0].TeamAreaName");
+                    
+                }
+                else if(workitem.equalsIgnoreCase("Action")) {
+                    TeamFromAPI=jsonPath.getString("Actions[0].TeamAreaName");
+                }
+                 
+                 if(TeamFromAPI.equalsIgnoreCase(teamName)) {
+                    flown=true;
+                    
+                 }
+                    if(!flown && flownOrDeleted.equalsIgnoreCase("flown")){
+                         sa.assertEquals(flown, true,"Team not flown for "+ workitem +"in "+toolname);
+                         System.out.println("Team  flown not for "+ workitem +"in "+toolname);
+
+ 
+
+                         }
+                    else if(flown && flownOrDeleted.equalsIgnoreCase("deleted")){
+                         sa.assertEquals(flown, false,"Team flown for "+toolname +" after deletion from the tool");
+                         System.out.println("Team flown for "+toolname +" after deletion from the tool");
+                }    
+                 
+             }
+             else if(checkIfTeamVerificationIsRequired.equalsIgnoreCase("TeamCreatedInUI")) 
+             {
+                 String DCFromAPI="";
+                 boolean DCflown=false;
+                 //code to be added
+                 //Implemented for Only workitems
+                     DCFromAPI=jsonPath.getString("WorkItems.WorkItemDeliveryConstructs.DeliveryConstructUId");
+                     System.out.println(DCFromAPI);
+                    //to be added by swetha
+		                     if(DCFromAPI.contains("")) {
+		                            DCflown=true;
+		                            
+		                         }
+	                            if(!DCflown && flownOrDeleted.equalsIgnoreCase("flown")){
+	                                 sa.assertEquals(DCflown, true,"Team DC not flown for "+ workitem +"in "+toolname);
+	                                 System.out.println("Team DC not flown for "+ workitem +" in "+toolname);
+	                            }								
+                            else if(DCflown && flownOrDeleted.equalsIgnoreCase("deleted")){
+                                 sa.assertEquals(DCflown, false,"Team DC flown for "+toolname +" after deletion from the tool");
+                                 System.out.println("Team DC flown for "+toolname +" after deletion from the tool");
+                            	}    
+                         
+                     
+             }
+           
+}
+			
+
+		private static ArrayList<String> getIterationUIDAndExternalIDForReleaseAndSprintAndVerifyTheSame(JsonPath jsonPath, String workitem,String toolname) {
+				 String IterationUID_Release="";
+				 String IterationUID_Sprint ="";
+				 String IterationExternalID_Release="";
+				 String IterationExternalID_Sprint="";
+				 
+				 if(!workitem.contains("Action")){
+					 String jsonpathforName = "WorkItems.WorkItemAttributes.Name";
+					 String jsonpathforValue = "WorkItems.WorkItemAttributes.IdValue";
+					 String jsonpathorExternalValue = "WorkItems.WorkItemAttributes.IdExternalValue";
+					 List<ArrayList<String>> DisplayNames= jsonPath.get(jsonpathforName);
+						System.out.println(DisplayNames.size());
+						 for(ArrayList j:DisplayNames)
+						 {
+							 
+							 if(j.contains("ReleaseUId"))
+							 {
+								 List<ArrayList<String>> IdValue = jsonPath.get(jsonpathforValue);
+								 List<ArrayList<String>> IdExternalValue = jsonPath.get(jsonpathorExternalValue);
+								 for(ArrayList<String> k : IdValue)
+								{
+									 
+									 IterationUID_Release= k.get(j.indexOf("ReleaseUId"));
+									System.out.println(IterationUID_Release);
+									
+								}
+								 for(ArrayList<String> l : IdExternalValue)
+									{
+										 
+									 IterationExternalID_Release= l.get(j.indexOf("ReleaseUId"));
+									 System.out.println(IterationExternalID_Release);
+									}
+							 }
+							 
+							 if(j.contains("IterationUId"))
+							 {
+								 List<ArrayList<String>> IdValue = jsonPath.get(jsonpathforValue);
+								 List<ArrayList<String>> IdExternalValue = jsonPath.get(jsonpathorExternalValue);
+								 for(ArrayList<String> k : IdValue)
+								{
+									 
+									 IterationUID_Sprint= k.get(j.indexOf("IterationUId"));
+									System.out.println(IterationUID_Sprint);
+									
+								}
+								 for(ArrayList<String> l : IdExternalValue)
+									{
+										 
+									 IterationExternalID_Sprint= l.get(j.indexOf("IterationUId"));
+									 System.out.println(IterationExternalID_Sprint);
+									}
+							 }
+						 }
+				 }
+				 else if(workitem.contains("Action"))
+				 {
+					 String jsonpathforIterationTypeUId="Actions.ActionAssociations.IterationTypeUId";
+					 List<ArrayList<String>> IterationTypeUId= jsonPath.get(jsonpathforIterationTypeUId);
+					 for(ArrayList j:IterationTypeUId)
+					 {
+						 
+						 if(j.contains("00200390-0010-0000-0000-000000000000"))
+						 {
+							 List<ArrayList<String>> ExternalID = jsonPath.get("Actions.ActionAssociations.ItemExternalId");
+							 List<ArrayList<String>> AssociatedUId = jsonPath.get("Actions.ActionAssociations.ItemAssociatedUId");
+							 for(ArrayList<String> k : AssociatedUId)
+							{
+								 
+								 IterationUID_Release= k.get(j.indexOf("00200390-0010-0000-0000-000000000000"));
+								System.out.println(IterationUID_Release);
+								
+							}
+							 for(ArrayList<String> l : ExternalID)
+								{
+									 
+								 IterationExternalID_Release= l.get(j.indexOf("00200390-0010-0000-0000-000000000000"));
+								 System.out.println(IterationExternalID_Release);
+								}
+						 }
+						 
+						 if(j.contains("00200390-0020-0000-0000-000000000000"))
+						 {
+							 List<ArrayList<String>> ExternalID = jsonPath.get("Actions.ActionAssociations.ItemExternalId");
+							 List<ArrayList<String>> AssociatedUId = jsonPath.get("Actions.ActionAssociations.ItemAssociatedUId");
+							 for(ArrayList<String> k : AssociatedUId)
+							{
+								 
+								 IterationUID_Sprint= k.get(j.indexOf("00200390-0020-0000-0000-000000000000"));
+								System.out.println(IterationUID_Sprint);
+								
+							}
+							 for(ArrayList<String> l : ExternalID)
+								{
+									 
+								 IterationExternalID_Sprint= l.get(j.indexOf("00200390-0020-0000-0000-000000000000"));
+								 System.out.println(IterationExternalID_Sprint);
+								}
+						 }
+					 }
+				 }
+				 ArrayList<String> IterationDetails = new ArrayList<>();
+				 IterationDetails.add(IterationUID_Release);
+				 IterationDetails.add(IterationExternalID_Release);
+				 IterationDetails.add(IterationUID_Sprint);
+				 IterationDetails.add(IterationExternalID_Sprint);
+				 return IterationDetails;
+				 
+				 
+		}
+
+		public static void verifyReleaseAndSprintDetailsForGenericUploader(String workitem, JsonPath jsonPath) {
 		
 			 if(workitem.equalsIgnoreCase("Release"))
 			 {
@@ -2070,10 +2211,10 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 	        String IterationExternalIDFromTool_Sprint = (String) jsonObject.get("IterationExternalID_Sprint");
 	        Assert.assertEquals(IterationExternalIDFromTool_Release, IterationExternalID_Release,"mismatch in IterationExternalID(Release) between tool and the ID in workitem for toolname "+toolname);
 	        Assert.assertEquals(IterationExternalIDFromTool_Sprint, IterationExternalID_Sprint,"mismatch in IterationExternalID(Sprint) between tool and the ID in workitem for toolname "+toolname);
-	        jsonObject.put("IterationUID_Release_WorkItem",IterationUID_Release);
-	        jsonObject.put("IterationExternalID_Release_WorkItem",IterationExternalID_Release);
-	        jsonObject.put("IterationUID_Sprint_WorkItem",IterationUID_Sprint);
-	        jsonObject.put("IterationExternalID_Sprint_WorkItem",IterationExternalID_Sprint);
+//	        jsonObject.put("IterationUID_Release_WorkItem",IterationUID_Release);
+//	        jsonObject.put("IterationExternalID_Release_WorkItem",IterationExternalID_Release);
+//	        jsonObject.put("IterationUID_Sprint_WorkItem",IterationUID_Sprint);
+//	        jsonObject.put("IterationExternalID_Sprint_WorkItem",IterationExternalID_Sprint);
 	        FileOutputStream outputStream = new FileOutputStream(testDataPath_WorkItemExternalIDs);
 			 byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
 			}
@@ -2563,7 +2704,38 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 			}
 			
 		}
-
+		public static void updateworkitemJSONfile(String toolname,String workitem){
+			try{
+			String testDataPath_WorkItemExternalIDs="";
+			  if(toolname.contains("Jira") || toolname.contains("JIRA")){
+	                testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+	            }
+	            else if(toolname.contains("TFS") || toolname.contains("Tfs")){
+	                testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+	            }
+	            FileReader reader = new FileReader(testDataPath_WorkItemExternalIDs);
+	               JSONParser jsonParser = new JSONParser();
+	            JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+	            String entityID = "WorkItemExternalId_"+workitem;
+	            switch(workitem){
+	            	case "Story":
+	            		jsonObject.put(entityID,Baseclass.getInstance().WorkItemExternalId_Story);
+	            		break;
+	            	case "Action":
+	            		jsonObject.put(entityID,Baseclass.getInstance().WorkItemExternalId_Action);
+	            		break;
+	            }
+	            
+	            FileOutputStream outputStream = new FileOutputStream(testDataPath_WorkItemExternalIDs);
+	             byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("issue updating workitem JSON file for tool "+toolname);
+			}
+		}
+		
 		public static int getWorkItemExternalID_NorthStarEntity(String workitem) {
 			try{
 			String Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"Excel"+  File.separator + "NorthStar_ClientRepository"+".xlsx" ;	

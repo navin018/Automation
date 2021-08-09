@@ -13,12 +13,20 @@ public class TFSSteps {
 	@Then("^i create a \"([^\"]*)\" in TFS$")
 	public void i_create_a_in_TFS(String workitem) throws Throwable {
 //	   TFSWorkitem.CreateWorkitem(workitem);
-		if(!(workitem.contains("TestResult")))
+		if(!(workitem.contains("TestResult") || workitem.equalsIgnoreCase("Team")))
 	   TFSWorkitem.CreateWorkitem1(workitem);
 
 		if(workitem.equalsIgnoreCase("TestResult"))
 		TFSWorkitem.CreateTestResult(workitem);
+		
+		if(workitem.equalsIgnoreCase("Team"))
+			TFSWorkitem.CreateTeam();
 	}
+	
+	  @Then("^i delete the \"([^\"]*)\" in \"([^\"]*)\" for \"([^\"]*)\" functionality$")
+	    public void i_delete_the_in_for_functionality(String workitem, String toolname,String functionality) throws Throwable {
+	        TFSWorkitem.DeleteTeam( workitem, toolname,functionality);
+	    }
 
 //	And i "create" a "Story_wsjf_Decimal_AssociatedWith_Task" associated to "Task_wsjf_Deminal_Output" with linking as "Related" in TFS for "PreComputation_WSJF"
 	@Then("^i \"([^\"]*)\" a \"([^\"]*)\" associated to \"([^\"]*)\" with linking as \"([^\"]*)\" in TFS for \"([^\"]*)\"$")

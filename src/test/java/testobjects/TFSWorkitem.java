@@ -510,6 +510,8 @@ import utilities.general.Property;
 			enterText(TFSUIMap.IterationName_txtbox,newSprintwithAppendedNumb);
 			enterText(TFSUIMap.StartDate_txtbox,wi_sprint.StartDate);
 			enterText(TFSUIMap.EndDate_txtbox,wi_sprint.EndDate);
+			Thread.sleep(5000);
+			ExpWaitForCondition(TFSUIMap.saveAndClose_btn);
 			click(TFSUIMap.saveAndClose_btn);
 			
 			Baseclass.getInstance().TFS_ReleaseName = newReleasewithAppendedNumb;
@@ -524,6 +526,7 @@ import utilities.general.Property;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				logger.info("Issue creating release/sprint");
+				Assert.fail("Issue creating release/sprint");
 			}	
 			
 		}
@@ -1905,6 +1908,63 @@ import utilities.general.Property;
 //			    System.out.println(output);
 			    return output;
 		}
+		public static void DeleteTeam(String workitem, String toolname,String functionality) {
+            try {
+                if(CheckIfElementExists(TFSUIMap.projectsetting_text)) {
+                    clickJS(TFSUIMap.projectsetting_text);
+                }
+                clickJS(TFSUIMap.Teams_text);    
+
+                //read team from JSON file
+                String Team=Tools.getWorkItemExternalID_custom(workitem,toolname,"normal");
+                System.out.println(Team);
+                enterText(TFSUIMap.filterteam_textbox,Team);
+                
+                clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,"Teamname"));
+                
+                clickJS(TFSUIMap.Settings_text);
+                ExpWaitForCondition(TFSUIMap.DeleteTeam_text);
+                clickJS(TFSUIMap.DeleteTeam_text);
+                ExpWaitForCondition(TFSUIMap.Delete_btn);
+                clickJS(TFSUIMap.Delete_btn);
+                waitPageToLoad();
+                
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                Assert.fail("Issue Deleting Team in Tool");
+            }
+
+ 
+
+            
+        }
+		public static void CreateTeam() {
+            try {
+	            if(CheckIfElementExists(TFSUIMap.projectsetting_text)) {
+	                clickJS(TFSUIMap.projectsetting_text);
+	            }
+            clickJS(TFSUIMap.Teams_text);
+            Thread.sleep(3000);
+            ExpWaitForCondition(TFSUIMap.NewTeam_btn);
+            clickJS(TFSUIMap.NewTeam_btn);
+            ExpWaitForCondition(TFSUIMap.Teamname_txtbox);           
+            Baseclass.getInstance().teamName="AutomationTeam_"+RandomNumberGenerator();
+            System.out.println(Baseclass.getInstance().teamName);           
+            enterText(TFSUIMap.Teamname_txtbox,Baseclass.getInstance().teamName);
+            enterText(TFSUIMap.Addmember_txtbox,"gopala.veeramani@accenture.com");
+            sendEntr();
+            clickJS(TFSUIMap.Createteam_txt);
+            waitPageToLoad();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                logger.info("Issue Creating Team in Tool");
+                Assert.fail("Issue Creating Team in Tool");
+            }
+        }
 
 //		public static void AssociateWorkitems(String workitem1, String workitem2, String relationship) {
 //			try{

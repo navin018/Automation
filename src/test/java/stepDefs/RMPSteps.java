@@ -28,6 +28,13 @@ public class RMPSteps {
 	@Then("^i navigate to RMP page$")
 	public void i_navigate_to_RMP_page() throws Throwable {
 		RMP.NavigateToRMPPage();
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		Thread.sleep(3000);
+		ExpWaitForCondition(MyWizardUIMap.Dashboard_Checkbox);
+        click(MyWizardUIMap.Dashboard_Checkbox);
+        ExpWaitForCondition(MyWizardUIMap.Dashboard_Confirm_btn);
+        click(MyWizardUIMap.Dashboard_Confirm_btn);
+       	 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 	}
 	
 	@Then("^i and create Release and Sprint in RMP page for \"([^\"]*)\" for the tool \"([^\"]*)\"$")

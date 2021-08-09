@@ -8,6 +8,8 @@ public class RMPUIMap {
 	
 
 public static By MyWizardHome_Img=By.xpath("//img[@title='Home']");
+public static By Settings_Icon=By.xpath("//a[@id='Settings']");
+
 public static By BizDevops_Statictxt = By.xpath("//div[text()='BizDevOps - Business Aligned SI & Operations']");
 public static By ProgramPlanning_Img=By.xpath("//img[@alt='Program Planning']");
 public static By LivingRoadmap_Img=By.xpath("//span[text()='Living Roadmap &  Workplan, Milestones & Deliverables']");
@@ -77,21 +79,22 @@ public static By SprintDescription_txtbox = By.xpath("//*[@id='SprintDescription
 
 public static By SprintType_drpdown = By.xpath("//span[@class='dropdown-arrow']");
 public static By SprintTypeValue_drpdown = By.xpath("//div[text()='Sprint-DevelopmentSprint']");
-public static By SaveBaseline_btn = By.xpath("//a[@data-original-title='Save']");
+public static By SaveBaseline_btn = By.xpath("//a[@data-original-title='Baseline']");
 public static By RoadMapTitle_txtbox = By.xpath("//input[@id='Title' and @name='Title']");
 public static By RoadMapUpdated_msg = By.xpath("//span[text()='Roadmap Updated Successfully']");
 public static By BaseLine_link = By.xpath("//a[@data-original-title='Baseline']");
 public static By Baseline_Alert = By.xpath("//button[text()='Proceed']");
-public static By BaselineSaved_msg = By.xpath("//*[contains(text(),'Baseline Saved Successfully')]");
+public static By BaselineSaved_msg = By.xpath("//*[contains(text(),'Saved Successfully')]");
 public static By closeRoadMapMenu_btn = By.xpath("//button[@aria-label='Close']");
 //public static By ReleaseStartAndEndDate_txt = By.xpath("//div[@class='pointer-auto'][contains(@title,'Release')]");
 public static By ReleaseStartAndEndDate_txt = By.xpath("//a[contains(@class,'expandCollapseIcon')][contains(@data-original-title,'Release')]");
 //public static By SprintStartAndEndDate = By.xpath("//div[@class='pointer-auto'][contains(@title,'Sprint')]");
 public static By SprintStartAndEndDate = By.xpath("//span[contains(@data-original-title,'Sprint')][contains(@class,'setName')][contains(text(),'Sprint')]");
-public static By InititaveOrReleaseOrSprintStartDate_txtbox = By.xpath("//input[@id='PlannedStartDate']");
+public static By InititaveOrReleaseOrSprintStartDate_txtbox = By.xpath("//input[@id='PlannedStartDate' or @id='TimelineStartDate']");
 public static By ReleaseOrSprintEndDate_txtbox = By.xpath("//input[@id='PlannedEndDate']");
 public static By proceed_btn = By.xpath("//button[text()='Proceed']");
 public static By Save_btn = By.xpath("//button[text()='Save' and contains(@class,'btn btn-primary')]");
+public static By Save1_btn = By.xpath("//a[@data-original-title='Save' and contains(@class,'myw-navbar-action root123')]");
 public static By AssetsView_btn = By.xpath("//button[text()=' Assets View ']");
 public static By RoadmapSaved_successMsg = By.xpath("//span[contains(text(),'Roadmap Saved Successfully')]");
 public static By AddIterationRecon_link = By.xpath("//span[text()='Add Iteration Reconciliation']");
@@ -105,7 +108,7 @@ public static String ReleaseOrSprintName_MyWizIntstance_txt = "//form[@id='Listm
 public static String ReleaseOrSprintName_tool_txt = "//form[@id='ListmyWizard-TFS' or @id='ListADT JIRA' or @id='ListADOP JIRA']//following::li[contains(text(),'{releaseorsprintname}')]";
 public static String EntityRowProductInstance_statictxt = "//div[@row-index='{row}']/child::div[@col-id='ProductInstance'][1] ";
 
-public static By CreateNewRodMap_link = By.xpath("//*[text()='Create New Roadmap' or text()='Create new Roadmap ']");
+public static By CreateNewRodMap_link = By.xpath("//*[text()='Create New Roadmap ' or text()='Create New Roadmap']");
 public static By plusIcon_Img = By.xpath("//a[@id='addPopup']");
 public static By AddInititave_Link = By.xpath("//a[text()='Initiative']");
 public static By AddRelease_Link = By.xpath("//div[@class='dropdown-body']/child::a[text()='Release'][1]");
@@ -120,7 +123,7 @@ public static By MoreOptionsForRelease_Img = By.xpath("//a[contains(@data-origin
 //div[contains(@class,'dropdown dropflat dropup d-flex rm-timeline-options alignMoreOptionPosition show')]/div/ul/li[4]
 
 //public static By Edisprint_btn = By.xpath("//div[contains(@data-original-title,'Sprint')]//following::a[@data-original-title='Edit'][1]");
-public static String Edisprint_btn = "//span[text()='{releasename}']/following::*[@data-original-title='Edit'][1]";
+public static String Edisprint_btn = "//*[text()='{releasename}']/following::*[@data-original-title='Edit'][3]";
 public static By AddSprint_Link = By.xpath("//a[@id='addPopup']//preceding::a[text()='Sprint'][1]");
 public static By Add_Icon = By.xpath("//a[@data-original-title='Add']");
 public static By SelectRelease_link = By.xpath("//a[text()='Release']");
