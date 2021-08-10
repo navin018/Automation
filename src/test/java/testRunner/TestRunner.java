@@ -12,11 +12,14 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features={
-//"classpath:features/Tools/ADTJira/ADTJira_IB_APIValidation.feature",
+//"classpath:features/SecurityTests/SecurityTest.feature",
 		"classpath:features"
 
 },
-//tags = {"@Pre12"},
+//tags = {"@2WorkItemCreation_TFSScrum_PrecomputationEngineFunctionality_RAG"},	
+tags = {"@9TFSAgile_DeleteFunctionality_VerifyIfIterationIsNotShownInIterationAPI"},
+
+	
 
 glue = { "stepDefs" })
 
