@@ -72,22 +72,24 @@ public class DataLoader {
         if(entity.equalsIgnoreCase("Bug")) {
             sheet.getRow(1).getCell(39).setCellValue(Phase);
             sheet.getRow(1).getCell(40).setCellValue(WorkStream);
+            //below line to verify owner field(Team verification) for workitem
+            sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
                            
         }
         else if(entity.equalsIgnoreCase("Action")) {
             sheet.getRow(1).getCell(29).setCellValue(Phase);
             sheet.getRow(1).getCell(30).setCellValue(WorkStream);
-                           
+            
         }
         else if(entity.equalsIgnoreCase("Risk")) {
             sheet.getRow(1).getCell(38).setCellValue(Phase);
             sheet.getRow(1).getCell(39).setCellValue(WorkStream);
-                           
+            sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
         }
         else if(entity.equals("Issue")) {
             sheet.getRow(1).getCell(30).setCellValue(Phase);
             sheet.getRow(1).getCell(31).setCellValue(WorkStream);
-                           
+            sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
         }
     }
 			else if(toolname.equalsIgnoreCase("NoToolInstance"))

@@ -128,6 +128,27 @@ import utilities.general.Property;
 				e.printStackTrace();
 			}
 			}
+		
+		public static void SelectSpecificProjectInTFS(String projectname,String toolname) {
+			try {
+				
+				waitPageToLoad();
+			
+				enterText(TFSUIMap.searchProject_txtbox,Property.getProperty(projectname));
+				waitPageToLoad();
+				Thread.sleep(5000);
+				
+				prepareWebElementWithDynamicXpathAndClickJS(TFSUIMap.clickProject_statictxt,Property.getProperty("TFSProject"),"projectname");
+				waitPageToLoad();
+				Thread.sleep(2000);
+//				assertTrue(driver().findElements(prepareWebElementWithDynamicXpath(TFSUIMap.VerifyProjectload_statictxt,Property.getProperty("TFSProject"),"projectname")).size()!=0);			
+				
+			} catch (Exception e) {
+				System.out.println("Problems with TFS project load");
+				logger.info("Problems with TFS project load");
+				e.printStackTrace();
+			}
+			}
 			
 			
 			public static void CaptureWorkitemID(String workitem) {

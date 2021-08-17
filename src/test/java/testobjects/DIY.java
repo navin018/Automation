@@ -142,7 +142,7 @@ public class DIY extends Baseclass{
 		}
 	}
 
-	public static void AddSelfEnabledAutomationDetails(String toolname) {
+	public static void AddSelfEnabledAutomationDetails(String toolname,String functionality) {
 		try{
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		clickJS(DIYUIMap.SelfEnableAutomationExplore_btn);
@@ -189,7 +189,7 @@ public class DIY extends Baseclass{
 				clickJS(DIYUIMap.Yes_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				//stuff here
-				configuretools(toolname);
+				configuretools(toolname,functionality);
 				DataMappingCheck(toolname);
 				ExpWaitForCondition(DIYUIMap.SaveAndNext_btn);
 				EnableUseCases(toolname);
@@ -223,7 +223,7 @@ public class DIY extends Baseclass{
 				Thread.sleep(5000);
 				clickJS(DIYUIMap.Yes_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-				configuretools(toolname);
+				configuretools(toolname,functionality);
 			DataMappingCheck(toolname);
 				
 				EnableUseCases(toolname);
@@ -262,7 +262,7 @@ public class DIY extends Baseclass{
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			clickJS(DIYUIMap.Yes_btn);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			configuretools(toolname);
+			configuretools(toolname,functionality);
 			DataMappingCheck(toolname);
 			
 			EnableUseCases(toolname);
@@ -456,7 +456,7 @@ public class DIY extends Baseclass{
 		
 	}
 
-	private static void configuretools(String toolname) {
+	private static void configuretools(String toolname,String functionality) {
 		try{
 			switch(toolname){
 			case "ADT Jira":
@@ -486,6 +486,17 @@ public class DIY extends Baseclass{
 				clickJS(DIYUIMap.ProjectArea_txtbox);
 				//changing this since for DIY, we should select a new proj and not an existing project
 				enterText(DIYUIMap.ProjectArea_txtbox,Property.getProperty("ProductInstanceProjectForDIY"));
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				if(functionality.equalsIgnoreCase("ProjectHierarchy"))
+				{
+					enterText(DIYUIMap.ProjHierarchy_txtbox,Property.getProperty("ProductInstanceProjectForDIY")+"\\Level1");
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				}
+//				else if(functionality.equalsIgnoreCase("normal"))
+//				{
+//					enterText(DIYUIMap.ProjectArea_txtbox,Property.getProperty("ProductInstanceProjectForDIY"));
+//					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				}
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				selectDropdownByText(DIYUIMap.methodology_drpdown, "Agile");
 				clickJS(DIYUIMap.SaveAndNext_btn);

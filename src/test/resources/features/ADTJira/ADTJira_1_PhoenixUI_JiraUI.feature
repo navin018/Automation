@@ -134,6 +134,7 @@ Scenario Outline: ADTJIRA_WorkitemCreationInUI
 	And i create a "<feature>" in Jira 
 	And i create a "<impediment>" in Jira 
 	And i create a "<deliverable>" in Jira 
+	And i create a "<Decision>" in Jira 
 	And i create a "<Requirement>" in Jira 
 	And i create a "<Test>" in Jira
 	And i create a "<milestone>" in Jira 
@@ -152,7 +153,7 @@ Scenario Outline: ADTJIRA_WorkitemCreationInUI
 	
 	
 	Examples: 
-		| applicationname | task    | story    | risk    |Requirement| Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|milestone|TestExecution|Action|TestForTestExec|WorkRequest|
-		| Jira            | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|Test Execution_01|Action_01|TestForTestExec_01|Work Request_01|
+		| applicationname | task    | story    | risk    |Requirement| Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|milestone|TestExecution|Action|TestForTestExec|WorkRequest|Decision|
+		| Jira            | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|Test Execution_01|Action_01|TestForTestExec_01|Work Request_01|Decision_01|
 
 

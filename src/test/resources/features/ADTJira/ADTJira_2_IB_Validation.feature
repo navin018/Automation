@@ -45,6 +45,10 @@ Scenario: ADTJIRA_Deliverable
 
 	And i verify the "Inbound" "Deliverable" details for "ADT JIRA" 
 	
+Scenario: ADTJIRA_Decision 
+
+	And i verify the "Inbound" "Decision" details for "ADT JIRA"	
+	
 
 Scenario: ADTJIRA_Test 
 

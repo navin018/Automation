@@ -83,6 +83,10 @@
 			"Summary": "Requirement_AutomationData",
 			"Description": "Requirement_Description"
 		},
+		"Decision_01": {
+			"Summary": "Decision_AutomationData",
+			"Description": "Decision_Description"
+		},
 		"Milestone_01": {
 			"Summary": "Milestone_AutomationData",
 			"Description": "Milestone_Description"

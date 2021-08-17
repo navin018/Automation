@@ -175,6 +175,13 @@ public class CommonSteps {
 			TFSWorkitem.ValidateOB(application);
 	}
 	
+	
+//	Then i select Project "ProductInstanceProjectForDIY" for "<applicationname>" 
+	@Then("^i select Project \"([^\"]*)\" for \"([^\"]*)\"$")
+	public void SelectAProject(String ProjectName, String AppName) throws Throwable {
+		TFSWorkitem.SelectSpecificProjectInTFS(ProjectName,AppName);
+	}
+	
 	@Then("^i select a Project for \"([^\"]*)\"$")
 	public void iSelectAProject(String AppName) throws Throwable {
 		

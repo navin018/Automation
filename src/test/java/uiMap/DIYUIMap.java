@@ -83,4 +83,6 @@ public static By ConfirmDeleteDC_btn=By.xpath("//button[@title='Delete Delivery 
 public static By ConfirmChangingTool_btn=By.xpath("//span[contains(text(),'Do you want to change ')]//following::button[text()='Yes']");
 public static By Yes_btn=By.xpath("//button[text()='Yes']");
 public static By SelectuseCases_txt=By.xpath("//div[text()='SELECT USE CASES']");
+public static By ProjHierarchy_txtbox=By.xpath("//label[text()='Project Hierarchy']//following::input[1]");
+
 }

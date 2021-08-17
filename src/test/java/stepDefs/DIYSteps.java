@@ -49,9 +49,9 @@ public class DIYSteps {
 
 	}
 	
-	@Then("^i enter self enabled automation details for \"([^\"]*)\"$")
-	public void i_enter_selfenabledautomationdetails(String toolname) throws Throwable {
-		DIY.AddSelfEnabledAutomationDetails(toolname);
+	@Then("^i enter self enabled automation details for \"([^\"]*)\" for \"([^\"]*)\" functionality$")
+	public void i_enter_selfenabledautomationdetails(String toolname,String functionality) throws Throwable {
+		DIY.AddSelfEnabledAutomationDetails(toolname,functionality);
 	}
 	
 	@Then("^i remove the role \"([^\"]*)\" for user \"([^\"]*)\"$")

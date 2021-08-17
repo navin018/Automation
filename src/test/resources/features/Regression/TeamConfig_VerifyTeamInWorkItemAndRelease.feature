@@ -1,4 +1,4 @@
-Feature: TFSScrum team Delete functionality 
+Feature: TFSScrum create team and 
 
 @ScrumTeamcreation_Association_DeleteFunctionality
 Scenario Outline: TFSScrum_WorkitemCcreation
@@ -17,10 +17,7 @@ Examples:
       
 @ScrumTeamIbVerification_PreDeletion_DeleteFunctionality     
 Scenario: TFSScrum_Team_flow_beforeDelete
-And i verify if "Epic" has "flown" which was "NA" for "TFS Scrum" for "delete" functionality
-And i verify if "Action" has "flown" which was "NA" for "TFS Scrum" for "delete" functionality
 And i verify if "Team" has "flown" which was "NA" for "TFS Scrum" for "delete" functionality      
-  
   
       	
 @ScrumTeamDeletion_DeleteFunctionality

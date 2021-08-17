@@ -71,7 +71,14 @@ public class MyWizardSteps {
 		MyWizardHomePage.SelectOnlyClient();
 		
 	}
-
+	
+	
+	@Then("^i select client \"([^\"]*)\" for \"([^\"]*)\"$")
+	public void select_specific_client(String clienttobeselected,String appname) throws Throwable {
+		
+		MyWizardHomePage.SelectSpecificClient(clienttobeselected);
+		
+	}
 	
 	@Then("^i click on tile \"([^\"]*)\"$")
 	public void i_click_on_tile(String Tilename) throws Throwable {

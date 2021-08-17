@@ -78,6 +78,7 @@ Baseclass(){
 	public String CorrelationUID_OB;
 	
 	public String teamName;
+	public String TeamUId;
 	
 //	Precomputation params
 	public String WorkItemExternalId_Bug_wsjf_Multiply_0;

@@ -1490,6 +1490,10 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 									 {
 										 verifyReleaseAndSprintDetailsForGenericUploader(workitem,response.jsonPath());
 									 }
+									 if(functionality.equalsIgnoreCase("ReleaseForTeamVerification"))
+									 {
+										 verifyReleaseAndSprintDetailsForTeam(workitem,response.jsonPath(),toolname);
+									 }
 									 break;
 
 								}
@@ -1574,8 +1578,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 //					 UpdateIterationUIDAndIterationExternalIDOfWorkitemAndCompareIterationExternalID(IterationUID_Release,IterationExternalID_Release,IterationUID_Sprint,IterationExternalID_Sprint,toolname);
 				 }
 				 
-				 if(functionality.contains("AfterRecon"))
-				 {
+				 
 //					 String IterationUID="";
 //					 String IterationExternalIDOfWorkitemAfterRecon_Release="";
 //					 String IterationExternalIDOfWorkitemAfterRecon_Sprint="";
@@ -1585,41 +1588,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 //					 List<ArrayList<String>> DisplayNames=null;
 					 
 					if(functionality.equalsIgnoreCase("AfterRecon")){ 
-//					 if(!workitem.contains("Action")){
-//						 jsonpathforName = "WorkItems.WorkItemAttributes.Name";
-//						 jsonpathforValue = "WorkItems.WorkItemAttributes.IdValue";
-//						 jsonpathorExternalValue = "WorkItems.WorkItemAttributes.IdExternalValue";
-//					 }
-//					 else if(workitem.contains("Action")){
-//						 jsonpathforName = "Actions.ActionAttributes.Name";
-//					 	jsonpathforValue = "Actions.ActionAttributes.IdValue";
-//					 	jsonpathorExternalValue="Actions.ActionAttributes.IdExternalValue";
-//					 }
-//				  DisplayNames= response.jsonPath().get(jsonpathforName);
-////					List<ArrayList<String>> DisplayNames = response.jsonPath().get("WorkItems.WorkItemAttributes.Name");
-//					 for(ArrayList j:DisplayNames)
-//					 {
-//						 if(j.contains("ReleaseUId"))
-//						 {
-//							 List<ArrayList<String>> Value = response.jsonPath().get(jsonpathforValue);
-//							 for(ArrayList<String> l : Value)
-//								{
-//									 
-//								 IterationExternalIDOfWorkitemAfterRecon_Release= l.get(j.indexOf("ReleaseUId"));
-//								 System.out.println(IterationExternalIDOfWorkitemAfterRecon_Release);
-//								}
-//						 }
-//						 if(j.contains("IterationUId"))
-//						 {
-//							 List<ArrayList<String>> Value = response.jsonPath().get(jsonpathforValue);
-//							 for(ArrayList<String> l : Value)
-//								{
-//									 
-//								 IterationExternalIDOfWorkitemAfterRecon_Sprint= l.get(j.indexOf("IterationUId"));
-//								 System.out.println(IterationExternalIDOfWorkitemAfterRecon_Sprint);
-//								}
-//						 }
-//					 }
+
 						ArrayList<String> IterationDetails = getIterationUIDAndExternalIDForReleaseAndSprintAndVerifyTheSame(response.jsonPath(),workitem,toolname);	
 //					 VerifyIterationExternalIDAfterReconForWorkitem(IterationExternalIDOfWorkitemAfterRecon_Release,IterationExternalIDOfWorkitemAfterRecon_Sprint,toolname);
 						VerifyIterationExternalIDAfterReconForWorkitem(IterationDetails.get(0),IterationDetails.get(2),toolname);
@@ -1684,7 +1653,8 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 									 }
 								 }
 				 }
-				 }
+					}
+				 
 				 
 				 if(functionality.equalsIgnoreCase("DFT"))
 				 {
@@ -1757,7 +1727,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					 }
                  }
 				 
-				 }
+				 
 			}
 			catch(Exception e)
 			{
@@ -1771,6 +1741,21 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 		}
 
 		 
+
+public static void verifyReleaseAndSprintDetailsForTeam(String workitem, JsonPath jsonPath,String toolname) {
+	 try{
+		 if(workitem.contains("Release")){
+			 String DCUidOfTeam = getWorkItemExternalID_custom("TeamUId", toolname, "normal");
+			 String DCUIdForTeam = jsonPath.getString("Iterations.IterationDeliveryConstructs.DeliveryConstructUId");
+			 Assert.assertTrue(DCUIdForTeam.contains(DCUidOfTeam),"Team DC missing in DC Details of the given Iteration for tool "+toolname);
+		 }
+	 }
+	 catch(Exception e)
+	 {
+		 e.printStackTrace();
+	 }
+			
+		}
 
 public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem, String toolname,String flownOrDeleted) {
              String checkIfTeamVerificationIsRequired="";
@@ -1961,7 +1946,7 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
 			
 		}
 
-		public static void VerifyWorkItemDetailsForGenericUploader(String workitem, JsonPath jsonPath,int totalrecordcount, String toolname) {
+		public static void VerifyWorkItemDetailsForGenericUploader(String workitem, JsonPath jsonPath,int totalrecordcount, String toolname) throws IOException {
 			 
 			if(!(workitem.equalsIgnoreCase("Decision") ||  workitem.equalsIgnoreCase("Action")))
 			{
@@ -1980,9 +1965,11 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
 	                 String PhaseFromAPI="PhaseUId";
 	                
 	                 /*WorkStream validation*/
-	                 System.out.println(WorkstreamFromAPI);                
+	                 System.out.println(WorkstreamFromAPI);   
+	                 SoftAssert sa = new SoftAssert();
 	                 if(!WorkstreamFromAPI.equals("Security_AutomationData"))
-	                 logger.info("Value mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+	                 logger.info("WorkStream mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+	                 sa.assertEquals(WorkstreamFromAPI, "Security_AutomationData", "Value mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
 	                
 	                 /*Phase validation*/
 	                 List<ArrayList<String>> workattributes =jsonPath.get("WorkItems.WorkItemAttributes.Name");
@@ -1994,12 +1981,37 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
 	                                 for(ArrayList<String> ae : Names)
 	                                {
 	                                    System.out.println(ae.get(j.indexOf(PhaseFromAPI)));
+	                                    sa.assertEquals(ae.get(j.indexOf(PhaseFromAPI)), "Plan","Phase mismatch in the response for workitem "+workitem+ " for the given tool "+toolname+" for generic uploader functionality");
 	                                   
 	                                }
 	                             }
 	                             else
-	                                 Assert.fail("Phase mismatch in the response for workitem "+workitem+ " for the given tool "+toolname+" for generic uploader functionality");
+	                                 Assert.fail("Phase tag missing in the workitem response for toolname "+toolname+" for generic uploader functionality");
+	                             
 	                        }
+	                 
+	                 /*Owner-team verification validation via GU*/
+	                 List<ArrayList<String>> FieldNames =jsonPath.get("WorkItems.WorkItemExtensions.FieldName");
+	                 for(ArrayList j:FieldNames)
+	                         {
+	                             if(j.contains("ResourceEmailAddress"))
+	                             {
+	                                 List<ArrayList<String>> Names =jsonPath.get("WorkItems.WorkItemExtensions.FieldValue");
+	                                 for(ArrayList<String> ae : Names)
+	                                {
+	                                    String resourcenameinAPI = ae.get(j.indexOf("ResourceEmailAddress"));
+	                                    sa.assertTrue(resourcenameinAPI.contains(Property.getProperty("Owner_TeamResouce")), "mismatch in Owner attached to the worktem via GU");                                   
+	                                }
+	                             }
+	                             else
+	                                 Assert.fail("ResourceEmailAddress field not found in the response of workitem for GU upload for workitem "+workitem);
+	                             
+	                        }
+	                 //Team Name verification
+	                 String GetAllTeamNames = jsonPath.getString("WorkItems.WorkItemDeliveryConstructs.Name");
+	                 sa.assertTrue(GetAllTeamNames.contains(Property.getProperty("TeamName")));
+	                 sa.assertAll();
+	            
 	                }
 	                
 	            
@@ -2016,29 +2028,25 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
 			}
 			else if(workitem.equalsIgnoreCase("Action"))
 			{
+				SoftAssert sa = new SoftAssert();
 				 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
 				 String TitleFromAPI = jsonPath.getString("Actions"+"[0].Title");
-//				 System.out.println(TitleFromAPI);
-//				 System.out.println(workitem_title);
-				 if(!TitleFromAPI.equals(workitem+"_AutomationData_GenericUploader"))
-					 logger.info("title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
-				 Assert.assertEquals(TitleFromAPI, workitem+"_AutomationData_GenericUploader","title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
 				 
 				 //verify workstream and phase
                  String WorkstreamFromAPI=jsonPath.getString("Actions"+"[0].Workstream");
                  String PhaseFromAPI="PhaseUId";
-//                 System.out.println(TitleFromAPI);
-//                 System.out.println(workitem_title);
+
                
                  /*Title validation*/
                  if(!TitleFromAPI.equals(workitem+"_AutomationData_GenericUploader"))
                      logger.info("title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
-                 Assert.assertEquals(TitleFromAPI, workitem+"_AutomationData_GenericUploader","title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+                 sa.assertEquals(TitleFromAPI, workitem+"_AutomationData_GenericUploader","title mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
                 
                  /*WorkStream validation*/
                  System.out.println(WorkstreamFromAPI);                
                  if(!WorkstreamFromAPI.equals("Security_AutomationData"))
-                 logger.info("Value mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+                 logger.info("Workstream mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
+                 sa.assertEquals(WorkstreamFromAPI, "Security_AutomationData","Workstream mismatch for workitem "+workitem +" for the given tool "+toolname+ " for generic uploader functionality");
                
                  /*Phase validation*/
                  List<ArrayList<String>> workattributes =jsonPath.get("Actions.ActionAttributes.Name");
@@ -2049,13 +2057,14 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
                                  List<ArrayList<String>> Names =jsonPath.get("Actions.ActionAttributes.ExternalValue");
                                  for(ArrayList<String> ae : Names)
                                 {
-                                    System.out.println(ae.get(j.indexOf(PhaseFromAPI)));
+                                    sa.assertEquals(ae.get(j.indexOf(PhaseFromAPI)),"Plan","Phase mismatch in the response for workitem "+workitem+ " for the given tool "+toolname+" for generic uploader functionality");
                                    
                                 }
                              }
                              else
-                                 Assert.fail("Phase mismatch in the response for workitem "+workitem+ " for the given tool "+toolname+" for generic uploader functionality");
+                                 Assert.fail("Phase tag missing in the workitem response for "+workitem+ " for the given tool "+toolname+" for generic uploader functionality");
                         }
+                 sa.assertAll();
                 }
 			
 			

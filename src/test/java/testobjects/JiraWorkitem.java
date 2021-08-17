@@ -293,6 +293,11 @@ import java.util.Random;
 				Baseclass.getInstance().WorkItemExternalId_Deliverable = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
 				break;
+				case "decision":
+				case "Decision":
+				Baseclass.getInstance().WorkItemExternalId_Decision = toGetID1[1];
+				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				break;
 				case "requirement":
 				case "Requirement":
 				Baseclass.getInstance().WorkItemExternalId_Requirement = toGetID1[1];
@@ -504,7 +509,7 @@ import java.util.Random;
 			JSONObject jsonObject1 = (JSONObject) jsonParser.parse(new FileReader(Wk_OB));
 			
 			SoftAssert sa = new SoftAssert();
-			String[] ADTJIRA_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Impediment", "Issue", "Risk", "Test", "Deliverable", "Requirement", "Milestone","Action","WorkRequest"};
+			String[] ADTJIRA_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Impediment", "Issue", "Risk", "Test", "Deliverable", "Requirement", "Milestone","Action","WorkRequest","Decision"};
 			String[] ADOPJira_ItemsToVerify = {"Task", "Epic", "Feature", "Story", "Bug", "Impediment", "Issue", "Risk"};
 		
 			if(appname.equalsIgnoreCase("ADT Jira"))

@@ -267,6 +267,33 @@ public class CommonFunctions {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void writeTeamDetails(String toolname) {
+		
+		try{
+		String writeIterationExternalIDs_Details="";
+		
+			if(toolname.contains("Jira") || toolname.contains("JIRA")){
+				writeIterationExternalIDs_Details = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			}
+			else if(toolname.contains("TFS") || toolname.contains("Tfs")){
+				writeIterationExternalIDs_Details = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			}
+		
+			FileReader reader = new FileReader(writeIterationExternalIDs_Details);
+	        JSONParser jsonParser = new JSONParser();
+	        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+	        jsonObject.put("TeamUId",Baseclass.getInstance().TeamUId);
+	        jsonObject.put("Team_Name",Baseclass.getInstance().teamName);
+	        FileOutputStream outputStream = new FileOutputStream(writeIterationExternalIDs_Details);
+			 byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 	public static void setIterationExternalID(String toolname) {
 		
 		String FileToFetch="";

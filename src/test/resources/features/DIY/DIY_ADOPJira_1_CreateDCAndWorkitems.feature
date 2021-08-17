@@ -21,7 +21,7 @@ Scenario Outline: ADOPJIRA_DIY_CreateDC
 	And i click on tile "DIY AD Automation" 
 	Then i select only the client for "<applicationname>"
 	And i "create" a DC for DIY for "ADOP Jira"
-	And i enter self enabled automation details for "ADOP Jira"
+	And i enter self enabled automation details for "ADOP Jira" for "normal" functionality 
 	And i test the connectivity for "ADOP Jira"  
 	And i make a note of the DC created for "ADOP Jira"
 Examples: 

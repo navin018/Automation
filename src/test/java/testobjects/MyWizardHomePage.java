@@ -139,6 +139,41 @@ public class MyWizardHomePage {
 		}
 	
 	}
+public static void SelectSpecificClient(String clienttobeselected){
+		
+		try{
+		 
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//			highlight(MyWizardUIMap.scopeSelector_drpdown);
+			 clickJS(MyWizardUIMap.scopeSelector_drpdown);
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,clienttobeselected);
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 Thread.sleep(2000);
+			 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,clienttobeselected,"clientname")))
+			 { 
+				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,clienttobeselected,"clientname"));
+				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+//				 clear(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox);
+			 }
+			 else
+			 Assert.fail("Mentioned client "+clienttobeselected+"doesnt exists");
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			waitPageToLoad();
+			click(MyWizardUIMap.apply_btn);
+			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			 
+			 
+			
+		}
+		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Issue selecting client");
+		}
+	
+	}
 	
 	public static void SelectClientAndDC(){
 		try{
