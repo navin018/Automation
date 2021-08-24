@@ -14,7 +14,7 @@ public class TFSSteps {
 	public void i_create_a_in_TFS(String workitem) throws Throwable {
 //	   TFSWorkitem.CreateWorkitem(workitem);
 		if(!(workitem.contains("TestResult") || workitem.equalsIgnoreCase("Team")))
-	   TFSWorkitem.CreateWorkitem1(workitem);
+			TFSWorkitem.CreateWorkitem1(workitem);
 
 		if(workitem.equalsIgnoreCase("TestResult"))
 		TFSWorkitem.CreateTestResult(workitem);

@@ -23,6 +23,7 @@ import org.testng.asserts.SoftAssert;
 
 import dataobjects.WorkItemDO;
 import dataobjects.WorkItemExternalIDDO;
+import net.bytebuddy.dynamic.scaffold.InstrumentedType.Prepareable;
 //import javassist.bytecode.stackmap.BasicBlock.Catch;
 import testobjects.Baseclass;
 import uiMap.JiraUIMap;
@@ -56,9 +57,9 @@ public class TeamConfiguration extends Baseclass {
 		this.base = base;
 	}
 
-	public static String testDataPath = System.getProperty("user.dir") + File.separator + "src" + File.separator
-			+ "test" + File.separator + "resources" + File.separator + "testdata" + File.separator + "Jira"
-			+ File.separator + "JSON" + File.separator;
+	public static String testDataPath = System.getProperty("user.dir")
+			+ File.separator + "src" + File.separator + "test" + File.separator
+			+ "resources" + File.separator + "testdata" + File.separator;
 
 	public static void Navigatetosection(String sectionaname) {
 		try {
@@ -131,15 +132,17 @@ public class TeamConfiguration extends Baseclass {
 		Baseclass.getInstance().teamName = "Team_" + RandomNumberGenerator();
 		System.out.println(Baseclass.getInstance().teamName);
 		ExpWaitForCondition(TeamConfigUIMap.teamName_txtBox);
+		Baseclass.getInstance().TeamUId = getAttribute(TeamConfigUIMap.TeamUID_statictxt, "value");
+		System.out.println(Baseclass.getInstance().TeamUId);
 		enterText(TeamConfigUIMap.teamName_txtBox,Baseclass.getInstance().teamName); 
 		
 		Navigatetosection("Client/Delivery Construct Association(s)");
 		AddDeliveryConstructAssociationDetails(toolName);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		Navigatetosection("Resource Association");
-		enterText(TeamConfigUIMap.resourceSearch_txtBox,Property.getProperty("MyWizard_Username"));
+		enterText(TeamConfigUIMap.resourceSearch_txtBox,Property.getProperty("UserName_ForTeamConfig"));
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		selectDropdownByText(TeamConfigUIMap.selectResource_dropdown,Property.getProperty("MyWizard_Username"));
+		selectDropdownByText(TeamConfigUIMap.selectResource_dropdown,Property.getProperty("UserName_ForTeamConfig"));
 		clickJS(TeamConfigUIMap.addResource_button);
 		click(TeamConfigUIMap.save_button);
 		ExpWaitForCondition(TeamConfigUIMap.saveSuccessful_staticTxt);
@@ -158,12 +161,13 @@ public class TeamConfiguration extends Baseclass {
 		ExpWaitForCondition(TeamConfigUIMap.addTeam_button);
 		enterText(TeamConfigUIMap.searchBox_txtBox, Baseclass.getInstance().teamName);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		clickJS(prepareWebElementWithDynamicXpath(TeamConfigUIMap.selectTeam_staticTxt,
-				Baseclass.getInstance().teamName, "teamname"));
-		clickJS(TeamConfigUIMap.edit_link);
+		ExpWaitForCondition(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, Baseclass.getInstance().teamName, "teamname"));
+		doubleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, Baseclass.getInstance().teamName, "teamname"));
+//		clickJS(TeamConfigUIMap.edit_link);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		enterText(TeamConfigUIMap.description_txtBox,"Updating the team");
-		click(TeamConfigUIMap.save_button);
+		ScrollIntoView(TeamConfigUIMap.save_button);
+		clickJS(TeamConfigUIMap.save_button);
 		ExpWaitForCondition(TeamConfigUIMap.saveSuccessful_staticTxt);
 		System.out.println("Team edit successful");
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -194,4 +198,87 @@ public class TeamConfiguration extends Baseclass {
 		}
 	}
 
-}
+	public static void UpdateteamDetails(String toolname) {
+		try{
+			String testDataPath_WorkItemExternalIDs="";
+			if(toolname.contains("Jira") || toolname.contains("JIRA")){
+				testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			}
+			else if(toolname.contains("TFS") || toolname.contains("Tfs")){
+				testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			}
+			FileReader reader = new FileReader(testDataPath_WorkItemExternalIDs);
+
+	        JSONParser jsonParser = new JSONParser();
+	        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+	        jsonObject.put("Team_Name",Baseclass.getInstance().teamName);
+	        jsonObject.put("WorkItemExternalId_TeamUId",Baseclass.getInstance().TeamUId);
+	        FileOutputStream outputStream = new FileOutputStream(testDataPath_WorkItemExternalIDs);
+			 byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("issue updating teamname or teamuid for "+toolname);
+			}
+		}
+
+	public static void CaptureteamDetails(String toolname) throws InterruptedException {
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		String teamname = Tools.getWorkItemExternalID_custom("Team", toolname, "normal");
+		enterText(MyWizardUIMap.Search_txtbox, teamname);
+		Thread.sleep(4000);
+		try{
+			ExpWaitForCondition(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+			doubleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			Baseclass.getInstance().TeamUId = getAttribute(TeamConfigUIMap.TeamUID_statictxt, "value");
+			Baseclass.getInstance().teamName = teamname;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("team "+teamname+" has not flown yet. the mentioned team not shown in team config tile");
+			Assert.fail("team "+teamname+" has not flown yet. the mentioned team not shown in team config tile");
+		}
+		
+		
+		
+	}
+
+	public static void removeResource(String toolname) throws InterruptedException {
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		String teamname = Tools.getWorkItemExternalID_custom("Team", toolname, "normal");
+		enterText(MyWizardUIMap.Search_txtbox, teamname);
+		Thread.sleep(4000);
+		try{
+			ExpWaitForCondition(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+			doubleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, Property.getProperty("UserName_ForTeamConfig"), "resourceID"))){
+				singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, Property.getProperty("UserName_ForTeamConfig"), "resourceID"));
+				singleClick(TeamConfigUIMap.RemoveResource_button);
+				Thread.sleep(2000);
+				if(!CheckIfElementExists(prepareWebElementWithDynamicXpath(TeamConfigUIMap.ResourceList_statictxt, Property.getProperty("UserName_ForTeamConfig"), "resourceID")))
+					Assert.fail("failed to remove resource from the given team "+teamname);
+						click(TeamConfigUIMap.save_button);
+						ExpWaitForCondition(TeamConfigUIMap.saveSuccessful_staticTxt);
+						System.out.println("Team edit successful");
+			}
+			else
+				Assert.fail("Resource "+ Property.getProperty("UserName_ForTeamConfig")+ " that needs to be removed doesnt exists in the given team "+teamname);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("team "+teamname+" not shown in team config tile");
+			Assert.fail("team "+teamname+" not shown in team config tile");
+		}
+		
+		
+		
+	}
+		
+	}
+	
+	

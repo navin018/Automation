@@ -175,10 +175,10 @@ public static String getWorkItemExternalID_custom(String workitem, String toolna
 				logger.info("Workitem "+workitem+" was not created for tool "+toolname);
 			 Assert.fail("Workitem "+workitem+" was not created for tool "+toolname);
 		 }
-			if(workitem.equalsIgnoreCase("Team"))
-				return (String) jsonObject.get("Team_Name"); 
 			
 		}
+		if(workitem.equalsIgnoreCase("Team"))
+			return (String) jsonObject.get("Team_Name"); 
 	}
 	catch(Exception e)
 	{
@@ -1441,7 +1441,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					 if(!checkIfTeamVerificationIsRequired.equalsIgnoreCase("NA"))
 					 {
 						 //verify team details in workitems API
-						 VerifyTeamDetailsForEntity(response.jsonPath(),workitem,toolname,flownOrDeleted);
+						 VerifyTeamDetailsForEntity(response.jsonPath(),workitem,toolname,flownOrDeleted,checkIfTeamVerificationIsRequired);
 					 }
 				 }
 				 if((workitem.contains("Release") || workitem.contains("Sprint")) && !functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance"))
@@ -1530,6 +1530,10 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 									 if(workitem.equalsIgnoreCase("SprintFromRMP"))
 									 {
 										 verifyIterationExternalID_ReleaseAndSprint("Sprint", Baseclass.getInstance().sprint_IterationExternalID, toolname);
+									 }
+									 if(functionality.equalsIgnoreCase("SprintForTeamVerification"))
+									 {
+										 verifyReleaseAndSprintDetailsForTeam(workitem,response.jsonPath(),toolname);
 									 }
 									 break;
 
@@ -1718,6 +1722,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
                          sa.assertEquals(Teamfound, false,"Team flown for "+toolname +" after deletion from the tool");
                          System.out.println("Team flown for "+toolname +"after deletion from the tool");
                      }
+                    sa.assertAll();
 					 }
 					 catch(Exception e)
 					 {
@@ -1744,11 +1749,11 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 
 public static void verifyReleaseAndSprintDetailsForTeam(String workitem, JsonPath jsonPath,String toolname) {
 	 try{
-		 if(workitem.contains("Release")){
+		
 			 String DCUidOfTeam = getWorkItemExternalID_custom("TeamUId", toolname, "normal");
 			 String DCUIdForTeam = jsonPath.getString("Iterations.IterationDeliveryConstructs.DeliveryConstructUId");
 			 Assert.assertTrue(DCUIdForTeam.contains(DCUidOfTeam),"Team DC missing in DC Details of the given Iteration for tool "+toolname);
-		 }
+		
 	 }
 	 catch(Exception e)
 	 {
@@ -1757,9 +1762,9 @@ public static void verifyReleaseAndSprintDetailsForTeam(String workitem, JsonPat
 			
 		}
 
-public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem, String toolname,String flownOrDeleted) {
-             String checkIfTeamVerificationIsRequired="";
-            String teamName=getWorkItemExternalID_custom( workitem, toolname, "normal");
+public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem, String toolname,String flownOrDeleted,String checkIfTeamVerificationIsRequired) {
+//             String checkIfTeamVerificationIsRequired="";
+            String teamName=getWorkItemExternalID_custom( "Team", toolname, "normal");
              SoftAssert sa = new SoftAssert();
              boolean flown=false;         
            
@@ -1796,13 +1801,17 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
              else if(checkIfTeamVerificationIsRequired.equalsIgnoreCase("TeamCreatedInUI")) 
              {
                  String DCFromAPI="";
+                 String teamDCCreatedFromUI=getWorkItemExternalID_custom( "TeamUId", toolname, "normal");
                  boolean DCflown=false;
                  //code to be added
                  //Implemented for Only workitems
+                 if(!workitem.equalsIgnoreCase("Milestone"))
                      DCFromAPI=jsonPath.getString("WorkItems.WorkItemDeliveryConstructs.DeliveryConstructUId");
+                 if(workitem.equalsIgnoreCase("Milestone"))
+                	 DCFromAPI=jsonPath.getString("Milestones.MilestoneDeliveryConstructs.DeliveryConstructUId");
                      System.out.println(DCFromAPI);
                     //to be added by swetha
-		                     if(DCFromAPI.contains("")) {
+		                     if(DCFromAPI.contains(teamDCCreatedFromUI)) {
 		                            DCflown=true;
 		                            
 		                         }
@@ -1817,6 +1826,8 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
                          
                      
              }
+             
+             sa.assertAll();
            
 }
 			

@@ -28,6 +28,19 @@ public class myQueriesSteps  {
 	}
 	}
 
+	@Then("^i \"([^\"]*)\" the column options for \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
+	public void i_the_column_options_for_and_and(String edit,String toolName, String entityType, String workItemType) throws Throwable {
+	myQueries.editColumnOptions();
+	}
+	
+	@Then("^i login to application \"([^\"]*)\" using \"([^\"]*)\"$")
+	public void i_login_to_application_using(String AppName, String username) throws Throwable {
+	myQueries.loginwithusername2();
+	}
 
+	@Then("^i verify the shared query$")
+	public void i_verify_the_shared_query() throws Throwable {
+	myQueries.checkForSharedQuery();
+	}
 }
 ;

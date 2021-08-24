@@ -12,6 +12,7 @@ public class TeamConfigUIMap {
 	public static By resourceSearch_txtBox = By.xpath("//input[@placeholder='Search...']");
 	public static By selectResource_dropdown = By.xpath("//select[@id='selectedResourcesList']");
 	public static By addResource_button = By.xpath("//div[@class='col-2 text-center']//button[text()='>>']");
+	public static By RemoveResource_button = By.xpath("//div[@class='col-2 text-center']//button[text()='<<']");
 	public static By searchBox_txtBox = By.xpath("//input[contains(@placeholder,'Enter text to search')]");
 	public static By search_button = By.xpath("//button[@title='Search All']"); //Magnifying glass on the right of Search textbox
 	public static By edit_link = By.xpath("//span[text()='View/Edit']");
@@ -34,6 +35,9 @@ public class TeamConfigUIMap {
 	public static String checkL2DCcheckbox_checkbox = "	//span[text()='{programname}']//preceding::input[@type='checkbox'][1]";
 	public static String PlusIconToExpandDCL1_StaticTxt  = "//span[text()='{DCname}']//preceding::i[@class='pi pi-fw pi-chevron-right'][1]";
 
-	
+	public static By TeamUID_statictxt = By.xpath("//input[@name='teamUId']");
+	public static String Teamname_statictxt  = "//span[text()='{teamname}']";
+	public static String AssociatedResourceList_statictxt  = "//*[text()='Associated Resources']//following::*[text()='{resourceID}'][1]";
+	public static String ResourceList_statictxt  = "//*[text()='Resource List']//following::*[text()='{resourceID}'][1]";
 	
 }

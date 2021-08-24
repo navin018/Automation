@@ -723,7 +723,7 @@ import utilities.general.Property;
 					//putting this piece of code as workitem url wasnt loading
 					if(CheckIfElementExists(TFSUIMap.title_txtbox))
 					{
-						Thread.sleep(5000);
+//						Thread.sleep(5000);
 						ExpWaitForCondition(TFSUIMap.title_txtbox);
 						enterText(TFSUIMap.title_txtbox,wi.Summary);
 						Thread.sleep(2000);
@@ -746,6 +746,19 @@ import utilities.general.Property;
 					}
 					waitPageToLoad();
 					
+					//Team or Assignee field
+					if(!wi.TeamVerify.equalsIgnoreCase("NA"))
+					{
+						if(wi.TeamVerify.equalsIgnoreCase("TeamCreatedInTool") || wi.TeamVerify.equalsIgnoreCase("TeamCreatedInUI")) {
+//	                        ExpWaitForCondition(TFSUIMap.SearchUsers_txtbox);
+	                        sendBlankTab();
+	                        Thread.sleep(2000);
+//	                        enterText(TFSUIMap.Unassigned_txtbox,Property.getProperty("UserName_ForTeamConfig"));
+	                        enterText(TFSUIMap.SearchUsers_txtbox,Property.getProperty("UserName_ForTeamConfig"));
+	                        sendEntr();
+	                       
+	                    }
+					}
 					//priority
 					if(!wi.Priority.equalsIgnoreCase("NA"))
 					{
@@ -872,6 +885,9 @@ import utilities.general.Property;
 					{
 						EnterDataInTheField(wi.Risk,TFSUIMap.Risk_txtbox);
 					}
+					
+					
+					
 					
 					//Release and sprint
 					try{

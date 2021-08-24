@@ -1,6 +1,11 @@
 package testobjects;
 import java.io.*; 
-import java.util.*; 
+import java.util.*;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESedeKeySpec;
+
 import static utilities.reporting.LogUtil.logger;
 import static utilities.reporting.Reporting.create_logs_and_report;
 
@@ -11,6 +16,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 
+import org.apache.commons.codec.binary.Base64;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.JavascriptExecutor;
@@ -23,13 +29,32 @@ import io.restassured.response.Response;
 import uiMap.MyWizardUIMap;
 import utilities.general.DataManager;
 import utilities.general.Property;
-
+import uiMap.MyWizardUIMap;
+import utilities.general.Property;
+import utilities.selenium.SeleniumDSL;
+import java.security.spec.KeySpec;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESedeKeySpec;
+import org.apache.commons.codec.binary.Base64;
 public class CommonFunctions {
 	
 	public static String testDataPath = System.getProperty("user.dir")
 			+ File.separator + "src" + File.separator + "test" + File.separator
 			+ "resources" + File.separator + "testdata" + File.separator;
 	
+	private static final String UNICODE_FORMAT = "UTF8";
+    public static final String DESEDE_ENCRYPTION_SCHEME = "DESede";
+    private static KeySpec ks;
+    private static SecretKeyFactory skf;
+    private static Cipher cipher;
+    static byte[] arrayBytes;
+    private static String myEncryptionKey;
+    private static String myEncryptionScheme;
+    static SecretKey key;
+    
+    
 	public static String convertdatetogivenformat(String datetobeconverted,String fromdateformat,String todateformat){
 		
 		try{
@@ -318,6 +343,47 @@ public class CommonFunctions {
 		}
 		
 	}
+	
+	  public static String encrypt(String unencryptedString) {
+	        String encryptedString = null;
+	        try {
+	        	myEncryptionKey = "ThisIsSpartaThisIsSparta";
+		        myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
+		        arrayBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);
+		        ks = new DESedeKeySpec(arrayBytes);
+		        skf = SecretKeyFactory.getInstance(myEncryptionScheme);
+		        cipher = Cipher.getInstance(myEncryptionScheme);
+		        key = skf.generateSecret(ks);
+	            cipher.init(Cipher.ENCRYPT_MODE, key);
+	            byte[] plainText = unencryptedString.getBytes(UNICODE_FORMAT);
+	            byte[] encryptedText = cipher.doFinal(plainText);
+	            encryptedString = new String(Base64.encodeBase64(encryptedText));
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return encryptedString;
+	    }
+
+
+	    public static String decrypt(String encryptedString) {
+	        String decryptedText=null;
+	        try {
+	        	myEncryptionKey = "ThisIsSpartaThisIsSparta";
+		        myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
+		        arrayBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);
+		        ks = new DESedeKeySpec(arrayBytes);
+		        skf = SecretKeyFactory.getInstance(myEncryptionScheme);
+		        cipher = Cipher.getInstance(myEncryptionScheme);
+		        key = skf.generateSecret(ks);
+	            cipher.init(Cipher.DECRYPT_MODE, key);
+	            byte[] encryptedText = Base64.decodeBase64(encryptedString);
+	            byte[] plainText = cipher.doFinal(encryptedText);
+	            decryptedText= new String(plainText);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return decryptedText;
+	    }
 
 	
 	

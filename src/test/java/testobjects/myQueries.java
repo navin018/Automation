@@ -76,23 +76,25 @@ public class myQueries extends Baseclass {
 		selectDropdownByText(myQueriesUIMap.workItemType_dropdown,workItemType); //Select the workitem from workitem dropdown
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		Thread.sleep(3000);
+		Assert.assertEquals(isVisible(myQueriesUIMap.condition_text), true,"Condition column is not available"); //Checking that 'Condition' column is available
 		clickJS(myQueriesUIMap.Field_txtBox);
-		selectDropdownByValue(myQueriesUIMap.Field_dropdown,"Title"); //Select the Title attribute 
-		Thread.sleep(2000);
-		clickJS(myQueriesUIMap.Operator_txtBox);
-		selectDropdownByText(myQueriesUIMap.Operator_dropdown,"Contains"); // Select the operator
-		Thread.sleep(2000);
-		enterText(myQueriesUIMap.value_txtbox1,"Automation"); 
-		clickJS(myQueriesUIMap.RunQuery_button);
+		specifyFieldsAndRun(); //Calling the method to run the query
 		//ExpWaitForCondition(myQueriesUIMap.recordsRetrieved_staticTxt); //Verify the toaster message
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		//Add code to export query
 		clickJS(myQueriesUIMap.SaveQuery_txt); //Save the query
 		enterText(myQueriesUIMap.QueryName_txtbox,"Auto_Regression");
+		selectDropdownByText(myQueriesUIMap.QueryType_dropdown,"Shared Queries");  //Save the query to shared folder
 		clickJS(myQueriesUIMap.saveQuery_button);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		//DeleteAllFileWithNameSubString("exportQueryCSV"); //Deleting all the files from downloads
+		//DownloadQueryResults();                           //Exporting the results
 		//ExpWaitForCondition(myQueriesUIMap.querySaved_txt);
+		//revertUnsavedChanges(); // To revert the unsaved changes
 		clickJS(myQueriesUIMap.navigateToQueries_txt);
 		Thread.sleep(3000);
-		ExpWaitForCondition(myQueriesUIMap.savedQuery_txt);
+		checkForSharedQuery();
+		//ExpWaitForCondition(myQueriesUIMap.savedQuery_txt);
 //		Assert.assertEquals(CheckIfElementExists(myQueriesUIMap.savedQuery_txt),true,"Query is not saved"); //Assert if the query is saved
 		}
 		catch(Exception e)
@@ -105,8 +107,12 @@ public class myQueries extends Baseclass {
 	public static void editQuery()
 	{
 		try{
-		clickJS(myQueriesUIMap.savedQuery_txt);
+		//clickJS(myQueriesUIMap.savedQuery_txt);
+		clickJS(myQueriesUIMap.sharedQuery_txt);
+		Thread.sleep(2000); //can be removed
+		clickJS(myQueriesUIMap.sharedQuerySaved_txt);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		Thread.sleep(2000);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		Thread.sleep(5000);
 		singleClick(myQueriesUIMap.NewClause_txt); //Adding a new clause
@@ -153,5 +159,247 @@ public class myQueries extends Baseclass {
 			Assert.fail("Deletion of query failed");
 		}
 	}
+
+	public static void editColumnOptions() {
+		try{
+			clickJS(myQueriesUIMap.sharedQuery_txt);
+			clickJS(myQueriesUIMap.sharedQuerySaved_txt);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			Thread.sleep(2000);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			Thread.sleep(5000);
+			Assert.assertEquals(isVisible(myQueriesUIMap.ColumnOptions_txt), true,"Column options are not available");
+			clickJS(myQueriesUIMap.ColumnOptions_txt);
+			clickJS(myQueriesUIMap.deleteColumnOption_button); //Deleting the first column option in the list
+			if(CheckElementsSize(myQueriesUIMap.deleteColumnOptions_button)!=4)
+				Assert.fail("Deletion of existing column option failed");
+			Thread.sleep(1000);
+			selectDropdownByText(myQueriesUIMap.firstColumnOption_dropdown,"State");
+			Thread.sleep(3000);//can be removed
+			clickJS(myQueriesUIMap.saveColumnOption_button);
+			clickJS(myQueriesUIMap.RunQuery_button); //Run the query
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			//Editing column option and verifying in the query results if its added
+			try{
+			singleClick(myQueriesUIMap.workitemtypeColumnOption_txt);
+			Thread.sleep(2000);
+			for(int i=1;i<=7;i++){
+				moveRight();
+			}
+			ExpWaitForCondition(myQueriesUIMap.stateuidColumnOption_txt);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				logger.info("Edited column option is not available in Query results");
+				Assert.fail("Edited column option is not available in Query results");
+			}
+			//Adding new column option and verifying in the query results if its added
+			try{
+			clickJS(myQueriesUIMap.ColumnOptions_txt);//Click on column option
+			clickJS(myQueriesUIMap.AddField_txt); //Adding column option
+			Thread.sleep(2000); //can be removed
+			selectDropdownByText(myQueriesUIMap.newColumnOption_dropdown,"Project");
+			clickJS(myQueriesUIMap.saveColumnOption_button);
+			clickJS(myQueriesUIMap.RunQuery_button);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			singleClick(myQueriesUIMap.workitemtypeColumnOption_txt);
+			for(int i=1;i<=11;i++){
+				moveRight();
+			}
+			ExpWaitForCondition(myQueriesUIMap.projectColumnOption_txt);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				logger.info("Added column option is not available in Query results");
+				Assert.fail("Added column option is not available in Query results");
+			}
+			clickJS(myQueriesUIMap.navigateToQueries_txt);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("Edit of column options failed");
+			Assert.fail("Edit of column options failed");
+		}
+		
+	}
+	public static void specifyFieldsAndRun(){
+		try{
+			selectDropdownByValue(myQueriesUIMap.Field_dropdown,"Title"); //Select the Title attribute 
+			Thread.sleep(2000);
+			clickJS(myQueriesUIMap.Operator_txtBox);
+			selectDropdownByText(myQueriesUIMap.Operator_dropdown,"Contains"); // Select the operator
+			Thread.sleep(2000);
+			enterText(myQueriesUIMap.value_txtbox1,"Automation"); 
+			clickJS(myQueriesUIMap.RunQuery_button);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("Failed to run the query");
+			Assert.fail("Failed to run the query");
+		}
+	}
+	public static void revertUnsavedChanges(){
+		singleClick(myQueriesUIMap.NewClause_txt); //Adding a new clause
+		clickJS(myQueriesUIMap.revertChanges_button); 
+		if(CheckIfElementExists(myQueriesUIMap.condition_txt)){
+			logger.info("Failed to revert unsaved changes in the query");
+			Assert.fail("Failed to revert unsaved changes in the query");
+		}
+		
+	}
+	
+	
+	public static void DownloadQueryResults() {
+		        try{
+		       clickJS(myQueriesUIMap.exportResults_button); //click on go btn
+		       clickJS(myQueriesUIMap.IUnderstand_button);// click on i understand dialogue box
+		        Thread.sleep(7000);
+		        sendEntr();
+		        Thread.sleep(5000);
+		        }
+		        catch(Exception e)
+		        {
+		            e.printStackTrace();
+		            logger.info("issue downloading my queries excel sheet");
+		            Assert.fail("issue downloading my queries excel sheet");
+		        }
+		    }
+		   
+		    public static void DeleteAllFileWithNameSubString(String exportQueryCSV )
+		    {
+		        try{
+		        File directory = new File("C:\\Users\\"+Property.getProperty("UserName_LocalUserName")+"\\Downloads\\");  
+		        System.out.print(directory);
+		        //File directory = new File("C:\\Users\\"+"\\Downloads\\");  
+		        File[] files = directory.listFiles();
+		        for (File f : files)
+		        {
+		            System.out.println(f.getName());
+		            if (f.getName().startsWith(exportQueryCSV))
+		            {
+		              f.delete();
+		            }
+		        }
+		        }
+		        catch(Exception e)
+		        {
+		            e.printStackTrace();
+		            logger.info("issue deleting files from downloads for myquery test");
+		            Assert.fail("issue deleting files from downloads for myquery test");
+		        }
+		       
+		    }
+//		   
+//		    public static boolean CheckIfSpecificFileExists(String filename)
+//		    {
+//		        try{
+//		        boolean fileexists = false;
+//		        File f = new File("C:\\Users\\"+Property.getProperty("UserName_LocalUserName")+"\\Downloads\\exportQueryCSV.csv");
+//		        if(f.exists() && !f.isDirectory())
+//		            return true;
+//		        }
+//		        catch(Exception e)
+//		        {
+//		            e.printStackTrace();
+//		       
+//		        }
+//		        return false;
+//		        }
+//		   
+//		}
+
+			public static void loginwithusername2() {
+				try{
+					
+					driver().get(Property.getProperty("MyWizard_URL"));
+					waitPageToLoad();
+					Thread.sleep(10000);
+//					driver().manage().window().maximize();
+					
+					
+					if(CheckIfElementExists(MyWizardUIMap.signInWithUserNameSaved_txtbox)){
+						clear(MyWizardUIMap.signInWithUserNameSaved_txtbox);
+						enterText(MyWizardUIMap.signInWithUserNameSaved_txtbox, Property.getProperty("MyWizard_Username2"));
+						 enterText(MyWizardUIMap.Pwd_txtbox1,CommonFunctions.decrypt(Property.getProperty("MyWizard_Password")));
+						 click(MyWizardUIMap.signIn_btn1);
+						 Thread.sleep(10000);
+					}
+					
+					//if sign in with email id page shows up
+					if(CheckIfElementExists(MyWizardUIMap.signIn_txtbox)){
+						enterText(MyWizardUIMap.signIn_txtbox, Property.getProperty("MyWizard_Username2"));
+						clickJS(MyWizardUIMap.Next_btn);
+						ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+						 enterText(MyWizardUIMap.Pwd_txtbox1,CommonFunctions.decrypt(Property.getProperty("MyWizard_Password")));
+						 click(MyWizardUIMap.signIn_btn1);
+						 Thread.sleep(10000);
+					}
+					
+					//if pick an account page shows up
+					if(CheckIfElementExists(MyWizardUIMap.PickAnAccount_staticTxt)){
+					clickJS(MyWizardUIMap.UserAnotherAccount_link);
+					Thread.sleep(5000);
+					ExpWaitForCondition(MyWizardUIMap.signIn_txtbox);
+					enterText(MyWizardUIMap.signIn_txtbox, Property.getProperty("MyWizard_Username2"));
+					clickJS(MyWizardUIMap.Next_btn);
+					ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+					Thread.sleep(5000);
+					 enterText(MyWizardUIMap.Pwd_txtbox1,CommonFunctions.decrypt(Property.getProperty("MyWizard_Password")));
+					 click(MyWizardUIMap.signIn_btn1);
+//					 Thread.sleep(10000);
+					}
+					
+					
+					
+					//if stay signed in page shows up
+					ExpWaitForCondition(MyWizardUIMap.Yes_btn);	
+						clickJS(MyWizardUIMap.Yes_btn);
+					
+					
+					 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					 
+					 //notification icon mywizard works best in google chrome
+//					 if(CheckIfElementExists(MyWizardUIMap.MywizChromeNotification_btn))
+//					 {
+//						 clickJS(MyWizardUIMap.MywizChromeNotification_btn);
+//					 }
+					
+				     ExpWaitForCondition(MyWizardUIMap.Dashboard_Checkbox);
+				                clickJS(MyWizardUIMap.Dashboard_Checkbox);
+				                 clickJS(MyWizardUIMap.Dashboard_Confirm_btn);
+
+					 ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
+//					 
+					
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					logger.info("MyWizard page could not be loaded");
+					Assert.fail("MyWizard page could not be loaded");
+				}
+				
+			}
+
+			public static void checkForSharedQuery() {
+				try{
+					clickJS(myQueriesUIMap.sharedQuery_txt);
+					if(!CheckIfElementExists(myQueriesUIMap.sharedQuerySaved_txt)){
+						Assert.fail("Query not found in Shared queries");
+					}
+					
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					logger.info("Query not found in Shared queries");
+					Assert.fail("Query not found in Shared queries");
+				}
+				
+			}
 
 }

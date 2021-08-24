@@ -17,6 +17,7 @@ public class TeamConfigurationSteps  {
 	    if(createOrEditOrDelete.equalsIgnoreCase("create"))
 	    {
 	    	TeamConfiguration.createTeam(toolname);
+	    	TeamConfiguration.UpdateteamDetails(toolname);
 	    }
 	    else if(createOrEditOrDelete.equalsIgnoreCase("edit"))
 	    {
@@ -26,7 +27,17 @@ public class TeamConfigurationSteps  {
 	    {
 	    	TeamConfiguration.deleteTeam();
 	    }
+	    else if(createOrEditOrDelete.equalsIgnoreCase("EditteamAndRemoveResource"))
+	    {
+	    	TeamConfiguration.removeResource(toolname);
+	    }
 	}
 
+	@Then("^i want to capture team details for a team for \"([^\"]*)\"$")
+	public void captureteamdetails(String toolname) throws InterruptedException
+	{
+		TeamConfiguration.CaptureteamDetails(toolname);
+		TeamConfiguration.UpdateteamDetails(toolname);
+	}
 }
 ;

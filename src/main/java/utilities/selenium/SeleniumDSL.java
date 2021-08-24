@@ -768,6 +768,13 @@ public class SeleniumDSL {
 		action.release().build().perform();
 	}
 	
+	//clicks right key
+	public static void moveRight(){
+        Actions action = new Actions(driver());
+        action.sendKeys(Keys.ARROW_RIGHT);
+        action.build().perform();
+    }
+	
 	public static void doubleClick(By by) {
 		Actions action = new Actions(driver());
 		action.doubleClick(driver().findElement(by)).build().perform();
