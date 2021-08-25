@@ -10,7 +10,7 @@ Scenario Outline: Create edit query-Regression
 	And i "create" the query for "<toolname>" and "<entity>" and "<workitemtype>" 
 	Then i "edit" the query for "<toolname>" and "<entity>" and "<workitemtype>" 
 	And i "edit" the column options for "<toolname>" and "<entity>" and "<workitemtype>" 
-	And i "delete" the query for "<toolname>" and "<entity>" and "<workitemtype>" 
+	
 	Examples: 
 		| applicationname |toolname|entity |workitemtype |
 		| MyWizard |ADT Jira|WorkItem|UserStory |
@@ -35,3 +35,15 @@ Scenario Outline: Validate the visibility of Shared query
 		Examples: 
 			| applicationname |toolname|entity |workitemtype |
 			| MyWizard |ADT Jira|WorkItem|UserStory |
+			
+Scenario Outline: Validate the visibility of Product Instances
+	Given i load the project properties file
+	Given i login to application "<applicationname>"
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	Then i select only the client for "<applicationname>"
+	And i click on tile "my Queries"
+	Then i create the query and validate the product instance 
+	
+Examples: 
+		| applicationname |
+		| MyWizard        |

@@ -88,4 +88,5 @@ public static By condition_txt=By.xpath("//div[@col-id='Condition'][text()='AND'
 //export the results
 public static By exportResults_button=By.xpath("//div[text()='Go']");
 public static By IUnderstand_button=By.xpath("//button[text()='I Understand']");
+
 }	
