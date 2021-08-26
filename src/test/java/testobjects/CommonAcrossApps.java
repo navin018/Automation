@@ -6,6 +6,7 @@ import static utilities.selenium.SeleniumDSL.*;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -191,6 +192,8 @@ public static void LoginToTFS()
 //		Thread.sleep(10000);
 		String parent=driver().getWindowHandle();
 		driver().switchTo().window(parent);
+		if(CheckIfElementExists(MyWizardUIMap.UserAnotherAccount_link))
+			clickJS(MyWizardUIMap.UserAnotherAccount_link);
 		ExpWaitForCondition(TFSUIMap.signIn_txtbox);
 		enterText(TFSUIMap.signIn_txtbox,Property.getProperty("TFSUsername"));
 		 click(TFSUIMap.Next_btn);
@@ -340,6 +343,7 @@ try{
 		jsonObject.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
 		
 		jsonObject.put("Team_Name",Baseclass.getInstance().teamName);
+		jsonObject.put("WorkItemExternalId_TeamUId",Baseclass.getInstance().TeamUId);
 		
 		 FileWriter file = new FileWriter(WorkItemEx_FileLoc);
          file.write(jsonObject.toJSONString());
@@ -969,5 +973,17 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 	
 }
 
+}
+
+public static void LogOutFromMyWizard() throws IOException, InterruptedException {
+	 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+	 ExpWaitForCondition(MyWizardUIMap.UserID_link);
+	 clickJS(MyWizardUIMap.UserID_link);
+	 ExpWaitForCondition(MyWizardUIMap.SignOut_btn);
+	 clickJS(MyWizardUIMap.SignOut_btn);
+	 Thread.sleep(10000);
+	 if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.LogOutfromUser_txt, Property.getProperty("MyWizard_Username"), "username")))
+	 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.LogOutfromUser_txt, Property.getProperty("MyWizard_Username"), "username"));
+	ExpWaitForCondition(MyWizardUIMap.SignOutSuccessful_msg);
 }
 }

@@ -96,6 +96,8 @@ public static By BacktoDIYADAutomation_btn = By.xpath("//div[text()='Back to DIY
 public static By Dashboard_Checkbox = By.xpath("//span[text()='I Understand']");
 public static By Dashboard_Confirm_btn = By.xpath("//button[text()='Confirm']");
 
-
-
+public static By UserID_link = By.xpath("//span[@id='userDetail']");
+public static By SignOut_btn= By.xpath("//button[text()='Sign out']");
+public static String LogOutfromUser_txt = "//*[text()='{username}']";
+public static By SignOutSuccessful_msg= By.xpath("//div[contains(text(),'You have successfully signed out')]");
 }

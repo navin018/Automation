@@ -372,8 +372,9 @@ public class RMP extends Baseclass{
 			clear(RMPUIMap.ReleaseOrSprintEndDate_txtbox);
 			enterText(RMPUIMap.ReleaseOrSprintEndDate_txtbox,releaseenddate);
 			click(RMPUIMap.Apply_btn);
-			ExpWaitForCondition(RMPUIMap.proceed_btn);
-			clickJS(RMPUIMap.proceed_btn);
+			Thread.sleep(5000);
+//			ExpWaitForCondition(RMPUIMap.proceed_btn);
+//			clickJS(RMPUIMap.proceed_btn);
 			
 			
 			

@@ -534,7 +534,7 @@ import utilities.general.Property;
 			Thread.sleep(5000);
 			ExpWaitForCondition(TFSUIMap.saveAndClose_btn);
 			click(TFSUIMap.saveAndClose_btn);
-			
+			Thread.sleep(4000);
 			Baseclass.getInstance().TFS_ReleaseName = newReleasewithAppendedNumb;
 			Baseclass.getInstance().TFS_ReleaseStartDate= wi_release.ReleaseStartDate;
 			Baseclass.getInstance().TFS_ReleaseEndDate = wi_release.ReleaseEndDate;
@@ -1984,6 +1984,8 @@ import utilities.general.Property;
 	            }
             clickJS(TFSUIMap.Teams_text);
             Thread.sleep(3000);
+            refresh();
+            Thread.sleep(4000);
             ExpWaitForCondition(TFSUIMap.NewTeam_btn);
             clickJS(TFSUIMap.NewTeam_btn);
             ExpWaitForCondition(TFSUIMap.Teamname_txtbox);           

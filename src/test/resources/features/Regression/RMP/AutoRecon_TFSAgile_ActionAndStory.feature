@@ -8,14 +8,14 @@ Scenario Outline: TFSAgile_AutoRecon_ReleaseAndSprintCreationForAutoReconFromToo
     Then i select a Project for "<applicationname>"
 	 And i create "<Release>" and "<Sprint>" in TFS
 	 And i create a "<Story>" in TFS
-	 And i create a "<Action>" in TFS
+	 And i create a "<Decision>" in TFS
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
-	And i put a explicit wait of "900000" 
-	And i generate a token for "DevTest" environment 
+#	And i put a explicit wait of "900000" 
+#	And i generate a token for "DevTest" environment 
 	
 	    Examples: 
-      | applicationname | Story    | Action| Release    | Sprint    |
-      | TFS             | Story_DelFunctionality |Action_DelFunctionality| Release_02 | Sprint_02 |
+      | applicationname | Story    | Decision| Release    | Sprint    |
+	| TFS             | Story_DelFunctionality |Decision_AutoRecon| Release_01 | Sprint_01 |
 
 	
 	
@@ -36,8 +36,7 @@ Scenario Outline: TFSAgile_AutoRecon_ReleaseAndSprintIBVerification_CaptureItera
 @3TFSAgile_Autorecon_IBVerificationofActionVerifyiterationexternalid
 Scenario: TFSAgile_AutoRecon_Story_CheckifStoryFlown_Verifyiterationexternalid 
 	And i generate a token for "DevTest" environment 
-	And i generate a token for "DevTest" environment 
-	And i verify if "Action" has "flown" which was "NA" for "TFS Agile" for "BeforeRecon" functionality
+	And i verify if "Decision" has "flown" which was "NA" for "TFS Agile" for "BeforeRecon" functionality
 	And i verify if "Story" has "flown" which was "NA" for "TFS Agile" for "BeforeRecon" functionality
 	
 	
@@ -49,7 +48,7 @@ Scenario Outline: AutoRecon_CreateReleaseAndSprintFromRMP
 	Then i select client and DC for "<applicationname>" for RMP
 	And i navigate to RMP page 
 	And i and create Release and Sprint in RMP page for "AutoRecon" for the tool "TFS Agile" 
-	And i put a explicit wait of "900000"
+#	And i put a explicit wait of "900000"
 	
 	Examples: 
 		| applicationname |applicationname1|
@@ -74,6 +73,6 @@ Scenario Outline: TFSAgile_AutoRecon_CheckifReleaseAndSprintFlown_CaptureIterati
 			
 @7TFSAgile_Autorecon_IBVerificationofStoryVerifyIterationUIdAfterRecon
 Scenario: TFSAgile_AutoRecon_CheckifStoryFlown_VerifyIterationUIdAfterRecon 
-		And i generate a token for "DevTest" environment 
-	And i verify if "Action" has "flown" which was "NA" for "TFS Agile" for "AfterRecon" functionality
+	And i generate a token for "DevTest" environment 
+	And i verify if "Decision" has "flown" which was "NA" for "TFS Agile" for "AfterRecon" functionality
 	And i verify if "Story" has "flown" which was "NA" for "TFS Agile" for "AfterRecon" functionality

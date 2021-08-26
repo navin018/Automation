@@ -1816,8 +1816,8 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
 		                            
 		                         }
 	                            if(!DCflown && flownOrDeleted.equalsIgnoreCase("flown")){
-	                                 sa.assertEquals(DCflown, true,"Team DC not flown for "+ workitem +"in "+toolname);
-	                                 System.out.println("Team DC not flown for "+ workitem +" in "+toolname);
+	                                 sa.assertEquals(DCflown, true,"Team DC not shown for "+ workitem +" in "+toolname);
+	                                 System.out.println("Team DC not shown for "+ workitem +" in "+toolname);
 	                            }								
                             else if(DCflown && flownOrDeleted.equalsIgnoreCase("deleted")){
                                  sa.assertEquals(DCflown, false,"Team DC flown for "+toolname +" after deletion from the tool");
@@ -1838,9 +1838,9 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
 				 String IterationExternalID_Release="";
 				 String IterationExternalID_Sprint="";
 				 
-				 if(!workitem.contains("Action")){
+				 if(!workitem.contains("Decision")){
 					 String jsonpathforName = "WorkItems.WorkItemAttributes.Name";
-					 String jsonpathforValue = "WorkItems.WorkItemAttributes.IdValue";
+					 String jsonpathforValue = "WorkItems.WorkItemAttributes.Value";
 					 String jsonpathorExternalValue = "WorkItems.WorkItemAttributes.IdExternalValue";
 					 List<ArrayList<String>> DisplayNames= jsonPath.get(jsonpathforName);
 						System.out.println(DisplayNames.size());
@@ -1886,17 +1886,17 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
 							 }
 						 }
 				 }
-				 else if(workitem.contains("Action"))
+				 else if(workitem.contains("Decision"))
 				 {
-					 String jsonpathforIterationTypeUId="Actions.ActionAssociations.IterationTypeUId";
+					 String jsonpathforIterationTypeUId="Decisions.DecisionAssociations.IterationTypeUId";
 					 List<ArrayList<String>> IterationTypeUId= jsonPath.get(jsonpathforIterationTypeUId);
 					 for(ArrayList j:IterationTypeUId)
 					 {
 						 
 						 if(j.contains("00200390-0010-0000-0000-000000000000"))
 						 {
-							 List<ArrayList<String>> ExternalID = jsonPath.get("Actions.ActionAssociations.ItemExternalId");
-							 List<ArrayList<String>> AssociatedUId = jsonPath.get("Actions.ActionAssociations.ItemAssociatedUId");
+							 List<ArrayList<String>> ExternalID = jsonPath.get("Decisions.DecisionAssociations.ItemExternalId");
+							 List<ArrayList<String>> AssociatedUId = jsonPath.get("Decisions.DecisionAssociations.ItemAssociatedUId");
 							 for(ArrayList<String> k : AssociatedUId)
 							{
 								 
@@ -1914,8 +1914,8 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
 						 
 						 if(j.contains("00200390-0020-0000-0000-000000000000"))
 						 {
-							 List<ArrayList<String>> ExternalID = jsonPath.get("Actions.ActionAssociations.ItemExternalId");
-							 List<ArrayList<String>> AssociatedUId = jsonPath.get("Actions.ActionAssociations.ItemAssociatedUId");
+							 List<ArrayList<String>> ExternalID = jsonPath.get("Decisions.DecisionAssociations.ItemExternalId");
+							 List<ArrayList<String>> AssociatedUId = jsonPath.get("Decisions.DecisionAssociations.ItemAssociatedUId");
 							 for(ArrayList<String> k : AssociatedUId)
 							{
 								 

@@ -84,6 +84,28 @@ public class CommonSteps {
 		CommonFunctions.setIterationExternalID(toolname);
 	}
 	
+	
+	@Given("^i logout from \"([^\"]*)\"$")
+	public void iLogOutFromApp(String AppName) throws Throwable {
+		try{
+			switch(AppName)
+			{
+				case "MyWizard":
+				case "mywizard":
+				{
+					refresh();
+					CommonAcrossApps.LogOutFromMyWizard();
+				}
+				break;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Issue logging out from application "+AppName);
+			
+		}
+	}
 	@Given("^i login to application \"([^\"]*)\"$")
 	public void iLoginToApplicationWith(String AppName) throws Throwable {
 		

@@ -38,11 +38,11 @@ Baseclass(){
 	public static List<SecurityHeaders> SH = new ArrayList<>();
 	 
 	
-	public String TFS_ReleaseName="Release_AutomationData_64101";
+	public String TFS_ReleaseName;
 	
 	public String TFS_ReleaseStartDate;
 	public String TFS_ReleaseEndDate;
-	public String TFS_SprintName="Sprint_AutomationData_64101";
+	public String TFS_SprintName;
 	public String TFS_SprintStartDate;
 	public String TFS_SprintEndDate;
 	public String TFSProject;
