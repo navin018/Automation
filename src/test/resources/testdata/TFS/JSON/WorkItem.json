@@ -88,7 +88,7 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "NA"
+			"TeamVerify": "Yes"
 		},
 		"Story_DelFunctionality": {
 			"Summary": "Story_AutomationData",
@@ -117,7 +117,7 @@
 			"State": "New",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "NA"
+			"TeamVerify": "No"
 		},
 		"Action_DelFunctionality": {
 			"Summary": "Action_AutomationData",
@@ -146,7 +146,7 @@
 			"State": "New",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "NA"
+			"TeamVerify": "No"
 		},
 
 		"Story_wsjf_Multiply_0": {
@@ -877,7 +877,34 @@
 			"State": "New",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "TeamCreatedInTool"
+			"TeamVerify": "TeamDCVerification"
+		},
+		"Epic_TeamVerify01": {
+			"EpicName": "Epic_AutomationData",
+			"Summary": "Epic_AutomationData",
+			"Priority": "NA",
+			"Severity": "NA",
+			"Effort": "5",
+			"RemainingWork": "NA",
+			"ActualEffort": "NA",
+			"BusinessValue": "NA",
+			"Rank": "NA",
+			"StackRank": "NA",
+			"RiskReduction": "NA",
+			"StoryPoints": "NA",
+			"Completed": "NA",
+			"CompletedWork": "NA",
+			"OriginalEstimate": "NA",
+			"TimeCriticality": "NA",
+			"Complexity": "NA",
+			"Criticality": "NA",
+			"CostEstimate": "NA",
+			"CostApproved": "NA",
+			"Risk": "NA",
+			"State": "New",
+			"Release": "PickFromBaseclass",
+			"Sprint": "PickFromBaseclass",
+			"TeamVerify": "TeamAreaVerification"
 		},
 		"Task_TeamVerify": {
 			"EpicName": "Task_AutomationData",
@@ -904,7 +931,7 @@
 			"State": "New",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "TeamCreatedInUI"
+			"TeamVerify": "TeamDCVerification"
 		},
 
 		"Bug_01": {
@@ -1446,7 +1473,34 @@
 			"State": "New",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "TeamCreatedInTool"
+			"TeamVerify": "TeamDCVerification"
+		},
+		"Action_TeamVerify01": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Description",
+			"Priority": "NA",
+			"Severity": "NA",
+			"Effort": "NA",
+			"RemainingWork": "NA",
+			"ActualEffort": "NA",
+			"BusinessValue": "NA",
+			"Rank": "NA",
+			"StackRank": "NA",
+			"RiskReduction": "NA",
+			"StoryPoints": "NA",
+			"Completed": "NA",
+			"CompletedWork": "NA",
+			"OriginalEstimate": "NA",
+			"TimeCriticality": "NA",
+			"Complexity": "NA",
+			"Criticality": "NA",
+			"CostEstimate": "NA",
+			"CostApproved": "NA",
+			"Risk": "NA",
+			"State": "New",
+			"Release": "PickFromBaseclass",
+			"Sprint": "PickFromBaseclass",
+			"TeamVerify": "TeamAreaVerification"
 		},
 			"Milestone_TeamVerify": {
 			"Summary": "Milestone_AutomationData",
@@ -1502,33 +1556,6 @@
 			"Release": "NA",
 			"Sprint": "NA",
 			"TeamVerify": "No"
-		},
-		"Decision_AutoRecon": {
-			"Summary": "Decision_AutomationData",
-			"Description": "Decision_Description",
-			"Priority": "NA",
-			"Severity": "NA",
-			"Effort": "NA",
-			"RemainingWork": "NA",
-			"ActualEffort": "NA",
-			"BusinessValue": "NA",
-			"Rank": "NA",
-			"StackRank": "NA",
-			"RiskReduction": "NA",
-			"StoryPoints": "NA",
-			"Completed": "NA",
-			"CompletedWork": "NA",
-			"OriginalEstimate": "NA",
-			"TimeCriticality": "NA",
-			"Complexity": "NA",
-			"Criticality": "NA",
-			"CostEstimate": "NA",
-			"CostApproved": "NA",
-			"Risk": "NA",
-			"State": "New",
-			"Release": "PickFromBaseclass",
-			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "NA"
 		},
 
 		"Requirement_01": {

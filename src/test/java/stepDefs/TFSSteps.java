@@ -23,6 +23,13 @@ public class TFSSteps {
 			TFSWorkitem.CreateTeam();
 	}
 	
+//	And i create a "Team" in TFS with member "gopala.veeramani@accenture.com"
+	@Then("^i create a \"([^\"]*)\" in TFS with member \"([^\"]*)\"$")
+	public void i_create_a_team(String teammember) throws Throwable {
+		TFSWorkitem.CreateTeamWithSpecificMember(teammember);
+	}
+	
+	
 	  @Then("^i delete the \"([^\"]*)\" in \"([^\"]*)\" for \"([^\"]*)\" functionality$")
 	    public void i_delete_the_in_for_functionality(String workitem, String toolname,String functionality) throws Throwable {
 	        TFSWorkitem.DeleteTeam( workitem, toolname,functionality);

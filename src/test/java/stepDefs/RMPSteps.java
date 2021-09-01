@@ -49,6 +49,7 @@ public class RMPSteps {
 	@Then("^i perform Manual Recon for \"([^\"]*)\" for tool \"([^\"]*)\"$")
 	public void i_perform_manualrecon(String ReleaseorSprint, String toolname) throws Throwable {
 		RMP.PerformManualRecon(ReleaseorSprint,toolname);
+		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 	}
 
 	

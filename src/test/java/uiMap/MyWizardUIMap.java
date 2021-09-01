@@ -39,7 +39,7 @@ public static String SelectClient_statictxt = "//span[@class='node-name'][text()
 public static String SelectClient_statictxt_RMP = "//span[contains(text(),'{clientname}')]";
 public static String SelectDC_statictxt = "//span[@class='node-name'][text()='{dcname}']";
 public static String SelectDC_statictxt_RMP = "//div[contains(text(),'{dcname}')]";
-public static String SearchResultAccountManagement_statictxt = "//div[@col-id='DisplayName'] [text()='{userID}']";
+public static String SearchResultAccountManagement_statictxt = "//div[@col-id='EmailId'] [text()='{userID}']";
 public static String SelectProgram_statictxt = "//span[@class='node-name'][text()='{programname}']";
 public static String SelectProject_statictxt = "//span[@class='node-name'][text()='{project}']";
 public static String SelectProgram_statictxt_RMP = "//div[contains(text(),'{programname}')]";

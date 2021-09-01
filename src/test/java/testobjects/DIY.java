@@ -201,30 +201,37 @@ public class DIY extends Baseclass{
 				ExpWaitForCondition(DIYUIMap.GetStarted_Btn);
 			break;
 		case "ADOP Jira":
+			//select tools
 			clickJS(DIYUIMap.selectedToolADTJira_checkbox);
 				clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
-				clickJS(DIYUIMap.ConfirmChangingTool_btn);
+//				clickJS(DIYUIMap.ConfirmChangingTool_btn);
 				clickJS(DIYUIMap.Next_btn);
+				//planning
 				if(!getAttribute(DIYUIMap.selectedToolADOPJira_checkbox, "checked").equalsIgnoreCase("true"))
 					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
 				clickJS(DIYUIMap.Next_btn);
 				Thread.sleep(3000);
+				//deliverables
 				clickJS(DIYUIMap.Next_btn);
+				//requirements
 				if(!getAttribute(DIYUIMap.selectedToolADOPJira_checkbox, "checked").equalsIgnoreCase("true"))
 					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
 				clickJS(DIYUIMap.Next_btn);
+				//release management
 				if(!getAttribute(DIYUIMap.selectedToolADOPJira_checkbox, "checked").equalsIgnoreCase("true"))
 					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
 				clickJS(DIYUIMap.Next_btn);
 				Thread.sleep(3000);
+				//testing
 				clickJS(DIYUIMap.Next_btn);
+//				Devops
 				clickJS(DIYUIMap.SaveAndNext_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				Thread.sleep(5000);
 				clickJS(DIYUIMap.Yes_btn);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				configuretools(toolname,functionality);
-			DataMappingCheck(toolname);
+				DataMappingCheck(toolname);
 				
 				EnableUseCases(toolname);
 				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -238,23 +245,34 @@ public class DIY extends Baseclass{
 			break;
 		case "TFS Agile":
 		case "TFS Scrum":
+			//application lifecycle management
 			clickJS(DIYUIMap.selectedToolADTJira_checkbox);
 			clickJS(DIYUIMap.selectedToolTFS_checkbox);
-			clickJS(DIYUIMap.ConfirmChangingTool_btn);
+//			clickJS(DIYUIMap.ConfirmChangingTool_btn);
 			clickJS(DIYUIMap.Next_btn);
+			//planning
 			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
 				clickJS(DIYUIMap.selectedToolTFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
-			clickJS(DIYUIMap.Next_btn);
+			//Deliverables
 			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
 				clickJS(DIYUIMap.selectedToolTFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
+			//Requirements
+			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			clickJS(DIYUIMap.Next_btn);
+			//release management
 			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
 				clickJS(DIYUIMap.selectedToolTFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
+			//testing
+			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.selectedToolTFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
+			//devops nothing to do
 			clickJS(DIYUIMap.SaveAndNext_btn);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			Thread.sleep(5000);

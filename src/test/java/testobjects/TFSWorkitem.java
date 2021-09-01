@@ -749,7 +749,7 @@ import utilities.general.Property;
 					//Team or Assignee field
 					if(!wi.TeamVerify.equalsIgnoreCase("NA"))
 					{
-						if(wi.TeamVerify.equalsIgnoreCase("TeamCreatedInTool") || wi.TeamVerify.equalsIgnoreCase("TeamCreatedInUI")) {
+						if(wi.TeamVerify.equalsIgnoreCase("TeamAreaVerification") || wi.TeamVerify.equalsIgnoreCase("TeamDCVerification")) {
 //	                        ExpWaitForCondition(TFSUIMap.SearchUsers_txtbox);
 	                        sendBlankTab();
 	                        Thread.sleep(2000);
@@ -1706,12 +1706,16 @@ import utilities.general.Property;
 //					}
 					clickJS(TFSUIMap.Ok_btn);
 					Thread.sleep(4000);
+					ExpWaitForCondition(TFSUIMap.IterationName1_txtbox);
 					if(CheckIfElementExists(TFSUIMap.IterationPathNotFound_txt))
 						{
-							singleClick(TFSUIMap.Iteration_label);
-							sendPageDown();
-							sendPageDown();
-							sendEntr();
+						
+							clickJS(By.xpath("//input[@aria-label='Area Path']"));
+							
+							Thread.sleep(2000)	;
+							sendBlankTab();
+							clickJS(By.xpath("//div[contains(@class,'ms-TooltipHost')][text()='2.1 DevTest-Scrum']"));
+//							EnterTextUsingJS(TFSUIMap.IterationName1_txtbox,Property.getProperty("TFSProject_ChangeProject"));
 						}
 					ExpWaitForCondition(TFSUIMap.save_drpdown);
 					singleClick(TFSUIMap.save_drpdown);
@@ -1992,7 +1996,7 @@ import utilities.general.Property;
             Baseclass.getInstance().teamName="AutomationTeam_"+RandomNumberGenerator();
             System.out.println(Baseclass.getInstance().teamName);           
             enterText(TFSUIMap.Teamname_txtbox,Baseclass.getInstance().teamName);
-            enterText(TFSUIMap.Addmember_txtbox,"gopala.veeramani@accenture.com");
+            enterText(TFSUIMap.Addmember_txtbox,"nagaswetha.korlapati@accenture.com");
             sendEntr();
             clickJS(TFSUIMap.Createteam_txt);
             waitPageToLoad();
@@ -2005,6 +2009,35 @@ import utilities.general.Property;
             }
         }
 
+		public static void CreateTeamWithSpecificMember(String teammember) {
+            try {
+	            if(CheckIfElementExists(TFSUIMap.projectsetting_text)) {
+	                clickJS(TFSUIMap.projectsetting_text);
+	            }
+            clickJS(TFSUIMap.Teams_text);
+            Thread.sleep(3000);
+            refresh();
+            Thread.sleep(4000);
+            ExpWaitForCondition(TFSUIMap.NewTeam_btn);
+            clickJS(TFSUIMap.NewTeam_btn);
+            ExpWaitForCondition(TFSUIMap.Teamname_txtbox);           
+            Baseclass.getInstance().teamName="AutomationTeam_"+RandomNumberGenerator();
+            System.out.println(Baseclass.getInstance().teamName);           
+            enterText(TFSUIMap.Teamname_txtbox,Baseclass.getInstance().teamName);
+            enterText(TFSUIMap.Addmember_txtbox,teammember);
+            sendEntr();
+            clickJS(TFSUIMap.Createteam_txt);
+            waitPageToLoad();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                logger.info("Issue Creating Team in Tool");
+                Assert.fail("Issue Creating Team in Tool");
+            }
+        }
+
+		
 //		public static void AssociateWorkitems(String workitem1, String workitem2, String relationship) {
 //			try{
 //				String workitemID = Baseclass.getInstance().workitem1;

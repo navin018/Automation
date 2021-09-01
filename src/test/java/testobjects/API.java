@@ -99,6 +99,18 @@ import java.util.Random;
 				 {
 					 validateRAGFunctionality(Workitem,response,toolname);
 				 }
+				 if(functionality.contains("TeamsCheck"))
+				 {
+					 String checkIfTeamVerificationIsRequired = Tools.checkIfTeamVerificationRequired(toolname,Workitem);
+					 if(!(checkIfTeamVerificationIsRequired.equalsIgnoreCase("NA") || checkIfTeamVerificationIsRequired.equalsIgnoreCase("No")))
+					 {
+						 //verify team details in workitems API
+						 if(functionality.contains("flown") || functionality.contains("Flown"))
+						 Tools.VerifyTeamDetailsForEntity(response.jsonPath(),workitem,toolname,"flown",checkIfTeamVerificationIsRequired);
+						 else if(functionality.contains("flown") || functionality.contains("Flown"))
+							 Tools.VerifyTeamDetailsForEntity(response.jsonPath(),workitem,toolname,"deleted",checkIfTeamVerificationIsRequired);
+					 }
+				 }
 				
 			}
 			catch(Exception e)
@@ -267,12 +279,12 @@ import java.util.Random;
 			}
 			else {
 					if(!(workitem.contains("Release") || workitem.contains("Sprint") || workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("Work Request") || workitem.equalsIgnoreCase("ProductBacklog")))
-						WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem);
-					else if(workitem.equalsIgnoreCase("Test Execution"))
+						WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem.split("_")[0]);
+					else if(workitem.contains("Test Execution"))
 						WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_TestExecution");
-					else if(workitem.equalsIgnoreCase("Work Request"))
+					else if(workitem.contains("Work Request"))
 						WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_WorkRequest");
-					else if(workitem.equalsIgnoreCase("ProductBacklog"))
+					else if(workitem.contains("ProductBacklog"))
 						WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_Story");
 			}
 			

@@ -17,7 +17,7 @@ public class TeamConfigurationSteps  {
 	    if(createOrEditOrDelete.equalsIgnoreCase("create"))
 	    {
 	    	TeamConfiguration.createTeam(toolname);
-	    	TeamConfiguration.UpdateteamDetails(toolname);
+//	    	TeamConfiguration.UpdateteamDetails(toolname);
 	    }
 	    else if(createOrEditOrDelete.equalsIgnoreCase("edit"))
 	    {
