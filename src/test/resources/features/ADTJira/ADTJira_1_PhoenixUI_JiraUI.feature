@@ -134,7 +134,7 @@ Scenario Outline: ADTJIRA_WorkitemCreationInUI
 	And i create a "<feature>" in Jira 
 	And i create a "<impediment>" in Jira 
 	And i create a "<deliverable>" in Jira 
-	And i create a "<Decision>" in Jira 
+#	And i create a "<Decision>" in Jira				//not supported 
 	And i create a "<Requirement>" in Jira 
 	And i create a "<Test>" in Jira
 	And i create a "<milestone>" in Jira 

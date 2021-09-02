@@ -140,8 +140,9 @@ public static By EntityTypeTo_txtbox = By.xpath("//input[@id='availableTypes']")
 
 public static By Ok_btn = By.xpath("//button[@id='ok' and @aria-disabled='false']");
 public static By Iteration_drpdown = By.xpath("//input[@aria-label='Iteration Path']");
-//public static By Iteration_label = By.xpath("//div[@class='work-item-view new-work-item-view']/following::label[text()='Ite'][1]");
+public static String Iteration_drodownvalues = "//div[@class='treepicker-item']/following::div[contains(text(),'{projname}')][1]";
 public static By Iteration_label = By.xpath("//label[text()='Ite'][1]");
+public static By Iteration_label1 = By.xpath("//label[@class='workitemcontrol-label']//following::*[text()='r'][2]");
 
 public static By deleteTestCase_txtbox = By.xpath("//input[@class='test-workitem-delete-inputbox']");
 

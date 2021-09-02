@@ -107,7 +107,7 @@ import java.util.Random;
 						 //verify team details in workitems API
 						 if(functionality.contains("flown") || functionality.contains("Flown"))
 						 Tools.VerifyTeamDetailsForEntity(response.jsonPath(),workitem,toolname,"flown",checkIfTeamVerificationIsRequired);
-						 else if(functionality.contains("flown") || functionality.contains("Flown"))
+						 else if(functionality.contains("Deleted") || functionality.contains("deleted"))
 							 Tools.VerifyTeamDetailsForEntity(response.jsonPath(),workitem,toolname,"deleted",checkIfTeamVerificationIsRequired);
 					 }
 				 }
@@ -125,31 +125,31 @@ import java.util.Random;
 			List<ArrayList<String>> FieldNames = response.jsonPath().get("WorkItems.WorkItemExtensions.FieldName");
 			 for(ArrayList j:FieldNames)
 					 {
-						 if(j.contains("ragStatus"))
+						 if(j.contains("RagStatus"))
 						 {
 							 List<ArrayList<String>> FieldValues = response.jsonPath().get("WorkItems.WorkItemExtensions.FieldValue");
 							 for(ArrayList<String> ae : FieldValues)
 							{
-								System.out.println("ragStatus is "+ae.get(j.indexOf("ragStatus")));
-								String ragStatusfromAPI = ae.get(j.indexOf("ragStatus"));
+								System.out.println("ragStatus is "+ae.get(j.indexOf("RagStatus")));
+								String ragStatusfromAPI = ae.get(j.indexOf("RagStatus"));
 								Assert.assertEquals(ragStatusfromAPI,ExpectedRAGValue, "Mismatch in RAG value for workitem "+workitem+ " for tool "+toolname);
 								
 							}
 						 }
 						 else
 							 Assert.fail("RAG tag missing in the response for workitem "+workitem+ " for tool "+toolname);
-						 if(j.contains("ragInference"))
+						 if(j.contains("RagInference"))
 						 {
 							 List<ArrayList<String>> FieldValues = response.jsonPath().get("WorkItems.WorkItemExtensions.FieldValue");
 							 for(ArrayList<String> ae : FieldValues)
 							{
-								 System.out.println("ragInference is - "+ae.get(j.indexOf("ragInference")));
-									String InferenceStatusfromAPI = ae.get(j.indexOf("ragInference"));
-									Assert.assertEquals(InferenceStatusfromAPI, ExpectedInferenceValue,"Mismatch in ragInference value for workitem "+workitem+ " for tool "+toolname);
+								 System.out.println("RagInference is - "+ae.get(j.indexOf("RagInference")));
+									String InferenceStatusfromAPI = ae.get(j.indexOf("RagInference"));
+									Assert.assertEquals(InferenceStatusfromAPI, ExpectedInferenceValue,"Mismatch in RagInference value for workitem "+workitem+ " for tool "+toolname);
 							}
 						 }
 						 else
-							 Assert.fail("ragInference tag missing in the response for workitem "+workitem+ " for tool "+toolname);
+							 Assert.fail("RagInference tag missing in the response for workitem "+workitem+ " for tool "+toolname);
 						 
 					}
 			}

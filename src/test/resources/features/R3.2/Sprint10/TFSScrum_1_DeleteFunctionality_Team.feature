@@ -17,7 +17,9 @@ Examples:
       
 @ScrumTeamIbVerification_PreDeletion_DeleteFunctionality     
 Scenario: TFSScrum_Team_flow_beforeDelete
-And i verify if "Epic" has "flown" which was "NA" for "TFS Scrum" for "delete" functionality
+Given i load the project properties file
+And i generate a token for "DevTest" environment
+And i verify if "Team" has "flown" which was "NA" for "TFS Agile" for "normal" functionality
 And i verify the "inbound" details for "Epic_TeamVerify01" for tool "TFS Scrum" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamsCheckAndWorkItemFlown" functionality
 And i verify the "inbound" details for "Action_TeamVerify01" for tool "TFS Scrum" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamsCheckAndWorkItemFlown" functionality      
   
@@ -36,4 +38,5 @@ Examples:
       
 @ScrumTeamIbVerification_PostDeletion+DeleteFunctionality     
 Scenario: TFSScrum_Team_flow_beforeDelete
+And i generate a token for "DevTest" environment
 And i verify if "Team" has "deleted" which was "NA" for "TFS Scrum" for "delete" functionality 							

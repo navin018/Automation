@@ -40,5 +40,5 @@ public class ProductInstanceEntityRuleConfigUIMAP {
 	public static By Name_txt=By.xpath("//div[@class='ag-cell ag-cell-not-inline-editing ag-cell-with-height ag-cell-no-focus ag-cell-value'][text()='Automation_Regression']");
 	public static By Clone_icon=By.xpath("//div[text()='Automation_Regression']//following::*[@class='phx-icon-svg phx-icon-svg-sm'][1]");
 	public static By SelectRule_Statictxt=By.xpath("//span[text()='Name']//following::div[@col-id='Name' and @role='gridcell'][1]");
-	public static By SavedRule_txt=By.xpath("//div[text()='Saved Successfully']");
+	public static By SavedRule_txt=By.xpath("//div[contains(text(),'Saved successfully')]");
 }

@@ -902,8 +902,8 @@
 			"CostApproved": "NA",
 			"Risk": "NA",
 			"State": "New",
-			"Release": "PickFromBaseclass",
-			"Sprint": "PickFromBaseclass",
+			"Release": "None",
+			"Sprint": "None",
 			"TeamVerify": "TeamAreaVerification"
 		},
 		"Task_TeamVerify": {
@@ -1498,8 +1498,8 @@
 			"CostApproved": "NA",
 			"Risk": "NA",
 			"State": "New",
-			"Release": "PickFromBaseclass",
-			"Sprint": "PickFromBaseclass",
+			"Release": "None",
+			"Sprint": "None",
 			"TeamVerify": "TeamAreaVerification"
 		},
 			"Milestone_TeamVerify": {
@@ -1527,7 +1527,7 @@
 			"State": "New",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "TeamCreatedInUI"
+			"TeamVerify": "TeamDCVerification"
 		},
 
 		"Milestone_01": {

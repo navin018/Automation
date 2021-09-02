@@ -84,7 +84,8 @@ public static By RoadMapTitle_txtbox = By.xpath("//input[@id='Title' and @name='
 public static By RoadMapUpdated_msg = By.xpath("//span[text()='Roadmap Updated Successfully']");
 public static By BaseLine_link = By.xpath("//a[@data-original-title='Baseline']");
 public static By Baseline_Alert = By.xpath("//button[text()='Proceed']");
-public static By BaselineSaved_msg = By.xpath("//*[contains(text(),'successfully')]");
+//public static By BaselineSaved_msg = By.xpath("//*[contains(text(),'successfully') or contains(text(),'Successfully']");
+public static By BaselineSaved_msg = By.xpath("//*[contains(text(),'successfully')] | //*[contains(text(),'Successfully')]");
 public static By closeRoadMapMenu_btn = By.xpath("//button[@aria-label='Close']");
 //public static By ReleaseStartAndEndDate_txt = By.xpath("//div[@class='pointer-auto'][contains(@title,'Release')]");
 public static By ReleaseStartAndEndDate_txt = By.xpath("//a[contains(@class,'expandCollapseIcon')][contains(@data-original-title,'Release')]");

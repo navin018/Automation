@@ -20,7 +20,63 @@ import uiMap.MyWizardUIMap;
 import uiMap.RallyUIMap;
 import uiMap.TFSUIMap;
 import utilities.general.Property;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
+import static utilities.selenium.SeleniumDSL.*;
+import static utilities.general.Property.*;
+import static utilities.reporting.LogUtil.logger;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
+
+import com.fasterxml.uuid.Generators;
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.spi.json.JacksonJsonNodeJsonProvider;
+import com.jayway.jsonpath.spi.mapper.JacksonMappingProvider;
+
+import dataobjects.WorkItemDO;
+import dataobjects.WorkItemExternalIDDO;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import testobjects.Baseclass;
+import uiMap.JiraUIMap;
+
+import utilities.general.DataManager;
+import utilities.general.Property;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+ 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 public class CommonAcrossApps {
 	
 	public static void loginToJira(){
@@ -985,5 +1041,148 @@ public static void LogOutFromMyWizard() throws IOException, InterruptedException
 	 if(CheckIfElementExists(prepareWebElementWithDynamicXpath(MyWizardUIMap.LogOutfromUser_txt, Property.getProperty("MyWizard_Username"), "username")))
 	 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.LogOutfromUser_txt, Property.getProperty("MyWizard_Username"), "username"));
 	ExpWaitForCondition(MyWizardUIMap.SignOutSuccessful_msg);
+}
+
+public static void UpdateSpecificEntityID(String entity, String appname) {
+	try{
+	 String WorkItemEx_FileLoc="";
+	 String WorkItemEx_FileLoc_ReleaseSprint="";
+	 String tool="";
+	if(appname.contains("jira") || appname.contains("Jira") || appname.contains("JIRA"))
+		tool="Jira";
+	else if(appname.equalsIgnoreCase("TFS") || appname.contains("TFS"))
+		tool="TFS";
+		  WorkItemEx_FileLoc = System.getProperty("user.dir")
+					+ File.separator + "src" + File.separator + "test" + File.separator
+					+ "resources" + File.separator + "testdata" + File.separator + tool + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs.json";
+		
+		  WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
+					+ File.separator + "src" + File.separator + "test" + File.separator
+					+ "resources" + File.separator + "testdata" + File.separator + tool + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
+		  
+			FileReader reader = new FileReader(WorkItemEx_FileLoc);
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+        
+        
+	switch(entity){
+	case("Task"):
+		  jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);    
+		break;
+	
+	case("Story"):
+		 jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
+		break;
+
+	case("TestCase"):
+		jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
+	break;
+	
+	case("Issue"):
+		jsonObject.put("WorkItemExternalId_Issue", Baseclass.getInstance().WorkItemExternalId_Issue);
+		break;
+	
+	case("Impediment"):
+		jsonObject.put("WorkItemExternalId_Impediment", Baseclass.getInstance().WorkItemExternalId_Impediment);
+		break;
+	
+	case("Feature"):
+		   jsonObject.put("WorkItemExternalId_Feature", Baseclass.getInstance().WorkItemExternalId_Feature);
+		break;
+	
+	case("Epic"):
+		  jsonObject.put("WorkItemExternalId_Epic",Baseclass.getInstance().WorkItemExternalId_Epic);
+		break;
+	
+	case("Bug"):
+			jsonObject.put("WorkItemExternalId_Bug", Baseclass.getInstance().WorkItemExternalId_Bug);
+		break;
+	
+	case("Action"):
+		jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
+		break;
+	
+	case("Decision"):
+		jsonObject.put("WorkItemExternalId_Decision",Baseclass.getInstance().WorkItemExternalId_Decision);
+		break;
+	
+	case("Risk"):
+		jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
+			break;
+	
+	case("Deliverable"):
+		jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
+		break;
+	
+	case("Milestone"):
+		jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
+		break;
+	
+	case("Requirement"):
+		jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
+			break;
+	
+	case("WorkRequest"):
+	case ("Work Request"):
+		jsonObject.put("WorkItemExternalId_WorkRequest", Baseclass.getInstance().WorkItemExternalId_WorkRequest);
+		break;
+	
+	case("Release"):
+		{
+		FileReader reader1 = new FileReader(WorkItemEx_FileLoc_ReleaseSprint);
+		JSONParser jsonParser1 = new JSONParser();
+		JSONObject jsonObject1 = (JSONObject) jsonParser1.parse(reader1);
+		
+			if(tool.contains("TFS") || tool.contains("tfs"))
+			{
+			jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
+			jsonObject.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);
+			jsonObject.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().TFS_ReleaseEndDate);
+			}else if(tool.contains("Jira") || tool.contains("JIRA")){
+				jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().Jira_ReleaseName);
+				jsonObject.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().Jira_ReleaseStartDate);
+				jsonObject.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().Jira_ReleaseEndDate);
+			}
+			 FileOutputStream outputStream = new FileOutputStream(WorkItemEx_FileLoc_ReleaseSprint);
+				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+		}
+		break;
+	
+	case("Sprint"):{
+		
+		FileReader reader1 = new FileReader(WorkItemEx_FileLoc_ReleaseSprint);
+		JSONParser jsonParser1 = new JSONParser();
+		JSONObject jsonObject1 = (JSONObject) jsonParser1.parse(reader1);
+		
+		if(tool.contains("TFS") || tool.contains("tfs")){
+			jsonObject.put("WorkItemExternalId_SprintName",Baseclass.getInstance().TFS_SprintName);
+			jsonObject.put("WorkItemExternalId_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
+			jsonObject.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
+			}else if(tool.contains("Jira") || tool.contains("JIRA")){
+				jsonObject.put("WorkItemExternalId_SprintName",Baseclass.getInstance().Jira_SprintName);
+				jsonObject.put("WorkItemExternalId_SprintStartDate",Baseclass.getInstance().Jira_SprintStartDate);
+				jsonObject.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().Jira_SprintEndDate);
+			}
+				FileOutputStream outputStream = new FileOutputStream(WorkItemEx_FileLoc_ReleaseSprint);
+					byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+			}
+		break;
+	case("Team"):{
+		jsonObject.put("Team_Name",Baseclass.getInstance().teamName);
+		jsonObject.put("WorkItemExternalId_TeamUId",Baseclass.getInstance().TeamUId);
+		}
+		break;
+		
+		}
+	
+	 FileOutputStream outputStream = new FileOutputStream(WorkItemEx_FileLoc);
+		byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+		   	
+
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
 }
 }

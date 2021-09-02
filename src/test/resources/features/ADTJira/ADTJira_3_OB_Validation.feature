@@ -44,9 +44,9 @@ Scenario: ADTJIRA_Deliverable
 
 	And i verify the "Outbound" "Deliverable" details for "ADT JIRA" 
 	
-Scenario: ADTJIRA_Decision 
-
-	And i verify the "Outbound" "Decision" details for "ADT JIRA" 
+#Scenario: ADTJIRA_Decision 			//not supported
+#
+#	And i verify the "Outbound" "Decision" details for "ADT JIRA" 
 
 Scenario: ADTJIRA_Test 
 

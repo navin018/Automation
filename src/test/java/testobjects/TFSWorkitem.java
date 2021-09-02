@@ -746,19 +746,26 @@ import utilities.general.Property;
 					}
 					waitPageToLoad();
 					
+					
 					//Team or Assignee field
 					if(!wi.TeamVerify.equalsIgnoreCase("NA"))
-					{
-						if(wi.TeamVerify.equalsIgnoreCase("TeamAreaVerification") || wi.TeamVerify.equalsIgnoreCase("TeamDCVerification")) {
-//	                        ExpWaitForCondition(TFSUIMap.SearchUsers_txtbox);
-	                        sendBlankTab();
-	                        Thread.sleep(2000);
-//	                        enterText(TFSUIMap.Unassigned_txtbox,Property.getProperty("UserName_ForTeamConfig"));
-	                        enterText(TFSUIMap.SearchUsers_txtbox,Property.getProperty("UserName_ForTeamConfig"));
-	                        sendEntr();
-	                       
-	                    }
-					}
+                    {
+                        if(wi.TeamVerify.equalsIgnoreCase("TeamAreaVerification")) {
+//                            ExpWaitForCondition(TFSUIMap.SearchUsers_txtbox);
+                            sendBlankTab();
+                            Thread.sleep(2000);
+                            enterText(TFSUIMap.SearchUsers_txtbox,Property.getProperty("UserName_ForToolTeam"));
+                            sendEntr();
+                          
+                        }
+                        if ( wi.TeamVerify.equalsIgnoreCase("TeamDCVerification")) {
+                            ExpWaitForCondition(TFSUIMap.SearchUsers_txtbox);
+                            sendBlankTab();
+                            Thread.sleep(2000);
+                            enterText(TFSUIMap.Unassigned_txtbox,Property.getProperty("UserName_ForTeamConfig"));
+                            sendEntr();
+                        }
+                    }
 					//priority
 					if(!wi.Priority.equalsIgnoreCase("NA"))
 					{
@@ -1710,12 +1717,10 @@ import utilities.general.Property;
 					if(CheckIfElementExists(TFSUIMap.IterationPathNotFound_txt))
 						{
 						
-							clickJS(By.xpath("//input[@aria-label='Area Path']"));
-							
-							Thread.sleep(2000)	;
-							sendBlankTab();
-							clickJS(By.xpath("//div[contains(@class,'ms-TooltipHost')][text()='2.1 DevTest-Scrum']"));
-//							EnterTextUsingJS(TFSUIMap.IterationName1_txtbox,Property.getProperty("TFSProject_ChangeProject"));
+							clickJS(TFSUIMap.Iteration_label1);
+							Thread.sleep(2000);
+							clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.Iteration_drodownvalues, Property.getProperty("TFSProject_ChangeProject"), "projname"));
+							Thread.sleep(2000);
 						}
 					ExpWaitForCondition(TFSUIMap.save_drpdown);
 					singleClick(TFSUIMap.save_drpdown);
@@ -1996,7 +2001,10 @@ import utilities.general.Property;
             Baseclass.getInstance().teamName="AutomationTeam_"+RandomNumberGenerator();
             System.out.println(Baseclass.getInstance().teamName);           
             enterText(TFSUIMap.Teamname_txtbox,Baseclass.getInstance().teamName);
-            enterText(TFSUIMap.Addmember_txtbox,"nagaswetha.korlapati@accenture.com");
+            enterTextUsingAction(TFSUIMap.Addmember_txtbox,"sonal.harish.nagda@accenture.com");
+            Thread.sleep(5000);
+            sendPageDownKey();
+            Thread.sleep(2000);
             sendEntr();
             clickJS(TFSUIMap.Createteam_txt);
             waitPageToLoad();

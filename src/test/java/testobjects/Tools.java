@@ -1521,7 +1521,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 									 {
 										 verifyReleaseAndSprintDetailsForGenericUploader(workitem,response.jsonPath());
 									 }
-									 if(functionality.equalsIgnoreCase("ReleaseForTeamVerification"))
+									 if(workitem.equalsIgnoreCase("ReleaseForteamVerification"))
 									 {
 										 verifyReleaseAndSprintDetailsForTeam(workitem,response.jsonPath(),toolname);
 									 }
@@ -1562,7 +1562,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 									 {
 										 verifyIterationExternalID_ReleaseAndSprint("Sprint", Baseclass.getInstance().sprint_IterationExternalID, toolname);
 									 }
-									 if(functionality.equalsIgnoreCase("SprintForTeamVerification"))
+									 if(workitem.equalsIgnoreCase("SprintForteamVerification"))
 									 {
 										 verifyReleaseAndSprintDetailsForTeam(workitem,response.jsonPath(),toolname);
 									 }

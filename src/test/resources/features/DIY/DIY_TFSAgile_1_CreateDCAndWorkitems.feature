@@ -7,7 +7,7 @@ Scenario Outline: TFSAgile_RemoveUserRole_DIY
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "Account Management"
-	And i remove the role "Client Admin" for user "sonal.harish.nagda@accenture.com"
+	And i remove the role "Client Admin" for user "sonal.harish.nagda@ds.dev.accenture.com"
 
 Examples: 
 		| applicationname |

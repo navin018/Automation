@@ -500,6 +500,12 @@ public class SeleniumDSL {
 		       
     }
 	
+	public static void sendPageDownKey()  {
+		Actions actionObj = new Actions(driver());
+		actionObj.sendKeys(Keys.PAGE_DOWN).build().perform();
+		       
+    }
+	
 	public static void sendBackSpace(By by)  {
 		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(Keys.BACK_SPACE);
     }
