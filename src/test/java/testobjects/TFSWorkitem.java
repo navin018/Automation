@@ -2017,33 +2017,68 @@ import utilities.general.Property;
             }
         }
 
-		public static void CreateTeamWithSpecificMember(String teammember) {
-            try {
-	            if(CheckIfElementExists(TFSUIMap.projectsetting_text)) {
-	                clickJS(TFSUIMap.projectsetting_text);
-	            }
-            clickJS(TFSUIMap.Teams_text);
-            Thread.sleep(3000);
-            refresh();
-            Thread.sleep(4000);
-            ExpWaitForCondition(TFSUIMap.NewTeam_btn);
-            clickJS(TFSUIMap.NewTeam_btn);
-            ExpWaitForCondition(TFSUIMap.Teamname_txtbox);           
-            Baseclass.getInstance().teamName="AutomationTeam_"+RandomNumberGenerator();
-            System.out.println(Baseclass.getInstance().teamName);           
-            enterText(TFSUIMap.Teamname_txtbox,Baseclass.getInstance().teamName);
-            enterText(TFSUIMap.Addmember_txtbox,teammember);
-            sendEntr();
-            clickJS(TFSUIMap.Createteam_txt);
-            waitPageToLoad();
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-                logger.info("Issue Creating Team in Tool");
-                Assert.fail("Issue Creating Team in Tool");
-            }
-        }
+		 public static void CreateTeamWithSpecificMember(String teammember) {
+		        try {
+		            if (CheckIfElementExists(TFSUIMap.projectsetting_text)) {
+		                clickJS(TFSUIMap.projectsetting_text);
+		            }
+		            clickJS(TFSUIMap.Teams_text);
+		            Thread.sleep(3000);
+		            refresh();
+		            Thread.sleep(4000);
+		            ExpWaitForCondition(TFSUIMap.NewTeam_btn);
+		            clickJS(TFSUIMap.NewTeam_btn);
+		            ExpWaitForCondition(TFSUIMap.Teamname_txtbox);
+
+		 
+
+		            Baseclass.getInstance().teamName = "AutomationTeam_" + RandomNumberGenerator();
+		            String Team = Baseclass.getInstance().teamName;
+		            System.out.println(Baseclass.getInstance().teamName);
+		            enterText(TFSUIMap.Teamname_txtbox, Baseclass.getInstance().teamName);
+		            clickJS(TFSUIMap.Createteam_txt);
+		            waitPageToLoad();            
+		            enterText(TFSUIMap.filterteam_textbox, Baseclass.getInstance().teamName);
+		            ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,
+		                    "Teamname"));
+		            clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,
+		                    "Teamname"));
+		            logger.info("Issue Finding created Team in Tool");
+		            Assert.fail("Issue finding created Team in Tool");
+		            clickJS(TFSUIMap.Addmembers_btn);
+		            enterText(TFSUIMap.SearchUsers_txtbox1, System.getProperty("UserName_ForToolTeam"));
+		            sendEntr();
+		            clickJS(TFSUIMap.SaveUser_btn);
+		            waitPageToLoad();
+
+		 
+
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		            logger.info("Issue Creating Team in Tool");
+		            Assert.fail("Issue Creating Team in Tool");
+		        }
+		    }
+
+		public static void updateEntity(String fieldtoupdate, String workitem) {
+			try{
+			openworkitem(workitem);
+			switch(fieldtoupdate)
+			{
+				case("Description"):
+					enterText(TFSUIMap.Description_txt,"updated descrption");
+					break;
+			}
+			ExpWaitForCondition(TFSUIMap.save_btn);
+			singleClick(TFSUIMap.save_btn);
+			Thread.sleep(5000);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("issue opening or updating workitem "+workitem);
+			}
+		}
 
 		
 //		public static void AssociateWorkitems(String workitem1, String workitem2, String relationship) {

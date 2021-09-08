@@ -2731,6 +2731,8 @@ public static void VerifyTeamDetailsForEntity1(JsonPath jsonPath, String workite
 				 String responsebody = response.getBody().asString();
 				 System.out.println(response.getStatusCode());
 				 System.out.println(responsebody);
+				 int totalrecordcount = js.get("TotalRecordCount");
+				 Assert.assertEquals(totalrecordcount, 1, "entity "+workitem+ " not flown");
 				 switch(workitem.toLowerCase())
 					{
 					case "northstar":

@@ -141,6 +141,6 @@ Given i login to application "<applicationname>"
 	
 	  Examples: 
       | applicationname | feature             | task    | story    | risk         | issue         | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    |Sprint    |
-      | Jira            | New Feature_ADOP_01 | Task_01 | Story_01 | Risk_ADOP_01 | Issue_ADOP_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 |Sprint_01 |
+      | Jira            | New Feature_ADOP_01 | Task_01 | Story_01 | Risk_ADOP_01 | Issue_ADOP_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 |Sprint_02 |
 		
 		

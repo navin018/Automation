@@ -23,6 +23,11 @@ public class TFSSteps {
 			TFSWorkitem.CreateTeam();
 	}
 	
+	@Then("^i update \"([^\"]*)\" on \"([^\"]*)\" in TFS$")
+	public void i_updateentity_TFS(String fieldtoupdate, String workitem) throws Throwable {
+		TFSWorkitem.updateEntity(fieldtoupdate,workitem);
+	}
+	
 //	And i create a "Team" in TFS with member "gopala.veeramani@accenture.com"
 	@Then("^i create a \"([^\"]*)\" in TFS with member \"([^\"]*)\"$")
 	public void i_create_a_team(String teammember) throws Throwable {

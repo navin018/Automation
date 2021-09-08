@@ -41,11 +41,11 @@ public static By CollapsedSideBar_icon=By.xpath("//input[@name='summary']");
 //public static By Description_txtBox=By.xpath("//label[text()='Description']//following::div[1]");
 
 //public static By Description_txtBox=By.xpath("//div[@id='mceu_31']");
-public static By Description_txtBox=By.xpath("//body[@id='tinymce'][@class='mce-content-body ']");
+public static By Description_txtBox=By.xpath("//div[@id='description-wiki-edit']//child::textarea[1]");
 public static By Description_iFrame=By.xpath("//div[@id='description-wiki-edit']//following::iframe[1]");
 //
 public static By de = By.xpath("//*[@id='mce_0_ifr']");
-public static By EpicName_txtBox=By.xpath("//label[text()='Epic Name']//following::input[1]");
+public static By EpicName_txtBox=By.xpath("//label[text()='Epic Name ']//following::input[1]");
 public static By Create_btn=By.xpath("//input[@type='submit' and @value='Create']");
 public static By CreateSubTask_btn=By.xpath("//span[text()='Create sub-task']");
 public static By firstElementInSearchBox_staticTxt = By.xpath("//span[@class='quick-search-item-title'][@xpath='1']");

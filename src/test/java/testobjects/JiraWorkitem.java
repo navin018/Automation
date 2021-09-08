@@ -465,24 +465,24 @@ import java.util.Random;
 															
 						}
 							else if(Property.getProperty("JiraURL").contains("uat.alm.accenture.com")){
-//								clickJS(JiraUIMap.BacklogIcon_Img);
-//								Thread.sleep(10000);
-//								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
-//								ScrollIntoView(JiraUIMap.CreateSprint_btn);
-//								clickJS(JiraUIMap.CreateSprint_btn);
-//								ExpWaitForCondition(JiraUIMap.ADOPSprintVisible_icon);
-//								HoverUsingAction(JiraUIMap.ADOPSprintVisible_icon);
-//								clickJS(JiraUIMap.EditADOPSprintName_txtbox);
-//								sendDelete();
-//								enterText(JiraUIMap.EditADOPSprintName_txtbox,"Sprint_"+randomNumbForSrpint);
-//								Baseclass.getInstance().Jira_SprintName = "Sprint_"+randomNumbForSrpint;
 								clickJS(JiraUIMap.BacklogIcon_Img);
+								Thread.sleep(10000);
 								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
-								clickJS(JiraUIMap.CurrentSprintToBeEdited_txt);	
-								String currentsprintname = getAttribute(JiraUIMap.CurrentSprintToBeEdited_txt, "data-fieldvalue");
-								ClearTextAndEnterData(currentsprintname+"_"+randomNumbForSrpint);
-								Thread.sleep(4000);
-								Baseclass.getInstance().Jira_SprintName = currentsprintname+"_"+randomNumbForSrpint;
+								ScrollIntoView(JiraUIMap.CreateSprint_btn);
+								clickJS(JiraUIMap.CreateSprint_btn);
+								Thread.sleep(2000);
+								clear(JiraUIMap.NewSprintName_txt);
+								EnterTextUsingJS(JiraUIMap.NewSprintName_txt, "Sprint_"+randomNumbForSrpint);
+								EnterTextUsingJS(JiraUIMap.SprintStartDate_txt, wii.SprintStartDate);
+								EnterTextUsingJS(JiraUIMap.SprintEndDate_txt, wii.SprintEndDate);								
+								Thread.sleep(2000);
+		
+								clickJS(JiraUIMap.CreateNewSprint_btn);
+							
+								ExpWaitForElementToDisappear(JiraUIMap.CreateNewSprint_btn);
+								Baseclass.getInstance().Jira_SprintName = "Sprint_"+randomNumbForSrpint;
+								Baseclass.getInstance().Jira_SprintStartDate=wii.SprintStartDate;
+								Baseclass.getInstance().Jira_SprintEndDate=wii.SprintEndDate;
 							}
 						}
 	

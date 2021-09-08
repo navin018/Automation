@@ -48,7 +48,17 @@ Scenario Outline: Team configuration_RemoveResourceFromTeam
 	Examples: 
 		| applicationname |toolname|
 		| MyWizard        |TFS Agile|
-
+		
+		
+Scenario Outline: Team configuration_UpdateEntityPostTeamResourceRemoval
+	Given i load the project properties file
+	Given i login to application "<applicationname>"
+    Then i select a Project for "<applicationname>"   
+	And i update "Description" on "<Task>" in TFS
+	And i update "Description" on "<Milestone>" in TFS 
+		Examples: 
+		| applicationname |toolname|
+		| MyWizard        |TFS Agile|
 
 Scenario: TeamConfig_TFSAgile_VerifyIB_WorkitemsAndTeamAfterRemovingResource
 And i generate a token for "DevTest" environment
@@ -76,11 +86,11 @@ Scenario Outline: TeamConfig_CreateReleaseAndSprintAndEntitiesAndAssociateWithTe
     And i update the Entity ID for "Sprint" into JSON file for "<applicationname>"
 	And i create a "<Epic>" in TFS
     And i update the Entity ID for "Epic" into JSON file for "<applicationname>"
-    And i create a "<Action>" in TFS
+    And i create a "<Milestone>" in TFS
     And i update the Entity ID for "Action" into JSON file for "<applicationname>"
 Examples:
       | applicationname | Action   | Epic  |Release|Sprint|
-      | TFS             | Action_TeamVerify | Epic_TeamVerify|Release_01|Sprint_01|   
+      | TFS             | Milestone_TeamVerify | Epic_TeamVerify|Release_01|Sprint_01|   
     
       
 
@@ -110,7 +120,7 @@ Scenario Outline: TeamConfig_VerifyIBForTeamAndWorkitemsAndIteration_CreatedViaT
 	And i verify if "ReleaseForteamVerification" has "flown" which was "NA" for "TFS Agile" for "normal" functionality
 	And i verify if "SprintForteamVerification" has "flown" which was "NA" for "TFS Agile" for "normal" functionality
 	And i verify the "inbound" details for "Epic_TeamVerify" for tool "TFS Agile" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamsCheckAndWorkItemFlown" functionality
-	And i verify the "inbound" details for "Action_TeamVerify" for tool "TFS Agile" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamsCheckAndWorkItemFlown" functionality
+	And i verify the "inbound" details for "Milestone_TeamVerify" for tool "TFS Agile" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamsCheckAndWorkItemFlown" functionality
 
 	
 
