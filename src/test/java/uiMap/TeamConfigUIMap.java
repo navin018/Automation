@@ -36,8 +36,12 @@ public class TeamConfigUIMap {
 	public static String PlusIconToExpandDCL1_StaticTxt  = "//span[text()='{DCname}']//preceding::i[@class='pi pi-fw pi-chevron-right'][1]";
 
 	public static By TeamUID_statictxt = By.xpath("//input[@name='teamUId']");
+	public static By TeamUID_statictxt1 = By.xpath("//label[text()='Team UId']//following::input[1]");
+	public static By TeamID_statictxt = By.xpath("//label[text()='Team Id']//following::input[1]");
+	public static By TeamExternalID_statictxt = By.xpath("//label[text()='External Id']//following::input[1]");
 	public static String Teamname_statictxt  = "//span[text()='{teamname}']";
 	public static String AssociatedResourceList_statictxt  = "//*[text()='Associated Resources']//following::*[text()='{resourceID}'][1]";
 	public static String ResourceList_statictxt  = "//*[text()='Resource List']//following::*[text()='{resourceID}'][1]";
-	
+	public static By Page_number = By.xpath("//span[@class='ng-star-inserted'][text()='100']");
+    public static By PageCount_txtBox = By.xpath("//span[@class='ng-tns-c4-0 ui-dropdown-label ui-inputtext ui-corner-all ng-star-inserted']");
 }

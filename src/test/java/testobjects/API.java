@@ -255,6 +255,8 @@ import java.util.Random;
 							testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_WSJF.json" ;
 						else if(functionality.contains("RAG"))
 							testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_RAG.json" ;
+						else if(functionality.contains("TeamArchitecture"))
+							testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_TeamArchitecture.json" ;
 						else
 						testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 					}
@@ -265,6 +267,8 @@ import java.util.Random;
 							testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_WSJF.json" ;
 						else if(functionality.contains("RAG"))
 							testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_RAG.json" ;
+						else if(functionality.contains("TeamArchitecture"))
+							testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_TeamArchitecture.json" ;
 						else
 						testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 					}
@@ -273,7 +277,7 @@ import java.util.Random;
 			JSONObject jsonObject = (JSONObject) obj;
 			String WorkItemExternalId="";
 			
-			if(functionality.contains("WSJF") || functionality.equalsIgnoreCase("RAG"))
+			if(functionality.contains("WSJF") || functionality.equalsIgnoreCase("RAG") || functionality.equalsIgnoreCase("TeamArchitecture"))
 			{
 				WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem);
 			}

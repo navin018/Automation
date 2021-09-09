@@ -278,6 +278,31 @@ public class TeamConfiguration extends Baseclass {
 		
 		
 	}
+
+	public static void CaptureteamDetailsForSpecificFunctionality(String team, String toolname,String functionality) throws InterruptedException {
+		
+		String teamname = API.getWorkItemExternalIDForGivenFunctionality(team,toolname,functionality);
+		  clickJS(TeamConfigUIMap.PageCount_txtBox);
+	        clickJS(TeamConfigUIMap.Page_number);
+		enterText(MyWizardUIMap.Search_txtbox, teamname);
+		Thread.sleep(4000);
+		try{
+			ExpWaitForCondition(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+			singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+			Thread.sleep(2000);
+//			Baseclass.getInstance().TeamUId = getAttribute(TeamConfigUIMap.TeamUID_statictxt, "value");
+//			Baseclass.getInstance().TeamExternalID = teamname;
+			Baseclass.getInstance().TeamUId = getAttribute(TeamConfigUIMap.TeamUID_statictxt1, "value");
+			Baseclass.getInstance().TeamExternalID = getAttribute(TeamConfigUIMap.TeamExternalID_statictxt, "value");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("team "+teamname+" has not flown yet. the mentioned team not shown in team config tile");
+			Assert.fail("team "+teamname+" has not flown yet. the mentioned team not shown in team config tile");
+		}
+		
+	}
 		
 	}
 	

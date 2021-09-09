@@ -39,5 +39,14 @@ public class TeamConfigurationSteps  {
 		TeamConfiguration.CaptureteamDetails(toolname);
 		TeamConfiguration.UpdateteamDetails(toolname);
 	}
+	
+//	Then i want to capture team details for of "Team01" for "<toolname>" for functionality "TeamArchitecture"
+	@Then("^i want to capture team details for \"([^\"]*)\" for \"([^\"]*)\" for functionality \"([^\"]*)\"$")
+	public void captureteamdetailsforspecificfunctionality(String teamname,String toolname,String functionality) throws InterruptedException
+	{
+		TeamConfiguration.CaptureteamDetailsForSpecificFunctionality(teamname,toolname,functionality);
+		
+	}
+	
 }
 ;

@@ -180,4 +180,5 @@ public static By Description_txt=By.xpath("//div[@aria-label='Description']");
 public static By Addmembers_btn=By.xpath("//span[text()='Add']");
 public static By SearchUsers_txtbox1=By.xpath("//input[@placeholder='Search users or groups']");
 public static By SaveUser_btn=By.xpath("//span[text()='Save']");
+public static By SearchUsers_txtbox1=By.xpath("//input[@aria-label='Search users or groups']");
 }

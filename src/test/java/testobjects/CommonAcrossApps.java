@@ -665,6 +665,8 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 			 filename = "WorkItemExternalIDs_PreComputation_WSJF.json";
 		 else if(functionality.equalsIgnoreCase("PreComputation_RAG"))
 			 filename = "WorkItemExternalIDs_PreComputation_RAG.json";
+		 else if(functionality.equalsIgnoreCase("TeamArchitecture"))
+			 filename = "WorkItemExternalIDs_TeamArchitecture.json";
 		if(appname.contains("jira") || appname.contains("Jira") || appname.contains("JIRA")){
 		  WorkItemEx_FileLoc = System.getProperty("user.dir")
 					+ File.separator + "src" + File.separator + "test" + File.separator
@@ -679,13 +681,6 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		
 		if(functionality.equalsIgnoreCase("PreComputation_WSJF")){
 			JSONObject jsonObject = new JSONObject();
-		jsonObject.put("WorkItemExternalId_Task_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Task_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Task_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Task_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Task_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Task_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Task_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Decimal_Output);
 		
 		jsonObject.put("WorkItemExternalId_Story_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Multiply_0);
 		jsonObject.put("WorkItemExternalId_Story_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Deno_0);
@@ -697,49 +692,6 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		jsonObject.put("WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem);
 		
 		
-		jsonObject.put("WorkItemExternalId_Risk_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Risk_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Risk_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Risk_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Risk_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Risk_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Risk_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Decimal_Output);
-		
-		  
-		jsonObject.put("WorkItemExternalId_Issue_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Issue_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Issue_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Issue_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Issue_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Issue_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Issue_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Decimal_Output);
-		
-		  
-		jsonObject.put("WorkItemExternalId_Impediment_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Impediment_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Impediment_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Impediment_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Impediment_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Impediment_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Impediment_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Decimal_Output);
-		
-		  
-		jsonObject.put("WorkItemExternalId_Feature_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Feature_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Feature_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Feature_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Feature_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Feature_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Feature_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Decimal_Output);
-		
-		  
-		jsonObject.put("WorkItemExternalId_Epic_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Epic_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Epic_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Epic_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Epic_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Epic_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Epic_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Decimal_Output);
 		
 		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Multiply_0);
 		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Deno_0);
@@ -749,65 +701,6 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Zero_Tool);
 		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Decimal_Output);
 		
-		
-		jsonObject.put("WorkItemExternalId_Bug_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Bug_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Bug_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Bug_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Bug_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Bug_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Bug_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Decimal_Output);
-		
-		
-		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Decimal_Output);
-		
-		jsonObject.put("WorkItemExternalId_Requirement_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Requirement_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Requirement_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Requirement_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Requirement_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Requirement_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Requirement_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Decimal_Output);
-		
-		jsonObject.put("WorkItemExternalId_Action_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Action_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Action_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Action_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Action_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Action_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Action_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Decimal_Output);
-		
-		
-		jsonObject.put("WorkItemExternalId_Milestone_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_Milestone_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_Milestone_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_Milestone_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_Milestone_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_Milestone_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_Milestone_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Decimal_Output);
-		
-		
-		jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Decimal_Output);
-		
-		jsonObject.put("WorkItemExternalId_TestCase_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Multiply_0);
-		jsonObject.put("WorkItemExternalId_TestCase_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Deno_0);
-		jsonObject.put("WorkItemExternalId_TestCase_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Nume_0);
-		jsonObject.put("WorkItemExternalId_TestCase_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Negative_Int);
-		jsonObject.put("WorkItemExternalId_TestCase_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Decimal_Tool);
-		jsonObject.put("WorkItemExternalId_TestCase_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Zero_Tool);
-		jsonObject.put("WorkItemExternalId_TestCase_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Decimal_Output);
 		
 		  FileWriter file = new FileWriter(WorkItemEx_FileLoc);
 	         file.write(jsonObject.toJSONString());
@@ -833,8 +726,12 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		         file.flush();
 		         file.close();
 		}
+		else if(functionality.equalsIgnoreCase("TeamArchitecture")){
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario1", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario1);
+			jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario1", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario1);
 		
-
+		}
 	}
 	
 }
@@ -863,13 +760,6 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 
 	if(functionality.equalsIgnoreCase("PreComputation_WSJF")){
 		JSONObject jsonObject = new JSONObject();
-	jsonObject.put("WorkItemExternalId_Task_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Task_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Task_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Task_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Task_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Task_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Task_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Decimal_Output);
 	
 	jsonObject.put("WorkItemExternalId_Story_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Multiply_0);
 	jsonObject.put("WorkItemExternalId_Story_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Deno_0);
@@ -881,49 +771,6 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 	jsonObject.put("WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem", Baseclass.getInstance().WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem);
 	
 	
-	jsonObject.put("WorkItemExternalId_Risk_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Risk_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Risk_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Risk_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Risk_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Risk_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Risk_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Decimal_Output);
-	
-	  
-	jsonObject.put("WorkItemExternalId_Issue_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Issue_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Issue_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Issue_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Issue_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Issue_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Issue_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Decimal_Output);
-	
-	  
-	jsonObject.put("WorkItemExternalId_Impediment_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Impediment_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Impediment_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Impediment_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Impediment_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Impediment_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Impediment_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Impediment_wsjf_Decimal_Output);
-	
-	  
-	jsonObject.put("WorkItemExternalId_Feature_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Feature_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Feature_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Feature_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Feature_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Feature_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Feature_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Decimal_Output);
-	
-	  
-	jsonObject.put("WorkItemExternalId_Epic_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Epic_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Epic_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Epic_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Epic_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Epic_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Epic_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Decimal_Output);
 	
 	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Multiply_0);
 	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Deno_0);
@@ -933,65 +780,6 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Zero_Tool);
 	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Decimal_Output);
 	
-	
-	jsonObject.put("WorkItemExternalId_Bug_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Bug_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Bug_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Bug_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Bug_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Bug_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Bug_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Decimal_Output);
-	
-	
-	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Deliverable_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Decimal_Output);
-	
-	jsonObject.put("WorkItemExternalId_Requirement_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Requirement_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Requirement_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Requirement_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Requirement_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Requirement_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Requirement_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Decimal_Output);
-	
-	jsonObject.put("WorkItemExternalId_Action_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Action_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Action_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Action_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Action_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Action_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Action_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Decimal_Output);
-	
-	
-	jsonObject.put("WorkItemExternalId_Milestone_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_Milestone_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_Milestone_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_Milestone_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_Milestone_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_Milestone_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_Milestone_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Decimal_Output);
-	
-	
-	jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_WorkRequest_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Decimal_Output);
-	
-	jsonObject.put("WorkItemExternalId_TestCase_wsjf_Multiply_0", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Multiply_0);
-	jsonObject.put("WorkItemExternalId_TestCase_wsjf_Deno_0", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Deno_0);
-	jsonObject.put("WorkItemExternalId_TestCase_wsjf_Nume_0", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Nume_0);
-	jsonObject.put("WorkItemExternalId_TestCase_wsjf_Negative_Int", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Negative_Int);
-	jsonObject.put("WorkItemExternalId_TestCase_wsjf_Decimal_Tool", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Decimal_Tool);
-	jsonObject.put("WorkItemExternalId_TestCase_wsjf_Zero_Tool", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Zero_Tool);
-	jsonObject.put("WorkItemExternalId_TestCase_wsjf_Decimal_Output", Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Decimal_Output);
 	
 	 FileWriter file = new FileWriter(WorkItemEx_FileLoc);
      file.write(jsonObject.toJSONString());
@@ -1020,6 +808,12 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 	         file.write(jsonObject.toJSONString());
 	         file.flush();
 	         file.close();
+	}
+	else if(functionality.equalsIgnoreCase("TeamArchitecture")){
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario1", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario1);
+		jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario1", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario1);
+	
 	}
 	}
 		catch (Exception e) {
@@ -1184,5 +978,195 @@ public static void UpdateSpecificEntityID(String entity, String appname) {
 	{
 		e.printStackTrace();
 	}
+}
+
+public static void UpdateSpecificEntityIDForSpecificFunctionality(String entity, String appname,String functionality) {
+	
+	try{
+	String WorkItemEx_FileLoc="";
+	 String WorkItemEx_FileLoc_ReleaseSprint="";
+	 String tool="";
+	 String filetoupdate =""; 
+	
+	 //check the tool and update the file
+	 if(appname.contains("jira") || appname.contains("Jira") || appname.contains("JIRA"))
+		tool="Jira";
+	else if(appname.equalsIgnoreCase("TFS") || appname.contains("TFS"))
+		tool="TFS";
+	
+	//check functionality and update file
+	if(functionality.equalsIgnoreCase("TeamArchitecture"))
+		filetoupdate="WorkItemExternalIDs_TeamArchitecture.json";
+	
+	
+		  WorkItemEx_FileLoc = System.getProperty("user.dir")
+					+ File.separator + "src" + File.separator + "test" + File.separator
+					+ "resources" + File.separator + "testdata" + File.separator + tool + File.separator + "JSON"+  File.separator + filetoupdate;
+		
+		  //ignore
+		  WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
+					+ File.separator + "src" + File.separator + "test" + File.separator
+					+ "resources" + File.separator + "testdata" + File.separator + tool + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
+		  
+			FileReader reader = new FileReader(WorkItemEx_FileLoc);
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+       
+       
+	switch(entity){
+	case("Task"):
+		  jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);    
+		break;
+	
+	case("Story"):
+		 jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
+		break;
+
+	case("TestCase"):
+		jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
+	break;
+	
+	case("Issue"):
+		jsonObject.put("WorkItemExternalId_Issue", Baseclass.getInstance().WorkItemExternalId_Issue);
+		break;
+	
+	case("Impediment"):
+		jsonObject.put("WorkItemExternalId_Impediment", Baseclass.getInstance().WorkItemExternalId_Impediment);
+		break;
+	
+	case("Feature"):
+		   jsonObject.put("WorkItemExternalId_Feature", Baseclass.getInstance().WorkItemExternalId_Feature);
+		break;
+	
+	case("Epic"):
+		  jsonObject.put("WorkItemExternalId_Epic",Baseclass.getInstance().WorkItemExternalId_Epic);
+		break;
+	
+	case("Bug"):
+			jsonObject.put("WorkItemExternalId_Bug", Baseclass.getInstance().WorkItemExternalId_Bug);
+		break;
+	
+	case("Action"):
+		jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
+		break;
+	
+	case("Decision"):
+		jsonObject.put("WorkItemExternalId_Decision",Baseclass.getInstance().WorkItemExternalId_Decision);
+		break;
+	
+	case("Risk"):
+		jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
+			break;
+	
+	case("Deliverable"):
+		jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
+		break;
+	
+	case("Milestone"):
+		jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
+		break;
+	
+	case("Requirement"):
+		jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
+			break;
+	
+	case("WorkRequest"):
+	case ("Work Request"):
+		jsonObject.put("WorkItemExternalId_WorkRequest", Baseclass.getInstance().WorkItemExternalId_WorkRequest);
+		break;
+	
+	case("Release"):
+		{
+		FileReader reader1 = new FileReader(WorkItemEx_FileLoc_ReleaseSprint);
+		JSONParser jsonParser1 = new JSONParser();
+		JSONObject jsonObject1 = (JSONObject) jsonParser1.parse(reader1);
+		
+			if(tool.contains("TFS") || tool.contains("tfs"))
+			{
+			jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().TFS_ReleaseName);
+			jsonObject.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().TFS_ReleaseStartDate);
+			jsonObject.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().TFS_ReleaseEndDate);
+			}else if(tool.contains("Jira") || tool.contains("JIRA")){
+				jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().Jira_ReleaseName);
+				jsonObject.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().Jira_ReleaseStartDate);
+				jsonObject.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().Jira_ReleaseEndDate);
+			}
+			 FileOutputStream outputStream = new FileOutputStream(WorkItemEx_FileLoc_ReleaseSprint);
+				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+		}
+		break;
+	
+	case("Sprint"):{
+		
+		FileReader reader1 = new FileReader(WorkItemEx_FileLoc_ReleaseSprint);
+		JSONParser jsonParser1 = new JSONParser();
+		JSONObject jsonObject1 = (JSONObject) jsonParser1.parse(reader1);
+		
+		if(tool.contains("TFS") || tool.contains("tfs")){
+			jsonObject.put("WorkItemExternalId_SprintName",Baseclass.getInstance().TFS_SprintName);
+			jsonObject.put("WorkItemExternalId_SprintStartDate",Baseclass.getInstance().TFS_SprintStartDate);
+			jsonObject.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().TFS_SprintEndDate);
+			}else if(tool.contains("Jira") || tool.contains("JIRA")){
+				jsonObject.put("WorkItemExternalId_SprintName",Baseclass.getInstance().Jira_SprintName);
+				jsonObject.put("WorkItemExternalId_SprintStartDate",Baseclass.getInstance().Jira_SprintStartDate);
+				jsonObject.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().Jira_SprintEndDate);
+			}
+				FileOutputStream outputStream = new FileOutputStream(WorkItemEx_FileLoc_ReleaseSprint);
+					byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+			}
+		break;
+	case("Team"):{
+		jsonObject.put("Team_Name",Baseclass.getInstance().teamName);
+		jsonObject.put("WorkItemExternalId_TeamUId",Baseclass.getInstance().TeamUId);
+		}
+		break;
+	
+	case("Team01"):{
+		jsonObject.put("WorkItemExternalId_Teame01",Baseclass.getInstance().teamName);
+		
+		}
+		break;
+	case("TeamUId01"):{
+		
+		jsonObject.put("WorkItemExternalId_TeamUId01",Baseclass.getInstance().TeamUId);
+		}
+		break;
+	case("TeamExternalId01"):{
+		
+		jsonObject.put("WorkItemExternalId_TeamExternalId01",Baseclass.getInstance().TeamExternalID);
+		}
+		break;
+	
+	case("Team02"):{
+		jsonObject.put("WorkItemExternalId_Teame02",Baseclass.getInstance().teamName);
+		
+		}
+		break;
+	case("TeamUId02"):{
+		
+		jsonObject.put("WorkItemExternalId_TeamUId02",Baseclass.getInstance().TeamUId);
+		}
+		break;
+	case("TeamExternalId02"):{
+		
+		jsonObject.put("WorkItemExternalId_TeamExternalId02",Baseclass.getInstance().TeamExternalID);
+		}
+		break;
+		
+		}
+	
+
+	
+	
+	 FileOutputStream outputStream = new FileOutputStream(WorkItemEx_FileLoc);
+		byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+		   	
+
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+
 }
 }

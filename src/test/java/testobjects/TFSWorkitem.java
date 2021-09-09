@@ -747,31 +747,46 @@ import utilities.general.Property;
 					waitPageToLoad();
 					
 					
-					//Team or Assignee field
-					if(!wi.TeamVerify.equalsIgnoreCase("NA"))
-                    {
-                        if(wi.TeamVerify.equalsIgnoreCase("TeamAreaVerification")) {
+					//assignee
+					if(!wi.Assignee.equalsIgnoreCase("NA"))
+					{
+                      sendBlankTab();
+                      Thread.sleep(2000);
+                      enterText(TFSUIMap.SearchUsers_txtbox,wi.Assignee);
+                      sendEntr();
+					}
+					
+					
+//					//Team or Assignee field
+//					if(!wi.TeamVerify.equalsIgnoreCase("NA"))
+//                    {
+//                        if(wi.TeamVerify.equalsIgnoreCase("TeamAreaVerification")) {
+////                            ExpWaitForCondition(TFSUIMap.SearchUsers_txtbox);
+//                            sendBlankTab();
+//                            Thread.sleep(2000);
+//                            enterText(TFSUIMap.SearchUsers_txtbox,Property.getProperty("UserName_ForToolTeam"));
+//                            sendEntr();
+//                          
+//                        }
+//                        if ( wi.TeamVerify.equalsIgnoreCase("TeamDCVerification")) {
 //                            ExpWaitForCondition(TFSUIMap.SearchUsers_txtbox);
-                            sendBlankTab();
-                            Thread.sleep(2000);
-                            enterText(TFSUIMap.SearchUsers_txtbox,Property.getProperty("UserName_ForToolTeam"));
-                            sendEntr();
-                          
-                        }
-                        if ( wi.TeamVerify.equalsIgnoreCase("TeamDCVerification")) {
-                            ExpWaitForCondition(TFSUIMap.SearchUsers_txtbox);
-                            sendBlankTab();
-                            Thread.sleep(2000);
-                            enterText(TFSUIMap.Unassigned_txtbox,Property.getProperty("UserName_ForTeamConfig"));
-                            sendEntr();
-                        }
-                    }
+//                            sendBlankTab();
+//                            Thread.sleep(2000);
+//                            enterText(TFSUIMap.Unassigned_txtbox,Property.getProperty("UserName_ForTeamConfig"));
+//                            sendEntr();
+//                        }
+//                       
+//                        
+//                    }
+					
 					//priority
 					if(!wi.Priority.equalsIgnoreCase("NA"))
 					{
 						
 						EnterDataInTheField(wi.Priority,TFSUIMap.Priority_drpdown);
 					}
+					
+					
 					
 					//severity
 					if(!wi.Severity.equalsIgnoreCase("NA"))
@@ -2041,17 +2056,34 @@ import utilities.general.Property;
 		            enterText(TFSUIMap.filterteam_textbox, Baseclass.getInstance().teamName);
 		            ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,
 		                    "Teamname"));
-		            clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,
-		                    "Teamname"));
-		            logger.info("Issue Finding created Team in Tool");
-		            Assert.fail("Issue finding created Team in Tool");
+		            clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,"Teamname"));
 		            clickJS(TFSUIMap.Addmembers_btn);
-		            enterText(TFSUIMap.SearchUsers_txtbox1, System.getProperty("UserName_ForToolTeam"));
-		            sendEntr();
-		            clickJS(TFSUIMap.SaveUser_btn);
-		            waitPageToLoad();
-
-		 
+		            
+		            if (teammember.contains("&")) {
+                        String[] teammemberSplit = teammember.split("&");
+                       
+                        //if more than 1 resource to be added
+                        if(teammemberSplit.length>1)
+                        {
+	                        for(int i = 0; i<teammemberSplit.length;i++)
+	                        {
+	                            teammember=teammemberSplit[i];
+	                            enterText(TFSUIMap.SearchUsers_txtbox1, teammember);
+	                            Thread.sleep(3000);
+	                            sendEntr();                           
+	                        }                   
+                        }
+                        }
+                        else {
+                      enterText(TFSUIMap.SearchUsers_txtbox1, teammember);
+                      Thread.sleep(3000);
+                      sendEntr();
+                        }                   
+                    clickJS(TFSUIMap.SaveUser_btn);
+                    waitPageToLoad();
+                    driver().get(Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject);
+                   
+                 
 
 		        } catch (Exception e) {
 		            e.printStackTrace();
@@ -2078,6 +2110,39 @@ import utilities.general.Property;
 				e.printStackTrace();
 				logger.info("issue opening or updating workitem "+workitem);
 			}
+		}
+
+		public static void CreateWorkitemForTeamArchitecture(String workitem, String functionality) {
+			try{
+				 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
+				
+				 //navigate to the create WI url
+				 String workitemURL = GoToWorkitemURL(workitem);
+				 EnterWorkItemDetails(workitem, workitemURL, wi);
+					CaptureWorkitemIDForTeamArchitecture(workitem);
+					
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					logger.info("issue creating "+workitem+" in TFS");
+				}
+			}
+
+		public static void CaptureWorkitemIDForTeamArchitecture(String workitem) {
+				
+			switch(workitem){
+			case("Bug_TeamArchitecture_Scenario1"):
+				Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario1 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+				break;
+			case("Action_TeamArchitecture_Scenario1"):
+				Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario1 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+				break;
+			
+			}
+			
+		}
+			
 		}
 
 		

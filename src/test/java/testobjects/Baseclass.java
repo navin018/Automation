@@ -79,6 +79,13 @@ Baseclass(){
 	
 	public String teamName;
 	public String TeamUId;
+	public String TeamExternalID;
+	
+	
+	
+	//TeamArch params
+	public String WorkItemExternalId_Bug_TeamArchitecture_Scenario1;
+	public String WorkItemExternalId_Action_TeamArchitecture_Scenario1;
 	
 //	Precomputation params
 	public String WorkItemExternalId_Bug_wsjf_Multiply_0;

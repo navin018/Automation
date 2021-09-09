@@ -178,7 +178,15 @@ public class CommonSteps {
 		CommonAcrossApps.UpdateSpecificEntityID(entity,appname);
 		
 		
-		}	
+		}
+//	And i update the Entity ID for "Team01" into JSON file for "<applicationname>" for functionality "TeamArchitecture"
+	@And("^i update the Entity ID for \"([^\"]*)\" into JSON file for \"([^\"]*)\" for functionality \"([^\"]*)\"$")
+	public void iUpdateSpecificEntityIDsForSpecificFunctionality(String entity, String appname,String functionality) throws Throwable {
+		
+		CommonAcrossApps.UpdateSpecificEntityIDForSpecificFunctionality(entity,appname,functionality);
+		
+		
+		}
 	
 	@And("^i update the WorkItemExternalIDs into a JSON file for \"([^\"]*)\" for functionality \"([^\"]*)\"$")
 	public void iUpdateTheWorkItemExternalIDsIntoAJSONFileForSpecificFunctionality(String appname,String functionality) throws Throwable {

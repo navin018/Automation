@@ -29,7 +29,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 		"Story_01": {
@@ -59,7 +60,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_TeamVerify": {
 			"Summary": "Story_AutomationData",
@@ -88,7 +90,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "Yes"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_DelFunctionality": {
 			"Summary": "Story_AutomationData",
@@ -117,7 +120,8 @@
 			"State": "New",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Action_DelFunctionality": {
 			"Summary": "Action_AutomationData",
@@ -146,7 +150,8 @@
 			"State": "New",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 		"Story_wsjf_Multiply_0": {
@@ -176,7 +181,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 
 		},
 		"Story_wsjf_Multiply_0_UpdateFormula": {
@@ -206,7 +212,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 
 		},
 		"Story_wsjf_Deno_0": {
@@ -236,7 +243,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_wsjf_Nume_0": {
 			"Summary": "Story_AutomationData",
@@ -265,7 +273,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_wsjf_Negative_Int": {
 			"Summary": "Story_AutomationData",
@@ -294,7 +303,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 
 		},
 		"Story_wsjf_Decimal_Tool": {
@@ -324,7 +334,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_wsjf_Zero_Tool": {
 			"Summary": "Story_AutomationData",
@@ -353,7 +364,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_wsjf_Decimal_Output": {
 			"Summary": "Story_AutomationData",
@@ -382,7 +394,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_wsjf_Negative_Int_UpdateWorkitem": {
 			"Summary": "Story_AutomationData",
@@ -411,7 +424,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 		"Story_wsjf_Function": {
@@ -441,7 +455,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_wsjf_AssocationToTask": {
 
@@ -471,7 +486,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_RAG_StatusDone_Rule1": {
 
@@ -501,7 +517,8 @@
 			"Inference": "Closed User story",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_RAG_StatusInactivate_Rule2": {
 
@@ -531,7 +548,8 @@
 			"Inference": "Inactive User story",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_RAG_NoAssociation_Rule3": {
 			"Summary": "Story_AutomationData",
@@ -560,7 +578,8 @@
 			"Inference": " User Story is not tagged to Sprintt",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_RAG_IterationTiming_Rule4": {
 			"Summary": "Story_AutomationData",
@@ -589,7 +608,8 @@
 			"Inference": "Time available to complete the User Story",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_RAG_IterationTiming_Rule5": {
 			"Summary": "Story_AutomationData",
@@ -618,7 +638,8 @@
 			"Inference": "Time available to complete the User Story",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_RAG_AssociatedIterationTiming_Rule7": {
 			"Summary": "Story_AutomationData_ParentStory",
@@ -647,7 +668,8 @@
 			"Inference": "Time available to complete the User Story###1 blocked User Story.",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_RAG_AssociatedToStory_Rule7": {
 			"Summary": "Story_AutomationData",
@@ -676,7 +698,8 @@
 			"Inference": "TBD",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_RAG_PastIteration_Rule10": {
 			"Summary": "Story_AutomationData",
@@ -705,7 +728,8 @@
 			"Inference": "Overdue User Story###1 Risks require attention",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Risk_RAG_ToBeAssociatedToStory_Rule10": {
 			"Summary": "Risk_AutomationData",
@@ -734,7 +758,8 @@
 			"Inference": "NA",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Story_RAG_IterationTiming_Rule11": {
 			"Summary": "Story_AutomationData",
@@ -763,7 +788,8 @@
 			"Inference": "TBD. Risks require attention",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Risk_RAG_ToBeAssociatedToStory_Rule11": {
 			"Summary": "Risk_AutomationData",
@@ -792,7 +818,8 @@
 			"Inference": "NA",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Task_wsjf_AssocationToStory": {
 
@@ -822,7 +849,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 		"Epic_01": {
@@ -850,7 +878,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Epic_TeamVerify": {
 			"EpicName": "Epic_AutomationData",
@@ -877,7 +906,8 @@
 			"State": "New",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "TeamDCVerification"
+			"TeamVerify": "TeamDCVerification",
+			"Assignee": "sonal.harish.nagda@accenture.com"
 		},
 		"Epic_TeamVerify01": {
 			"EpicName": "Epic_AutomationData",
@@ -904,7 +934,8 @@
 			"State": "New",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "TeamAreaVerification"
+			"TeamVerify": "TeamAreaVerification",
+			"Assignee": "gopala.veeramani@accenture.com"
 		},
 		"Task_TeamVerify": {
 			"EpicName": "Task_AutomationData",
@@ -931,7 +962,8 @@
 			"State": "New",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "TeamDCVerification"
+			"TeamVerify": "TeamDCVerification",
+			"Assignee": "sonal.harish.nagda@accenture.com"
 		},
 
 		"Bug_01": {
@@ -961,7 +993,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Feature_01": {
 			"Summary": "Feature_AutomationData",
@@ -990,7 +1023,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 
@@ -1021,7 +1055,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 		"Issue_01": {
@@ -1049,7 +1084,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 		"TestCase_01": {
@@ -1077,7 +1113,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_01": {
 			"Summary": "Deliverable_AutomationData",
@@ -1104,7 +1141,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_wsjf": {
 			"Summary": "Deliverable_AutomationData",
@@ -1131,7 +1169,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_wsjf_Multiply_0": {
 			"Summary": "Deliverable_AutomationData",
@@ -1160,7 +1199,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_wsjf_Deno_0": {
 			"Summary": "Deliverable_AutomationData",
@@ -1189,7 +1229,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_wsjf_Nume_0": {
 			"Summary": "Deliverable_AutomationData",
@@ -1218,7 +1259,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_wsjf_Negative_Int": {
 			"Summary": "Deliverable_AutomationData",
@@ -1247,7 +1289,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_wsjf_Decimal_Tool": {
 			"Summary": "Deliverable_AutomationData",
@@ -1276,7 +1319,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_wsjf_Zero_Tool": {
 			"Summary": "Deliverable_AutomationData",
@@ -1305,7 +1349,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_wsjf_Decimal_Output": {
 			"Summary": "Deliverable_AutomationData",
@@ -1334,7 +1379,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Deliverable_wsjf_Function": {
 
@@ -1364,7 +1410,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Risk_01": {
 			"Summary": "Risk_AutomationData",
@@ -1391,7 +1438,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Decision_01": {
 			"Summary": "Decision_AutomationData",
@@ -1418,7 +1466,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 		"Action_01": {
@@ -1446,7 +1495,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Action_TeamVerify": {
 			"Summary": "Action_AutomationData",
@@ -1473,7 +1523,8 @@
 			"State": "New",
 			"Release": "PickFromBaseclass",
 			"Sprint": "PickFromBaseclass",
-			"TeamVerify": "TeamDCVerification"
+			"TeamVerify": "TeamDCVerification",
+			"Assignee": "sonal.harish.nagda@accenture.com"
 		},
 		"Action_TeamVerify01": {
 			"Summary": "Action_AutomationData",
@@ -1500,7 +1551,8 @@
 			"State": "New",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "TeamAreaVerification"
+			"TeamVerify": "TeamAreaVerification",
+			"Assignee": "gopala.veeramani@accenture.com"
 		},
 			"Milestone_TeamVerify": {
 			"Summary": "Milestone_AutomationData",
@@ -1527,7 +1579,8 @@
 			"State": "New",
 			"Release": "None",
 			"Sprint": "None",
-			"TeamVerify": "TeamDCVerification"
+			"TeamVerify": "TeamDCVerification",
+			"Assignee": "sonal.harish.nagda@accenture.com"
 		},
 
 		"Milestone_01": {
@@ -1555,7 +1608,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 		"Requirement_01": {
@@ -1583,7 +1637,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Requirement_wsjf": {
 			"Summary": "Requirement_AutomationData",
@@ -1610,7 +1665,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Work Request_01": {
 			"Summary": "WorkRequest_AutomationData",
@@ -1637,7 +1693,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 
 		"ProductBacklog_01": {
@@ -1665,7 +1722,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"ProductBacklog_PreComp": {
 			"Summary": "Story_AutomationData",
@@ -1692,7 +1750,8 @@
 			"State": "New",
 			"Release": "NA",
 			"Sprint": "NA",
-			"TeamVerify": "No"
+			"TeamVerify": "No",
+			"Assignee": "NA"
 		},
 		"Release_01": {
 			"IterationName": "Release_AutomationData",

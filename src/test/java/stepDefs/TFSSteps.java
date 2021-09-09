@@ -30,7 +30,7 @@ public class TFSSteps {
 	
 //	And i create a "Team" in TFS with member "gopala.veeramani@accenture.com"
 	@Then("^i create a \"([^\"]*)\" in TFS with member \"([^\"]*)\"$")
-	public void i_create_a_team(String teammember) throws Throwable {
+	public void i_create_a_team(String teamname, String teammember) throws Throwable {
 		TFSWorkitem.CreateTeamWithSpecificMember(teammember);
 	}
 	
@@ -62,6 +62,10 @@ public class TFSSteps {
 					else if(CreateOrUpdate.equalsIgnoreCase("update"))
 							TFSWorkitem.UpdateWorkItemForPreComputation(workitem,functionality);
 					}
+				if(functionality.equalsIgnoreCase("TeamArchitecture"))
+				{
+				TFSWorkitem.CreateWorkitemForTeamArchitecture(workitem,functionality);
+				}
 
 
 
