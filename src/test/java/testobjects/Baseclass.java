@@ -84,25 +84,28 @@ Baseclass(){
 	
 	
 	//TeamArch params
-	public String WorkItemExternalId_Bug_TeamArchitecture_Scenario1;
-	public String WorkItemExternalId_Action_TeamArchitecture_Scenario1;
+
+    
+    public String WorkItemExternalId_Bug_TeamArchitecture_Scenario1;
+    public String WorkItemExternalId_Action_TeamArchitecture_Scenario1;
+    public String WorkItemExternalId_Bug_TeamArchitecture_Scenario2;
+    public String WorkItemExternalId_Action_TeamArchitecture_Scenario2;
+    public String WorkItemExternalId_Bug_TeamArchitecture_Scenario3;
+    public String WorkItemExternalId_Action_TeamArchitecture_Scenario3;
+    public String WorkItemExternalId_Bug_TeamArchitecture_Scenario4;
+    public String WorkItemExternalId_Action_TeamArchitecture_Scenario4;
+    public String WorkItemExternalId_Bug_TeamArchitecture_Scenario5;
+    public String WorkItemExternalId_Action_TeamArchitecture_Scenario5;
+    public String WorkItemExternalId_Bug_TeamArchitecture_Scenario6;
+    public String WorkItemExternalId_Action_TeamArchitecture_Scenario6;
+    public String WorkItemExternalId_Bug_TeamArchitecture_Scenario7;
+    public String WorkItemExternalId_Action_TeamArchitecture_Scenario7;
+    public String WorkItemExternalId_Bug_TeamArchitecture_Scenario8;
+    public String WorkItemExternalId_Action_TeamArchitecture_Scenario8;
+
 	
 //	Precomputation params
-	public String WorkItemExternalId_Bug_wsjf_Multiply_0;
-	public String WorkItemExternalId_Bug_wsjf_Deno_0;
-	public String WorkItemExternalId_Bug_wsjf_Nume_0;
-	public String WorkItemExternalId_Bug_wsjf_Negative_Int;
-	public String WorkItemExternalId_Bug_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Bug_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Bug_wsjf_Decimal_Output;
-	
-	public String WorkItemExternalId_Task_wsjf_Multiply_0;
-	public String WorkItemExternalId_Task_wsjf_Deno_0;
-	public String WorkItemExternalId_Task_wsjf_Nume_0;
-	public String WorkItemExternalId_Task_wsjf_Negative_Int;
-	public String WorkItemExternalId_Task_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Task_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Task_wsjf_Decimal_Output;
+
 	
 	public String WorkItemExternalId_Story_wsjf_Multiply_0;
 	public String WorkItemExternalId_Story_wsjf_Deno_0;
@@ -113,46 +116,7 @@ Baseclass(){
 	public String WorkItemExternalId_Story_wsjf_Decimal_Output;
 	public String WorkItemExternalId_Story_wsjf_Negative_Int_UpdateWorkitem;
 	public String WorkItemExternalId_Story_wsjf_Multiply_0_UpdateFormula;
-		
-	public String WorkItemExternalId_Epic_wsjf_Multiply_0;
-	public String WorkItemExternalId_Epic_wsjf_Deno_0;
-	public String WorkItemExternalId_Epic_wsjf_Nume_0;
-	public String WorkItemExternalId_Epic_wsjf_Negative_Int;
-	public String WorkItemExternalId_Epic_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Epic_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Epic_wsjf_Decimal_Output;
-	
-	public String WorkItemExternalId_Feature_wsjf_Multiply_0;
-	public String WorkItemExternalId_Feature_wsjf_Deno_0;
-	public String WorkItemExternalId_Feature_wsjf_Nume_0;
-	public String WorkItemExternalId_Feature_wsjf_Negative_Int;
-	public String WorkItemExternalId_Feature_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Feature_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Feature_wsjf_Decimal_Output;
-	
-	public String WorkItemExternalId_Impediment_wsjf_Multiply_0;
-	public String WorkItemExternalId_Impediment_wsjf_Deno_0;
-	public String WorkItemExternalId_Impediment_wsjf_Nume_0;
-	public String WorkItemExternalId_Impediment_wsjf_Negative_Int;
-	public String WorkItemExternalId_Impediment_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Impediment_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Impediment_wsjf_Decimal_Output;
-	
-	public String WorkItemExternalId_Issue_wsjf_Multiply_0;
-	public String WorkItemExternalId_Issue_wsjf_Deno_0;
-	public String WorkItemExternalId_Issue_wsjf_Nume_0;
-	public String WorkItemExternalId_Issue_wsjf_Negative_Int;
-	public String WorkItemExternalId_Issue_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Issue_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Issue_wsjf_Decimal_Output;
-	
-	public String WorkItemExternalId_TestCase_wsjf_Multiply_0;
-	public String WorkItemExternalId_TestCase_wsjf_Deno_0;
-	public String WorkItemExternalId_TestCase_wsjf_Nume_0;
-	public String WorkItemExternalId_TestCase_wsjf_Negative_Int;
-	public String WorkItemExternalId_TestCase_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_TestCase_wsjf_Zero_Tool;
-	public String WorkItemExternalId_TestCase_wsjf_Decimal_Output;
+
 	
 	public String WorkItemExternalId_Deliverable_wsjf_Multiply_0;
 	public String WorkItemExternalId_Deliverable_wsjf_Deno_0;
@@ -162,53 +126,8 @@ Baseclass(){
 	public String WorkItemExternalId_Deliverable_wsjf_Zero_Tool;
 	public String WorkItemExternalId_Deliverable_wsjf_Decimal_Output;
 	
-	public String WorkItemExternalId_Risk_wsjf_Multiply_0;
-	public String WorkItemExternalId_Risk_wsjf_Deno_0;
-	public String WorkItemExternalId_Risk_wsjf_Nume_0;
-	public String WorkItemExternalId_Risk_wsjf_Negative_Int;
-	public String WorkItemExternalId_Risk_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Risk_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Risk_wsjf_Decimal_Output;
+
 	
-	public String WorkItemExternalId_Decision_wsjf_Multiply_0;
-	public String WorkItemExternalId_Decision_wsjf_Deno_0;
-	public String WorkItemExternalId_Decision_wsjf_Nume_0;
-	public String WorkItemExternalId_Decision_wsjf_Negative_Int;
-	public String WorkItemExternalId_Decision_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Decision_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Decision_wsjf_Decimal_Output;
-	
-	public String WorkItemExternalId_Action_wsjf_Multiply_0;
-	public String WorkItemExternalId_Action_wsjf_Deno_0;
-	public String WorkItemExternalId_Action_wsjf_Nume_0;
-	public String WorkItemExternalId_Action_wsjf_Negative_Int;
-	public String WorkItemExternalId_Action_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Action_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Action_wsjf_Decimal_Output;
-	
-	public String WorkItemExternalId_Milestone_wsjf_Multiply_0;
-	public String WorkItemExternalId_Milestone_wsjf_Deno_0;
-	public String WorkItemExternalId_Milestone_wsjf_Nume_0;
-	public String WorkItemExternalId_Milestone_wsjf_Negative_Int;
-	public String WorkItemExternalId_Milestone_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Milestone_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Milestone_wsjf_Decimal_Output;
-	
-	public String WorkItemExternalId_Requirement_wsjf_Multiply_0;
-	public String WorkItemExternalId_Requirement_wsjf_Deno_0;
-	public String WorkItemExternalId_Requirement_wsjf_Nume_0;
-	public String WorkItemExternalId_Requirement_wsjf_Negative_Int;
-	public String WorkItemExternalId_Requirement_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_Requirement_wsjf_Zero_Tool;
-	public String WorkItemExternalId_Requirement_wsjf_Decimal_Output;
-	
-	public String WorkItemExternalId_WorkRequest_wsjf_Multiply_0;
-	public String WorkItemExternalId_WorkRequest_wsjf_Deno_0;
-	public String WorkItemExternalId_WorkRequest_wsjf_Nume_0;
-	public String WorkItemExternalId_WorkRequest_wsjf_Negative_Int;
-	public String WorkItemExternalId_WorkRequest_wsjf_Decimal_Tool;
-	public String WorkItemExternalId_WorkRequest_wsjf_Zero_Tool;
-	public String WorkItemExternalId_WorkRequest_wsjf_Decimal_Output;
 	
 	public String TestProcessName;
 	
@@ -224,6 +143,8 @@ Baseclass(){
 	public String WorkItemExternalId_Story_RAG_PastIteration_Rule10;
 	public String WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11;
 	public String WorkItemExternalId_Story_RAG_IterationTiming_Rule11;
+	
+
 	
 	public String QueryName;
 	

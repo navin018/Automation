@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 import dataobjects.WorkItemDO;
 import dataobjects.WorkItemExternalIDDO;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 //import javassist.bytecode.stackmap.BasicBlock.Catch;
@@ -111,6 +112,10 @@ import java.util.Random;
 							 Tools.VerifyTeamDetailsForEntity(response.jsonPath(),workitem,toolname,"deleted",checkIfTeamVerificationIsRequired);
 					 }
 				 }
+				 if(functionality.equalsIgnoreCase("TeamArchitecture"))
+				 {
+					 VerifyTeamArchitectureFunctionality(response.jsonPath(),Workitem,toolname,functionality);
+				 }
 				
 			}
 			catch(Exception e)
@@ -119,6 +124,57 @@ import java.util.Random;
 			}
 			}
 			
+		public static void VerifyTeamArchitectureFunctionality(JsonPath jsonPath, String workitem, String toolname,String functionality) {
+		String TeamName="";
+		String TeamUId="";
+		String TeamExternalId="";
+		String Teamtobefetched = "";
+		String TeamUIdtobefetched = "";
+		String TeamExternalIDtobefetched = "";
+		
+		//fetch data based on scenario
+		if(workitem.contains("Scenario1"))
+		{
+			Teamtobefetched="Team01";
+			TeamUIdtobefetched="TeamUId01";
+			TeamExternalIDtobefetched="TeamExternalId01";
+		}
+	
+		TeamName=API.getWorkItemExternalIDForGivenFunctionality(Teamtobefetched, toolname, functionality);
+		TeamUId=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched, toolname, functionality);
+		TeamExternalId=API.getWorkItemExternalIDForGivenFunctionality(TeamExternalIDtobefetched, toolname, functionality);
+		
+		
+		String TeamNameFromAPI="";
+		String TeamAreaExternalIdFromAPI="";
+		String TeamAreaUIdFromAPI="";
+		String DCFromAPI="";
+		
+		//non workitem verification	
+			if(workitem.contains("Action")){
+				TeamNameFromAPI = jsonPath.getString("Actions[0].TeamAreaName");
+				TeamAreaExternalIdFromAPI = jsonPath.getString("Actions[0].TeamAreaExternalId");
+				TeamAreaUIdFromAPI = jsonPath.getString("Actions[0].TeamAreaUId");
+				DCFromAPI=jsonPath.getString("Actions[0].ActionDeliveryConstructs.DeliveryConstructUId");
+			}	
+			else	//workitem verification
+			{
+				TeamNameFromAPI = jsonPath.getString("WorkItems.TeamAreaName");
+				TeamAreaUIdFromAPI = jsonPath.getString("WorkItems.TeamAreaUId");
+				TeamAreaExternalIdFromAPI = jsonPath.getString("WorkItems.TeamAreaExternalId");
+				DCFromAPI=jsonPath.getString("WorkItems.WorkItemDeliveryConstructs.DeliveryConstructUId");
+			}
+			
+			SoftAssert sa = new SoftAssert();
+			sa.assertEquals(TeamName, TeamNameFromAPI,"Team name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertEquals(TeamUId, TeamAreaUIdFromAPI,"TeamUId mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertEquals(TeamExternalId, TeamAreaExternalIdFromAPI,"TeamAreaExternalID name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertTrue(DCFromAPI.contains(TeamUId));
+			
+			sa.assertAll();
+				
+		}
+
 		private static void validateRAGFunctionality(String workitem, Response response, String toolname) {
 			String ExpectedRAGValue = GetWSJF_RAG_Inference_ForWorkitem(toolname,workitem,"RAG");
 			String ExpectedInferenceValue = GetWSJF_RAG_Inference_ForWorkitem(toolname,workitem,"Inference");

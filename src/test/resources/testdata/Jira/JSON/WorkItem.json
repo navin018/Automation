@@ -52,6 +52,70 @@
 			"Severity": "Medium",
 			"Priority": "Medium"
 		},
+		"Bug_TeamArchitecture_Scenario1": {
+			"Summary": "Bug_AutomationData",
+			"Description": "Bug_Description",
+			"Severity": "Medium",
+			"Priority": "Medium",
+			"Component":"Team01",
+			"Assignee":"s.udhaya.suriyan@accenture.com"
+		},
+		"Bug_TeamArchitecture_Scenario2": {
+			"Summary": "Bug_AutomationData",
+			"Description": "Bug_Description",
+			"Severity": "Medium",
+			"Priority": "Medium",
+			"Component":"Team02",
+			"Assignee":"s.udhaya.suriyan@accenture.com"
+		},
+		"Bug_TeamArchitecture_Scenario3": {
+			"Summary": "Bug_AutomationData",
+			"Description": "Bug_Description",
+			"Severity": "Medium",
+			"Priority": "Medium",
+			"Component":"NA",
+			"Assignee":"s.udhaya.suriyan@accenture.com"
+		},
+		"Bug_TeamArchitecture_Scenario4": {
+			"Summary": "Bug_AutomationData",
+			"Description": "Bug_Description",
+			"Severity": "Medium",
+			"Priority": "Medium",
+			"Component":"Team01",
+			"Assignee":"NA"
+		},
+		"Bug_TeamArchitecture_Scenario5": {
+			"Summary": "Bug_AutomationData",
+			"Description": "Bug_Description",
+			"Severity": "Medium",
+			"Priority": "Medium",
+			"Component":"NA",
+			"Assignee":"sonal.harish.nagda@accenture.com"
+		},
+		"Bug_TeamArchitecture_Scenario6": {
+			"Summary": "Bug_AutomationData",
+			"Description": "Bug_Description",
+			"Severity": "Medium",
+			"Priority": "Medium",
+			"Component":"NA",
+			"Assignee":"l.gurulingaiah@accenture.com"
+		},
+		"Bug_TeamArchitecture_Scenario7": {
+			"Summary": "Bug_AutomationData",
+			"Description": "Bug_Description",
+			"Severity": "Medium",
+			"Priority": "Medium",
+			"Component":"Team01",
+			"Assignee":"l.gurulingaiah@accenture.com"
+		},
+		"Bug_TeamArchitecture_Scenario8": {
+			"Summary": "Bug_AutomationData",
+			"Description": "Bug_Description",
+			"Severity": "Medium",
+			"Priority": "Medium",
+			"Component":"Team02",
+			"Assignee":"l.gurulingaiah@accenture.com"
+		},
 		"Feature_01": {
 			"Summary": "Feature_AutomationData",
 			"Description": "Feature_Description",
@@ -96,6 +160,54 @@
 		"Action_01": {
 			"Summary": "Action_AutomationData",
 			"Description": "Action_Description"
+		},
+		"Action_TeamArchitecture_Scenario1": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Descriptionn",
+			"Component":"Team01",
+			"Assignee":"s.udhaya.suriyan@accenture.com"
+		},
+		"Action_TeamArchitecture_Scenario2": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Descriptionn",
+			"Component":"Team02",
+			"Assignee":"s.udhaya.suriyan@accenture.com"
+		},
+		"Action_TeamArchitecture_Scenario3": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Descriptionn",
+			"Component":"NA",
+			"Assignee":"s.udhaya.suriyan@accenture.com"
+		},
+		"Action_TeamArchitecture_Scenario4": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Descriptionn",
+			"Component":"Team01",
+			"Assignee":"NA"
+		},
+		"Action_TeamArchitecture_Scenario5": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Descriptionn",
+			"Component":"NA",
+			"Assignee":"sonal.harish.nagda@accenture.com"
+		},
+		"Action_TeamArchitecture_Scenario6": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Descriptionn",
+			"Component":"NA",
+			"Assignee":"l.gurulingaiah@accenture.com"
+		},
+		"Action_TeamArchitecture_Scenario7": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Descriptionn",
+			"Component":"Team01",
+			"Assignee":"l.gurulingaiah@accenture.com"
+		},
+		"Action_TeamArchitecture_Scenario8": {
+			"Summary": "Action_AutomationData",
+			"Description": "Action_Descriptionn",
+			"Component":"Team02",
+			"Assignee":"l.gurulingaiah@accenture.com"
 		},
 		"Test Execution_01": {
 			"Summary": "Test Execution_AutomationData",

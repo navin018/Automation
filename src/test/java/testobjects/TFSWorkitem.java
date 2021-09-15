@@ -779,6 +779,7 @@ import utilities.general.Property;
 //                        
 //                    }
 					
+					
 					//priority
 					if(!wi.Priority.equalsIgnoreCase("NA"))
 					{
@@ -1096,7 +1097,7 @@ import utilities.general.Property;
 			
 			 //navigate to the create WI url
 			 String workitemURL = GoToWorkitemURL(workitem);
-			 EnterWorkItemDetails(workitem, workitemURL, wi);
+			 EnterWorkItemDetailsForSpecificFUnctionality(workitem, workitemURL, wi,functionality);
 				CaptureWorkitemIDForPreComputationEngine(workitem);
 				
 			}
@@ -1115,171 +1116,6 @@ import utilities.general.Property;
 				String workitem_sp[] = workitem.split("_");
 				switch(workitem_sp[0].toLowerCase()){
 				
-				case "bug":
-						switch(workitem){
-						
-						
-								case("Bug_wsjf_Multiply_0"):
-								Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-								case("Bug_wsjf_Deno_0"):
-									Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-								case("Bug_wsjf_Nume_0"):
-									Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-								case("Bug_wsjf_Negative_Int"):
-									Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-									break;
-								case("Bug_wsjf_Decimal_Tool"):
-									Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-									break;
-								case("Bug_wsjf_Zero_Tool"):
-									Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-									break;
-								case("Bug_wsjf_Decimal_Output"):
-									Baseclass.getInstance().WorkItemExternalId_Bug_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-									break;
-						}
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-
-						break;
-				case "epic":
-					switch(workitem){
-						case("Epic_wsjf_Multiply_0"):
-						Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Epic_wsjf_Deno_0"):
-							Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Epic_wsjf_Nume_0"):
-							Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Epic_wsjf_Negative_Int"):
-							Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Epic_wsjf_Decimal_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Epic_wsjf_Zero_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Epic_wsjf_Decimal_Output"):
-							Baseclass.getInstance().WorkItemExternalId_Epic_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						}
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-						break;
-				case "risk":
-							switch(workitem){
-							case("Risk_wsjf_Multiply_0"):
-							Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("Risk_wsjf_Deno_0"):
-								Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("Risk_wsjf_Nume_0"):
-								Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("Risk_wsjf_Negative_Int"):
-								Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Risk_wsjf_Decimal_Tool"):
-								Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Risk_wsjf_Zero_Tool"):
-								Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Risk_wsjf_Decimal_Output"):
-								Baseclass.getInstance().WorkItemExternalId_Risk_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Risk_RAG_ToBeAssociatedToStory_Rule10"):
-								Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Risk_RAG_ToBeAssociatedToStory_Rule11"):
-								Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							}
-							System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-							break;	
-					case "feature":
-								switch(workitem){
-								case("Feature_wsjf_Multiply_0"):
-								Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-								case("Feature_wsjf_Deno_0"):
-									Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-								case("Feature_wsjf_Nume_0"):
-									Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-								case("Feature_wsjf_Negative_Int"):
-									Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-									break;
-								case("Feature_wsjf_Decimal_Tool"):
-									Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-									break;
-								case("Feature_wsjf_Zero_Tool"):
-									Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-									break;
-								case("Feature_wsjf_Decimal_Output"):
-									Baseclass.getInstance().WorkItemExternalId_Feature_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-									break;
-								}
-								System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-								break;	
-				case "issue":
-							switch(workitem){
-							case("Issue_wsjf_Multiply_0"):
-							Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("Issue_wsjf_Deno_0"):
-								Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("Issue_wsjf_Nume_0"):
-								Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("Issue_wsjf_Negative_Int"):
-								Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Issue_wsjf_Decimal_Tool"):
-								Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Issue_wsjf_Zero_Tool"):
-								Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Issue_wsjf_Decimal_Output"):
-								Baseclass.getInstance().WorkItemExternalId_Issue_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							}
-							System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-							break;	
-				case "task":
-						switch(workitem){
-						case("Task_wsjf_Multiply_0"):
-						Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Task_wsjf_Deno_0"):
-							Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Task_wsjf_Nume_0"):
-							Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Task_wsjf_Negative_Int"):
-							Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Task_wsjf_Decimal_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Task_wsjf_Zero_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Task_wsjf_Decimal_Output"):
-							Baseclass.getInstance().WorkItemExternalId_Task_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						}
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-						break;	
 					
 				case "story":
 				case "user story":
@@ -1341,34 +1177,8 @@ import utilities.general.Property;
 						
 						}
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-				case "testcase":
-				
-						switch(workitem){
-						case("TestCase_wsjf_Multiply_0"):
-						Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("TestCase_wsjf_Deno_0"):
-							Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("TestCase_wsjf_Nume_0"):
-							Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("TestCase_wsjf_Negative_Int"):
-							Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("TestCase_wsjf_Decimal_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("TestCase_wsjf_Zero_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("TestCase_wsjf_Decimal_Output"):
-							Baseclass.getInstance().WorkItemExternalId_TestCase_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						}
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-						break;	
 				case "Deliverable":
+				case "deliverable":
 							switch(workitem){
 							case("Deliverable_wsjf_Multiply_0"):
 							Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
@@ -1395,167 +1205,6 @@ import utilities.general.Property;
 							System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 							break;	
 							
-				case "action":
-					
-						switch(workitem){
-						case("Action_wsjf_Multiply_0"):
-						Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Action_wsjf_Deno_0"):
-							Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Action_wsjf_Nume_0"):
-							Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Action_wsjf_Negative_Int"):
-							Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Action_wsjf_Decimal_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Action_wsjf_Zero_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Action_wsjf_Decimal_Output"):
-							Baseclass.getInstance().WorkItemExternalId_Action_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						}
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-						break;	
-				case "decision":
-					
-					switch(workitem){
-							case("Decision_wsjf_Multiply_0"):
-							Baseclass.getInstance().WorkItemExternalId_Decision_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("Decision_wsjf_Deno_0"):
-								Baseclass.getInstance().WorkItemExternalId_Decision_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("Decision_wsjf_Nume_0"):
-								Baseclass.getInstance().WorkItemExternalId_Decision_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-							case("Decision_wsjf_Negative_Int"):
-								Baseclass.getInstance().WorkItemExternalId_Decision_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Decision_wsjf_Decimal_Tool"):
-								Baseclass.getInstance().WorkItemExternalId_Decision_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Decision_wsjf_Zero_Tool"):
-								Baseclass.getInstance().WorkItemExternalId_Decision_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-							case("Decision_wsjf_Decimal_Output"):
-								Baseclass.getInstance().WorkItemExternalId_Decision_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-								break;
-					}
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-					break;	
-				case "milestone":
-						switch(workitem){
-						case("Milestone_wsjf_Multiply_0"):
-						Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Milestone_wsjf_Deno_0"):
-							Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Milestone_wsjf_Nume_0"):
-							Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Milestone_wsjf_Negative_Int"):
-							Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Milestone_wsjf_Decimal_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Milestone_wsjf_Zero_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Milestone_wsjf_Decimal_Output"):
-							Baseclass.getInstance().WorkItemExternalId_Milestone_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-					}
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-					break;	
-				case "requirement":
-					
-						switch(workitem){
-						case("Requirement_wsjf_Multiply_0"):
-						Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Requirement_wsjf_Deno_0"):
-							Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Requirement_wsjf_Nume_0"):
-							Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Requirement_wsjf_Negative_Int"):
-							Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Requirement_wsjf_Decimal_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Requirement_wsjf_Zero_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Requirement_wsjf_Decimal_Output"):
-							Baseclass.getInstance().WorkItemExternalId_Requirement_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-					}
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-					break;	
-				case "deliverable":
-						switch(workitem){
-						case("Deliverable_wsjf_Multiply_0"):
-						Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Deliverable_wsjf_Deno_0"):
-							Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Deliverable_wsjf_Nume_0"):
-							Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("Deliverable_wsjf_Negative_Int"):
-							Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Deliverable_wsjf_Decimal_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Deliverable_wsjf_Zero_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("Deliverable_wsjf_Decimal_Output"):
-							Baseclass.getInstance().WorkItemExternalId_Deliverable_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-					}
-					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-					break;	
-				case "changerequest":
-				case "workrequest":
-				case "work request":
-						switch(workitem){
-						case("WorkRequest_wsjf_Multiply_0"):
-						Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Multiply_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("WorkRequest_wsjf_Deno_0"):
-							Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Deno_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("WorkRequest_wsjf_Nume_0"):
-							Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Nume_0 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-						break;
-						case("WorkRequest_wsjf_Negative_Int"):
-							Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Negative_Int = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("WorkRequest_wsjf_Decimal_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Decimal_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("WorkRequest_wsjf_Zero_Tool"):
-							Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Zero_Tool = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						case("WorkRequest_wsjf_Decimal_Output"):
-							Baseclass.getInstance().WorkItemExternalId_WorkRequest_wsjf_Decimal_Output = getText(TFSUIMap.captureWorkItemID2_statictxt);
-							break;
-						}
-						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-						break;	
 				default:
 			        throw new IllegalArgumentException("Invalid workitem: " + workitem);	
 				}
@@ -1848,7 +1497,7 @@ import utilities.general.Property;
 			 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workitem);
 				
 			 //navigate to the create WI url
-			 EnterWorkItemDetails(workitem, "NA", wi);
+			 EnterWorkItemDetailsForSpecificFUnctionality(workitem, "NA", wi,functionality);
 				CaptureWorkitemIDForPreComputationEngine(workitem);
 			}
 			catch(Exception e)
@@ -2118,7 +1767,7 @@ import utilities.general.Property;
 				
 				 //navigate to the create WI url
 				 String workitemURL = GoToWorkitemURL(workitem);
-				 EnterWorkItemDetails(workitem, workitemURL, wi);
+				 EnterWorkItemDetailsForSpecificFUnctionality(workitem, workitemURL, wi,functionality);
 					CaptureWorkitemIDForTeamArchitecture(workitem);
 					
 				}
@@ -2129,17 +1778,270 @@ import utilities.general.Property;
 				}
 			}
 
+		public static void EnterWorkItemDetailsForSpecificFUnctionality(String workitem, String workitemURL,WorkItemDO wi, String functionality) {
+			{
+				try{
+						//putting this piece of code as workitem url wasnt loading
+						if(CheckIfElementExists(TFSUIMap.title_txtbox))
+						{
+//							Thread.sleep(5000);
+							ExpWaitForCondition(TFSUIMap.title_txtbox);
+							enterText(TFSUIMap.title_txtbox,wi.Summary);
+							Thread.sleep(2000);
+						}
+						else if(CheckIfElementExists(TFSUIMap.title_txtbox))
+						{
+							Thread.sleep(5000);
+							ExpWaitForCondition(TFSUIMap.title_txtbox);
+							enterText(TFSUIMap.title_txtbox,wi.Summary);
+							Thread.sleep(2000);
+						}
+						else
+							{
+							driver().get(workitemURL);
+							Thread.sleep(5000);
+							}
+						if(!CheckIfElementExists(TFSUIMap.title_txtbox))
+						{
+							logger.info("page not loading for workitem "+workitem);
+						}
+						waitPageToLoad();
+						
+						
+						//assignee
+						if(!wi.Assignee.equalsIgnoreCase("NA"))
+						{
+	                      sendBlankTab();
+	                      Thread.sleep(2000);
+	                      enterText(TFSUIMap.SearchUsers_txtbox,wi.Assignee);
+	                      sendEntr();
+						}
+						
+						
+						//TeamArea
+					    if(!wi.TeamArea.equalsIgnoreCase("NA")){
+					    	 singleClick(TFSUIMap.TeamArea_label);
+						     Thread.sleep(2000);
+						     String Teamarea=API.getWorkItemExternalIDForGivenFunctionality(wi.TeamArea,"TFS",functionality);
+						     String Teamarea1 = Property.getProperty("TFSProject")+"\\"+Teamarea;
+						     enterText(TFSUIMap.TeamArea_label1,Teamarea1);
+						     sendEntr();
+					    }​​​​​​​
+					                   
+
+						
+						//priority
+						if(!wi.Priority.equalsIgnoreCase("NA"))
+						{
+							
+							EnterDataInTheField(wi.Priority,TFSUIMap.Priority_drpdown);
+						}
+						
+						
+						
+						//severity
+						if(!wi.Severity.equalsIgnoreCase("NA"))
+						{
+							
+							EnterDataInTheField(wi.Severity,TFSUIMap.Severity_drpdown);
+						}
+						
+						//effort
+						if(!wi.Effort.equalsIgnoreCase("NA"))
+						{
+							
+							EnterDataInTheField(wi.Effort,TFSUIMap.Effort_txtbox);
+						}
+						
+						//ActualEffort
+						if(!wi.ActualEffort.equalsIgnoreCase("NA"))
+						{
+							
+							EnterDataInTheField(wi.ActualEffort,TFSUIMap.ActualEffort_txtbox);
+						}
+						
+						//remaining work
+						if(!wi.RemainingWork.equalsIgnoreCase("NA"))
+						{
+							
+							EnterDataInTheField(wi.RemainingWork,TFSUIMap.RemainingWork_txtbox);
+						}
+						
+						
+						
+						//BusinessValue
+						if(!wi.BusinessValue.equalsIgnoreCase("NA"))
+						{
+							
+							EnterDataInTheField(wi.BusinessValue,TFSUIMap.BusinessValue_txtbox);
+						}
+						
+						//Rank
+						if(!wi.Rank.equalsIgnoreCase("NA"))
+						{
+							
+							EnterDataInTheField(wi.Rank,TFSUIMap.Rank_txtbox);
+						}
+						
+						//Stack Rank
+						if(!wi.StackRank.equalsIgnoreCase("NA"))
+						{
+							
+							EnterDataInTheField(wi.StackRank,TFSUIMap.StackRank_txtbox);
+						}
+						
+						//Risk Reduction
+						if(!wi.RiskReduction.equalsIgnoreCase("NA"))
+						{
+							
+							EnterDataInTheField(wi.RiskReduction,TFSUIMap.RiskReduction_txtbox);
+						}
+						
+					
+						//Completed
+						if(!wi.Completed.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.Completed,TFSUIMap.Completed_txtbox);
+						}
+			
+						//Completed work
+						if(!wi.CompletedWork.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.CompletedWork,TFSUIMap.CompletedWork_txtbox);
+						}
+						
+						//OriginalEstimate
+						if(!wi.OriginalEstimate.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.OriginalEstimate,TFSUIMap.OriginalEstimate_txtbox);
+						}
+						
+						//StoryPoints
+						if(!wi.StoryPoints.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.StoryPoints,TFSUIMap.StoryPoints_txtbox);
+						}
+						
+						
+						//TimeCriticality
+						if(!wi.TimeCriticality.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.TimeCriticality,TFSUIMap.TimeCriticality_txtbox);
+						}
+						
+						//Criticality
+						if(!wi.Criticality.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.Criticality,TFSUIMap.Criticality_txtbox);
+						}
+						
+						//Complexity
+						if(!wi.Complexity.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.Complexity,TFSUIMap.Complexity_txtbox);
+						}
+						
+						//CostEstimate
+						if(!wi.CostEstimate.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.CostEstimate,TFSUIMap.CostEstimate_txtbox);
+						}
+						
+						//CostApproved
+						if(!wi.CostApproved.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.CostApproved,TFSUIMap.CostApproved_txtbox);
+						}
+						
+						//Risk
+						if(!wi.Risk.equalsIgnoreCase("NA"))
+						{
+							EnterDataInTheField(wi.Risk,TFSUIMap.Risk_txtbox);
+						}
+						
+						
+						
+						
+						//Release and sprint
+						try{
+						switch(wi.Release){
+						case("NA"):
+							//do nothing
+							break;
+						case("None"):
+							clickJS(TFSUIMap.Iteration_label);
+							Thread.sleep(4000);
+							enterText(TFSUIMap.IterationName1_txtbox,Property.getProperty("TFSProject"));
+//							clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.IterationValue_drpdown, Property.getProperty("TFSProject"), "projectname"));
+							break;
+						case("PickFromBaseclass"):
+							clickJS(TFSUIMap.Iteration_label);
+							Thread.sleep(2000);
+							String ReleasePlusSprintName = Property.getProperty("TFSProject")+"\\"+Baseclass.getInstance().TFS_ReleaseName+"\\"+Baseclass.getInstance().TFS_SprintName;
+							enterText(TFSUIMap.IterationName1_txtbox,ReleasePlusSprintName);
+							sendEntr();
+							break;
+						default:
+							clickJS(TFSUIMap.Iteration_label);
+							String IterationDetails = Property.getProperty("TFS Scrum_Client-Native")+"\\"+wi.Release+"\\"+wi.Sprint;
+							enterText(TFSUIMap.IterationName1_txtbox, IterationDetails);
+							sendEntr();
+							break;
+						}
+						}
+						catch(Exception e)
+						{
+							e.printStackTrace();
+							logger.info("issue tagging release/sprint for the workitem");
+						}
+
+					
+							
+				//save and capture workitem ID details
+				singleClick(TFSUIMap.save_btn);
+				Thread.sleep(5000);
+				
+						if(!wi.State.equalsIgnoreCase("New"))
+						{
+							clickJS(TFSUIMap.State_drpdown1);
+							clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.StateValues_drpdown, wi.State, "state"));
+							Thread.sleep(2000);
+							singleClick(TFSUIMap.save_btn);
+							Thread.sleep(5000);
+						}	
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					logger.info("issue entering workitem details for workitem "+workitem);
+				}
+			}
+			
+			
+		}
+
 		public static void CaptureWorkitemIDForTeamArchitecture(String workitem) {
 				
 			switch(workitem){
 			case("Bug_TeamArchitecture_Scenario1"):
-				Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario1 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-				break;
-			case("Action_TeamArchitecture_Scenario1"):
-				Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario1 = getText(TFSUIMap.captureWorkItemID2_statictxt);
-				break;
-			
-			}
+                Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario1 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+                break;
+            case("Action_TeamArchitecture_Scenario1"):
+                Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario1 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+                break;
+            case("Bug_TeamArchitecture_Scenario2"):
+                Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario2 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+                break;
+            case("Action_TeamArchitecture_Scenario2"):
+                Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario2 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+                break;
+            case("Bug_TeamArchitecture_Scenario3"):
+                Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario3 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+                break;
+            case("Action_TeamArchitecture_Scenario3"):
+                Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario3 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+                break;
+          }
 			
 		}
 			
@@ -2186,6 +2088,6 @@ import utilities.general.Property;
 
 	
 		
-	}
+
 
 	

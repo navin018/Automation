@@ -228,4 +228,13 @@ public static String ActionSpecificSprint_btn = "//span[text()='{SprintName}']//
 public static By ConfirmDeleteSprint_btn = By.xpath("//button[text()='Delete' or text()='Confirm']");
 public static By ADOPSprintVisible_icon = By.xpath("//span[contains(@data-fieldvalue,'Orphan Sprint Textual')]//following::div[text()='0 issues - '][1]");
 public static By EditADOPSprintName_txtbox = By.xpath("//span[contains(@data-fieldvalue,'Orphan Sprint Textual')]//following::div[text()='0 issues - '][1]//preceding::span[1]");
+
+//TeamArch
+
+public static By Assigne_txtbox = By.xpath("//input[@id='assignee-field']");
+public static By Component_txtbox = By.xpath("//textarea[@id='components-textarea']");
+public static By edit_btn = By.xpath("//a[@id='edit-issue']");
+public static By update_btn = By.xpath("//input[@id='edit-issue-submit']");
+
+
 }

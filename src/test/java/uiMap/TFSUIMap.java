@@ -174,11 +174,17 @@ public static By  Delete_btn=By.xpath("//span[text()='Delete']");
 
 public static By filter_searchbox=By.xpath("//input[@aria-label='Type / for a list of filters']");
 public static By SearchUsers_txtbox=By.xpath("//input[@aria-label='Search users']");
-public static By Unassigned_txtbox=By.xpath("//span[text()='Unassigned']");
+//public static By Unassigned_txtbox=By.xpath("//span[text()='Unassigned']");
+public static By Unassigned_txtbox=By.xpath("//span[text()='Unassigned'][1]");
+
 
 public static By Description_txt=By.xpath("//div[@aria-label='Description']");
 public static By Addmembers_btn=By.xpath("//span[text()='Add']");
-public static By SearchUsers_txtbox1=By.xpath("//input[@placeholder='Search users or groups']");
 public static By SaveUser_btn=By.xpath("//span[text()='Save']");
 public static By SearchUsers_txtbox1=By.xpath("//input[@aria-label='Search users or groups']");
+
+public static By TeamArea_label=By.xpath("//label[text()='rea'][1]");
+public static By TeamArea_label1=By.xpath("//div[@class='tree-picker-container workitem-classification-picker']//following::input[@aria-label='Area Path']");
+
+
 }

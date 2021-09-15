@@ -142,6 +142,20 @@ public class JiraSteps  {
 		JiraWorkitem.updateWorkItemExternalIDFile(project);
 	}
 	
+	
+    @Then("^i \"([^\"]*)\" a \"([^\"]*)\" in Jira for \"([^\"]*)\"$")
+    public void i_a_in_Jira_for(String CreateorUpdate, String workitem, String functionality) throws Throwable {​​​​​​​
+        if(CreateorUpdate.equalsIgnoreCase("Create"))
+        {​​​​​​​
+            JiraWorkitem.CreateWorkitemForSpecificFunctionality(workitem, functionality);
+        }​​​​​​​
+        else if(CreateorUpdate.equalsIgnoreCase("Update"))
+        {
+        	​​​​​​​
+            JiraWorkitem.UpdateWorkitemForTeamArchitecture(workitem, functionality);
+        }​​​​​​​
+    }​​​​​​​
+
+	
 
 }
-;

@@ -672,12 +672,6 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 					+ File.separator + "src" + File.separator + "test" + File.separator
 					+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + filename;
 		
-//		  WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
-//					+ File.separator + "src" + File.separator + "test" + File.separator
-//					+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON"+  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
-		  
-		
-//		JSONObject jsonObject_releaseandsprintdetails = new JSONObject();
 		
 		if(functionality.equalsIgnoreCase("PreComputation_WSJF")){
 			JSONObject jsonObject = new JSONObject();
@@ -728,9 +722,23 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
 		}
 		else if(functionality.equalsIgnoreCase("TeamArchitecture")){
 			JSONObject jsonObject = new JSONObject();
+						
 			jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario1", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario1);
-			jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario1", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario1);
-		
+            jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario1", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario1);
+            jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario2", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario2);
+            jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario2", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario2);
+            jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario3", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario3);
+            jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario3", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario3);
+            jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario4", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario4);
+            jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario4", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario4);
+            jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario5", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario5);
+            jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario5", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario5);
+            jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario6", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario6);
+            jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario6", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario6);
+            jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario7", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario7);
+            jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario7", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario7);
+            jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario8", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario8);
+            jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario8", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario8);
 		}
 	}
 	
@@ -1014,67 +1022,44 @@ public static void UpdateSpecificEntityIDForSpecificFunctionality(String entity,
        
        
 	switch(entity){
-	case("Task"):
-		  jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);    
-		break;
 	
-	case("Story"):
-		 jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
-		break;
-
-	case("TestCase"):
-		jsonObject.put("WorkItemExternalId_TestCase", Baseclass.getInstance().WorkItemExternalId_TestCase);
-	break;
-	
-	case("Issue"):
-		jsonObject.put("WorkItemExternalId_Issue", Baseclass.getInstance().WorkItemExternalId_Issue);
-		break;
-	
-	case("Impediment"):
-		jsonObject.put("WorkItemExternalId_Impediment", Baseclass.getInstance().WorkItemExternalId_Impediment);
-		break;
-	
-	case("Feature"):
-		   jsonObject.put("WorkItemExternalId_Feature", Baseclass.getInstance().WorkItemExternalId_Feature);
-		break;
-	
-	case("Epic"):
-		  jsonObject.put("WorkItemExternalId_Epic",Baseclass.getInstance().WorkItemExternalId_Epic);
-		break;
-	
-	case("Bug"):
-			jsonObject.put("WorkItemExternalId_Bug", Baseclass.getInstance().WorkItemExternalId_Bug);
-		break;
-	
-	case("Action"):
-		jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
-		break;
-	
-	case("Decision"):
-		jsonObject.put("WorkItemExternalId_Decision",Baseclass.getInstance().WorkItemExternalId_Decision);
-		break;
-	
-	case("Risk"):
-		jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
-			break;
-	
-	case("Deliverable"):
-		jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
-		break;
-	
-	case("Milestone"):
-		jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
-		break;
-	
-	case("Requirement"):
-		jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
-			break;
-	
-	case("WorkRequest"):
-	case ("Work Request"):
-		jsonObject.put("WorkItemExternalId_WorkRequest", Baseclass.getInstance().WorkItemExternalId_WorkRequest);
-		break;
-	
+	case("Team01"):{
+        jsonObject.put("WorkItemExternalId_Team01",Baseclass.getInstance().teamName);
+        }
+        break;
+    case("TeamUId01"):{
+    	jsonObject.put("WorkItemExternalId_TeamUId01",Baseclass.getInstance().TeamUId);
+        }
+        break;
+    case("TeamExternalId01"):{
+    	jsonObject.put("WorkItemExternalId_TeamExternalId01",Baseclass.getInstance().TeamExternalID);
+        }
+        break;
+    case("Team02"):{
+        jsonObject.put("WorkItemExternalId_Team02",Baseclass.getInstance().teamName);
+        }
+        break;
+    case("Team03"):{
+        jsonObject.put("WorkItemExternalId_Team03",Baseclass.getInstance().teamName);
+        }
+        break;
+    case("TeamUId02"):{
+        jsonObject.put("WorkItemExternalId_TeamUId02",Baseclass.getInstance().TeamUId);
+        }
+        break;
+    case("TeamExternalId02"):{
+        jsonObject.put("WorkItemExternalId_TeamExternalId02",Baseclass.getInstance().TeamExternalID);
+        }
+        break;
+    case("TeamUId03"):{
+        jsonObject.put("WorkItemExternalId_TeamUId03",Baseclass.getInstance().TeamUId);
+        }
+        break;
+    case("TeamExternalId03"):{
+        jsonObject.put("WorkItemExternalId_TeamExternalId03",Baseclass.getInstance().TeamExternalID);
+        }
+        break;
+       
 	case("Release"):
 		{
 		FileReader reader1 = new FileReader(WorkItemEx_FileLoc_ReleaseSprint);
@@ -1115,44 +1100,7 @@ public static void UpdateSpecificEntityIDForSpecificFunctionality(String entity,
 					byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
 			}
 		break;
-	case("Team"):{
-		jsonObject.put("Team_Name",Baseclass.getInstance().teamName);
-		jsonObject.put("WorkItemExternalId_TeamUId",Baseclass.getInstance().TeamUId);
-		}
-		break;
-	
-	case("Team01"):{
-		jsonObject.put("WorkItemExternalId_Teame01",Baseclass.getInstance().teamName);
-		
-		}
-		break;
-	case("TeamUId01"):{
-		
-		jsonObject.put("WorkItemExternalId_TeamUId01",Baseclass.getInstance().TeamUId);
-		}
-		break;
-	case("TeamExternalId01"):{
-		
-		jsonObject.put("WorkItemExternalId_TeamExternalId01",Baseclass.getInstance().TeamExternalID);
-		}
-		break;
-	
-	case("Team02"):{
-		jsonObject.put("WorkItemExternalId_Teame02",Baseclass.getInstance().teamName);
-		
-		}
-		break;
-	case("TeamUId02"):{
-		
-		jsonObject.put("WorkItemExternalId_TeamUId02",Baseclass.getInstance().TeamUId);
-		}
-		break;
-	case("TeamExternalId02"):{
-		
-		jsonObject.put("WorkItemExternalId_TeamExternalId02",Baseclass.getInstance().TeamExternalID);
-		}
-		break;
-		
+
 		}
 	
 

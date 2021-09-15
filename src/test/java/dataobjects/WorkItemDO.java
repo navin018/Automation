@@ -28,7 +28,8 @@ public class WorkItemDO {
 	public String TeamName;
 	public String TeamVerify;
 	public String Assignee;
-	
+	public String TeamArea;
+	public String Component;
 	
 
 
