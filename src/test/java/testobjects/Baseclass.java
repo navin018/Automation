@@ -147,7 +147,8 @@ Baseclass(){
 
 	
 	public String QueryName;
-	
+	public String cyclename;
+	public String WorkItemExternalID_TestforTestExec;
 	
 	public boolean isSecurityTestsResults() {
 		return SecurityTestsResults;

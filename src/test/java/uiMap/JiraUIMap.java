@@ -237,4 +237,26 @@ public static By edit_btn = By.xpath("//a[@id='edit-issue']");
 public static By update_btn = By.xpath("//input[@id='edit-issue-submit']");
 
 
+//TestExecforADOP
+public static By More_link=By.xpath("//a[text()='More']");
+public static By Test_link=By.xpath("//a[text()='Tests']");
+public static By Plan_testcycle_link=By.xpath("//a[text()='Plan Test Cycle']");
+public static By Search_release_txtbox=By.xpath("//input[@placeholder='Search Cycle / Folder']");
+public static By Release_data=By.xpath("//div[@title='ReleaseAutomation_Donot_Edit']");
+public static By Option_icon=By.xpath("//div[text()='ReleaseAutomation_Donot_Edit']//following::div[@class='contextMenuIcon aui-icon aui-icon-small aui-iconfont-handle-horizontal'][1]");
+public static By CreateCycle_icon=By.xpath("//a[@href='#'][text()='Create Cycle']");
+public static By Cyclename_txtbox=By.xpath("//input[@name='cycle_name']");
+public static By CycleSave_btn=By.xpath("//input[@type='submit'][@value='Save']");
+public static By Cycle_text=By.xpath("//div[@title='Cycle1']");
+public static By AddTests_txt=By.xpath("//a[@href='#'][text()='Add Tests']");
+public static By Testname_txtbox=By.xpath("//textarea[@role='combobox']");
+public static By Add_btn=By.xpath("//button[text()='Add']");
+public static By Close_btn=By.xpath("//button[text()='Close'][@id='aui-dialog-close']");
+public static By SelectAll_btn=By.xpath("//button[text()='Select All']");
+public static By Dropdown_img=By.xpath("//span[@class='trigger-dropDown']");
+public static By Pass_option=By.xpath("//li[@title='PASS']");
+public static By Success_toastermsg=By.xpath("//p[text()='Successfully Executed Test.']");
+public static String cyclename_text = "//div[text()='{cyclename}']//following::div[@class='contextMenuIcon aui-icon aui-icon-small aui-iconfont-handle-horizontal'][1]";
+public static By Expand_icon=By.xpath("//i[@role='presentation']//following::div[text()='ReleaseAutomation_Donot_Edit']");
+
 }

@@ -27,7 +27,7 @@ import dataobjects.WorkItemDO;
 import dataobjects.WorkItemExternalIDDO;
 //import javassist.bytecode.stackmap.BasicBlock.Catch;
 import testobjects.Baseclass;
-import uiMap.JiraUIMap;
+import uiMap.*;
 
 import utilities.general.DataManager;
 import utilities.general.Property;
@@ -309,9 +309,14 @@ import java.util.Random;
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
 				break;
 				case "TestForTestExec":
-				case "testForTestExec":
-				Baseclass.getInstance().WorkItemExternalId_TestExecution = Baseclass.getInstance().WorkItemExternalId_TestExecution+"_"+toGetID1[1];
-				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+                case "testForTestExec":
+                	 //code for adopjira   
+                    if(Property.getProperty("JiraURL").contains("uat"))
+                        Baseclass.getInstance().WorkItemExternalID_TestforTestExec=toGetID1[1];
+                    else {
+                Baseclass.getInstance().WorkItemExternalId_TestExecution = Baseclass.getInstance().WorkItemExternalId_TestExecution+"_"+toGetID1[1];
+                System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+                    }
 				
 				break;
 				case "epic":
@@ -1613,6 +1618,99 @@ public static void EnterworkitemDetailsForSpecificFunctionality(String workitem,
 		e.printStackTrace();
 	}
 	
+}
+
+		public static void Createtestcycle(String workitem) {
+		    try {
+		     if (CheckIfElementExists(JiraUIMap.More_link)) {
+		            ExpWaitForCondition(JiraUIMap.More_link);
+		            clickJS(JiraUIMap. More_link);
+		            ExpWaitForCondition(JiraUIMap.Test_link);                
+		            clickJS(JiraUIMap.Test_link);                
+		            
+		        }    
+		     else if(CheckIfElementExists(JiraUIMap.Test_link)) {
+		            ExpWaitForCondition(JiraUIMap.Test_link);
+		            clickJS(JiraUIMap.Test_link);
+		        }
+		     ExpWaitForCondition(JiraUIMap.Plan_testcycle_link);
+		        clickJS(JiraUIMap.Plan_testcycle_link);
+		        waitPageToLoad();
+		        ExpWaitForCondition(JiraUIMap.Search_release_txtbox);
+		        enterText(JiraUIMap.Search_release_txtbox,"ReleaseAutomation_Donot_Edit");
+		        ExpWaitForCondition(JiraUIMap.Option_icon);
+		        if(CheckIfElementExists(JiraUIMap.Option_icon)){            
+		            clickJS(JiraUIMap.Option_icon);
+		        }
+		        else {
+		            System.out.println("Release is not present");
+		        }
+		            
+		        
+		        ExpWaitForCondition(JiraUIMap.CreateCycle_icon);
+		        clickJS(JiraUIMap.CreateCycle_icon);
+		        ExpWaitForCondition(JiraUIMap.Cyclename_txtbox);
+		        
+		        Baseclass.getInstance().cyclename = "cyclename_" + RandomNumberGenerator();
+		        System.out.println(Baseclass.getInstance().cyclename);            
+		        enterText(JiraUIMap.Cyclename_txtbox,Baseclass.getInstance().cyclename);
+		        clickJS(JiraUIMap.CycleSave_btn);
+		        
+		         if(isVisible(prepareWebElementWithDynamicXpath(JiraUIMap.cyclename_text,Baseclass.getInstance().cyclename,"cyclename")))
+		         { 
+		            
+		             clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.cyclename_text,Baseclass.getInstance().cyclename,"cyclename"));
+		             ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		                clickJS(JiraUIMap.Expand_icon);
+		                clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.cyclename_text,Baseclass.getInstance().cyclename,"cyclename"));
+		
+		 
+		
+		         }
+		         
+		    
+		        clickJS(JiraUIMap.AddTests_txt);
+		        ExpWaitForCondition(JiraUIMap.Testname_txtbox);
+		        
+		        enterText(JiraUIMap.Testname_txtbox,Baseclass.getInstance().WorkItemExternalID_TestforTestExec);
+		        sendEntr();
+		    
+		        clickJS(JiraUIMap.Add_btn);
+		        ExpWaitForCondition(JiraUIMap.Close_btn);
+		        clickJS(JiraUIMap.Close_btn);
+		        clickJS(JiraUIMap.SelectAll_btn);
+		        clickJS(JiraUIMap.Dropdown_img);
+		        Thread.sleep(2000);
+		        if(CheckIfElementExists(JiraUIMap.Pass_option)) {
+		            clickJS(JiraUIMap.Pass_option);
+		        
+		        }
+		        else {
+		            clickJS(JiraUIMap.Dropdown_img);
+		            ExpWaitForCondition(JiraUIMap.Pass_option);
+		            clickJS(JiraUIMap.Pass_option);
+		        }
+
+		        
+		        String urltogetADOPTestResult = driver().getCurrentUrl();
+		        String testid = urltogetADOPTestResult.split("executionId=")[1];
+		        String project=Property.getProperty("JiraProject");
+		        String testexecutionid=project+"-"+testid;
+		        System.out.println(testexecutionid);
+		        
+		        String runid=Baseclass.getInstance().WorkItemExternalID_TestforTestExec;
+		        Baseclass.getInstance().WorkItemExternalId_TestExecution=testexecutionid+"_"+runid;
+		        System.out.println(Baseclass.getInstance().WorkItemExternalId_TestExecution);
+		        logger.info("test result created for ADOP");
+		}
+		
+		 
+		
+		catch (Exception e) {
+		    e.printStackTrace();    
+		    logger.info("Issue creating result for the given tool");
+		    Assert.fail("Issue creating result for the given tool");
+		}
 }
 
 

@@ -105,6 +105,9 @@ public class JiraSteps  {
 		JiraWorkitem.SelectWorkItemtype("Test");
 		JiraWorkitem.CreateWorkitem(workitem);
 		JiraWorkitem.CaptureWorkitemID(workitem);
+		   if(Property.getProperty("JiraURL").contains("uat"))
+			   JiraWorkitem.Createtestcycle(workitem);
+		   else
 		JiraWorkitem.associateTestExecution(workitem);
 		}
 		

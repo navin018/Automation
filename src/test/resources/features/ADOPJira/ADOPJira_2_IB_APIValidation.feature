@@ -41,6 +41,13 @@ Scenario: ADOPJIRA_Feature
 
 	And i verify the "Inbound" "Feature" details for "ADOP JIRA" 
 	
+Scenario: ADOPJIRA_Test 
+
+	And i verify the "Inbound" "Test" details for "ADOP JIRA" 	
+	
+Scenario: ADOPJIRA_TestExecution 
+	
+	And i verify the "Inbound" "Test Execution" details for "ADOP JIRA"
 
 Scenario Outline: ADOPJira_DIY_IBVerification_Release_Sprint 
 	Given i load the project properties file 
