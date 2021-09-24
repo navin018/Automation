@@ -31,9 +31,10 @@ Scenario: ADTJIRA_Issue
 
 	And i verify the "Inbound" "Issue" details for "ADT JIRA" 
 	
-
+@testbug
 Scenario: ADTJIRA_Bug
-
+Given i load the project properties file 
+	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Bug" details for "ADT JIRA" 
 	
 

@@ -1712,6 +1712,67 @@ public static void EnterworkitemDetailsForSpecificFunctionality(String workitem,
 		    Assert.fail("Issue creating result for the given tool");
 		}
 }
+		
+		public static void Addresources(String resources, String team, String toolname, String functionality) {
+		    ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		    String teamname = API.getWorkItemExternalIDForGivenFunctionality(team, "Jira", functionality);
+		    System.out.println(teamname);
+		    clear(MyWizardUIMap.Search_txtbox);
+		    enterText(MyWizardUIMap.Search_txtbox, teamname);
+
+		     try{
+		        ExpWaitForCondition(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+		        doubleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+		        ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		        //if more than 1 resource
+		        if (resources.contains("&")) {
+		            String[] resourcesSplit = resources.split("&");
+		           
+		            //if more than 1 resource to be added
+		            if(resourcesSplit.length>1)
+		            {
+		                for(int i = 0; i<=resourcesSplit.length-1;i++)
+		                {
+		                    resources=resourcesSplit[i];
+		                    if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"))){
+		                        singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
+		                        
+		                        EnterTextUsingJS(TeamConfigUIMap.resourceSearch_txtBox,resources);
+		                        singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
+		                        singleClick(TeamConfigUIMap.addResource_button);
+		                        Thread.sleep(2000);
+		                        clear(TeamConfigUIMap.resourceSearch_txtBox);
+		                        
+		                                               
+		                }                   
+		            }
+		            }
+		        }
+		        //if only 1 resource is there to be added
+		            else {
+		        if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"))){
+		            singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
+		            singleClick(TeamConfigUIMap.addResource_button);
+		            Thread.sleep(2000);
+		        }
+		            }
+		        
+		                    click(TeamConfigUIMap.save_button);
+		                    ExpWaitForCondition(TeamConfigUIMap.saveSuccessful_staticTxt);
+		                    System.out.println("Team edit successful");
+		                    logger.info("added resource to a team");
+		    
+
+		 
+
+		    }
+		    
+		    catch(Exception e) {
+		        e.printStackTrace();
+		        logger.info("issue Adding resources to Team");
+		        Assert.fail("issue Adding resources to Team");
+		    }
+		}
 
 
 

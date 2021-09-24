@@ -127,4 +127,19 @@ Scenario Outline: TeamConfig_VerifyIBForTeamAndWorkitemsAndIteration_CreatedViaT
 Examples: 
 		| applicationname |toolname|
 		| MyWizard        |TFS Agile|
+		
+		
+Scenario Outline: Teamduplication_Verification
+Given i login to application "<applicationname>"
+And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+Then i select client and DC for "<toolname>"
+And i click on tile "Team Configuration"
+Then i want to "create" a team for "<toolname>"
+And i update the Entity ID for "Team" into JSON file for "<toolname>"
+Then i want to capture team details for a team for "<toolname>"
+Then i want to "duplicate" a team for "<toolname>"
+And i click on "back" button
+Examples:
+| applicationname |toolname|
+| MyWizard |Jira|		
   

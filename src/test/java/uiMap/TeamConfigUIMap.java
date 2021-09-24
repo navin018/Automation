@@ -44,4 +44,5 @@ public class TeamConfigUIMap {
 	public static String ResourceList_statictxt  = "//*[text()='Resource List']//following::*[text()='{resourceID}'][1]";
 	public static By Page_number = By.xpath("//span[@class='ng-star-inserted'][text()='100']");
     public static By PageCount_txtBox = By.xpath("//span[@class='ng-tns-c4-0 ui-dropdown-label ui-inputtext ui-corner-all ng-star-inserted']");
+    public static By Duplication_staticTxt = By.xpath("//div[@id='toast-container']");
 }

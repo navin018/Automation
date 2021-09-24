@@ -246,16 +246,27 @@ public class DataLoader {
 
 	}
 	}
-		public static void PrepareExcelFileAndWriteEntityIDToJSON(String[] entities, String Excelfilepath,String dataload_type){
+		public static void PrepareExcelFileAndWriteEntityIDToJSON(String[] entities,String dataload_type){
 
 			try{
 				
 		String ExcelWithUpdatedEntityIDPath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
+		
+		String Excelfilepath = "";
+		
+		if(dataload_type.equalsIgnoreCase("ADDataLoader"))
+			Excelfilepath= ExcelWithUpdatedEntityIDPath+"AD.xlsx";
+		else if(dataload_type.equalsIgnoreCase("DevopsDataLoader"))
+			Excelfilepath= ExcelWithUpdatedEntityIDPath+"DevOps.xlsx";
 			FileInputStream fis = new FileInputStream(new File(Excelfilepath));
 			XSSFWorkbook workbook = new XSSFWorkbook (fis);
 			
-			JSONObject jsonObject = new JSONObject();
+//			JSONObject jsonObject = new JSONObject();
 			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "JSON"+ File.separator + "DataLoaderJSON.json";
+			FileReader reader = new FileReader(Entities_JSONFile);
+			JSONParser jsonParser = new JSONParser();
+		        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+
 			
 			for(String entity: entities)
 			{
@@ -265,8 +276,10 @@ public class DataLoader {
 				sheet.getRow(1).getCell(0).setCellValue(randomNumb);
 				String entityWithWorkItemExternalID = "WorkItemExternalId_"+entity;
 				 jsonObject.put(entityWithWorkItemExternalID, randomNumb);	
-				 if(dataload_type.equalsIgnoreCase("AD") && entity.equalsIgnoreCase("Test"))
-					 workbook.getSheet("TestSteps").getRow(1).getCell(7).setCellValue(randomNumb);
+				  FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
+					byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+//				 if(dataload_type.equalsIgnoreCase("AD") && entity.equalsIgnoreCase("Test"))
+//					 workbook.getSheet("TestSteps").getRow(1).getCell(7).setCellValue(randomNumb);
 
 			}
 		
@@ -277,20 +290,19 @@ public class DataLoader {
 				ExcelWithUpdatedEntityIDPath = ExcelWithUpdatedEntityIDPath+"Devops.xlsx";
 			
 			
-			
-			FileOutputStream fos = new FileOutputStream(new File(ExcelWithUpdatedEntityIDPath));
+			FileOutputStream fos = new FileOutputStream(new File(Excelfilepath));
 			workbook.write(fos);
 			fis.close();
 		    fos.close();
-		    FileWriter file = new FileWriter(Entities_JSONFile);
-	        file.write(jsonObject.toJSONString());
-	        file.close();	
+			
+
 		
 		}
 		catch(Exception e)
 		{
-			Assert.fail("problem with excel file creation to be uploaded");
 			e.printStackTrace();
+			Assert.fail("problem with excel file creation to be uploaded");
+			
 		}
 }
 		
@@ -352,15 +364,15 @@ public class DataLoader {
 		{
 			try{
 			String ExcelToBePrepared="";
-//			String[] entities_AD = {"Bug","Iteration","Requirement","Test","TestResult"};
-//			String[] entities_Devops = {"CodeCommit","CodeBranch","Build","Deployment","Environment","TestResult"};
+			String[] entities_AD = {"Bug","Iteration","Requirement","Test","TestResult"};
+			String[] entities_Devops = {"CodeCommit","CodeBranch","Build","Deployment","Environment","TestResult"};
 			String[] entities_ADTJira_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Iteration"};
 //			String[] entities_ADTJira_GenericUploader = {"Iteration"};
 			String[] entities_MyWizardInstanceGenericUploader = {"Decision","IterationForMyWizardInstance"};
 			String[] entities_NoToolInstance_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Decision","Iteration"};
 //			String[] entities_NoToolInstance_GenericUploader = {"Decision"};
 			ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
-			if(toolname.equalsIgnoreCase("ADT Jira"))
+			if(toolname.equalsIgnoreCase("ADT Jira") && !dataload_type.equalsIgnoreCase("ADDataLoader"))
 					{
 				for(String entity:entities_ADTJira_GenericUploader)
 						{
@@ -380,6 +392,18 @@ public class DataLoader {
 				{
 					PrepareExcelFileForGenericUploaderAndWriteEntityIDToJSON(entity,toolname);
 				}
+			}
+			if(dataload_type.equalsIgnoreCase("ADDataLoader"))
+			{
+			
+					PrepareExcelFileAndWriteEntityIDToJSON(entities_AD,dataload_type);
+			
+			}
+			if(dataload_type.equalsIgnoreCase("DevopsDataLoader"))
+			{
+			
+					PrepareExcelFileAndWriteEntityIDToJSON(entities_Devops,dataload_type);
+			
 			}
 			
 //			ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;

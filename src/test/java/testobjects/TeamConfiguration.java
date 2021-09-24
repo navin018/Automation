@@ -303,6 +303,26 @@ public class TeamConfiguration extends Baseclass {
 		}
 		
 	}
+
+	public static void duplicateteam(String toolname) {
+		try {
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		singleClick(TeamConfigUIMap.addTeam_button);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		String teamName = Tools.getWorkItemExternalID_custom("Team", toolname, "normal");
+		enterText(TeamConfigUIMap.teamName_txtBox,Baseclass.getInstance().teamName);
+		Thread.sleep(1000);
+		click(TeamConfigUIMap.save_button);
+		ExpWaitForCondition(TeamConfigUIMap.Duplication_staticTxt);
+		logger.info("Duplication of team scenario tested successful");
+		}
+		catch(Exception e)
+		{
+		e.printStackTrace();
+		logger.info("Duplication of team is successful which is not expected");
+		Assert.fail("Duplication of team is successful which is not expected");
+		}
+		}
 		
 	}
 	

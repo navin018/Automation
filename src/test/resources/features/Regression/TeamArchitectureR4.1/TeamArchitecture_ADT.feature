@@ -35,20 +35,22 @@ Scenario Outline: TeamArch_captureteamDCUID_CreatedViaTool
 Examples:
       | applicationname |
       | MyWizard             |	
-	
-Scenario Outline: TeamArch_AddResourcesToTeamInUI	
-	Given i load the project properties file
-	Given i login to application "<applicationname>" 
-	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
-	Then i select client and DC for "<applicationname>"
-	And i click on tile "Team Configuration"
-    And i "add" the resources "abd@accenture.com" to the "team01"  
-	
-
- Examples:
-      | applicationname |
-      | MyWizard      | 
       
+Scenario Outline: TeamArch_AddResourcesInUI
+    Given i load the project properties file
+    Given i login to application "<applicationname>"
+    And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+    Then i select client and DC for "<applicationname>"
+    And i click on tile "Team Configuration"
+    And i "add" the resources "saranya.devendran@accenture.com&adeeb.khan@accenture.com" to the "Team01" for "<toolname>" for functionality "TeamArchitecture" 
+    And i "add" the resources "adeeb.khan@accenture.com" to the "Team03" for "<toolname>" for functionality "TeamArchitecture"
+   
+   
+      Examples:
+      | applicationname |toolname|
+      | MyWizard       | Jira|
+   
+     
 Scenario Outline: TFS_Team Architecture_Creation
 Given i load the project properties file
 Given i login to application "<applicationname>"
@@ -104,6 +106,28 @@ Given i login to application "<applicationname>"
       | TFS             | 
  
  Scenario:
- And i verify the "inbound" details for "Action_TeamArchitecture_Scenario1" for tool "TFS Scrum" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+Given i load the project properties file
+And i generate a token for "DevTest" environment
+And i verify the "inbound" details for "Action_TeamArchitecture_Scenario1" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+And i verify the "inbound" details for "Bug_TeamArchitecture_Scenario1" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
 
+And i verify the "inbound" details for "Action_TeamArchitecture_Scenario2" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+And i verify the "inbound" details for "Bug_TeamArchitecture_Scenario2" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
 
+And i verify the "inbound" details for "Action_TeamArchitecture_Scenario3" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+And i verify the "inbound" details for "Bug_TeamArchitecture_Scenario3" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+
+And i verify the "inbound" details for "Action_TeamArchitecture_Scenario4" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+And i verify the "inbound" details for "Bug_TeamArchitecture_Scenario4" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+
+And i verify the "inbound" details for "Action_TeamArchitecture_Scenario5" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+And i verify the "inbound" details for "Bug_TeamArchitecture_Scenario5" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+
+And i verify the "inbound" details for "Action_TeamArchitecture_Scenario6" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+And i verify the "inbound" details for "Bug_TeamArchitecture_Scenario6" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+
+And i verify the "inbound" details for "Action_TeamArchitecture_Scenario7" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+And i verify the "inbound" details for "Bug_TeamArchitecture_Scenario7" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+
+And i verify the "inbound" details for "Action_TeamArchitecture_Scenario8" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality
+And i verify the "inbound" details for "Bug_TeamArchitecture_Scenario8" for tool "ADT Jira" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamArchitecture" functionality

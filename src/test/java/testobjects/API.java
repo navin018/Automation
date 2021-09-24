@@ -79,7 +79,7 @@ import java.util.Random;
 						WorkItemExternalId = API.getWorkItemExternalIDForGivenFunctionality(Workitem,toolname,functionality);
 //						System.out.println("workitem id from json file is "+WorkItemExternalId);
 						String getWorkitemType = "WorkItemTypeUId_"+workitem;
-						if(!(workitem.contains("Test") || workitem.contains("Requirement") || workitem.contains("Team") || workitem.contains("TestCase") || workitem.contains("Action") || workitem.contains("Decision") || workitem.contains("Test Execution") || workitem.contains("Work Request")))
+						if(!(workitem.contains("Test") || workitem.contains("Requirement") || workitem.contains("Team") || workitem.contains("TestCase") || workitem.contains("Action") || workitem.contains("Decision") || workitem.contains("Test Execution") || workitem.contains("Work Request") || workitem.contains("CodeBranch")|| workitem.contains("CodeCommit")|| workitem.contains("Build")|| workitem.contains("Deployment")|| workitem.contains("Environment")))
 						 WorkItemTypeUId = Property.getProperty(getWorkitemType);
 						
 						}
@@ -116,6 +116,10 @@ import java.util.Random;
 				 {
 					 VerifyTeamArchitectureFunctionality(response.jsonPath(),Workitem,toolname,functionality);
 				 }
+				 if(functionality.contains("DataLoader"))
+				 {
+					 VerifyDataLoaderFunctionality(response.jsonPath(),Workitem,toolname,functionality);
+				 }
 				
 			}
 			catch(Exception e)
@@ -124,56 +128,171 @@ import java.util.Random;
 			}
 			}
 			
-		public static void VerifyTeamArchitectureFunctionality(JsonPath jsonPath, String workitem, String toolname,String functionality) {
-		String TeamName="";
-		String TeamUId="";
-		String TeamExternalId="";
-		String Teamtobefetched = "";
-		String TeamUIdtobefetched = "";
-		String TeamExternalIDtobefetched = "";
-		
-		//fetch data based on scenario
-		if(workitem.contains("Scenario1"))
-		{
-			Teamtobefetched="Team01";
-			TeamUIdtobefetched="TeamUId01";
-			TeamExternalIDtobefetched="TeamExternalId01";
-		}
-	
-		TeamName=API.getWorkItemExternalIDForGivenFunctionality(Teamtobefetched, toolname, functionality);
-		TeamUId=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched, toolname, functionality);
-		TeamExternalId=API.getWorkItemExternalIDForGivenFunctionality(TeamExternalIDtobefetched, toolname, functionality);
-		
-		
-		String TeamNameFromAPI="";
-		String TeamAreaExternalIdFromAPI="";
-		String TeamAreaUIdFromAPI="";
-		String DCFromAPI="";
-		
-		//non workitem verification	
-			if(workitem.contains("Action")){
-				TeamNameFromAPI = jsonPath.getString("Actions[0].TeamAreaName");
-				TeamAreaExternalIdFromAPI = jsonPath.getString("Actions[0].TeamAreaExternalId");
-				TeamAreaUIdFromAPI = jsonPath.getString("Actions[0].TeamAreaUId");
-				DCFromAPI=jsonPath.getString("Actions[0].ActionDeliveryConstructs.DeliveryConstructUId");
-			}	
-			else	//workitem verification
-			{
-				TeamNameFromAPI = jsonPath.getString("WorkItems.TeamAreaName");
-				TeamAreaUIdFromAPI = jsonPath.getString("WorkItems.TeamAreaUId");
-				TeamAreaExternalIdFromAPI = jsonPath.getString("WorkItems.TeamAreaExternalId");
-				DCFromAPI=jsonPath.getString("WorkItems.WorkItemDeliveryConstructs.DeliveryConstructUId");
+		public static void VerifyDataLoaderFunctionality(JsonPath jsonPath, String workitem, String toolname,String functionality) {
+			SoftAssert sa = new SoftAssert();
+			if(functionality.equalsIgnoreCase("AD_DataLoader")){
+				switch(workitem){
+				case("Bug"):
+				{
+					String titleofentityfromAPI = jsonPath.getString("Workitems(0).Title");
+					sa.assertEquals(actual, expected);
+					
+				}
+				}
+				
 			}
 			
-			SoftAssert sa = new SoftAssert();
-			sa.assertEquals(TeamName, TeamNameFromAPI,"Team name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
-			sa.assertEquals(TeamUId, TeamAreaUIdFromAPI,"TeamUId mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
-			sa.assertEquals(TeamExternalId, TeamAreaExternalIdFromAPI,"TeamAreaExternalID name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
-			sa.assertTrue(DCFromAPI.contains(TeamUId));
-			
-			sa.assertAll();
-				
 		}
+
+		public static void VerifyTeamArchitectureFunctionality(JsonPath jsonPath, String workitem, String toolname,String functionality) {
+
+			String TeamName="";
+			String TeamExternalId="";
+			String TeamUId1="";
+			String TeamUId2="";
+			String TeamUId3="";
+
+			//fetch Data from API
+			String TeamNameFromAPI="";
+			String TeamAreaExternalIdFromAPI="";
+			String TeamAreaUIdFromAPI="";
+			String DCFromAPI="";
+
+			//non workitem verification(doing this for action alone for now)
+			if(workitem.contains("Action")){
+			TeamNameFromAPI = jsonPath.getString("Actions[0].TeamAreaName");
+			TeamAreaExternalIdFromAPI = jsonPath.getString("Actions[0].TeamAreaExternalId");
+			TeamAreaUIdFromAPI = jsonPath.getString("Actions[0].TeamAreaUId");
+			DCFromAPI=jsonPath.getString("Actions[0].ActionDeliveryConstructs.DeliveryConstructUId");
+			}
+			else //workitem verification
+			{
+			TeamNameFromAPI = jsonPath.getString("WorkItems[0].TeamAreaName");
+			TeamAreaUIdFromAPI = jsonPath.getString("WorkItems[0].TeamAreaUId");
+			TeamAreaExternalIdFromAPI = jsonPath.getString("WorkItems[0].TeamArea");
+			DCFromAPI=jsonPath.getString("WorkItems[0].WorkItemDeliveryConstructs.DeliveryConstructUId");
+			}
+			SoftAssert sa = new SoftAssert();
+
+
+			String Teamtobefetched = "";
+			String TeamExternalIDtobefetched = "";
+			String TeamUIdtobefetched1 = "";
+			String TeamUIdtobefetched2="";
+			String TeamUIdtobefetched3="";
+
+
+			//fetch data based on scenario
+			if(workitem.contains("Scenario1")|| workitem.contains("Scenario4")|| workitem.contains("Scenario7"))
+			{
+			Teamtobefetched="Team01";
+			TeamUIdtobefetched1="TeamUId01";
+			TeamExternalIDtobefetched="TeamExternalId01";
+
+			TeamName=API.getWorkItemExternalIDForGivenFunctionality(Teamtobefetched, toolname, functionality);
+			TeamUId1=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched1, toolname, functionality);
+			TeamExternalId=API.getWorkItemExternalIDForGivenFunctionality(TeamExternalIDtobefetched, toolname, functionality);
+
+			if (workitem.contains("Scenario7")) {
+			TeamUIdtobefetched3="TeamUId03";
+			TeamUId3=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched3, toolname, functionality);
+			}
+
+			}
+			else if(workitem.contains("Scenario2")|| workitem.contains("Scenario8"))
+			{
+			Teamtobefetched="Team02";
+			TeamUIdtobefetched1="TeamUId01";
+			TeamUIdtobefetched2="TeamUId02";
+			TeamExternalIDtobefetched="TeamExternalId02";
+
+			TeamName=API.getWorkItemExternalIDForGivenFunctionality(Teamtobefetched, toolname, functionality);
+			TeamExternalId=API.getWorkItemExternalIDForGivenFunctionality(TeamExternalIDtobefetched, toolname, functionality);
+			TeamUId1=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched1, toolname, functionality);
+			TeamUId2=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched2, toolname, functionality);
+
+			if (workitem.contains("Scenario8"))
+			{
+			TeamUIdtobefetched3="TeamUId03";
+			TeamUId3=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched3, toolname, functionality);
+
+			}
+
+			}
+			else if(workitem.contains("Scenario3")|| workitem.contains("Scenario6")|| workitem.contains("Scenario5")) {
+			if (workitem.contains("Scenario3"))
+			{
+			TeamUIdtobefetched1="TeamUId01";
+			TeamUId1=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched1, toolname, functionality);
+
+			}
+			else if (workitem.contains("Scenario6"))
+			{
+			TeamUIdtobefetched1="TeamUId01";
+			TeamUIdtobefetched3="TeamUId03";
+			TeamUId1=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched1, toolname, functionality);
+			TeamUId3=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched3, toolname, functionality);
+
+			}
+			else if (workitem.contains("Scenario5"))
+			{
+			TeamUIdtobefetched1="TeamUId01";
+			TeamUIdtobefetched2="TeamUId02";
+			TeamUIdtobefetched3="TeamUId03";
+			TeamUId1=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched1, toolname, functionality);
+			TeamUId2=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched2, toolname, functionality);
+			TeamUId3=API.getWorkItemExternalIDForGivenFunctionality(TeamUIdtobefetched3, toolname, functionality);
+
+			}
+
+			}
+			//validation part
+
+			if (workitem.contains("Scenario1")|| workitem.contains("Scenario4")||workitem.contains("Scenario7")) {
+
+
+
+			sa.assertEquals(TeamName, TeamNameFromAPI,"Team name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertEquals(TeamUId1, TeamAreaUIdFromAPI,"TeamUId mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertEquals(TeamExternalId, TeamAreaExternalIdFromAPI,"TeamAreaExternalID name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertTrue(DCFromAPI.contains(TeamUId2));
+			if (workitem.contains("Scenario7"))
+			sa.assertTrue(DCFromAPI.contains(TeamUId3));
+
+			}
+			else if(workitem.contains("Scenario2")|| workitem.contains("Scenario8")) {
+			sa.assertEquals(TeamName, TeamNameFromAPI,"Team name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertEquals(TeamUId2, TeamAreaUIdFromAPI,"TeamUId mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertEquals(TeamExternalId, TeamAreaExternalIdFromAPI,"TeamAreaExternalID name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertTrue(DCFromAPI.contains(TeamUId1));
+			sa.assertTrue(DCFromAPI.contains(TeamUId2));
+
+			if(workitem.contains("Scenario8"))
+			sa.assertTrue(DCFromAPI.contains(TeamUId3));
+			}
+			else if(workitem.contains("Scenario3")|| workitem.contains("Scenario5")||workitem.contains("Scenario6")) {
+			if(workitem.contains("Action")) {
+			sa.assertEquals("", TeamNameFromAPI,"Team name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			}
+
+			sa.assertEquals("", TeamAreaUIdFromAPI,"TeamUId mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+			sa.assertEquals("", TeamAreaExternalIdFromAPI,"TeamAreaExternalID name mismatch for Team Architecture functionality for workitem "+workitem.split("_"));
+
+			if(workitem.contains("Scenario3"))
+			sa.assertTrue(DCFromAPI.contains(TeamUId1));
+			else if (workitem.contains("Scenario5")) {
+			sa.assertFalse(DCFromAPI.contains(TeamUId1));
+			sa.assertFalse(DCFromAPI.contains(TeamUId2));
+			sa.assertFalse(DCFromAPI.contains(TeamUId2));
+			}
+			else if (workitem.contains("Scenario6")) {
+			sa.assertTrue(DCFromAPI.contains(TeamUId1));
+			sa.assertTrue(DCFromAPI.contains(TeamUId3));
+			}
+
+			}
+			sa.assertAll();
+			}
 
 		private static void validateRAGFunctionality(String workitem, Response response, String toolname) {
 			String ExpectedRAGValue = GetWSJF_RAG_Inference_ForWorkitem(toolname,workitem,"RAG");
@@ -313,6 +432,8 @@ import java.util.Random;
 							testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_RAG.json" ;
 						else if(functionality.contains("TeamArchitecture"))
 							testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_TeamArchitecture.json" ;
+						else if(functionality.contains("DevOps_DataLoader"))
+							testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "DataLoaderJSON.json" ;
 						else
 						testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 					}
@@ -325,6 +446,8 @@ import java.util.Random;
 							testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_PreComputation_RAG.json" ;
 						else if(functionality.contains("TeamArchitecture"))
 							testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_TeamArchitecture.json" ;
+						else if(functionality.contains("DevOps_DataLoader"))
+							testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "DataLoaderJSON.json" ;
 						else
 						testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 					}
@@ -333,7 +456,7 @@ import java.util.Random;
 			JSONObject jsonObject = (JSONObject) obj;
 			String WorkItemExternalId="";
 			
-			if(functionality.contains("WSJF") || functionality.equalsIgnoreCase("RAG") || functionality.equalsIgnoreCase("TeamArchitecture"))
+			if(functionality.contains("WSJF") || functionality.equalsIgnoreCase("RAG") || functionality.equalsIgnoreCase("TeamArchitecture") || functionality.contains("DataLoader") )
 			{
 				WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_"+workitem);
 			}
@@ -374,7 +497,8 @@ import java.util.Random;
 		 	
 			 request.header("Content-Type", "application/json")
 			        .header("Authorization","Bearer "+Property.getToken("Token"))
-			        .header("AppServiceUId",Property.getProperty("AppServiceUId"));
+			        .header("AppServiceUId",Property.getProperty("AppServiceUId"))
+			 		.header("UserEmailId","sonal.harish.nagda@ds.dev.accenture.com");
 			 
 			 JSONObject requestParams = new JSONObject();
 			 
@@ -449,6 +573,11 @@ import java.util.Random;
 			case("Sprint"):
 				 requestParams.put("IterationExternalID", Baseclass.getInstance().sprint_IterationExternalID);
 			 	EntityType="Iterations";
+				 break;
+				 
+			case("CodeCommit"):
+				 requestParams.put("CodeCommitExternalID", WorkItemExternalId);
+			 	EntityType="CodeCommits";
 				 break;
 			 
 			default:

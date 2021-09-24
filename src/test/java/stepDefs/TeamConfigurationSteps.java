@@ -31,6 +31,10 @@ public class TeamConfigurationSteps  {
 	    {
 	    	TeamConfiguration.removeResource(toolname);
 	    }
+	    else if(createOrEditOrDelete.equalsIgnoreCase("duplicate"))
+	    {
+	    	TeamConfiguration.duplicateteam(toolname);
+	    }
 	}
 
 	@Then("^i want to capture team details for a team for \"([^\"]*)\"$")

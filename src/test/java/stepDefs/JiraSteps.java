@@ -146,19 +146,21 @@ public class JiraSteps  {
 	}
 	
 	
-    @Then("^i \"([^\"]*)\" a \"([^\"]*)\" in Jira for \"([^\"]*)\"$")
-    public void i_a_in_Jira_for(String CreateorUpdate, String workitem, String functionality) throws Throwable {​​​​​​​
-        if(CreateorUpdate.equalsIgnoreCase("Create"))
-        {​​​​​​​
-            JiraWorkitem.CreateWorkitemForSpecificFunctionality(workitem, functionality);
-        }​​​​​​​
-        else if(CreateorUpdate.equalsIgnoreCase("Update"))
-        {
-        	​​​​​​​
-            JiraWorkitem.UpdateWorkitemForTeamArchitecture(workitem, functionality);
-        }​​​​​​​
-    }​​​​​​​
-
+	@Then("^i \"([^\"]*)\" the resources \"([^\"]*)\" to the \"([^\"]*)\" for \"([^\"]*)\" for functionality \"([^\"]*)\"$")
+    public void i_the_resources_to_the_for_for_functionality(String AddorRemove, String Resources, String Team, String Toolname, String functionality) throws Throwable {
+        JiraWorkitem.Addresources(Resources, Team, Toolname, functionality);   
+    }
+	@Then("^i \"([^\"]*)\" a \"([^\"]*)\" in Jira for \"([^\"]*)\"$")
+    public void i_a_in_Jira_for(String CreateorUpdate, String workitem, String functionality) throws Throwable {
+		if(CreateorUpdate.equalsIgnoreCase("Create"))
+		{
+			 JiraWorkitem.CreateWorkitemForSpecificFunctionality(workitem, functionality);
+		}
+		else if(CreateorUpdate.equalsIgnoreCase("Update"))
+		{
+			JiraWorkitem.UpdateWorkitemForTeamArchitecture(workitem, functionality);
+		}
+    }
+	  
 	
-
 }

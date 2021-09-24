@@ -29,10 +29,6 @@ Scenario: TFSScrum_FeatureFlow_ProjectChange
 	And i verify if "Feature" has "deleted" which was "NA" for "TFS Scrum" for "ChangeProjectFromOne" functionality 
 	And i verify if "Feature" has "flown" which was "NA" for "TFS Scrum" for "ChangeProjectToAnother" functionality 
 
-Scenario: TFSScrum_DeliverableFlow_ProjectChange 
-	And i verify if "Deliverable" has "deleted" which was "NA" for "TFS Scrum" for "ChangeProjectFromOne" functionality 
-	And i verify if "Deliverable" has "flown" which was "NA" for "TFS Scrum" for "ChangeProjectToAnother" functionality 
-
 Scenario: TFSScrum_ActionFlow_ProjectChange 
 	And i verify if "Action" has "deleted" which was "NA" for "TFS Scrum" for "ChangeProjectFromOne" functionality 
 	And i verify if "Action" has "flown" which was "NA" for "TFS Scrum" for "ChangeProjectToAnother" functionality 
