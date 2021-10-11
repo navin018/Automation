@@ -1817,19 +1817,15 @@ import utilities.general.Property;
 	                      sendEntr();
 						}
 						
-						
-						//TeamArea
-					    if(!wi.TeamArea.equalsIgnoreCase("NA")){
-					    	 singleClick(TFSUIMap.TeamArea_label);
+						 if(!wi.TeamArea.equalsIgnoreCase("NA")){
+							 singleClick(TFSUIMap.TeamArea_label);
 						     Thread.sleep(2000);
 						     String Teamarea=API.getWorkItemExternalIDForGivenFunctionality(wi.TeamArea,"TFS",functionality);
 						     String Teamarea1 = Property.getProperty("TFSProject")+"\\"+Teamarea;
 						     enterText(TFSUIMap.TeamArea_label1,Teamarea1);
 						     sendEntr();
-					    }​​​​​​​
-					                   
-
-						
+						 }
+						 
 						//priority
 						if(!wi.Priority.equalsIgnoreCase("NA"))
 						{

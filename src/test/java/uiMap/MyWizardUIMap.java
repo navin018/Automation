@@ -35,7 +35,7 @@ public static By DC_Drpdwn= By.xpath("//span[@class='c-icons__text-sub']");
 public static By ScopeSelectorEnterTxt_txtbox= By.xpath("//input[@placeholder='Enter minimum three characters to search...']");
 public static By DCMsg_StaticTxt= By.xpath("//div[@aria-label='Please select a Delivery Construct to proceed']");
 public static By ScopeSelectorArrow_Drpdown = By.xpath("//span[@class='-arrow-link js-dropdown'][@id='scopeSelector']");
-public static String SelectClient_statictxt = "//span[@class='node-name'][text()='{clientname}']";
+public static String SelectClient_statictxt = "//span[contains(@class,'node-name')][text()='{clientname}']";
 public static String SelectClient_statictxt_RMP = "//span[contains(text(),'{clientname}')]";
 public static String SelectDC_statictxt = "//span[@class='node-name'][text()='{dcname}']";
 public static String SelectDC_statictxt_RMP = "//div[contains(text(),'{dcname}')]";

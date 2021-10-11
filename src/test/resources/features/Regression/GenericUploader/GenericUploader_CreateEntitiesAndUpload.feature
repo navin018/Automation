@@ -1,4 +1,4 @@
-Feature: GenericUploader Regression
+Feature: GenericUploader Regression(ADT)
 
 
 @1WorkItemCreation_ADTJira_GenericUploader		
@@ -33,11 +33,6 @@ Scenario Outline: GenericUploader_ADTJira
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
-	Then i select client and DC for "<applicationname>" 
-	And i click on tile "my Queries"
-	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "tool" for tool "ADT Jira" 
-	And i click on "backtodashboard" button
 	And i prepare the excel data for tool "ADT Jira" in "Generic Uploader" DataLoader
 	And i click on tile "Generic Uploader"
 	Then i select client and DC for "<applicationname>"

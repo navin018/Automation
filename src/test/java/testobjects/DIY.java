@@ -201,37 +201,37 @@ public class DIY extends Baseclass{
 				ExpWaitForCondition(DIYUIMap.GetStarted_Btn);
 			break;
 		case "ADOP Jira":
-//			//select tools
-//			clickJS(DIYUIMap.selectedToolADTJira_checkbox);
-//				clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
-////				clickJS(DIYUIMap.ConfirmChangingTool_btn);
-//				clickJS(DIYUIMap.Next_btn);
-//				//planning
-//				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
-//					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
-//				clickJS(DIYUIMap.Next_btn);
-//				Thread.sleep(3000);
-//				//deliverables
-//				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
-//				clickJS(DIYUIMap.Next_btn);
-//				//requirements
-//				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
-//					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
-//				clickJS(DIYUIMap.Next_btn);
-//				//release management
-//				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
-//					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
-//				clickJS(DIYUIMap.Next_btn);
-//				Thread.sleep(3000);
-//				//testing
-//				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
-//				clickJS(DIYUIMap.Next_btn);
-////				Devops
-//				clickJS(DIYUIMap.SaveAndNext_btn);
-//				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//				Thread.sleep(5000);
-//				clickJS(DIYUIMap.Yes_btn);
-//				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			//select tools
+			clickJS(DIYUIMap.selectedToolADTJira_checkbox);
+				clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
+//				clickJS(DIYUIMap.ConfirmChangingTool_btn);
+				clickJS(DIYUIMap.Next_btn);
+				//planning
+				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
+					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
+				clickJS(DIYUIMap.Next_btn);
+				Thread.sleep(3000);
+				//deliverables
+				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
+				clickJS(DIYUIMap.Next_btn);
+				//requirements
+				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
+					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
+				clickJS(DIYUIMap.Next_btn);
+				//release management
+				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
+					clickJS(DIYUIMap.selectedToolADOPJira_checkbox);
+				clickJS(DIYUIMap.Next_btn);
+				Thread.sleep(3000);
+				//testing
+				clickJS(DIYUIMap.selectedToolADTJira_checkbox);
+				clickJS(DIYUIMap.Next_btn);
+//				Devops
+				clickJS(DIYUIMap.SaveAndNext_btn);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				Thread.sleep(5000);
+				clickJS(DIYUIMap.Yes_btn);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				configuretools(toolname,functionality);
 				DataMappingCheck(toolname);
 				

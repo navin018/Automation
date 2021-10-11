@@ -286,6 +286,25 @@ Scenario: Check for the security headers
 
 	
 	
+@SecurityTest_PrecomputationEngine
+Scenario Outline: Check for the security headers
+Given i load the project properties file
+Given i login to application "MyWizard"
+And i navigate to the homepage of "MyWizard" from "AIFusionPage"
+And i click on tile "Precomputation Engine"
+And i click on "Add Process" button
+And the user check for the duplicate security headers and missing security headers for "Precomputation Engine"
+And i click on "Cancel" button
+And i click on "backtodashboard" button
+And i "update" the vulnerabilites details into excel
+And i verify the overall securitytest results
+
+
+
+Examples:
+| applicationname |
+| MyWizard |	
+	
 @1ADTJira_DIY_RemoveUserRoleInAccountManagement_SecurityTest
 Scenario Outline: ADTJIRA_RemoveUserRole_DIY 
 	Given i load the project properties file 

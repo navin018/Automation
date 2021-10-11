@@ -143,8 +143,8 @@ Scenario Outline: TFSAgile_WorkitemCreation
 #  
  And i create "<Release>" and "<Sprint>" in TFS
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
-	And i put a explicit wait of "900000" 
-	And i generate a token for "DevTest" environment 
+#	And i put a explicit wait of "900000" 
+#	And i generate a token for "DevTest" environment 
 	
 	    Examples: 
       | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    |Decision   |Action   |Deliverable   |Impediment|Risk|Milestone|TestResult|Requirement|WorkRequest|

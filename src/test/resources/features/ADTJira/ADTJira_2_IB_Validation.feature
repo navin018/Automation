@@ -31,10 +31,9 @@ Scenario: ADTJIRA_Issue
 
 	And i verify the "Inbound" "Issue" details for "ADT JIRA" 
 	
-@testbug
+
 Scenario: ADTJIRA_Bug
-Given i load the project properties file 
-	And i generate a token for "DevTest" environment 
+
 	And i verify the "Inbound" "Bug" details for "ADT JIRA" 
 	
 
@@ -81,7 +80,7 @@ Scenario: ADTJIRA_TestExecution
 #
 #	And i verify the "Inbound" "Team" details for "ADT JIRA" 	
 
-
+#
 Scenario Outline: ADTJira_DIY_IBVerification_Release_Sprint 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"

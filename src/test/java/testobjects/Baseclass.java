@@ -81,7 +81,7 @@ Baseclass(){
 	public String TeamUId;
 	public String TeamExternalID;
 	
-	
+	public int NoOfTabs = 0;
 	
 	//TeamArch params
 

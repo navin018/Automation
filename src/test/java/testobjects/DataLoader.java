@@ -274,7 +274,17 @@ public class DataLoader {
 				Random rnd = new Random();
 				int randomNumb = 10000000 + rnd.nextInt(90000000);
 				sheet.getRow(1).getCell(0).setCellValue(randomNumb);
-				String entityWithWorkItemExternalID = "WorkItemExternalId_"+entity;
+				
+				String entityWithWorkItemExternalID="";
+				String entityWithWorkItemExternalID_sprint="";
+				if(!entity.equalsIgnoreCase("Iteration"))
+				entityWithWorkItemExternalID = "WorkItemExternalId_"+entity;
+				else if(entity.equalsIgnoreCase("Iteration")){
+					sheet.getRow(2).getCell(0).setCellValue(randomNumb+1);
+					entityWithWorkItemExternalID="WorkItemExternalId_"+"Release";
+					entityWithWorkItemExternalID_sprint="WorkItemExternalId_"+"Sprint";
+					jsonObject.put(entityWithWorkItemExternalID_sprint, randomNumb);	
+				}
 				 jsonObject.put(entityWithWorkItemExternalID, randomNumb);	
 				  FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
 					byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
@@ -315,6 +325,7 @@ public class DataLoader {
 			selectDropdownByText(MyWizardUIMap.SelectEntity_Drpdown,"AD Entities");
 			else if(dataload_type.equalsIgnoreCase("Devops"))
 			selectDropdownByText(MyWizardUIMap.SelectEntity_Drpdown,"DevOps Entities");
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			}
 			catch(Exception e)
 			{
@@ -341,6 +352,7 @@ public class DataLoader {
 				
 				String AutoITFileloc = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"AutoIT" + File.separator ;
 				String autoITExecutable = AutoITFileloc+"UploadFile_DataLoader.exe " +ExcelFileLoc;
+//				String autoITExecutable = AutoITFileloc+"UploadFile.exe " +ExcelFileLoc;
 				Process process = Runtime.getRuntime().exec(autoITExecutable);
 				process.waitFor();
 			    Thread.sleep(6000);
@@ -350,13 +362,15 @@ public class DataLoader {
 			    Thread.sleep(3000);
 			    ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 				assertTrue(isEnabled(MyWizardUIMap.UploadComplete_statictxt));
-				driver().close();
-				driver().quit();
+				Thread.sleep(5000);
+				
 		}
 		catch(Exception e)
 		{
-			Assert.fail("Issue with file upload");
 			e.printStackTrace();
+			grabScreenshotForExtentReport();
+			Assert.fail("Issue with file upload for "+dataload_type);
+		
 		}
 }
 		

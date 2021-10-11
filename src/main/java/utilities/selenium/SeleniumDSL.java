@@ -1,5 +1,5 @@
 package utilities.selenium;
-
+import testobjects.*;
 import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.driver;
 
@@ -81,6 +81,13 @@ public class SeleniumDSL {
 			return 0;
 	}
 
+	public static void MoveToNexttab()
+	{
+
+	ArrayList<String> tabs = new ArrayList<String> (driver().getWindowHandles());
+	driver().switchTo().window(Integer.toString(Baseclass.getInstance().NoOfTabs));
+
+	}
 	/** get current window handle */
 	public static String getWindow(){
 		return driver().getWindowHandle();

@@ -33,6 +33,9 @@ Scenario: ADOPJIRA_Bug_flow_DIY
 And i verify if "Bug" has "flown" which was "NA" for "ADOP JIRA" for "DIY" functionality 
 	
 
+Scenario: ADOPJIRA_Test_flow_DIY
+And i verify if "Test" has "flown" which was "NA" for "ADOP JIRA" for "DIY" functionality	
+
 Scenario: ADOPJIRA_Feature_flow_DIY 
 And i verify if "Feature" has "flown" which was "NA" for "ADOP JIRA" for "DIY" functionality 
 	 

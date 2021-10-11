@@ -1397,7 +1397,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Decisions";	
 			 if(workitem.equalsIgnoreCase("Milestone"))
 				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Milestones";
-			 if(workitem.equalsIgnoreCase("Test Execution"))
+			 if(workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("TestResult"))
 				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="TestResults";	
 			 
 			 return WorkItemOrDeliverableOrIterationOrTestOrRequirement;

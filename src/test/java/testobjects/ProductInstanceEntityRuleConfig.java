@@ -144,8 +144,15 @@ public class ProductInstanceEntityRuleConfig  extends Baseclass {
 			 }
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			 clickJS(ProductInstanceEntityRuleConfigUIMAP.Save_rule);       // saves the rule
+			 try{
 			 ExpWaitForCondition(ProductInstanceEntityRuleConfigUIMAP.SavedRule_txt);
-			 Assert.assertEquals(CheckIfElementExists(ProductInstanceEntityRuleConfigUIMAP.SavedRule_txt),true,"Rule is not saved"); //Assert if the rule is saved
+			 }
+			 catch (Exception e) {
+				 e.printStackTrace();
+			        logger.info("Issue Inactivating Rules");
+			        Assert.fail("Rule saved msg not shown");
+			 }
+//			 Assert.assertEquals(CheckIfElementExists(ProductInstanceEntityRuleConfigUIMAP.SavedRule_txt),true,"Rule is not saved"); //Assert if the rule is saved
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);	
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			

@@ -79,7 +79,7 @@ import java.util.Random;
 						WorkItemExternalId = API.getWorkItemExternalIDForGivenFunctionality(Workitem,toolname,functionality);
 //						System.out.println("workitem id from json file is "+WorkItemExternalId);
 						String getWorkitemType = "WorkItemTypeUId_"+workitem;
-						if(!(workitem.contains("Test") || workitem.contains("Requirement") || workitem.contains("Team") || workitem.contains("TestCase") || workitem.contains("Action") || workitem.contains("Decision") || workitem.contains("Test Execution") || workitem.contains("Work Request") || workitem.contains("CodeBranch")|| workitem.contains("CodeCommit")|| workitem.contains("Build")|| workitem.contains("Deployment")|| workitem.contains("Environment")))
+						if(!(workitem.contains("Test") || workitem.contains("Requirement") || workitem.contains("Team") || workitem.contains("TestCase") || workitem.contains("Action") || workitem.contains("Decision") || workitem.contains("Test Execution") || workitem.contains("Work Request") || workitem.contains("CodeBranch")|| workitem.contains("CodeCommit")|| workitem.contains("Build")|| workitem.contains("Deployment")|| workitem.contains("Environment") || workitem.contains("TestResult")))
 						 WorkItemTypeUId = Property.getProperty(getWorkitemType);
 						
 						}
@@ -129,18 +129,31 @@ import java.util.Random;
 			}
 			
 		public static void VerifyDataLoaderFunctionality(JsonPath jsonPath, String workitem, String toolname,String functionality) {
-			SoftAssert sa = new SoftAssert();
-			if(functionality.equalsIgnoreCase("AD_DataLoader")){
-				switch(workitem){
-				case("Bug"):
-				{
-					String titleofentityfromAPI = jsonPath.getString("Workitems(0).Title");
-					sa.assertEquals(actual, expected);
-					
+			try {
+				SoftAssert sa = new SoftAssert();
+				String titleofentityfromAPI="";
+				if(functionality.equalsIgnoreCase("AD_DataLoader")){
+				//fetch Data from API
+				if(workitem.contains("Release")||workitem.contains("Sprint"))
+				titleofentityfromAPI = jsonPath.getString("Iterations[0].Name");
+				else
+				titleofentityfromAPI = jsonPath.getString(workitem+"s[0].Title");
+
+				//validation part
+				sa.assertEquals(workitem+"_Automation", titleofentityfromAPI,"Title mismatch for DataLoader for Entity "+workitem.split("_"));
+				sa.assertAll();
+				logger.info("Verification of Data Loader functionality is successful");
+				}else if(functionality.equalsIgnoreCase("DevOps_DataLoader")){
+					if(workitem.contains("CodeBranch"))
+						titleofentityfromAPI = jsonPath.getString(workitem+"es[0].Title");
+						else
+						titleofentityfromAPI = jsonPath.getString(workitem+"s[0].Title");
 				}
+				logger.info("Verified entities for "+functionality);
+				}catch(Exception e) {
+				e.printStackTrace();
+				logger.info("Issue Verifing Title for Entity external ID for workitem "+workitem);
 				}
-				
-			}
 			
 		}
 
@@ -473,8 +486,12 @@ import java.util.Random;
 			
 			if(workitem.contains("Release") || workitem.contains("Sprint"))
 			{
+				if(functionality.equalsIgnoreCase("AD_DataLoader"))
+					return ((String) jsonObject.get("WorkItemExternalId_"+workitem));
+				else{
 				WorkItemExternalId = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
 				WorkItemExternalId = WorkItemExternalId + "&" + (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
+				}
 			}
 			 if(!(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equals("")))
 				 return WorkItemExternalId;
@@ -497,8 +514,8 @@ import java.util.Random;
 		 	
 			 request.header("Content-Type", "application/json")
 			        .header("Authorization","Bearer "+Property.getToken("Token"))
-			        .header("AppServiceUId",Property.getProperty("AppServiceUId"))
-			 		.header("UserEmailId","sonal.harish.nagda@ds.dev.accenture.com");
+			        .header("AppServiceUId",Property.getProperty("AppServiceUId"));
+//			 		.header("UserEmailId","sonal.harish.nagda@ds.dev.accenture.com");
 			 
 			 JSONObject requestParams = new JSONObject();
 			 
@@ -510,7 +527,7 @@ import java.util.Random;
 			 mywizURL = mywizURL.replace("mywizard", "mywizardapi");
 			 String EntityType="";
 			 
-			 if(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equalsIgnoreCase(""))
+			 if((WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equalsIgnoreCase("")) && !(workitem.contains("Release") || workitem.contains("Sprint")))
 					Assert.fail("WorkItem "+workitem+ " not created for tool "+toolname);
 			 
 			 
@@ -551,6 +568,7 @@ import java.util.Random;
 				 break;
 				 
 			case("Test Execution"):
+			case("TestResult"):
 				 requestParams.put("TestResultExternalId",WorkItemExternalId);
 				EntityType="TestResults";
 				 break;
@@ -566,19 +584,45 @@ import java.util.Random;
 				 break;
 			 
 			case("Release"):
-				 requestParams.put("IterationExternalID", Baseclass.getInstance().release_IterationExternalID);
+				if(functionality.contains("DataLoader"))
+					requestParams.put("IterationExternalID",API.getWorkItemExternalIDForGivenFunctionality(Workitem,toolname,functionality));
+				else
+					 requestParams.put("IterationExternalID", Baseclass.getInstance().release_IterationExternalID);
 			 		EntityType="Iterations";
 				 break;
 				 
 			case("Sprint"):
+				if(functionality.contains("DataLoader"))
+					requestParams.put("IterationExternalID",API.getWorkItemExternalIDForGivenFunctionality(Workitem,toolname,functionality));
+				else
 				 requestParams.put("IterationExternalID", Baseclass.getInstance().sprint_IterationExternalID);
 			 	EntityType="Iterations";
 				 break;
 				 
 			case("CodeCommit"):
-				 requestParams.put("CodeCommitExternalID", WorkItemExternalId);
-			 	EntityType="CodeCommits";
-				 break;
+				requestParams.put("CodeCommitExternalID", WorkItemExternalId);
+				EntityType="CodeCommits";
+				break;
+
+				case("CodeBranch"):
+				requestParams.put("CodeBranchExternalID", WorkItemExternalId);
+				EntityType="CodeBranches";
+				break;
+
+				case("Build"):
+				requestParams.put("BuildExternalID", WorkItemExternalId);
+				EntityType="Builds";
+				break;
+
+				case("Deployment"):
+				requestParams.put("DeploymentExternalID", WorkItemExternalId);
+				EntityType="Deployments";
+				break;
+
+				case("Environment"):
+				requestParams.put("EnvironmentExternalID", WorkItemExternalId);
+				EntityType="Environments";
+				break;
 			 
 			default:
 				 requestParams.put("WorkItemTypeUId",WorkItemTypeUId);
