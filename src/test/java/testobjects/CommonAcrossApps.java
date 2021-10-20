@@ -1117,4 +1117,68 @@ public static void UpdateSpecificEntityIDForSpecificFunctionality(String entity,
 	}
 
 }
+
+public static void LoginToMyWizardWithSpecificUserName(String username) {
+	try{
+		
+		driver().get(Property.getProperty("MyWizard_URL"));
+		waitPageToLoad();
+		Thread.sleep(10000);
+//		driver().manage().window().maximize();
+		
+		
+		if(CheckIfElementExists(MyWizardUIMap.signInWithUserNameSaved_txtbox)){
+			clear(MyWizardUIMap.signInWithUserNameSaved_txtbox);
+			enterText(MyWizardUIMap.signInWithUserNameSaved_txtbox, Property.getProperty("username"));
+			ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+			System.out.println("enter your password manually");
+			Thread.sleep(100000);
+//			 enterText(MyWizardUIMap.Pwd_txtbox1,CommonFunctions.decrypt(Property.getProperty("MyWizard_Password")));
+			ExpWaitForCondition(MyWizardUIMap.signIn_btn1);
+			 click(MyWizardUIMap.signIn_btn1);
+			 Thread.sleep(10000);
+		}
+		
+		//if sign in with email id page shows up
+		if(CheckIfElementExists(MyWizardUIMap.signIn_txtbox)){
+			enterText(MyWizardUIMap.signIn_txtbox, Property.getProperty("MyWizard_Username"));
+			clickJS(MyWizardUIMap.Next_btn);
+			ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
+			System.out.println("enter your password manually");
+			Thread.sleep(10000);
+//			 enterText(MyWizardUIMap.Pwd_txtbox1,CommonFunctions.decrypt(Property.getProperty("MyWizard_Password")));
+			ExpWaitForCondition(MyWizardUIMap.signIn_btn1);
+			 click(MyWizardUIMap.signIn_btn1);
+			 Thread.sleep(10000);
+		}
+		
+		
+		
+		
+		//if stay signed in page shows up
+		ExpWaitForCondition(MyWizardUIMap.Yes_btn);	
+			clickJS(MyWizardUIMap.Yes_btn);
+		
+
+		
+//-------------------------------removing this part as we have got a dedicated user id	
+		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+
+	     ExpWaitForCondition(MyWizardUIMap.Dashboard_Checkbox);
+	                clickJS(MyWizardUIMap.Dashboard_Checkbox);
+	                 clickJS(MyWizardUIMap.Dashboard_Confirm_btn);
+
+		 ExpWaitForCondition(MyWizardUIMap.SettingIcon_Image);
+//		 
+		
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		logger.info("MyWizard page could not be loaded");
+		Assert.fail("MyWizard page could not be loaded");
+	}
+
+}
 }

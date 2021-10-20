@@ -106,6 +106,28 @@ public class CommonSteps {
 			
 		}
 	}
+	
+	@Given("^i login to application \"([^\"]*)\" with username \"([^\"]*)\"$")
+	public void iLoginToApplicationWithSpecificUSername(String AppName,String username) throws Throwable {
+		try{
+	 		switch(AppName)
+			{
+			
+	 		case("Mywizard"):
+	 		{
+	 			CommonAcrossApps.LoginToMyWizardWithSpecificUserName(username);
+	 		
+			}
+			default:
+	        throw new IllegalArgumentException("Invalid Applicationname: " + AppName);	
+			}
+	 		}
+	catch(Exception e)
+	{
+		
+		
+			
+	}
 	@Given("^i login to application \"([^\"]*)\"$")
 	public void iLoginToApplicationWith(String AppName) throws Throwable {
 		

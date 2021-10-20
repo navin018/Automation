@@ -85,7 +85,7 @@ public class SeleniumDSL {
 	{
 
 	ArrayList<String> tabs = new ArrayList<String> (driver().getWindowHandles());
-	driver().switchTo().window(Integer.toString(Baseclass.getInstance().NoOfTabs));
+	driver().switchTo().window(tabs.get(Baseclass.getInstance().NoOfTabs));
 
 	}
 	/** get current window handle */
