@@ -691,6 +691,7 @@ try{
 			boolean clientalreadyselected=false;
 			boolean DC_L1_Selected=false;
 			boolean DC_L2_Selected=false;
+			if(!Property.getProperty("client").contains("3RD")){
 			if(getAttribute(MyWizardUIMap.scopeSelector_drpdown, "title").contains(Property.getProperty(client)))
 			{
 				clientalreadyselected=true;
@@ -698,6 +699,7 @@ try{
 					DC_L1_Selected=true;
 				if(getAttribute(MyWizardUIMap.scopeSelector_drpdown, "title").contains(Property.getProperty(dC_L2)))
 					DC_L2_Selected=true;
+			}
 			}
 			
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);

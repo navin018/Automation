@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 import dataobjects.WorkItemDO;
 import dataobjects.WorkItemExternalIDDO;
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -674,7 +675,13 @@ import java.util.Random;
 			return null;
 		}		
 	
-
+		public void learnrestassured(){
+			RequestSpecBuilder spec = new RequestSpecBuilder();
+			spec.addHeader("", "");
+			spec.addParam("", "");
+			spec.setBaseUri("someurl");
+			RequestSpecification request = spec.build();
+		}
 
 
 	}

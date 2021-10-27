@@ -80,6 +80,13 @@ public static By TFS_checkbox=By.xpath("//input[contains(@id,'Azure DevOps (VSTS
 
 public static By OrderService_btn=By.xpath("//button[text()=' Click here to order services']");
 
+public static By SaaSLandingPage_txt=By.xpath("//span[text()='myWizard® SaaS']");
+
+public static By StorySlicing_Tile=By.xpath("//div[text()='Story Slicing (SHEQC)']");
+public static By StorySlicing_checkbox=By.xpath("//li[@aria-label='Story Slicing (SHEQC)'][@aria-selected='true']");
+public static By Toaster_msg=By.xpath("//div[@aria-label='You are not able to access the application either you are not Authorized or the application is not Provisioned.']");
+public static By ChangeManagerAssistant_Tile=By.xpath("//div[text()='Change Manager Assistant']");
+
 
 }
 

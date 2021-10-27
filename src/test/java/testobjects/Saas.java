@@ -115,13 +115,11 @@ this.base =base;
 			grabScreenshotForExtentReport();
 			//capture id for order
 			
-            getText(SaaSUIMap.OrderNum_txt);
-            System.out.println(getText(SaaSUIMap.OrderNum_txt));
-           
-            String toGetID = getText(SaaSUIMap.OrderNum_txt);
-            System.out.println(toGetID);
-        String toGetID1[] = toGetID.split("id ");
-        System.out.println(toGetID1);
+			String OrderID=getText(SaaSUIMap.OrderNum_txt);
+			System.out.println(OrderID);
+
+			String ORID[] = OrderID.split("id ");
+			System.out.println(ORID);
         //assertion that order ID starts with something
             
 			clickJS(SaaSUIMap.Ok_btn);
@@ -169,78 +167,95 @@ this.base =base;
 	}
 
 	public static void VerifyBundle(String AppBundle) {
-		
+
+
+
 		try {
-			int NoOfTabs =0;
-			 Baseclass.getInstance().NoOfTabs =NoOfTabs+1;
-			MoveToNexttab(); 
-			 waitPageToLoad();
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			//this needs to used to test all the testcases //likhitha
-			SoftAssert sa=new SoftAssert();
-			waitPageToLoad();
-			
-			
-	switch(AppBundle){
-	
-	case "Requirements Analysis":
-		String[] Expected_Requirementbundle = {"Requirements Management","Digital Design Thinking","Change Manager Assistant","IngrAIn","Cygnus"};
-		for(int i=0;i>Expected_Requirementbundle.length;i++)
-		{
-		CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,"i","tilename"));
-		}
-	case "Knowledge Assistance":
-		String[] Expected_KnowledgeAssistancebundle = {"Quasar"};
-		for(int i=0;i>Expected_KnowledgeAssistancebundle.length;i++)
-		{
-		CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,"i","tilename"));
-		}
-	case "Agile":
-		String[] Expected_Agilebundle = {"Story Points Predictor","Report Automation","Retrospective Assistant","Sprint Planner Assistant","Traceability Assistant","Daily Standup Assistant","IngrAIn","Story Slicing (SHEQC)"};
-		for(int i=0;i>Expected_Agilebundle.length;i++)
-		{
-		CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,"i","tilename"));
-		}
-	case "Test optimization":
-		String[] Expected_Testbundle = {"Test Pattern Mining","Instant Test Automation"};
-		for(int i=0;i>Expected_Testbundle.length;i++)
-		{
-		CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,"i","tilename"));
-		}
-	case "Process and Workflow Management":
-		String[] Expected_ProcessandWorkflowManagementbundle = {"Process Builder"};
-		for(int i=0;i>Expected_ProcessandWorkflowManagementbundle.length;i++)
-		{
-		CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,"i","tilename"));
-		}
-		
-	case "Planning and Program Management":
-		String[] Expected_PlanningandProgramManagementbundle = {"Resource Manager","Roadmap Assistant","Milestones and Deliverables Assistant","RAID"};		
-		for(int i=0;i>Expected_PlanningandProgramManagementbundle.length;i++)
-		{
-		CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,"i","tilename"));
-		}
+				int NoOfTabs =0;
+				Baseclass.getInstance().NoOfTabs =NoOfTabs+1;
+				MoveToNexttab();
+				waitPageToLoad();
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				Thread.sleep(3000);
+				//I understand Popup
+				if(CheckIfElementExists(MyWizardUIMap.Dashboard_Checkbox)) {
+				click(MyWizardUIMap.Dashboard_Checkbox);
+				click(MyWizardUIMap.Dashboard_Confirm_btn);
+				}
+				// //this needs to used to test all the testcases //likhitha
+				SoftAssert sa=new SoftAssert();
+				waitPageToLoad();
 		
 		
-	case "Modern Engineering Analytics":
-		String[] Expected_ModernEngineeringAnalyticsbundle = {"Virtual Data Scientist","Agile Analytics","DevOps Analytics","Earned Value Analytics","Self-service Analytics","Self-Service Reporting","IngrAIn"};	
-		for(int i=0;i>Expected_ModernEngineeringAnalyticsbundle.length;i++)
-			{
-			CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,"i","tilename"));
-			}
-		sa.assertAll();
-			logger.info("Able to view all the apps under the bundle  "+AppBundle+" in SaaS successfully");
-			driver().close();	
-	}
+
+
+		switch(AppBundle){
+
+
+
+				case "Requirements Analysis":
+				String[] Expected_Requirementbundle = {"Requirements Management","Digital Design Thinking","Change Manager Assistant","IngrAIn","Cygnus"};
+				for(int i=0;i<Expected_Requirementbundle.length;i++)
+				CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,Expected_Requirementbundle[i],"tilename"));
+				clickJS(SaaSUIMap.ChangeManagerAssistant_Tile);
+				ExpWaitForCondition(SaaSUIMap.Toaster_msg);
+				break;
+		
+		
+		
+				case "Knowledge Assistance":
+				String[] Expected_KnowledgeAssistancebundle = {"Quasar"};
+				for(int i=0;i<Expected_KnowledgeAssistancebundle.length;i++)
+				CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,Expected_KnowledgeAssistancebundle[i],"tilename"));
+		
+				break;
+				case "Agile":
+				String[] Expected_Agilebundle = {"Story Points Predictor","Report Automation","Retrospective Assistant","Sprint Planner Assistant","Traceability Assistant","Daily Standup Assistant","IngrAIn","Story Slicing (SHEQC)"};
+				for(int i=0;i<Expected_Agilebundle.length;i++)
+				CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,Expected_Agilebundle[i],"tilename"));
+				clickJS(SaaSUIMap.StorySlicing_Tile);
+				break;
+				case "Test optimization":
+				String[] Expected_Testbundle = {"Test Pattern Mining","Instant Test Automation"};
+				for(int i=0;i<Expected_Testbundle.length;i++)
+				CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,Expected_Testbundle[i],"tilename"));
+		
+				break;
+				case "Process and Workflow Management":
+				String[] Expected_ProcessandWorkflowManagementbundle = {"Process Builder"};
+				for(int i=0;i<Expected_ProcessandWorkflowManagementbundle.length;i++) {
+				CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,Expected_ProcessandWorkflowManagementbundle[i],"tilename")); }
+				break;
+		
+		
+		
+				case "Planning and Program Management":
+				String[] Expected_PlanningandProgramManagementbundle = {"Resource Manager","Roadmap Assistant","Milestones and Deliverables Assistant","RAID"};
+				for(int i=0;i<Expected_PlanningandProgramManagementbundle.length;i++)
+				CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,Expected_PlanningandProgramManagementbundle[i],"tilename"));
+				break;
+		
+		
+		
+				case "Modern Engineering Analytics":
+				String[] Expected_ModernEngineeringAnalyticsbundle = {"Virtual Data Scientist","Agile Analytics","DevOps Analytics","Earned Value Analytics","Self-service Analytics","Self-Service Reporting","IngrAIn"};
+				for(int i=0;i<Expected_ModernEngineeringAnalyticsbundle.length;i++)
+				{
+				CheckIfElementExists(prepareWebElementWithDynamicXpath(SaaSUIMap.Actual_Result,Expected_ModernEngineeringAnalyticsbundle[i],"tilename"));
+				}
+				break;
 		}
-		catch(Exception e){
+			sa.assertAll();
+			ExpWaitForCondition(SaaSUIMap.Toaster_msg);
+			logger.info("Able to view all the apps under the bundle "+AppBundle+" in SaaS successfully");
+		}
+			catch(Exception e){
 			e.printStackTrace();
-			grabScreenshotForExtentReport();
 			logger.info("Issue verifying the bundle "+AppBundle+" in SaaS");
 			Assert.fail("Issue verifying the bundle "+AppBundle+" in SaaS");
+			}
+
 		}
-		
-}
 	public static void AddDetails(String chargecode, String noofUsers, String contractDuration) {
 		try {
 		waitPageToLoad();
@@ -260,7 +275,7 @@ this.base =base;
 		singleClick(SaaSUIMap.Verify_text);
 		ExpWaitForCondition(SaaSUIMap.Success_txt);
 		clickJS(SaaSUIMap.DC_Submit_btn);
-		ExpWaitForCondition(SaaSUIMap.SuccessToaster_Msg);
+		ExpWaitForCondition(SaaSUIMap.SuccessToaster_Msg);	//to check
 		logger.info("Details in Contract Demographics page added successfully");
 		}
 		catch(Exception e) {
@@ -461,28 +476,28 @@ this.base =base;
 			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			
 		
-		if(getAttribute(SaaSUIMap.selectedRRA_checkbox, "aria-selected").equalsIgnoreCase("true"))
+		if(!getAttribute(SaaSUIMap.selectedRRA_checkbox, "aria-selected").equalsIgnoreCase("true"))
 		clickJS(SaaSUIMap.selectedRRA_checkbox);
-		if(getAttribute(SaaSUIMap.selectedRC_checkbox, "aria-selected").equalsIgnoreCase("true"))
+		if(!getAttribute(SaaSUIMap.selectedRC_checkbox, "aria-selected").equalsIgnoreCase("true"))
 		clickJS(SaaSUIMap.selectedRC_checkbox);
-		if(getAttribute(SaaSUIMap.selectedRM_checkbox, "aria-selected").equalsIgnoreCase("true"))
+		if(!getAttribute(SaaSUIMap.selectedRM_checkbox, "aria-selected").equalsIgnoreCase("true"))
 		clickJS(SaaSUIMap.selectedRM_checkbox);
-		if(getAttribute(SaaSUIMap.selectedDDT_checkbox, "aria-selected").equalsIgnoreCase("true"))
+		if(!getAttribute(SaaSUIMap.selectedDDT_checkbox, "aria-selected").equalsIgnoreCase("true"))
 		clickJS(SaaSUIMap.selectedDDT_checkbox);
 		if(getAttribute(SaaSUIMap.selectedCMA_checkbox, "aria-selected").equalsIgnoreCase("true"))
 		clickJS(SaaSUIMap.selectedCMA_checkbox);
-		if(getAttribute(SaaSUIMap.selectedIAI_checkbox, "aria-selected").equalsIgnoreCase("truee"))
+		if(!getAttribute(SaaSUIMap.selectedIAI_checkbox, "aria-selected").equalsIgnoreCase("truee"))
 		clickJS(SaaSUIMap.selectedIAI_checkbox);
-		if(getAttribute(SaaSUIMap.selectedRDB_checkbox, "aria-selected").equalsIgnoreCase("true"))
+		if(!getAttribute(SaaSUIMap.selectedRDB_checkbox, "aria-selected").equalsIgnoreCase("true"))
 		clickJS(SaaSUIMap.selectedRDB_checkbox);
-		if(getAttribute(SaaSUIMap.selectedRBP_checkbox, "aria-selected").equalsIgnoreCase("true"))
+		if(!getAttribute(SaaSUIMap.selectedRBP_checkbox, "aria-selected").equalsIgnoreCase("true"))
 		clickJS(SaaSUIMap.selectedRBP_checkbox);
-		if(getAttribute(SaaSUIMap.selectedCygnus_checkbox, "aria-selected").equalsIgnoreCase("true"))
+		if(!getAttribute(SaaSUIMap.selectedCygnus_checkbox, "aria-selected").equalsIgnoreCase("true"))
 		clickJS(SaaSUIMap.selectedCygnus_checkbox);
-		if(getAttribute(SaaSUIMap.selectedIA_checkbox, "aria-selected").equalsIgnoreCase("true"))
+		if(!getAttribute(SaaSUIMap.selectedIA_checkbox, "aria-selected").equalsIgnoreCase("true"))
 		clickJS(SaaSUIMap.selectedIA_checkbox);
 		clickJS(SaaSUIMap.saveandnxt_btn);
-
+		
 		logger.info("Data added successfully for Enable Usecase page in SaaS");
 		}catch(Exception e) {
 		e.printStackTrace();

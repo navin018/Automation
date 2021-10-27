@@ -62,8 +62,8 @@ public class CommonSteps {
 		if(toolname.trim().equalsIgnoreCase("TFS Scrum")){
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"TFSScrum.properties"),new File(propsPath+"project.properties"));
 		}
-		if(toolname.trim().equalsIgnoreCase("APT")){
-			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"APT.properties"),new File(propsPath+"project.properties"));
+		if(toolname.trim().equalsIgnoreCase("SAAS")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"SaaS.properties"),new File(propsPath+"project.properties"));
 		}
 		  
 	}
@@ -109,24 +109,24 @@ public class CommonSteps {
 	
 	@Given("^i login to application \"([^\"]*)\" with username \"([^\"]*)\"$")
 	public void iLoginToApplicationWithSpecificUSername(String AppName,String username) throws Throwable {
-		try{
-	 		switch(AppName)
+	try{
+			switch(AppName)
 			{
-			
-	 		case("Mywizard"):
-	 		{
-	 			CommonAcrossApps.LoginToMyWizardWithSpecificUserName(username);
-	 		
+		
+			case("SaaS"):
+			{
+			CommonAcrossApps.LoginToMyWizardWithSpecificUserName(username);
+			break;
 			}
 			default:
-	        throw new IllegalArgumentException("Invalid Applicationname: " + AppName);	
+			throw new IllegalArgumentException("Invalid Applicationname: " + AppName);
 			}
-	 		}
-	catch(Exception e)
-	{
-		
-		
-			
+		}
+		catch(Exception e)
+		{
+		e.printStackTrace();
+		Assert.fail();
+		}
 	}
 	@Given("^i login to application \"([^\"]*)\"$")
 	public void iLoginToApplicationWith(String AppName) throws Throwable {
