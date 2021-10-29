@@ -15,7 +15,7 @@ Examples:
 
 Scenario Outline: SaaS_loginandNavigation
 Given i load the project properties file
-And i login to application "<applicationname>" with username "SAASUserName" 
+And i login to application "<applicationname>" with username "UserName" 
 Then i select client "SAAS_Client" with DC_L1 as "SAAS_DC_L1" and DC_L2 as "SAAS_DC_L2"
 And i add Contract Demographics details with "BRBEQ001" and "25" and "<6 Mon"
 And i add bundle "Requirements Analysis" to the cart in SAAS screen
@@ -49,10 +49,10 @@ Examples:
 
 
 
-
+@ka
 Scenario Outline: SaaS_loginandNavigation
 Given i load the project properties file
-And i login to application "<applicationname>"
+And i login to application "<applicationname>" with username "UserName" 
 Then i select client "SAAS_Client" with DC_L1 as "SAAS_DC_L1" and DC_L2 as "SAAS_DC_L2"
 And i add Contract Demographics details with "BRBEQ001" and "25" and "<6 Mon"
 And i add bundle "Knowledge Assistance" to the cart in SAAS screen
@@ -79,10 +79,10 @@ Examples:
 
 
 
-
+@agile
 Scenario Outline: SaaS_loginandNavigation
 Given i load the project properties file
-And i login to application "<applicationname>"
+And i login to application "<applicationname>" with username "UserName" 
 Then i select client "SAAS_Client" with DC_L1 as "SAAS_DC_L1" and DC_L2 as "SAAS_DC_L2"
 And i add Contract Demographics details with "BRBEQ001" and "25" and "<6 Mon"
 And i add bundle "Agile" to the cart in SAAS screen
@@ -108,10 +108,10 @@ Examples:
 
 
 
-
+@testopti
 Scenario Outline: SaaS_loginandNavigation
 Given i load the project properties file
-And i login to application "<applicationname>"
+And i login to application "<applicationname>" with username "UserName" 
 Then i select client "SAAS_Client" with DC_L1 as "SAAS_DC_L1" and DC_L2 as "SAAS_DC_L2"
 And i add Contract Demographics details with "BRBEQ001" and "25" and "<6 Mon"
 And i add bundle "Test optimization" to the cart in SAAS screen
@@ -138,10 +138,10 @@ Examples:
 
 
 
-
+@program
 Scenario Outline: SaaS_loginandNavigation
 Given i load the project properties file
-And i login to application "<applicationname>"
+And i login to application "<applicationname>" with username "UserName" 
 Then i select client "SAAS_Client" with DC_L1 as "SAAS_DC_L1" and DC_L2 as "SAAS_DC_L2"
 And i add Contract Demographics details with "BRBEQ001" and "25" and "<6 Mon"
 And i add bundle "Program & Project Management" to the cart in SAAS screen
@@ -166,10 +166,10 @@ Examples:
 
 
 
-
+@modern
 Scenario Outline: SaaS_loginandNavigation
 Given i load the project properties file
-And i login to application "<applicationname>"
+And i login to application "<applicationname>" with username "UserName" 
 Then i select client "SAAS_Client" with DC_L1 as "SAAS_DC_L1" and DC_L2 as "SAAS_DC_L2"
 And i add Contract Demographics details with "BRBEQ001" and "25" and "<6 Mon"
 And i add bundle "Modern Engineering Analytics" to the cart in SAAS screen
@@ -191,29 +191,29 @@ And i verify if i am able to view all the apps under the bundle "Modern Engineer
 Examples:
 | applicationname |
 | SaaS |
-#
-#
-#Scenario Outline: SaaS_loginandNavigation
-#Given i load the project properties file
-#And i login to application "<applicationname>"
-#Then i select client "SAAS_Client" with DC_L1 as "SAAS_DC_L1" and DC_L2 as "SAAS_DC_L2"
-#And i add Contract Demographics details with "BRBEQ001" and "25" and "<6 Mon"
-#And i add bundle "Process and Workflow Management" to the cart in SAAS screen
-#And i go to final cart and enter all the mandatory details "Process and Workflow Management"
+
+@process
+Scenario Outline: SaaS_loginandNavigation
+Given i load the project properties file
+And i login to application "<applicationname>" with username "UserName" 
+Then i select client "SAAS_Client" with DC_L1 as "SAAS_DC_L1" and DC_L2 as "SAAS_DC_L2"
+And i add Contract Demographics details with "BRBEQ001" and "25" and "<6 Mon"
+And i add bundle "Process and Workflow Management" to the cart in SAAS screen
+And i go to final cart and enter all the mandatory details "Process and Workflow Management"
 ###DIY screen enter details
-#And i enter data for "select tools" section for the bundle "Process and Workflow Management" in DIY screen
-#And i enter data for "integrate tools" section for the bundle "Process and Workflow Management" in DIY screen
-#And i enter data for "data mapping" section for the bundle "Process and Workflow Management" in DIY screen
-#And i get started to order services for bundle "Process and Workflow Management" in DIY screen
+And i enter data for "select tools" section for the bundle "Process and Workflow Management" in DIY screen
+And i enter data for "integrate tools" section for the bundle "Process and Workflow Management" in DIY screen
+And i enter data for "data mapping" section for the bundle "Process and Workflow Management" in DIY screen
+And i get started to order services for bundle "Process and Workflow Management" in DIY screen
 ###back to SAAS UI
-#And i confirm order confirmation for bundle "Process and Workflow Management" in SAAS screen
+And i confirm order confirmation for bundle "Process and Workflow Management" in SAAS screen
 ####back to DIY screen
-#And i enter data for "enable usecases" section for the bundle "Process and Workflow Management" in DIY screen
-#And i enter data for "add users" section for the bundle "Process and Workflow Management" in DIY screen
-#And i verify if i am able to view all the apps under the bundle "Process and Workflow Management"
-####phoenix UI - verify if i am able to see the stack tile, i.e all the apps(under that bundle) for the given login
-#
-#
-#Examples:
-#| applicationname |
-#| SaaS |
+And i enter data for "enable usecases" section for the bundle "Process and Workflow Management" in DIY screen
+And i enter data for "add users" section for the bundle "Process and Workflow Management" in DIY screen
+And i verify if i am able to view all the apps under the bundle "Process and Workflow Management"
+###phoenix UI - verify if i am able to see the stack tile, i.e all the apps(under that bundle) for the given login
+
+
+Examples:
+| applicationname |
+| SaaS |

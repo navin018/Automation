@@ -1019,4 +1019,15 @@ public class SeleniumDSL {
 	            return false;
 	        return true;
 	    }
+	 
+	 public static void NavigatetoLastActiveTab(String currentHandle)
+	 {
+		 Set<String> handles=driver().getWindowHandles();
+		 for(String actual: handles) {
+		 if(!actual.equalsIgnoreCase(currentHandle)) {
+	
+		 driver().switchTo().window(actual);
+	 }
+	 }
+	 }
 }

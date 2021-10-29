@@ -3,7 +3,9 @@ import org.openqa.selenium.By;
 
 public class SaaSUIMap {
 
-
+public static By signInWithUserSaaS_txtbox=By.xpath("//input[@type='email' and @name='UserName']");
+public static By SaaSLandingPage_txt=By.xpath("//span[text()='myWizard® SaaS']");
+	
 public static By Clear_btn=By.xpath("//span[@title='Client(s) and/or delivery construct(s) level access allows account to get access on selected client and/or delivery construct data.']/following::button[text()='Clear'][1]");
 public static String DC_Checkbox="//span[text()='{SaaS_DC_L1}' and @class='node-name']//preceding::input[@type='checkbox'][1]";
 public static By DC_Statictext=By.xpath("//span[text()='{SaaS_DC_L1}']//preceding::option[text()='Please select..'][1]");
@@ -27,6 +29,10 @@ public static By OrderConfiramtion_txt=By.xpath("//h3[text()='Order Confirmation
 public static By OrderNum_txt=By.xpath("//p[@class='fs-18'][contains(text(),'order id')]");
 public static By Ok_btn=By.xpath("//button[text()='Ok']");
 public static By Username_txt=By.xpath("//a[@id='loginDetails']");
+
+//added
+public static By MyOrders_txt=By.xpath("//button[text()='Logout']//preceding::span[text()='My Orders']");
+
 public static By MyOrder_drpdwm=By.xpath("//p[@class='mt-4']//following::span[text()='My Orders'][1]");
 public static String Bundle_txt="//td[text()='{AppBundle}']";
 public static By Order_id=By.xpath("//a[contains(text(),'ORDR')]");
@@ -73,19 +79,42 @@ public static By selectedRBP_checkbox=By.xpath("//li[@aria-label='Requirements B
 public static By selectedCygnus_checkbox=By.xpath("//li[@aria-label='Cygnus'][@aria-selected='true']");
 public static By selectedIA_checkbox=By.xpath("//li[@aria-label='Impact Analyzer'][@aria-selected='true']");
 public static By saveandnxt_btn=By.xpath("//button[text()='Save & Next']");
-public static By Userinenableuser_text=By.xpath("//a[@id='UserData-tab']");
+public static By Userinenableuser_text=By.xpath("//a[text()='User']");
 public static By Greentick_img=By.xpath("//img[@class='mr-2 w-60px']");
 public static By Arrow_img=By.xpath("//img[@alt='Click to Proceed']");
 public static By TFS_checkbox=By.xpath("//input[contains(@id,'Azure DevOps (VSTS)-Agile')]");
 
 public static By OrderService_btn=By.xpath("//button[text()=' Click here to order services']");
 
-public static By SaaSLandingPage_txt=By.xpath("//span[text()='myWizard® SaaS']");
+
+
+
+
+public static By NewSearch_txtbox=By.xpath("//div[@class='mx-1 my-auto ng-star-inserted']//following::input[@placeholder='Search the catalogue']");
+
+
+public static By NewCart_img=By.xpath("//img[contains(@style,'margin-top')][@title='Search' and @alt='Search']//following::img[1]");
+public static By SearchCatagolue=By.xpath("//img[contains(@style,'margin-top')][@title='Search' and @alt='Search']//preceding::input[@placeholder='Search the catalogue'][1]");
+public static By Search=By.xpath("//img[contains(@style,'margin-top')][@title='Search' and @alt='Search']");
+
 
 public static By StorySlicing_Tile=By.xpath("//div[text()='Story Slicing (SHEQC)']");
 public static By StorySlicing_checkbox=By.xpath("//li[@aria-label='Story Slicing (SHEQC)'][@aria-selected='true']");
 public static By Toaster_msg=By.xpath("//div[@aria-label='You are not able to access the application either you are not Authorized or the application is not Provisioned.']");
 public static By ChangeManagerAssistant_Tile=By.xpath("//div[text()='Change Manager Assistant']");
+
+
+
+public static By CartPage =By.xpath("//li[text()='My Cart']");
+public static By SelectedServices_txt =By.xpath("//h3[text()='Selected Services']");
+public static By EditSetup_btn=By.xpath("//button[text()='Edit Setup']");
+public static By SelfEnableAutomation_txt=By.xpath("//a[text()='Self Enable Automation']");
+public static By EnableUsecase_txt =By.xpath("//div[text()='SELECT USE CASES']");
+
+public static By SecondSave_btn =By.xpath("//div[@id='ApplicationData']//following::button[text()='Save & Next']");
+public static By FirstSave_btn =By.xpath("//div[text()='Scrum Master']//following::button[text()='Save & Next'][1]");
+public static By AddCartSucess_taoastermsg =By.xpath("//div[@aria-label='Service added to cart with default consumption details. Please update the details if required']");
+
 
 
 }
