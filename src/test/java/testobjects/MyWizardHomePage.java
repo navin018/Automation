@@ -90,10 +90,10 @@ public class MyWizardHomePage {
 //         ExpWaitForCondition(MyWizardUIMap.IUnderstand_checkbox);
 //        clickJS(MyWizardUIMap.IUnderstand_checkbox);
 //         clickJS(MyWizardUIMap.Confirm_btn);  
-         ExpWaitForCondition(MyWizardUIMap.Dashboard_Checkbox);
-         click(MyWizardUIMap.Dashboard_Checkbox);
-         ExpWaitForCondition(MyWizardUIMap.Dashboard_Confirm_btn);
-         click(MyWizardUIMap.Dashboard_Confirm_btn);
+//         ExpWaitForCondition(MyWizardUIMap.Dashboard_Checkbox);
+//         click(MyWizardUIMap.Dashboard_Checkbox);
+//         ExpWaitForCondition(MyWizardUIMap.Dashboard_Confirm_btn);
+//         click(MyWizardUIMap.Dashboard_Confirm_btn);
         	 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		}
 		catch(Exception e)

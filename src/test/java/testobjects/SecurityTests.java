@@ -332,6 +332,8 @@ public class SecurityTests extends Baseclass{
 					ExpWaitForCondition(SecurityTestsUIMap.BasicDetails_AccessRolePage_statictxt);
 				break;
 			case "Manage Delivery Construct Type":
+				ExpWaitForCondition(SecurityTestsUIMap.Search_txtbox);
+				break;
 			case "Manage Teams":
 				ExpWaitForCondition(SecurityTestsUIMap.Search500_txtbox);
 				break;
@@ -833,9 +835,17 @@ public static void ActivateAccount() {
         ExpWaitForCondition(SecurityTestsUIMap.SearchAccount_txtbox);
         enterText(SecurityTestsUIMap.SearchAccount_txtbox,"AutomationAccount_DoNotEdit");
 //        ExpWaitForCondition(SecurityTestsUIMap.SearchAccount_txtbox);
+        try{
         doubleClick(SecurityTestsUIMap.Select_account);
+        ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+        }
+        catch(Exception e){
+        	e.printStackTrace();
+        	logger.info("account AutomationAccount_DoNotEdit does not exist or has been deleted");
+        	Assert.fail("account AutomationAccount_DoNotEdit does not exist or has been deleted");
+        }
         click(SecurityTestsUIMap.Activate_btn);
-        click(SecurityTestsUIMap.Save_btn);
+        click(SecurityTestsUIMap.Saverule_btn);
         
     }
     catch(Exception e) {
@@ -852,8 +862,9 @@ public static void InactivateAccount() {
 		ExpWaitForCondition(SecurityTestsUIMap.SearchAccount_txtbox);		
 		enterText(SecurityTestsUIMap.SearchAccount_txtbox,"AutomationAccount_DoNotEdit");
 		doubleClick(SecurityTestsUIMap.Select_account);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		click(SecurityTestsUIMap.InActivate_btn);
-		click(SecurityTestsUIMap.Save_btn);
+		click(SecurityTestsUIMap.Saverule_btn);
 		
 	}
 	catch (Exception e) {
@@ -946,8 +957,9 @@ public static void ActivateDC() {
         clickJS(SecurityTestsUIMap.DcActivate_button);
         ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img1);
         clickJS(SecurityTestsUIMap.DcSave_button);
-       
+        ExpWaitForElementToDisappear(SecurityTestsUIMap.waitSign_Img1);
         clickJS(SecurityTestsUIMap.BacktoManage_text);
+        Thread.sleep(4000);
         if(CheckIfElementExists(SecurityTestsUIMap.Popup_Yes)){
 //            ExpWaitForElementToDisappear(SecurityTestsUIMap.Popup_Yes);
             clickJS(SecurityTestsUIMap.Popup_Yes);

@@ -11,7 +11,7 @@ Given i load the project properties file
     And i click on "back" button
     And i enter all the mandatory details for "Account Management"
     And the user check for the duplicate security headers and missing security headers for "Account Management/Add Account page "
-    And i delete the data for  "Account Management"
+    And i delete the data for "Account Management"
     And i click on "back" button
     And i click on link "View/Edit" under "Account Management"
     And the user check for the duplicate security headers and missing security headers for "Account Management/View Edit page"
@@ -34,7 +34,6 @@ Scenario: Check for the security headers
     And i click on "back" button
     And i click on link "Manage Delivery Construct Type" under "Organization (Delivery) Structure Page"
     And i click on link "Add Delivery Construct Type" under "Organization (Delivery) Structure/Manage Delivery Construct Type"
-    Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Type/Manage Delivery Construct Type/Add Delivery Construct Type"
     And i click on link "Add Attribute" under "Organization (Delivery) Structure Page,Manage Delivery Construct Type section"
     Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Type/Manage Delivery Construct Type/View Edit Page/Add Attribute Page"
     And i click on "cancel" button

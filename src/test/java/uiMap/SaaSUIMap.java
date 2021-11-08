@@ -82,7 +82,8 @@ public static By saveandnxt_btn=By.xpath("//button[text()='Save & Next']");
 public static By Userinenableuser_text=By.xpath("//a[text()='User']");
 public static By Greentick_img=By.xpath("//img[@class='mr-2 w-60px']");
 public static By Arrow_img=By.xpath("//img[@alt='Click to Proceed']");
-public static By TFS_checkbox=By.xpath("//input[contains(@id,'Azure DevOps (VSTS)-Agile')]");
+//public static By TFS_checkbox=By.xpath("//input[contains(@id,'Azure DevOps (VSTS)-Agile')]");
+public static By TFS_checkbox=By.xpath("//input[contains(@id,'myWizard-TFS')]");
 
 public static By OrderService_btn=By.xpath("//button[text()=' Click here to order services']");
 

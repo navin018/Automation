@@ -97,7 +97,7 @@ public class DIY extends Baseclass{
 		singleClick(DIYUIMap.IndustrySegement_drpdown);
 		clickJS(DIYUIMap.IndustrySegement_drpdownValue);
 		
-		singleClick(DIYUIMap.ResponsibleBusinessEntity_drpdown);
+		singleClick(DIYUIMap.ResponsibleDeliveryEntity);
 		clickJS(DIYUIMap.ResponsibleBusinessEntity_drpdownValue);
 		
 		singleClick(DIYUIMap.DeliveryLead_txtbox);

@@ -323,7 +323,7 @@ public class myQueries extends Baseclass {
 					if(CheckIfElementExists(MyWizardUIMap.signInWithUserNameSaved_txtbox)){
 						clear(MyWizardUIMap.signInWithUserNameSaved_txtbox);
 						enterText(MyWizardUIMap.signInWithUserNameSaved_txtbox, Property.getProperty("MyWizard_Username2"));
-						 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+						 enterText(MyWizardUIMap.Pwd_txtbox1,CommonFunctions.decrypt(Property.getProperty("MyWizard_Password")));
 						 click(MyWizardUIMap.signIn_btn1);
 						 Thread.sleep(10000);
 					}
@@ -333,7 +333,7 @@ public class myQueries extends Baseclass {
 						enterText(MyWizardUIMap.signIn_txtbox, Property.getProperty("MyWizard_Username2"));
 						clickJS(MyWizardUIMap.Next_btn);
 						ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
-						 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+						 enterText(MyWizardUIMap.Pwd_txtbox1,CommonFunctions.decrypt(Property.getProperty("MyWizard_Password")));
 						 click(MyWizardUIMap.signIn_btn1);
 						 Thread.sleep(10000);
 					}
@@ -347,7 +347,7 @@ public class myQueries extends Baseclass {
 					clickJS(MyWizardUIMap.Next_btn);
 					ExpWaitForCondition(MyWizardUIMap.Pwd_txtbox1);
 					Thread.sleep(5000);
-					 enterText(MyWizardUIMap.Pwd_txtbox1,Property.getProperty("MyWizard_Password"));
+					 enterText(MyWizardUIMap.Pwd_txtbox1,CommonFunctions.decrypt(Property.getProperty("MyWizard_Password")));
 					 click(MyWizardUIMap.signIn_btn1);
 //					 Thread.sleep(10000);
 					}

@@ -58,7 +58,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import testobjects.Baseclass;
-import uiMap.JiraUIMap;
+import uiMap.*;
 
 import utilities.general.DataManager;
 import utilities.general.Property;
@@ -740,6 +740,10 @@ public static void UpdateWorkItemExternalIDsForAppsForSpecificFunctionality(Stri
             jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario7", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario7);
             jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario8", Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario8);
             jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario8", Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario8);
+            FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+	         file.write(jsonObject.toJSONString());
+	         file.flush();
+	         file.close();
 		}
 	}
 	
@@ -1056,10 +1060,72 @@ public static void UpdateSpecificEntityIDForSpecificFunctionality(String entity,
         jsonObject.put("WorkItemExternalId_TeamUId03",Baseclass.getInstance().TeamUId);
         }
         break;
-    case("TeamExternalId03"):{
-        jsonObject.put("WorkItemExternalId_TeamExternalId03",Baseclass.getInstance().TeamExternalID);
+    case("Bug_TeamArchitecture_Scenario1"):{
+        jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario1",Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario1);
         }
         break;
+    case("Action_TeamArchitecture_Scenario1"):{
+        jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario1",Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario1);
+        }
+        break;
+    case("Bug_TeamArchitecture_Scenario2"):{
+        jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario2",Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario2);
+        }
+        break;
+    case("Action_TeamArchitecture_Scenario2"):{
+        jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario2",Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario2);
+        }
+        break;
+    case("Bug_TeamArchitecture_Scenario3"):{
+        jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario3",Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario3);
+        }
+        break;
+    case("Action_TeamArchitecture_Scenario3"):{
+        jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario3",Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario3);
+        }
+        break;
+    case("Bug_TeamArchitecture_Scenario4"):{
+        jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario4",Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario4);
+        }
+        break;
+    case("Action_TeamArchitecture_Scenario4"):{
+        jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario4",Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario4);
+        }
+        break;
+    case("Bug_TeamArchitecture_Scenario5"):{
+        jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario5",Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario5);
+        }
+        break;
+    case("Action_TeamArchitecture_Scenario5"):{
+        jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario5",Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario5);
+        }
+        break;
+    case("Bug_TeamArchitecture_Scenario6"):{
+        jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario6",Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario6);
+        }
+        break;
+    case("Action_TeamArchitecture_Scenario6"):{
+        jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario6",Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario6);
+        }
+        break;
+    case("Bug_TeamArchitecture_Scenario7"):{
+        jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario7",Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario7);
+        }
+        break;
+    case("Action_TeamArchitecture_Scenario7"):{
+        jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario7",Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario7);
+        }
+        break;
+    case("Bug_TeamArchitecture_Scenario8"):{
+        jsonObject.put("WorkItemExternalId_Bug_TeamArchitecture_Scenario8",Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario8);
+        }
+        break;
+    case("Action_TeamArchitecture_Scenario8"):{
+        jsonObject.put("WorkItemExternalId_Action_TeamArchitecture_Scenario8",Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario8);
+        }
+        break;
+        
+        
        
 	case("Release"):
 		{
@@ -1149,9 +1215,9 @@ public static void LoginToMyWizardWithSpecificUserName(String username) {
 		clickJS(MyWizardUIMap.Yes_btn);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		if(CheckIfElementExists(SaaSUIMap.Iunderstand_txtbox))
-		clickJS(SaaSUIMap.Iunderstand_txtbox);
-
+		clickJS(SaaSUIMap.Iunderstand_txtbox);		
 		ExpWaitForCondition(SaaSUIMap.SaaSLandingPage_txt);
+
 		logger.info("SaaS page loaded successfully");
 
 

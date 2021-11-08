@@ -30,10 +30,10 @@ public class RMPSteps {
 		RMP.NavigateToRMPPage();
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		Thread.sleep(3000);
-		ExpWaitForCondition(MyWizardUIMap.Dashboard_Checkbox);
-        click(MyWizardUIMap.Dashboard_Checkbox);
-        ExpWaitForCondition(MyWizardUIMap.Dashboard_Confirm_btn);
-        click(MyWizardUIMap.Dashboard_Confirm_btn);
+//		ExpWaitForCondition(MyWizardUIMap.Dashboard_Checkbox);
+//        click(MyWizardUIMap.Dashboard_Checkbox);
+//        ExpWaitForCondition(MyWizardUIMap.Dashboard_Confirm_btn);
+//        click(MyWizardUIMap.Dashboard_Confirm_btn);
        	 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 	}
 	

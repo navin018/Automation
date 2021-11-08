@@ -1525,9 +1525,7 @@ try    {
     String urltonavigate="";
            urltonavigate = Property.getProperty("JiraURL").split("secure")[0]+"browse";
        
-   String testDataPath_WorkItemExternalIDs="";
-   testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_TeamArchitecture.json" ;
-   String WorkItemExternalId = Tools.getWorkItemExternalID(workItem.split("_")[0], "ADT Jira");
+           String WorkItemExternalId = API.getWorkItemExternalIDForGivenFunctionality(workItem, "Jira", functionality);
    
            goURL(urltonavigate+"/"+WorkItemExternalId);
    
@@ -1536,10 +1534,11 @@ try    {
    clickJS(JiraUIMap.edit_btn);
    Thread.sleep(5000);
    
-   clickJS(JiraUIMap.Assigne_txtbox);
-   clear(JiraUIMap.Assigne_txtbox);
-   enterText(JiraUIMap.Assigne_txtbox,wi.Assignee);
+   clickJS(JiraUIMap.Owner_txtbox);
+   clear(JiraUIMap.Owner_txtbox);
+   enterText(JiraUIMap.Owner_txtbox,wi.Assignee);
     Thread.sleep(1000);
+    sendEntr();
     clickJS(JiraUIMap.update_btn);
     waitPageToLoad();
     logger.info("workitem updation done for "+workItem+" in Jira");
@@ -1570,32 +1569,90 @@ public static void CreateWorkitemForSpecificFunctionality(String workitem, Strin
 }
 
 public static void CaptureWorkitemDetailsForTeamArchitecture(String workitem, String functionality) {
-	try{
-	
+try{
+
 		String workitem_type[] =workitem.split("_");
+		clear(JiraUIMap.SearchBoxHomePage_txtbox);
 		enterText(JiraUIMap.SearchBoxHomePage_txtbox,workitem_type[0]);
 		Thread.sleep(5000);
 		ExpWaitForCondition(JiraUIMap.WorkItemExternalID_txt);
-		String toGetID = getAttribute(JiraUIMap.WorkItemExternalID_txt,"href");		
+		String toGetID = getAttribute(JiraUIMap.WorkItemExternalID_txt,"href");
 		String toGetID1[] = toGetID.split("browse/");
-			switch(workitem){
-			
-			case "Bug_TeamArchitecture_Scenario1":
-			Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario1 = toGetID1[1];
-			System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
-			break;
-			
-			case "Action_TeamArchitecture_Scenario1":
-				
-				
-			break;
-			}
+		switch(workitem){
+		
+		case "Bug_TeamArchitecture_Scenario1":
+		Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario1 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		
+		case "Action_TeamArchitecture_Scenario1":
+		Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario1 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Bug_TeamArchitecture_Scenario2":
+		Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario2= toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Action_TeamArchitecture_Scenario2":
+		Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario2 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Bug_TeamArchitecture_Scenario3":
+		Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario3 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Action_TeamArchitecture_Scenario3":
+		Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario3 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Bug_TeamArchitecture_Scenario4":
+		Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario4 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Action_TeamArchitecture_Scenario4":
+		Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario4 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Bug_TeamArchitecture_Scenario5":
+		Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario5 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Action_TeamArchitecture_Scenario5":
+		Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario5 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Bug_TeamArchitecture_Scenario6":
+		Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario6 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Action_TeamArchitecture_Scenario6":
+		Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario6 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Bug_TeamArchitecture_Scenario7":
+		Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario7 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Action_TeamArchitecture_Scenario7":
+		Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario7 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Bug_TeamArchitecture_Scenario8":
+		Baseclass.getInstance().WorkItemExternalId_Bug_TeamArchitecture_Scenario8 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		case "Action_TeamArchitecture_Scenario8":
+		Baseclass.getInstance().WorkItemExternalId_Action_TeamArchitecture_Scenario8 = toGetID1[1];
+		System.out.println("Created "+workitem+" ID is "+toGetID1[1]);
+		break;
+		}
+		Thread.sleep(2000);
 	}
-	catch(Exception e)
-	{
+catch(Exception e)
+		{
 		e.printStackTrace();
-	}
-	
+		}
+
 }
 
 public static void EnterworkitemDetailsForSpecificFunctionality(String workitem, String functionality) {
@@ -1607,15 +1664,24 @@ public static void EnterworkitemDetailsForSpecificFunctionality(String workitem,
      enterTextUsingAction(JiraUIMap.Summary_txtBox,wi.Summary);
      Thread.sleep(1000);
      
-     if(!wi.Component.equalsIgnoreCase("NA"))
-     {
-    	 enterText(JiraUIMap.Component_txtbox,wi.Component);
-         Thread.sleep(1000); 
-     }
+	     if(!wi.Component.equalsIgnoreCase("NA"))
+	     {
+	
+	     String Team=API.getWorkItemExternalIDForGivenFunctionality(wi.Component, "Jira", functionality);
+	     System.out.println(Team);
+	     enterText(JiraUIMap.Component_txtbox,Team);
+	     Thread.sleep(1000);
+	     sendEntr();
+	     }
+	     clickJS(JiraUIMap.Create_btn);
+	     Thread.sleep(5000);
+	     ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
+	     waitPageToLoad();
 	}
 	catch(Exception e)
 	{
 		e.printStackTrace();
+		logger.info("issue entering data for a specific funationality for JIRA");
 	}
 	
 }
@@ -1654,6 +1720,7 @@ public static void EnterworkitemDetailsForSpecificFunctionality(String workitem,
 		        Baseclass.getInstance().cyclename = "cyclename_" + RandomNumberGenerator();
 		        System.out.println(Baseclass.getInstance().cyclename);            
 		        enterText(JiraUIMap.Cyclename_txtbox,Baseclass.getInstance().cyclename);
+		        Thread.sleep(5000);
 		        clickJS(JiraUIMap.CycleSave_btn);
 		        
 		         if(isVisible(prepareWebElementWithDynamicXpath(JiraUIMap.cyclename_text,Baseclass.getInstance().cyclename,"cyclename")))
@@ -1673,6 +1740,7 @@ public static void EnterworkitemDetailsForSpecificFunctionality(String workitem,
 		        ExpWaitForCondition(JiraUIMap.Testname_txtbox);
 		        
 		        enterText(JiraUIMap.Testname_txtbox,Baseclass.getInstance().WorkItemExternalID_TestforTestExec);
+		        Thread.sleep(5000);
 		        sendEntr();
 		    
 		        clickJS(JiraUIMap.Add_btn);
@@ -1694,12 +1762,12 @@ public static void EnterworkitemDetailsForSpecificFunctionality(String workitem,
 		        
 		        String urltogetADOPTestResult = driver().getCurrentUrl();
 		        String testid = urltogetADOPTestResult.split("executionId=")[1];
-		        String project=Property.getProperty("JiraProject");
-		        String testexecutionid=project+"-"+testid;
-		        System.out.println(testexecutionid);
+//		        String project=Property.getProperty("JiraProject");
+//		        String testexecutionid=project+"-"+testid;
+//		        System.out.println(testexecutionid);
 		        
 		        String runid=Baseclass.getInstance().WorkItemExternalID_TestforTestExec;
-		        Baseclass.getInstance().WorkItemExternalId_TestExecution=testexecutionid+"_"+runid;
+		        Baseclass.getInstance().WorkItemExternalId_TestExecution=testid+"_"+runid;
 		        System.out.println(Baseclass.getInstance().WorkItemExternalId_TestExecution);
 		        logger.info("test result created for ADOP");
 		}

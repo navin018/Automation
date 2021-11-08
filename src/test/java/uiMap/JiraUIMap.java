@@ -258,5 +258,6 @@ public static By Pass_option=By.xpath("//li[@title='PASS']");
 public static By Success_toastermsg=By.xpath("//p[text()='Successfully Executed Test.']");
 public static String cyclename_text = "//div[text()='{cyclename}']//following::div[@class='contextMenuIcon aui-icon aui-icon-small aui-iconfont-handle-horizontal'][1]";
 public static By Expand_icon=By.xpath("//i[@role='presentation']//following::div[text()='ReleaseAutomation_Donot_Edit']");
+public static By Owner_txtbox = By.xpath("//label[text()='Owner']//following::input[1]");
 
 }

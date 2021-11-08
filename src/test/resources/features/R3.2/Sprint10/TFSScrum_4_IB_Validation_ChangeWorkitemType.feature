@@ -26,3 +26,9 @@ Given i load the project properties file
 	And i generate a token for "DevTest" environment
 	And i verify if "Risk" has "deleted" which was "NA" for "TFS Scrum" for "delete" functionality
 	And i verify if "Issue" has "flown" which was "Risk" for "TFS Scrum" for "delete" functionality
+	
+Scenario: TFSScrum_ChangeWorkItemType(EpicToRequirement)
+Given i load the project properties file
+And i generate a token for "DevTest" environment
+And i verify if "Epic" has "deleted" which was "NA" for "TFS Scrum" for "delete" functionality
+And i verify if "Requirement" has "flown" which was "Risk" for "TFS Scrum" for "delete" functionality

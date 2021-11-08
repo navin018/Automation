@@ -95,6 +95,7 @@ public static By Search_text = By.xpath("//input[@placeholder='Search...']");
 public static By Active_btn = By.xpath("//input[@name='status']//following::span[text()='Active']");
 public static By Inactive_btn= By.xpath("//input[@name='status']//following::span[text()='InActive']");
 public static By Save_btn = By.xpath("//button[@title='Save Delivery Construct Type']");
+public static By SaveAccount_btn = By.xpath("//button[@text()='Save']");
 public static By Cancel_btn = By.xpath("//button[@title='Cancel the changes and navigate to Manage Organization Structure']");
 public static By title_text = By.xpath("//span[@title='Automation_DoNotEdit']");
 public static By querySaved_txt=By.xpath("//div[contains(text(),'Delivery Structure Type saved successfully')]");
@@ -218,7 +219,7 @@ public static By SearchAccount_txtbox=By.xpath("//input[@placeholder='Enter text
 public static By Activate_btn=By.xpath("//span[text()='Active'][@class='btn phx-label']");
 public static By InActivate_btn=By.xpath("//span[text()='Inactive'][@class='btn phx-label']");
 public static By AccountManagementSave_btn=By.xpath("//button[@class='btn btn-primary'][text()='Save']");
-public static By Select_account=By.xpath("//div[@class='ag-cell ag-cell-not-inline-editing ag-cell-with-height ag-cell-value ag-column-hover ag-cell-focus'][text()='AutomationAccount_DoNotEdit']");
+public static By Select_account=By.xpath("//div[text()='AutomationAccount']");
 public static By Select_account1=By.xpath("//div[text()='AutomationAccount_DoNotEdit']");
 
 

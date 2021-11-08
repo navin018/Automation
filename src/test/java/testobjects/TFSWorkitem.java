@@ -1227,6 +1227,7 @@ import utilities.general.Property;
 			 ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, WorkItemExternalId, "workitemid"));
 			 clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.workitemIDInSearch_txt, WorkItemExternalId, "workitemid"));
 			 ExpWaitForCondition(TFSUIMap.captureWorkItemID1_statictxt);
+			 Thread.sleep(5000);
 		}
 			catch(Exception e)
 			{

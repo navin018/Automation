@@ -67,6 +67,7 @@ Scenario Outline: TFSScrum_ChangeProjectOfWorkitems
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
 	And i change the "project" of "<bug>" in TFS
+	And i change the "project" of "<Impediment>" in TFS
 	And i change the "project" of "<Task>" in TFS
 	And i change the "project" of "<Epic>" in TFS
 	And i change the "project" of "<Feature>" in TFS

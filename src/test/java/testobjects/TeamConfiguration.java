@@ -284,6 +284,7 @@ public class TeamConfiguration extends Baseclass {
 		String teamname = API.getWorkItemExternalIDForGivenFunctionality(team,toolname,functionality);
 		  clickJS(TeamConfigUIMap.PageCount_txtBox);
 	        clickJS(TeamConfigUIMap.Page_number);
+	        clear(MyWizardUIMap.Search_txtbox);
 		enterText(MyWizardUIMap.Search_txtbox, teamname);
 		Thread.sleep(4000);
 		try{
