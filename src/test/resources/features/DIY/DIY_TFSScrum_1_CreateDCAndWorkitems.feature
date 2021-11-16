@@ -22,7 +22,6 @@ Scenario Outline: TFSScrum_DIY_CreateDC
 	Then i select only the client for "<applicationname>"
 	And i "create" a DC for DIY for "TFS Scrum"
 	And i enter self enabled automation details for "TFS Scrum" for "normal" functionality
-	And i test the connectivity for "TFS Scrum"  
 	And i make a note of the DC created for "TFS Scrum"
 Examples: 
 		| applicationname |

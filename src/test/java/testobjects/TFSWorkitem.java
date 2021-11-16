@@ -1203,12 +1203,21 @@ import utilities.general.Property;
 								break;
 							}
 							System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
-							break;	
+							break;
+				case "risk":
+				case "Risk":
+					switch(workitem){
+					case("Risk_RAG_ToBeAssociatedToStory_Rule10"):
+					Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+					break;
+					case("Risk_RAG_ToBeAssociatedToStory_Rule11"):
+						Baseclass.getInstance().WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule10 = getText(TFSUIMap.captureWorkItemID2_statictxt);
+					break;
 							
 				default:
 			        throw new IllegalArgumentException("Invalid workitem: " + workitem);	
 				}
-				
+				}
 				
 			} catch (Exception e) {
 				System.out.println("Issue with capturing workitem ID");
@@ -1272,9 +1281,11 @@ import utilities.general.Property;
 					clickJS(TFSUIMap.deleteTestCase_txtbox);
 					String WorkItemExternalId = Tools.getWorkItemExternalID(workitem.split("_")[0],"TFS");
 					enterText(TFSUIMap.deleteTestCase_txtbox,WorkItemExternalId);
+					ExpWaitForCondition(TFSUIMap.ConfirmDeleteWorkitem_btn);
 					clickJS(TFSUIMap.ConfirmDeleteWorkitem_btn);
 				}
 				else{
+			ExpWaitForCondition(TFSUIMap.DeleteWorkitem_btn);
 			clickJS(TFSUIMap.DeleteWorkitem_btn);
 			ExpWaitForCondition(TFSUIMap.ConfirmDeleteWorkitem_PopUp);
 			clickJS(TFSUIMap.ConfirmDeleteWorkitem_btn);
@@ -1369,6 +1380,7 @@ import utilities.general.Property;
 				
 				if(ProjectOrEntityType.equalsIgnoreCase("project")){
 					clickJS(TFSUIMap.ActionWorkitem_btn);
+					ExpWaitForCondition(TFSUIMap.ChangeProject_link);
 					clickJS(TFSUIMap.ChangeProject_link);
 					ExpWaitForCondition(TFSUIMap.SelectProject_Drpdown);
 					clickJS(TFSUIMap.SelectProject_Drpdown);
@@ -1520,11 +1532,21 @@ import utilities.general.Property;
 			clickJS(TFSUIMap.Links_link);
 			clickJS(TFSUIMap.AddLink_link);
 			clickJS(TFSUIMap.Existingitem_link);
-			clickJS(TFSUIMap.LinkType_drpdown);
-//			clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.linkingType_txt, linkingtype, "linkingtype"));
-			enterText(TFSUIMap.LinkType_drpdown,linkingtype);
+			Thread.sleep(5000);
+			clickJS(TFSUIMap.linkage_drpdown);
 			Thread.sleep(2000);
-			sendEntr();
+			ScrollIntoView(prepareWebElementWithDynamicXpath(TFSUIMap.linkage_relationship, linkingtype, "relationship"));
+			Thread.sleep(2000);
+			clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.linkage_relationship, linkingtype, "relationship"));
+			Thread.sleep(2000);
+//			clickJS(TFSUIMap.LinkType_drpdown);
+//			clear(TFSUIMap.LinkType_drpdown);
+//			Thread.sleep(2000);
+//			clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.linkingType_txt, linkingtype, "linkingtype"));
+//			sendBackSpace();
+//			Thread.sleep(3000);
+//			enterText(TFSUIMap.LinkType_drpdown,linkingtype);
+//			sendEntr();
 			enterText(TFSUIMap.workitemlinking_txtbox,workitemID1);
 			Thread.sleep(2000);
 			ExpWaitForCondition(TFSUIMap.searchedWorkitem_drpdown);
@@ -1730,6 +1752,13 @@ import utilities.general.Property;
                       sendEntr();
                         }                   
                     clickJS(TFSUIMap.SaveUser_btn);
+                    //if save btn is not clicked, reclick it
+                    if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TFSUIMap.Member_txt,teammember,"ResourceName")))
+                    	System.out.println("Resource added sucessfully");
+                    	else
+                    	Assert.fail("Resource Not Added Or Added Resource is missing");
+
+                    	waitPageToLoad();
                     waitPageToLoad();
                     driver().get(Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject);
                    
@@ -1752,7 +1781,7 @@ import utilities.general.Property;
 					break;
 			}
 			ExpWaitForCondition(TFSUIMap.save_btn);
-			singleClick(TFSUIMap.save_btn);
+			clickJS(TFSUIMap.saveandclose_button);
 			Thread.sleep(5000);
 			}
 			catch(Exception e)

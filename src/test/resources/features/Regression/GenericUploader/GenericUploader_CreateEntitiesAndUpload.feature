@@ -38,8 +38,8 @@ Scenario Outline: GenericUploader_ADTJira
 	Then i select client and DC for "<applicationname>"
 	And i select the Product Instance as "ADT JIRA"
 	And i select the Data Entity as "Epic" for "ADT Jira" and upload the excel file
-	And i select the Data Entity as "Feature"  for "ADT Jira" and upload the excel file
-	And i select the Data Entity as "Task"  for "ADT Jira" and upload the excel file
+	And i select the Data Entity as "Feature" for "ADT Jira" and upload the excel file
+	And i select the Data Entity as "Task" for "ADT Jira" and upload the excel file
 	And i select the Data Entity as "Bug" for "ADT Jira" and upload the excel file
 	And i select the Data Entity as "Issue" for "ADT Jira" and upload the excel file
 	And i select the Data Entity as "Impediment" for "ADT Jira" and upload the excel file

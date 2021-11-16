@@ -386,7 +386,7 @@ public class RMP extends Baseclass{
 			   singleClick(RMPUIMap.AddSprint_Link);
 			   Thread.sleep(2000);
 //			   moveAndClick(RMPUIMap.Sprint_Icon, RMPUIMap.Sprint_Icon);
-			   WebElement webe = driver().findElement(By.xpath("//div[@class='rm-timeline-header childborder cursor-grab']"));
+			   WebElement webe = driver().findElement(RMPUIMap.Sprint_Icon1);
 			   mouseHoverJScript(webe);
 			   clickJS(RMPUIMap.SprintArrow_icon);
 			   Thread.sleep(2000);

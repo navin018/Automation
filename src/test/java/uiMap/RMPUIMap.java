@@ -133,7 +133,7 @@ public static By AddIconForSprint_Icon = By.xpath("//a[@id='addPopup']//precedin
 public static By Sprint_Icon = By.xpath("//div[contains(@data-original-title,'Sprint')]");
 public static By ReconSavedSuccess_Msg = By.xpath("//div[contains(text(),'Saved successfully')]");
 public static By SprintArrow_icon = By.xpath("//a[@id='addPopup']//preceding::a[@class='myw-action w-100'][1]");
-
+public static By Sprint_Icon1 = By.xpath("//div[@class='dropdown dropflat dropup d-flex rm-timeline-options alignMoreOptionPosition ng-star-inserted']");
 
 
 

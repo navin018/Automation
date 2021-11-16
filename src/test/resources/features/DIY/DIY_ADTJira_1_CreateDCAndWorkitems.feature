@@ -21,8 +21,7 @@ Scenario Outline: ADTJIRA_DIY_CreateDC
 	And i click on tile "DIY AD Automation" 
 	Then i select only the client for "<applicationname>"
 	And i "create" a DC for DIY for "ADT Jira"
-	And i enter self enabled automation details for "ADT Jira" for "normal" functionality
-	And i test the connectivity for "ADT Jira"  
+	And i enter self enabled automation details for "ADT Jira" for "normal" functionality  
 	And i make a note of the DC created for "ADT Jira"
 Examples: 
 		| applicationname |applicationname1|

@@ -111,7 +111,8 @@ public static String workitemIDInSearch_txt = "//span[contains(text(),'{workitem
 public static String linkingType_txt = "//span[contains(text(),'{linkingtype}')]";
 public static By Links_link = By.xpath("//li[@aria-label='Links']");
 public static By AddLink_link = By.xpath("//div[text()='No links have been added']//following::*[text()='Add link'][1]");
-
+public static By linkage_drpdown = By.xpath("//label[text()='Link type']//following::input[1]//following::i[@data-icon-name='ChevronDown'][1]");
+public static String linkage_relationship = "//span[text()='{relationship}']";
 public static By Existingitem_link = By.xpath("//span[text()='Existing item']");
 public static By LinkType_drpdown = By.xpath("//label[text()='Link type']//following::input[1]");
 public static By workitemlinking_txtbox = By.xpath("//input[@placeholder='Enter ID or search for work items']");
@@ -185,6 +186,8 @@ public static By SearchUsers_txtbox1=By.xpath("//input[@aria-label='Search users
 
 public static By TeamArea_label=By.xpath("//label[text()='rea'][1]");
 public static By TeamArea_label1=By.xpath("//div[@class='tree-picker-container workitem-classification-picker']//following::input[@aria-label='Area Path']");
+public static By saveandclose_button = By.xpath("//span[text()='Save & Close']");
+public static String Member_txt="//span[text()='{ResourceName}'][@class='text-ellipsis']";
 
 
 }

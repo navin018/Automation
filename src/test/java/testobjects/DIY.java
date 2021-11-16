@@ -342,8 +342,9 @@ public class DIY extends Baseclass{
 	}
 
 	private static void EnableUseCases(String toolname) throws InterruptedException {
-//		String appbundles[] = {"Planning & Program Management","Requirements, Product Backlog & Change Management","Release & Sprint Planning","Release / Sprint Execution","Analytics & Virtual Agent","Knowledge Management","Myconcerto","Governance"};
-		String appbundles[] = {"Planning & Program Management","Requirements, Product Backlog & Change Management","Release & Sprint Planning","Release / Sprint Execution","Analytics & Virtual Agent","Knowledge Management","Myconcerto"};
+		String appbundles[] = {"Planning & Program Management","Requirements, Product Backlog & Change Management","Release & Sprint Planning","Release / Sprint Execution","Analytics & Virtual Agent","Knowledge Management"};
+
+
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		ExpWaitForCondition(DIYUIMap.SelectuseCases_txt);
 		ExpWaitForCondition(DIYUIMap.SaveAndNext_btn);

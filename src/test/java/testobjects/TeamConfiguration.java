@@ -167,7 +167,7 @@ public class TeamConfiguration extends Baseclass {
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		enterText(TeamConfigUIMap.description_txtBox,"Updating the team");
 		ScrollIntoView(TeamConfigUIMap.save_button);
-		clickJS(TeamConfigUIMap.save_button);
+		click(TeamConfigUIMap.save_button);
 		ExpWaitForCondition(TeamConfigUIMap.saveSuccessful_staticTxt);
 		System.out.println("Team edit successful");
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);

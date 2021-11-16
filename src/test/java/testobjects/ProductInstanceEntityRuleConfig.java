@@ -6,7 +6,7 @@ import static utilities.selenium.SeleniumDSL.ExpWaitForCondition;
 import static utilities.selenium.SeleniumDSL.ExpWaitForElementToDisappear;
 import static utilities.selenium.SeleniumDSL.clear;
 import static utilities.selenium.SeleniumDSL.clickJS;
-import static utilities.selenium.SeleniumDSL.doubleClick;
+import static utilities.selenium.SeleniumDSL.*;
 import static utilities.selenium.SeleniumDSL.enterText;
 import static utilities.selenium.SeleniumDSL.prepareWebElementWithDynamicXpath;
 import static utilities.selenium.SeleniumDSL.selectDropdownByText;
@@ -80,53 +80,48 @@ public class ProductInstanceEntityRuleConfig  extends Baseclass {
 	public static void Addrule(String toolName, String entityType, String workItemType) {
 		try{
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		
+
 			//Add Standard Rule
-			clickJS(ProductInstanceEntityRuleConfigUIMAP.AddRule_btn);  // clicks on add btn;
+			clickJS(ProductInstanceEntityRuleConfigUIMAP.AddRule_btn); // clicks on add btn;
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			enterText(ProductInstanceEntityRuleConfigUIMAP.name_txt,"Automation_Regression"); // enters the name of rule;
+			enterText(ProductInstanceEntityRuleConfigUIMAP.name_txt,"Automation_Regression_testing"); // enters the name of rule;
 			selectDropdownByText(ProductInstanceEntityRuleConfigUIMAP.productinstance_drpdwn,"myWizard-TFS"); // selects the tool name
 			Thread.sleep(2000);
 			selectDropdownByText(ProductInstanceEntityRuleConfigUIMAP.dataentity_drpdwn,entityType); // selects the entity type
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			selectDropdownByText(ProductInstanceEntityRuleConfigUIMAP.workitemtype_drpdwn,workItemType);//selects the workitem
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			clickJS(ProductInstanceEntityRuleConfigUIMAP.attribute_txtbox);
+			singleClick(ProductInstanceEntityRuleConfigUIMAP.attribute_txtbox);
 			selectDropdownByText(ProductInstanceEntityRuleConfigUIMAP.attribute_drpdwn,"State"); //selects the attribute
 			Thread.sleep(2000);
-			clickJS(ProductInstanceEntityRuleConfigUIMAP.Field_txtbox);
+			singleClick(ProductInstanceEntityRuleConfigUIMAP.Field_txtbox);
 			selectDropdownByText(ProductInstanceEntityRuleConfigUIMAP.Field_drpdwn,"NA");//selects the field
 			Thread.sleep(2000);
-			clickJS(ProductInstanceEntityRuleConfigUIMAP.Value_txtbox);
-			selectDropdownByText(ProductInstanceEntityRuleConfigUIMAP.Value_drpdwn,"Open");//selects the value for attribute
+			singleClick(ProductInstanceEntityRuleConfigUIMAP.Value_txtbox);
+			selectDropdownByText(ProductInstanceEntityRuleConfigUIMAP.Value_drpdwn,"New");//selects the value for attribute
 			Thread.sleep(2000);
-			clickJS(ProductInstanceEntityRuleConfigUIMAP.Save_rule); //saves the rule
-			ExpWaitForCondition(ProductInstanceEntityRuleConfigUIMAP.SavedRule_txt);
-			 Assert.assertEquals(CheckIfElementExists(ProductInstanceEntityRuleConfigUIMAP.SavedRule_txt),true,"Rule is not saved"); //Assert if the rule is saved
-			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			
-		// Add Advanced Rule	
-			clickJS(ProductInstanceEntityRuleConfigUIMAP.AddRule_btn);  // clicks on add btn;
-			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+
+			// Add Advanced Rule
+
 			clickJS(ProductInstanceEntityRuleConfigUIMAP.Advanced_btn);
 			clickJS(ProductInstanceEntityRuleConfigUIMAP.Advance_checkbox);
 			Thread.sleep(2000);
 			String proj = Property.getProperty("ProductInstanceProjectForDIY");
-	        String AdvancedQuery = "(Project='"+proj+"' AND State = 'New' AND Priority = '4' )";
-	        System.out.println(AdvancedQuery);
-	        enterText(ProductInstanceEntityRuleConfigUIMAP.Text_area,AdvancedQuery); // enters advanced rule
-	        Thread.sleep(2000);
-			 clickJS(ProductInstanceEntityRuleConfigUIMAP.Save_rule); // saves the advanced rule
-			 ExpWaitForCondition(ProductInstanceEntityRuleConfigUIMAP.SavedRule_txt);
-			 Assert.assertEquals(CheckIfElementExists(ProductInstanceEntityRuleConfigUIMAP.SavedRule_txt),true,"Rule is not saved"); //Assert if the rule is saved
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		}
+			String AdvancedQuery = "(Project='"+proj+"' AND State = 'New' AND Priority = '4' )";
+			System.out.println(AdvancedQuery);
+			enterText(ProductInstanceEntityRuleConfigUIMAP.Text_area,AdvancedQuery); // enters advanced rule
+			Thread.sleep(2000);
+			clickJS(ProductInstanceEntityRuleConfigUIMAP.Save_rule); // saves the advanced rule
+			ExpWaitForCondition(ProductInstanceEntityRuleConfigUIMAP.SavedRule_txt);
+			Assert.assertEquals(CheckIfElementExists(ProductInstanceEntityRuleConfigUIMAP.SavedRule_txt),true,"Rule is not saved"); //Assert if the rule is saved
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			}
 			catch(Exception e)
 			{
-				e.printStackTrace();
-				logger.info("Adding a rule failed");
-				Assert.fail("Adding a rule failed");
-			}	
+			e.printStackTrace();
+			logger.info("Adding a rule failed");
+			Assert.fail("Adding a rule failed");
+			}
 		
 		
 		

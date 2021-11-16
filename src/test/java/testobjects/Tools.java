@@ -1804,13 +1804,17 @@ public static void VerifyTeamDetailsForEntity(JsonPath jsonPath, String workitem
              {
                  String TeamFromAPI="";//verify team details in workitems API
                  if (workitem.contains("Epic")||(workitem.contains("Story"))) {
-                    
-                     TeamFromAPI=jsonPath.getString("WorkItems[0].TeamAreaName");
-                    
-                }
-                else if(workitem.contains("Action")) {
-                    TeamFromAPI=jsonPath.getString("Actions[0].TeamAreaName");
-                }
+
+                	 TeamFromAPI=jsonPath.getString("WorkItems[0].TeamAreaName");
+                	 TeamFromAPI=jsonPath.getString("WorkItems[0].TeamAreaUId");
+
+                	 }
+                	 else if(workitem.contains("Action")) {
+                	 TeamFromAPI=jsonPath.getString("Actions[0].TeamAreaName");
+                	 TeamFromAPI=jsonPath.getString("Actions[0].TeamAreaExternalId");
+                	 TeamFromAPI=jsonPath.getString("Actions[0].TeamAreaName");
+
+                	 }
                  
                  if(TeamFromAPI.equalsIgnoreCase(teamName)) {
                     flown=true;
