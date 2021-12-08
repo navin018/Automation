@@ -1,14 +1,6 @@
 package stepDefs;
-import static utilities.reporting.LogUtil.logger;
-import static utilities.selenium.SeleniumDSL.*;
-
-import java.io.IOException;
-
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import uiMap.JiraUIMap;
-import utilities.general.Property;
 import testobjects.*;
 
 public class myQueriesSteps  {
@@ -42,14 +34,20 @@ public class myQueriesSteps  {
 	    myQueries.checkForSharedQuery();
 	    
 	}
-//	@Then("^i create the query and validate the product instance$")
-//	public void i_create_the_query_and_validate_the_product_instance() throws Throwable {
-//	    myQueries.validateVisibilityOfPI();
-//	}
 
 	@Then("^i create the query and validate the product instance$")
 	public void i_create_the_query_and_validate_the_product_instance() throws Throwable {
 		 myQueries.validateVisibilityOfPI();
+	}
+	
+	@Then("^i \"([^\"]*)\" the query for \"([^\"]*)\" and \"([^\"]*)\"$")
+	public void i_the_query_for_and(String verify, String toolname, String entityType) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+		if(verify.equalsIgnoreCase("verify"))
+	    myQueries.verifyQuery(toolname, entityType);
+		
+		if(verify.equalsIgnoreCase("verify_Advance_query"))
+		myQueries.verifyAdvanceQuery(toolname, entityType);	
 	}
 
 

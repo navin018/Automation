@@ -1,50 +1,14 @@
 package testobjects;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.fail;
 import static utilities.selenium.SeleniumDSL.*;
-import static utilities.general.Property.*;
 import static utilities.reporting.LogUtil.logger;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
-import dataobjects.WorkItemDO;
-import dataobjects.WorkItemExternalIDDO;
-//import javassist.bytecode.stackmap.BasicBlock.Catch;
-import testobjects.Baseclass;
-import uiMap.JiraUIMap;
 import uiMap.MyWizardUIMap;
-import uiMap.ProductConfigUIMap;
 import uiMap.TeamConfigUIMap;
-import utilities.general.DataManager;
 import utilities.general.Property;
-import utilities.selenium.SeleniumDSL;
 import uiMap.myQueriesUIMap;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
 
 public class myQueries extends Baseclass {
 	private Baseclass base;
@@ -70,7 +34,8 @@ public class myQueries extends Baseclass {
 		String classAttribute_value = getAttribute(myQueriesUIMap.Standard_button,"class");
 		sa.assertEquals(classAttribute_value.contains("active"), 1,"Standard query is not selected"); //Verify that Standard Query is selected by default
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		selectDropdownByText(myQueriesUIMap.Entity_dropdown,entityType); //Select the entity from entitytype dropdown
+		selectDropdownByText(myQueriesUIMap.Entity_dropdown,entityType);//Select the entity from entitytype dropdown
+		
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		selectDropdownByText(myQueriesUIMap.workItemType_dropdown,workItemType); //Select the workitem from workitem dropdown
@@ -165,7 +130,7 @@ public class myQueries extends Baseclass {
 			clickJS(myQueriesUIMap.sharedQuery_txt);
 			clickJS(myQueriesUIMap.sharedQuerySaved_txt);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			Thread.sleep(2000);
+			Thread.sleep(2000);	
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			Thread.sleep(5000);
 			Assert.assertEquals(isVisible(myQueriesUIMap.ColumnOptions_txt), true,"Column options are not available");
@@ -402,6 +367,8 @@ public class myQueries extends Baseclass {
 				
 			}
 
+
+
 			public static void validateVisibilityOfPI() {
 				
 				try{
@@ -415,6 +382,121 @@ public class myQueries extends Baseclass {
 					logger.info("Product Instance is not available");
 					Assert.fail("Product Instance is not available");
 				}
+			}
+
+			public static void verifyQuery(String toolname, String entityType) {
+				try{
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					clickJS(myQueriesUIMap.NewQuery_text);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					String classAttribute_value = getAttribute(myQueriesUIMap.Standard_button,"class");
+					sa.assertEquals(classAttribute_value.contains("active"), 1,"Standard query is not selected"); //Verify that Standard Query is selected by default
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					selectDropdownByText(myQueriesUIMap.Entity_dropdown,entityType);//Select the entity from entitytype dropdown
+					
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					sa.assertEquals(CheckIfElementExists(myQueriesUIMap.workitem_type_dropdown), true,"____WORKITEMTYPE DROPDOWN FOR "+ toolname + " FOR "+entityType+" NOT EXIST_____");
+					if(CheckIfElementExists(myQueriesUIMap.workitem_type_dropdown))
+						System.out.println("_____WORKITEMTYPE DROPDOWN FOR "+ toolname + " FOR "+entityType+" EXIST_____");
+					else 
+						System.out.println("____WORKITEMTYPE DROPDOWN FOR "+ toolname + " FOR "+entityType+" NOT EXIST_____");
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					Thread.sleep(5000);
+					singleClick(myQueriesUIMap.NewClause_txt); //Adding a new clause
+					Thread.sleep(4000);
+					singleClick(myQueriesUIMap.select_cross_btn);
+					sa.assertEquals(CheckIfElementExists(myQueriesUIMap.conditionColumn_txt),true,"____ROW DELETED CONDITION PASS____");
+					if(CheckIfElementExists(myQueriesUIMap.conditionColumn_txt))
+						System.out.println("_____Additional row exist Condition Fails_____");
+					else System.out.println("____ROW DELETED CONDITION PASS____");
+					clickJS(myQueriesUIMap.ColumnOptions_txt);//Click on column option
+					clickJS(myQueriesUIMap.AddField_txt); //Adding column option
+					Thread.sleep(3000);
+					clickJS(myQueriesUIMap.column_option_dropdown);
+					clickJS(myQueriesUIMap.column_value_dropdown);
+					clickJS(myQueriesUIMap.saveColumnOption_button); 
+					Thread.sleep(2000);
+					clickJS(myQueriesUIMap.RunQuery_button);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					ScrollToEndOfPage();
+					Thread.sleep(2000);
+					singleClick(myQueriesUIMap.workitemUidColumn_header);
+					System.out.println(CheckIfElementExists(myQueriesUIMap.workitemUidColumn_header));
+					for(int i=0;i<13;i++) {
+						moveRight();
+					}
+					sa.assertEquals(CheckIfElementExists(myQueriesUIMap.Tablecolumn_header),true,"_______NO COLUMN ADDED USING COLUMN OPTION_____");
+					if(CheckIfElementExists(myQueriesUIMap.Tablecolumn_header)) System.out.println("_______COLUMN ADDED USING COLUMN OPTION_____");
+					clickJS(myQueriesUIMap.Queries_link);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					clickJS(myQueriesUIMap.sharedQuery_txt);
+					Thread.sleep(2000); //can be removed
+					clickJS(myQueriesUIMap.sharedQuerySaved_txt_1);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					Thread.sleep(2000);
+					clickJS(myQueriesUIMap.Save_As_btn);
+					ExpWaitForCondition(myQueriesUIMap.QueryName_input);
+					enterText(myQueriesUIMap.QueryName_input, "query_name"); 
+					clickJS(myQueriesUIMap.QuerySave_btn);
+					Thread.sleep(2000);
+					clickJS(myQueriesUIMap.Queries_link);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					sa.assertEquals(CheckIfElementExists(myQueriesUIMap.Queryname_text),true,"____FAILED TO MOVE FROM SHARED QUERY____");
+					if(CheckIfElementExists(myQueriesUIMap.Queryname_text)) System.out.println("____QUERY FROM SHARED QUERY MOVED TO MYQUERY____");
+					else System.out.println("____FAILED TO MOVE FROM SHARED QUERY____");
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					grabScreenshotForExtentReport();
+					logger.info("Verification of query failed");
+					Assert.fail("Verification of query failed");
+				}	
+			}
+
+			public static void verifyAdvanceQuery(String toolname, String entityType) {
+				try{
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					clickJS(myQueriesUIMap.NewQuery_text);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					clickJS(myQueriesUIMap.Advanced_query_btn);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img); 
+					if(CheckIfElementExists(myQueriesUIMap.QueryFormat_text)) 
+						System.out.println("Advanced_Query page loaded");
+					Thread.sleep(2000);
+					selectDropdownByText(myQueriesUIMap.Entity_dropdown,entityType);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img); 
+					sa.assertEquals(CheckIfElementExists(myQueriesUIMap.workitem_type_advance_dropdown), true,"_____WORKITEMTYPE DROPDOWN FOR "+ toolname + " FOR "+entityType+" NOT EXIST_____");
+					if(CheckIfElementExists(myQueriesUIMap.workitem_type_advance_dropdown))
+						System.out.println("_____WORKITEMTYPE DROPDOWN FOR "+ toolname + " FOR "+entityType+" EXIST_____");
+					else 
+						System.out.println("____WORKITEMTYPE DROPDOWN FOR "+ toolname + " FOR "+entityType+" NOT EXIST_____");
+					selectDropdownByText(myQueriesUIMap.workitem_type_advance_dropdown,"Epic");
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img); 
+					clickJS(myQueriesUIMap.RunQuery_button);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					sa.assertEquals(CheckIfElementExists(myQueriesUIMap.toaster_msg), true,"___NOT AVAILABLE___");
+					if(CheckIfElementExists(myQueriesUIMap.toaster_msg))
+						System.out.println("____Unable to run the query TOASTER MESSAGE APPEARS____");
+					Thread.sleep(2000);
+					String text="{aggregate:\"clients.workitems\",pipeline:[{$match:{WorkItemExternalId:\"BOM-126894\"}}],cursor: {batchSize: 10000 } }";
+					enterText(myQueriesUIMap.Query_textarea,text);
+					clickJS(myQueriesUIMap.RunQuery_button);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					if(CheckIfElementExists(myQueriesUIMap.workitemtype_column_header))
+						System.out.println("_____USER ABLE TO WRITE AND RUN QUERY___");
+					
+					
+					
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					logger.info("Verification of Advance_query failed");
+					Assert.fail("Verification of Advance_query failed");
+				}
+				
 			}
 			
 }

@@ -65,8 +65,8 @@ public static By navigateToQueries_txt=By.xpath("//a[@title='Queries View']");
 //Shared query
 public static By sharedQuery_txt=By.xpath("//div[@href='#collapsePublicQueries']");
 public static By sharedQuerySaved_txt=By.xpath("//div[@id='collapsePublicQueries']//table[@class='phx-myqueries-table']//tbody//tr[1]//td//span[text()='Auto_Regression']");
-
-//edit existing query
+public static By sharedQuerySaved_txt_1=By.xpath("//div[@id='collapsePublicQueries']//table[@class='phx-myqueries-table']//tr[2]//td//span[text()='Auto_Regression']");
+//edit existing queryBy.xpath("//div[@id='collapsePublicQueries']//table[@class='phx-myqueries-table']//tbody//tr[1]//td//span[text()='Auto_Regression']");
 public static By savedQuery_txt=By.xpath("//span[text()='Auto_Regression']");
 
 //Deleting a Query
@@ -88,5 +88,27 @@ public static By condition_txt=By.xpath("//div[@col-id='Condition'][text()='AND'
 //export the results
 public static By exportResults_button=By.xpath("//div[text()='Go']");
 public static By IUnderstand_button=By.xpath("//button[text()='I Understand']");
+
+//verify
+public static By workitem_type_dropdown=By.xpath("//div//select[contains(@name,'selectWorkItemTypeStandard')]");
+public static By select_cross_btn=By.xpath("//div[@row-id='1']/div[@col-id='delete']");
+public static By column_option_dropdown=By.xpath("//div[@class='phx-incident-filter m-0']//child::select");
+public static By column_value_dropdown=By.xpath("//option[text()=' RiskReduction ']//parent::select");
+public static By Tablecolumn_header=By.xpath("//span[text()='RiskReduction']"); 
+public static By Queries_link=By.xpath("//a[text()=' Queries > ']");
+public static By Save_As_btn=By.xpath("//span[text()='Save As..']");
+public static By QueryName_input=By.xpath("//input[@name='queryName']");
+public static By QuerySave_btn=By.xpath("//div[@class='modal-dialog modal-lg']//div//div//button[text()='Save']");
+public static By Queryname_text=By.xpath("//span[text()='query_name']");
+public static By workitemUidColumn_header=By.xpath("//div[@ref='eBody']//div//div[@row-index=\"0\"]//div[@col-id='WorkItemUId']");
+
+//Advance query 
+public static By QueryFormat_text=By.xpath("//label[text()='Query Format']");
+public static By Advanced_query_btn=By.xpath("//span//button[text()='Advanced']");
+public static By workItemEntity_dropdown=By.xpath("//option[text()=' WorkItem ']//parent::select");
+public static By workitem_type_advance_dropdown=By.xpath("//div//select[contains(@name,'selectWorkItemTypeAdvance')]");
+public static By Query_textarea=By.xpath("//textarea[@placeholder='Please type your JSON query here.']");
+public static By workitemtype_column_header=By.xpath("//span[text()='WorkItemTypeUId']");
+public static By toaster_msg=By.xpath("//div[text()=' Unable to run the query. ']");
 
 }	
