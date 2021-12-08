@@ -84,12 +84,41 @@ public void i_add_process_withformula(String addOrEditOrDelete,String AlertOrCom
 			Assert.fail("Adding of new process failed");
 		}		
 
-
-    
 }
 
+@Then("^i Verify the Property for \"([^\"]*)\" Entity for \"([^\"]*)\" Functionality$")
+public void i_Verify_the_Property_for_Entity_for_Functionality(String Entity, String Functionality) throws Throwable {
+	PreComputationEngine.checkProperty(Entity,Functionality);
+}
 
+@Given("^i \"([^\"]*)\" weightage for \"([^\"]*)\" for \"([^\"]*)\" in UI$")
+	public void i_weightage_for_for_in_UI(String AddEditOrDelete, String Property, String Entity) throws Throwable {
+   switch(AddEditOrDelete) {
+   case "Add":
+	   PreComputationEngine.AddNewProperty(Property, Entity);
+	   break;
+      case "Delete":
+	   PreComputationEngine.DeleteAddedProperty(Property, Entity);
+	   break;
+   }
+}
+@Then("^i verify the filter option for \"([^\"]*)\"$")
+public void i_verify_the_filter_option_for(String ProcessName) throws Throwable {
+	PreComputationEngine.ValidateFilter(ProcessName);
 }	
 
-	
+@Given("^i \"([^\"]*)\" a process of name \"([^\"]*)\"$")
+public void i_a_process_of_name(String EditOrView, String Processname) throws Throwable {
+	PreComputationEngine.ViewOrEdit(EditOrView,Processname);
+}
+
+@Then("^i verify user guide for \"([^\"]*)\"$")
+public void i_verify_user_guide_for(String tilename) throws Throwable {
+	PreComputationEngine.CheckUserGuide(tilename);
+}
+@Given("^i add filter criteria in formula page$")
+public void i_add_filter_criteria_in_formula_page() throws Throwable {
+   PreComputationEngine.Addfiltercriteria();
+}
+}	
 	

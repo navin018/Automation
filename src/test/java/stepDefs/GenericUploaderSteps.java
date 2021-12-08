@@ -30,7 +30,10 @@ public class GenericUploaderSteps  {
 		DataLoader.verifyentityprioritization(entity,tool);		
 	}
 	
-	
+	@Then("^i prepare the excel data for tool \"([^\"]*)\" with Associations in \"([^\"]*)\" DataLoader$")
+	public void i_prepare_the_excel_data_for_tool_with_Associations_in_DataLoader(String toolname,String dataload_type) throws Throwable {
+		DataLoader.prepareExcelFilePathtoBeUploadedwithAssociations(toolname, dataload_type);
+	}
 
 
 	@Then("^i select the Data Entity as \"([^\"]*)\" for \"([^\"]*)\" and upload the excel file$")
@@ -38,5 +41,20 @@ public class GenericUploaderSteps  {
 		DataLoader.UploadFileForGenericUploader(dataentity,toolname);
 		
 			}
+	
+	
+	
+
+	@Then("^i \"([^\"]*)\" the Custom Template for \"([^\"]*)\" for \"([^\"]*)\"$")
+	public void i_the_Custom_Template_for_for(String EditorUpload, String dataentity, String toolname) throws Throwable {
+		if(EditorUpload.equalsIgnoreCase("Edit"))
+		{
+			DataLoader.EditCustomTemplate(dataentity,toolname);
+		}
+		else if(EditorUpload.equalsIgnoreCase("Upload"))
+		{
+			DataLoader.UploadCustomTemplate(dataentity,toolname);
+		}
+	}
 	
 }

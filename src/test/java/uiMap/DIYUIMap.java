@@ -87,4 +87,6 @@ public static By SelectuseCases_txt=By.xpath("//div[text()='SELECT USE CASES']")
 public static By ProjHierarchy_txtbox=By.xpath("//label[text()='Project Hierarchy']//following::input[1]");
 public static By ResponsibleDeliveryEntity =By.xpath("//label[text()='Responsible Delivery Entity ']//following::input[@role='combobox'][1]//following::span[@class='ng-arrow-wrapper'][1]");
 
+public static By Upload_Btn = By.xpath("somexpth");
+
 }

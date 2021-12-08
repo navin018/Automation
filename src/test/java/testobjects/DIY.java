@@ -249,30 +249,30 @@ public class DIY extends Baseclass{
 		case "TFS Scrum":
 			//application lifecycle management
 			clickJS(DIYUIMap.selectedToolADTJira_checkbox);
-			clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			clickJS(DIYUIMap.TFS_checkbox);
 //			clickJS(DIYUIMap.ConfirmChangingTool_btn);
 			clickJS(DIYUIMap.Next_btn);
 			//planning
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
 			//Deliverables
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			//Requirements
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			//release management
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
 			//testing
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			//devops nothing to do
 			clickJS(DIYUIMap.SaveAndNext_btn);
@@ -840,4 +840,26 @@ public class DIY extends Baseclass{
 			logger.info("issue disabling the rule for entity "+entity);
 		}
 	}
+
+	public static void UploadDC(String toolname) {
+	System.out.println("upload DC code here");
+	clickJS(DIYUIMap.ConfigureContractExplore_btn);
+	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+	try{
+		singleClick(DIYUIMap.SearchDC_txtbox);
+	enterText(DIYUIMap.SearchDC_txtbox,Baseclass.getInstance().DCName);
+	ExpWaitForCondition(prepareWebElementWithDynamicXpath(DIYUIMap.DCName_statictxt, Baseclass.getInstance().DCName, "DCName") );
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		logger.info("created DC not shown up in add self enabled automation page for tool "+toolname);
+		Assert.fail("created DC not shown up in add self enabled automation page for tool "+toolname);
+		
+	}
+	
+	
+		
+	}
+
 }

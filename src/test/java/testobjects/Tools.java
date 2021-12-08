@@ -1449,7 +1449,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					//plz check this with swetha. 
 				  response = PostRequesttoGetIBResponse_custom(WorkItemTypeUId, WorkItemExternalId, workitem, "Flat", toolname,functionality);
 				}
-				else if(functionality.equalsIgnoreCase("BeforeRecon") || functionality.equalsIgnoreCase("AfterRecon") || functionality.equalsIgnoreCase("AfterRecon&Delete") || functionality.equalsIgnoreCase("DFT") || workitem.equalsIgnoreCase("Work Request")){
+				else if(functionality.equalsIgnoreCase("BeforeRecon") || functionality.equalsIgnoreCase("AfterRecon") || functionality.equalsIgnoreCase("AfterRecon&Delete") || functionality.equalsIgnoreCase("AfterRecon&DeletedIteration") ||functionality.equalsIgnoreCase("DFT") || workitem.equalsIgnoreCase("Work Request")){
 					 response = PostRequesttoGetIBResponse_custom(WorkItemTypeUId, WorkItemExternalId, workitem, "NonFlat", toolname,functionality);
 				}
 				else
@@ -1628,6 +1628,13 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 //					 VerifyIterationExternalIDAfterReconForWorkitem(IterationExternalIDOfWorkitemAfterRecon_Release,IterationExternalIDOfWorkitemAfterRecon_Sprint,toolname);
 						VerifyIterationExternalIDAfterReconForWorkitem(IterationDetails.get(0),IterationDetails.get(2),toolname);
 					}
+					
+					if(functionality.equalsIgnoreCase("AfterRecon&DeletedIteration")){ 
+
+						
+					}
+					
+					
 					
 					if(functionality.equalsIgnoreCase("AfterRecon&Delete"))
 					{

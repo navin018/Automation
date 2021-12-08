@@ -31,8 +31,11 @@ import testobjects.Baseclass;
 import uiMap.JiraUIMap;
 import uiMap.MyWizardUIMap;
 import uiMap.PreComputationEngineUIMAP;
+import uiMap.SaaSUIMap;
 import utilities.general.DataManager;
 import utilities.general.Property;
+import utilities.selenium.SeleniumDSL;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -43,8 +46,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.openqa.selenium.WebDriver;
 
-	public class PreComputationEngine extends Baseclass{
+public class PreComputationEngine extends Baseclass{
 		private Baseclass base;
 	
 		public PreComputationEngine()
@@ -292,9 +303,247 @@ import java.util.Random;
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			clickJS(PreComputationEngineUIMAP.clear_btn);
 		}
-		
-		
+
+
+		public static void checkProperty(String Entity, String Functionality) {
+			try {		
+								
+		//Checking Property
+				switch (Entity) {
+				case "Userstory":
+					ViewOrEdit("Edit","WSJF Userstory");
+					ExpWaitForCondition(PreComputationEngineUIMAP.Userstoryfield_txt);
+					String[] Property_userstory= {"StoryPointCompleted","StoryPointEstimated"};
+					singleClick(PreComputationEngineUIMAP.SelectFieldForEntity_dropdown);		
+					for(int i=0;i<Property_userstory.length;i++) {
+						if(CheckIfElementExists(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.Property_checkbox, Property_userstory[i],"PropertyName")))
+							logger.info("Property "+Property_userstory[i]+"is Present for "+Entity);
+						else
+							Assert.fail("Property "+Property_userstory[i]+"is not present");
+					}
+					break;
+				case "Requirement":
+					ViewOrEdit("Edit","Requirement WSJF");
+					ExpWaitForCondition(PreComputationEngineUIMAP.Requirementfield_txt);
+					String[] Property_requirement= {"RequirementTypeUId","SScore","Ascore","TScore"};
+					singleClick(PreComputationEngineUIMAP.SelectFieldForEntity_dropdown);
+					for(int i=0;i<Property_requirement.length;i++)	{					
+						if(CheckIfElementExists(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.Property_checkbox, Property_requirement[i],"PropertyName")))
+							logger.info("Property "+Property_requirement[i]+"is present");
+						else
+							Assert.fail("Property "+Property_requirement[i]+"is not present");
+					}
+					break;
+				}
+			
+					
+		//go to main page	
+				clickJS(PreComputationEngineUIMAP.Back_button);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				clickJS(PreComputationEngineUIMAP.Back_button);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);	
+				
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				logger.info("Issue Checking Property for "+ Entity);
+				Assert.fail("Issue Checking Property for "+ Entity);
+			}
+			
+		}
 
 
 
+		public static void AddNewProperty(String Property, String Entity) {
+			try {
+				singleClick(PreComputationEngineUIMAP.Weighatge_img);
+				
+				ExpWaitForCondition(PreComputationEngineUIMAP.SelectEntity_dropdown);
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.SelectEntity_dropdown, Entity);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);	
+				clickJS(PreComputationEngineUIMAP.AddRow_icon);
+				ExpWaitForCondition(PreComputationEngineUIMAP.Selectinfirstrow);
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.Selectinfirstrow, Property);
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.Group_select, "WSJF-Weightage");
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.Name_select, "New");
+				enterText(PreComputationEngineUIMAP.Value_txtbox,"10");
+				clickJS(PreComputationEngineUIMAP.Saveweightage_btn);
+				ExpWaitForCondition(PreComputationEngineUIMAP.Sucesstoaster_msg);
+				logger.info("New Property "+Property+" for "+Entity+" added successfully in UI");
+				
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				logger.info("Unable to add New Property in UI");
+				Assert.fail("Unable to add New Property in UI");
+			}
+		}
+
+		public static void DeleteAddedProperty(String Property, String Entity) {
+			try {
+				
+//				ExpWaitForCondition(PreComputationEngineUIMAP.SelectEntity_dropdown);
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.SelectEntity_dropdown, Entity);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				for(int i=1;i<=4;i++) {				
+					if(getDropdownValue(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.Property_dropdown, Integer.toString(i), "R")).equalsIgnoreCase("StateUId"))
+						singleClick(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.DeleteProperty_option,Integer.toString(i), "R"));
+				}
+				clickJS(PreComputationEngineUIMAP.Nextpage_option);	
+				for(int i=1;i<=4;i++) {				
+							if(getDropdownValue(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.Property_dropdown, Integer.toString(i), "R")).equalsIgnoreCase("StateUId")) {
+								singleClick(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.DeleteProperty_option,Integer.toString(i), "R"));
+								break;
+						}
+				}
+									
+				  
+						
+//				getDropdownValue
+				
+//				ExpWaitForCondition(PreComputationEngineUIMAP.DeleteProperty_option);
+				
+				ExpWaitForCondition(PreComputationEngineUIMAP.YesAfterDelete_btn);
+				clickJS(PreComputationEngineUIMAP.YesAfterDelete_btn);				
+				clickJS(PreComputationEngineUIMAP.Saveweightage_btn);
+				ExpWaitForCondition(PreComputationEngineUIMAP.Sucesstoaster_msg);
+				logger.info("Added Property "+Property+" for "+Entity+" deleted successfully in UI");
+				
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				logger.info("Unable to Delete Added Property for Precomputation in UI");
+				Assert.fail("Unable to Delete Added  Property for Precomputation in UI");
+			}
+			
+		}
+
+		public static void ValidateFilter(String processName) {
+			try {
+			
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);	
+				clickJS(PreComputationEngineUIMAP.Filter_img);
+		//Values Entered for Global UserStory RAG Process in ADT Jira	
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.Triggerbasedon_drpdown, "Scheduler");
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.Status_dropdown, "Publish");
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.Type_dropdown, "Validation");
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.Entity_dropdown, "WorkItem");
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.Workitem_drpdown, "UserStory");
+				selectByPartOfVisibleText(PreComputationEngineUIMAP.Entityevent_dropdown, "Merged");
+				CheckIfElementExists(PreComputationEngineUIMAP.Active_txt);
+				clickJS(PreComputationEngineUIMAP.Apply_btn);
+				if(CheckElementsSize(PreComputationEngineUIMAP.Elementtobefiltered)==1)					
+					logger.info("Filter for "+processName +" is validated");
+				else
+					Assert.fail("Filter for "+processName +" is not working as expected");
+				
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				logger.info("Filter for "+processName +" is not working as expected");
+				Assert.fail("Filter for "+processName +" is not working as expected");
+			}
+			
+			
+		}
+
+		public static void ViewOrEdit(String EditOrView, String Processname) {
+			try {
+				
+		//search validation
+				ExpWaitForCondition(PreComputationEngineUIMAP.Search_Imgintile);
+				singleClick(PreComputationEngineUIMAP.Search_Imgintile);				
+				enterText(PreComputationEngineUIMAP.Search_Imgintile,Processname);
+				
+		//Edit Validation	
+				if(EditOrView.equalsIgnoreCase("Edit")){
+					clickJS(PreComputationEngineUIMAP.More_options);
+					ExpWaitForCondition(PreComputationEngineUIMAP.EditNode_txt);
+					clickJS(PreComputationEngineUIMAP.EditNode_txt);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					ExpWaitForCondition(PreComputationEngineUIMAP.Editcalculation_btn);
+					clickJS(PreComputationEngineUIMAP.Editcalculation_btn);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					Thread.sleep(5000);
+		//View Validation			
+				}else if(EditOrView.equalsIgnoreCase("View")) {
+					clickJS(PreComputationEngineUIMAP.More_options);
+					ExpWaitForCondition(PreComputationEngineUIMAP.ViewNode_txt);
+					clickJS(PreComputationEngineUIMAP.ViewNode_txt);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					clickJS(PreComputationEngineUIMAP.Editcalculation_btn);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					String[] Disabled_Items= {"Pre Defined Formula","Reset","Save"};
+					for(int i =0;i<Disabled_Items.length;i++) {
+						if(CheckIfElementExists(prepareWebElementWithDynamicXpath(PreComputationEngineUIMAP.Disabled_items, Disabled_Items[i], "disabled")))
+							logger.info("No Editing is possible in  View Mode in precomp Page");
+						else
+							Assert.fail("Editing is possible in View Mode");
+										
+				}
+			}
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				logger.info("Issue in Viewing/Editing Node in precomp Page");
+				Assert.fail("Issue in Viewing/Editing Node in precomp Page");
+			}
+			
+		}
+
+		public static void Addfiltercriteria() {
+			try {
+		//Filter criteria in formula Page		
+				ExpWaitForCondition(PreComputationEngineUIMAP.AddFilter_optn);
+				clickJS(PreComputationEngineUIMAP.AddFilter_optn);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					if(CheckIfElementExists(PreComputationEngineUIMAP.StateUid_label)) {
+						singleClick(PreComputationEngineUIMAP.StateUid_label);
+					}
+					else {
+						singleClick(PreComputationEngineUIMAP.SelectFieldForEntity_dropdown);
+						clickJS(PreComputationEngineUIMAP.StateUId_select);
+						singleClick(PreComputationEngineUIMAP.Filter_txtarea);
+						singleClick(PreComputationEngineUIMAP.StateUid_label);
+					}
+					
+					singleClick(PreComputationEngineUIMAP.equal_icon);
+					singleClick(PreComputationEngineUIMAP.Filter_txtarea);
+					enterText(PreComputationEngineUIMAP.Filter_txtarea,"New");
+					singleClick(PreComputationEngineUIMAP.SaveFormula_btn);
+					ExpWaitForElementToDisappear(PreComputationEngineUIMAP. SaveSuccess_Msg);
+					logger.info("Filter Criteria in Formula Page is successfully added for Precomputation");
+				
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				logger.info("Unable to add filter criteria for Precomputation");
+				Assert.fail("Unable to add filter criteria for Precomputation");
+			}
+				
+			
+		}
+		public static void CheckUserGuide(String tilename) {
+			try {
+				ExpWaitForCondition(PreComputationEngineUIMAP.Userguide_icon);
+				 String currentHandle= driver().getWindowHandle();
+				clickJS(PreComputationEngineUIMAP.Userguide_icon);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);	
+				SeleniumDSL.NavigatetoLastActiveTab(currentHandle);
+				SeleniumDSL.MovetoNext();
+		//Pdf Validation to be done
+				String Title=getTitle();
+				System.out.println(Title);
+//				if(getTitle().equals(tilename))
+				Assert.assertEquals(Title,tilename);
+					logger.info("User Guide Avilable for "+tilename);
+								
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				logger.info("User Guide is not available for "+tilename);
+				Assert.fail("User Guide is not available for "+tilename);
+			}
+			
+		}
 	}

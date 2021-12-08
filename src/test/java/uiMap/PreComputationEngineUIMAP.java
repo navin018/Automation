@@ -79,7 +79,7 @@ public class PreComputationEngineUIMAP {
 		 public static By div_icon =By.xpath("//a[text()='/']");
 		 public static By leftbracket_icon =By.xpath("//a[text()='(']");
 		 public static By rightbracket_icon =By.xpath("//a[text()=')']");
-		 public static By equal_icon =By.xpath("//a[text()='=']");
+		 public static By equal_icon =By.xpath("//a[text()='==']");
 		 public static By notequals_icon =By.xpath("//a[text()='!=']");
 
 		 public static By max_icon =By.xpath("//a[text()='MAX']");
@@ -87,8 +87,61 @@ public class PreComputationEngineUIMAP {
 		 public static By avg_icon =By.xpath("//a[text()='AVG']");
 		 public static By sum_icon =By.xpath("//a[text()='SUM']");
 		 public static By SystemDate_icon =By.xpath("//a[text()='SYSTEMDATE']");
-	 
-	 
-	
+
+//Property check
+public static By Search_Imgintile=By.xpath("//div[@class='myw-navbar-action myw-navbar-search']//child::input[1]");
+		//input[@placeholder='Search...']//input[@id='searchCleartextbox']
+
+//public static By Search_Imgintile=By.xpath("//span[text()='Weightage configuration for multi-list values']//preceding::input[1]");
+public static By More_options=By.xpath("//a[@title='More Options']");		 
+public static By ViewNode_txt=By.xpath("//a[text()='View Node']");		 
+public static By EditNode_txt=By.xpath("//a[text()='Edit Node']");		 
+public static By Userstoryfield_txt=By.xpath("//span[text()='Select Field for UserStory Entity']");		 
+public static By Back_button=By.xpath("//a[@title='Back']");
+public static By Requirementfield_txt=By.xpath("//span[text()='Select Field for Requirement Entity']");	
+public static String Property_checkbox="//span[text()='{PropertyName}']//preceding::input[1]";	
+public static By Userguide_icon=By.xpath("//div[text()='Precomputation Engine']//preceding::a[1]");
+
+//View
+public static String Disabled_items="//a[@class='myw-navbar-action show disabled']//following::span[text()='{disabled}']";
+
+
+//weightage 
+public static By Weighatge_img=By.xpath("//img[@alt='Entity Computation Property']");
+public static By SelectEntity_dropdown=By.xpath("//select[@name='selectedEntityL1']");
+public static By AddRow_icon=By.xpath("//a[@title='Add Row']");
+public static By Selectinfirstrow=By.xpath("//th[contains(text(),'Multi-list field')]//following::select[1]");
+public static By Group_select=By.xpath("//th[contains(text(),'Group')]//following::select[2]");
+public static By Name_select=By.xpath("//th[contains(text(),'Name')]//following::select[3]");
+public static By Value_txtbox=By.xpath("//th[contains(text(),'Name')]//following::input[1]");
+public static By Saveweightage_btn=By.xpath("//button[@title='Save']");
+public static By Sucesstoaster_msg=By.xpath("//*[text()=' Saved Successfully ']");
+public static String DeleteProperty_option="//tr[{R}]//td[5]//a[1]//*[local-name()='svg']";
+public static By YesAfterDelete_btn=By.xpath("//button[@title='Yes']");
+
+public static String Property_dropdown="//tr[{R}]//td[1]//select[1]";
+
+
+
+public static String DeleteProperty_icon="//'{D}'//td[1]//select[1]//following::a[@title='Delete']";
+public static By Nextpage_option=By.xpath("//a[text()='2']");
+
+//filter
+public static By Filter_img=By.xpath("//img[@alt='Filter']");
+public static By Triggerbasedon_drpdown=By.xpath("//select[@name='typeUId']");
+public static By Status_dropdown=By.xpath("//select[@name='stateUId']");
+public static By Type_dropdown=By.xpath("//select[@name='processType']");
+public static By Entity_dropdown=By.xpath("//select[@name='entity']");
+public static By Workitem_drpdown=By.xpath("//select[@name='wt']");
+public static By Entityevent_dropdown=By.xpath("//select[@name='entityEvent']");
+public static By Active_txt=By.xpath("//div[@class='form-group mb-3']//small[@class='pl-2 myw-inact-val'][contains(text(),'Active')]");
+public static By Apply_btn=By.xpath("//button[@class='btn btn-primary ml-auto'][text()='Apply']");
+public static By Elementtobefiltered=By.xpath("//h6[@class='card-title cursor-pointer']");
+
+//filter criteria in formula page
+public static By AddFilter_optn=By.xpath("//a[text()='Add Filter Criteria']");
+public static By StateUId_select=By.xpath("//span[text()='StateUId']//preceding::input[1]");
+public static By StateUid_label=By.xpath("//span[text()='UserStory.StateUId']");
+public static By Filter_txtarea=By.xpath("//textarea[@placeholder='Sample Filter Criteria:- (UserStory.StateUId == New)']");
 }
 

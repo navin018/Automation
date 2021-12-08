@@ -86,3 +86,20 @@ Scenario Outline: TFSAgile_DI
 		Examples: 
 		| applicationname |
 		| MyWizard        |
+		
+		
+		
+@2TFSAgile_DIY_VerifyAdditionalScenario
+Scenario Outline: TFSAgile_DIY_CreateDC 
+	Given i load the project properties file 
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "DIY AD Automation" 
+	Then i select only the client for "<applicationname>"
+	And i "create" a DC for DIY for "TFS Agile"
+	And i "Upload" a DC for DIY for "TFS Agile"
+#	And i enter self enabled automation details for "TFS Agile" for "normal" functionality  
+#	And i make a note of the DC created for "TFS Agile"
+Examples: 
+		| applicationname |
+		| MyWizard        |

@@ -45,7 +45,7 @@ public static By Description_txtBox=By.xpath("//div[@id='description-wiki-edit']
 public static By Description_iFrame=By.xpath("//div[@id='description-wiki-edit']//following::iframe[1]");
 //
 public static By de = By.xpath("//*[@id='mce_0_ifr']");
-public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name')]//following::input[1]");
+public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1]");
 public static By Create_btn=By.xpath("//input[@type='submit' and @value='Create']");
 public static By CreateSubTask_btn=By.xpath("//span[text()='Create sub-task']");
 public static By firstElementInSearchBox_staticTxt = By.xpath("//span[@class='quick-search-item-title'][@xpath='1']");
@@ -63,7 +63,7 @@ public static By TestExecution_txtbox=By.xpath("//textarea[@id='raven-field-issu
 public static By AddTestExecution_btn=By.xpath("//input[@value='Add' and @id='issue-selector-form-submit']");
 public static By AssociatedSuccess_txt=By.xpath("//div[@class='aui-message closeable aui-message-success']");
 
-public static By ExistingTestExecution_statictxt=By.xpath("//a[@title='Existing Test Execution']");
+public static By ExistingTestExecution_statictxt=By.xpath("//a[contains(text(),'Existing Test Execution')]");
 public static By ViewAllProject_link = By.xpath("//*[@id='project_view_all_link_lnk' or text()='View all projects']");
 public static By SearchBoxAllPorjects_txtbox=By.xpath("//input[@id='project-filter-text' or @aria-label='Search projects']");
 public static By ProjectKey_Statictxt = By.xpath("//table[@class='aui']//tbody//tr[1]//td[2]");

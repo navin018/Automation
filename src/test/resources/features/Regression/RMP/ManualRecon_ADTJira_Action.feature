@@ -100,7 +100,7 @@ Scenario Outline: ManualRecon_PerformManualRecon
 @8ADTJira_Manualrecon_IBVerificationofStoryVerifyIterationUIdAfterRecon
 Scenario: ADTJIRA_ManualRecon_CheckifStoryFlown_VerifyIterationUIdAfterRecon 
 	And i generate a token for "DevTest" environment 
-	And i verify if "Action" has "flown" which was "NA" for "ADT Jira" for "AfterRecon" functionality
+	And i verify if "Action" has "flown" which was "NA" for "ADT Jira" for "AfterRecon&DeletedReal" functionality
 	
 	
 @9ADTJira_Manualrecon_EnableIterationToInBound

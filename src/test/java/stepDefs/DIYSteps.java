@@ -17,7 +17,9 @@ public class DIYSteps {
 				DIY.AddDC(toolname);
 		if(CreateOrDelete.equalsIgnoreCase("Delete"))
 				DIY.DeleteDC(toolname);
-	}
+		if(CreateOrDelete.equalsIgnoreCase("Upload"))
+			DIY.UploadDC(toolname);
+			}
 	
 	@Then("^i deactivate the rules for \"([^\"]*)\"$")
 	public void i_deactivate(String toolname) throws Throwable {

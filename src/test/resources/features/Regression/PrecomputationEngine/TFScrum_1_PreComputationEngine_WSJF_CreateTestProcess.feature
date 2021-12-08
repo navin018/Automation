@@ -37,4 +37,78 @@ Scenario Outline: TFSScrum_WorkitemCreation_PreCompuation
 			Examples: 
 		| applicationname |UserStory|
 		| MyWizard        |ProductBacklog_wsjf_Negative_Int|
+	
+@Verify_PropertyDropdown_InFormulaPage
+Scenario Outline: PrecomputationUI_Verify_PropertyDropdown_InFormulaPage
+	Given i load the project properties file 
+	Given i login to application "MyWizard"  
+	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
+	Then i select client and DC for "<toolname>"
+	And i click on tile "Precomputation Engine"	
+	And i Verify the Property for "Userstory" Entity for "PreComputation" Functionality
+	And i Verify the Property for "Requirement" Entity for "PreComputation" Functionality
+Examples: 
+		| applicationname |toolname|
+		| MyWizard        |ADT Jira|
+	
+
+@PrecomputationUI_Verify_FilterOption
+Scenario Outline: PrecomputationUI_Verify_FilterOption
+	Given i load the project properties file 
+	Given i login to application "MyWizard"  
+	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
+	Then i select client and DC for "<toolname>"
+	And i click on tile "Precomputation Engine"	
+	And i verify the filter option for "Global UserStory RAG Process"
+	
+Examples: 
+		| applicationname |toolname|
+		| MyWizard        |	Jira|
+
+
+@PrecomputationUI_Verify_WeightageAdditionanddeletion
+Scenario Outline: PrecomputationUI_Verify_UserGuideavailablity
+	Given i load the project properties file 
+	Given i login to application "MyWizard"  
+	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
+	Then i select client and DC for "<toolname>"
+	And i click on tile "Precomputation Engine"	
+	And i "Add" weightage for "StateUId" for "WorkItem-UserStory" in UI
+	And i "Delete" weightage for "StateUId" for "WorkItem-UserStory" in UI
+Examples: 
+		| applicationname |toolname|
+		| MyWizard        |Jira|	
+	
+@PrecomputationUI_FilterValidationin_FormulaScreen
+Scenario Outline: PrecomputationUI_FilterValidationin_FormulaScreen
+	Given i load the project properties file 
+	Given i login to application "MyWizard"  
+	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
+	Then i select client and DC for "<toolname>"	
+	And i "edit" a process of name "WSJF Userstory process"		
+	And i add filter criteria in formula page
+Examples: 
+		| applicationname |toolname|
+		| MyWizard        |Jira|	
+
+	
+		
+@PrecomputationUI_Verify_ViewandUserGuideavailablity
+Scenario Outline: PrecomputationUI_Verify_UserGuideavailablity
+	Given i load the project properties file 
+	Given i login to application "MyWizard"  
+	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
+	Then i select client and DC for "<toolname>"
+	And i "view" a process of name "WSJF Userstory process"	
+	And i verify user guide for "Precomputation Engine"
+	
+Examples: 
+		| applicationname |toolname|
+		| MyWizard        |	Jira|
+	
+
+	
+	
+	
+	
 		
