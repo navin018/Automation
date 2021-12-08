@@ -1,25 +1,20 @@
 package stepDefs;
-import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
-import uiMap.DIYUIMap;
-import uiMap.JiraUIMap;
 import uiMap.MyWizardUIMap;
-import uiMap.SecurityTestsUIMap;
 import testobjects.*;
 public class DIYSteps {
 	
 
 	@Then("^i \"([^\"]*)\" a DC for DIY for \"([^\"]*)\"$")
-	public void i_create_DC(String CreateOrDelete, String toolname) throws Throwable {
-		if(CreateOrDelete.equalsIgnoreCase("Create"))
-				DIY.AddDC(toolname);
-		if(CreateOrDelete.equalsIgnoreCase("Delete"))
-				DIY.DeleteDC(toolname);
-		if(CreateOrDelete.equalsIgnoreCase("Upload"))
-			DIY.UploadDC(toolname);
-			}
+	public void i_create_DC(String CreateOrDeleteOrUpload, String toolname) throws Throwable {
+	if(CreateOrDeleteOrUpload.equalsIgnoreCase("Create"))
+	DIY.AddDC(toolname);
+	if(CreateOrDeleteOrUpload.equalsIgnoreCase("Delete"))
+	DIY.DeleteDC(toolname);
+	if(CreateOrDeleteOrUpload.equalsIgnoreCase("Upload"))
+	DIY.UploadDC(toolname);
+	}
 	
 	@Then("^i deactivate the rules for \"([^\"]*)\"$")
 	public void i_deactivate(String toolname) throws Throwable {

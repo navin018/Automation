@@ -86,7 +86,10 @@ public static By Yes_btn=By.xpath("//button[text()='Yes']");
 public static By SelectuseCases_txt=By.xpath("//div[text()='SELECT USE CASES']");
 public static By ProjHierarchy_txtbox=By.xpath("//label[text()='Project Hierarchy']//following::input[1]");
 public static By ResponsibleDeliveryEntity =By.xpath("//label[text()='Responsible Delivery Entity ']//following::input[@role='combobox'][1]//following::span[@class='ng-arrow-wrapper'][1]");
-
-public static By Upload_Btn = By.xpath("somexpth");
+//uploadDC
+public static By contract_btn=By.xpath("//table[@class='ui-treetable-table']//following::a[@title='Contract/Opportunity Details'][1]");
+public static By upload_template_btn=By.xpath("//span[text()='Upload Template']");
+public static By file_btn=By.xpath("//input[@id='file']");
+public static By upload_btn=By.xpath("//button[@title='Upload']");
 
 }

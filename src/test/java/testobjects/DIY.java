@@ -1,30 +1,49 @@
 package testobjects;
+import static org.testng.Assert.assertTrue;
+import static utilities.reporting.LogUtil.logger;
+import static utilities.selenium.SeleniumDSL.*;
+import static utilities.selenium.SeleniumDSL.ExpWaitForCondition;
+import static utilities.selenium.SeleniumDSL.ExpWaitForElementToDisappear;
+import static utilities.selenium.SeleniumDSL.RandomNumberGenerator;
+import static utilities.selenium.SeleniumDSL.ScrollIntoView;
+import static utilities.selenium.SeleniumDSL.clickJS;
+import static utilities.selenium.SeleniumDSL.doubleClick;
+import static utilities.selenium.SeleniumDSL.enterText;
+import static utilities.selenium.SeleniumDSL.getAttribute;
+import static utilities.selenium.SeleniumDSL.getDropdownValue;
+import static utilities.selenium.SeleniumDSL.getText;
+import static utilities.selenium.SeleniumDSL.isEnabled;
+import static utilities.selenium.SeleniumDSL.isSelected;
+import static utilities.selenium.SeleniumDSL.isVisible;
+import static utilities.selenium.SeleniumDSL.prepareWebElementWithDynamicXpath;
+import static utilities.selenium.SeleniumDSL.refresh;
+import static utilities.selenium.SeleniumDSL.selectByPartOfVisibleText;
+import static utilities.selenium.SeleniumDSL.selectDropdownByText;
+import static utilities.selenium.SeleniumDSL.sendEnter;
+import static utilities.selenium.SeleniumDSL.sendTab;
+import static utilities.selenium.SeleniumDSL.singleClick;
+import static utilities.selenium.SeleniumDSL.waitPageToLoad;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import uiMap.DIYUIMap;
-import uiMap.DLMUIMap;
 import uiMap.MyWizardMappingRuleUIMap;
 import uiMap.MyWizardUIMap;
 import uiMap.ProductConfigUIMap;
-import uiMap.SecurityTestsUIMap;
-import utilities.general.DataManager;
 import utilities.general.Property;
-
-import static org.testng.Assert.assertEquals;
-import static utilities.reporting.LogUtil.logger;
-import static utilities.selenium.SeleniumDSL.*;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.Random;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.openqa.selenium.By;
-
-import dataobjects.DLMDO;
+import utilities.selenium.SeleniumDSL;
 
 public class DIY extends Baseclass{
 	private Baseclass base;
@@ -249,30 +268,30 @@ public class DIY extends Baseclass{
 		case "TFS Scrum":
 			//application lifecycle management
 			clickJS(DIYUIMap.selectedToolADTJira_checkbox);
-			clickJS(DIYUIMap.TFS_checkbox);
+			clickJS(DIYUIMap.selectedToolTFS_checkbox);
 //			clickJS(DIYUIMap.ConfirmChangingTool_btn);
 			clickJS(DIYUIMap.Next_btn);
 			//planning
-			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.TFS_checkbox);
+			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.selectedToolTFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
 			//Deliverables
-			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.TFS_checkbox);
+			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.selectedToolTFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			//Requirements
-			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.TFS_checkbox);
+			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.selectedToolTFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			//release management
-			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.TFS_checkbox);
+			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.selectedToolTFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
 			//testing
-			if(!getAttribute(DIYUIMap.TFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.TFS_checkbox);
+			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.selectedToolTFS_checkbox);
 			clickJS(DIYUIMap.Next_btn);
 			//devops nothing to do
 			clickJS(DIYUIMap.SaveAndNext_btn);
@@ -840,26 +859,101 @@ public class DIY extends Baseclass{
 			logger.info("issue disabling the rule for entity "+entity);
 		}
 	}
-
 	public static void UploadDC(String toolname) {
-	System.out.println("upload DC code here");
-	clickJS(DIYUIMap.ConfigureContractExplore_btn);
-	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-	try{
+		prepareExcelFilePathtoBeUploadedDIY(toolname);
+		clickJS(DIYUIMap.ConfigureContractExplore_btn);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		try{
 		singleClick(DIYUIMap.SearchDC_txtbox);
-	enterText(DIYUIMap.SearchDC_txtbox,Baseclass.getInstance().DCName);
+		enterText(DIYUIMap.SearchDC_txtbox,Baseclass.getInstance().DCName);
 	ExpWaitForCondition(prepareWebElementWithDynamicXpath(DIYUIMap.DCName_statictxt, Baseclass.getInstance().DCName, "DCName") );
-	}
-	catch(Exception e)
-	{
+		Thread.sleep(2000);
+		clickJS(DIYUIMap.contract_btn);
+		ExpWaitForCondition(DIYUIMap.ContractOpportunityDetails_window);
+		clickJS(DIYUIMap.upload_template_btn);
+		Thread.sleep(2000);
+		clickJS(DIYUIMap.file_btn);
+		String Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata"  + File.separator + "DIY"+ File.separator +"DCAttribute_Template.xlsm";
+		String AutoITFileloc = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"AutoIT" + File.separator ;
+		String autoITExecutable = AutoITFileloc+"UploadFile_DataLoader.exe " +Excelfilepath;
+		Process process = Runtime.getRuntime().exec(autoITExecutable);
+		process.waitFor();
+	    Thread.sleep(6000);
+	    clickJS(DIYUIMap.upload_btn);
+	    assertTrue(isEnabled(DIYUIMap.ContractOpportunityDetails_window),"ContractOpportunityDetails is not shown");
+	    Thread.sleep(3000);
+		clickJS(DIYUIMap.Save_btn);
+		Thread.sleep(3000);
+		ExpWaitForCondition(DIYUIMap.SaveAndClose_btn);
+		clickJS(DIYUIMap.SaveAndClose_btn);
+		ExpWaitForCondition(DIYUIMap.DCSavedSuccess_Msg);
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		}
+		catch(Exception e)
+		{
+		grabScreenshotForExtentReport();
 		e.printStackTrace();
-		logger.info("created DC not shown up in add self enabled automation page for tool "+toolname);
-		Assert.fail("created DC not shown up in add self enabled automation page for tool "+toolname);
-		
-	}
-	
-	
-		
-	}
+		logger.info("Created DC not Uploaded for DIY Using Template for"+toolname);
+		Assert.fail("Created DC not Uploaded for DIY Using Template for"+toolname);
 
+		}
+		
+	}
+	public static void prepareExcelFilePathtoBeUploadedDIY(String toolname) {
+		try {
+		
+		String Excelfilepath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" +  File.separator + "DIY"+ File.separator +"DCAttribute_Template.xlsm";
+		FileInputStream fis = new FileInputStream(new File(Excelfilepath));
+		XSSFWorkbook workbook = new XSSFWorkbook (fis);
+		XSSFSheet sheet = workbook.getSheetAt(2);
+		String	Client_Service_Group="Mexico";
+		String	Responsible_Delivery_Entity="Avanade";
+		String	Delivery_Lead="Sonal";
+		String	End_To_End_Type="Contract";
+		String	ContractOpportunity_StartDate="18/11/2021";
+		String	ContractOpportunity_EndDate="19/11/2021";
+		String	ContractOpportunity_Id="123456";
+		String	 Industry_Segment="Natural Resources";
+		String	Platform="ALIBABA";
+		String	Delivery_Type="Application Development - Agile";
+		String	Methodology="Scrum";
+		String	Delivery_Function="Analytics";
+		String	Deploy_Region="EALA";
+		sheet.getRow(1).getCell(3).setCellValue(Client_Service_Group);
+		sheet.getRow(1).getCell(4).setCellValue(Responsible_Delivery_Entity);
+		sheet.getRow(1).getCell(5).setCellValue(Delivery_Lead);
+		sheet.getRow(1).getCell(6).setCellValue(End_To_End_Type);
+		sheet.getRow(1).getCell(7).setCellValue(ContractOpportunity_StartDate);
+		sheet.getRow(1).getCell(8).setCellValue(ContractOpportunity_EndDate);
+		sheet.getRow(1).getCell(9).setCellValue(ContractOpportunity_Id);
+		sheet.getRow(1).getCell(10).setCellValue(Industry_Segment);
+		sheet.getRow(1).getCell(11).setCellValue(Platform);
+		sheet.getRow(1).getCell(12).setCellValue(Delivery_Type);
+		sheet.getRow(1).getCell(13).setCellValue(Methodology);
+		sheet.getRow(1).getCell(14).setCellValue(Delivery_Function);
+		sheet.getRow(1).getCell(15).setCellValue(Deploy_Region);
+		FileOutputStream fos = new FileOutputStream(new File(Excelfilepath));
+		System.out.println("_____DATA_ENTRY_COMPLETED_____");
+		workbook.write(fos);
+		fis.close();
+	    fos.close();
+		
+		
+
+		
+		
+		}
+		catch(Exception e)
+		{
+			grabScreenshotForExtentReport();
+			e.printStackTrace();
+			logger.info("problem with excel file creation for DIY Uploading");
+			Assert.fail("problem with excel file creation for DIY Uploading");
+
+		}
+	
+		
+		
+		
+	}
 }

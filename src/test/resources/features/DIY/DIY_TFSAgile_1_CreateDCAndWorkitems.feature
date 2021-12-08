@@ -27,7 +27,6 @@ Examples:
 		| applicationname |
 		| MyWizard        |
 		
-
 @3TFSAgile_DIY_CreateWorkitems		
 Scenario Outline: TFSAgile_WorkitemCreation 
 	Given i load the project properties file
