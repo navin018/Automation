@@ -27,6 +27,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import com.jcraft.jsch.Logger;
 public class DataLoader {
@@ -535,5 +536,256 @@ public class DataLoader {
 				 Assert.fail("Issue uploading entity "+dataentity+ " in generic uploader");
 			}
 		}
+		
+		public static void EditCustomTemplate( String dataentity, String toolname) {
+			try {
+			String Dataentity = dataentity.split("_")[0];
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, Dataentity);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			Thread.sleep(2000);
+			singleClick(GenericUploaderUIMap.DataMappingTemplate_drpdown);
+			Thread.sleep(2000);
+			clickJS(GenericUploaderUIMap.DataMappingTemplateOption_drpdown);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			clickJS(GenericUploaderUIMap.Edit_icon);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			clickJS(GenericUploaderUIMap.Clone_btn);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+
+			//adding template details
+			clear(GenericUploaderUIMap.TemplateName_txt);
+			enterText(GenericUploaderUIMap.TemplateName_txt, dataentity+"_Automation_CustomTemplate");
+			Thread.sleep(5000);
+			enterText(GenericUploaderUIMap.Search_txtbox,"External Id");
+			Thread.sleep(2000);
+			clear(GenericUploaderUIMap.NewFeild_txtbox);
+			enterText(GenericUploaderUIMap.NewFeild_txtbox,"WorkitemExternal Id");
+
+			clear(GenericUploaderUIMap.Search_txtbox);
+			enterText(GenericUploaderUIMap.Search_txtbox,"State");
+			Thread.sleep(2000);
+			clear(GenericUploaderUIMap.NewFeild_txtbox);
+			enterText(GenericUploaderUIMap.NewFeild_txtbox,"Workitem State");
+
+			clear(GenericUploaderUIMap.Search_txtbox);
+			enterText(GenericUploaderUIMap.Search_txtbox,"Title");
+			Thread.sleep(2000);
+			clear(GenericUploaderUIMap.NewFeild_txtbox);
+			enterText(GenericUploaderUIMap.NewFeild_txtbox,"Workitem Title");
+
+			clear(GenericUploaderUIMap.Search_txtbox);
+			enterText(GenericUploaderUIMap.Search_txtbox,"Project");
+			Thread.sleep(2000);
+
+			clear(GenericUploaderUIMap.NewFeild_txtbox);
+			enterText(GenericUploaderUIMap.NewFeild_txtbox,"Workitem Project");
+
+			singleClick(GenericUploaderUIMap.SaveAS_btn);
+			ExpWaitForCondition(GenericUploaderUIMap.SavedSuccessfully_msg);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+
+			}
+
+			catch(Exception e)
+			{
+			grabScreenshotForExtentReport();
+			e.printStackTrace();
+			logger.info("Issue Editing the Template for entity "+dataentity+ " in generic uploader");
+			Assert.fail("Issue Editing the Template for entity "+dataentity+ " in generic uploader");
+			}
+			}
+
+
+
+
+			public static void UploadCustomTemplate(String dataentity, String toolname) {
+			try {
+			SoftAssert sa = new SoftAssert();
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			clickJS(GenericUploaderUIMap.GoBack_btn);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+
+
+			singleClick(GenericUploaderUIMap.Upload_Img);
+			ExpWaitForCondition(GenericUploaderUIMap.Upload_btn);
+			singleClick(GenericUploaderUIMap.SelectFile_btn);
+			String ExcelFileLoc="";
+			ExcelFileLoc = System.getProperty("user.dir")+File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"DataLoader" + File.separator +"GenericUploader" + File.separator + "ADTJira"+ File.separator +"Excel"+ File.separator + dataentity+".xlsx";
+			String AutoITFileloc = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"AutoIT" + File.separator ;
+			String autoITExecutable = AutoITFileloc+"UploadFile_DataLoader.exe " +ExcelFileLoc;
+			Process process = Runtime.getRuntime().exec(autoITExecutable);
+			process.waitFor();
+			Thread.sleep(5000);
+			clickJS(GenericUploaderUIMap.Upload_btn);
+			Thread.sleep(120000);
+			clickJS(GenericUploaderUIMap.Refresh_btn);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
+			{
+			clickJS(GenericUploaderUIMap.Refresh_btn);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			Thread.sleep(60000);
+			if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
+			{
+			clickJS(GenericUploaderUIMap.Refresh_btn);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			Thread.sleep(60000);
+			}
+			}
+			if(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Complete"))
+			{
+			logger.info("The data provided for entity "+dataentity+" is Successfully Uploaded");
+			sa.assertTrue(true,"The data provided for entity "+dataentity+" is Successfully Uploaded");
+
+			}
+
+			sa.assertAll();
+
+			}
+			catch(Exception e)
+			{
+			grabScreenshotForExtentReport();
+			e.printStackTrace();
+			logger.info("Issue Uploading the CustomTemplate for entity "+dataentity+ " in generic uploader");
+			Assert.fail("Issue Uploading the CustomTemplate for entity "+dataentity+ " in generic uploader");
+			}
+
+			}
+			
+			public static void prepareExcelFilePathtoBeUploadedwithAssociations(String toolname, String dataload_type) {
+				try {
+				String ExcelToBePreparedwithAssociations="";
+				String[] entities_NoToolInstance_GenericUploaderwithAssociations = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Decision","Iteration"};
+				ExcelToBePreparedwithAssociations = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+ File.separator ;
+				if(toolname.equalsIgnoreCase("NoToolInstance"))
+				{
+				for(String entity:entities_NoToolInstance_GenericUploaderwithAssociations)
+				{
+				PrepareExcelFileForGenericUploaderwithAssociationsAndWriteEntityIDToJSON(entity,toolname);
+				}
+				}
+
+
+				}
+				catch(Exception e)
+				{
+				e.printStackTrace();
+				grabScreenshotForExtentReport();
+				logger.info("Issue uploading entity in generic uploader");
+				Assert.fail("Issue uploading entity in generic uploader");
+				}
+				}
+			
+			//excel file with associations
+			private static void PrepareExcelFileForGenericUploaderwithAssociationsAndWriteEntityIDToJSON(String entity,String toolname) {
+			try{
+
+			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" + File.separator + "WorkItemExternalIDs.json";
+			String Excelfilepath="";
+			if(toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("myWizardInstance"))
+			Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"Excel"+ File.separator + entity+".xlsx" ;
+			else if(toolname.equalsIgnoreCase("NoToolInstance"))
+			Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"Excel"+ File.separator + entity+".xlsx" ;
+			FileInputStream fis = new FileInputStream(new File(Excelfilepath));
+			XSSFWorkbook workbook = new XSSFWorkbook (fis);
+
+
+			String workitemID="";
+			String EntityIDForJSON="";
+			XSSFSheet sheet = workbook.getSheet(entity);
+			Random rnd = new Random();
+			int randomNumb = 10000 + rnd.nextInt(90000);
+
+			String title = entity+"_AutomationData_GenericUploader";
+			String TeamArea_Id = entity+"Team";
+			String TeamArea_Name = "Team_testing";
+			String Iteration_ID = "Iteration_AutomationData";
+			String Iteration_Name = "Iteration_AutomationData";
+			String Release_ID = "Release_AutomationData";
+			String Release_Name = "Release_AutomationData";
+			String Linked_ID = "Epic_Testing";
+			String LinkedID_Relationship = "Parent";
+
+			if(toolname.equalsIgnoreCase("NoToolInstance"))
+			{
+			if(entity.equalsIgnoreCase("Epic") || entity.equalsIgnoreCase("Issue") || entity.equalsIgnoreCase("Feature") || entity.equalsIgnoreCase("Task"))
+			{
+			sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
+			sheet.getRow(1).getCell(2).setCellValue(title);
+			sheet.getRow(1).getCell(30).setCellValue(TeamArea_Id);
+			sheet.getRow(1).getCell(31).setCellValue(TeamArea_Name);
+			sheet.getRow(1).getCell(32).setCellValue(Iteration_ID);
+			sheet.getRow(1).getCell(33).setCellValue(Iteration_Name);
+			sheet.getRow(1).getCell(34).setCellValue(Release_ID);
+			sheet.getRow(1).getCell(35).setCellValue(Release_Name);
+			sheet.getRow(1).getCell(36).setCellValue(Linked_ID);
+			sheet.getRow(1).getCell(37).setCellValue(LinkedID_Relationship);
+			}
+			else if(entity.equalsIgnoreCase("Action")) {
+			sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
+			sheet.getRow(1).getCell(2).setCellValue(title);
+			sheet.getRow(1).getCell(28).setCellValue(TeamArea_Id);
+			sheet.getRow(1).getCell(29).setCellValue(TeamArea_Name);
+			sheet.getRow(1).getCell(32).setCellValue(Linked_ID);
+			sheet.getRow(1).getCell(33).setCellValue(LinkedID_Relationship);
+			}
+			else if(entity.equalsIgnoreCase("Bug")) {
+			sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
+			sheet.getRow(1).getCell(2).setCellValue(title);
+			sheet.getRow(1).getCell(33).setCellValue(TeamArea_Id);
+			sheet.getRow(1).getCell(34).setCellValue(TeamArea_Name);
+			sheet.getRow(1).getCell(35).setCellValue(Iteration_ID);
+			sheet.getRow(1).getCell(36).setCellValue(Iteration_Name);
+			sheet.getRow(1).getCell(37).setCellValue(Release_ID);
+			sheet.getRow(1).getCell(38).setCellValue(Release_Name);
+			sheet.getRow(1).getCell(41).setCellValue(Linked_ID);
+			sheet.getRow(1).getCell(42).setCellValue(LinkedID_Relationship);
+			}
+
+			else if(entity.equals("UserStory")) {
+			sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
+			sheet.getRow(1).getCell(2).setCellValue(title);
+			sheet.getRow(1).getCell(29).setCellValue(TeamArea_Id);
+			sheet.getRow(1).getCell(30).setCellValue(TeamArea_Name);
+			sheet.getRow(1).getCell(31).setCellValue(Iteration_ID);
+			sheet.getRow(1).getCell(32).setCellValue(Iteration_Name);
+			sheet.getRow(1).getCell(33).setCellValue(Release_ID);
+			sheet.getRow(1).getCell(34).setCellValue(Release_Name);
+			sheet.getRow(1).getCell(43).setCellValue(Linked_ID);
+			sheet.getRow(1).getCell(44).setCellValue(LinkedID_Relationship);
+
+			}
+			else if(entity.equals("Impediment")) {
+			sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
+			sheet.getRow(1).getCell(2).setCellValue(title);
+			sheet.getRow(1).getCell(21).setCellValue(TeamArea_Id);
+			sheet.getRow(1).getCell(22).setCellValue(TeamArea_Name);
+			sheet.getRow(1).getCell(23).setCellValue(Iteration_ID);
+			sheet.getRow(1).getCell(24).setCellValue(Iteration_Name);
+			sheet.getRow(1).getCell(25).setCellValue(Release_ID);
+			sheet.getRow(1).getCell(26).setCellValue(Release_Name);
+			sheet.getRow(1).getCell(27).setCellValue(Linked_ID);
+			sheet.getRow(1).getCell(28).setCellValue(LinkedID_Relationship);
+
+			}
+
+			}
+
+			FileOutputStream fos = new FileOutputStream(new File(Excelfilepath));
+			workbook.write(fos);
+			fis.close();
+			fos.close();
+
+
+			}
+			catch(Exception e)
+			{
+			grabScreenshotForExtentReport();
+			e.printStackTrace();
+			logger.info("Issue uploading entity in generic uploader");
+			Assert.fail("Issue uploading entity in generic uploader");
+			}
+			}
 	}
 

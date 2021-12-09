@@ -583,6 +583,13 @@ public class SeleniumDSL {
 		ac.build().perform();
     }
 	
+	public static void MovetoNext()
+	{
+	Actions actionObj = new Actions(driver());
+	actionObj.sendKeys(Keys.ENTER).sendKeys(Keys.TAB).build().perform();
+
+	}
+	
 	public static void sendEsc()  {
 //		((WebElement) waitFor(ExpectedConditions.elementToBeClickable(by))).sendKeys(Keys.ESCAPE);
 		Actions action = new Actions(driver());

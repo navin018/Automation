@@ -268,30 +268,30 @@ public class DIY extends Baseclass{
 		case "TFS Scrum":
 			//application lifecycle management
 			clickJS(DIYUIMap.selectedToolADTJira_checkbox);
-			clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			clickJS(DIYUIMap.TFS_checkbox );
 //			clickJS(DIYUIMap.ConfirmChangingTool_btn);
 			clickJS(DIYUIMap.Next_btn);
 			//planning
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
 			//Deliverables
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			//Requirements
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			//release management
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
 			//testing
-			if(!getAttribute(DIYUIMap.selectedToolTFS_checkbox, "checked").equalsIgnoreCase("true"))
-				clickJS(DIYUIMap.selectedToolTFS_checkbox);
+			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			//devops nothing to do
 			clickJS(DIYUIMap.SaveAndNext_btn);
