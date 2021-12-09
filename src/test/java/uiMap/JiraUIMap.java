@@ -196,13 +196,22 @@ public static By CurrentSprintToBeEdited_txt = By.xpath("//span[@class='field-va
 public static By CloudJiraSprintName_txt = By.xpath("//input[@id='ghx-sprint-name']");
 public static By CloudJiraSaveSprint_btn = By.xpath("//button[text()='Update']");
 
-public static By CloudJiraStartDateIcon = By.xpath("//span[text()='Start date']/following::span[@class='sc-htpNat dcTkON' and @role='presentation'][1]");
-public static By CloudJiraNextMonthIcon = By.xpath("//span[@aria-label='Next month']");
-public static By CloudJiraSelectReleaseStartDate = By.xpath("//div[@aria-label='calendar']//following::table[1]//tbody/tr[1]/td[1]/div[1]");
-public static By CloudJiraGetReleaseStartDate = By.xpath("//div[@class=' css-lrg2au-singleValue']");
+//public static By CloudJiraStartDateIcon = By.xpath("//span[text()='Start date']/following::span[@class='sc-htpNat dcTkON' and @role='presentation'][1]");
+//public static By CloudJiraNextMonthIcon = By.xpath("//span[@aria-label='Next month']");
+//public static By CloudJiraSelectReleaseStartDate = By.xpath("//div[@aria-label='calendar']//following::table[1]//tbody/tr[1]/td[1]/div[1]");
+//public static By CloudJiraGetReleaseStartDate = By.xpath("//div[@class=' css-lrg2au-singleValue']");
+//
+//public static By CloudJiraSelectReleaseEndDate = By.xpath("//div[@aria-label='calendar']//following::table[1]//tbody/tr[2]/td[1]/div[1]");
+//public static By CloudJiraGetReleaseEndDate = By.xpath("//div[@class=' css-lrg2au-singleValue']");
 
-public static By CloudJiraSelectReleaseEndDate = By.xpath("//div[@aria-label='calendar']//following::table[1]//tbody/tr[2]/td[1]/div[1]");
-public static By CloudJiraGetReleaseEndDate = By.xpath("//div[@class=' css-lrg2au-singleValue']");
+//added by navin. to be verified once
+public static By CloudJiraStartDateIcon = By.xpath("//span[text()='Start date']/following::span[@role='presentation'][1]");
+public static By CloudJiraNextMonthIcon = By.xpath("//span[@aria-label='Next month']");
+public static By CloudJiraSelectReleaseStartDate = By.xpath("//button[@data-focused='true']");
+public static By CloudJiraGetReleaseStartDate = By.xpath("//div[@class=' css-56zytr-singleValue']");
+public static By CloudJiraSelectReleaseEndDate = By.xpath("//button[text()='22']");
+public static By CloudJiraGetReleaseEndDate = By.xpath("//div[@class=' css-56zytr-singleValue']");
+
 
 public static By more_link = By.xpath("//span[text()='More']");
 public static By move_link = By.xpath("//span[text()='Move']");
