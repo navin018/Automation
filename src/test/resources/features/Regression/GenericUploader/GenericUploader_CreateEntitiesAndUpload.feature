@@ -74,7 +74,7 @@ Scenario Outline: GenericUploader_NoTool
 	And i prepare the excel data for tool "NoToolInstance" in "Generic Uploader" DataLoader
 	And i click on tile "Generic Uploader"
 	Then i select client and DC for No Tool Instance 
-	And i select the Product Instance as "myWizardInstance"
+#	And i select the Product Instance as "myWizardInstance"
 	And i select the Data Entity as "Epic" for "noToolInstance" and upload the excel file
 	And i select the Data Entity as "Feature" for "noToolInstance" and upload the excel file
 	And i select the Data Entity as "Task" for "noToolInstance" and upload the excel file
