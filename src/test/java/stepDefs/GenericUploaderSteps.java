@@ -50,11 +50,9 @@ public class GenericUploaderSteps  {
 		if(EditorUpload.equalsIgnoreCase("Edit"))
 		{
 			DataLoader.EditCustomTemplate(dataentity,toolname);
+			clickJS(GenericUploaderUIMap.GoBack_btn);
 		}
-		else if(EditorUpload.equalsIgnoreCase("Upload"))
-		{
-			DataLoader.UploadCustomTemplate(dataentity,toolname);
-		}
+		
 	}
 	
 }

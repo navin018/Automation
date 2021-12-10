@@ -10,6 +10,7 @@ public class GenericUploaderUIMap {
 public static By ProductInstance_drpdown=By.xpath("//select[@name='ProductInstanceUId']");
 public static By DataEntity_drpdown=By.xpath("//select[@name='entity']");
 public static By DataMappingTemplate_drpdown=By.xpath("//*[@class='multiselect-dropdown']");
+public static By DataMappingCustomTemplateOption_drpdown=By.xpath("//*[@class='multiselect-item-checkbox ng-star-inserted']/child::div[contains(text(),'Custom Template')][1]");
 public static By DataMappingTemplateOption_drpdown=By.xpath("//*[@class='multiselect-item-checkbox ng-star-inserted']/child::div[contains(text(),'Standard Template')][1]");
 public static By Upload_Img=By.xpath("//*[@title='Upload File']");
 public static By Upload_btn=By.xpath("//button[text()='Upload']");

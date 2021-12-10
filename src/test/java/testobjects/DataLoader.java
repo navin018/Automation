@@ -4,11 +4,13 @@ import static org.testng.Assert.assertTrue;
 import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 import java.util.Random;
@@ -486,11 +488,28 @@ public class DataLoader {
 		
 		public static void UploadFileForGenericUploader(String dataentity,String toolname) {
 			try{
-			if(!dataentity.equalsIgnoreCase("IterationForMyWizardInstance"))	
-			selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, dataentity);
-			else if(dataentity.equalsIgnoreCase("IterationForMyWizardInstance"))
-				selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, "Iteration");	
-			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				SoftAssert sa = new SoftAssert();
+				String UploadanotherFile;
+				String Dataentity;
+				
+				//doing this split so that the right entity gets selected in the Entity dropdown
+				if(dataentity.contains("_")){
+				Dataentity = dataentity.split("_")[0];
+				UploadanotherFile = dataentity.split("_")[1];
+				}
+				else
+					Dataentity = dataentity;
+				
+			//for scenario Epic_WrongData, then deliberatly select wrong entity, i.e. feature
+				if(dataentity.contains("WrongData"))
+					selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, "Feature");
+				else if(!dataentity.equalsIgnoreCase("IterationForMyWizardInstance"))	
+					selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, dataentity);
+				else if(dataentity.equalsIgnoreCase("IterationForMyWizardInstance"))
+					selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, "Iteration");	
+			
+				
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			singleClick(GenericUploaderUIMap.DataMappingTemplate_drpdown);
 			Thread.sleep(2000);
 			clickJS(GenericUploaderUIMap.DataMappingTemplateOption_drpdown);
@@ -514,20 +533,48 @@ public class DataLoader {
 			clickJS(GenericUploaderUIMap.Refresh_btn);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			
-		    if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
-		    {
-		    	clickJS(GenericUploaderUIMap.Refresh_btn);
-		    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		    	Thread.sleep(60000);
-		    	if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
-		    		{
-		    		clickJS(GenericUploaderUIMap.Refresh_btn);
-		    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		    		Thread.sleep(60000);
-		    		}
-		    	if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
-		    			Assert.fail("The record for entity "+dataentity+" could not be uplaoded in generic uploader. waited for max(4mins). current status of upload is "+getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt));
-		    }
+			//This part of code is to validate the entity(no special case-only regression), uploading normal entity and check if flown or not. 
+			if(!dataentity.contains("_") || dataentity.contains("CustomTemplate")){
+			    if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Complete"))
+			    {
+			    	clickJS(GenericUploaderUIMap.Refresh_btn);
+			    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			    	Thread.sleep(60000);
+			    	if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Complete"))
+			    		{
+			    		clickJS(GenericUploaderUIMap.Refresh_btn);
+			    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			    		Thread.sleep(60000);
+			    		}
+			    	if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Complete"))
+			    			Assert.fail("The record for entity "+dataentity+" could not be uplaoded in generic uploader. waited for max(4mins). current status of upload is "+getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt));
+			    }
+			}
+			//special case - to upload excel with partial completing upload
+			else{
+				//validation for partially complete
+		    	if(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Partially Complete"))
+		    	{
+		    		logger.info("The data provided for entity "+dataentity+" is Partially Completed");
+		    		sa.assertTrue(true,"The data provided for entity "+dataentity+" is Partially Completed");
+		    	}
+		    
+		    	// //special case - to upload wrong excel. selecting wrong entity
+			    	if(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Failed"))
+			    	{
+			    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			    		doubleClick(GenericUploaderUIMap.Failed_txt);
+			    		Thread.sleep(2000);
+			    		clickJS(GenericUploaderUIMap.FailedTemplate_download);
+			    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			    		ReadLogFile_GenericUploader(dataentity);
+			    		 
+			    				
+			    		
+			    		logger.info("invalid/blank data for entity "+dataentity+" is provided for the given columns the template upload process is failed and the entity is not created");
+			    		sa.assertTrue(true,"invalid/blank data for entity "+dataentity+" is provided for the given columns the template upload process is failed and the entity is not created");
+			    	}
+			}
 
 			}
 			catch(Exception e)
@@ -537,6 +584,66 @@ public class DataLoader {
 			}
 		}
 		
+		//gets the last modified file. mention the LocalUserName in ADTJira property file
+		 public static File GetlastmodifiedFileFromASpecificLocation() 
+		 {
+		     File directory;
+			try {
+				directory = new File("C:\\Users\\"+ Property.getProperty("LocalUserName")+"\\Downloads");
+			 
+			
+		     File[] files = directory.listFiles(File::isFile);
+		     long lastModifiedTime = Long.MIN_VALUE;
+		     File chosenFile = null;
+
+		     if (files != null)
+		     {
+		         for (File file : files)
+		         {
+		             if (file.lastModified() > lastModifiedTime)
+		             {
+		                 chosenFile = file;
+		                 lastModifiedTime = file.lastModified();
+		             }
+		         }
+		     }
+
+		     return chosenFile;
+		 }
+
+		 catch(Exception e)
+			{
+				grabScreenshotForExtentReport();
+				e.printStackTrace();
+				logger.info("Issue geting the latest modified file");
+				 Assert.fail("Issue geting the latest modified file");
+			}
+			return null;
+}
+		
+		public static  File ReadLogFile_GenericUploader(String dataentity) throws IOException  {
+			String chosenfile = GetlastmodifiedFileFromASpecificLocation().toString();
+				File file = new File(chosenfile);
+				
+				FileReader fr = new FileReader(file);
+				 BufferedReader reader = new BufferedReader(fr);
+				 String str = reader.readLine();
+
+				 System.out.println("Data is:" + str);
+				 String Actual = str;
+		    		if(dataentity.contains("Epic_InvalidTemplate"))
+		    			Assert.assertEquals(Actual,"Missing mandatory values identified: Column 'Title', Row #2." , "Error log for Invalidtemplate is Different from Expected");
+		    		else if(dataentity.contains("Epic_BlankTemplate"))
+		    			Assert.assertEquals(Actual,"One or more errors occurred. (Error occurred during processing - Fault - <Fault Id=\"-1\" Title=\"Exception has occurred\" Message=\"Exception has been thrown by the target of an invocation.\" CustomMessage=\"Error occurred\" Severity=\"Critical\" ApplicationTier=\"BusinessDomain\" EntityName=\"\" Operation=\"\" Type=\"\" StackTrace=\"System.Exception: ReferenceDataLookup:ApplyReferenceDataLookup : Sequence contains no elements&#xA;   at Accenture.MyWizard.GatewayManager.CustomLibrary.ReferenceDataLookup.ApplyReferenceDataLookup(Object parameters, XDocument messageDoc, Guid correlationUId)\" />\r\n"
+		    					+ ")" , "Error log for BlankTemplate is Different from Expected");
+		    		else if(dataentity.contains("Epic_WrongData"))
+		    			Assert.assertEquals(Actual,"'Feature' Sheet is missing or Uploaded Excel has no Data.. " , "Error log is Different from Expected");
+				
+		    		reader.close();
+				return file;
+				
+				
+			}
 		public static void EditCustomTemplate( String dataentity, String toolname) {
 			try {
 			String Dataentity = dataentity.split("_")[0];

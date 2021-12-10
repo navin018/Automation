@@ -207,9 +207,9 @@ public static By CloudJiraSaveSprint_btn = By.xpath("//button[text()='Update']")
 //added by navin. to be verified once
 public static By CloudJiraStartDateIcon = By.xpath("//span[text()='Start date']/following::span[@role='presentation'][1]");
 public static By CloudJiraNextMonthIcon = By.xpath("//span[@aria-label='Next month']");
-public static By CloudJiraSelectReleaseStartDate = By.xpath("//button[@data-focused='true']");
+public static By CloudJiraSelectReleaseStartDate = By.xpath("//div[@role='row'][2]//button[@aria-selected='false'][2]");
 public static By CloudJiraGetReleaseStartDate = By.xpath("//div[@class=' css-56zytr-singleValue']");
-public static By CloudJiraSelectReleaseEndDate = By.xpath("//button[text()='22']");
+public static By CloudJiraSelectReleaseEndDate = By.xpath("//div[@role='row'][4]//button[@aria-selected='false'][5]");
 public static By CloudJiraGetReleaseEndDate = By.xpath("//div[@class=' css-56zytr-singleValue']");
 
 

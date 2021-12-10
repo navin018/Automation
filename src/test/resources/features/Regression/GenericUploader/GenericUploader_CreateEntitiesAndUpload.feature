@@ -145,9 +145,11 @@ Scenario Outline: GenericUploader_CustomTemplate
 	And i click on tile "Generic Uploader"
 	And i select the Product Instance as "ADT JIRA" 
 	And i "Edit" the Custom Template for "Epic" for "ADT Jira"
-	And i "Upload" the Custom Template for "Epic_Automation_CustomTemplate" for "ADT Jira"
+	And i select the Data Entity as "Epic_Automation_CustomTemplate" for "ADT Jira" and upload the excel file
+#	And i "Upload" the Custom Template for "Epic_Automation_CustomTemplate" for "ADT Jira"
 	And i "Edit" the Custom Template for "Action" for "ADT Jira"
-	And i "Upload" the Custom Template for "Action_Automation_CustomTemplate" for "ADT Jira"
+	And i select the Data Entity as "Action_Automation_CustomTemplate" for "ADT Jira" and upload the excel file
+#	And i "Upload" the Custom Template for "Action_Automation_CustomTemplate" for "ADT Jira"
 	
 	
 	Examples: 
