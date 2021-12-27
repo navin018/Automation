@@ -7,14 +7,14 @@ Given i load the project properties file
     And i navigate to the homepage of "MyWizard" from "AIFusionPage"
     Then i select client and DC for "<applicationname>"
     And i click on tile "Account Management"
+    And i click on link "View/Edit" under "Account Management"
+    And i click on "back" button
     And i click on link "Add Account" under "Account Management"
     And i click on "back" button
     And i enter all the mandatory details for "Account Management"
     And the user check for the duplicate security headers and missing security headers for "Account Management/Add Account page "
     And i delete the data for "Account Management"
     And i click on "back" button
-    And i click on link "View/Edit" under "Account Management"
-    And the user check for the duplicate security headers and missing security headers for "Account Management/View Edit page"
     And i "write" the vulnerabilites details into excel
     And i verify the overall securitytest results
 	
@@ -24,7 +24,7 @@ Scenario: Check for the security headers
     Given i login to application "MyWizard"
     And i navigate to the homepage of "MyWizard" from "AIFusionPage"
     And i click on tile "Organization (Delivery) Structure Type"
-   Then i select client and DC for "<applicationname>"
+   Then i select client and DC for "MyWizard"
     And i enter all the mandatory details for "Organization (Delivery) Structure Page"
     Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Type/Add Organization Structure Type"
     And i delete the data for "Organization (Delivery) Structure Page"
@@ -59,8 +59,8 @@ Given i load the project properties file
     Given the user check for the duplicate security headers and missing security headers for "Organization (Delivery) Structure Config/Add Organization Structure"
     And i delete the data for "Organization (Delivery) Structure Config"
     And i click on "back" button
+      And i click on "back" button
     And i click on link "Manage Teams" under "Organization (Delivery) Structure Config"
-    And i click on "back" button
     And i click on link "Add Team" under "View/Edit page of Organization (Delivery) Structure Config/Manage Teams"
     And i click on "back" button
     And i click on link "View/Edit" under "Organization (Delivery) Structure Config Page,Manage Teams section"
@@ -228,9 +228,9 @@ Scenario: Check for the security headers
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "Client Configuration"  
 	And i click on link "View/Edit" under "Client Configuration"
+	And i click on "Go Back" button
 	And i enter all the mandatory details for "Client Configuration" 
 	And the user check for the duplicate security headers and missing security headers for "Client Configuration/View Edit page" 
-	And i click on "Go Back" button 
 	And i click on link "Add Client" under "Client Configuration" 
 	And the user check for the duplicate security headers and missing security headers for "Client Configuration/Add Client" 
 	And i click on "Go Back" button 
@@ -254,7 +254,7 @@ Scenario: Check for the security headers
 	
 @SecurityTest_GenericUploader
 Scenario: Check for the security headers
-Given i load the project properties file
+	Given i load the project properties file
     Given i login to application "MyWizard"
     And i navigate to the homepage of "MyWizard" from "AIFusionPage"
     Then i select client and DC for "<applicationname>"
@@ -273,8 +273,8 @@ Given i load the project properties file
 Scenario: Check for the security headers
     Given i login to application "MyWizard"
     And i navigate to the homepage of "MyWizard" from "AIFusionPage"
+	Then i select client and DC for DIY for "ADT Jira"
     And i click on tile "Lifecycle Template Configuration"
-    And i click on "Go Back" button
     And i click on link "Add Stage Template" under "Lifecycle Template Configuration"
     And i enter all the mandatory details for "Lifecycle Template Configuration/Add Stage Template"
     And the user check for the duplicate security headers and missing security headers for "Lifecycle Template Configuration/Add Stage Template"
@@ -324,9 +324,9 @@ Scenario: Check for the security headers
 	And i navigate to the homepage of "MyWizard" from "AIFusionPage" 
 	And i click on tile "DIY AD Automation" 
 	Then i select only the client for "<applicationname>" 
-	And i "create" a DC for DIY for "ADT Jira"	
+	And i "create" a DC for DIY for "TFS Agile"	
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/HomePage"
-	And i enter self enabled automation details for "ADT Jira" for "normal" functionality 
+	And i enter self enabled automation details for "TFS Agile" for "normal" functionality 
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/CreateDCPage"
 	And i click on "Back to Overall Setup Progress" button
 	And i click on "Back to DIY AD Automation" button
@@ -334,7 +334,7 @@ Scenario: Check for the security headers
 	And the user check for the duplicate security headers and missing security headers for "DIY AD Automation/OnbaordClientToolExplorePage"
 	And i click on "Back to DIY AD Automation" button 
 	And i click on "backtodashboard" button
-	And i make a note of the DC created for "ADT Jira" 
+	And i make a note of the DC created for "TFS Agile" 
 	And i "update" the vulnerabilites details into excel 
 	And i verify the overall securitytest results
 	
@@ -353,4 +353,18 @@ Scenario Outline: ADTJIRA_DIY_InactiveRules
 		| applicationname |
 		| MyWizard        |
 
-	 
+@SecurityTest_SaaS
+Scenario Outline: SaaS_loginandNavigation
+Given i load the project properties file
+And i login to application "<applicationname>" with username "SAASUserName"
+Then i select client "SAAS_Client" with DC_L1 as "SAAS_DC_L1" and DC_L2 as "SAAS_DC_L2"
+And the user check for the duplicate security headers and missing security headers for "SAAS_LandingPage"
+And i add Contract Demographics details with "BRBEQ001" and "25" and "<6 Mon"
+And i add bundle "Requirements Analysis" to the cart in SAAS screen
+And the user check for the duplicate security headers and missing security headers for "SAAS_HomePage"
+And i click on "Go Back" button
+And i "update" the vulnerabilites details into excel
+And i verify the overall securitytest results
+Examples:
+| applicationname |
+| SaaS |	 

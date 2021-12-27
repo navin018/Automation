@@ -107,7 +107,7 @@ public static By Inactiverule_btn=By.xpath("//span[text()='InActive']");
 public static By Activerule_btn=By.xpath("//span[text()='Active']");
 //ClientConfig
 public static By Search_Textbox1=By.xpath("//input[@placeholder='Enter text to search the first 500 records']");
-public static By title_statictxt=By.xpath("//div[text()='Unknown@']");
+public static By title_statictxt=By.xpath("//div[text()='Bank of Mars']");
 public static By Descprition_txtarea=By.xpath("//textarea[@name='Description']");
 public static By Savedescription_btn=By.xpath("//button[@class='btn btn-primary'][text()='Save']");
 //ProductConfig
@@ -146,7 +146,7 @@ public static By name_textbox=By.xpath("//table[@class='ui-treetable-scrollable-
 //Metrics Engine
 public static By AddConfig_statictxt=By.xpath("//img[@alt='Configuration']");
 public static By Filter_img=By.xpath("//img[@alt='Filter']");
-public static By Metrictyp_drpdwn=By.xpath("//select[@id='metricType_Drp']");
+public static By Metrictyp_drpdwn=By.xpath("//select[@id='metricType']");
 public static By Category_drpdwn=By.xpath("//select[@id='category_Drp']");
 public static By Apply_btn=By.xpath("//button[@class='btn btn-primary'][text()='Apply']");
 public static By AddMeasure_img=By.xpath("//img[@alt='Add Measure']");
@@ -221,8 +221,9 @@ public static By InActivate_btn=By.xpath("//span[text()='Inactive'][@class='btn 
 public static By AccountManagementSave_btn=By.xpath("//button[@class='btn btn-primary'][text()='Save']");
 public static By Select_account=By.xpath("//div[text()='AutomationAccount']");
 public static By Select_account1=By.xpath("//div[text()='AutomationAccount_DoNotEdit']");
-
-
+public static By FilterAccountManagementpage_icon=By.xpath("//span[text()='Filter']");
+public static By Inactive_icon=By.xpath("//span[text()='Inactive']");
+public static By Apply_btn1=By.xpath("//a[text()='Apply']");
 
 
 

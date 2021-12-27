@@ -744,7 +744,7 @@ public class SecurityTests extends Baseclass{
              {
                  clickJS(SecurityTestsUIMap.Inactive_btn);
              }
-             
+             Thread.sleep(4000);
             singleClick(SecurityTestsUIMap.Save_btn);
             ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
             singleClick(SecurityTestsUIMap.Back_option);
@@ -831,7 +831,10 @@ public static void DeleteTeam() {
 public static void ActivateAccount() {
 
     try {
-
+    	clickJS(SecurityTestsUIMap.FilterAccountManagementpage_icon);
+    	clickJS(SecurityTestsUIMap.Inactive_icon);
+    	clickJS(SecurityTestsUIMap.Apply_btn1);
+    	 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
         ExpWaitForCondition(SecurityTestsUIMap.SearchAccount_txtbox);
         enterText(SecurityTestsUIMap.SearchAccount_txtbox,"AutomationAccount_DoNotEdit");
 //        ExpWaitForCondition(SecurityTestsUIMap.SearchAccount_txtbox);
@@ -845,7 +848,7 @@ public static void ActivateAccount() {
         	Assert.fail("account AutomationAccount_DoNotEdit does not exist or has been deleted");
         }
         click(SecurityTestsUIMap.Activate_btn);
-        click(SecurityTestsUIMap.Saverule_btn);
+        clickJS(SecurityTestsUIMap.Saverule_btn);
         
     }
     catch(Exception e) {
@@ -861,10 +864,11 @@ public static void InactivateAccount() {
 	try {
 		ExpWaitForCondition(SecurityTestsUIMap.SearchAccount_txtbox);		
 		enterText(SecurityTestsUIMap.SearchAccount_txtbox,"AutomationAccount_DoNotEdit");
+		ExpWaitForCondition(SecurityTestsUIMap.Select_account);
 		doubleClick(SecurityTestsUIMap.Select_account);
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		click(SecurityTestsUIMap.InActivate_btn);
-		click(SecurityTestsUIMap.Saverule_btn);
+		clickJS(SecurityTestsUIMap.Saverule_btn);
 		
 	}
 	catch (Exception e) {
@@ -1010,11 +1014,11 @@ public static void InActivateDC() {
 public static void ChangeDescriptionOfExistingClient() {
 			try {
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			enterText(SecurityTestsUIMap.Search_Textbox1,"Unknown@");
+			enterText(SecurityTestsUIMap.Search_Textbox1,"Bank of Mars");
 			doubleClick(SecurityTestsUIMap.title_statictxt);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			clear(SecurityTestsUIMap.Descprition_txtarea);
-			enterText(SecurityTestsUIMap.Descprition_txtarea,"Unknown");
+			enterText(SecurityTestsUIMap.Descprition_txtarea,"BankOfMarsDescription");
 			singleClick(SecurityTestsUIMap.Savedescription_btn);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			}
@@ -1103,6 +1107,7 @@ public static void Add_StageTemplate() {
         ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
         singleClick(SecurityTestsUIMap.AddStageTemplate_txt);
         ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+        ExpWaitForCondition(SecurityTestsUIMap.name_txtbox);
         enterText(SecurityTestsUIMap.name_txtbox,"Automation_template"); 
         selectDropdownByText(SecurityTestsUIMap.entityuid_drpdwn,"Deliverable");
         clickJS(SecurityTestsUIMap.type_drpdwn1);
@@ -1167,6 +1172,7 @@ public static void Add_StageTemplate() {
     	// add measure
     	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
     	singleClick(SecurityTestsUIMap.Filter_img);
+    	Thread.sleep(2000);
     	selectDropdownByText(SecurityTestsUIMap.Metrictyp_drpdwn,"Custom");
     	selectDropdownByText(SecurityTestsUIMap.Category_drpdwn,"Quality");
     	singleClick(SecurityTestsUIMap.Apply_btn);

@@ -38,6 +38,7 @@ public static By ContractOpportunityEndDate_drpdown=By.xpath("//label[text()='Co
 public static By Platform_drpdown=By.xpath("//label[text()='Platform ']//following::input[@role='combobox'][1]//following::span[@class='ng-arrow-wrapper'][1]");
 public static By Platform_drpdownValue=By.xpath("//span[text()='ACI']");
 public static By DeliveryType_drpdown=By.xpath("//label[text()='Delivery Type ']//following::span[@class='dropdown-btn'][1]");
+public static By Organisation_drpdown=By.xpath("//label[text()='Organization ']//following::input[1]");
 public static By DeliveryType_drpdownValue=By.xpath("//div[text()='Application Development - Agile']");
 public static By Save_btn=By.xpath("//button[text()='Save' and @title='Save' and @class='btn btn-primary-mod ml-4']");
 public static By SaveAndClose_btn=By.xpath("//button[text()='Save & Close']");

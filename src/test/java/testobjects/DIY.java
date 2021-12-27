@@ -144,6 +144,10 @@ public class DIY extends Baseclass{
 
 		singleClick(DIYUIMap.DeliveryType_drpdown);
 		clickJS(DIYUIMap.DeliveryType_drpdownValue);
+		
+		singleClick(DIYUIMap.Organisation_drpdown);
+		sendEntr();
+				
 		Thread.sleep(3000);
 		clickJS(DIYUIMap.Save_btn);
 		Thread.sleep(3000);
@@ -272,25 +276,28 @@ public class DIY extends Baseclass{
 //			clickJS(DIYUIMap.ConfirmChangingTool_btn);
 			clickJS(DIYUIMap.Next_btn);
 			//planning
-			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+//			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+//			System.out.println(getAttribute(By.xpath("//label[contains(@for,'Azure DevOps (VSTS)-Agile-Air New Zealand')]//preceding::input[1]"), "checked"));
+//			if(!getAttribute(By.xpath("//label[contains(@for,'Azure DevOps (VSTS)-Agile-Air New Zealand')]//preceding::input[1]"), "checked").equalsIgnoreCase("true"))
+			
 				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
 			//Deliverables
-			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+//			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
 				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			//Requirements
-			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+//			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
 				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			//release management
-			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+//			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
 				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			Thread.sleep(3000);
 			//testing
-			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
+//			if(!getAttribute(DIYUIMap.TFS_checkbox , "checked").equalsIgnoreCase("true"))
 				clickJS(DIYUIMap.TFS_checkbox );
 			clickJS(DIYUIMap.Next_btn);
 			//devops nothing to do
