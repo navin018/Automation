@@ -207,6 +207,10 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 		{
 			testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 		}
+		else if(toolname.equalsIgnoreCase("MSPS"))
+		{
+			testDataPath_WorkItemExternalIDs = testDataPath + "MSPS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+		}
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
 		JSONObject jsonObject = (JSONObject) obj;
@@ -222,11 +226,11 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 			WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_Story");
 	
 		
-		if(workitem.contains("Release") || workitem.contains("Sprint"))
-		{
+		if(workitem.contains("Release"))
 			WorkItemExternalId = (String) jsonObject.get("WorkItemExternalId_"+"ReleaseName");
+		else if(workitem.contains("Sprint"))
 			WorkItemExternalId = WorkItemExternalId + "&" + (String) jsonObject.get("WorkItemExternalId_"+"SprintName");
-		}
+		
 		 if(!(WorkItemExternalId.equalsIgnoreCase(null) || WorkItemExternalId.equals("")))
 			 return WorkItemExternalId;
 		 else{
@@ -534,6 +538,8 @@ public static HashMap<String, String> getReleaseAndSprintDetails(String toolname
 		else if(toolname.contains("TFS") || toolname.contains("Tfs")){
 			testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json" ;
 		}
+		else if(toolname.equalsIgnoreCase("MSPS"))
+			testDataPath_WorkItemExternalIDs = testDataPath + "MSPS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
 		JSONObject jsonObject = (JSONObject) obj;
@@ -1399,7 +1405,8 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Milestones";
 			 if(workitem.equalsIgnoreCase("Test Execution") || workitem.equalsIgnoreCase("TestResult"))
 				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="TestResults";	
-			 
+			 if(workitem.equalsIgnoreCase("Initiative"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="DeliveryTasks";
 			 return WorkItemOrDeliverableOrIterationOrTestOrRequirement;
 		}
 		

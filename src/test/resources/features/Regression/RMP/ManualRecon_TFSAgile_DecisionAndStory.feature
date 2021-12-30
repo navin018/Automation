@@ -23,7 +23,7 @@ Scenario Outline: TFSScrum_Manualrecon_ReleaseAndSprintIBVerification_CaptureIte
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "tool" for tool "TFS Scrum" 
+	And i capture the "IterationExternalID" for Entities created from "tool" for tool "TFS Scrum" 
 	And i generate a token for "DevTest" environment 
 	And i verify if "ReleaseFromTool" has "flown" which was "NA" for "TFS Scrum" for "Recon" functionality
 	And i verify if "SprintFromTool" has "flown" which was "NA" for "TFS Scrum" for "Recon" functionality
@@ -74,7 +74,7 @@ Scenario Outline: TFSScrum_Manualrecon_CheckifReleaseAndSprintFlown_CaptureItera
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "RMP" for tool "TFS Scrum" 
+	And i capture the "IterationExternalID" for Entities created from "RMP" for tool "TFS Scrum" 
 	And i generate a token for "DevTest" environment  
 	And i verify if "ReleaseFromRMP" has "flown" which was "NA" for "TFS Scrum" for "Recon" functionality
 	And i verify if "SprintFromRMP" has "flown" which was "NA" for "TFS Scrum" for "Recon" functionality

@@ -61,7 +61,7 @@ Scenario Outline: TFSScrum_Deletefunctionality_IBVerification_Release_Sprint
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "tool" for tool "TFS Scrum" 
+	And i capture the "IterationExternalID" for Entities created from "tool" for tool "TFS Scrum" 
 	And i generate a token for "DevTest" environment 	
 	And i verify if "Release" has "flown" which was "NA" for "TFS Scrum" for "normal" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "TFS Scrum" for "normal" functionality

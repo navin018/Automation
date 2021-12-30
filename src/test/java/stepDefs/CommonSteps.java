@@ -65,6 +65,9 @@ public class CommonSteps {
 		if(toolname.trim().equalsIgnoreCase("SAAS")){
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"SaaS.properties"),new File(propsPath+"project.properties"));
 		}
+		if(toolname.trim().equalsIgnoreCase("MSPS")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"MSPS.properties"),new File(propsPath+"project.properties"));
+		}
 		  
 	}
 	
@@ -73,9 +76,14 @@ public class CommonSteps {
 		CommonFunctions.setIterationExternalID(toolname);
 	}
 	
-	@Given("^i capture the IterationExternalID for Iteration created from \"([^\"]*)\" for tool \"([^\"]*)\"$")
-	public void icaptureIterationExternalID(String toolOrRMP, String toolname) throws Throwable {
-		CommonFunctions.captureIterationExternalID(toolOrRMP, toolname);
+	@Given("^i capture the \"([^\"]*)\" for Entities created from \"([^\"]*)\" for tool \"([^\"]*)\"$")
+	public void icaptureIterationExternalID(String entitydetailsToCapture, String toolOrRMP, String toolname) throws Throwable {
+				if(!toolname.equalsIgnoreCase("MSPS"))
+					CommonFunctions.captureIterationExternalID(toolOrRMP, toolname);
+				else if(toolname.equalsIgnoreCase("MSPS"))
+					CommonFunctions.captureEntityDetails(entitydetailsToCapture,toolname);		//this is for all MSPS entities only
+		
+			
 	}
 	
 	

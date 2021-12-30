@@ -25,7 +25,7 @@ Scenario Outline: TFSAgile_AutoRecon_ReleaseAndSprintIBVerification_CaptureItera
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "tool" for tool "TFS Agile" 
+	And i capture the "IterationExternalID" for Entities created from "tool" for tool "TFS Agile" 
 	And i generate a token for "DevTest" environment 
 	And i verify if "ReleaseFromTool" has "flown" which was "NA" for "TFS Agile" for "Recon" functionality
 	And i verify if "SprintFromTool" has "flown" which was "NA" for "TFS Agile" for "Recon" functionality
@@ -61,7 +61,7 @@ Scenario Outline: TFSAgile_AutoRecon_CheckifReleaseAndSprintFlown_CaptureIterati
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "RMP" for tool "TFS Agile" 
+	And i capture the "IterationExternalID" for Entities created from "RMP" for tool "TFS Agile" 
 	And i generate a token for "DevTest" environment  
 	And i verify if "ReleaseFromRMP" has "flown" which was "NA" for "TFS Agile" for "Recon" functionality
 	And i verify if "SprintFromRMP" has "flown" which was "NA" for "TFS Agile" for "Recon" functionality

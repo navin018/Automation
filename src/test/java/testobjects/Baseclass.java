@@ -145,6 +145,11 @@ Baseclass(){
 	public String WorkItemExternalId_Story_RAG_IterationTiming_Rule11;
 	
 
+	public String DeliverPlanExternalID;
+	public String InitiativeExternalID;
+	public String FunctionalAreaExternalID;
+	public String MilestoneExternalID;
+	public String DeliverableExternalID;
 	
 	public String QueryName;
 	public String cyclename;

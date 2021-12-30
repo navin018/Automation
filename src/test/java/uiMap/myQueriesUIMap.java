@@ -96,6 +96,8 @@ public static By column_option_dropdown=By.xpath("//div[@class='phx-incident-fil
 public static By column_value_dropdown=By.xpath("//option[text()=' RiskReduction ']//parent::select");
 public static By Tablecolumn_header=By.xpath("//span[text()='RiskReduction']"); 
 public static By Queries_link=By.xpath("//a[text()=' Queries > ']");
+public static By selectMilestoneQuery_link=By.xpath("//span[text()='QueryToFetchMilestoneDetails_AutomationDONOTEDIT']");
+public static By selectDeliverableQuery_link=By.xpath("//span[text()='QueryToFetchDeliverableDetails_AutomationDONOTEDIT']");
 public static By Save_As_btn=By.xpath("//span[text()='Save As..']");
 public static By QueryName_input=By.xpath("//input[@name='queryName']");
 public static By QuerySave_btn=By.xpath("//div[@class='modal-dialog modal-lg']//div//div//button[text()='Save']");

@@ -157,7 +157,7 @@ Scenario Outline: TeamConfig_VerifyIBForTeamAndWorkitemsAndIteration_CreatedViaT
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "tool" for tool "TFS Agile" 
+	And i capture the "IterationExternalID" for Entities created from "tool" for tool "TFS Agile" 
 	And i generate a token for "DevTest" environment
 	And i verify the "inbound" details for "Epic_TeamVerify" for tool "TFS Agile" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamsCheckAndWorkItemFlown" functionality
 	And i verify the "inbound" details for "Milestone_TeamVerify" for tool "TFS Agile" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "TeamsCheckAndWorkItemFlown" functionality

@@ -121,6 +121,20 @@ import java.util.Random;
 				 {
 					 VerifyDataLoaderFunctionality(response.jsonPath(),Workitem,toolname,functionality);
 				 }
+				 if(functionality.equalsIgnoreCase("MSPS"))
+				 {
+					 if(Workitem.equalsIgnoreCase("RelForMSPS"))
+					 {
+						 //code to fetch deliveryplan external ID
+						 String DeliverPlanExternalID = response.jsonPath().getString("DeliveryTasks[0].DeliveryTaskAssociations[1].ItemExternalId");
+						 if(!DeliverPlanExternalID.isEmpty())
+							 Baseclass.getInstance().DeliverPlanExternalID = DeliverPlanExternalID;
+						 else
+							 Assert.fail("DeliverPlanExternalID is null for the release in MSPS");
+						 
+						 //add assertion to validate the title. compare workitemexternalID.json file against API data
+					 }
+				 }
 				
 			}
 			catch(Exception e)
@@ -465,6 +479,9 @@ import java.util.Random;
 						else
 						testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 					}
+					else if(toolname.contains("MSPS")){
+						testDataPath_WorkItemExternalIDs = testDataPath + "MSPS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+					}
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
 			JSONObject jsonObject = (JSONObject) obj;
@@ -485,7 +502,7 @@ import java.util.Random;
 						WorkItemExternalId=(String) jsonObject.get("WorkItemExternalId_Story");
 			}
 			
-			if(workitem.contains("Release") || workitem.contains("Sprint"))
+			if(workitem.contains("Release") || workitem.contains("Sprint") || workitem.contains("RelForMSPS"))
 			{
 				if(functionality.equalsIgnoreCase("AD_DataLoader"))
 					return ((String) jsonObject.get("WorkItemExternalId_"+workitem));
@@ -539,8 +556,13 @@ import java.util.Random;
 			 switch(workitem){
 			 
 			 case("Deliverable"):
+				 if(!Workitem.contains("MSPS")){
 				 requestParams.put("DeliverableExternalId",WorkItemExternalId);
 			 	 EntityType="Deliverables";	
+				 }
+				 else if(Workitem.contains("MSPS"))
+						requestParams.put("DeliveryTaskExternalId", Baseclass.getInstance().DeliverableExternalID);
+					EntityType="DeliveryTasks";
 				 break;
 		
 			case("Test"):
@@ -575,8 +597,13 @@ import java.util.Random;
 				 break;
 				 
 			case("Milestone"):
+				if(!Workitem.contains("MSPS")){
 				 requestParams.put("MilestoneExternalId",WorkItemExternalId);
 				EntityType="Milestones";
+				}
+				else if(Workitem.contains("MSPS"))
+					requestParams.put("DeliveryTaskExternalId", Baseclass.getInstance().MilestoneExternalID);
+				EntityType="DeliveryTasks";
 				 break;
 				 
 			case("Work Request"):
@@ -624,6 +651,16 @@ import java.util.Random;
 				requestParams.put("EnvironmentExternalID", WorkItemExternalId);
 				EntityType="Environments";
 				break;
+				
+				case("Initiative"):
+					requestParams.put("DeliveryTaskExternalId", Baseclass.getInstance().InitiativeExternalID);
+					EntityType="DeliveryTasks";
+					break;
+				case("RelForMSPS"):
+					requestParams.put("DeliveryTaskExternalId", Baseclass.getInstance().release_IterationExternalID);
+					EntityType="DeliveryTasks";
+					break;
+			
 			 
 			default:
 				 requestParams.put("WorkItemTypeUId",WorkItemTypeUId);
