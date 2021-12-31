@@ -495,13 +495,38 @@ try{
 	         file.write(jsonObject.toJSONString());
 	         file.flush();
 	         file.close();
-//	         driver().close();
-//	         driver().quit();
 		}
 			catch (Exception e) {
 				e.printStackTrace();
 				Assert.fail("could not write workitem IDs for "+appname );
 			}
+			
+			if(appname.equalsIgnoreCase("MSPS"))
+			{
+			try{String WorkItemEx_FileLoc = System.getProperty("user.dir")
+					+ File.separator + "src" + File.separator + "test" + File.separator
+					+ "resources" + File.separator + "testdata" + File.separator + "MSPS" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs.json";
+					JSONObject jsonObject = new JSONObject();
+					JSONObject jsonObject_releaseandsprintdetails = new JSONObject();
+
+					jsonObject.put("WorkItemExternalId_DeliveryPlan", Baseclass.getInstance().WorkItemExternalId_DeliveryPlan);
+					jsonObject.put("WorkItemExternalId_Initiative", Baseclass.getInstance().WorkItemExternalId_Initiative);
+					jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().WorkItemExternalId_ReleaseName);
+					jsonObject.put("WorkItemExternalId_FunctionalArea", Baseclass.getInstance().WorkItemExternalId_FunctionalArea);
+					jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
+					jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
+
+					FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+					file.write(jsonObject.toJSONString());
+					file.close();
+
+					}
+
+					catch (Exception e) {
+					e.printStackTrace();
+					Assert.fail("could not write workitem IDs for "+appname );
+					}
+					}
 }
 	}
 

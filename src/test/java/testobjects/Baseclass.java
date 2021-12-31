@@ -144,7 +144,12 @@ Baseclass(){
 	public String WorkItemExternalId_Risk_RAG_ToBeAssociatedToStory_Rule11;
 	public String WorkItemExternalId_Story_RAG_IterationTiming_Rule11;
 	
-
+	public String WorkItemExternalId_DeliveryPlan;
+	public String WorkItemExternalId_Initiative;
+	public String WorkItemExternalId_ReleaseName;
+	public String WorkItemExternalId_FunctionalArea;
+	
+	
 	public String DeliverPlanExternalID;
 	public String InitiativeExternalID;
 	public String FunctionalAreaExternalID;
