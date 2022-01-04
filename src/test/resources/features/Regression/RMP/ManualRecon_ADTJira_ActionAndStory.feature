@@ -8,11 +8,12 @@ Scenario Outline: ADTJIRA_ManualRecon_ReleaseAndSprintCreationForManualReconFrom
 	And i create an "<Release>" in Jira 
 	And i create an "<Sprint>" in Jira 
 	And i create a "<Action>" in Jira for "Manualrecon" 
+	And i create a "<story>" in Jira for "Manualrecon" 
 	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" 
 	
 	Examples: 
-		| applicationname |Action|
-		| Jira            |Action_01|
+		| applicationname |Action|story|Release|Sprint|
+		| Jira            |Action_01|Story_01 |Release_02 | Sprint_02 |
 	
 	
 @2ADTJira_Manualrecon_IBVerificationofReleaseAndSprintCreatedFromTool
@@ -21,7 +22,7 @@ Scenario Outline: ADTJIRA_ManualRecon_ReleaseAndSprintIBVerification_CaptureIter
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the "IterationExternalID" for Entities created from "tool" for tool "ADT Jira" 
+	And i capture the IterationExternalID for Iteration created from "tool" for tool "ADT Jira" 
 	And i generate a token for "DevTest" environment 
 	And i verify if "ReleaseFromTool" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
 	And i verify if "SprintFromTool" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
@@ -33,6 +34,7 @@ Scenario Outline: ADTJIRA_ManualRecon_ReleaseAndSprintIBVerification_CaptureIter
 Scenario: ADTJIRA_ManualRecon_Story_CheckifStoryFlown_Verifyiterationexternalid 
 	And i generate a token for "DevTest" environment 
 	And i verify if "Action" has "flown" which was "NA" for "ADT Jira" for "BeforeRecon" functionality
+	And i verify if "Story" has "flown" which was "NA" for "ADT Jira" for "BeforeRecon" functionality
 
 @4ADTJira_Manualrecon_DisableIterationToInBound
 Scenario Outline: ManualRecon_CreateReleaseAndSprintFromRMP 
@@ -70,7 +72,7 @@ Scenario Outline: ADTJIRA_ManualRecon_CheckifReleaseAndSprintFlown_CaptureIterat
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the "IterationExternalID" for Entities created from "RMP" for tool "ADT Jira" 
+	And i capture the IterationExternalID for Iteration created from "RMP" for tool "ADT Jira" 
 	And i generate a token for "DevTest" environment  
 	And i verify if "ReleaseFromRMP" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
 	And i verify if "SprintFromRMP" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
@@ -97,13 +99,36 @@ Scenario Outline: ManualRecon_PerformManualRecon
 		| MyWizard        |RMP|	
 
 
-@8ADTJira_Manualrecon_IBVerificationofStoryVerifyIterationUIdAfterRecon
+@8ADTJira_Manualrecon_IBVerificationofReleaseandSprintinIterationMapsCollectionAfterRecon
+Scenario: TFSAgile_AutoRecon_CheckIfReconciled_ReleaseandSprint_InIterationMapsCollection
+And i generate a token for "DevTest" environment 
+	And i verify the "inbound" details for "ReleaseInIterationMaps" for tool "ADT Jira" using "non flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "PostRecon" functionality
+	And i verify the "inbound" details for "SprintInIterationMaps" for tool "ADT Jira" using "non flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "PostRecon" functionality  	
+	
+	
+
+@9ADTJira_Manualrecon_IBVerificationofStoryVerifyIterationUIdAfterRecon
 Scenario: ADTJIRA_ManualRecon_CheckifStoryFlown_VerifyIterationUIdAfterRecon 
 	And i generate a token for "DevTest" environment 
-	And i verify if "Action" has "flown" which was "NA" for "ADT Jira" for "AfterRecon&DeletedReal" functionality
+	And i verify if "Action" has "flown" which was "NA" for "ADT Jira" for "AfterRecon" functionality
+	And i verify if "Story" has "flown" which was "NA" for "ADT Jira" for "AfterRecon" functionality
 	
+
+
+@10ADTJira_Manualrecon_DeleteReleaseSprint
+Scenario Outline: ADTJIRA_ManualRecon_ReleaseAndSprintCreationForManualReconFromTool 
+	Given i load the project properties file 
+	Given i login to application "<applicationname>" 
+	Then i select a Project for "<applicationname>" 
+	And i delete "Release" in Jira	
+	And i delete "Sprint" in Jira
 	
-@9ADTJira_Manualrecon_EnableIterationToInBound
+Examples: 
+		| applicationname |
+		|ADT Jira    |
+
+
+@11ADTJira_Manualrecon_EnableIterationToInBound
 Scenario Outline: ManualRecon_CreateReleaseAndSprintFromRMP 
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
@@ -118,3 +143,11 @@ Scenario Outline: ManualRecon_CreateReleaseAndSprintFromRMP
 	Examples: 
 		| applicationname |
 		| MyWizard        |	
+		
+		
+		
+@12ADTJira_Manualrecon_VerificationOfReleaseandSprintPostDeletion_InEntities		
+Scenario: TFSAgile_AutoRecon_CheckifStoryFlown_VerifyIterationUIdAfterRecon 
+	And i generate a token for "DevTest" environment 
+	And i verify if "Decision" has "flown" which was "NA" for "TFS Agile" for "AfterRecon&Delete" functionality
+	And i verify if "Story" has "flown" which was "NA" for "TFS Agile" for "AfterRecon&Delete" functionality

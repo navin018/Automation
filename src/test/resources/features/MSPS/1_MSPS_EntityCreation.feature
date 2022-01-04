@@ -1,7 +1,22 @@
 Feature: MSPS_Entity Creation
 
+@MSPS_1_AddingTitleinRule
+Scenario Outline: Adding_DeliveryPlan_InRuleConfig
+Given i load the project properties file
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
+	And i click on tile "Product Instance Entity Rule Config"
+	Then i select client and DC for "<applicationname>" 
+	And i click on the "Edit Rule" for "<toolname>" and "<entity>" and "<workitemtype>" under "Product Instance Entity Rule Config" 
+	And i update the WorkItemExternalIDs into a JSON file for "<toolname>"
+	
 
-@MSPS_EntityCreation_InUI
+Examples: 
+		| applicationname |toolname|entity	    |
+		| MyWizard        |MSPS    |DeliveryPlan|
+
+
+@MSPS_2_EntityCreation_InUI
 Scenario Outline: MSPS_WorkitemCreation 
 	Given i load the project properties file
 	Given i login to application "<applicationname>"
@@ -17,17 +32,5 @@ Scenario Outline: MSPS_WorkitemCreation
       
       
       
-@MSPS_AddingTitleinRule
-Scenario Outline: Adding_DeliveryPlan_InRuleConfig
-	Given i login to application "<applicationname>" 
-	And i navigate to the homepage of "<applicationname>" from "AIFusionPage" 
-	And i click on tile "Product Instance Entity Rule Config"
-	Then i select client and DC for "<applicationname>" 
-	And i click on the "Edit Rule" for "<toolname>" and "<entity>" and "<workitemtype>" under "Product Instance Entity Rule Config" 
-	
-
-Examples: 
-		| applicationname |toolname|entity	    |
-		| MyWizard        |MSPS    |DeliveryPlan|
 
      

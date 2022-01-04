@@ -500,6 +500,7 @@ try{
 				e.printStackTrace();
 				Assert.fail("could not write workitem IDs for "+appname );
 			}
+		}
 			
 			if(appname.equalsIgnoreCase("MSPS"))
 			{
@@ -527,7 +528,7 @@ try{
 					Assert.fail("could not write workitem IDs for "+appname );
 					}
 					}
-}
+
 	}
 
 public static void loginToCloudJira() {

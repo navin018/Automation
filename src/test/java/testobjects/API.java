@@ -123,17 +123,7 @@ import java.util.Random;
 				 }
 				 if(functionality.equalsIgnoreCase("MSPS"))
 				 {
-					 if(Workitem.equalsIgnoreCase("RelForMSPS"))
-					 {
-						 //code to fetch deliveryplan external ID
-						 String DeliverPlanExternalID = response.jsonPath().getString("DeliveryTasks[0].DeliveryTaskAssociations[1].ItemExternalId");
-						 if(!DeliverPlanExternalID.isEmpty())
-							 Baseclass.getInstance().DeliverPlanExternalID = DeliverPlanExternalID;
-						 else
-							 Assert.fail("DeliverPlanExternalID is null for the release in MSPS");
-						 
-						 //add assertion to validate the title. compare workitemexternalID.json file against API data
-					 }
+					 VerifyMSPSFunctionality(response.jsonPath(),Workitem,toolname);
 				 }
 				
 			}
@@ -142,7 +132,52 @@ import java.util.Random;
 				e.printStackTrace();
 			}
 			}
+		
+		
 			
+		public static void VerifyMSPSFunctionality(JsonPath jsonPath, String workitem, String toolname) {
+			try{
+			 String TitleFromAPI="" ;
+			 String Title="";
+			 switch(workitem){
+			 case "RelForMSPS":
+			 TitleFromAPI = jsonPath.getString("DeliveryTasks[0].Title");
+			 Title=Tools.getWorkItemExternalID("ReleaseName", "MSPS");
+			 //code to fetch deliveryplan external ID
+			 List<ArrayList<String>> DeliverPlanExternalID = jsonPath.get("DeliveryTasks.DeliveryTaskAssociations.EntityUId");
+			 for(ArrayList j: DeliverPlanExternalID){
+			 if(j.contains("00020100-0100-0000-0000-000000000000")){
+			 List<ArrayList<String>> ItemExternalID = jsonPath.get("DeliveryTasks.DeliveryTaskAssociations.ItemExternalId");
+			 for(ArrayList<String> ae : ItemExternalID)
+			 {
+			 System.out.println(ae.get(j.indexOf("00020100-0100-0000-0000-000000000000")));
+			 Baseclass.getInstance().DeliverPlanExternalID = ae.get(j.indexOf("00020100-0100-0000-0000-000000000000"));
+			 }
+			 }
+			 else
+			 Assert.fail("EntityUId missing in the msps release");
+			 }
+			 break;
+			 case "DeliveryPlan_MSPS":
+			 TitleFromAPI = jsonPath.getString("DeliveryPlans[0].Title");
+			 Title=Tools.getWorkItemExternalID(workitem.split("_")[0], "MSPS");
+			 break;
+
+			 default:
+			 Title=Tools.getWorkItemExternalID(workitem.split("_")[0], "MSPS");
+			 TitleFromAPI = jsonPath.getString("DeliveryTasks[0].Title");
+			 break;
+			 }
+			 Assert.assertEquals(TitleFromAPI, Title,"Title mismatch for MSPS IB verification for workitem "+workitem.split("_"));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Issue verifying MSPS entities response");
+		}
+			
+		}
+
 		public static void VerifyDataLoaderFunctionality(JsonPath jsonPath, String workitem, String toolname,String functionality) {
 			try {
 				SoftAssert sa = new SoftAssert();
@@ -562,7 +597,7 @@ import java.util.Random;
 				 }
 				 else if(Workitem.contains("MSPS"))
 						requestParams.put("DeliveryTaskExternalId", Baseclass.getInstance().DeliverableExternalID);
-					EntityType="DeliveryTasks";
+						EntityType="DeliveryTasks";
 				 break;
 		
 			case("Test"):
@@ -660,7 +695,14 @@ import java.util.Random;
 					requestParams.put("DeliveryTaskExternalId", Baseclass.getInstance().release_IterationExternalID);
 					EntityType="DeliveryTasks";
 					break;
-			
+				case("FunctionalArea"):
+					requestParams.put("DeliveryTaskExternalId", Baseclass.getInstance().FunctionalAreaExternalID);
+					EntityType="DeliveryTasks";
+					break;
+					case("DeliveryPlan"):
+					requestParams.put("DeliveryPlanExternalId", Baseclass.getInstance().DeliverPlanExternalID);
+					EntityType="DeliveryPlans";
+					break;
 			 
 			default:
 				 requestParams.put("WorkItemTypeUId",WorkItemTypeUId);

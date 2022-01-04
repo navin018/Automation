@@ -52,7 +52,9 @@ public class MSPS {
 	//Project Details are in Iframe so switching to Iframe			
 				switchFrame(MSPSUIMap.Iframe);
 				ExpWaitForCondition(MSPSUIMap.ProjectName_txtbox);
-				String DeliveryPlanName="TestAutomationProject_"+RandomNumberGenerator();
+				String DeliveryPlanName=Tools.getWorkItemExternalID("DeliveryPlan", "MSPS");
+				System.out.println(DeliveryPlanName);
+				Baseclass.getInstance().WorkItemExternalId_DeliveryPlan=DeliveryPlanName;
 				enterText(MSPSUIMap.ProjectName_txtbox,DeliveryPlanName);
 				enterText(MSPSUIMap.Description_txtbox,DeliveryPlanName);
 	//switching back to Default content
@@ -61,7 +63,8 @@ public class MSPS {
 				ExpWaitForElementToDisappear(MSPSUIMap.HoldOncreating_msg);
 				ExpWaitForCondition(MSPSUIMap.Addtasks_text);
 				
-				Baseclass.getInstance().WorkItemExternalId_DeliveryPlanName=DeliveryPlanName;
+				Baseclass.getInstance().WorkItemExternalId_DeliveryPlan
+				=DeliveryPlanName;
 				
 				logger.info("Project Created Sucessfully in MSPS");				
 				
@@ -178,20 +181,20 @@ public class MSPS {
 				//Workitem Name Updation in Baseclass
 					switch(EntityName){
 						case "Initiative":
-							Baseclass.getInstance().WorkItemExternalId_InitiativeName=EntityName;
+							Baseclass.getInstance().WorkItemExternalId_Initiative=EntityName;
 							break;
 						case "Release":
 							Baseclass.getInstance().WorkItemExternalId_ReleaseName=EntityName;
 							break;
 						case "Functional Area":
-							Baseclass.getInstance().WorkItemExternalId_FunctionalAreaName=EntityName;
+							Baseclass.getInstance().WorkItemExternalId_FunctionalArea=EntityName;
 							break;						
 						case "Milestone":
-							Baseclass.getInstance().WorkItemExternalId_MilestoneName=EntityName;
+							Baseclass.getInstance().WorkItemExternalId_Milestone=EntityName;
 							break;
 						
 						case "Deliverable":
-							Baseclass.getInstance().WorkItemExternalId_DeliverableName=EntityName;
+							Baseclass.getInstance().WorkItemExternalId_Deliverable=EntityName;
 							break;
 							
 						

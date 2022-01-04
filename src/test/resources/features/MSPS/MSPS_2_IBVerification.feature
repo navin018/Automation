@@ -12,8 +12,8 @@ Scenario: MSPS_IBVerification
 	And i generate a token for "DevTest" environment
 	And i verify the "inbound" details for "RelForMSPS" for tool "MSPS" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "MSPS" functionality
 	And i verify the "inbound" details for "Initiative_MSPS" for tool "MSPS" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "MSPS" functionality
-	And i verify the "inbound" details for "MSPS_FunctionalArea" for tool "MSPS" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "MSPS" functionality
+	And i verify the "inbound" details for "FunctionalArea_MSPS" for tool "MSPS" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "MSPS" functionality
 	And i verify the "inbound" details for "Milestone_MSPS" for tool "MSPS" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "MSPS" functionality
-	And i verify the "inbound" details for "MSPS_Deliverable" for tool "MSPS" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "MSPS" functionality
+	And i verify the "inbound" details for "Deliverable_MSPS" for tool "MSPS" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "MSPS" functionality
 #deliveryplan or project code pending
-#	And i verify the "inbound" details for "MSPS_DeliveryPlan" for tool "MSPS" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "MSPS" functionality
+	And i verify the "inbound" details for "DeliveryPlan_MSPS" for tool "MSPS" using "flat" query whose client is "ClientUId" and DC is "DeliveryConstructUId_L2" for "MSPS" functionality

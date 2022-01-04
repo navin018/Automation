@@ -271,7 +271,9 @@ public class ProductInstanceEntityRuleConfig  extends Baseclass {
 		String RuleText=getValue(MSPSUIMap.Rule_area);
 		String Rule1[] = RuleText.split("\\)");
 		//get Name from Json file
-		String DeliveryPlanName=Tools.getWorkItemExternalID("DeliveryPlan", toolName);
+		String DeliveryPlanName="TestAutomationProject_"+RandomNumberGenerator();
+		System.out.println(DeliveryPlanName);
+		Baseclass.getInstance().WorkItemExternalId_DeliveryPlan=DeliveryPlanName;
 		String AddedRule=Rule1[0].toString()+" OR Title='"+DeliveryPlanName+"')";
 		System.out.println(AddedRule);
 		clear(ProductInstanceEntityRuleConfigUIMAP.Text_area);
