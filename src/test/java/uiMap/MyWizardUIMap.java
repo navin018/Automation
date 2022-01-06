@@ -37,10 +37,12 @@ public static By DCMsg_StaticTxt= By.xpath("//div[@aria-label='Please select a D
 public static By ScopeSelectorArrow_Drpdown = By.xpath("//span[@class='-arrow-link js-dropdown'][@id='scopeSelector']");
 public static String SelectClient_statictxt = "//span[contains(@class,'node-name')][text()='{clientname}']";
 public static String SelectClient_statictxt_RMP = "//span[contains(text(),'{clientname}')]";
-public static String SelectDC_statictxt = "//span[@class='node-name'][text()='{dcname}']";
+//public static String SelectDC_statictxt = "//span[@class='node-name'][text()='{dcname}']";
+public static String SelectDC_statictxt = "//span[text()='{dcname}']";
 public static String SelectDC_statictxt_RMP = "//div[contains(text(),'{dcname}')]";
 public static String SearchResultAccountManagement_statictxt = "//div[@col-id='EmailId'] [text()='{userID}']";
-public static String SelectProgram_statictxt = "//span[contains(@class,'node-name')][text()='{programname}']";
+//public static String SelectProgram_statictxt = "//span[contains(@class,'node-name')][text()='{programname}']";
+public static String SelectProgram_statictxt = "//span[text()='{programname}']";
 public static String SelectProject_statictxt =  "//span[contains(@class,'node-name')][text()='{project}']";
 public static String SelectProgram_statictxt_RMP = "//div[contains(text(),'{programname}')]";
 public static String clientInAccountManagmentScreen = "//span[text()='Client/Delivery Construct Role(s)']//following::span[@class='node-name' and text()='{clientname}']//preceding::input[1]";
