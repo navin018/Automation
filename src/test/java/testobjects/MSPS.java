@@ -179,7 +179,7 @@ public class MSPS {
 					}
 					Thread.sleep(4000);
 				//Workitem Name Updation in Baseclass
-					switch(EntityName){
+					switch(MSPS_Entities[i]){
 						case "Initiative":
 							Baseclass.getInstance().WorkItemExternalId_Initiative=EntityName;
 							break;

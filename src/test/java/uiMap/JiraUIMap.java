@@ -268,5 +268,14 @@ public static By Success_toastermsg=By.xpath("//p[text()='Successfully Executed 
 public static String cyclename_text = "//div[text()='{cyclename}']//following::div[@class='contextMenuIcon aui-icon aui-icon-small aui-iconfont-handle-horizontal'][1]";
 public static By Expand_icon=By.xpath("//i[@role='presentation']//following::div[text()='ReleaseAutomation_Donot_Edit']");
 public static By Owner_txtbox = By.xpath("//label[text()='Owner']//following::input[1]");
+//Deletion of release
+public static By Operations_icon=By.xpath("//th[text()='Actions']//following::span[@class='aui-icon aui-icon-small aui-iconfont-more'][1]");
+public static By Delete_icon=By.xpath("//th[text()='Actions']//following::a[text()='Delete'][1]");
+public static String Sprint_Name = "//span[@data-fieldvalue='{Sprintname}']";
+public static String SprintMore_icon="//span[@data-fieldvalue='{Sprintname}']//following::span[@class='aui-icon ghx-iconfont aui-icon-small aui-iconfont-more'][1]";
+public static By SprintDelete_option=By.xpath("//a[text()='Delete sprint']");
+public static By SearchRelease_Txtbox=By.xpath("//input[@id='version-filter-text']");
+public static By ConfirmReleaseDelete_btn=By.xpath("//input[@value='Yes']");
+public static By ConfirmSprintDelete_btn=By.xpath("//button[@id='dialog-submit-button']");
 
 }

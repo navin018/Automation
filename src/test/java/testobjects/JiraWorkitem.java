@@ -195,7 +195,66 @@ import java.util.Random;
 			}
 			}
 			
-			
+		public static void DeleteReleaseOrSprint(String ReleaseOrSprint) {
+			try {
+			//Fetching Release and Sprint details
+			HashMap<String,String> ReleaseSrpintDetails = Tools.getReleaseAndSprintDetails("Jira");
+			String ReleaseName = ReleaseSrpintDetails.get("ReleaseName");
+			String SprintName = ReleaseSrpintDetails.get("SprintName");
+			//release
+			if(ReleaseOrSprint.contains("Release"))
+			{
+			waitPageToLoad();
+			clickJS(JiraUIMap.Releases_Link);
+			ExpWaitForCondition(JiraUIMap.SearchRelease_Txtbox);
+			waitPageToLoad();
+			Thread.sleep(3000);
+			if(CheckIfElementExists(JiraUIMap.SearchRelease_Txtbox))
+			{
+			enterText(JiraUIMap.SearchRelease_Txtbox,ReleaseName);
+			ExpWaitForCondition(JiraUIMap.Operations_icon);
+			clickJS(JiraUIMap.Operations_icon);
+			ExpWaitForCondition(JiraUIMap.Delete_icon);
+			clickJS(JiraUIMap.Delete_icon);
+			waitPageToLoad();
+			ExpWaitForCondition(JiraUIMap.ConfirmReleaseDelete_btn);
+			clickJS(JiraUIMap.ConfirmReleaseDelete_btn);
+			waitPageToLoad();
+			}
+			else
+			System.out.println("Provision to delete release not present for project "+Property.getProperty("JiraProject"));
+			}
+			else if(ReleaseOrSprint.contains("Sprint"))
+			{
+
+			clickJS(JiraUIMap.BacklogIcon_Img);
+			Thread.sleep(10000);
+			ScrollIntoView(prepareWebElementWithDynamicXpath(JiraUIMap.Sprint_Name, SprintName,"Sprintname"));
+			clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.SprintMore_icon, SprintName,"Sprintname"));
+
+			if(Property.getProperty("JiraURL").contains("adtjira001eu")){
+			ExpWaitForCondition(JiraUIMap.SprintDelete_option);
+			clickJS(JiraUIMap.SprintDelete_option);
+			}
+			else if(Property.getProperty("JiraURL").contains("uat.alm.accenture.com")){
+			ExpWaitForCondition(JiraUIMap.SprintDelete_option);
+			clickJS(JiraUIMap.SprintDelete_option);
+			}
+			ExpWaitForCondition(JiraUIMap.ConfirmSprintDelete_btn);
+			clickJS(JiraUIMap.ConfirmSprintDelete_btn);
+
+
+			}
+
+
+
+			}
+			catch (Exception e) {
+			e.printStackTrace();
+			logger.info("Issues in Deleting release or sprint");
+			Assert.fail("Issues in Deleting release or sprint");
+			}
+			}
 			public static void CaptureWorkitemID(String workitem) {
 			try {
 				

@@ -17,6 +17,7 @@ Examples:
 
 
 @MSPS_2_EntityCreation_InUI
+@MSPS_1_AddingTitleinRule
 Scenario Outline: MSPS_WorkitemCreation 
 	Given i load the project properties file
 	Given i login to application "<applicationname>"

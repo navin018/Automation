@@ -35,7 +35,11 @@ public class JiraSteps  {
 
 
 	}
+	@Then("^i delete \"([^\"]*)\" in Jira$")
+	public void i_delete_in_Jira(String ReleaseOrSprint) throws Throwable {
+	JiraWorkitem.DeleteReleaseOrSprint(ReleaseOrSprint);
 
+	}
 	@Then("^i create a \"([^\"]*)\" in Jira$")
 	public void iCreateAInJira(String workitem) throws Throwable {
 		try{

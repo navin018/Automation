@@ -309,7 +309,7 @@ public class RMP extends Baseclass{
 			   
 			   singleClick(RMPUIMap.plusIcon_Img);
 			   Thread.sleep(3000);
-			   singleClick(RMPUIMap.AddInititave_Link);
+			   click(RMPUIMap.AddInititave_Link);
 			   Thread.sleep(3000);
 			   enterText(RMPUIMap.InitiaveOrReleaseNAME_txtbox,InitiaveName);
 			   Thread.sleep(2000);

@@ -24,7 +24,7 @@ Scenario Outline: ADTJIRA_AutoRecon_ReleaseAndSprintIBVerification_CaptureIterat
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "tool" for tool "ADT Jira" 
+	And i capture the "IterationExternalID" for Entities created from "tool" for tool "ADT Jira" 
 	And i generate a token for "DevTest" environment 
 	And i verify if "ReleaseFromTool" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
 	And i verify if "SprintFromTool" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
@@ -60,7 +60,7 @@ Scenario Outline: ADTJIRA_AutoRecon_CheckifReleaseAndSprintFlown_CaptureIteratio
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
 	Then i select client and DC for "<applicationname>"
-	And i capture the IterationExternalID for Iteration created from "RMP" for tool "ADT Jira" 
+	And i capture the "IterationExternalID" for Entities created from "RMP" for tool "ADT Jira" 
 	And i generate a token for "DevTest" environment  
 	And i verify if "ReleaseFromRMP" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality
 	And i verify if "SprintFromRMP" has "flown" which was "NA" for "ADT Jira" for "Recon" functionality

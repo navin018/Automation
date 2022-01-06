@@ -1391,6 +1391,8 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Deliverables";
 			 if(workitem.contains("Release") || workitem.contains("Sprint"))
 				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Iterations";	
+			 if(workitem.contains("InIterationMaps"))
+				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="IterationMapsByDeliveryConstruct";
 			 if(workitem.equalsIgnoreCase("Test") || workitem.equalsIgnoreCase("TestCase"))
 				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="Tests";	
 			 if(workitem.equalsIgnoreCase("Requirement"))
@@ -1633,25 +1635,21 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 
 						ArrayList<String> IterationDetails = getIterationUIDAndExternalIDForReleaseAndSprintAndVerifyTheSame(response.jsonPath(),workitem,toolname);	
 //					 VerifyIterationExternalIDAfterReconForWorkitem(IterationExternalIDOfWorkitemAfterRecon_Release,IterationExternalIDOfWorkitemAfterRecon_Sprint,toolname);
-						VerifyIterationExternalIDAfterReconForWorkitem(IterationDetails.get(0),IterationDetails.get(2),toolname);
+						VerifyIterationExternalIDAfterReconForWorkitem(IterationDetails.get(0),IterationDetails.get(2),toolname,workitem);
 					}
 					
-					if(functionality.equalsIgnoreCase("AfterRecon&DeletedIteration")){ 
-
 						
-					}
-					
-					
 					
 					if(functionality.equalsIgnoreCase("AfterRecon&Delete"))
 					{
-						if(workitem.contains("Action")){
-							 List<ArrayList<String>> DisplayNamesa= response.jsonPath().get("Actions.ActionAssociations");
-							 for(ArrayList j:DisplayNamesa)
-							 {
-							Assert.assertEquals(j.isEmpty(), true, "ActionAssociations section present. Action is associated with release");
-							 }
+						if(workitem.contains("Action")||workitem.contains("Decision")){
+								List<ArrayList<String>> DisplayNamesa= response.jsonPath().get(workitem+"s."+workitem+"Associations");
+								for(ArrayList j:DisplayNamesa)
+								{
+								Assert.assertEquals(j.isEmpty(), true, workitem+"s.Associations section present."+ workitem +"is associated with release");
+								}
 						}
+					}
 						else {
 							String jsonpathforName = "WorkItems.WorkItemAttributes.Name";
 							String jsonpathforValue = "WorkItems.WorkItemAttributes.Value";
@@ -1701,7 +1699,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 											}
 									 }
 								 }
-				 }
+				 
 					}
 				 
 				 
@@ -1957,7 +1955,7 @@ public static void VerifyTeamDetailsForEntity1(JsonPath jsonPath, String workite
 				 String IterationExternalID_Release="";
 				 String IterationExternalID_Sprint="";
 				 
-				 if(!workitem.contains("Decision")){
+				 if(!(workitem.contains("Action") || workitem.contains("Decision"))){
 					 String jsonpathforName = "WorkItems.WorkItemAttributes.Name";
 					 String jsonpathforValue = "WorkItems.WorkItemAttributes.Value";
 					 String jsonpathorExternalValue = "WorkItems.WorkItemAttributes.IdExternalValue";
@@ -2005,17 +2003,18 @@ public static void VerifyTeamDetailsForEntity1(JsonPath jsonPath, String workite
 							 }
 						 }
 				 }
-				 else if(workitem.contains("Decision"))
+				 else if(workitem.contains("Action")||workitem.contains("Decision"))
 				 {
-					 String jsonpathforIterationTypeUId="Decisions.DecisionAssociations.IterationTypeUId";
-					 List<ArrayList<String>> IterationTypeUId= jsonPath.get(jsonpathforIterationTypeUId);
-					 for(ArrayList j:IterationTypeUId)
-					 {
-						 
-						 if(j.contains("00200390-0010-0000-0000-000000000000"))
-						 {
-							 List<ArrayList<String>> ExternalID = jsonPath.get("Decisions.DecisionAssociations.ItemExternalId");
-							 List<ArrayList<String>> AssociatedUId = jsonPath.get("Decisions.DecisionAssociations.ItemAssociatedUId");
+
+				 String jsonpathforIterationTypeUId=workitem+"s."+workitem+"Associations.IterationTypeUId";
+				 List<ArrayList<String>> IterationTypeUId= jsonPath.get(jsonpathforIterationTypeUId);
+				 for(ArrayList j:IterationTypeUId)
+				 {
+
+				 if(j.contains("00200390-0010-0000-0000-000000000000"))
+				 {
+				 List<ArrayList<String>> ExternalID = jsonPath.get(workitem+"s."+workitem+"Associations.ItemExternalId");
+				 List<ArrayList<String>> AssociatedUId = jsonPath.get(workitem+"s."+workitem+"Associations.ItemAssociatedUId");
 							 for(ArrayList<String> k : AssociatedUId)
 							{
 								 
@@ -2270,7 +2269,7 @@ public static void VerifyTeamDetailsForEntity1(JsonPath jsonPath, String workite
 			
 		
 
-		private static void VerifyIterationExternalIDAfterReconForWorkitem(String IterationExternalIDOfWorkitemAfterRecon_Release, String IterationExternalIDOfWorkitemAfterRecon_Sprint, String toolname) {
+		private static void VerifyIterationExternalIDAfterReconForWorkitem(String IterationExternalIDOfWorkitemAfterRecon_Release, String IterationExternalIDOfWorkitemAfterRecon_Sprint, String toolname,String workitem) {
 			try{
 			String testDataPath_WorkItemExternalIDs="";
 			if(toolname.contains("Jira") || toolname.contains("JIRA")){
@@ -2286,7 +2285,9 @@ public static void VerifyTeamDetailsForEntity1(JsonPath jsonPath, String workite
 	        String IterationExternalIDFromRMP_Release = (String) jsonObject.get("IterationExternalIDFromRMP_Release");
 	        String IterationExternalIDFromRMP_Sprint = (String) jsonObject.get("IterationExternalIDFromRMP_Sprint");
 	        Assert.assertEquals(IterationExternalIDFromRMP_Release, IterationExternalIDOfWorkitemAfterRecon_Release, "mimatch in IterationExternalID after reconiliation for the workitem for tool "+toolname);
+	        if(!(toolname.contains("ADT") && workitem.contains("Action"))){
 	        Assert.assertEquals(IterationExternalIDFromRMP_Sprint, IterationExternalIDOfWorkitemAfterRecon_Sprint, "mimatch in IterationExternalID after reconiliation for the workitem for tool "+toolname);
+				}
 			}
 			catch(Exception e)
 			{

@@ -121,6 +121,10 @@ import java.util.Random;
 				 {
 					 VerifyDataLoaderFunctionality(response.jsonPath(),Workitem,toolname,functionality);
 				 }
+				 if(functionality.contains("PostRecon"))
+				 {
+					 VerifyIterationMapsCollection(response.jsonPath(),Workitem,toolname);
+				 }
 				 if(functionality.equalsIgnoreCase("MSPS"))
 				 {
 					 VerifyMSPSFunctionality(response.jsonPath(),Workitem,toolname);
@@ -133,7 +137,26 @@ import java.util.Random;
 			}
 			}
 		
-		
+		public static void VerifyIterationMapsCollection(JsonPath jsonPath, String workitem, String toolname) {
+			try {
+			SoftAssert sa = new SoftAssert();
+			String IterationNameFromAPI="";
+
+			IterationNameFromAPI = jsonPath.getString("Name");
+			System.out.println(IterationNameFromAPI );
+			String ActualTitle="release test";
+
+			if(!IterationNameFromAPI.contains(ActualTitle))
+			Assert.fail("Release/Sprint is Not Available In Iteration Maps Collection Post Reconcilation");
+			sa.assertAll();
+
+			logger.info("Release/Sprint is Available In Iteration Maps Collection Post Reconcilation");
+			}catch(Exception e) {
+			e.printStackTrace();
+			logger.info("Release/Sprint is Not Available In Iteration Maps Collection Post Reconcilation");
+			System.out.println("Release/Sprint is Not Available In Iteration Maps Collection Post Reconcilation");
+			}
+			}
 			
 		public static void VerifyMSPSFunctionality(JsonPath jsonPath, String workitem, String toolname) {
 			try{
@@ -718,16 +741,17 @@ import java.util.Random;
 				 QueryType = "Query/Flat";
 			 if(FlatNonFlarURL.equalsIgnoreCase("NonFlat"))
 				 QueryType = "Query";
-			 if(!workitem.equalsIgnoreCase("Team"))
+			 if(!(workitem.equalsIgnoreCase("Team"))||(workitem.contains("InIterationMaps")))
 			 PostUrl = mywizURL+"/v1/"+EntityType+"/"+QueryType+"?clientUId="+Property.getProperty(ClientUID)+"&deliveryConstructUId="+Property.getProperty(DC)+"&includeCompleteHierarchy=false";
 //				 PostUrl = mywizURL+"/v1/"+WorkItemOrDeliverableOrIterationOrTestOrRequirement+"/"+"?clientUId="+Property.getProperty("ClientUId")+"&deliveryConstructUId="+Property.getProperty("DeliveryConstructUId_L2")+"&includeCompleteHierarchy=false";
 			 if(workitem.equalsIgnoreCase("Team"))
 				 PostUrl = mywizURL+"/v1/"+EntityType+"?clientUId="+Property.getProperty(ClientUID)+"&deliveryConstructUId=null&deliveryConstructTypeUId=00200020-0000-0000-0000-000000000000";
-			
+			 if(workitem.contains("InIterationMaps"))
+				 PostUrl = mywizURL+"/v1/"+"IterationMapsByDeliveryConstruct"+"?clientUId="+Property.getProperty(ClientUID)+"&deliveryConstructUId="+Property.getProperty(DC);
 			 Response response=null;
 			 if(!workitem.equalsIgnoreCase("Team"))	
 			 response = request.post(PostUrl);
-			 else if(workitem.equalsIgnoreCase("Team"))
+			 else if(workitem.equalsIgnoreCase("Team") || workitem.contains("InIterationMaps"))
 				 response = request.get(PostUrl); 
 			 System.out.println(response.getBody().asString());
 			 if(response.getStatusCode()!=200)
@@ -740,7 +764,7 @@ import java.util.Random;
 			 Assert.assertEquals(response.getStatusCode(), 200);
 			 
 			 
-			 if(!workitem.equalsIgnoreCase("Team"))
+			 if(!workitem.equalsIgnoreCase("Team")|| workitem.contains("InIterationMaps"))
 			 {
 				 int totalrecordcount = response.jsonPath().get("TotalRecordCount");
 				 Assert.assertEquals(totalrecordcount, 1,workitem+ " not flown for IB "+toolname);	
