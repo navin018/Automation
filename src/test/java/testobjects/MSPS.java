@@ -112,11 +112,11 @@ public class MSPS {
 		//Moving the Scroll to Right	
 				WebElement DragandDrop=driver().findElement(MSPSUIMap.DragandDrop_line);				
 		        Actions act=new Actions(driver());
-		        act.dragAndDropBy(DragandDrop,75, 130).build().perform();	
-		        act.dragAndDropBy(DragandDrop,75, 130).build().perform();
-		        act.dragAndDropBy(DragandDrop,75, 130).build().perform();
-		        act.dragAndDropBy(DragandDrop,75, 130).build().perform();
-		        act.dragAndDropBy(DragandDrop,75, 130).build().perform();
+		        act.dragAndDropBy(DragandDrop,75, 100).build().perform();	
+		        act.dragAndDropBy(DragandDrop,75, 100).build().perform();
+		        act.dragAndDropBy(DragandDrop,75, 100).build().perform();
+		        act.dragAndDropBy(DragandDrop,75, 100).build().perform();
+		        act.dragAndDropBy(DragandDrop,75, 100).build().perform();
 			
 			
 			
@@ -157,6 +157,13 @@ public class MSPS {
 					Thread.sleep(3000);
 					enterText(MSPSUIMap.YesOrNo_txtbox,"Yes");
 					sendEntr();
+					if(MSPS_Entities[i].equalsIgnoreCase("Initiative")){
+						singleClick(prepareWebElementWithDynamicXpath(MSPSUIMap.ACNTYes_dropdown,  Integer.toString(i+1), "row"));
+						singleClick(prepareWebElementWithDynamicXpath(MSPSUIMap.ACNTYes_dropdown,  Integer.toString(i+1), "row"));				
+						Thread.sleep(3000);
+						enterText(MSPSUIMap.YesOrNo_txtbox,"Yes");
+						sendEntr();
+					}
 					
 					
 					
