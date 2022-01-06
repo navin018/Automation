@@ -1213,22 +1213,32 @@ public static void CreateReleaseForCloudJira(String ReleaseOrSprint) {
 			}
 			else if(ReleaseOrSprint.contains("Sprint"))
 			{
-				clickJS(JiraUIMap.BacklogIcon_Img);
-//				Thread.sleep(10000);
-				ExpWaitForCondition(JiraUIMap.CloudJiraEditSprintDots_Img);
-				doubleClick(JiraUIMap.CloudJiraEditSprintDots_Img);
-				Thread.sleep(5000);
-				clickJS(JiraUIMap.CloudJiraEditSprint_Img);
-				ExpWaitForCondition(JiraUIMap.CloudJiraSprintName_txt);
-				String currentsprintname = getValue(JiraUIMap.CloudJiraSprintName_txt);
-//				clickJS(By.xpath("//a[@class='aui-button js-sprint-actions-trigger'][1]/span[1]"));
-//				clickJS(JiraUIMap.SprintName_Statictxt);
-//				Thread.sleep(2000);
-				ClearTextAndEnterData(currentsprintname+"_"+randomNumbForSrpint);
-				Thread.sleep(4000);
-				clickJS(JiraUIMap.UpdateSprint_btn);
-//				click(JiraUIMap.BacklogIcon_Img);
-				Baseclass.getInstance().Jira_SprintName = currentsprintname+"_"+randomNumbForSrpint;
+			clickJS(JiraUIMap.BacklogIcon_Img);
+			Thread.sleep(9000);
+			ExpWaitForCondition(JiraUIMap.CreateSprint_btn);
+			ScrollIntoView(JiraUIMap.CreateSprint_btn);
+			clickJS(JiraUIMap.CreateSprint_btn);
+			Thread.sleep(5000);
+			//Edit of Created New Sprint
+			ExpWaitForCondition(JiraUIMap.CloudJiraCreatedSprint_Editbtn);
+			clickJS(JiraUIMap.CloudJiraCreatedSprint_Editbtn);
+			Thread.sleep(2000);
+			singleClick(JiraUIMap.EditSprint_link);
+			ExpWaitForCondition(JiraUIMap.CloudJiraSprintName_txt);
+			clear(JiraUIMap. CloudJiraSprintName_txt);
+			String CloudjiraSprint="SprintAutomationData_"+RandomNumberGenerator();
+			System.out.println(CloudjiraSprint);
+			enterText(JiraUIMap.cloudjiraSprintName_textbox,CloudjiraSprint);
+			enterText(JiraUIMap.SprintStartDate_txt, wii.SprintStartDate);
+			enterText(JiraUIMap.SprintEndDate_txt, wii.SprintEndDate);
+			click(JiraUIMap.UpdateSprint_btn );
+			Thread.sleep(5000);
+			ExpWaitForElementToDisappear(JiraUIMap.UpdateSprint_btn);
+
+
+			Baseclass.getInstance().Jira_SprintName =CloudjiraSprint;
+			Baseclass.getInstance().Jira_SprintStartDate=wii.SprintStartDate;
+			Baseclass.getInstance().Jira_SprintEndDate=wii.SprintEndDate;
 			}
 
 	} 

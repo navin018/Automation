@@ -138,7 +138,7 @@ Scenario Outline: CloudJira_WorkitemCcreation
 #	
 	  Examples: 
       | applicationname | feature             | task    | story    | risk         | issue         | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    |Sprint    |
-      | Cloud Jira            | New Feature_Cloud_01 | Task_01 | Story_01 | Risk_Cloud_01 | Issue_Cloud_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_02 |Sprint_01 |
+      | Cloud Jira            | New Feature_Cloud_01 | Task_01 | Story_01 | Risk_Cloud_01 | Issue_Cloud_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_02 |Sprint_CloudJira |
 
 #@8CloudJira_OB_ValidationInTool
 #this is pending

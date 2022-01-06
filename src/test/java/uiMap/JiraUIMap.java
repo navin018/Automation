@@ -277,5 +277,7 @@ public static By SprintDelete_option=By.xpath("//a[text()='Delete sprint']");
 public static By SearchRelease_Txtbox=By.xpath("//input[@id='version-filter-text']");
 public static By ConfirmReleaseDelete_btn=By.xpath("//input[@value='Yes']");
 public static By ConfirmSprintDelete_btn=By.xpath("//button[@id='dialog-submit-button']");
+public static By CloudJiraCreatedSprint_Editbtn=By.xpath("//button[text()='Create sprint']//preceding::span[@class='aui-icon ghx-iconfont aui-icon-small aui-iconfont-more'][1]");
+public static By cloudjiraSprintName_textbox=By.xpath("//label[text()='Sprint name:']//following::input[@class='text']");
 
 }
