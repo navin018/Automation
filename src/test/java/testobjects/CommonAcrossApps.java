@@ -534,9 +534,10 @@ try{
 public static void loginToCloudJira() {
 try{
 	Thread.sleep(3000);
-	driver().get("chrome://settings/clearBrowserData");
 	driver().get(Property.getProperty("JiraURL"));
+	Thread.sleep(5000);
 	waitPageToLoad();
+	refresh();
 	ExpWaitForCondition(JiraUIMap.CloudJiraEmailID_txtbox);
 		enterText(JiraUIMap.CloudJiraEmailID_txtbox,Property.getProperty("Username"));
 		clickJS(JiraUIMap.CloudJiraCtn_btn);

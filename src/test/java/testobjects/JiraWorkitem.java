@@ -110,8 +110,8 @@ import java.util.Random;
 					break;
 				case "epic":
 				case "Epic":
-					if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
-					{
+//					if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
+//					{
 					Thread.sleep(5000);
 					if(!CheckIfElementExists(JiraUIMap.EpicName_txtBox)){
 						JiraWorkitem.SelectWorkItemtype("Epic_01");
@@ -119,7 +119,7 @@ import java.util.Random;
 					clickJS(JiraUIMap.EpicName_txtBox);
 					enterTextUsingAction(JiraUIMap.EpicName_txtBox, wi.EpicName);
 					Thread.sleep(1000);
-					}
+//					}
 					break;
 					
 				}
@@ -254,6 +254,23 @@ import java.util.Random;
 			logger.info("Issues in Deleting release or sprint");
 			Assert.fail("Issues in Deleting release or sprint");
 			}
+			}
+		
+			public static void OpenWorkitem(String workitem){
+				try{
+				if(workitem.contains("Test"))
+					enterText(JiraUIMap.SearchBoxHomePage_txtbox,"Test");
+				else
+					enterText(JiraUIMap.SearchBoxHomePage_txtbox,workitem);
+				Thread.sleep(5000);
+				ExpWaitForCondition(JiraUIMap.WorkItemExternalID_txt);
+				clickJS(JiraUIMap.WorkItemExternalID_txt);
+				waitPageToLoad();
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
 			}
 			public static void CaptureWorkitemID(String workitem) {
 			try {

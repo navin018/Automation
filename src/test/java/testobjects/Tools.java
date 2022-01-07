@@ -989,7 +989,7 @@ public static String getTitle(String toolname,String workitem){
 		
 		String testDataPath_WorkItem="";
 		WorkItemDO  wi ;
-			if(toolname.equalsIgnoreCase("ADT JIRA") || toolname.equalsIgnoreCase("ADOP JIRA"))
+		if(toolname.contains("JIRA")||toolname.contains("Jira")||toolname.contains("jira"))
 			{
 				testDataPath_WorkItem = testDataPath + "Jira" + File.separator + "JSON" +  File.separator  ;
 			}

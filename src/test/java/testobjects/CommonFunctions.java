@@ -457,7 +457,7 @@ public class CommonFunctions {
 					Thread.sleep(4000);
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 					EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);
-					Baseclass.getInstance().MilestoneExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+					Baseclass.getInstance().DeliverableExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
 					System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
 					break;
 		

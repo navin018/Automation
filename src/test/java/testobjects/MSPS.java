@@ -174,7 +174,7 @@ public class MSPS {
 						Thread.sleep(4000);
 						
 						if((MSPS_Entities[i].equalsIgnoreCase("Deliverable"))){
-							break;
+							Thread.sleep(2000);
 						}							
 						
 						else {
@@ -245,7 +245,8 @@ public class MSPS {
 		
 		//Close
 				singleClick(MSPSUIMap.Close_img);
-				Thread.sleep(2000);
+				ExpWaitForElementToDisappear(MSPSUIMap.Workingonit_text);
+				Thread.sleep(4000);
 				sendEntr(); 
 				ExpWaitForElementToDisappear(MSPSUIMap.Processing_toastermsg);
 				ExpWaitForElementToDisappear(MSPSUIMap.Checkin_toastermsg);

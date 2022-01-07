@@ -45,7 +45,7 @@ public static By Description_txtBox=By.xpath("//div[@id='description-wiki-edit']
 public static By Description_iFrame=By.xpath("//div[@id='description-wiki-edit']//following::iframe[1]");
 //
 public static By de = By.xpath("//*[@id='mce_0_ifr']");
-public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1]");
+public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name')]//following::input[1]");
 public static By Create_btn=By.xpath("//input[@type='submit' and @value='Create']");
 public static By CreateSubTask_btn=By.xpath("//span[text()='Create sub-task']");
 public static By firstElementInSearchBox_staticTxt = By.xpath("//span[@class='quick-search-item-title'][@xpath='1']");
@@ -157,12 +157,12 @@ public static By login_btn1 = By.xpath("//input[@name='login' and @value='Log In
 public static By EditSprintDots_button = By.xpath("//a[@class='aui-button js-sprint-actions-trigger' or @class='aui-button aui-button-compact js-sprint-actions-trigger'][1]/span[1]");
 public static By EditSprint_link = By.xpath("//a[text()='Edit sprint']");
 public static By SprintName_txt = By.xpath("//label[@for='ghx-sprint-name']//following::input[1]");
-public static By SaveSprint_btn = By.xpath("//button[@type='submit' and text()='Save']");
+public static By SaveSprint_btn = By.xpath("//button[@type='submit' and tepicext()='Save']");
 public static By UpdateSprint_btn = By.xpath("//button[text()='Update']");
 //cloud jira
-public static By CloudJiraEmailID_txtbox=By.xpath("//input[@type='email' and @class='Input__InputElement-sc-1o6bj35-0 bfCuIo']");
+public static By CloudJiraEmailID_txtbox=By.xpath("//input[@type='email']");
 public static By CloudJiraCtn_btn=By.xpath("//span[text()='Continue']");
-public static By CloudJiraPwd_txtbox=By.xpath("//input[@id='password' and @class='Input__InputElement-sc-1o6bj35-0 bfCuIo']");
+public static By CloudJiraPwd_txtbox=By.xpath("//input[@id='password']");
 public static By CloudJiraLogIn_btn=By.xpath("//span[text()='Log in']");
 public static By CloudJiraCreate_btn=By.xpath("//span[text()='Create']");
 public static By CloudJiraProjects_link=By.xpath("//span[text()='Projects']");
