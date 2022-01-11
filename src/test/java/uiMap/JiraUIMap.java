@@ -45,7 +45,7 @@ public static By Description_txtBox=By.xpath("//div[@id='description-wiki-edit']
 public static By Description_iFrame=By.xpath("//div[@id='description-wiki-edit']//following::iframe[1]");
 //
 public static By de = By.xpath("//*[@id='mce_0_ifr']");
-public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name')]//following::input[1]");
+public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1] | //label[contains(text(),'Epic Name')]//following::input[1]");
 public static By Create_btn=By.xpath("//input[@type='submit' and @value='Create']");
 public static By CreateSubTask_btn=By.xpath("//span[text()='Create sub-task']");
 public static By firstElementInSearchBox_staticTxt = By.xpath("//span[@class='quick-search-item-title'][@xpath='1']");
@@ -280,4 +280,24 @@ public static By ConfirmSprintDelete_btn=By.xpath("//button[@id='dialog-submit-b
 public static By CloudJiraCreatedSprint_Editbtn=By.xpath("//button[text()='Create sprint']//preceding::span[@class='aui-icon ghx-iconfont aui-icon-small aui-iconfont-more'][1]");
 public static By cloudjiraSprintName_textbox=By.xpath("//label[text()='Sprint name:']//following::input[@class='text']");
 
+
+//test execution for adop
+public static By CreateCycle_Newbtn=By.xpath("//span[@data-title='Create Cycle']");
+public static By createNewCycle_txt=By.xpath("//h2[@title='Create New Cycle']");
+public static By Version_selecttxtbox=By.xpath("//select[@id='cycle_version']");
+public static By CycleOrExecutionName_textbox=By.xpath("//input[@id='cycle_name']");
+public static By Clickhere_link=By.xpath("//a[text()=' here ']");
+public static By Executetest_text=By.xpath("//h2[text()='Execute Test']");
+public static By AddtoExisting_radiobtn=By.xpath("//strong[text()='Add to Existing Test Cycle and Execute']//preceding::input[1]");
+public static By Versionintest_txtbox=By.xpath("//select[@id='project_version']");
+public static By selectcyclename_textbox=By.xpath("//select[@id='cycle_names']");
+public static By Execute_button=By.xpath("//a[text()='Execute']");
+public static By PageLoadIndicator=By.xpath("//div[@class='jira-page-loading-indicator']");
+public static By ExecutionStatus_Text=By.xpath("//label[@title='Execution Status']");
+public static By Execution_dropdown=By.xpath("//span[contains(@id,'executionStatus-trigger')]");
+public static By Pass_txt=By.xpath("//li[text()='PASS']");
+public static By Success_text=By.xpath("//strong[text()='Success!']");
+public static By UpdateInJira_btn=By.xpath("//input[@value='Update']");
+public static By EditIssue_txt=By.xpath("//h2[contains(@title,'Edit Issue')]");
+public static By UpdateSuccess_msg=By.xpath("//div[contains(text(),'has been updated.')]");
 }

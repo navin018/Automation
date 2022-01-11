@@ -338,15 +338,24 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 
 				 
 				 //Title validation for WorkItems
+				//Title validation for WorkItems
 				 if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Team")))
 				 {
-				 String TitleFromAPI = js.getString(WorkItemOrDeliverableOrIterationOrTestOrRequirement+"[0].Title");
-//				 System.out.println(TitleFromAPI);
-//				 System.out.println(workitem_title);
-				 if(!TitleFromAPI.equals(workitem_title))
+					 String TitleFromAPI = js.getString(WorkItemOrDeliverableOrIterationOrTestOrRequirement+"[0].Title");
+	
+	
+	
+					 //Title is Different for Test execution so added a separate block for validation
+					 if(toolname.equalsIgnoreCase("ADOP Jira")) {
+					 if(workitem.equalsIgnoreCase("Test Execution"))
+	
+					 Assert.assertTrue(TitleFromAPI.contains("TestExecution_AutomationData_"),"title mismatch for workitem "+workitem +" for the given tool "+toolname);
+					 }
+					 else {
+					 if(!TitleFromAPI.equals(workitem_title))
 					 logger.info("title mismatch for workitem "+workitem +" for the given tool "+toolname);
-				 Assert.assertEquals(TitleFromAPI, workitem_title,"title mismatch for workitem "+workitem +" for the given tool "+toolname);
-				
+					 Assert.assertEquals(TitleFromAPI, workitem_title,"title mismatch for workitem "+workitem +" for the given tool "+toolname);
+					 }
 				 }
 				 
 				 

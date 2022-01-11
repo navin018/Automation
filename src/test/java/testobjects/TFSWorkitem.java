@@ -1704,72 +1704,79 @@ import utilities.general.Property;
             }
         }
 
-		 public static void CreateTeamWithSpecificMember(String teammember) {
-		        try {
-		            if (CheckIfElementExists(TFSUIMap.projectsetting_text)) {
-		                clickJS(TFSUIMap.projectsetting_text);
-		            }
-		            clickJS(TFSUIMap.Teams_text);
-		            Thread.sleep(3000);
-		            refresh();
-		            Thread.sleep(4000);
-		            ExpWaitForCondition(TFSUIMap.NewTeam_btn);
-		            clickJS(TFSUIMap.NewTeam_btn);
-		            ExpWaitForCondition(TFSUIMap.Teamname_txtbox);
+		public static void CreateTeamWithSpecificMember(String teammember) {
+			try {
+			if (CheckIfElementExists(TFSUIMap.projectsetting_text)) {
+			clickJS(TFSUIMap.projectsetting_text);
+			}
+			clickJS(TFSUIMap.Teams_text);
+			Thread.sleep(3000);
+			refresh();
+			Thread.sleep(4000);
+			ExpWaitForCondition(TFSUIMap.NewTeam_btn);
+			clickJS(TFSUIMap.NewTeam_btn);
+			ExpWaitForCondition(TFSUIMap.Teamname_txtbox);
 
-		 
 
-		            Baseclass.getInstance().teamName = "AutomationTeam_" + RandomNumberGenerator();
-		            String Team = Baseclass.getInstance().teamName;
-		            System.out.println(Baseclass.getInstance().teamName);
-		            enterText(TFSUIMap.Teamname_txtbox, Baseclass.getInstance().teamName);
-		            clickJS(TFSUIMap.Createteam_txt);
-		            waitPageToLoad();            
-		            enterText(TFSUIMap.filterteam_textbox, Baseclass.getInstance().teamName);
-		            ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,
-		                    "Teamname"));
-		            clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,"Teamname"));
-		            clickJS(TFSUIMap.Addmembers_btn);
-		            
-		            if (teammember.contains("&")) {
-                        String[] teammemberSplit = teammember.split("&");
-                       
-                        //if more than 1 resource to be added
-                        if(teammemberSplit.length>1)
-                        {
-	                        for(int i = 0; i<teammemberSplit.length;i++)
-	                        {
-	                            teammember=teammemberSplit[i];
-	                            enterText(TFSUIMap.SearchUsers_txtbox1, teammember);
-	                            Thread.sleep(3000);
-	                            sendEntr();                           
-	                        }                   
-                        }
-                        }
-                        else {
-                      enterText(TFSUIMap.SearchUsers_txtbox1, teammember);
-                      Thread.sleep(3000);
-                      sendEntr();
-                        }                   
-                    clickJS(TFSUIMap.SaveUser_btn);
-                    //if save btn is not clicked, reclick it
-                    if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TFSUIMap.Member_txt,teammember,"ResourceName")))
-                    	System.out.println("Resource added sucessfully");
-                    	else
-                    	Assert.fail("Resource Not Added Or Added Resource is missing");
 
-                    	waitPageToLoad();
-                    waitPageToLoad();
-                    driver().get(Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject);
-                   
-                 
 
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		            logger.info("Issue Creating Team in Tool");
-		            Assert.fail("Issue Creating Team in Tool");
-		        }
-		    }
+
+			Baseclass.getInstance().teamName = "AutomationTeam_" + RandomNumberGenerator();
+			String Team = Baseclass.getInstance().teamName;
+			System.out.println(Baseclass.getInstance().teamName);
+			enterText(TFSUIMap.Teamname_txtbox, Baseclass.getInstance().teamName);
+			clickJS(TFSUIMap.Createteam_txt);
+			waitPageToLoad();
+			enterText(TFSUIMap.filterteam_textbox, Baseclass.getInstance().teamName);
+			ExpWaitForCondition(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,
+			"Teamname"));
+			clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.SelectTeam_text, Team,"Teamname"));
+			clickJS(TFSUIMap.Addmembers_btn);
+
+			if (teammember.contains("&")) {
+			String[] teammemberSplit = teammember.split("&");
+
+			//if more than 1 resource to be added
+			if(teammemberSplit.length>1)
+			{
+			for(int i = 0; i<teammemberSplit.length;i++)
+			{
+			teammember=teammemberSplit[i];
+			enterText(TFSUIMap.SearchUsers_txtbox1, teammember);
+			Thread.sleep(3000);
+			sendEntr();
+			}
+			}
+			}
+			else {
+			enterText(TFSUIMap.SearchUsers_txtbox1, teammember);
+			Thread.sleep(3000);
+			sendEntr();
+			}
+			Thread.sleep(4000);
+			clickJS(TFSUIMap.SaveUser_btn);
+			Thread.sleep(6000);
+			//if save btn is not clicked, reclick it
+			if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TFSUIMap.Member_txt,teammember,"ResourceName")))
+			System.out.println("Resource added sucessfully");
+			else
+			Assert.fail("Resource Not Added Or Added Resource is missing");
+
+
+
+			waitPageToLoad();
+			waitPageToLoad();
+			driver().get(Property.getProperty("TFS_URL")+"/"+Baseclass.getInstance().TFSProject);
+
+
+
+
+			} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("Issue Creating Team in Tool");
+			Assert.fail("Issue Creating Team in Tool");
+			}
+			}
 
 		public static void updateEntity(String fieldtoupdate, String workitem) {
 			try{
@@ -1780,9 +1787,13 @@ import utilities.general.Property;
 					enterText(TFSUIMap.Description_txt,"updated descrption");
 					break;
 			}
-			ExpWaitForCondition(TFSUIMap.save_btn);
-			clickJS(TFSUIMap.saveandclose_button);
-			Thread.sleep(5000);
+			if(CheckIfElementExists(TFSUIMap.save_btn)) {
+				clickJS(TFSUIMap.save_btn);
+				Thread.sleep(5000);
+				}else if(CheckIfElementExists(TFSUIMap.saveAndClose_btn)){
+				clickJS(TFSUIMap.saveandclose_button);
+				Thread.sleep(5000);
+				}
 			}
 			catch(Exception e)
 			{

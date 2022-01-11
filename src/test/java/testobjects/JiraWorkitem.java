@@ -1604,37 +1604,47 @@ public static void SelectProjectInCreateWorkitemScreen() {
 
 public static void UpdateWorkitemForTeamArchitecture(String workItem, String functionality) {
 
-try    {
-	
-	//open workitem for team arch
-    WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workItem);
-    String urltonavigate="";
-           urltonavigate = Property.getProperty("JiraURL").split("secure")[0]+"browse";
-       
-           String WorkItemExternalId = API.getWorkItemExternalIDForGivenFunctionality(workItem, "Jira", functionality);
-   
-           goURL(urltonavigate+"/"+WorkItemExternalId);
-   
-   Thread.sleep(5000);
 
-   clickJS(JiraUIMap.edit_btn);
-   Thread.sleep(5000);
-   
-   clickJS(JiraUIMap.Owner_txtbox);
-   clear(JiraUIMap.Owner_txtbox);
-   enterText(JiraUIMap.Owner_txtbox,wi.Assignee);
-    Thread.sleep(1000);
-    sendEntr();
-    clickJS(JiraUIMap.update_btn);
-    waitPageToLoad();
-    logger.info("workitem updation done for "+workItem+" in Jira");
-    
+
+try {
+
+//open workitem for team arch
+		WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workItem);
+		String urltonavigate="";
+		urltonavigate = Property.getProperty("JiraURL").split("secure")[0]+"browse";
+		
+		String WorkItemExternalId = API.getWorkItemExternalIDForGivenFunctionality(workItem, "Jira", functionality);
+		
+		goURL(urltonavigate+"/"+WorkItemExternalId);
+		
+		Thread.sleep(5000);
+		
+		
+		
+		clickJS(JiraUIMap.edit_btn);
+		ExpWaitForCondition(JiraUIMap.EditIssue_txt);
+		doubleClick(JiraUIMap.Assigne_txtbox);
+		Thread.sleep(6000);
+		sendBackSpace();
+		enterText(JiraUIMap.Assigne_txtbox,wi.Assignee);
+		Thread.sleep(3000);
+		sendEntr();
+		
+		
+		
+		Thread.sleep(3000);
+		clickJS(JiraUIMap.UpdateInJira_btn);
+		waitPageToLoad();
+		ExpWaitForCondition(JiraUIMap.UpdateSuccess_msg);
+		logger.info("workitem updation done for "+workItem+" in Jira");
+
 }
-   catch(Exception e)
-   {
-       e.printStackTrace();
-       logger.info("issue updating "+workItem+" in Jira");
-   }
+catch(Exception e)
+{
+e.printStackTrace();
+logger.info("issue updating "+workItem+" in Jira");
+Assert.fail("issue updating "+workItem+" in Jira");
+}
 }
 
 public static void CreateWorkitemForSpecificFunctionality(String workitem, String functionality) {
@@ -1772,161 +1782,161 @@ public static void EnterworkitemDetailsForSpecificFunctionality(String workitem,
 	
 }
 
-		public static void Createtestcycle(String workitem) {
-		    try {
-		     if (CheckIfElementExists(JiraUIMap.More_link)) {
-		            ExpWaitForCondition(JiraUIMap.More_link);
-		            clickJS(JiraUIMap. More_link);
-		            ExpWaitForCondition(JiraUIMap.Test_link);                
-		            clickJS(JiraUIMap.Test_link);                
-		            
-		        }    
-		     else if(CheckIfElementExists(JiraUIMap.Test_link)) {
-		            ExpWaitForCondition(JiraUIMap.Test_link);
-		            clickJS(JiraUIMap.Test_link);
-		        }
-		     ExpWaitForCondition(JiraUIMap.Plan_testcycle_link);
-		        clickJS(JiraUIMap.Plan_testcycle_link);
-		        waitPageToLoad();
-		        ExpWaitForCondition(JiraUIMap.Search_release_txtbox);
-		        enterText(JiraUIMap.Search_release_txtbox,"ReleaseAutomation_Donot_Edit");
-		        ExpWaitForCondition(JiraUIMap.Option_icon);
-		        if(CheckIfElementExists(JiraUIMap.Option_icon)){            
-		            clickJS(JiraUIMap.Option_icon);
-		        }
-		        else {
-		            System.out.println("Release is not present");
-		        }
-		            
-		        
-		        ExpWaitForCondition(JiraUIMap.CreateCycle_icon);
-		        clickJS(JiraUIMap.CreateCycle_icon);
-		        ExpWaitForCondition(JiraUIMap.Cyclename_txtbox);
-		        
-		        Baseclass.getInstance().cyclename = "cyclename_" + RandomNumberGenerator();
-		        System.out.println(Baseclass.getInstance().cyclename);            
-		        enterText(JiraUIMap.Cyclename_txtbox,Baseclass.getInstance().cyclename);
-		        Thread.sleep(5000);
-		        clickJS(JiraUIMap.CycleSave_btn);
-		        
-		         if(isVisible(prepareWebElementWithDynamicXpath(JiraUIMap.cyclename_text,Baseclass.getInstance().cyclename,"cyclename")))
-		         { 
-		            
-		             clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.cyclename_text,Baseclass.getInstance().cyclename,"cyclename"));
-		             ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		                clickJS(JiraUIMap.Expand_icon);
-		                clickJS(prepareWebElementWithDynamicXpath(JiraUIMap.cyclename_text,Baseclass.getInstance().cyclename,"cyclename"));
-		
-		 
-		
-		         }
-		         
-		    
-		        clickJS(JiraUIMap.AddTests_txt);
-		        ExpWaitForCondition(JiraUIMap.Testname_txtbox);
-		        
-		        enterText(JiraUIMap.Testname_txtbox,Baseclass.getInstance().WorkItemExternalID_TestforTestExec);
-		        Thread.sleep(5000);
-		        sendEntr();
-		    
-		        clickJS(JiraUIMap.Add_btn);
-		        ExpWaitForCondition(JiraUIMap.Close_btn);
-		        clickJS(JiraUIMap.Close_btn);
-		        clickJS(JiraUIMap.SelectAll_btn);
-		        clickJS(JiraUIMap.Dropdown_img);
-		        Thread.sleep(2000);
-		        if(CheckIfElementExists(JiraUIMap.Pass_option)) {
-		            clickJS(JiraUIMap.Pass_option);
-		        
-		        }
-		        else {
-		            clickJS(JiraUIMap.Dropdown_img);
-		            ExpWaitForCondition(JiraUIMap.Pass_option);
-		            clickJS(JiraUIMap.Pass_option);
-		        }
+public static void Createtestcycle(String workitem) {
+try {
+//Either More or test link is present while logging in
 
-		        
-		        String urltogetADOPTestResult = driver().getCurrentUrl();
-		        String testid = urltogetADOPTestResult.split("executionId=")[1];
-//		        String project=Property.getProperty("JiraProject");
-//		        String testexecutionid=project+"-"+testid;
-//		        System.out.println(testexecutionid);
-		        
-		        String runid=Baseclass.getInstance().WorkItemExternalID_TestforTestExec;
-		        Baseclass.getInstance().WorkItemExternalId_TestExecution=testid+"_"+runid;
-		        System.out.println(Baseclass.getInstance().WorkItemExternalId_TestExecution);
-		        logger.info("test result created for ADOP");
-		}
-		
-		 
-		
-		catch (Exception e) {
-		    e.printStackTrace();    
-		    logger.info("Issue creating result for the given tool");
-		    Assert.fail("Issue creating result for the given tool");
-		}
+//If More Link Present
+if (CheckIfElementExists(JiraUIMap.More_link)) {
+ExpWaitForCondition(JiraUIMap.More_link);
+clickJS(JiraUIMap. More_link);
+ExpWaitForCondition(JiraUIMap.Test_link);
+clickJS(JiraUIMap.Test_link);
+
+}
+//If Test Link Present
+else if(CheckIfElementExists(JiraUIMap.Test_link)) {
+ExpWaitForCondition(JiraUIMap.Test_link);
+clickJS(JiraUIMap.Test_link);
+}
+
+ExpWaitForCondition(JiraUIMap.Plan_testcycle_link);
+clickJS(JiraUIMap.Plan_testcycle_link);
+waitPageToLoad();
+Thread.sleep(3000);
+ExpWaitForCondition(JiraUIMap.Search_release_txtbox);
+
+//Creation Of Cycle Or TestExecution
+clickJS(JiraUIMap.CreateCycle_Newbtn);
+ExpWaitForCondition(JiraUIMap.createNewCycle_txt);
+selectByPartOfVisibleText(JiraUIMap.Version_selecttxtbox,"ReleaseAutomation_Donot_Edit");
+String TestExecutionName="TestExecution_AutomationData_"+RandomNumberGenerator();
+enterText(JiraUIMap.CycleOrExecutionName_textbox,TestExecutionName);
+Thread.sleep(3000);
+clickJS(JiraUIMap.CycleSave_btn);
+Thread.sleep(2000);
+
+//Open Workitem and add testcycle
+OpenWorkitem("Test");
+waitPageToLoad();
+clickJS(JiraUIMap.Clickhere_link);
+ExpWaitForCondition(JiraUIMap.Executetest_text);
+clickJS(JiraUIMap.AddtoExisting_radiobtn);
+selectByPartOfVisibleText(JiraUIMap.Versionintest_txtbox, "ReleaseAutomation_Donot_Edit");
+Thread.sleep(2000);
+selectByPartOfVisibleText(JiraUIMap.selectcyclename_textbox, TestExecutionName);
+Thread.sleep(2000);
+clickJS(JiraUIMap.Execute_button);
+waitPageToLoad();
+
+//Executing Test
+ExpWaitForElementToDisappear(JiraUIMap.PageLoadIndicator);
+ExpWaitForCondition(JiraUIMap.ExecutionStatus_Text);
+clickJS(JiraUIMap.Execution_dropdown);
+ExpWaitForCondition(JiraUIMap.Pass_txt);
+clickJS(JiraUIMap.Pass_txt);
+ExpWaitForCondition(JiraUIMap.Success_text);
+
+
+
+//Getting url for execution Id
+String Url = driver().getCurrentUrl();
+String ExecutionId = Url.split("enav/#/")[1];
+
+//Update Execution Id
+String TestId=Baseclass.getInstance().WorkItemExternalID_TestforTestExec;
+Baseclass.getInstance().WorkItemExternalId_TestExecution=ExecutionId+"_"+TestId;
+System.out.println(Baseclass.getInstance().WorkItemExternalId_TestExecution);
+logger.info("Test Result created for ADOP");
+}
+
+
+
+catch (Exception e) {
+e.printStackTrace();
+logger.info("Issue creating result for the given tool");
+Assert.fail("Issue creating result for the given tool");
+}
 }
 		
-		public static void Addresources(String resources, String team, String toolname, String functionality) {
-		    ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		    String teamname = API.getWorkItemExternalIDForGivenFunctionality(team, "Jira", functionality);
-		    System.out.println(teamname);
-		    clear(MyWizardUIMap.Search_txtbox);
-		    enterText(MyWizardUIMap.Search_txtbox, teamname);
+public static void Addresources(String resources, String team, String toolname, String functionality) {
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		String teamname = API.getWorkItemExternalIDForGivenFunctionality(team, "Jira", functionality);
+		System.out.println(teamname);
+		clear(MyWizardUIMap.Search_txtbox);
+		enterText(MyWizardUIMap.Search_txtbox, teamname);
 
-		     try{
-		        ExpWaitForCondition(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
-		        doubleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
-		        ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		        //if more than 1 resource
-		        if (resources.contains("&")) {
-		            String[] resourcesSplit = resources.split("&");
-		           
-		            //if more than 1 resource to be added
-		            if(resourcesSplit.length>1)
-		            {
-		                for(int i = 0; i<=resourcesSplit.length-1;i++)
-		                {
-		                    resources=resourcesSplit[i];
-		                    if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"))){
-		                        singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
-		                        
-		                        EnterTextUsingJS(TeamConfigUIMap.resourceSearch_txtBox,resources);
-		                        singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
-		                        singleClick(TeamConfigUIMap.addResource_button);
-		                        Thread.sleep(2000);
-		                        clear(TeamConfigUIMap.resourceSearch_txtBox);
-		                        
-		                                               
-		                }                   
-		            }
-		            }
-		        }
-		        //if only 1 resource is there to be added
-		            else {
-		        if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"))){
-		            singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
-		            singleClick(TeamConfigUIMap.addResource_button);
-		            Thread.sleep(2000);
-		        }
-		            }
-		        
-		                    click(TeamConfigUIMap.save_button);
-		                    ExpWaitForCondition(TeamConfigUIMap.saveSuccessful_staticTxt);
-		                    System.out.println("Team edit successful");
-		                    logger.info("added resource to a team");
-		    
-
-		 
-
-		    }
-		    
-		    catch(Exception e) {
-		        e.printStackTrace();
-		        logger.info("issue Adding resources to Team");
-		        Assert.fail("issue Adding resources to Team");
-		    }
+		try{
+		ExpWaitForCondition(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+		doubleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.Teamname_statictxt, teamname, "teamname"));
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		//if more than 1 resource
+		if (resources.contains("&")) {
+		String[] resourcesSplit = resources.split("&");
+		System.out.println(resourcesSplit.length);
+		
+		//if more than 1 resource to be added
+		if(resourcesSplit.length>1)
+		{
+		for(int i = 0; i<resourcesSplit.length;i++)
+		{
+		resources=resourcesSplit[i];
+		if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"))){
+		singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
+		
+		EnterTextUsingJS(TeamConfigUIMap.resourceSearch_txtBox,resources);
+		singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
+		singleClick(TeamConfigUIMap.addResource_button);
+		Thread.sleep(2000);
+		clear(TeamConfigUIMap.resourceSearch_txtBox);
+		
+		
 		}
+		else {
+		Assert.fail("Issue In Finding Mentioned Resources in List");
+		}
+		}
+		}
+		}
+		//if only 1 resource is there to be added
+		else{
+		Thread.sleep(4000);
+		if(CheckIfElementExists(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"))){
+		singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
+		EnterTextUsingJS(TeamConfigUIMap.resourceSearch_txtBox,resources);
+		
+		singleClick(prepareWebElementWithDynamicXpath(TeamConfigUIMap.AssociatedResourceList_statictxt, resources, "resourceID"));
+		singleClick(TeamConfigUIMap.addResource_button);
+		Thread.sleep(2000);
+		}
+		else {
+		Assert.fail("Issue In Finding Mentioned Resources in List");
+		}
+		}
+
+	click(TeamConfigUIMap.save_button);
+	ExpWaitForCondition(TeamConfigUIMap.saveSuccessful_staticTxt);
+	System.out.println("Team edit successful");
+	logger.info("added resource to a team");
+
+
+
+
+
+}
+
+catch(Exception e) {
+e.printStackTrace();
+logger.info("issue Adding resources to Team");
+Assert.fail("issue Adding resources to Team");
+}
+}
+
+
+
+
+
+}
 
 
 

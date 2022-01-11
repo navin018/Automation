@@ -68,6 +68,9 @@ public class CommonSteps {
 		if(toolname.trim().equalsIgnoreCase("MSPS")){
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"MSPS.properties"),new File(propsPath+"project.properties"));
 		}
+		if(toolname.trim().equalsIgnoreCase("AIDT")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"AIDT.properties"),new File(propsPath+"project.properties"));
+		}
 		  
 	}
 	
