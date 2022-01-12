@@ -160,6 +160,14 @@ Baseclass(){
 	public String cyclename;
 	public String WorkItemExternalID_TestforTestExec;
 	
+	//AIDT
+	public String AIDT_ReleaseName;
+	public String AIDT_ReleaseStartDate;
+	public String AIDT_ReleaseEndDate;
+	public String AIDT_SprintName;
+	public String AIDT_SprintStartDate;
+	public String AIDT_SprintEndDate;
+	
 	public boolean isSecurityTestsResults() {
 		return SecurityTestsResults;
 	}

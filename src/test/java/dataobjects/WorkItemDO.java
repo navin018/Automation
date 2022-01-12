@@ -79,6 +79,27 @@ public class WorkItemDO {
 	public String Release;
 	public String Sprint;
 	
+	//AIDT
+	public String DeliverableType;
+	public String Contractual ;
+	public String BaselineStart;
+	public String BaselineDraftClose;
+	public String BaselineReviewClose;
+	public String BaselineClose;
+	public String Owner;
+	public String Escalate;
+	public String Classification;
+	public String Baseline;
+	public String DecisionType;
+	public String DecisionCategory;
+	public String RetroStep;
+	public String TestType;
+	public String StageFound;
+	public String ActionCategory;
+	public String IssueCategory;
+	public String RiskCategory;
+	public String BaselineMitigationPlanClose;
+	
 	public String getBusinessValue() {
 		return BusinessValue;
 	}

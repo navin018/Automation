@@ -45,7 +45,9 @@ public static By Description_txtBox=By.xpath("//div[@id='description-wiki-edit']
 public static By Description_iFrame=By.xpath("//div[@id='description-wiki-edit']//following::iframe[1]");
 //
 public static By de = By.xpath("//*[@id='mce_0_ifr']");
-public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1] | //label[contains(text(),'Epic Name')]//following::input[1]");
+//public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1] | //label[contains(text(),'Epic Name')]//following::input[1]");
+public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1]");
+public static By CloudJiraEpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name')]//following::input[1]");
 public static By Create_btn=By.xpath("//input[@type='submit' and @value='Create']");
 public static By CreateSubTask_btn=By.xpath("//span[text()='Create sub-task']");
 public static By firstElementInSearchBox_staticTxt = By.xpath("//span[@class='quick-search-item-title'][@xpath='1']");

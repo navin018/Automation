@@ -189,5 +189,27 @@ public static By TeamArea_label1=By.xpath("//div[@class='tree-picker-container w
 public static By saveandclose_button = By.xpath("//span[text()='Save & Close']");
 public static String Member_txt="//span[text()='{ResourceName}'][@class='text-ellipsis']";
 
-
+//AIDT
+public static By DecisionType_drpdwn=By.xpath("//input[@aria-label='Decision Type']");
+public static By ActionCategory_drpdwn=By.xpath("//input[@aria-label='Action Category']");
+public static By Owner_drpdwn=By.xpath("//label[text()='Owner']//following::span[text()='Unassigned']");
+public static By RetroStep_txtbox=By.xpath("//div[@aria-label='Repro Steps']");
+public static By TestType_drpdwn=By.xpath("//input[@aria-label='Test Type']");
+public static By Deliverabletype_drpdwn=By.xpath("//input[@aria-label='Deliverable Type']");
+public static By Baseline_Startdate=By.xpath("//label[text()='Baseline Start']//following::div[@aria-label='Expand calendar'][1]");
+public static By IssueCategory_drpdwm=By.xpath("//input[@aria-label='Issue Category']");
+public static By Impact_drpdwn=By.xpath("//input[@aria-label='Impact']");
+public static By Escalate_drpdwn=By.xpath("//input[@aria-label='Escalate']");
+public static By Contractual_drpdwm=By.xpath("//input[@aria-label='Contractual']");
+public static By BaselineClose_drpdwn=By.xpath("//label[text()='Baseline Close']//following::input[1]");
+public static By BaselineReviewClose_drpdwn=By.xpath("//label[text()='Baseline Review Close']//following::input[1]");
+public static By BaselineDraftClose=By.xpath("//label[text()='Baseline Draft Close']//following::input[1]");
+public static By BaselineStart_drpdwn=By.xpath("//label[text()='Baseline Start']//following::input[1]");
+public static By Iframe=By.xpath("//label[text()='Stage Found']//following::iframe[1]");
+public static By Owner_txtbox=By.xpath("//label[text()='Owner']//following::input[1]");
+public static By RiskCategory_drpdwn=By.xpath("//input[@aria-label='Risk Category']");
+public static By Probability_drpdwn=By.xpath("//input[@aria-label='Probability_ACN']");
+public static By StageFound_drpdwn=By.xpath("//label[text()='Stage Found']//following::div[@class='control-extension-content'][1]");
+public static By BaselineMitigationPlanClose_drpdwn=By.xpath("//label[text()='Baseline Mitigation Plan Close']//following::input[1]");
+public static By AIDT_Projectname=By.xpath("//h1[text()='AIDT_ADO-DevART']");
 }

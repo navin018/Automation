@@ -182,7 +182,14 @@ public class CommonSteps {
 				CommonAcrossApps.LoginToRally();
 				
 			}
+			case "AIDT":
+			case "aidt":
+			{
+			CommonAcrossApps.LoginToAIDT();
+
+			}
 			break;
+		
 			
 		
 			default:

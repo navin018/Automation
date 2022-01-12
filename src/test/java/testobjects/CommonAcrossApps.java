@@ -1259,4 +1259,38 @@ public static void LoginToMyWizardWithSpecificUserName(String username) {
 
 
 		}
+public static void LoginToAIDT() {
+try{
+			driver().get(Property.getProperty("TFS_URL"));
+			String parent=driver().getWindowHandle();
+			driver().switchTo().window(parent);
+			if(CheckIfElementExists(MyWizardUIMap.UserAnotherAccount_link))
+			clickJS(MyWizardUIMap.UserAnotherAccount_link);
+			ExpWaitForCondition(TFSUIMap.signIn_txtbox);
+			enterText(TFSUIMap.signIn_txtbox,Property.getProperty("AIDTUsername"));
+			click(TFSUIMap.Next_btn);
+			waitPageToLoad();
+			ExpWaitForCondition(TFSUIMap.Pwd_txtbox);
+			enterText(TFSUIMap.Pwd_txtbox,Property.getProperty("AIDTPassword"));
+			// enterText(TFSUIMap.Pwd_txtbox,CommonFunctions.decrypt(Property.getProperty("AIDTPassword")));
+			click(TFSUIMap.signIn_btn);
+			ExpWaitForCondition(MyWizardUIMap.Yes_btn);
+			clickJS(MyWizardUIMap.Yes_btn);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			waitPageToLoad();
+			
+			
+			
+			ExpWaitForCondition(TFSUIMap.AIDT_Projectname);
+			System.out.println("login to AIDT successful");
+			
+			}
+			catch(Exception e)
+				{
+				grabScreenshotForExtentReport();
+				e.printStackTrace();
+				logger.info("Issue logging into AIDT");
+				Assert.fail("Issue logging into AIDT");
+				}
+	}
 }

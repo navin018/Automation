@@ -110,16 +110,23 @@ import java.util.Random;
 					break;
 				case "epic":
 				case "Epic":
-//					if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
-//					{
+					if(Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
+					{
+					Thread.sleep(5000);
+					singleClick(JiraUIMap.CloudJiraEpicName_txtBox);
+					enterTextUsingAction(JiraUIMap.CloudJiraEpicName_txtBox, wi.EpicName);
+					Thread.sleep(1000);
+
+					}
+					else {
 					Thread.sleep(5000);
 					if(!CheckIfElementExists(JiraUIMap.EpicName_txtBox)){
-						JiraWorkitem.SelectWorkItemtype("Epic_01");
-						Thread.sleep(5000);}
-					clickJS(JiraUIMap.EpicName_txtBox);
+					JiraWorkitem.SelectWorkItemtype("Epic_01");
+					Thread.sleep(5000);}
+					singleClick(JiraUIMap.EpicName_txtBox);
 					enterTextUsingAction(JiraUIMap.EpicName_txtBox, wi.EpicName);
 					Thread.sleep(1000);
-//					}
+					}
 					break;
 					
 				}
@@ -1939,5 +1946,3 @@ Assert.fail("issue Adding resources to Team");
 }
 
 
-
-	}

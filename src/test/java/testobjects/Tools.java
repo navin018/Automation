@@ -1658,7 +1658,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 								Assert.assertEquals(j.isEmpty(), true, workitem+"s.Associations section present."+ workitem +"is associated with release");
 								}
 						}
-					}
+					
 						else {
 							String jsonpathforName = "WorkItems.WorkItemAttributes.Name";
 							String jsonpathforValue = "WorkItems.WorkItemAttributes.Value";
@@ -1711,7 +1711,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 
 					}
 				 
-				 
+					} 
 				 if(functionality.equalsIgnoreCase("DFT"))
 				 {
 					 String correlationUID = response.jsonPath().get("WorkItems[0].WorkItemDeliveryConstructs[0].CorrelationUId");
