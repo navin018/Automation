@@ -145,52 +145,53 @@ public class CommonSteps {
 		try{
  		switch(AppName)
 		{
-			case "Jira":
-			case "ADT Jira":
-			case "ADOP Jira":
-			{
-				CommonAcrossApps.loginToJira();
-				
-			}
-			break;
-			case "Cloud Jira":
-			case "cloud jira":
-			{
-				CommonAcrossApps.loginToCloudJira();
-				
-			}
-			break;
-			case "MyWizard":
-			case "mywizard":
-			{
-				CommonAcrossApps.LoginToMyWizard();
-			}
-			break;
-			case "TFS Agile":
-			case "TFS Scrum":
-			case "TFS":
-			case "tfs":
-			{
-				CommonAcrossApps.LoginToTFS();
-				
-			}
-			break;
-			
-			case "Rally":
-			case "rally":
-			{
-				CommonAcrossApps.LoginToRally();
-				
-			}
-			case "AIDT":
-			case "aidt":
-			{
-			CommonAcrossApps.LoginToAIDT();
-
-			}
-			break;
+					case "Jira":
+					case "ADT Jira":
+					case "ADOP Jira":
+					{
+						CommonAcrossApps.loginToJira();
+						
+					}
+					break;
+					case "Cloud Jira":
+					case "cloud jira":
+					{
+						CommonAcrossApps.loginToCloudJira();
+						
+					}
+					break;
+					case "MyWizard":
+					case "mywizard":
+					{
+						CommonAcrossApps.LoginToMyWizard();
+					}
+					break;
+					case "TFS Agile":
+					case "TFS Scrum":
+					case "TFS":
+					case "tfs":
+					{
+						CommonAcrossApps.LoginToTFS();
+						
+					}
+					break;
+					
+					case "Rally":
+					case "rally":
+					{
+						CommonAcrossApps.LoginToRally();
+						
+					}
+					break;
+					
+					case "AIDT":
+					case "aidt":
+					{
+					CommonAcrossApps.LoginToAIDT();
 		
-			
+					}
+					break;
+		
 		
 			default:
 	        throw new IllegalArgumentException("Invalid Applicationname: " + AppName);	

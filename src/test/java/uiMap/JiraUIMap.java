@@ -212,8 +212,8 @@ public static By CloudJiraNextMonthIcon = By.xpath("//span[@aria-label='Next mon
 public static By CloudJiraSelectReleaseStartDate = By.xpath("//div[@role='row'][2]//button[@aria-selected='false'][2]");
 public static By CloudJiraGetReleaseStartDate = By.xpath("//div[@class=' css-56zytr-singleValue']");
 public static By CloudJiraSelectReleaseEndDate = By.xpath("//div[@role='row'][4]//button[@aria-selected='false'][5]");
-public static By CloudJiraGetReleaseEndDate = By.xpath("//div[@class=' css-56zytr-singleValue']");
-
+//public static By CloudJiraGetReleaseEndDate = By.xpath("//div[@class=' css-56zytr-singleValue']");
+public static By CloudJiraGetReleaseEndDate = By.xpath("//label[text()='Release date']/following::div[@class=' css-56zytr-singleValue']");
 
 public static By more_link = By.xpath("//span[text()='More']");
 public static By move_link = By.xpath("//span[text()='Move']");

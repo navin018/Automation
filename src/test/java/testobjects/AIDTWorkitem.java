@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import org.json.simple.JSONObject;
@@ -100,6 +101,14 @@ import utilities.general.Property;
 					logger.info("page not loading for workitem "+workitem);
 				}
 				waitPageToLoad();
+				
+				//stage found
+				if(!wi.StageFound.equalsIgnoreCase("NA")) 
+				{
+					
+					switchFrame(TFSUIMap.StageFound_drpdwn);
+					
+
 				
 				// Risk Category
 				if(!wi.RiskCategory.equalsIgnoreCase("NA")) 
@@ -269,7 +278,7 @@ import utilities.general.Property;
 				waitPageToLoad();
 				Thread.sleep(5000);
 				
-				
+				}
 			}
 			catch(Exception e)
 			{

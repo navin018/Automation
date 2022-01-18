@@ -1232,8 +1232,9 @@ public static void CreateReleaseForCloudJira(String ReleaseOrSprint) {
 				waitPageToLoad();
 				Baseclass.getInstance().Jira_ReleaseName =newReleasewithAppendedNumb;
 				Baseclass.getInstance().Jira_ReleaseStartDate= sdf2.format(sdf.parse(releasestartdate));
+				System.out.println(Baseclass.getInstance().Jira_ReleaseStartDate);
 				Baseclass.getInstance().Jira_ReleaseEndDate = sdf2.format(sdf.parse(releaseenddate));
-				
+				System.out.println(Baseclass.getInstance().Jira_ReleaseEndDate);
 			}
 			else if(ReleaseOrSprint.contains("Sprint"))
 			{
