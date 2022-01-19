@@ -280,6 +280,9 @@ public class CommonFunctions {
 			else if(toolname.contains("TFS") || toolname.contains("Tfs")){
 				writeIterationExternalIDs_Details = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "IterationExternalIDs.json" ;
 			}
+			else if(toolname.contains("AIDT")){
+				writeIterationExternalIDs_Details = testDataPath + "AIDT" + File.separator + "JSON" +  File.separator + "IterationExternalIDs.json" ;
+			}
 		
 			FileReader reader = new FileReader(writeIterationExternalIDs_Details);
 	        JSONParser jsonParser = new JSONParser();

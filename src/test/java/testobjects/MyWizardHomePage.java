@@ -228,6 +228,7 @@ try{
 			}
 			
 			waitPageToLoad();
+			if(isVisible(MyWizardUIMap.apply_btn))
 			click(MyWizardUIMap.apply_btn);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			}

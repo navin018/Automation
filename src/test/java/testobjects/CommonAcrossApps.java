@@ -528,6 +528,66 @@ try{
 					Assert.fail("could not write workitem IDs for "+appname );
 					}
 					}
+			
+		
+			// AIDT-ADO
+			if(appname.equalsIgnoreCase("AIDT") || appname.contains("AIDT"))
+			{
+			try{
+			String WorkItemEx_FileLoc = System.getProperty("user.dir")
+			+ File.separator + "src" + File.separator + "test" + File.separator
+			+ "resources" + File.separator + "testdata" + File.separator + "AIDT" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs.json";
+			String WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
+			+ File.separator + "src" + File.separator + "test" + File.separator
+			+ "resources" + File.separator + "testdata" + File.separator + "AIDT" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
+			JSONObject jsonObject = new JSONObject();
+			JSONObject jsonObject_releaseandsprintdetails = new JSONObject(); jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);
+			jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);
+			jsonObject.put("WorkItemExternalId_Issue", Baseclass.getInstance().WorkItemExternalId_Issue);
+			jsonObject.put("WorkItemExternalId_Impediment", Baseclass.getInstance().WorkItemExternalId_Impediment);
+			jsonObject.put("WorkItemExternalId_Feature", Baseclass.getInstance().WorkItemExternalId_Feature);
+			jsonObject.put("WorkItemExternalId_Epic",Baseclass.getInstance().WorkItemExternalId_Epic);
+			jsonObject.put("WorkItemExternalId_Story",Baseclass.getInstance().WorkItemExternalId_Story);
+			jsonObject.put("WorkItemExternalId_Bug", Baseclass.getInstance().WorkItemExternalId_Bug);
+			jsonObject.put("WorkItemExternalId_Action", Baseclass.getInstance().WorkItemExternalId_Action);
+			jsonObject.put("WorkItemExternalId_Decision",Baseclass.getInstance().WorkItemExternalId_Decision);
+			jsonObject.put("WorkItemExternalId_Risk", Baseclass.getInstance().WorkItemExternalId_Risk);
+			jsonObject.put("WorkItemExternalId_Deliverable", Baseclass.getInstance().WorkItemExternalId_Deliverable);
+			jsonObject.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().AIDT_ReleaseName);
+			jsonObject.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().AIDT_ReleaseStartDate);
+			jsonObject.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().AIDT_ReleaseEndDate);
+			jsonObject.put("WorkItemExternalId_SprintName",Baseclass.getInstance().AIDT_SprintName);
+			jsonObject.put("WorkItemExternalId_SprintStartDate",Baseclass.getInstance().AIDT_SprintStartDate);
+			jsonObject.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().AIDT_SprintEndDate);
+			jsonObject.put("Team_Name",Baseclass.getInstance().teamName);
+			jsonObject.put("WorkItemExternalId_TeamUId",Baseclass.getInstance().TeamUId);
+			FileWriter file = new FileWriter(WorkItemEx_FileLoc);
+			file.write(jsonObject.toJSONString());
+			file.close();
+			if(!(Baseclass.getInstance().AIDT_ReleaseName==null || (Baseclass.getInstance().AIDT_SprintName==null))){
+			jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().AIDT_ReleaseName);
+			jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseStartDate",Baseclass.getInstance().AIDT_ReleaseStartDate);
+			jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseEndDate",Baseclass.getInstance().AIDT_ReleaseEndDate);
+			jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintName",Baseclass.getInstance().AIDT_SprintName);
+			jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintStartDate",Baseclass.getInstance().AIDT_SprintStartDate);
+			jsonObject_releaseandsprintdetails.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().AIDT_SprintEndDate);
+
+	
+
+			FileWriter file1 = new FileWriter(WorkItemEx_FileLoc_ReleaseSprint);
+			file1.write(jsonObject_releaseandsprintdetails.toJSONString());
+			file1.flush();
+			file1.close();
+			}
+			}
+
+			catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("could not write workitem IDs for "+appname );
+			}
+			}
+	
+
 
 	}
 

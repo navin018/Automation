@@ -211,6 +211,10 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 		{
 			testDataPath_WorkItemExternalIDs = testDataPath + "MSPS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 		}
+		else if(toolname.equalsIgnoreCase("AIDT"))
+		{
+			testDataPath_WorkItemExternalIDs = testDataPath + "AIDT" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+		}
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
 		JSONObject jsonObject = (JSONObject) obj;
@@ -547,6 +551,9 @@ public static HashMap<String, String> getReleaseAndSprintDetails(String toolname
 		else if(toolname.contains("TFS") || toolname.contains("Tfs")){
 			testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json" ;
 		}
+		else if(toolname.contains("AIDT") || toolname.contains("Aidt")){
+			testDataPath_WorkItemExternalIDs = testDataPath + "AIDT" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json" ;
+		}
 		else if(toolname.equalsIgnoreCase("MSPS"))
 			testDataPath_WorkItemExternalIDs = testDataPath + "MSPS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 		JSONParser parser = new JSONParser();
@@ -809,6 +816,11 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 	 {
 		 requestParams.put("ClientUId", Property.getProperty("NoToolInstance_ClientUId"));  
 		 requestParams.put("DeliveryConstructUId", Property.getProperty("NoToolInstance_DeliveryConstructUId_L2"));  
+		 if(WorkItemExternalId.contains("Release"))
+			 requestParams.put("IterationExternalID", Baseclass.getInstance().release_IterationExternalID);
+		 if(WorkItemExternalId.contains("Sprint"))
+			 requestParams.put("IterationExternalID", Baseclass.getInstance().sprint_IterationExternalID);
+		 System.out.println("test");
 	 }
 	 
 	 
@@ -1005,6 +1017,10 @@ public static String getTitle(String toolname,String workitem){
 			if(toolname.equalsIgnoreCase("TFS Agile") || toolname.equalsIgnoreCase("TFS Scrum"))
 			{
 				testDataPath_WorkItem = testDataPath + "TFS" + File.separator + "JSON" +  File.separator  ;
+			}
+			if(toolname.equalsIgnoreCase("AIDT"))
+			{
+				testDataPath_WorkItem = testDataPath + "AIDT" + File.separator + "JSON" +  File.separator  ;
 			}
 			if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("WorkRequest")))
 			{
@@ -1495,15 +1511,34 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 				 }
 				 if((workitem.contains("Release") || workitem.contains("Sprint")) && !functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance"))
 				 {	 
-						 HashMap<String,String>ReleaseAndSprintDetails= getReleaseAndSprintDetails(toolname);
-						 String ReleaseName = ReleaseAndSprintDetails.get("ReleaseName");
-						 String ReleaseStartDate = ReleaseAndSprintDetails.get("ReleaseStartDate");
-						 String ReleaseEndDate = ReleaseAndSprintDetails.get("ReleaseEndDate");
-						 String SprintName = ReleaseAndSprintDetails.get("SprintName");
-						 String SprintStartDate = ReleaseAndSprintDetails.get("SprintStartDate");
-						 String SprintEndDate = ReleaseAndSprintDetails.get("SprintEndDate");
-						 String ReleaseNameFromRMP = ReleaseAndSprintDetails.get("ReleaseNameFromRMP");
-						 String SprintNameFromRMP = ReleaseAndSprintDetails.get("SprintNameFromRMP");
+					 
+					 String ReleaseName=null;
+					 String SprintName=null;
+					 String ReleaseStartDate=null;
+					 String SprintStartDate=null;
+					 String SprintEndDate=null;
+					 String ReleaseEndDate=null;
+					 String ReleaseNameFromRMP=null;
+					 String SprintNameFromRMP=null;
+					 HashMap<String,String>ReleaseAndSprintDetails=null;
+					 	if(!functionality.equalsIgnoreCase("GenericUploader_NoTool")){
+					 	ReleaseAndSprintDetails= getReleaseAndSprintDetails(toolname);
+					 	 ReleaseName = ReleaseAndSprintDetails.get("ReleaseName");
+						 ReleaseStartDate = ReleaseAndSprintDetails.get("ReleaseStartDate");
+						 ReleaseEndDate = ReleaseAndSprintDetails.get("ReleaseEndDate");
+						 SprintName = ReleaseAndSprintDetails.get("SprintName");
+						 SprintStartDate = ReleaseAndSprintDetails.get("SprintStartDate");
+						 SprintEndDate = ReleaseAndSprintDetails.get("SprintEndDate");
+						 ReleaseNameFromRMP = ReleaseAndSprintDetails.get("ReleaseNameFromRMP");
+						 SprintNameFromRMP = ReleaseAndSprintDetails.get("SprintNameFromRMP");
+					 	}
+					 	else if(functionality.equalsIgnoreCase("GenericUploader_NoTool"))
+					 	{
+					 		ReleaseName="Release_AutomationData_GenericUploader";
+					 		SprintName= "Sprint_AutomationData_GenericUploader";
+					 	}
+					 		
+						
 					 
 					 int size = response.jsonPath().getInt("Iterations.size()");
 //					 System.out.println(size);
@@ -1524,8 +1559,12 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 									 releasefound=true;
 									 String ReleaseStartDateFromAPI = response.jsonPath().getString("Iterations[" + p + "].StartOn");
 									 String ReleaseEndDateFromAPI = response.jsonPath().getString("Iterations[" + p + "].EndOn");
+									 
+									 // not checking dates for generic uploader no tool instance
+									 if(!functionality.equalsIgnoreCase("GenericUploader_NoTool")){
 									 CompareReleaseSprintDate(ReleaseStartDateFromAPI,ReleaseStartDate,toolname);
 									 CompareReleaseSprintDate(ReleaseEndDateFromAPI,ReleaseEndDate,toolname);
+									 }
 									 if(workitem.contains("ReleaseFromTool"))
 									 {
 //										 captureIterationExternalID_ReleaseAndSprint("Release", response.jsonPath(), p, toolname);
@@ -1568,8 +1607,12 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 									 if(!toolname.equalsIgnoreCase("ADOP Jira")){
 									 String SprintStartDateFromAPI = response.jsonPath().getString("Iterations[" + p + "].StartOn");
 									 String SprintEndDateFromAPI = response.jsonPath().getString("Iterations[" + p + "].EndOn");
+									 
+									 // not checking dates for generic uploader no tool instance
+									 if(!functionality.equalsIgnoreCase("GenericUploader_NoTool")){
 									 CompareReleaseSprintDate(SprintStartDateFromAPI,SprintStartDate,toolname);
 									 CompareReleaseSprintDate(SprintEndDateFromAPI,SprintEndDate,toolname);
+									 }
 									 }
 									 if(workitem.contains("SprintFromTool"))
 									 {
