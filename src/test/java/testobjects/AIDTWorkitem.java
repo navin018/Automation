@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 import org.json.simple.JSONObject;
@@ -102,14 +101,6 @@ import utilities.general.Property;
 				}
 				waitPageToLoad();
 				
-				//stage found
-				if(!wi.StageFound.equalsIgnoreCase("NA")) 
-				{
-					
-					switchFrame(TFSUIMap.StageFound_drpdwn);
-					
-
-				
 				// Risk Category
 				if(!wi.RiskCategory.equalsIgnoreCase("NA")) 
 				{
@@ -168,6 +159,7 @@ import utilities.general.Property;
 				{
 					EnterDataInTheField(wi.TestType,TFSUIMap.TestType_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				// DeliverableType
 				if(!wi.DeliverableType.equalsIgnoreCase("NA")) 
@@ -234,11 +226,14 @@ import utilities.general.Property;
 				// Stage Found
 				if(!wi.StageFound.equalsIgnoreCase("NA")) 
 				{
+					
 					switchFrame(TFSUIMap.Iframe);
 					Thread.sleep(4000);
 					singleClick(TFSUIMap.StageFound_drpdwn);
-					EnterDataInTheField(wi.StageFound,TFSUIMap.Iframe);
+					sendPageDownKey();
 					switchDefault();
+					
+					
 				}
 				
 				// Release and Sprint
@@ -256,7 +251,7 @@ import utilities.general.Property;
 					case("PickFromBaseclass"):
 						clickJS(TFSUIMap.Iteration_label);
 						Thread.sleep(2000);
-						String ReleasePlusSprintName = Property.getProperty("TFSProject")+"\\"+Baseclass.getInstance().TFS_ReleaseName+"\\"+Baseclass.getInstance().TFS_SprintName;
+						String ReleasePlusSprintName = Property.getProperty("TFSProject")+"\\"+Baseclass.getInstance().AIDT_ReleaseName+"\\"+Baseclass.getInstance().AIDT_SprintName;
 						enterText(TFSUIMap.IterationName1_txtbox,ReleasePlusSprintName);
 						sendEntr();
 						break;
@@ -278,7 +273,7 @@ import utilities.general.Property;
 				waitPageToLoad();
 				Thread.sleep(5000);
 				
-				}
+				
 			}
 			catch(Exception e)
 			{

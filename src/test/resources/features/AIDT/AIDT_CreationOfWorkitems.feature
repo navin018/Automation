@@ -5,6 +5,7 @@ Feature: PhoenixUI_AIDTUI
 Scenario Outline: ADIT_WorkitemCreation 
 	Given i load the project properties file
 	Given i login to application "<applicationname>"
+	 And i create "<Release>" and "<Sprint>" in "AIDT"
     And i create a "<bug>" in "AIDT"
     And i create a "<Epic>" in "AIDT"
     And i create a "<Feature>" in "AIDT"
@@ -17,7 +18,7 @@ Scenario Outline: ADIT_WorkitemCreation
     And i create a "<Story>" in "AIDT"
     And i create a "<Impediment>" in "AIDT"
      And i create "<Release>" and "<Sprint>" in "AIDT"
-    And i create a "Team" in "AIDT"
+#    And i create a "Team" in "AIDT"
 # 	
     And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
 #	And i put a explicit wait of "900000" 

@@ -209,7 +209,8 @@ public static By Iframe=By.xpath("//label[text()='Stage Found']//following::ifra
 public static By Owner_txtbox=By.xpath("//label[text()='Owner']//following::input[1]");
 public static By RiskCategory_drpdwn=By.xpath("//input[@aria-label='Risk Category']");
 public static By Probability_drpdwn=By.xpath("//input[@aria-label='Probability_ACN']");
-public static By StageFound_drpdwn=By.xpath("//label[text()='Stage Found']//following::div[@class='control-extension-content'][1]");
+public static By StageFound_frame=By.xpath("//label[text()='Stage Found']/following::iframe[1]");
+public static By StageFound_drpdwn=By.xpath("//i[@style='display: inline-block;']/parent::div/following::div[1]");
 public static By BaselineMitigationPlanClose_drpdwn=By.xpath("//label[text()='Baseline Mitigation Plan Close']//following::input[1]");
 public static By AIDT_Projectname=By.xpath("//h1[text()='AIDT_ADO-DevART']");
 }

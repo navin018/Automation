@@ -20,9 +20,11 @@ Scenario: AIDT_Issue
 	And i verify the "Inbound" "Issue" details for "AIDT" 
 	
 
-#Scenario: AIDT_Bug
-#	And i verify the "Inbound" "Bug" details for "AIDT" 
+Scenario: AIDT_Bug
+	And i verify the "Inbound" "Bug" details for "AIDT" 
 	
+Scenario: AIDT_Impediment
+And i verify the "Inbound" "Impediment" details for "AIDT"	
 
 Scenario: AIDT_Feature 
 	And i verify the "Inbound" "Feature" details for "AIDT" 
@@ -37,25 +39,25 @@ Scenario: AIDT_Deliverable
 	 	And i verify the "Inbound" "Deliverable" details for "AIDT"
 	
 	
-Scenario: TFSAgile_Action
+Scenario: AIDT_Action
 		And i verify the "Inbound" "Action" details for "AIDT"
 	
 
 Scenario: AIDT_Decision
 	And i verify the "Inbound" "Decision" details for "AIDT"
 	
-#		
-#Scenario Outline: TFSAgile_DIY_IBVerification_Release_Sprint 
-#	Given i login to application "<applicationname>" 
-#	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
-#	And i click on tile "my Queries"
-#	Then i select client and DC for "<applicationname>"
-#	And i capture the "IterationExternalID" for Entities created from "tool" for tool "AIDT" 
-#	And i generate a token for "DevTest" environment 	
-#	And i verify if "Release" has "flown" which was "NA" for "AIDT" for "Normal" functionality
-#	And i verify if "Sprint" has "flown" which was "NA" for "AIDT" for "Normal" functionality
-#
-#		Examples: 
-#		| applicationname |toolname|
-#		| MyWizard        |AIDT|
+		
+Scenario Outline: AIDT_IBVerification_Release_Sprint 
+	Given i login to application "<applicationname>" 
+	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
+	And i click on tile "my Queries"
+	Then i select client and DC for "<applicationname>"
+	And i capture the "IterationExternalID" for Entities created from "tool" for tool "AIDT" 
+	And i generate a token for "DevTest" environment 	
+	And i verify if "Release" has "flown" which was "NA" for "AIDT" for "Normal" functionality
+	And i verify if "Sprint" has "flown" which was "NA" for "AIDT" for "Normal" functionality
+
+		Examples: 
+		| applicationname |toolname|
+		| MyWizard        |AIDT|
 		
