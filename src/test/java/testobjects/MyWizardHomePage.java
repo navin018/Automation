@@ -301,54 +301,7 @@ try{
 //			Assert.fail("Issue selecting client or DC");
 //		}
 //	}
-	public static void SelectClientAndDC_OG(){
-		try{
-			
-			
-			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 clickJS(MyWizardUIMap.scopeSelector_drpdown);
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("MyWizard_Client"));
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 Thread.sleep(2000);
-			 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,Property.getProperty("MyWizard_Client"),"clientname")))
-			 { 
-				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,Property.getProperty("MyWizard_Client"),"clientname"));
-				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//				 clear(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox);
-			 }
-			 else
-			 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_Client")+"doesnt exists");
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			waitPageToLoad();
-//			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,DC,"dcname")))
-			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,Property.getProperty("MyWizard_DC_L1"),"dcname")))
-			{
-				clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,Property.getProperty("MyWizard_DC_L1"),"dcname"));
-				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			}
-			else
-				 Assert.fail("Mentioned client "+Property.getProperty("MyWizard_DC_L1")+"doesnt exists");
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 if(!Property.getProperty("MyWizard_DC_L2").equalsIgnoreCase("NA"))
-			 {
-				 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt,Property.getProperty("MyWizard_DC_L2"),"programname")))
-				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt,Property.getProperty("MyWizard_DC_L2"),"programname"));
-//				clickJS(prepareWebElementWithDynamicXpath2(MyWizardUIMap.SelectProgram_statictxt,DC,Program,"dcname","programname"));
-				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 }
-		
-			waitPageToLoad();
-			click(MyWizardUIMap.apply_btn);
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			logger.info("Issue selecting client or DC");
-			Assert.fail("Issue selecting client or DC");
-		}
-	}
+	
 	
 	public static void SelectClientAndDCForRMP(){
 		try{
@@ -700,53 +653,69 @@ break;
 	}
 
 	public static void SelectClientAndDCForNoToolInstance() {
-try{
-			
+		try{
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			boolean clientalreadyselected=false;
+			boolean DC_L1_Selected=false;
+			boolean DC_L2_Selected=false;
+				if(getAttribute(MyWizardUIMap.scopeSelector_drpdown, "title").contains(Property.getProperty("NoToolInstance_Client")))
+				{
+				clientalreadyselected=true;
+				if(getAttribute(MyWizardUIMap.scopeSelector_drpdown, "title").contains(Property.getProperty("NoToolInstance_DC_L1")))
+				DC_L1_Selected=true;
+				if(getAttribute(MyWizardUIMap.scopeSelector_drpdown, "title").contains(Property.getProperty("NoToolInstance_DC_L2")))
+				DC_L2_Selected=true;
+				}
 			
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 clickJS(MyWizardUIMap.scopeSelector_drpdown);
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("NoToolInstance_Client"));
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 Thread.sleep(2000);
-			 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,Property.getProperty("NoToolInstance_Client"),"clientname")))
-			 { 
-				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectClient_statictxt,Property.getProperty("NoToolInstance_Client"),"clientname"));
-				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-//				 clear(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox);
-			 }
-			 else
-			 Assert.fail("Mentioned client "+Property.getProperty("NoToolInstance_Client")+"doesnt exists");
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			waitPageToLoad();
-//			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,DC,"dcname")))
-			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,Property.getProperty("NoToolInstance_DC_L1"),"dcname")))
+			clickJS(MyWizardUIMap.scopeSelector_drpdown);
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			
+			
+			
+			
+			if(!Property.getProperty("MyWizard_DC_L2").equalsIgnoreCase("NA"))
 			{
-				clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,Property.getProperty("NoToolInstance_DC_L1"),"dcname"));
-				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("NoToolInstance_DC_L2"));
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			Thread.sleep(2000);
+			
+			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt,Property.getProperty("NoToolInstance_DC_L2"),"programname")))
+			if(!DC_L2_Selected)
+			clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt,Property.getProperty("NoToolInstance_DC_L2"),"programname"));
+			// clickJS(prepareWebElementWithDynamicXpath2(MyWizardUIMap.SelectProgram_statictxt,DC,Program,"dcname","programname"));
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			}
 			else
-				 Assert.fail("Mentioned client "+Property.getProperty("NoToolInstance_DC_L1")+"doesnt exists");
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 if(!Property.getProperty("NoToolInstance_DC_L2").equalsIgnoreCase("NA"))
-			 {
-				 if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt,Property.getProperty("NoToolInstance_DC_L2"),"programname")))
-				 clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectProgram_statictxt,Property.getProperty("NoToolInstance_DC_L2"),"programname"));
-//				clickJS(prepareWebElementWithDynamicXpath2(MyWizardUIMap.SelectProgram_statictxt,DC,Program,"dcname","programname"));
-				 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			 }
-		
+			{
+			enterText(MyWizardUIMap.ScopeSelectorEnterTxt_txtbox,Property.getProperty("NoToolInstance_DC_L1"));
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			Thread.sleep(2000);
+			
+			if(isVisible(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,Property.getProperty("NoToolInstance_DC_L1"),"dcname")))
+			{
+			
+			if(!DC_L2_Selected)
+			clickJS(prepareWebElementWithDynamicXpath(MyWizardUIMap.SelectDC_statictxt,Property.getProperty("NoToolInstance_DC_L1"),"dcname"));
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			}
+			else
+			Assert.fail("Mentioned client "+Property.getProperty("NoToolInstance_DC_L1")+"doesnt exists");
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			
+			}
+			
 			waitPageToLoad();
+			if(isVisible(MyWizardUIMap.apply_btn))
 			click(MyWizardUIMap.apply_btn);
-			 ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-		}
-		catch(Exception e)
-		{
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+			}
+			catch(Exception e)
+			{
 			e.printStackTrace();
 			logger.info("Issue selecting client or DC");
 			Assert.fail("Issue selecting client or DC");
-		}
-
+			}
 	}
 
 	public static void SelectClientAndDCForSpecificFunctionality(String client, String dC_L1, String dC_L2) {

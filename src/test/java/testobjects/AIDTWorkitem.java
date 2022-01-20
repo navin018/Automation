@@ -106,6 +106,7 @@ import utilities.general.Property;
 				{
 					EnterDataInTheField(wi.RiskCategory,TFSUIMap.RiskCategory_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				
 				// BaselineMitigationPlanClose
@@ -113,6 +114,7 @@ import utilities.general.Property;
 				{
 					EnterDataInTheField(wi.BaselineMitigationPlanClose,TFSUIMap.BaselineMitigationPlanClose_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				
 				//Priority
@@ -120,6 +122,7 @@ import utilities.general.Property;
 				{
 					EnterDataInTheField(wi.Priority,TFSUIMap.Priority_drpdown);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 
 				//DecisionType
@@ -127,6 +130,7 @@ import utilities.general.Property;
 				{
 					EnterDataInTheField(wi.DecisionType,TFSUIMap.DecisionType_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				
 				// Description
@@ -140,6 +144,7 @@ import utilities.general.Property;
 				{
 					EnterDataInTheField(wi.Probability,TFSUIMap.Probability_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				//Owner
 				if(!wi.Owner.equalsIgnoreCase("NA")) 
@@ -147,12 +152,15 @@ import utilities.general.Property;
 					singleClick(TFSUIMap.Owner_drpdwn);
 					ExpWaitForCondition(TFSUIMap.Owner_txtbox);
 					EnterDataInTheField(wi.Owner,TFSUIMap.Owner_txtbox);
+					Thread.sleep(2000);
+					sendEntr();
 				}
 				//RetroSteps
 				if(!wi.RetroStep.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.RetroStep,TFSUIMap.RetroStep_txtbox);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				//testtype
 				if(!wi.TestType.equalsIgnoreCase("NA")) 
@@ -166,61 +174,70 @@ import utilities.general.Property;
 				{
 					EnterDataInTheField(wi.DeliverableType,TFSUIMap.Deliverabletype_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				//IssueCategory
 				if(!wi.IssueCategory.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.IssueCategory,TFSUIMap.IssueCategory_drpdwm);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				// Impact
 				if(!wi.Impact.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.Impact,TFSUIMap.Impact_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				//escalate
 				if(!wi.Escalate.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.Escalate,TFSUIMap.Escalate_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				//ActionCategory
 				if(!wi.ActionCategory.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.ActionCategory,TFSUIMap.ActionCategory_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				//contractual
 				if(!wi.Contractual.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.Contractual,TFSUIMap.Contractual_drpdwm);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				// BaselineStart
 				if(!wi.BaselineStart.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.BaselineStart,TFSUIMap.BaselineStart_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				//BaselineDraftClose
 				if(!wi.BaselineDraftClose.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.BaselineDraftClose,TFSUIMap.BaselineDraftClose);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				//BaselineReviewClose
 				if(!wi.BaselineReviewClose.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.BaselineReviewClose,TFSUIMap.BaselineReviewClose_drpdwn);
 					Thread.sleep(2000);
+					sendEntr();
 				}
 				//BaselineClose
 				if(!wi.BaselineClose.equalsIgnoreCase("NA")) 
 				{
 					EnterDataInTheField(wi.BaselineClose,TFSUIMap.BaselineClose_drpdwn);
 					Thread.sleep(2000);
-					
+					sendEntr();
 					
 				}
 				// Stage Found

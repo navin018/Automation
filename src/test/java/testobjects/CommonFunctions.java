@@ -283,6 +283,16 @@ public class CommonFunctions {
 			else if(toolname.contains("AIDT")){
 				writeIterationExternalIDs_Details = testDataPath + "AIDT" + File.separator + "JSON" +  File.separator + "IterationExternalIDs.json" ;
 			}
+			else if(toolname.equalsIgnoreCase("ADTInstance")||toolname.equalsIgnoreCase("MyWizardInstance"))
+			{
+			writeIterationExternalIDs_Details = testDataPath + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"JSON"+ File.separator + "GenericUploaderIterationExternalIDs.json" ;
+
+			}
+			else if(toolname.equalsIgnoreCase("NoToolInstance"))
+			{
+			writeIterationExternalIDs_Details = testDataPath + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"JSON"+ File.separator + "GenericUploaderIterationExternalIDs.json" ;
+
+			}
 		
 			FileReader reader = new FileReader(writeIterationExternalIDs_Details);
 	        JSONParser jsonParser = new JSONParser();
@@ -334,6 +344,16 @@ public class CommonFunctions {
 			}
 			else if(toolname.contains("TFS") || toolname.contains("Tfs")){
 				FileToFetch = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "IterationExternalIDs.json" ;
+			}
+			else if(toolname.equalsIgnoreCase("ADTInstance")||(toolname.equalsIgnoreCase("MyWizardInstance")))
+			{
+			FileToFetch = testDataPath + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"JSON"+ File.separator + "GenericUploaderIterationExternalIDs.json" ;
+
+			}
+			else if(toolname.equalsIgnoreCase("NoToolInstance"))
+			{
+			FileToFetch = testDataPath + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"JSON"+ File.separator + "GenericUploaderIterationExternalIDs.json" ;
+
 			}
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(new FileReader(FileToFetch));

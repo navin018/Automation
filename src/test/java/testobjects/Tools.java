@@ -149,6 +149,16 @@ public static String getWorkItemExternalID_custom(String workitem, String toolna
 			else if(functionality.equalsIgnoreCase("ChangeProjectToAnother"))
 			testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDsForMoveProjOrIssue.json" ;
 		}
+		else if(toolname.equalsIgnoreCase("ADTInstance"))
+		{
+		testDataPath_WorkItemExternalIDs = testDataPath + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"JSON"+ File.separator + "GenericUploader.json" ;
+		}
+		else if(toolname.equalsIgnoreCase("NoToolInstance"))
+		{
+		testDataPath_WorkItemExternalIDs = testDataPath + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"JSON"+ File.separator + "GenericUploader.json" ;
+		}
+
+
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
 		JSONObject jsonObject = (JSONObject) obj;
@@ -556,6 +566,14 @@ public static HashMap<String, String> getReleaseAndSprintDetails(String toolname
 		}
 		else if(toolname.equalsIgnoreCase("MSPS"))
 			testDataPath_WorkItemExternalIDs = testDataPath + "MSPS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+		else if(toolname.equalsIgnoreCase("ADTInstance"))
+		{
+		testDataPath_WorkItemExternalIDs = testDataPath + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"JSON"+ File.separator + "GenericUploaderIterationExternalIDs.json" ;
+		}
+		else if(toolname.equalsIgnoreCase("NoToolInstance"))
+		{
+		testDataPath_WorkItemExternalIDs = testDataPath + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"JSON"+ File.separator + "GenericUploaderIterationExternalIDs.json" ;
+		}
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
 		JSONObject jsonObject = (JSONObject) obj;
@@ -1502,11 +1520,13 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 						 Assert.assertEquals(totalrecordcount, 0,workitem +" not deleted for tool "+toolname);
 					 
 					 //this code is for team attached to the entity
+					 if(!functionality.contains("GenericUploader")) {
 					 String checkIfTeamVerificationIsRequired = checkIfTeamVerificationRequired(toolname,workitem);
 					 if(!(checkIfTeamVerificationIsRequired.equalsIgnoreCase("NA") || checkIfTeamVerificationIsRequired.equalsIgnoreCase("No")))
 					 {
 						 //verify team details in workitems API
 						 VerifyTeamDetailsForEntity(response.jsonPath(),workitem,toolname,flownOrDeleted,checkIfTeamVerificationIsRequired);
+					 }
 					 }
 				 }
 				 if((workitem.contains("Release") || workitem.contains("Sprint")) && !functionality.equalsIgnoreCase("GenericUploader_MyWizardInstance"))
@@ -1521,7 +1541,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 					 String ReleaseNameFromRMP=null;
 					 String SprintNameFromRMP=null;
 					 HashMap<String,String>ReleaseAndSprintDetails=null;
-					 	if(!functionality.equalsIgnoreCase("GenericUploader_NoTool")){
+					 if(!(functionality.equalsIgnoreCase("GenericUploader_NoTool")||functionality.equalsIgnoreCase("GenericUploader"))){
 					 	ReleaseAndSprintDetails= getReleaseAndSprintDetails(toolname);
 					 	 ReleaseName = ReleaseAndSprintDetails.get("ReleaseName");
 						 ReleaseStartDate = ReleaseAndSprintDetails.get("ReleaseStartDate");
@@ -1532,7 +1552,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 						 ReleaseNameFromRMP = ReleaseAndSprintDetails.get("ReleaseNameFromRMP");
 						 SprintNameFromRMP = ReleaseAndSprintDetails.get("SprintNameFromRMP");
 					 	}
-					 	else if(functionality.equalsIgnoreCase("GenericUploader_NoTool"))
+					 if(!(functionality.equalsIgnoreCase("GenericUploader_NoTool")||functionality.equalsIgnoreCase("GenericUploader"))){
 					 	{
 					 		ReleaseName="Release_AutomationData_GenericUploader";
 					 		SprintName= "Sprint_AutomationData_GenericUploader";
