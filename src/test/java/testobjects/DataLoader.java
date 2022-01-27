@@ -37,7 +37,19 @@ public class DataLoader {
 	public static void PrepareExcelFileForGenericUploaderAndWriteEntityIDToJSON(String entity,String toolname){
 
 		try{
-			//Updating Workitem Json
+			
+	//Excel File Location		
+			String Excelfilepath="";
+			if(toolname.equalsIgnoreCase("ADT Jira") ||  toolname.equalsIgnoreCase("myWizardInstance"))	
+			Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"Excel"+  File.separator + entity+".xlsx" ;
+			else if(toolname.equalsIgnoreCase("NoToolInstance"))
+				Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"Excel"+  File.separator + entity+".xlsx" ;	
+			FileInputStream fis = new FileInputStream(new File(Excelfilepath));
+			XSSFWorkbook workbook = new XSSFWorkbook (fis);	
+			XSSFSheet sheet = workbook.getSheet(entity);
+			
+			
+	//Selection Json File to Upload Data
 			String Entities_JSONFile="";
 			if(toolname.equalsIgnoreCase("ADT Jira") ||  toolname.equalsIgnoreCase("myWizardInstance")) {
 			Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"JSON"+  File.separator + "GenericUploader.json" ;
@@ -45,246 +57,171 @@ public class DataLoader {
 			else if(toolname.equalsIgnoreCase("NoToolInstance")) {
 			 Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"JSON"+  File.separator + "GenericUploader.json" ;
 				}
-			
-			
-			
-			
-			
-		String Excelfilepath="";
-		if(toolname.equalsIgnoreCase("ADT Jira") ||  toolname.equalsIgnoreCase("myWizardInstance"))	
-		Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"Excel"+  File.separator + entity+".xlsx" ;
-		else if(toolname.equalsIgnoreCase("NoToolInstance"))
-			Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"Excel"+  File.separator + entity+".xlsx" ;	
-		FileInputStream fis = new FileInputStream(new File(Excelfilepath));
-		XSSFWorkbook workbook = new XSSFWorkbook (fis);
+	
 		
-		 
-		
-		
-		String workitemID="";
-		String EntityIDForJSON="";
-		XSSFSheet sheet = workbook.getSheet(entity);
 		Random rnd = new Random();
 		int randomNumb = 10000 + rnd.nextInt(90000);
-//		 workitemID = Property.getProperty("JiraProject")+"-"+randomNumb;
-		
-	String title = entity+"_AutomationData_GenericUploader";
-	String Project = Property.getProperty("JiraProject");
-	String time = Instant.now().toString().substring(0, 19)+"Z";
-	String Phase="Plan";
-    String WorkStream="Security_AutomationData";
+
+	//Entity Details
+		String workitemID = Property.getProperty("JiraProject")+"-"+randomNumb;	
+		String title = entity+"_AutomationData_GenericUploader";
+		String Project = Property.getProperty("JiraProject");
+		String time = Instant.now().toString().substring(0, 19)+"Z";
+		String Phase="Plan";
+		String WorkStream="Security_AutomationData";
     
-	if(!entity.equalsIgnoreCase("Iteration") || entity.equalsIgnoreCase("Decision") || entity.equalsIgnoreCase("IterationForMyWizardInstance"))
-    {
-    if(toolname.equalsIgnoreCase("ADT Jira"))
-    {
-    	Random rndnumb = new Random();
-		int randomNumber = 10000 + rndnumb.nextInt(90000);
+    switch(toolname) {
+    case "ADT Jira":
+    case "ADTInstance":
+    		Random rndnumb = new Random();
+    		int randomNumber = 10000 + rndnumb.nextInt(90000);
         
-        sheet.getRow(1).getCell(0).setCellValue(Project+"-"+randomNumber);
-        sheet.getRow(1).getCell(2).setCellValue(title);
-        sheet.getRow(1).getCell(4).setCellValue(Project);
-        sheet.getRow(1).getCell(12).setCellValue(time);
-        if(entity.equalsIgnoreCase("Bug")) {
-            sheet.getRow(1).getCell(39).setCellValue(Phase);
-            sheet.getRow(1).getCell(40).setCellValue(WorkStream);            
-            sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
+		if(!entity.equalsIgnoreCase("Iteration") || entity.equalsIgnoreCase("Action")) {
+			sheet.getRow(1).getCell(0).setCellValue(workitemID);
+			sheet.getRow(1).getCell(2).setCellValue(title);
+			sheet.getRow(1).getCell(4).setCellValue(Project);
+			sheet.getRow(1).getCell(12).setCellValue(time);
+        	if(entity.equalsIgnoreCase("Bug")) {
+        		sheet.getRow(1).getCell(39).setCellValue(Phase);
+        		sheet.getRow(1).getCell(40).setCellValue(WorkStream);            
+        		sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
                         
-        }
-        else if(entity.equalsIgnoreCase("Action")) {
-            sheet.getRow(1).getCell(29).setCellValue(Phase);
-            sheet.getRow(1).getCell(30).setCellValue(WorkStream);
+        	}
+        	else if(entity.equalsIgnoreCase("Action")) {
+        		sheet.getRow(1).getCell(29).setCellValue(Phase);
+        		sheet.getRow(1).getCell(30).setCellValue(WorkStream);
            
-        }
-        else if(entity.equalsIgnoreCase("Risk")) {
-            sheet.getRow(1).getCell(38).setCellValue(Phase);
-            sheet.getRow(1).getCell(39).setCellValue(WorkStream);
-            sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
+        	}
+        	else if(entity.equalsIgnoreCase("Risk")) {
+        		sheet.getRow(1).getCell(38).setCellValue(Phase);
+        		sheet.getRow(1).getCell(39).setCellValue(WorkStream);
+        		sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
             
-        }
-        else if(entity.equals("Issue")) {
-            sheet.getRow(1).getCell(30).setCellValue(Phase);
-            sheet.getRow(1).getCell(31).setCellValue(WorkStream);
-            sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
+        	}
+        	else if(entity.equals("Issue")) {
+        		sheet.getRow(1).getCell(30).setCellValue(Phase);
+        		sheet.getRow(1).getCell(31).setCellValue(WorkStream);
+        		sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
             
         	
-        }
-        FileReader reader = new FileReader(Entities_JSONFile);
-		JSONParser jsonParser = new JSONParser();
-	    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-	    jsonObject.put("WorkItemExternalId_"+entity, String.valueOf(Project+"-"+randomNumber));        
-	    FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
-		byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
-    }
-			else if(toolname.equalsIgnoreCase("NoToolInstance"))
-			{
-				Random rndnumb = new Random();
-				int randomNumber = 10000 + rndnumb.nextInt(90000);
-				sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumber));
-				sheet.getRow(1).getCell(2).setCellValue(title);
-				
-				FileReader reader = new FileReader(Entities_JSONFile);
-				JSONParser jsonParser = new JSONParser();
-			    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-			    jsonObject.put("WorkItemExternalId_"+entity, String.valueOf(randomNumber));        
-			    FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
-				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
-			}
-			else if(entity.equalsIgnoreCase("IterationForMyWizardInstance"))
-			{
-				sheet = workbook.getSheet("Iteration");
-				sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
-				Baseclass.getInstance().release_IterationExternalID= String.valueOf(randomNumb);
-				sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
-				
-				sheet.getRow(1).getCell(8).setCellValue(time);
-				sheet.getRow(1).getCell(13).setCellValue("Release");
-				sheet.getRow(1).getCell(14).setCellValue("Agile");
-				sheet.getRow(1).getCell(15).setCellValue("Scrum");
-				randomNumb=randomNumb+1;
-				sheet.getRow(2).getCell(0).setCellValue(String.valueOf(randomNumb));
-				Baseclass.getInstance().sprint_IterationExternalID= String.valueOf(randomNumb);
-				sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
-				sheet.getRow(1).getCell(8).setCellValue(time);
-				sheet.getRow(1).getCell(13).setCellValue("Sprint-DevelopmentSprint");
-				sheet.getRow(1).getCell(14).setCellValue("Agile");
-				sheet.getRow(1).getCell(15).setCellValue("Scrum");
-				
-				CommonFunctions.writeIterationExternalIDs(Baseclass.getInstance().release_IterationExternalID,Baseclass.getInstance().sprint_IterationExternalID,"MyWizardInstance");
-				
-			}
-			}
-		else if(entity.equalsIgnoreCase("Action"))
-		{
-			if(toolname.equalsIgnoreCase("ADT Jira"))
-			{
-			
-			Random rndnumb = new Random();
-			int randomNumber = 10000 + rndnumb.nextInt(90000);
-			sheet.getRow(1).getCell(0).setCellValue(Project+"-"+randomNumber);
+        	}
+        	else if(entity.equalsIgnoreCase("Action")) {
+			sheet.getRow(1).getCell(0).setCellValue(workitemID);
 			sheet.getRow(1).getCell(2).setCellValue(title);
 			sheet.getRow(1).getCell(11).setCellValue(time);
-			
-			FileReader reader = new FileReader(Entities_JSONFile);
-			JSONParser jsonParser = new JSONParser();
-		    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-		    jsonObject.put("WorkItemExternalId_"+entity, String.valueOf(Project+"-"+randomNumber));      
-		    FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
-			byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
-			}
-			else if(toolname.equalsIgnoreCase("NoToolInstance"))
-			{
-				Random rndnumb = new Random();
-				int randomNumber = 10000 + rndnumb.nextInt(90000);
-				sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumber));
-				sheet.getRow(1).getCell(2).setCellValue(title);
-				
-				FileReader reader = new FileReader(Entities_JSONFile);
-				JSONParser jsonParser = new JSONParser();
-			    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-			    jsonObject.put("WorkItemExternalId_"+entity, String.valueOf(randomNumber));      
-			    FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
-				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
-			}
 		}
-		else if(entity.equalsIgnoreCase("Decision"))
-		{
-			if(toolname.equalsIgnoreCase("myWizardInstance"))
-			{
-			String workitemIDForDecision = "GNRIC-"+randomNumb;
-			sheet.getRow(1).getCell(0).setCellValue(workitemIDForDecision);
-			sheet.getRow(1).getCell(2).setCellValue(title);
-			sheet.getRow(1).getCell(10).setCellValue(time);
-				
-
-				FileReader reader = new FileReader(Entities_JSONFile);
-				JSONParser jsonParser = new JSONParser();
-			        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-			        jsonObject.put("WorkItemExternalId_Decision", workitemIDForDecision);        
-			        FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
-					byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
-			}
-			else if(toolname.equalsIgnoreCase("NoToolInstance"))
-			{
-				
-				Random rndnumb = new Random();
-				int randomNumber = 10000 + rndnumb.nextInt(90000);
-				sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumber));
-				sheet.getRow(1).getCell(2).setCellValue(title);
-				
-				FileReader reader = new FileReader(Entities_JSONFile);
-				JSONParser jsonParser = new JSONParser();
-			    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-			    jsonObject.put("WorkItemExternalId_"+entity, String.valueOf(randomNumber));      
-			    FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
-				byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
-			}
-			
-									
+		
+	//Entity Updation into Json
+        	FileReader reader = new FileReader(Entities_JSONFile);
+        	JSONParser jsonParser = new JSONParser();
+        	JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+        	jsonObject.put("WorkItemExternalId_"+entity, String.valueOf(workitemID));        
+        	FileOutputStream outputStream = new FileOutputStream(Entities_JSONFile);
+        	byte[] strToBytes = jsonObject.toString().getBytes(); outputStream.write(strToBytes);
+		
 		}
-		else if(entity.equalsIgnoreCase("Iteration"))
-		{
-			if(toolname.equalsIgnoreCase("ADT Jira"))
-			{
-				Random rndnumb = new Random();
-				int randomNumber = 10000 + rndnumb.nextInt(90000);
-				Baseclass.getInstance().release_IterationExternalID=String.valueOf(randomNumber);	
-			sheet.getRow(1).getCell(0).setCellValue(Baseclass.getInstance().release_IterationExternalID);
-			sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
-			sheet.getRow(1).getCell(4).setCellValue(Project);
-			sheet.getRow(1).getCell(9).setCellValue(time);
-			sheet.getRow(1).getCell(13).setCellValue("Release");
-			Baseclass.getInstance().sprint_IterationExternalID=String.valueOf(randomNumber+1);
-			sheet.getRow(2).getCell(0).setCellValue(Baseclass.getInstance().sprint_IterationExternalID);
-			sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
-			sheet.getRow(2).getCell(4).setCellValue(Project);
-			sheet.getRow(2).getCell(9).setCellValue(time);
-			sheet.getRow(2).getCell(13).setCellValue("Sprint-DevelopmentSprint");
-			
-			CommonFunctions.writeIterationExternalIDs(Baseclass.getInstance().release_IterationExternalID,Baseclass.getInstance().sprint_IterationExternalID,"ADTInstance");
-			
-			
-			}
-			else if(toolname.equalsIgnoreCase("NoToolInstance"))
-			{
-				Random rndnumb = new Random();
-				int randomNumber = 10000 + rndnumb.nextInt(90000);
-				sheet.getRow(1).getCell(0).setCellType(Cell.CELL_TYPE_NUMERIC);
-				sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumber));
+		if(entity.equalsIgnoreCase("Iteration")) {
+	//Release		
 				Baseclass.getInstance().release_IterationExternalID=String.valueOf(randomNumber);
+				sheet.getRow(1).getCell(0).setCellValue(Baseclass.getInstance().release_IterationExternalID);
 				sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
+				sheet.getRow(1).getCell(4).setCellValue(Project);
 				sheet.getRow(1).getCell(9).setCellValue(time);
 				sheet.getRow(1).getCell(13).setCellValue("Release");
-				sheet.getRow(1).getCell(14).setCellValue("Agile");
-				sheet.getRow(1).getCell(15).setCellValue("Scrum");
-				
-				
-				sheet.getRow(2).getCell(0).setCellType(Cell.CELL_TYPE_NUMERIC);
-				sheet.getRow(2).getCell(0).setCellValue(String.valueOf(randomNumber+1));
+	//Sprint			
 				Baseclass.getInstance().sprint_IterationExternalID=String.valueOf(randomNumber+1);
+				sheet.getRow(2).getCell(0).setCellValue(Baseclass.getInstance().sprint_IterationExternalID);
 				sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
+				sheet.getRow(2).getCell(4).setCellValue(Project);
 				sheet.getRow(2).getCell(9).setCellValue(time);
 				sheet.getRow(2).getCell(13).setCellValue("Sprint-DevelopmentSprint");
-				sheet.getRow(2).getCell(14).setCellValue("Agile");
-				sheet.getRow(2).getCell(15).setCellValue("Scrum");
-				
-				CommonFunctions.writeIterationExternalIDs(Baseclass.getInstance().release_IterationExternalID,Baseclass.getInstance().sprint_IterationExternalID,"ADT Jira");
-			}
+			
+	//Updaing Iteration Details In IterationexternalId Json
+				CommonFunctions.writeIterationExternalIDs(Baseclass.getInstance().release_IterationExternalID,Baseclass.getInstance().sprint_IterationExternalID,"ADTInstance");
+			
 		}
-		
-		
-		FileOutputStream fos = new FileOutputStream(new File(Excelfilepath));
-		workbook.write(fos);
-		fis.close();
-	    fos.close();
-//	    FileWriter file = new FileWriter(Entities_JSONFile1);
-     
+				break;
+				
+    case "MyWizardInstance":
+    	
+    	//Only Iteration Creation
+    		sheet = workbook.getSheet("Iteration");
+    //Release
+    		sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
+    		Baseclass.getInstance().release_IterationExternalID= String.valueOf(randomNumb);
+    		sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
+    		sheet.getRow(1).getCell(8).setCellValue(time);
+    		sheet.getRow(1).getCell(13).setCellValue("Release");
+    		sheet.getRow(1).getCell(14).setCellValue("Agile");
+    		sheet.getRow(1).getCell(15).setCellValue("Scrum");
 	
+    //Sprint
+    		sheet.getRow(2).getCell(0).setCellValue(String.valueOf(randomNumb+1));
+    		Baseclass.getInstance().sprint_IterationExternalID= String.valueOf(randomNumb+1);
+    		sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
+    		sheet.getRow(1).getCell(8).setCellValue(time);
+    		sheet.getRow(1).getCell(13).setCellValue("Sprint-DevelopmentSprint");
+    		sheet.getRow(1).getCell(14).setCellValue("Agile");
+    		sheet.getRow(1).getCell(15).setCellValue("Scrum");
+		
+	//Updating Iteration Details In IterationexternalId Json
+    		CommonFunctions.writeIterationExternalIDs(Baseclass.getInstance().release_IterationExternalID,Baseclass.getInstance().sprint_IterationExternalID,"MyWizardInstance");
+    		
+    		break;
+    		
+    case "NoToolInstance":
+    			
+    		if(!entity.equalsIgnoreCase("Iteration")) {
+    			sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
+    			sheet.getRow(1).getCell(2).setCellValue(title);
+	//Updating Json file
+    			FileReader reader1 = new FileReader(Entities_JSONFile);
+    			JSONParser jsonParser1 = new JSONParser();
+    			JSONObject jsonObject1 = (JSONObject) jsonParser1.parse(reader1);
+    			jsonObject1.put("WorkItemExternalId_"+entity, String.valueOf(randomNumb));        
+    			FileOutputStream outputStream1 = new FileOutputStream(Entities_JSONFile);
+    			byte[] strToBytes1 = jsonObject1.toString().getBytes(); outputStream1.write(strToBytes1);
+		
+    		}
+    		else if(entity.equalsIgnoreCase("Iteration")) {
+		
+    //Release
+    			sheet.getRow(1).getCell(0).setCellType(Cell.CELL_TYPE_NUMERIC);
+    			sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
+    			Baseclass.getInstance().release_IterationExternalID=String.valueOf(randomNumb);
+    			sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
+    			sheet.getRow(1).getCell(9).setCellValue(time);
+    			sheet.getRow(1).getCell(13).setCellValue("Release");
+    			sheet.getRow(1).getCell(14).setCellValue("Agile");
+    			sheet.getRow(1).getCell(15).setCellValue("Scrum");
+		
+	//Sprint	
+    			sheet.getRow(2).getCell(0).setCellType(Cell.CELL_TYPE_NUMERIC);
+    			sheet.getRow(2).getCell(0).setCellValue(String.valueOf(randomNumb+1));
+    			Baseclass.getInstance().sprint_IterationExternalID=String.valueOf(randomNumb+1);
+    			sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
+    			sheet.getRow(2).getCell(9).setCellValue(time);
+    			sheet.getRow(2).getCell(13).setCellValue("Sprint-DevelopmentSprint");
+    			sheet.getRow(2).getCell(14).setCellValue("Agile");
+    			sheet.getRow(2).getCell(15).setCellValue("Scrum");
+    
+    //Updating Iteration Details In IterationexternalId Json	
+    			CommonFunctions.writeIterationExternalIDs(Baseclass.getInstance().release_IterationExternalID,Baseclass.getInstance().sprint_IterationExternalID,"NoToolInstance");
+    	}
+    		break;
+    }
+    
+    //Writing All the Deatils In Excel Sheet
+    	FileOutputStream fos = new FileOutputStream(new File(Excelfilepath));
+    	workbook.write(fos);
+    	fis.close();
+    	fos.close();
+
 	}
 	catch(Exception e)
 	{
 		e.printStackTrace();
-		Assert.fail("problem with excel file creation to be uploaded");
+		Assert.fail("Problem with excel file creation to be Uploaded");
 
 	}
 	}
@@ -424,7 +361,7 @@ public class DataLoader {
 			String[] entities_Devops = {"CodeCommit","CodeBranch","Build","Deployment","Environment","TestResult"};
 			String[] entities_ADTJira_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Iteration"};
 //			String[] entities_ADTJira_GenericUploader = {"Iteration"};
-			String[] entities_MyWizardInstanceGenericUploader = {"Decision","IterationForMyWizardInstance"};
+			String[] entities_MyWizardInstanceGenericUploader = {"IterationForMyWizardInstance"};
 			String[] entities_NoToolInstance_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Decision","Iteration"};
 //			String[] entities_NoToolInstance_GenericUploader = {"Decision"};
 			ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;

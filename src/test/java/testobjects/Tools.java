@@ -103,14 +103,6 @@ import java.util.UUID;
 				if(workitem.equalsIgnoreCase("ReleaseAndSprint"))
 				{
 					try{
-//						String ReleaseDetails = getWorkItemExternalID("Release",toolname);
-//						String SprintDetails =  getWorkItemExternalID("Sprint",toolname);
-//					
-//					String[] releasedetails = ReleaseDetails.toString().split("&");
-//					String[] sprintdetails = SprintDetails.toString().split("&");
-//					ReleaseName = releasedetails[0];
-//					SprintName = sprintdetails[0];
-//					WorkItemExternalId = ReleaseName+"&"+SprintName;
 						WorkItemExternalId = "ReleaseAndSprint";
 					}
 					catch(Exception e)
