@@ -1,6 +1,6 @@
 Feature: GenericUploader Regression(ADT)
 
-@2GenericUploader_ADTJira
+@1GenericUploader_ADTInstance
 Scenario Outline: GenericUploader_ADTJira
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
@@ -24,7 +24,7 @@ Scenario Outline: GenericUploader_ADTJira
 		| MyWizard             | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | TestCase_01 | Story_WSJF | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|ProductBacklog_wsjf|Milestone_01|Requirement_01|
 		
 		
-@4GenericUploader_MyWizardInstance
+@2GenericUploader_MyWizardInstance
 Scenario Outline: GenericUploader_ADTJira
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
@@ -38,7 +38,7 @@ Scenario Outline: GenericUploader_ADTJira
 		| applicationname | 
 		| MyWizard             |
 				
-@6GenericUploader_NoToolInstance
+@3GenericUploader_NoToolInstance
 Scenario Outline: GenericUploader_NoTool
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
@@ -62,7 +62,7 @@ Scenario Outline: GenericUploader_NoTool
 		| applicationname | 
 		| MyWizard        |
 
-@7GenericUploader_NewRelease
+@4GenericUploader_NegativeScenarios
 Scenario Outline: GenericUploader_ADTJira_NewRelease
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
@@ -81,7 +81,7 @@ Scenario Outline: GenericUploader_ADTJira_NewRelease
 		| MyWizard        |	Epic_01 |
 		
 		
-@8GenericUploader_mywizardinstanceGDL
+@5GenericUploader_AssociationsforNoToolInstance
 Scenario Outline: GenericUploader_mywizardinstanceGDL
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 
@@ -107,7 +107,7 @@ Scenario Outline: GenericUploader_mywizardinstanceGDL
 	
 	
 	
-@9GenericUploader_CustomTemplate
+@6GenericUploader_CustomTemplate
 Scenario Outline: GenericUploader_CustomTemplate
 	Given i load the project properties file 
 	Given i login to application "<applicationname>" 

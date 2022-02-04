@@ -597,8 +597,8 @@ break;
 		case "Generic Uploader":
 
 			try{
-//				ArrayList<String> tabs2 = new ArrayList<String> (driver().getWindowHandles());
-//				 driver().switchTo().window(tabs2.get(2));
+				ArrayList<String> tabs2 = new ArrayList<String> (driver().getWindowHandles());
+				 driver().switchTo().window(tabs2.get(2));
 			ExpWaitForCondition(SecurityTestsUIMap.GenericUploader_statictxt);
 				}
 			catch(Exception e)
