@@ -78,31 +78,32 @@ public class MSPS {
 
 		public static void Enable() {
 			try {
-		//Enabling is neccessary for the Data created to flow
+			//Enabling is neccessary for the Data created to flow
 			ExpWaitForCondition(MSPSUIMap.ProjectDetails_option);
 			clickJS(MSPSUIMap.ProjectDetails_option);
 			ExpWaitForCondition(MSPSUIMap.BasicInfo_text);
 			selectByPartOfVisibleText(MSPSUIMap.ACNPSelect_dropdown, "Yes");
-			
+			Thread.sleep(6000);
+
 			if(CheckIfElementExists(MSPSUIMap.Save_btn)) {
-				clickJS(MSPSUIMap.Save_btn);
+			clickJS(MSPSUIMap.Save_btn);
 			}
 			else {
-				clickJS(MSPSUIMap.Project_ribbon);
-				ExpWaitForElementToDisappear(MSPSUIMap.Workingonit_text);				
-				singleClick(MSPSUIMap.Save_btn);
+			clickJS(MSPSUIMap.Project_ribbon);
+			ExpWaitForElementToDisappear(MSPSUIMap.Workingonit_text);
+			singleClick(MSPSUIMap.Save_btn);
 			}
-			
+
 			ExpWaitForCondition(MSPSUIMap.Savecomplete_toastermsg);
 			logger.info("Enabling ACNP is Mywizard Project is a success");
 			}
 			catch(Exception e) {
-				e.printStackTrace();
-				logger.info("Enabling ACNP is Mywizard Project failed");
-				Assert.fail("Enabling ACNP is Mywizard Project failed");
+			e.printStackTrace();
+			logger.info("Enabling ACNP is Mywizard Project failed");
+			Assert.fail("Enabling ACNP is Mywizard Project failed");
 			}
-			
-		}
+
+			}
 
 		public static void CreateEntities(String Entity) {
 			try {
