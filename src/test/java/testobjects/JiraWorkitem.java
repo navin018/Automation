@@ -59,121 +59,150 @@ import java.util.Random;
 				+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" +  File.separator;
 		
 		 public static String workitem_title;
-	public	static void CreateWorkitem(String workItem) {
+		 public static void CreateWorkitem(String workItem) {
+
+			 try {
+			 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workItem);
+			 workitem_title = wi.Summary;
+			 if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz.atlassian.net")) {
+
+			 ExpWaitForCondition(JiraUIMap.Summary_txtBox);
+			 Thread.sleep(3000);
+			 enterTextUsingAction(JiraUIMap.Summary_txtBox,wi.Summary);
+			 }
+			 else {
+			 ExpWaitForCondition(JiraUIMap.CloudJiraSummary_txtBox);
+			 Thread.sleep(3000);
+			 enterTextUsingAction(JiraUIMap.CloudJiraSummary_txtBox,wi.Summary);
+			 }
+			 Thread.sleep(1000);
+
+
+
+			 String workItemSplit[] = workItem.split("_");
+			 switch(workItemSplit[0]){
+
+
+
+			 case "risk":
+			 case "Risk":
+			 if(Property.getProperty("JiraURL").contains("uat.alm.accenture"))
+			 {
+			 //
+			 // switchFrame(JiraUIMap.Description_iFrame); //iframe not present as per sangeetha
+			 enterText(JiraUIMap.Description_txtBox,wi.Description);
+			 Thread.sleep(1000);
+			 driver().switchTo().defaultContent();
+			 selectDropdownByText(JiraUIMap.Probability_dropdown, wi.Probability);
+			 selectDropdownByText(JiraUIMap.Impact_dropdown, wi.Probability);
+			 enterText(JiraUIMap.TargetResolutionDate_txtBox,wi.TargetResolutionDate);
+			 enterText(JiraUIMap.NextReviewDate_txtBox,wi.NextReviewDate);
+			 }
+			 break;
+			 case "issue":
+			 case "Issue":
+			 if(Property.getProperty("JiraURL").contains("uat.alm.accenture"))
+			 {
+			 // switchFrame(JiraUIMap.Description_iFrame); //iframe not present as per sangeetha
+			 enterText(JiraUIMap.Description_txtBox,wi.Description);
+			 Thread.sleep(1000);
+			 driver().switchTo().defaultContent();
+			 selectDropdownByText(JiraUIMap.Impact_dropdown,wi.Impact);
+			 enterText(JiraUIMap.TargetResolutionDate_txtBox,wi.TargetResolutionDate);
+			 enterText(JiraUIMap.NextReviewDate_txtBox,wi.NextReviewDate);
+			 }
+			 break;
+			 case "story":
+			 case "Story":
+			 // enterText(JiraUIMap.StoryPoints_txtbox, wi.StoryPoints);
+			 Thread.sleep(1000);
+			 break;
+			 case "epic":
+			 case "Epic":
+			 if(Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
+			 {
+			 Thread.sleep(5000);
+			 singleClick(JiraUIMap.CloudJiraEpicName_txtBox);
+			 enterTextUsingAction(JiraUIMap.CloudJiraEpicName_txtBox, wi.EpicName);
+			 Thread.sleep(1000);
+
+
+
+			 }
+			 else {
+			 Thread.sleep(5000);
+			 if(!CheckIfElementExists(JiraUIMap.EpicName_txtBox)){
+			 JiraWorkitem.SelectWorkItemtype("Epic_01");
+			 Thread.sleep(5000);}
+			 singleClick(JiraUIMap.EpicName_txtBox);
+			 enterTextUsingAction(JiraUIMap.EpicName_txtBox, wi.EpicName);
+			 Thread.sleep(1000);
+			 }
+			 break;
+
+			 }
+			 if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz.atlassian.net")) {
+
+			 clickJS(JiraUIMap.Create_btn);
+			 }
+			 else {
+			 clickJS(JiraUIMap.CloudJiraEntityCreate_btn);
+			 }
+
+			 // ExpWaitForElementToDisappear(JiraUIMap.CreateIssue_Statictxt);
+			 // ExpWaitForElementToDisappear(JiraUIMap.Create_btn);
+			 // grabScreenshotForExtentReport();
+			 Thread.sleep(10000);
+			 ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
+			 waitPageToLoad();
+
+			 }
+			 catch(Exception e) {
+			 e.printStackTrace();
+			 grabScreenshotForExtentReport();
+			 logger.info("Issue creating workitem "+workItem + " for the given tool");
+			 // Assert.fail("Issue creating workitem "+workItem + " for the given tool");
+			 Baseclass.getInstance().workitemcreation_fail = true;
+			 }
+
+			 }
+	
+	
 		
-			try	{
-				 WorkItemDO wi = DataManager.getData(testDataPath, "WorkItem",WorkItemDO.class).item.get(workItem);
-				 workitem_title = wi.Summary;
-				ExpWaitForCondition(JiraUIMap.Summary_txtBox);
-				Thread.sleep(3000);
-				 enterTextUsingAction(JiraUIMap.Summary_txtBox,wi.Summary);
-				 
-				 Thread.sleep(1000);
-				
-			
-				 
-				String workItemSplit[] = workItem.split("_");
-				switch(workItemSplit[0]){
 
-				case "risk":
-				case "Risk":
-					if(Property.getProperty("JiraURL").contains("uat.alm.accenture"))
-					{
-//						
-//						 switchFrame(JiraUIMap.Description_iFrame);	//iframe not present as per sangeetha
-						enterText(JiraUIMap.Description_txtBox,wi.Description);
-						Thread.sleep(1000);
-						 driver().switchTo().defaultContent();
-						selectDropdownByText(JiraUIMap.Probability_dropdown, wi.Probability);
-						selectDropdownByText(JiraUIMap.Impact_dropdown, wi.Probability);
-						enterText(JiraUIMap.TargetResolutionDate_txtBox,wi.TargetResolutionDate);
-						enterText(JiraUIMap.NextReviewDate_txtBox,wi.NextReviewDate);
-					}
-					break;
-				case "issue":
-				case "Issue":
-					if(Property.getProperty("JiraURL").contains("uat.alm.accenture"))
-					{
-//						 switchFrame(JiraUIMap.Description_iFrame);	//iframe not present as per sangeetha
-						 enterText(JiraUIMap.Description_txtBox,wi.Description);
-						 Thread.sleep(1000);
-						 driver().switchTo().defaultContent();
-						 selectDropdownByText(JiraUIMap.Impact_dropdown,wi.Impact);
-						enterText(JiraUIMap.TargetResolutionDate_txtBox,wi.TargetResolutionDate);
-						enterText(JiraUIMap.NextReviewDate_txtBox,wi.NextReviewDate);
-					}
-					break;
-				case "story":
-				case "Story":
-//					enterText(JiraUIMap.StoryPoints_txtbox, wi.StoryPoints);
-					Thread.sleep(1000);
-					break;
-				case "epic":
-				case "Epic":
-					if(Property.getProperty("JiraURL").contains("jira4phoenixmywiz"))
-					{
-					Thread.sleep(5000);
-					singleClick(JiraUIMap.CloudJiraEpicName_txtBox);
-					enterTextUsingAction(JiraUIMap.CloudJiraEpicName_txtBox, wi.EpicName);
-					Thread.sleep(1000);
+	public static void SelectWorkItemtype(String workitem) {
+		try {
+		String workitem_type[] =workitem.split("_");
+		waitPageToLoad();
 
-					}
-					else {
-					Thread.sleep(5000);
-					if(!CheckIfElementExists(JiraUIMap.EpicName_txtBox)){
-					JiraWorkitem.SelectWorkItemtype("Epic_01");
-					Thread.sleep(5000);}
-					singleClick(JiraUIMap.EpicName_txtBox);
-					enterTextUsingAction(JiraUIMap.EpicName_txtBox, wi.EpicName);
-					Thread.sleep(1000);
-					}
-					break;
-					
-				}
-				
-				clickJS(JiraUIMap.Create_btn);
-//				ExpWaitForElementToDisappear(JiraUIMap.CreateIssue_Statictxt);
-//				ExpWaitForElementToDisappear(JiraUIMap.Create_btn);
-//				grabScreenshotForExtentReport();
-				 Thread.sleep(10000);
-				 ExpWaitForElementToDisappear(JiraUIMap.CreateDisabled_btn);
-				 waitPageToLoad();
-				
-				}
-			catch(Exception e) {
-				e.printStackTrace();
-				grabScreenshotForExtentReport();
-				logger.info("Issue creating workitem "+workItem + " for the given tool");
-//				Assert.fail("Issue creating workitem "+workItem + " for the given tool");
-				Baseclass.getInstance().workitemcreation_fail = true;
-				}
-			
+
+
+		//for ADOP and ADT
+		if(!Property.getProperty("JiraURL").contains("jira4phoenixmywiz.atlassian.net")) {
+		doubleClick(JiraUIMap.CreateWokitem_dropdown);
+		Thread.sleep(1000);
+		sendBackSpace(JiraUIMap.CreateWokitem_dropdown);
+		Thread.sleep(2000);
+		enterText(JiraUIMap.CreateWokitem_dropdown,workitem_type[0]);
+		sendEnter(JiraUIMap.CreateWokitem_dropdown);
 		}
-	
-	
-		
+		//Cloud
+		else {
+		doubleClick(JiraUIMap.CloudJiraCreateWokitem_dropdown);
+		ExpWaitForCondition(JiraUIMap.CloudJiraCreateWokitem_dropdown);
+		enterTextUsingAction(JiraUIMap.CloudJiraCreateWokitem_dropdown,workitem_type[0]);
+		sendEntr();
 
-		public static void SelectWorkItemtype(String workitem) {
-			try {
-			String workitem_type[] =workitem.split("_");
-				waitPageToLoad();
-				doubleClick(JiraUIMap.CreateWokitem_dropdown);
-				Thread.sleep(1000);
-				sendBackSpace(JiraUIMap.CreateWokitem_dropdown);
-				Thread.sleep(2000);
-				enterText(JiraUIMap.CreateWokitem_dropdown,workitem_type[0]);
-				sendEnter(JiraUIMap.CreateWokitem_dropdown);
-				waitPageToLoad();
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				logger.info("issue selecting the "+workitem+" for the given tool");
-				Baseclass.getInstance().workitemcreation_fail = true;
-//				Assert.fail("issue selecting the "+workitem+" for the given tool");
-			}
-		
-			
+		waitPageToLoad();
+		Thread.sleep(2000);
+		}
+		} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		logger.info("issue selecting the "+workitem+" for the given tool");
+		Baseclass.getInstance().workitemcreation_fail = true;
+		// Assert.fail("issue selecting the "+workitem+" for the given tool");
+		}
 		}
 		
 		public static void SelectProject() {
@@ -1186,7 +1215,7 @@ public static void CreateReleaseForCloudJira(String ReleaseOrSprint) {
 			{
 				waitPageToLoad();
 				Thread.sleep(5000);
-				click(JiraUIMap.CloudJiraReleases_Link);
+				clickJS(JiraUIMap.CloudJiraReleases_Link);
 				waitPageToLoad();
 				Thread.sleep(3000);
 				clickJS(JiraUIMap.CloudJiraReleaseCreateVersion_Link);

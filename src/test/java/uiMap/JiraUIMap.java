@@ -48,7 +48,7 @@ public static By de = By.xpath("//*[@id='mce_0_ifr']");
 //public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1] | //label[contains(text(),'Epic Name')]//following::input[1]");
 public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1]");
 public static By CloudJiraEpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name')]//following::input[1]");
-public static By Create_btn=By.xpath("//input[@type='submit' and @value='Create']");
+
 public static By CreateSubTask_btn=By.xpath("//span[text()='Create sub-task']");
 public static By firstElementInSearchBox_staticTxt = By.xpath("//span[@class='quick-search-item-title'][@xpath='1']");
 
@@ -302,4 +302,8 @@ public static By Success_text=By.xpath("//strong[text()='Success!']");
 public static By UpdateInJira_btn=By.xpath("//input[@value='Update']");
 public static By EditIssue_txt=By.xpath("//h2[contains(@title,'Edit Issue')]");
 public static By UpdateSuccess_msg=By.xpath("//div[contains(text(),'has been updated.')]");
+public static By Create_btn=By.xpath("//input[@type='submit' and @value='Create']");
+public static By CloudJiraEntityCreate_btn=By.xpath("//button[@type='submit']");
+public static By CloudJiraSummary_txtBox=By.xpath("//input[@name='summary' and @id='summary-field']");
+public static By CloudJiraCreateWokitem_dropdown=By.xpath("//label[text()='Issue type']/following::div[3]/child::div[1]");
 }
