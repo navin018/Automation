@@ -17,7 +17,7 @@ import cucumber.api.junit.Cucumber;
 
 },
 //tags = {"@2WorkItemCreation_TFSScrum_PrecomputationEngineFunctionality_RAG"},	
-tags = {"@9TFSAgile_DeleteFunctionality_VerifyIfIterationIsNotShownInIterationAPI"},
+tags = {"@5WorkItemCreation_TFSAgile"},
 
 	
 
