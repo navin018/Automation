@@ -45,6 +45,12 @@ Scenario: AIDT_Action
 
 Scenario: AIDT_Decision
 	And i verify the "Inbound" "Decision" details for "AIDT"
+
+	Scenario: AIDT_Requirement
+		And i verify the "Inbound" "Requirement" details for "AIDT"
+
+	Scenario: AIDT_Milestone
+		And i verify the "Inbound" "Milestone" details for "AIDT"
 	
 		
 Scenario Outline: AIDT_IBVerification_Release_Sprint 

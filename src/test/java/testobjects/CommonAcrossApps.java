@@ -419,6 +419,8 @@ public static void UpdateWorkItemExternalIDsForApps(String appname)
 			jsonObject.put("WorkItemExternalId_SprintEndDate",Baseclass.getInstance().AIDT_SprintEndDate);
 			jsonObject.put("Team_Name",Baseclass.getInstance().teamName);
 			jsonObject.put("WorkItemExternalId_TeamUId",Baseclass.getInstance().TeamUId);
+			jsonObject.put("WorkItemExternalId_Requirement", Baseclass.getInstance().WorkItemExternalId_Requirement);
+			jsonObject.put("WorkItemExternalId_Milestone", Baseclass.getInstance().WorkItemExternalId_Milestone);
 			
 			if(!(Baseclass.getInstance().AIDT_ReleaseName==null || (Baseclass.getInstance().AIDT_SprintName==null))){
 			jsonObject_releaseandsprintdetails.put("WorkItemExternalId_ReleaseName",Baseclass.getInstance().AIDT_ReleaseName);
