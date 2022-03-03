@@ -5,7 +5,7 @@ Feature: TFSAgile_IB_Validation
 Scenario: TFSAgile_Task 
 
 	And i generate a token for "DevTest" environment 
-	Given i load the project properties file
+	Given i load the "TFS Agile" project properties file
 	And i verify the "Inbound" "Task" details for "TFS Agile" 
 	
 

@@ -76,36 +76,41 @@ public class DataLoader {
     		Random rndnumb = new Random();
     		int randomNumber = 10000 + rndnumb.nextInt(90000);
         
-		if(!entity.equalsIgnoreCase("Iteration") || entity.equalsIgnoreCase("Action")) {
+		if(!entity.equalsIgnoreCase("Iteration") || entity.equalsIgnoreCase("Action")) {			
 			sheet.getRow(1).getCell(0).setCellValue(workitemID);
 			sheet.getRow(1).getCell(2).setCellValue(title);
-			sheet.getRow(1).getCell(4).setCellValue(Project);
+			if(entity.equalsIgnoreCase("Bug")) {
+				
+			sheet.getRow(1).getCell(5).setCellValue(Project);
+			}
+			else {	
+				sheet.getRow(1).getCell(4).setCellValue(Project);
+			}
 			sheet.getRow(1).getCell(12).setCellValue(time);
         	if(entity.equalsIgnoreCase("Bug")) {
-        		sheet.getRow(1).getCell(39).setCellValue(Phase);
-        		sheet.getRow(1).getCell(40).setCellValue(WorkStream);            
-        		sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
-                        
+        		sheet.getRow(1).getCell(37).setCellValue(Phase);
+        		sheet.getRow(1).getCell(38).setCellValue(WorkStream);            
+        		sheet.getRow(1).getCell(7).setCellValue(Property.getProperty("Owner_TeamResouce"));
+       		       
         	}
         	else if(entity.equalsIgnoreCase("Action")) {
-        		sheet.getRow(1).getCell(29).setCellValue(Phase);
-        		sheet.getRow(1).getCell(30).setCellValue(WorkStream);
+        		sheet.getRow(1).getCell(20).setCellValue(Phase);
+        		sheet.getRow(1).getCell(21).setCellValue(WorkStream); 
            
         	}
         	else if(entity.equalsIgnoreCase("Risk")) {
-        		sheet.getRow(1).getCell(38).setCellValue(Phase);
-        		sheet.getRow(1).getCell(39).setCellValue(WorkStream);
+        		sheet.getRow(1).getCell(39).setCellValue(Phase);
+        		sheet.getRow(1).getCell(40).setCellValue(WorkStream);
         		sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
             
         	}
         	else if(entity.equals("Issue")) {
-        		sheet.getRow(1).getCell(30).setCellValue(Phase);
-        		sheet.getRow(1).getCell(31).setCellValue(WorkStream);
+        		sheet.getRow(1).getCell(31).setCellValue(Phase);
+        		sheet.getRow(1).getCell(32).setCellValue(WorkStream);
         		sheet.getRow(1).getCell(6).setCellValue(Property.getProperty("Owner_TeamResouce"));
-            
-        	
         	}
         	else if(entity.equalsIgnoreCase("Action")) {
+
 			sheet.getRow(1).getCell(0).setCellValue(workitemID);
 			sheet.getRow(1).getCell(2).setCellValue(title);
 			sheet.getRow(1).getCell(11).setCellValue(time);
@@ -125,16 +130,16 @@ public class DataLoader {
 				Baseclass.getInstance().release_IterationExternalID=String.valueOf(randomNumber);
 				sheet.getRow(1).getCell(0).setCellValue(Baseclass.getInstance().release_IterationExternalID);
 				sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
-				sheet.getRow(1).getCell(4).setCellValue(Project);
-				sheet.getRow(1).getCell(9).setCellValue(time);
-				sheet.getRow(1).getCell(13).setCellValue("Release");
+				sheet.getRow(1).getCell(5).setCellValue(Project);
+				sheet.getRow(1).getCell(11).setCellValue(time);
+				sheet.getRow(1).getCell(16).setCellValue("Release");
 	//Sprint			
 				Baseclass.getInstance().sprint_IterationExternalID=String.valueOf(randomNumber+1);
 				sheet.getRow(2).getCell(0).setCellValue(Baseclass.getInstance().sprint_IterationExternalID);
 				sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
-				sheet.getRow(2).getCell(4).setCellValue(Project);
-				sheet.getRow(2).getCell(9).setCellValue(time);
-				sheet.getRow(2).getCell(13).setCellValue("Sprint-DevelopmentSprint");
+				sheet.getRow(2).getCell(5).setCellValue(Project);
+				sheet.getRow(2).getCell(11).setCellValue(time);
+				sheet.getRow(2).getCell(16).setCellValue("Sprint-DevelopmentSprint");
 			
 	//Updaing Iteration Details In IterationexternalId Json
 				CommonFunctions.writeIterationExternalIDs(Baseclass.getInstance().release_IterationExternalID,Baseclass.getInstance().sprint_IterationExternalID,"ADTInstance");
@@ -171,9 +176,11 @@ public class DataLoader {
     		
     case "NoToolInstance":
     			
-    		if(!entity.equalsIgnoreCase("Iteration")) {
+    		if(!entity.equalsIgnoreCase("Iteration")) {      	
     			sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
-    			sheet.getRow(1).getCell(2).setCellValue(title);
+            	sheet.getRow(1).getCell(2).setCellValue(title);
+            	
+            	
 	//Updating Json file
     			FileReader reader1 = new FileReader(Entities_JSONFile);
     			JSONParser jsonParser1 = new JSONParser();
@@ -190,20 +197,20 @@ public class DataLoader {
     			sheet.getRow(1).getCell(0).setCellValue(String.valueOf(randomNumb));
     			Baseclass.getInstance().release_IterationExternalID=String.valueOf(randomNumb);
     			sheet.getRow(1).getCell(2).setCellValue("Release_AutomationData_GenericUploader");
-    			sheet.getRow(1).getCell(9).setCellValue(time);
-    			sheet.getRow(1).getCell(13).setCellValue("Release");
-    			sheet.getRow(1).getCell(14).setCellValue("Agile");
-    			sheet.getRow(1).getCell(15).setCellValue("Scrum");
+    			sheet.getRow(1).getCell(11).setCellValue(time);
+    			sheet.getRow(1).getCell(16).setCellValue("Release");
+    			sheet.getRow(1).getCell(17).setCellValue("Agile");
+    			sheet.getRow(1).getCell(18).setCellValue("Scrum");
 		
 	//Sprint	
     			sheet.getRow(2).getCell(0).setCellType(Cell.CELL_TYPE_NUMERIC);
     			sheet.getRow(2).getCell(0).setCellValue(String.valueOf(randomNumb+1));
     			Baseclass.getInstance().sprint_IterationExternalID=String.valueOf(randomNumb+1);
     			sheet.getRow(2).getCell(2).setCellValue("Sprint_AutomationData_GenericUploader");
-    			sheet.getRow(2).getCell(9).setCellValue(time);
-    			sheet.getRow(2).getCell(13).setCellValue("Sprint-DevelopmentSprint");
-    			sheet.getRow(2).getCell(14).setCellValue("Agile");
-    			sheet.getRow(2).getCell(15).setCellValue("Scrum");
+    			sheet.getRow(2).getCell(11).setCellValue(time);
+    			sheet.getRow(2).getCell(16).setCellValue("Sprint-DevelopmentSprint");
+    			sheet.getRow(2).getCell(17).setCellValue("Agile");
+    			sheet.getRow(2).getCell(18).setCellValue("Scrum");
     
     //Updating Iteration Details In IterationexternalId Json	
     			CommonFunctions.writeIterationExternalIDs(Baseclass.getInstance().release_IterationExternalID,Baseclass.getInstance().sprint_IterationExternalID,"NoToolInstance");
@@ -363,7 +370,7 @@ public class DataLoader {
 //			String[] entities_ADTJira_GenericUploader = {"Iteration"};
 			String[] entities_MyWizardInstanceGenericUploader = {"IterationForMyWizardInstance"};
 			String[] entities_NoToolInstance_GenericUploader = {"Epic","Feature","Task","Bug","Issue","Impediment","Risk","Action","Decision","Iteration"};
-//			String[] entities_NoToolInstance_GenericUploader = {"Decision"};
+//			String[] entities_NoToolInstance_GenericUploader = {"UserStory"};
 			ExcelToBePrepared = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "Excel"+  File.separator ;
 			if(toolname.equalsIgnoreCase("ADT Jira") && !dataload_type.equalsIgnoreCase("ADDataLoader"))
 					{
@@ -467,32 +474,40 @@ public class DataLoader {
 				SoftAssert sa = new SoftAssert();
 				String UploadanotherFile;
 				String Dataentity;
+				Dataentity = dataentity;
 				
-				//doing this split so that the right entity gets selected in the Entity dropdown
-				if(dataentity.contains("_")){
-				Dataentity = dataentity.split("_")[0];
-				UploadanotherFile = dataentity.split("_")[1];
-				}
-				else
-					Dataentity = dataentity;
-				
-			//for scenario Epic_WrongData, then deliberatly select wrong entity, i.e. feature
-				if(dataentity.contains("WrongData"))
+			//selection of entity
+				switch(dataentity) {
+				case "IterationForMyWizardInstance":
+					selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, "Iteration");
+					break;
+				case "Epic_WrongData":
 					selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, "Feature");
-				else if(!dataentity.equalsIgnoreCase("IterationForMyWizardInstance"))	
+					break;
+				case "Epic_InvalidTemplate":
+				case "Epic_BlankTemplate":
+				case "Epic_PartialSuccess":
+					selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, "Epic");
+					break;
+				default:
 					selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, dataentity);
-				else if(dataentity.equalsIgnoreCase("IterationForMyWizardInstance"))
-					selectByPartOfVisibleText(GenericUploaderUIMap.DataEntity_drpdown, "Iteration");	
-			
+					break;
 				
-				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				}
+					
+		//selecting Template and Upload		
+			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			singleClick(GenericUploaderUIMap.DataMappingTemplate_drpdown);
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			clickJS(GenericUploaderUIMap.DataMappingTemplateOption_drpdown);
 			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 			singleClick(GenericUploaderUIMap.Upload_Img);
 			ExpWaitForCondition(GenericUploaderUIMap.Upload_btn);
+			Thread.sleep(5000);
 			singleClick(GenericUploaderUIMap.SelectFile_btn);
+		
+			
+			//Picking up Excel File Location
 			String ExcelFileLoc="";
 			if(toolname.equalsIgnoreCase("ADT Jira"))
 			 ExcelFileLoc = System.getProperty("user.dir")+File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"DataLoader" + File.separator +"GenericUploader" + File.separator + "ADTJira"+ File.separator +"Excel"+ File.separator + dataentity+".xlsx";
@@ -502,56 +517,18 @@ public class DataLoader {
 			
 			String autoITExecutable = AutoITFileloc+"UploadFile_DataLoader.exe " +ExcelFileLoc;
 			Process process = Runtime.getRuntime().exec(autoITExecutable);
-			process.waitFor();
 			Thread.sleep(5000);
+			process.waitFor();
+			
 			clickJS(GenericUploaderUIMap.Upload_btn);
 		    Thread.sleep(120000);
-			clickJS(GenericUploaderUIMap.Refresh_btn);
-			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			
-			//This part of code is to validate the entity(no special case-only regression), uploading normal entity and check if flown or not. 
-			if(!dataentity.contains("_") || dataentity.contains("CustomTemplate")){
-			    if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Complete"))
-			    {
-			    	clickJS(GenericUploaderUIMap.Refresh_btn);
-			    	ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			    	Thread.sleep(60000);
-			    	if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Complete"))
-			    		{
-			    		clickJS(GenericUploaderUIMap.Refresh_btn);
-			    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			    		Thread.sleep(60000);
-			    		}
-			    	if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Complete"))
-			    			Assert.fail("The record for entity "+dataentity+" could not be uplaoded in generic uploader. waited for max(4mins). current status of upload is "+getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt));
-			    }
-			}
-			//special case - to upload excel with partial completing upload
-			else{
-				//validation for partially complete
-		    	if(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Partially Complete"))
-		    	{
-		    		logger.info("The data provided for entity "+dataentity+" is Partially Completed");
-		    		sa.assertTrue(true,"The data provided for entity "+dataentity+" is Partially Completed");
-		    	}
-		    
-		    	// //special case - to upload wrong excel. selecting wrong entity
-			    	if(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Failed"))
-			    	{
-			    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			    		doubleClick(GenericUploaderUIMap.Failed_txt);
-			    		Thread.sleep(2000);
-			    		clickJS(GenericUploaderUIMap.FailedTemplate_download);
-			    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			    		ReadLogFile_GenericUploader(dataentity);
-			    		 
-			    				
-			    		
-			    		logger.info("invalid/blank data for entity "+dataentity+" is provided for the given columns the template upload process is failed and the entity is not created");
-			    		sa.assertTrue(true,"invalid/blank data for entity "+dataentity+" is provided for the given columns the template upload process is failed and the entity is not created");
-			    	}
-			}
-
+		
+		    //checking status of upload
+		  
+		    if(dataentity.contains("Epic_InvalidTemplate")||dataentity.contains("Epic_BlankTemplate")||dataentity.contains("Epic_PartialSuccess")||dataentity.contains("Epic_WrongData")) 
+		    	CheckUploadStatus_NegativeScenarios(dataentity);
+		    else
+		    	 CheckUploadStatusInGenericUploader(dataentity);
 			}
 			catch(Exception e)
 			{
@@ -693,6 +670,7 @@ public class DataLoader {
 			singleClick(GenericUploaderUIMap.Upload_Img);
 			ExpWaitForCondition(GenericUploaderUIMap.Upload_btn);
 			singleClick(GenericUploaderUIMap.SelectFile_btn);
+			Thread.sleep(3500);
 			String ExcelFileLoc="";
 			ExcelFileLoc = System.getProperty("user.dir")+File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"DataLoader" + File.separator +"GenericUploader" + File.separator + "ADTJira"+ File.separator +"Excel"+ File.separator + dataentity+".xlsx";
 			String AutoITFileloc = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator +"AutoIT" + File.separator ;
@@ -702,26 +680,7 @@ public class DataLoader {
 			Thread.sleep(5000);
 			clickJS(GenericUploaderUIMap.Upload_btn);
 			Thread.sleep(120000);
-			clickJS(GenericUploaderUIMap.Refresh_btn);
-			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
-			{
-			clickJS(GenericUploaderUIMap.Refresh_btn);
-			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			Thread.sleep(60000);
-			if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
-			{
-			clickJS(GenericUploaderUIMap.Refresh_btn);
-			ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-			Thread.sleep(60000);
-			}
-			}
-			if(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Complete"))
-			{
-			logger.info("The data provided for entity "+dataentity+" is Successfully Uploaded");
-			sa.assertTrue(true,"The data provided for entity "+dataentity+" is Successfully Uploaded");
-
-			}
+			CheckUploadStatusInGenericUploader(dataentity);
 
 			sa.assertAll();
 
@@ -764,8 +723,8 @@ public class DataLoader {
 			private static void PrepareExcelFileForGenericUploaderwithAssociationsAndWriteEntityIDToJSON(String entity,String toolname) {
 			try{
 
-			String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "Jira" + File.separator + "JSON" + File.separator + "WorkItemExternalIDs.json";
-			String Excelfilepath="";
+				String Entities_JSONFile = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"NoTool" + File.separator +"JSON"+  File.separator + "GenericUploader.json" ;
+				String Excelfilepath="";
 			if(toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("myWizardInstance"))
 			Excelfilepath = System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" + File.separator + "DataLoader" + File.separator + "GenericUploader"+ File.separator +"ADTJira" + File.separator +"Excel"+ File.separator + entity+".xlsx" ;
 			else if(toolname.equalsIgnoreCase("NoToolInstance"))
@@ -870,5 +829,85 @@ public class DataLoader {
 			Assert.fail("Issue uploading entity in generic uploader");
 			}
 			}
+			public static void CheckUploadStatusInGenericUploader(String dataentity){
+				try {
+				clickJS(GenericUploaderUIMap.Refresh_btn);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				clickJS(GenericUploaderUIMap.Refresh_btn);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete")){
+					clickJS(GenericUploaderUIMap.Refresh_btn);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					Thread.sleep(60000);
+					if(!getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).equalsIgnoreCase("Complete"))
+					{
+					clickJS(GenericUploaderUIMap.Refresh_btn);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					Thread.sleep(60000);
+					}
+					}
+				
+				if(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Complete"))
+				{
+					logger.info("The data provided for entity "+dataentity+" is Successfully Uploaded");
+					
+
+				}
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+					Assert.fail("Issue in Uploading Entities");
+				}
+			}
+			public static void CheckUploadStatus_NegativeScenarios(String dataentity){
+				try {
+				clickJS(GenericUploaderUIMap.Refresh_btn);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				clickJS(GenericUploaderUIMap.Refresh_btn);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				
+					if(!(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Partially Complete")||getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Failed")))
+					{
+					clickJS(GenericUploaderUIMap.Refresh_btn);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					Thread.sleep(60000);
+					
+					if(!(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Partially Complete")||getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Failed")))
+					{
+					clickJS(GenericUploaderUIMap.Refresh_btn);
+					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+					Thread.sleep(60000);
+					}
+					}
+					switch(dataentity) {
+					case "Epic_PartialSuccess":
+						if(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Partially Complete"))
+							logger.info("The data provided for entity "+dataentity+" is Partially Completed");
+						break;
+						
+					default:
+						if(getText(GenericUploaderUIMap.StatusOfRecordUploaded_statictxt).contains("Failed"))
+				    	{
+				    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				    		doubleClick(GenericUploaderUIMap.Failed_txt);
+				    		Thread.sleep(2000);
+				    		clickJS(GenericUploaderUIMap.FailedTemplate_download);
+				    		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				    		ReadLogFile_GenericUploader(dataentity);
+				    		
+				    		logger.info("invalid/blank data for entity "+dataentity+" is provided for the given columns the template upload process is failed and the entity is not created");
+				    		
+				    	}
+						break;
+					}
+				
+				
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+					Assert.fail("Issue in Uploading Entities");
+				}
+			}
 	}
+
 

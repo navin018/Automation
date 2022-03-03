@@ -120,9 +120,9 @@ Scenario Outline: TFSScrum_RulesValidation
 		| applicationname |toolname|
 		| MyWizard        |TFS Scrum|
 		
-@5WorkItemCreation_TFSScrum		
+@5WorkItemCreation_TFSScrum1
 Scenario Outline: TFSScrum_WorkitemCcreation 
-Given i load the project properties file
+Given i load the "TFS Scrum" project properties file
 Given i login to application "<applicationname>"
     Then i select a Project for "<applicationname>"
     And i create a "<bug>" in TFS

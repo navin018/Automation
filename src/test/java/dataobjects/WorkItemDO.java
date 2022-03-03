@@ -13,7 +13,9 @@ public class WorkItemDO {
 	
 	public String Severity;
 	public String Priority;
-	
+	public String RequirementType;
+	public String MilestoneType;
+	public String Sponsor;
 
 	public String StoryPoints;
 	public String EpicName;

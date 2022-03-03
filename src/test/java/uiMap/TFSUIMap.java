@@ -213,4 +213,28 @@ public static By StageFound_frame=By.xpath("//label[text()='Stage Found']/follow
 public static By StageFound_drpdwn=By.xpath("//i[@style='display: inline-block;']/parent::div/following::div[1]");
 public static By BaselineMitigationPlanClose_drpdwn=By.xpath("//label[text()='Baseline Mitigation Plan Close']//following::input[1]");
 public static By AIDT_Projectname=By.xpath("//h1[text()='AIDT_ADO-DevART']");
+
+//AIDT
+
+    public static By MilestoneType_drpdwn=By.xpath("//input [@aria-label='Milestone Type']");
+    public static By RequirementType_drpdwn=By.xpath("//input[@aria-label='Requirement Type']");
+    public static By Sponsor_drpdwn=By.xpath("//label[text()='Sponsor']//following::span[1]");
+    public static By Sponsor_txtbox=By.xpath("//label[text()='Sponsor']//following::input[1]");
+    //Splunk
+    public static By Stack_text=By.xpath("//div[@id='app_product_logo']");
+    public static By ShowFilters_btn=By.xpath("//div[text()='Show Filters']");
+    public static By FilterTechnical_text=By.xpath("//span[text()='Filter Technical Details']");
+    public static By Environment_txtbox=By.xpath("//label[text()='Environment']//following::input[1]");
+    public static By DEVTEST_btn=By.xpath("//button[@value='DEV TEST (ART)']");
+    public static By Reload_btn=By.xpath("//label[text()='Reload']");
+    public static By Service_txtbox=By.xpath("//label[text()='Service']//following::input[1]");
+    public static By ServiceHealth_cell=By.xpath("//td[@type='Service Health']");
+    public static By ServiceInstalled_cell=By.xpath("//td[@type='Service Installed']");
+
+
+
+    public static By ServiceStatus_cell=By.xpath("//td[@type='Service Status']");
+    public static String RemoveServiceName_img="//div[text()='{ServiceName}']//following::span[1]";
+
+
 }

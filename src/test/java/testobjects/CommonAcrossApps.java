@@ -1256,4 +1256,40 @@ try{
 				Assert.fail("Issue logging into AIDT");
 				}
 	}
+
+
+	//Methods for Splunk
+	public static void LoginToSplunk()
+	{
+		try{
+//Incomplete
+			driver().get(Property.getProperty("https://aamonitoring.accenture.com/en-US/app/acn-stack-monitoring-suite/hostservice360_executive_overview"));
+
+
+
+			String parent=driver().getWindowHandle();
+			driver().switchTo().window(parent);
+
+			ExpWaitForCondition(TFSUIMap.signIn_txtbox);
+
+			enterText(TFSUIMap.signIn_txtbox,"");
+			click(TFSUIMap.Next_btn);
+			waitPageToLoad();
+			ExpWaitForCondition(TFSUIMap.Pwd_txtbox);
+			enterText(TFSUIMap.Pwd_txtbox,CommonFunctions.decrypt(Property.getProperty("")));
+			click(TFSUIMap.signIn_btn);
+			waitPageToLoad();
+			ExpWaitForCondition(TFSUIMap.Yes_btn);
+			clickJS(TFSUIMap.Yes_btn);;
+			ExpWaitForCondition(TFSUIMap.Stack_text);
+			System.out.println("login to Splunk successful");
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Could not login to Splunk");
+		}
+	}
+
 }

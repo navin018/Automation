@@ -78,14 +78,14 @@ public static By MywizChromeNotification_btn1 = By.xpath("//button[@class='btn b
 
 
 public static By selectmyquery = By.xpath("//span[text()='QueryToFetchIterationDetails_Automation']");
-public static By QueryValue_txtbox = By.xpath("//div[@comp-id='69']");
+//public static By QueryValue_txtbox = By.xpath("//div[@comp-id='69']");
 public static By runQuery_btn = By.xpath("//span[text()='Run Query']");
 
 public static By QueryRunSuccess_Msg = By.xpath("//div[@aria-label='The complete records have been fetched from data base. You can view /export to CSV.']");
 //public static By GetIterationExternalID_statictxt = By.xpath("//div[@row-id='0']/child::div[@col-id='IterationExternalId' and @role='gridcell'][1]");
 public static By GetIterationExternalID_statictxt = By.xpath("//div[@row-id='0']/child::div[contains(@col-id,'ExternalId') and @role='gridcell'][1]");
 public static By GetIterationExternalID_MoreThanoneRow_statictxt = By.xpath("//div[@row-id='1']/child::div[@col-id='IterationExternalId' and @role='gridcell'][1]");
-public static By QueryValueInput_txtbox = By.xpath("//input[@class='ag-cell-edit-input']");
+//public static By QueryValueInput_txtbox = By.xpath("//input[@class='ag-cell-edit-input']");
 public static By Search_txtbox = By.xpath("//input[@placeholder='Enter text to search the first 500 records']");
 
 public static By Save_btn = By.xpath("//button[@class='btn btn-primary' and text()='Save']");
@@ -103,4 +103,6 @@ public static By UserID_link = By.xpath("//span[@id='userDetail']");
 public static By SignOut_btn= By.xpath("//button[text()='Sign out']");
 public static String LogOutfromUser_txt = "//*[text()='{username}']";
 public static By SignOutSuccessful_msg= By.xpath("//div[contains(text(),'You have successfully signed out')]");
+    public static By QueryValueInput_txtbox = By.xpath("//input[@aria-label='Input Editor']");
+    public static By QueryValue_txtbox = By.xpath("//span[text()='Value']//following::div[@col-id='Value']");
 }

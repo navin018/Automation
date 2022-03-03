@@ -3,10 +3,7 @@ import static utilities.reporting.LogUtil.logger;
 
 import static utilities.selenium.SeleniumDSL.*;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
+import java.io.*;
 
 import utilities.general.Property;
 import utilities.selenium.Context;
@@ -72,6 +69,45 @@ public class CommonSteps {
 			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"AIDT.properties"),new File(propsPath+"project.properties"));
 		}
 		  
+	}
+
+	@Given("^i load the \"([^\"]*)\" project properties file$")
+	public void i_load_the_project_properties_file(String tooln) throws IOException {
+		// Write code here that turns the phrase above into concrete actions
+		//throw new PendingException();
+
+		String propsPath = System.getProperty("user.dir")+File.separator+"Properties"+File.separator;
+		String toolname = tooln;
+
+		if(toolname.trim().equalsIgnoreCase("TFS Agile")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"TFSAgile.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("ADT Jira")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADTJira.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("Rally")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"Rally.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("Cloud Jira")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"CloudJira.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("ADOP Jira")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"ADOPJira.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("TFS Scrum")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"TFSScrum.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("SAAS")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"SaaS.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("MSPS")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"MSPS.properties"),new File(propsPath+"project.properties"));
+		}
+		if(toolname.trim().equalsIgnoreCase("AIDT")){
+			CommonFunctions.copyFileContentFromOneFileToAnother(new File(propsPath+"AIDT.properties"),new File(propsPath+"project.properties"));
+		}
+
+
 	}
 	
 	@Given("^i capture the IterationExternalID for deleted Iteration created from \"([^\"]*)\" for tool \"([^\"]*)\"$")
@@ -334,6 +370,21 @@ public class CommonSteps {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Given("^I check all the required services are running for \"([^\"]*)\"$")
+	public void i_check_all_the_required_services_are_running_for(String Env) throws Throwable {
+
+		try{
+			CommonFunctions.checkoverallstatusofservices(Env);
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
+
 	}
 	
 	

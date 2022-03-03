@@ -120,9 +120,9 @@ Scenario Outline: TFSAgile_RulesValidation
 		| applicationname |toolname|
 		| MyWizard        |TFS Agile|
 		
-@5WorkItemCreation_TFSAgile		
+@5WorkItemCreation_TFSAgile1
 Scenario Outline: TFSAgile_WorkitemCreation 
-	Given i load the project properties file
+	Given i load the "TFS Agile" project properties file
 	Given i login to application "<applicationname>"
     Then i select a Project for "<applicationname>"
     And i create a "<bug>" in TFS

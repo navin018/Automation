@@ -1,5 +1,8 @@
 package testobjects;
 import static org.testng.Assert.assertEquals;
+import static testobjects.RallyWorkitem.CaptureWorkitemID;
+import static testobjects.TFSWorkitem.EnterDataInTheField;
+import static testobjects.TFSWorkitem.GoToWorkitemURL;
 import static utilities.reporting.LogUtil.logger;
 import static utilities.selenium.SeleniumDSL.*;
 
@@ -73,8 +76,7 @@ import utilities.general.Property;
 				}
 			
 		
-		public static void EnterWorkItemDetails(String workitem,String workitemURL , WorkItemDO wi )
-		{
+		/*public static void EnterWorkItemDetails(String workitem,String workitemURL , WorkItemDO wi ) throws InterruptedException {
 			try{ 
 				waitPageToLoad();
 				if(CheckIfElementExists(TFSUIMap.title_txtbox))
@@ -108,6 +110,33 @@ import utilities.general.Property;
 					Thread.sleep(2000);
 					sendEntr();
 				}
+
+				//MilestoneType
+				if(!wi.MilestoneType.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.MilestoneType,TFSUIMap.MilestoneType_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+
+				}
+//RequirementType
+				if(!wi.RequirementType.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.RequirementType,TFSUIMap.RequirementType_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+
+				}
+//Sponsor
+				if(!wi.Sponsor.equalsIgnoreCase("NA"))
+				{
+					singleClick(TFSUIMap.Sponsor_drpdwn);
+					ExpWaitForCondition(TFSUIMap.Sponsor_txtbox);
+					Thread.sleep(2000);
+					enterText(TFSUIMap.Sponsor_txtbox, wi.Sponsor);
+// EnterDataInTheField(wi.Sponsor,TFSUIMap.Sponsor_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
 				
 				// BaselineMitigationPlanClose
 				if(!wi.BaselineMitigationPlanClose.equalsIgnoreCase("NA")) 
@@ -292,12 +321,288 @@ import utilities.general.Property;
 				
 				
 			}
+			*//*catch(Exception e)
+			{
+				e.printStackTrace();
+				logger.info("issue entering workitem details for workitem "+workitem);
+			}*//*
+*/
+
+		public static void EnterWorkItemDetails(String workitem,String workitemURL , WorkItemDO wi )
+		{
+			try{
+				waitPageToLoad();
+				if(CheckIfElementExists(TFSUIMap.title_txtbox))
+				{
+					ExpWaitForCondition(TFSUIMap.title_txtbox);
+					enterText(TFSUIMap.title_txtbox,wi.Summary);
+					Thread.sleep(2000);
+				}
+				else if(CheckIfElementExists(TFSUIMap.title_txtbox))
+				{
+					Thread.sleep(5000);
+					ExpWaitForCondition(TFSUIMap.title_txtbox);
+					enterText(TFSUIMap.title_txtbox,wi.Summary);
+					Thread.sleep(2000);
+				}
+				else
+				{
+					driver().get(workitemURL);
+					Thread.sleep(5000);
+				}
+				if(!CheckIfElementExists(TFSUIMap.title_txtbox))
+				{
+					logger.info("page not loading for workitem "+workitem);
+				}
+				waitPageToLoad();
+
+// Risk Category
+				if(!wi.RiskCategory.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.RiskCategory,TFSUIMap.RiskCategory_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+
+// BaselineMitigationPlanClose
+				if(!wi.BaselineMitigationPlanClose.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.BaselineMitigationPlanClose,TFSUIMap.BaselineMitigationPlanClose_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+
+//Priority
+				if(!wi.Priority.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.Priority,TFSUIMap.Priority_drpdown);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+
+
+
+//DecisionType
+				if(!wi.DecisionType.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.DecisionType,TFSUIMap.DecisionType_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+
+// Description
+				if(!wi.Description.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.Description,TFSUIMap.Description_txt);
+					Thread.sleep(2000);
+				}
+//Probability
+				if(!wi.Probability.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.Probability,TFSUIMap.Probability_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//Owner
+				if(!wi.Owner.equalsIgnoreCase("NA"))
+				{
+					singleClick(TFSUIMap.Owner_drpdwn);
+					ExpWaitForCondition(TFSUIMap.Owner_txtbox);
+					EnterDataInTheField(wi.Owner,TFSUIMap.Owner_txtbox);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//RetroSteps
+				if(!wi.RetroStep.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.RetroStep,TFSUIMap.RetroStep_txtbox);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//testtype
+				if(!wi.TestType.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.TestType,TFSUIMap.TestType_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+// DeliverableType
+				if(!wi.DeliverableType.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.DeliverableType,TFSUIMap.Deliverabletype_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//IssueCategory
+				if(!wi.IssueCategory.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.IssueCategory,TFSUIMap.IssueCategory_drpdwm);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+// Impact
+				if(!wi.Impact.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.Impact,TFSUIMap.Impact_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//escalate
+				if(!wi.Escalate.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.Escalate,TFSUIMap.Escalate_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//ActionCategory
+				if(!wi.ActionCategory.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.ActionCategory,TFSUIMap.ActionCategory_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//contractual
+				if(!wi.Contractual.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.Contractual,TFSUIMap.Contractual_drpdwm);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+// BaselineStart
+				if(!wi.BaselineStart.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.BaselineStart,TFSUIMap.BaselineStart_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//BaselineDraftClose
+				if(!wi.BaselineDraftClose.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.BaselineDraftClose,TFSUIMap.BaselineDraftClose);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//BaselineReviewClose
+				if(!wi.BaselineReviewClose.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.BaselineReviewClose,TFSUIMap.BaselineReviewClose_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+				}
+//BaselineClose
+				if(!wi.BaselineClose.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.BaselineClose,TFSUIMap.BaselineClose_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+
+				}
+//MilestoneType
+				if(!wi.MilestoneType.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.MilestoneType,TFSUIMap.MilestoneType_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+
+				}
+//RequirementType
+				if(!wi.RequirementType.equalsIgnoreCase("NA"))
+				{
+					EnterDataInTheField(wi.RequirementType,TFSUIMap.RequirementType_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+
+				}
+//Sponsor
+				if(!wi.Sponsor.equalsIgnoreCase("NA"))
+				{
+					singleClick(TFSUIMap.Sponsor_drpdwn);
+					ExpWaitForCondition(TFSUIMap.Sponsor_txtbox);
+					Thread.sleep(2000);
+					enterText(TFSUIMap.Sponsor_txtbox, wi.Sponsor);
+// EnterDataInTheField(wi.Sponsor,TFSUIMap.Sponsor_drpdwn);
+					Thread.sleep(2000);
+					sendEntr();
+
+				}
+
+// Stage Found
+				if(!wi.StageFound.equalsIgnoreCase("NA"))
+				{
+
+					switchFrame(TFSUIMap.Iframe);
+					Thread.sleep(4000);
+					singleClick(TFSUIMap.StageFound_drpdwn);
+					sendPageDownKey();
+					switchDefault();
+
+
+				}
+
+
+// team
+				if(!wi.TeamArea.equalsIgnoreCase("NA"))
+				{
+
+
+
+
+					clickJS(TFSUIMap.TeamArea_label);
+					Thread.sleep(2000);
+					enterText(TFSUIMap.TeamArea_label1,Property.getProperty("TFSProject")+"\\"+wi.TeamArea);
+					Thread.sleep(2000);
+					sendEntr();
+
+
+
+
+				}
+
+// Release and Sprint
+				try{
+					switch(wi.Release){
+						case("NA"):
+//do nothing
+							break;
+						case("None"):
+							clickJS(TFSUIMap.Iteration_label);
+							Thread.sleep(4000);
+							enterText(TFSUIMap.IterationName1_txtbox,Property.getProperty("TFSProject"));
+// clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.IterationValue_drpdown, Property.getProperty("TFSProject"), "projectname"));
+							break;
+						case("PickFromBaseclass"):
+							clickJS(TFSUIMap.Iteration_label);
+							Thread.sleep(2000);
+							String ReleasePlusSprintName = Property.getProperty("TFSProject")+"\\"+Baseclass.getInstance().AIDT_ReleaseName+"\\"+Baseclass.getInstance().AIDT_SprintName;
+							enterText(TFSUIMap.IterationName1_txtbox,ReleasePlusSprintName);
+							sendEntr();
+							break;
+						default:
+							clickJS(TFSUIMap.Iteration_label);
+							String IterationDetails = Property.getProperty("TFS Scrum_Client-Native")+"\\"+wi.Release+"\\"+wi.Sprint;
+							enterText(TFSUIMap.IterationName1_txtbox, IterationDetails);
+							sendEntr();
+							break;
+					}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					logger.info("issue tagging release/sprint for the workitem");
+				}
+				Thread.sleep(2000);
+				singleClick(TFSUIMap.save_btn);
+				waitPageToLoad();
+				Thread.sleep(5000);
+
+
+			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
 				logger.info("issue entering workitem details for workitem "+workitem);
 			}
-			}
+		}
 
 		private static void CaptureWorkitemID(String workitem) {
 			try {

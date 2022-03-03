@@ -16,8 +16,9 @@ import cucumber.api.junit.Cucumber;
 		"classpath:features"
 
 },
-//tags = {"@2WorkItemCreation_TFSScrum_PrecomputationEngineFunctionality_RAG"},	
-tags = {"@5WorkItemCreation_TFSAgile"},
+//tags = {"@6IBValidation_TFSAgile"},
+		//tags = {"@5WorkItemCreation_TFSAgile"},
+tags = {"@5WorkItemCreation_TFSScrum,@5WorkItemCreation_TFSAgile"},
 
 	
 

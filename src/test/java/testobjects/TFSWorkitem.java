@@ -986,7 +986,7 @@ import utilities.general.Property;
 				logger.info("issue entering workitem details for workitem "+workitem);
 			}
 		}
-		private static void EnterDataInTheField(String datatobeentered, By field) {
+		public static void EnterDataInTheField(String datatobeentered, By field) {
 			try{
 				
 				if(CheckIfElementExists(field)){

@@ -29,6 +29,7 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import uiMap.MyWizardUIMap;
+import uiMap.TFSUIMap;
 import uiMap.myQueriesUIMap;
 import utilities.general.DataManager;
 import utilities.general.Property;
@@ -515,9 +516,58 @@ public class CommonFunctions {
 			
 		}
 
-	
-	
-	
-	
-		
-	}
+
+    public static void checkoverallstatusofservices(String env) {
+
+		try {
+			CommonAcrossApps.LoginToSplunk();
+//selecting DEVTEST Env
+			ExpWaitForCondition(TFSUIMap.ShowFilters_btn);
+			waitPageToLoad();
+			Thread.sleep(10000);
+			clickJS(TFSUIMap.ShowFilters_btn);
+			ExpWaitForCondition(TFSUIMap.FilterTechnical_text);
+			clickJS(TFSUIMap.Environment_txtbox);
+			Thread.sleep(2000);
+			clickJS(TFSUIMap.DEVTEST_btn);
+			Thread.sleep(7000);
+			sendEsc();
+			clickJS(TFSUIMap.Reload_btn);
+			Thread.sleep(7000);
+			String Services_tobechecked[]= {"myWizard.ENS.EventEngineService.service","myWizard.ENS.EventNotifierRetryService.service","myWizard.ENS.EventNotifierService.service","myWizard.ProcessEntityService.service","myWizard.GatewayManager.EngineInboundService-10.service","myWizard.GatewayManager.EngineOutboundService-10.service","myWizard.GatewayManager.SchedulerService.service","myWizard.WebAPI.service"};
+			for(int i=0;i<Services_tobechecked.length;i++) {
+				ExpWaitForCondition(TFSUIMap.Service_txtbox);
+				clickJS(TFSUIMap.Service_txtbox);
+				enterText(TFSUIMap.Service_txtbox,Services_tobechecked[i]);
+				sendEntr();
+				Thread.sleep(3000);
+				sendEsc();
+				SoftAssert sa = new SoftAssert();
+				if(!getText(TFSUIMap.ServiceHealth_cell).contains("Available")) {
+					sa.fail("Service is Unavailable for "+ Services_tobechecked[i]);
+
+					if(!getText(TFSUIMap.ServiceInstalled_cell).contains("Service installed")) {
+						sa.fail("Service is not installed for "+ Services_tobechecked[i]);
+					}
+					if(!getText(TFSUIMap.ServiceStatus_cell).contains("Running")) {
+						sa.fail("Service is not installed for "+ Services_tobechecked[i]);
+					}
+
+				}
+				else {
+					logger.info(Services_tobechecked[i] +" is Available/Service Installed/Running");
+				}
+
+				clickJS(prepareWebElementWithDynamicXpath(TFSUIMap.RemoveServiceName_img, Services_tobechecked[i],"ServiceName"));
+				Thread.sleep(2000);
+
+
+			}
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			logger.info("Issue in verifying the status of Service in Splunk");
+			Assert.fail("Issue in verifying the status of Service in Splunk");
+		}
+    }
+}
