@@ -119,7 +119,7 @@ Scenario Outline: ADOPJira_RulesValidation
 		| applicationname |toolname|
 		| MyWizard        |ADOP JIRA|
 		
-@5WorkItemCreation_ADOPJira		
+@5WorkItemCreation_ADOPJira1
 Scenario Outline: ADOPJira_WorkitemCcreation 
 Given i load the project properties file 
 Given i login to application "<applicationname>"

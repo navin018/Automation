@@ -207,26 +207,39 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 				+ "resources" + File.separator + "testdata" + File.separator;
 		
 		String testDataPath_WorkItemExternalIDs="";
-		if((toolname.equalsIgnoreCase("ADT Jira") || toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("Jira") || toolname.contains("JIRA")))
+		if((toolname.equalsIgnoreCase("ADT Jira") || toolname.contains("ADT")))
 		{
-			testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			testDataPath_WorkItemExternalIDs = testDataPath + "ADTJira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+		}
+		if((toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("ADOP")))
+		{
+			testDataPath_WorkItemExternalIDs = testDataPath + "ADOPJira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+		}
+		if((toolname.equalsIgnoreCase("AIDT") || toolname.contains("AIDT")))
+		{
+			testDataPath_WorkItemExternalIDs = testDataPath + "AIDT" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+		}
+		if((toolname.equalsIgnoreCase("Cloud Jira") || toolname.contains("Cloud")))
+		{
+			testDataPath_WorkItemExternalIDs = testDataPath + "CloudJira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 		}
 		if((toolname.equalsIgnoreCase("Rally")))
 		{
 			testDataPath_WorkItemExternalIDs = testDataPath + "Rally" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 		}
-		else if((toolname.equalsIgnoreCase("TFS Agile") || toolname.equalsIgnoreCase("TFS Scrum") || toolname.contains("TFS")))
+		else if((toolname.equalsIgnoreCase("TFS Agile") ||  toolname.contains("Agile")))
 		{
-			testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			testDataPath_WorkItemExternalIDs = testDataPath + "TFSAgile" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+		}
+		else if((toolname.equalsIgnoreCase("TFS Scrum") ||  toolname.contains("Scrum")))
+		{
+			testDataPath_WorkItemExternalIDs = testDataPath + "TFSScrum" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 		}
 		else if(toolname.equalsIgnoreCase("MSPS"))
 		{
 			testDataPath_WorkItemExternalIDs = testDataPath + "MSPS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
 		}
-		else if(toolname.equalsIgnoreCase("AIDT"))
-		{
-			testDataPath_WorkItemExternalIDs = testDataPath + "AIDT" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
-		}
+
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(new FileReader(testDataPath_WorkItemExternalIDs));
 		JSONObject jsonObject = (JSONObject) obj;

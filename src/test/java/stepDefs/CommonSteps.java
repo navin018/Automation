@@ -246,9 +246,24 @@ public class CommonSteps {
 		CommonAcrossApps.UpdateWorkItemExternalIDsForApps(appname);
 		
 		
-		}	
-	
-//	And i update the Entity ID for "" into JSON file for "<applicationname>"
+		}
+
+	/*@And("^i update the WorkItemExternalIDs into a JSON file for \"([^\"]*)\" new$")
+	public void i_update_the_WorkItemExternalIDs_into_a_JSON_file_for_new(String appname) throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		//throw new PendingException();
+		CommonAcrossApps.UpdateWorkItemExternalIDsForAppsNew(appname);
+	}*/
+
+
+	@And("^i update the WorkItemExternalIDs into a New JSON file for \"([^\"]*)\"$")
+	public void i_update_the_WorkItemExternalIDs_into_a_New_JSON_file_for(String appname) throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		//throw new PendingException();
+		CommonAcrossApps.UpdateWorkItemExternalIDsForAppsNew(appname);
+	}
+
+	//	And i update the Entity ID for "" into JSON file for "<applicationname>"
 	@And("^i update the Entity ID for \"([^\"]*)\" into JSON file for \"([^\"]*)\"$")
 	public void iUpdateSpecificEntityIDs(String entity, String appname) throws Throwable {
 		
