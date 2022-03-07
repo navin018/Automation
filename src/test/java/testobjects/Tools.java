@@ -209,23 +209,23 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 		String testDataPath_WorkItemExternalIDs="";
 		if((toolname.equalsIgnoreCase("ADT Jira") || toolname.contains("ADT")))
 		{
-			testDataPath_WorkItemExternalIDs = testDataPath + "ADTJira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			testDataPath_WorkItemExternalIDs = testDataPath + "ADTJira" + File.separator + "WorkItemExternalIDs.json" ;
 		}
 		if((toolname.equalsIgnoreCase("ADOP Jira") || toolname.contains("ADOP")))
 		{
-			testDataPath_WorkItemExternalIDs = testDataPath + "ADOPJira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			testDataPath_WorkItemExternalIDs = testDataPath + "ADOPJira" +  File.separator + "WorkItemExternalIDs.json" ;
 		}
 		if((toolname.equalsIgnoreCase("AIDT") || toolname.contains("AIDT")))
 		{
-			testDataPath_WorkItemExternalIDs = testDataPath + "AIDT" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			testDataPath_WorkItemExternalIDs = testDataPath + "AIDT" + File.separator + "AIDT" + File.separator + "WorkItemExternalIDs.json" ;
 		}
 		if((toolname.equalsIgnoreCase("Cloud Jira") || toolname.contains("Cloud")))
 		{
-			testDataPath_WorkItemExternalIDs = testDataPath + "CloudJira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			testDataPath_WorkItemExternalIDs = testDataPath + "CloudJira" + File.separator + "WorkItemExternalIDs.json" ;
 		}
 		if((toolname.equalsIgnoreCase("Rally")))
 		{
-			testDataPath_WorkItemExternalIDs = testDataPath + "Rally" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs.json" ;
+			testDataPath_WorkItemExternalIDs = testDataPath + "Rally" + File.separator + "JSON" + File.separator + "WorkItemExternalIDs.json" ;
 		}
 		else if((toolname.equalsIgnoreCase("TFS Agile") ||  toolname.contains("Agile")))
 		{
