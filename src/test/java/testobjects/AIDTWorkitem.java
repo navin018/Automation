@@ -56,7 +56,7 @@ import utilities.general.Property;
 		
 		public static String testDataPath = System.getProperty("user.dir")
 				+ File.separator + "src" + File.separator + "test" + File.separator
-				+ "resources" + File.separator + "testdata" + File.separator + "AIDT" + File.separator ;
+				+ "resources" + File.separator + "testdata" + File.separator + "AIDT" + File.separator + "JSON" + File.separator ;
 
 		public static void CreateWorkitem(String workitem, String toolname) throws IOException {
 
