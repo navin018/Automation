@@ -557,7 +557,7 @@ Assert.fail("could not write workitem IDs for "+appname );
 			else if((appname.contains("AIDT")||(appname.contains("MSPS")||(appname.contains("Rally"))))) {
 				WorkItemEx_FileLoc = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
-						+ "resources" + File.separator + "testdata" + File.separator + appname + File.separator + "WorkItemExternalIDs.json";
+						+ "resources" + File.separator + "testdata" + File.separator + appname + File.separator + "JSON" + File.separator + "WorkItemExternalIDs.json";
 
 				WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
