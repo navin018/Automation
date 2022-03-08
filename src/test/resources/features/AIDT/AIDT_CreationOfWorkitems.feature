@@ -3,7 +3,7 @@ Feature: PhoenixUI_AIDTUI
 
 @1WorkItemCreation_AIDT	
 Scenario Outline: ADIT_WorkitemCreation 
-	Given i load the project properties file
+	Given i load the "AIDT" project properties file
 	Given i login to application "<applicationname>"
 	 And i create "<Release>" and "<Sprint>" in "AIDT"
     And i create a "<bug>" in "AIDT"
@@ -22,7 +22,7 @@ Scenario Outline: ADIT_WorkitemCreation
   #And i create "<Release>" and "<Sprint>" in "AIDT"
 #    And i create a "Team" in "AIDT"
 # 	
-    And i update the WorkItemExternalIDs into a JSON file for "<applicationname>"
+    And i update the WorkItemExternalIDs into a New JSON file for "<applicationname>"
 #	And i put a explicit wait of "900000" 
 #	And i generate a token for "DevTest" environment 
 	

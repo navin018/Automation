@@ -217,7 +217,7 @@ public static String getWorkItemExternalID(String workitem, String toolname){
 		}
 		if((toolname.equalsIgnoreCase("AIDT") || toolname.contains("AIDT")))
 		{
-			testDataPath_WorkItemExternalIDs = testDataPath + "AIDT" + File.separator + "AIDT" + File.separator + "WorkItemExternalIDs.json" ;
+			testDataPath_WorkItemExternalIDs = testDataPath + "AIDT" +  File.separator + "WorkItemExternalIDs.json" ;
 		}
 		if((toolname.equalsIgnoreCase("Cloud Jira") || toolname.contains("Cloud")))
 		{

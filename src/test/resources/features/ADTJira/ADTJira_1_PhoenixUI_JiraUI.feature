@@ -122,7 +122,7 @@ Scenario Outline: ADTJIRA_RulesValidationInUI
 		
 @5WorkItemCreation_ADTJira		
 Scenario Outline: ADTJIRA_WorkitemCreationInUI
-	Given i load the project properties file 
+	Given i load the "ADTJira" project properties file
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
 	And i create a "<epic>" in Jira 
@@ -146,7 +146,7 @@ Scenario Outline: ADTJIRA_WorkitemCreationInUI
 	And i create an "<Release>" in Jira 
 	And i create an "<Sprint>" in Jira 
 #	And i create an "<Team>" in Jira 
-	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" 
+	And i update the WorkItemExternalIDs into a New JSON file for "<applicationname>"
 	And i check the overall status of workitem creation for "<applicationname>"
 	And i put a explicit wait of "900000" 
 	And i generate a token for "DevTest" environment 
@@ -154,6 +154,6 @@ Scenario Outline: ADTJIRA_WorkitemCreationInUI
 	
 	Examples: 
 		| applicationname | task    | story    | risk    |Requirement| Test|issue    | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    |Team|milestone|TestExecution|Action|TestForTestExec|WorkRequest|Decision|
-		| Jira            | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|Test Execution_01|Action_01|TestForTestExec_01|Work Request_01|Decision_01|
+		| ADTJira            | Task_01 | Story_01 | Risk_01 | Requirement_01| Test_01|Issue_01 | Bug_01 | Feature_01 | Impediment_01 | Deliverable_01 | Epic_01 | SubTask_01 | Release_01 | Sprint_01 |Team_01|Milestone_01|Test Execution_01|Action_01|TestForTestExec_01|Work Request_01|Decision_01|
 
 

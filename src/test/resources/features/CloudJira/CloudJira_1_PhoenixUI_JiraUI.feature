@@ -122,7 +122,7 @@ Scenario Outline: CloudJira_RulesValidation
 		
 @5WorkItemCreation_CloudJira		
 Scenario Outline: CloudJira_WorkitemCcreation 
-	Given i load the project properties file 
+	Given i load the "Cloud Jira" project properties file
 	Given i login to application "<applicationname>" 
 	Then i select a Project for "<applicationname>" 
 	And i create a "<task>" in CloudJira 
@@ -131,7 +131,7 @@ Scenario Outline: CloudJira_WorkitemCcreation
 	And i create a "<epic>" in CloudJira 
 	And i create an "<Release>" in Jira 
 	And i create an "<Sprint>" in Jira 
-	And i update the WorkItemExternalIDs into a JSON file for "<applicationname>" 
+	And i update the WorkItemExternalIDs into a New JSON file for "<applicationname>"
 	And i check the overall status of workitem creation for "<applicationname>" 
 	And i put a explicit wait of "900000" 
 	And i generate a token for "DevTest" environment 
