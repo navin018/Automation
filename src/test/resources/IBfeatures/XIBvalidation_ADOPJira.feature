@@ -1,5 +1,5 @@
 @IBvalidation
-Feature: ADOPJira_IB_Validation
+Feature: XIBvalidation_ADOPJira
 
 
   Scenario: ADOPJIRA_Task

@@ -1,5 +1,6 @@
 @IBvalidation
-Feature: PhoenixUI_TFSAgileUI1
+Feature: Workitem_TFSAgile
+
 Scenario Outline: TFSAgile_WorkitemCreation
 Given i load the "TFS Agile" project properties file
 Given i login to application "<applicationname>"

@@ -1,5 +1,5 @@
 @IBvalidation
-Feature: PhoenixUI_ADOPJiraUI1
+Feature: Workitem_ADOPJira
 
 
   Scenario Outline: ADOPJira_WorkitemCcreation

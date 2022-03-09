@@ -1,5 +1,5 @@
 @IBvalidation
-Feature: TFSAgile_IB_Validation
+Feature: XIBvalidation_TFSAgile
 
 
   Scenario: TFSAgile_Task

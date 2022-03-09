@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(features={
 //"classpath:features/SecurityTests/SecurityTest.feature",
-		"classpath:features"
+		"classpath:IBfeatures"
 
 },
 
