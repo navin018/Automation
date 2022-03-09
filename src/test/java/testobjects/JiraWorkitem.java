@@ -584,7 +584,7 @@ import java.util.Random;
 							else if(Property.getProperty("JiraURL").contains("uat.alm.accenture.com")){
 								clickJS(JiraUIMap.BacklogIcon_Img);
 								Thread.sleep(10000);
-								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
+//								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
 								ScrollIntoView(JiraUIMap.CreateSprint_btn);
 								clickJS(JiraUIMap.CreateSprint_btn);
 								Thread.sleep(2000);

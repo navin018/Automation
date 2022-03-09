@@ -3,7 +3,7 @@ Feature: ADTJira_IB_Validation
 
 
 Scenario: ADTJIRA_Task 
-	Given i load the project properties file 
+	Given i load the "ADT Jira" project properties file 
 	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "ADT JIRA"
 	

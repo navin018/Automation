@@ -3,7 +3,7 @@ Feature: CloudJira_IB_Validation
 
 
 Scenario: CloudJIRA_Task 
-	Given i load the project properties file 
+	Given i load the "Cloud Jira" project properties file 
 	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "Cloud JIRA"
 	

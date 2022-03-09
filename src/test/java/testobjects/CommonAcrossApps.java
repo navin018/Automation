@@ -521,20 +521,20 @@ Assert.fail("could not write workitem IDs for "+appname );
 			else if(appname.contains("ADT")) {
 				WorkItemEx_FileLoc = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
-						+ "resources" + File.separator + "testdata" + File.separator + "ADTJira" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs.json";
+						+ "resources" + File.separator + "testdata" + File.separator + "ADTJira" + File.separator + "WorkItemExternalIDs.json";
 
 				WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
-						+ "resources" + File.separator + "testdata" + File.separator + "ADTJira" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
+						+ "resources" + File.separator + "testdata" + File.separator + "ADTJira" + File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
 			}
 			else if(appname.contains("Cloud")) {
 				WorkItemEx_FileLoc = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
-						+ "resources" + File.separator + "testdata" + File.separator + "CloudJira" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs.json";
+						+ "resources" + File.separator + "testdata" + File.separator + "CloudJira" + File.separator + "WorkItemExternalIDs.json";
 
 				WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
-						+ "resources" + File.separator + "testdata" + File.separator + "CloudJira" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
+						+ "resources" + File.separator + "testdata" + File.separator + "CloudJira" + File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
 			}
             else if(appname.contains("Agile")) {
                 WorkItemEx_FileLoc = System.getProperty("user.dir")
@@ -561,7 +561,7 @@ Assert.fail("could not write workitem IDs for "+appname );
 
 				WorkItemEx_FileLoc_ReleaseSprint = System.getProperty("user.dir")
 						+ File.separator + "src" + File.separator + "test" + File.separator
-						+ "resources" + File.separator + "testdata" + File.separator + appname + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
+						+ "resources" + File.separator + "testdata" + File.separator + appname + File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
 			}
 
 
@@ -570,7 +570,8 @@ Assert.fail("could not write workitem IDs for "+appname );
 
 			switch(appname)
 			{
-				case("Jira"):
+				case("ADT Jira"):
+					
 				case("Cloud Jira"):
 					jsonObject.put("WorkItemExternalId_Task", Baseclass.getInstance().WorkItemExternalId_Task);
 					jsonObject.put("WorkItemExternalId_Story", Baseclass.getInstance().WorkItemExternalId_Story);

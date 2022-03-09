@@ -16,11 +16,13 @@ import cucumber.api.junit.Cucumber;
 		"classpath:features"
 
 },
-//tags = {"@6IBValidation_TFSAgile"},
-		tags = {"@1WorkItemCreation_AIDT"},
-		//new changes
-		//tags = {"@5WorkItemCreation_ADOPJira11"},
-//tags = {"@5WorkItemCreation_TFSScrum,@5WorkItemCreation_TFSAgile,@5WorkItemCreation_ADOPJira"},
+
+	
+//tags = {"@6IBValidation_TFSScrum,@6IBValidation_CloudJira"},
+	//	@5WorkItemCreation_ADOPJira
+//tags= {"@6IBValidation_CloudJira"},
+		tags= {"@5WorkItemCreation_ADTJira"},
+
 
 	
 

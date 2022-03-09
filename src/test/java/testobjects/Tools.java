@@ -515,11 +515,20 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 public static HashMap<String, String> getReleaseAndSprintDetails(String toolname) {
 	try{
 		String testDataPath_WorkItemExternalIDs="";
-		if(toolname.contains("Jira") || toolname.contains("JIRA")){
-			testDataPath_WorkItemExternalIDs = testDataPath + "Jira" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json" ;
+		if(toolname.contains("ADOP") || toolname.contains("Adop")){
+			testDataPath_WorkItemExternalIDs = testDataPath + "ADOPJira" + File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
 		}
-		else if(toolname.contains("TFS") || toolname.contains("Tfs")){
-			testDataPath_WorkItemExternalIDs = testDataPath + "TFS" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json" ;
+		else if(toolname.contains("ADT") || toolname.contains("Adt")){
+			testDataPath_WorkItemExternalIDs = testDataPath + "ADTJira" + File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
+		}
+		else if(toolname.contains("Cloud") || toolname.contains("CLOUD")){
+			testDataPath_WorkItemExternalIDs = testDataPath + "CloudJira" + File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json";
+		}
+		else if(toolname.contains("Scrum") || toolname.contains("SCRUM")){
+			testDataPath_WorkItemExternalIDs = testDataPath + "TFSScrum" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json" ;
+		}
+		else if(toolname.contains("Agile") || toolname.contains("AGILE")){
+			testDataPath_WorkItemExternalIDs = testDataPath + "TFSAgile" + File.separator + "JSON"+ File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json" ;
 		}
 		else if(toolname.contains("AIDT") || toolname.contains("Aidt")){
 			testDataPath_WorkItemExternalIDs = testDataPath + "AIDT" + File.separator + "JSON" +  File.separator + "WorkItemExternalIDs_ReleaseAndSprint.json" ;

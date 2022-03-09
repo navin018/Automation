@@ -3,7 +3,7 @@ Feature: TFSScrum_IB_Validation
 
 
 Scenario: TFSScrum_Task 
-Given i load the project properties file
+    Given i load the "TFS Scrum" project properties file
 	And i generate a token for "DevTest" environment 
 	And i verify the "Inbound" "Task" details for "TFS Scrum" 
 	

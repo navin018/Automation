@@ -3,6 +3,7 @@ Feature: ADOPJira_IB_Validation
 
 
 Scenario: ADOPJIRA_Task 
+    Given i load the "ADOP Jira" project properties file
 	And i generate a token for "DevTest" environment 
 	
 	And i verify the "Inbound" "Task" details for "ADOP JIRA" 
@@ -48,9 +49,9 @@ Scenario: ADOPJIRA_Test
 Scenario: ADOPJIRA_TestExecution 
 	
 	And i verify the "Inbound" "Test Execution" details for "ADOP JIRA"
-
+@wdrwf
 Scenario Outline: ADOPJira_DIY_IBVerification_Release_Sprint 
-	Given i load the project properties file 
+	Given i load the "ADOP Jira" project properties file 
 	Given i login to application "<applicationname>" 
 	And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
 	And i click on tile "my Queries"
