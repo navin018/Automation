@@ -32,6 +32,6 @@ Feature:Workitem_AIDT
 
 
     Examples:
-      | applicationname | toolname | bug | Epic | Feature | Issue | Task | Story | Release | Sprint |Decision |Action |Deliverable |Impediment | Risk |Milestone |Requirement|
-      | AIDT | AIDT |Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | Story_01 | Release_01 | Sprint_01 |Decision_01|Action_01|Deliverable_01|Impediment_01|Risk_01|Milestone_01| Requirement_01|
+      | applicationname | toolname | bug    | Epic    | Feature    | Issue    | Task    | Story    | Release    | Sprint    | Decision    | Action    | Deliverable    | Impediment    | Risk    | Milestone    | Requirement    |
+      | AIDT            | AIDT     | Bug_01 | Epic_01 | Feature_01 | Issue_01 | Task_01 | Story_01 | Release_01 | Sprint_01 | Decision_01 | Action_01 | Deliverable_01 | Impediment_01 | Risk_01 | Milestone_01 | Requirement_01 |
 

@@ -80,8 +80,8 @@ Feature: XIBvalidation_TFSAgile
     And i verify if "Sprint" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
 
     Examples:
-      | applicationname |toolname|
-      | MyWizard        |TFS Agile|
+      | applicationname | toolname  |
+      | MyWizard        | TFS Agile |
 
 #	Scenario: TFSAgile_TestResult
 #	And i verify the "Inbound" "Te

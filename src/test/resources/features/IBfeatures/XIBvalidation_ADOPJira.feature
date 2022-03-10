@@ -49,6 +49,7 @@ Feature: XIBvalidation_ADOPJira
   Scenario: ADOPJIRA_TestExecution
 
     And i verify the "Inbound" "Test Execution" details for "ADOP JIRA"
+
   @wdrwf
   Scenario Outline: ADOPJira_DIY_IBVerification_Release_Sprint
     Given i load the "ADOP Jira" project properties file
@@ -63,7 +64,7 @@ Feature: XIBvalidation_ADOPJira
 
 
     Examples:
-      | applicationname |toolname|
-      | MyWizard        |ADOP JIRA|
+      | applicationname | toolname  |
+      | MyWizard        | ADOP JIRA |
 
 

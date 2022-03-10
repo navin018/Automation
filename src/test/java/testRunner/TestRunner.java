@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(features={
 //"classpath:features/SecurityTests/SecurityTest.feature",
-		"classpath:IBfeatures"
+		"classpath:features"
 
 },
 
@@ -21,7 +21,8 @@ import cucumber.api.junit.Cucumber;
 //tags = {"@6IBValidation_TFSScrum,@6IBValidation_CloudJira"},
 	//	@5WorkItemCreation_ADOPJira
 //tags= {"@6IBValidation_CloudJira"},
-		tags= {"@5WorkItemCreation_ADTJira"},
+		tags= {"@IBvalidation1"},
+		//dryRun = true,
 
 
 	
