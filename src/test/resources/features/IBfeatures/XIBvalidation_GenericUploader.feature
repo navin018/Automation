@@ -4,8 +4,8 @@ Feature:XIBvalidation_GenericUploader
 
   @Task
   Scenario: NoTool_Task_flow_GenericUploader_NoTool
-    Given i load the project properties file
-    And i generate a token for "DevTest" environment
+    Given i load the "ADT" project properties file
+#    And i generate a token for "DevTest" environment
     And i verify if "Task" has "flown" which was "NA" for "NoToolInstance" for "GenericUploader_NoTool" functionality
 
 

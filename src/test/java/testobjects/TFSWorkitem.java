@@ -1,6 +1,7 @@
 package testobjects;
 import static org.testng.Assert.assertEquals;
 import static utilities.reporting.LogUtil.logger;
+import static utilities.reporting.Reporting.create_logs_and_report;
 import static utilities.selenium.SeleniumDSL.*;
 
 
@@ -160,6 +161,8 @@ import utilities.general.Property;
 				
 						Baseclass.getInstance().WorkItemExternalId_Bug = getText(TFSUIMap.captureWorkItemID2_statictxt);
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
+					    create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
+
 //						click(TFSUIMap.close_btn);
 						break;
 				case "epic":

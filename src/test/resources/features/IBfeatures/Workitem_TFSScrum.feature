@@ -1,4 +1,4 @@
-@IBvalidation1
+@IBvalidation
 Feature: Workitem_TFSScrum
 
   Scenario Outline: TFSScrum_WorkitemCcreation
@@ -22,8 +22,8 @@ Feature: Workitem_TFSScrum
     And i create a "<WorkRequest>" in TFS
     And i create "<Release>" and "<Sprint>" in TFS
     And i update the WorkItemExternalIDs into a New JSON file for "<applicationname>"
-    And i put a explicit wait of "900000"
-#    And i generate a token for "DevTest" environment
+    And i put a explicit wait of "1200000"
+    And i generate a token for "DevTest" environment
 
     Examples:
       | applicationname | bug    | Epic    | Feature    | Issue    | Task    | TestCase    | Story    | Release    | Sprint    | Decision    | Action    | Deliverable    | Impediment    | Risk    | Milestone    | TestResult | Requirement    | WorkRequest     | ProductBacklog    |

@@ -2,7 +2,7 @@
 Feature: Workitem_GenericUploader
 
   Scenario Outline: GenericUploader_NoTool
-    Given i load the project properties file
+    Given i load the "ADT" project properties file
     Given i login to application "<applicationname>"
     And i navigate to the homepage of "<applicationname>" from "AIFusionPage"
     And i prepare the excel data for tool "NoToolInstance" in "Generic Uploader" DataLoader

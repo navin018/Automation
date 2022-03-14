@@ -3,8 +3,8 @@ Feature: XIBvalidation_TFSAgile
 
 
   Scenario: TFSAgile_Task
-
-    And i generate a token for "DevTest" environment
+#    And i put a explicit wait of "900000"
+#    And i generate a token for "DevTest" environment
     Given i load the "TFS Agile" project properties file
     And i verify the "Inbound" "Task" details for "TFS Agile"
 

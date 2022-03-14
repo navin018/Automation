@@ -1,10 +1,10 @@
-@IBvalidation1
+@IBvalidation
 Feature: XIBvalidation_TFSScrum
 
 
   Scenario: TFSScrum_Task
     Given i load the "TFS Scrum" project properties file
-    And i generate a token for "DevTest" environment
+#    And i generate a token for "DevTest" environment
     And i verify the "Inbound" "Task" details for "TFS Scrum"
 
 

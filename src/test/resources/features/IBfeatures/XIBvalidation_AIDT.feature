@@ -4,7 +4,7 @@ Feature: XIBvalidation_AIDT
 
   Scenario: AIDT_Task
     Given i load the "AIDT" project properties file
-    And i generate a token for "DevTest" environment
+#    And i generate a token for "DevTest" environment
     And i verify the "Inbound" "Task" details for "AIDT"
 
 

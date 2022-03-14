@@ -48,9 +48,11 @@ public class JiraUIMap {
 //public static By Description_txtBox=By.xpath("//label[text()='Description']//following::div[1]");
 
     //public static By Description_txtBox=By.xpath("//div[@id='mceu_31']");
-    public static By Description_txtBox=By.xpath("//div[@id='description-wiki-edit']//child::textarea[1]");
-    public static By Description_iFrame=By.xpath("//div[@id='description-wiki-edit']//following::iframe[1]");
+  //  public static By Description_txtBox=By.xpath("//div[@id='description-wiki-edit']//child::textarea[1]");
+    public static By Description_txtBox=By.xpath("//body[@id='tinymce']");
+   // public static By Description_iFrame=By.xpath("//div[@id='description-wiki-edit']//following::iframe[1]");
     //
+   public static By Description_iFrame=By.xpath("//iframe[@title='Rich Text Area. Press ALT-0 for help.']");
     public static By de = By.xpath("//*[@id='mce_0_ifr']");
     //public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1] | //label[contains(text(),'Epic Name')]//following::input[1]");
     public static By EpicName_txtBox=By.xpath("//label[contains(text(),'Epic Name ')]//following::input[1]");

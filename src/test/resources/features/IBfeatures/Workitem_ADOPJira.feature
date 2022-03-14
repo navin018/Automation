@@ -21,7 +21,7 @@ Feature: Workitem_ADOPJira
     And i update the WorkItemExternalIDs into a New JSON file for "<applicationname>"
 #And i check the overall status of workitem creation for "<applicationname>"
 #And i put a explicit wait of "900000"
-    And i generate a token for "DevTest" environment
+#    And i generate a token for "DevTest" environment
 
     Examples:
       | applicationname | feature             | task    | story    | risk         | issue         | bug    | feature    | impediment    | deliverable    | epic    | subtask    | Release    | Sprint    | Test    | TestForTestExec    |
