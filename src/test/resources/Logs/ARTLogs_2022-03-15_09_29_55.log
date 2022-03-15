@@ -1,0 +1,24 @@
+Mar 15, 2022 9:29:55 AM stepDefs.Hooks startUp
+INFO: Scenario ADOPJira_WorkitemCcreation run is starting now
+Mar 15, 2022 9:29:55 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-03-15 09:29:55.625
+Mar 15, 2022 9:29:55 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+Mar 15, 2022 9:31:37 AM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Task_01 for the given tool
+Mar 15, 2022 9:37:40 AM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Task_01 for the given tool
+Mar 15, 2022 9:38:03 AM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Story_01 for the given tool
+Mar 15, 2022 9:44:06 AM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Story_01 for the given tool
+Mar 15, 2022 9:44:16 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Story_01 for the given tool
+Mar 15, 2022 9:44:25 AM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Risk_ADOP_01 for the given tool
+Mar 15, 2022 9:50:27 AM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Risk_ADOP_01 for the given tool
+Mar 15, 2022 9:50:37 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Risk_ADOP_01 for the given tool
+Mar 15, 2022 9:50:45 AM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Bug_01 for the given tool

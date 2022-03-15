@@ -5,7 +5,6 @@ Feature: XIBvalidation_ADOPJira
   Scenario: ADOPJIRA_Task
     Given i load the "ADOP Jira" project properties file
     And i generate a token for "DevTest" environment
-
     And i verify the "Inbound" "Task" details for "ADOP JIRA"
 
 

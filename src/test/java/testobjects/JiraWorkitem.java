@@ -586,7 +586,7 @@ import java.util.Random;
 								Thread.sleep(10000);
 //								ExpWaitForCondition(JiraUIMap.ActiveSprint_Img);
 								//CreateSprint_btn
-						//		ExpWaitForCondition(JiraUIMap.CreateSprint_btn);
+								ExpWaitForCondition(JiraUIMap.CreateSprint_btn);
 								ScrollIntoView(JiraUIMap.CreateSprint_btn);
 								clickJS(JiraUIMap.CreateSprint_btn);
 								Thread.sleep(2000);
