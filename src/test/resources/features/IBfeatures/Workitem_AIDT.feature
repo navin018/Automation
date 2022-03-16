@@ -22,7 +22,7 @@ Feature:Workitem_AIDT
 #    And i create a "Team" in "AIDT"
 #
     And i update the WorkItemExternalIDs into a New JSON file for "<applicationname>"
-#	And i put a explicit wait of "900000"
+	And i put a explicit wait of "300000"
 #	And i generate a token for "DevTest" environment
 
 #	    Examples:

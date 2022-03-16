@@ -1,4 +1,4 @@
-@IBvalidation
+@IBvalidation1
 Feature: Workitem_CloudJira
 
   Scenario Outline: CloudJira_WorkitemCcreation
