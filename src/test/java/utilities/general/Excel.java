@@ -26,6 +26,9 @@ public class Excel {
         int totalrows= sheet.getPhysicalNumberOfRows();
         int actualrecords=0;
         int blankrecords=0;
+        int Columnindex=5;
+        int columnheader= 0;
+
 //evaluating cell type
         if (PaymentType.equalsIgnoreCase("One")){
             rowIndex =3;
@@ -38,28 +41,31 @@ public class Excel {
         {
             for(Cell cell: row)    //iteration over cell using for each loop
             {
+            //    cell.getColumnIndex()
 
-                if(row.getRowNum()>rowIndex) {
-                    switch (formulaEvaluator.evaluateInCell(cell).getCellType()) {
-                        case Cell.CELL_TYPE_NUMERIC:   //field that represents numeric cell type
+                    if (row.getRowNum() > rowIndex) {
+                        switch (formulaEvaluator.evaluateInCell(cell).getCellType()) {
+                            case Cell.CELL_TYPE_NUMERIC:   //field that represents numeric cell type
 //getting the value of the cell as a number
-                            //System.out.print(cell.getNumericCellValue() + "\t\t");
-                            actualrecords++;
-                            break;
-                        case Cell.CELL_TYPE_STRING:    //field that represents string cell type
+                                //System.out.print(cell.getNumericCellValue() + "\t\t");
+                               // count++;
+                                break;
+                            case Cell.CELL_TYPE_STRING:    //field that represents string cell type
 //getting the value of the cell as a string
-                            //System.out.print(cell.getStringCellValue() + "\t\t");
+                                //System.out.print(cell.getStringCellValue() + "\t\t");
+                              //  count++;
+                                break;
+
+                        }
+
                             actualrecords++;
-                            break;
-
-
-
+                        }
                     }
-                }
+
             }
             System.out.println();
         }
-        blankrecords= totalrows-(actualrecords+rowIndex);
+        //blankrecords= totalrows-(actualrecords+rowIndex);
     }
-}
+
 
