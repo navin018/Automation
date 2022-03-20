@@ -1,4 +1,4 @@
-@IBvalidation
+@IBvalidation1
 Feature: XIBvalidation_TFSScrum
 
 
