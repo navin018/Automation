@@ -3,6 +3,7 @@ package testobjects;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
+import static utilities.reporting.Reporting.create_logs_and_report;
 import static utilities.selenium.SeleniumDSL.*;
 import static utilities.general.Property.*;
 import static utilities.reporting.LogUtil.logger;
@@ -360,101 +361,124 @@ import java.util.Random;
 				case "Task":
 				Baseclass.getInstance().WorkItemExternalId_Task = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
-				break;
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
+
+					break;
 				case "story":
 				case "Story":
 				Baseclass.getInstance().WorkItemExternalId_Story = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "work request":
 				case "Work Request":
 				Baseclass.getInstance().WorkItemExternalId_WorkRequest = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "risk":
 				case "Risk":
 				Baseclass.getInstance().WorkItemExternalId_Risk = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "issue":
 				case "Issue":
 				Baseclass.getInstance().WorkItemExternalId_Issue = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "bug":
 				case "Bug":
 				Baseclass.getInstance().WorkItemExternalId_Bug = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "feature":
 				case "Feature":
 				Baseclass.getInstance().WorkItemExternalId_Feature = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				case "new feature":
 				case "New Feature":
 				Baseclass.getInstance().WorkItemExternalId_Feature = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "impediment":
 				case "Impediment":
 				Baseclass.getInstance().WorkItemExternalId_Impediment = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "deliverable":
 				case "Deliverable":
 				Baseclass.getInstance().WorkItemExternalId_Deliverable = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "decision":
 				case "Decision":
 				Baseclass.getInstance().WorkItemExternalId_Decision = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "requirement":
 				case "Requirement":
 				Baseclass.getInstance().WorkItemExternalId_Requirement = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "test":
 				case "Test":
 				Baseclass.getInstance().WorkItemExternalId_Test = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "TestForTestExec":
                 case "testForTestExec":
                 	 //code for adopjira   
-                    if(Property.getProperty("JiraURL").contains("uat"))
-                        Baseclass.getInstance().WorkItemExternalID_TestforTestExec=toGetID1[1];
+                    if(Property.getProperty("JiraURL").contains("uat")) {
+						Baseclass.getInstance().WorkItemExternalID_TestforTestExec = toGetID1[1];
+						create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
+					}
                     else {
                 Baseclass.getInstance().WorkItemExternalId_TestExecution = Baseclass.getInstance().WorkItemExternalId_TestExecution+"_"+toGetID1[1];
                 System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
                     }
+
 				
 				break;
 				case "epic":
 				case "Epic":
 				Baseclass.getInstance().WorkItemExternalId_Epic = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "subtask":
 				case "SubTask":
 				Baseclass.getInstance().WorkItemExternalId_SubTask = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "Milestone":
 				case "milestone":
 				Baseclass.getInstance().WorkItemExternalId_Milestone = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "Action":
 				case "action":
 				Baseclass.getInstance().WorkItemExternalId_Action = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				break;
 				case "test execution":
 				case "Test Execution":
 				Baseclass.getInstance().WorkItemExternalId_TestExecution = toGetID1[1];
 				System.out.println("Created "+workitem_type[0]+" ID is "+toGetID1[1]);
+				create_logs_and_report(workitem_type[0]+" id is "+toGetID1[1],"pass");
 				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
 				doubleClick(JiraUIMap.SearchBoxHomePage_txtbox);
 				sendBackSpace(JiraUIMap.SearchBoxHomePage_txtbox);
@@ -495,23 +519,27 @@ import java.util.Random;
 					case "Task":
 					Baseclass.getInstance().WorkItemExternalId_Task = workitemID;
 					System.out.println("Created "+workitem+" ID is "+workitemID);
+					create_logs_and_report("Created "+workitem+" ID is "+workitemID,"pass");
 					break;
 					case "story":
 					case "Story":
 					Baseclass.getInstance().WorkItemExternalId_Story = workitemID;
 					System.out.println("Created "+workitem+" ID is "+workitemID);
+					create_logs_and_report("Created "+workitem+" ID is "+workitemID,"pass");
 					break;
 					
 					case "bug":
 					case "Bug":
 					Baseclass.getInstance().WorkItemExternalId_Bug = workitemID;
 					System.out.println("Created "+workitem+" ID is "+workitemID);
+					create_logs_and_report("Created "+workitem+" ID is "+workitemID,"pass");
 					break;
 					
 					case "epic":
 					case "Epic":
 					Baseclass.getInstance().WorkItemExternalId_Epic = workitemID;
 					System.out.println("Created "+workitem+" ID is "+workitemID);
+					create_logs_and_report("Created "+workitem+" ID is "+workitemID,"pass");
 					break;
 					
 				
