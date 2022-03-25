@@ -1,4 +1,4 @@
-@IBvalidation
+@IBvalidation1
 Feature:Workitem_ADT
 
   Scenario Outline: ADTJIRA_WorkitemCreationInUI

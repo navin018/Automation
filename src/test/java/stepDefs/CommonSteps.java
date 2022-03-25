@@ -123,7 +123,7 @@ public class CommonSteps {
 					CommonFunctions.captureEntityDetails(entitydetailsToCapture,toolname);		//this is for all MSPS entities only
 		
 			
-	}
+	} 
 	
 	
 	@Given("^i set the IterationExternalID details into the baseclass for tool \"([^\"]*)\"$")

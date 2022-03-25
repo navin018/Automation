@@ -23,7 +23,7 @@ Feature: Workitem_TFSAgile
 #
     And i create "<Release>" and "<Sprint>" in TFS
     And i update the WorkItemExternalIDs into a New JSON file for "<applicationname>"
-#	And i put a explicit wait of "900000"
+	And i put a explicit wait of "300000"
 #	And i generate a token for "DevTest" environment
 
     Examples:

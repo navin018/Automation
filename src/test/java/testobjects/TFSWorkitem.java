@@ -170,30 +170,35 @@ import utilities.general.Property;
 						Baseclass.getInstance().WorkItemExternalId_Epic =  getText(TFSUIMap.captureWorkItemID2_statictxt);
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
+					    create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 						break;
 				case "risk":
 					
 					Baseclass.getInstance().WorkItemExternalId_Risk =  getText(TFSUIMap.captureWorkItemID2_statictxt);
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 					break;
 				case "feature":
 				
 						Baseclass.getInstance().WorkItemExternalId_Feature =getText(TFSUIMap.captureWorkItemID2_statictxt);
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 						break;
 				case "issue":
 				
 						Baseclass.getInstance().WorkItemExternalId_Issue =getText(TFSUIMap.captureWorkItemID2_statictxt);
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 						break;
 				case "task":
 				
 						Baseclass.getInstance().WorkItemExternalId_Task =getText(TFSUIMap.captureWorkItemID2_statictxt);
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 						break;
 				case "story":
 				case "user story":
@@ -201,59 +206,69 @@ import utilities.general.Property;
 						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID2_statictxt);
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 						break;
 				case "testcase":
 				
 						Baseclass.getInstance().WorkItemExternalId_TestCase =getText(TFSUIMap.captureWorkItemID2_statictxt);
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 						break;
 				case "Deliverable":
 				
 						Baseclass.getInstance().WorkItemExternalId_Deliverable =getText(TFSUIMap.captureWorkItemID2_statictxt);
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 						break;
 				case "productbacklog":
 				
 						Baseclass.getInstance().WorkItemExternalId_Story =getText(TFSUIMap.captureWorkItemID2_statictxt);
 						System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //						click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 						break;
 				case "action":
 					
 					Baseclass.getInstance().WorkItemExternalId_Action =getText(TFSUIMap.captureWorkItemID2_statictxt);
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 					break;
 				case "decision":
 					
 					Baseclass.getInstance().WorkItemExternalId_Decision =getText(TFSUIMap.captureWorkItemID2_statictxt);
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 					break;
 				case "milestone":
 					
 					Baseclass.getInstance().WorkItemExternalId_Milestone =getText(TFSUIMap.captureWorkItemID2_statictxt);
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 					break;
 				case "requirement":
 					
 					Baseclass.getInstance().WorkItemExternalId_Requirement =getText(TFSUIMap.captureWorkItemID2_statictxt);
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 					break;
 				case "deliverable":
 					
 					Baseclass.getInstance().WorkItemExternalId_Deliverable =getText(TFSUIMap.captureWorkItemID2_statictxt);
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 					break;
 				case "impediment":
                     Baseclass.getInstance().WorkItemExternalId_Impediment =getText(TFSUIMap.captureWorkItemID2_statictxt);
                     System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //                    click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
                     break;
 				case "changerequest":
 				case "workrequest":
@@ -261,6 +276,7 @@ import utilities.general.Property;
 					Baseclass.getInstance().WorkItemExternalId_WorkRequest =getText(TFSUIMap.captureWorkItemID2_statictxt);
 					System.out.println(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt));
 //					click(TFSUIMap.close_btn);
+					create_logs_and_report(workitem+" id is "+getText(TFSUIMap.captureWorkItemID2_statictxt),"pass");
 					break;
 				default:
 			        throw new IllegalArgumentException("Invalid workitem: " + workitem);	

@@ -1,10 +1,11 @@
-@IBvalidation
+@IBvalidation1
 Feature: XIBvalidation_ADT
 
 
   Scenario: ADTJIRA_Task
     Given i load the "ADT Jira" project properties file
-#    And i generate a token for "DevTest" environment
+    And i put a explicit wait of "300000"
+    And i generate a token for "DevTest" environment
     And i verify the "Inbound" "Task" details for "ADT JIRA"
 
 

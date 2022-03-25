@@ -1,4 +1,4 @@
-@IBvalidation1
+@IBvalidation
 Feature: Workitem_GenericUploader
 
   Scenario Outline: GenericUploader_NoTool
