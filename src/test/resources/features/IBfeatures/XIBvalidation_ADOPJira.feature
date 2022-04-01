@@ -2,55 +2,20 @@
 Feature: XIBvalidation_ADOPJira
 
 
-  Scenario: ADOPJIRA_Task
+Scenario Outline: ADOPJIRA
     Given i load the "ADOP Jira" project properties file
     And i generate a token for "DevTest" environment
     And i verify the "Inbound" "Task" details for "ADOP JIRA"
-
-
-  Scenario: ADOPJIRA_Epic
-
     And i verify the "Inbound" "Epic" details for "ADOP JIRA"
-
-
-  Scenario: ADOPJIRA_Story
-
     And i verify the "Inbound" "Story" details for "ADOP JIRA"
-
-
-  Scenario: ADOPJIRA_Risk
-
     And i verify the "Inbound" "Risk" details for "ADOP JIRA"
-
-
-  Scenario: ADOPJIRA_Impediment
-
     And i verify the "Inbound" "Impediment" details for "ADOP JIRA"
-
-  Scenario: ADOPJIRA_Issue
-
     And i verify the "Inbound" "Issue" details for "ADOP JIRA"
-
-
-  Scenario: ADOPJIRA_Bug
-
     And i verify the "Inbound" "Bug" details for "ADOP JIRA"
-
-
-  Scenario: ADOPJIRA_Feature
-
     And i verify the "Inbound" "Feature" details for "ADOP JIRA"
-
-  Scenario: ADOPJIRA_Test
-
     And i verify the "Inbound" "Test" details for "ADOP JIRA"
-
-  Scenario: ADOPJIRA_TestExecution
-
     And i verify the "Inbound" "Test Execution" details for "ADOP JIRA"
-
-  @wdrwf
-  Scenario Outline: ADOPJira_DIY_IBVerification_Release_Sprint
+    
     Given i load the "ADOP Jira" project properties file
     Given i login to application "<applicationname>"
     And i navigate to the homepage of "<applicationname>" from "AIFusionPage"

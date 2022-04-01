@@ -120,7 +120,7 @@ Scenario Outline: ADTJIRA_RulesValidationInUI
 		| applicationname |toolname|
 		| MyWizard        |ADT JIRA|
 		
-@5WorkItemCreation_ADTJira		
+@5WorkItemCreation_ADTJira
 Scenario Outline: ADTJIRA_WorkitemCreationInUI
 	Given i load the "ADT Jira" project properties file
 	Given i login to application "<applicationname>" 

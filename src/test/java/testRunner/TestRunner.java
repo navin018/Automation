@@ -21,7 +21,11 @@ import cucumber.api.junit.Cucumber;
 //tags = {"@6IBValidation_TFSScrum,@6IBValidation_CloudJira"},
 	//	@5WorkItemCreation_ADOPJira
 //tags= {"@6IBValidation_CloudJira"},
-		tags= {"@IBvalidation1"},
+//		tags= {"@IBvalidation12"},
+//		/tags = {"@5WorkItemCreation_TFSAgile"},
+				//tags = {"@6IBValidation_TFSAgile"},
+
+
 		//dryRun = true,
 
 

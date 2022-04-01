@@ -6,6 +6,7 @@ import static org.testng.Assert.fail;
 import static utilities.selenium.SeleniumDSL.*;
 import static utilities.general.Property.*;
 import static utilities.reporting.LogUtil.logger;
+import static utilities.reporting.Reporting.create_logs_and_report;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -123,6 +124,7 @@ import java.util.UUID;
 				}
 				
 					VerifyInboundWorkItemReponse(WorkItemTypeUId,WorkItemExternalId,toolname,workitem);
+					create_logs_and_report(workitem +"- " +WorkItemExternalId +" is flown for "+toolname,"pass");
 				}
 			catch(Exception e)
 			{
