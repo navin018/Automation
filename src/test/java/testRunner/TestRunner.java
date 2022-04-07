@@ -22,10 +22,32 @@ import cucumber.api.junit.Cucumber;
 	//	@5WorkItemCreation_ADOPJira
 //tags= {"@6IBValidation_CloudJira"},
 //		tags= {"@IBvalidation12"},
-//		/tags = {"@5WorkItemCreation_TFSAgile"},
-				//tags = {"@6IBValidation_TFSAgile"},
+
+//		tags = {"@5WorkItemCreation_TFSAgile"},
+//				tags = {"@6IBValidation_TFSAgile"},
 
 
+//tags = {"@5WorkItemCreation_TFSScrum"},
+//tags = {"@6IBValidation_TFSScrum"},
+
+//tags = {"@5WorkItemCreation_ADOPJira"},
+//tags = {"@6IBValidation_ADOPJira"},
+
+//tags = {"@5WorkItemCreation_ADTJira"},
+//tags = {"@6IBValidation_ADTJira"},
+
+//tags = {"@5WorkItemCreation_CloudJira"},
+//tags = {"@6IBValidation_CloudJira"},
+
+//tags = {"@3GenericUploader_NoToolInstance"},
+tags = {"@7GenericUploader_NoTool_IBVerfification"},
+
+//tags = {"@1WorkItemCreation_AIDT"},
+//tags = {"@2IBValidation_AIDT"},
+
+//tags = {"@MSPS_1_AddingTitleinRule"},
+//tags = {"@MSPS_2_EntityCreation_InUI"},
+//tags = {"@2MSPS_API_IB_Verfification"},
 		//dryRun = true,
 
 
