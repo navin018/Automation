@@ -59,6 +59,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import org.apache.poi.ss.usermodel.Cell;
+
 
 	public class Tools extends Baseclass{
 		private Baseclass base;
@@ -359,6 +361,10 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 //DeliveryConstructUId for WorkItems 
 				 List<Object> DCUid=null;
 				 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
+				 
+				 
+ //code for entering excel
+					
 				 switch(workitem) {
 				 case "Epic":		
 					case "Feature":
@@ -456,10 +462,13 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 							 if(!sprintfound){
 								 sa.assertEquals(sprintfound, true,"Sprint not flown for "+toolname);
 							 }
-						
+							 
 							 sa.assertAll();
 									 
 						 }
+				//Updating IB Report in Excel	
+					 CreateIBReport(workitem,totalrecordcount,toolname);
+						
 				 }
 					 catch(Exception e)
 					 {
@@ -879,6 +888,7 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 	 {
 		 int totalrecordcount = response.jsonPath().get("TotalRecordCount");
 //		 Assert.assertEquals(totalrecordcount, 1,workitem+ " not flown for IB "+toolname);	
+		 CreateIBReport(workitem, totalrecordcount, toolname);
 	 }
 	 return response;
 	}
@@ -2928,6 +2938,148 @@ public static void VerifyTeamDetailsForEntity1(JsonPath jsonPath, String workite
 				 WorkItemOrDeliverableOrIterationOrTestOrRequirement="ChangeRequests";	
 			 
 			 return  WorkItemOrDeliverableOrIterationOrTestOrRequirement;
+		}
+		public static void CreateIBReport(String workitem,int totalrecordcount,String toolname) {
+			try {
+			
+				 String Excelfilepath=System.getProperty("user.dir")+ File.separator + "src" + File.separator + "test" + File.separator+ "resources" + File.separator + "testdata" +File.separator+ "DEVTEST- IB Validation Report.xlsx" ;
+					
+					FileInputStream fis = new FileInputStream(new File(Excelfilepath));
+					XSSFWorkbook workbook = new XSSFWorkbook (fis);	
+					XSSFSheet sheet = workbook.getSheet("DEVTEST- IB Validation Report");
+					int Rownumber = 0;
+					int Columnnumber=0;
+
+//selection Of rownumber in Excel					
+					switch(toolname) {
+					case "TFS Scrum":
+						Rownumber=1;
+						break;
+					case "TFS Agile":
+						Rownumber=2;
+						break;
+					case "ADT Jira":
+					case "ADT JIRA":
+						Rownumber=3;
+						break;
+					case "ADOP Jira":
+						Rownumber=4;
+						break;
+					case "Cloud Jira":
+					case "Cloud JIRA":
+						Rownumber=5;
+						break;
+					case "AIDT":
+						Rownumber=6;
+						break;	
+					case "NoToolInstance":
+						Rownumber=7;
+					break;
+					case "MSPS":
+						Rownumber=12;
+						break;
+					}
+
+//selection of columnnumber in Excel
+					switch(workitem){
+					case "Epic":
+					case "DeliveryPlan_MSPS":
+						Columnnumber=1;
+		            	break;		            	
+					case "Feature":	
+					case "Initiative_MSPS":
+						Columnnumber=2;
+		            	break;		            
+					case "Story":
+					case "RelForMSPS":
+						Columnnumber=3;
+						break;	
+					case "Task":
+					case "FunctionalArea_MSPS":
+						Columnnumber=4;
+						break;	
+					case "Bug":
+					case "Milestone_MSPS":
+						Columnnumber=5;
+						break;	
+					case "Impediment":
+					case "Deliverable_MSPS":
+						Columnnumber=6;
+						break;	
+					case "Issue":
+						Columnnumber=7;
+		            	break;
+					case "Risk":		            	
+						Columnnumber=8;
+	            	break;	
+					case "Action":
+						Columnnumber=9;
+		            	break;
+					case "Work Request":
+						Columnnumber=10;
+		            	break;
+					case "Decision":
+						Columnnumber=11;
+		            	break;
+					case "Deliverable":
+						Columnnumber=12;
+		            	break;
+					case "Milestone":
+						Columnnumber=13;
+		            	break;
+					case "Requirement":
+						Columnnumber=14;
+		            	break;
+					case "Test":
+					case "TestCase":
+						Columnnumber=15;
+		            	break;	
+					case "Test Execution":						
+						Columnnumber=16;
+		            	break;
+					case "Release":
+						Columnnumber=17;
+		            	break;
+					case "Sprint":
+						Columnnumber=18;
+		            	break;
+					}
+					 if(totalrecordcount==1) {
+						 Cell cell =sheet.getRow(Rownumber).getCell(Columnnumber);
+			            	if(cell== null)
+			            	{
+			            	cell = sheet.getRow(Rownumber).createCell(Columnnumber);
+			            		sheet.getRow(Rownumber).getCell(Columnnumber).setCellValue("Flown");
+			            	}	
+			            	else {
+			            		sheet.getRow(Rownumber).getCell(Columnnumber).setCellValue("Flown");
+			            	}
+					
+					 }
+					 else {
+						 Cell cell1 =sheet.getRow(Rownumber).getCell(Columnnumber);
+						 if(cell1== null)
+		            	{
+		            	cell1 = sheet.getRow(Rownumber).createCell(Columnnumber);
+		            		sheet.getRow(Rownumber).getCell(Columnnumber).setCellValue("Not Flown");
+		            	}	
+		            	else {
+		            		sheet.getRow(Rownumber).getCell(Columnnumber).setCellValue("Not Flown");
+		            	}
+					 }
+					FileOutputStream fos = new FileOutputStream(new File(Excelfilepath));
+			    	workbook.write(fos);
+			    	fis.close();
+			    	fos.close();
+			
+			 logger.info("Excel Report Updated for IB Validation");
+			
+		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			 logger.info("Error in Excel Report Updation for IB Validation");
+		}
 		}
 	
 	}
