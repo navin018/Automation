@@ -2,7 +2,6 @@ package testobjects;
 
 import static org.testng.Assert.assertEquals;
 import static testobjects.RallyWorkitem.CaptureWorkitemID;
-import static testobjects.TFSWorkitem.EnterDataInTheField;
 import static testobjects.TFSWorkitem.GoToWorkitemURL;
 import static utilities.reporting.LogUtil.logger;
 import static utilities.reporting.Reporting.create_logs_and_report;

@@ -360,6 +360,8 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 				 
 				 //DeliveryConstructUId for WorkItems 
 				 List<Object> DCUid=null;
+			//Updating IB Report in Excel	
+				 CreateIBReport(workitem,totalrecordcount,toolname);
 				 Assert.assertEquals(totalrecordcount, 1,workitem +" not flown for tool "+toolname);
 				 
 				 
@@ -462,12 +464,13 @@ public static void VerifyOutBoundWorkitemDetails(String workitem, String toolnam
 							 if(!sprintfound){
 								 sa.assertEquals(sprintfound, true,"Sprint not flown for "+toolname);
 							 }
+							//Updating IB Report in Excel	
+							 CreateIBReport(workitem,totalrecordcount,toolname);
 							 
 							 sa.assertAll();
 									 
 						 }
-				//Updating IB Report in Excel	
-					 CreateIBReport(workitem,totalrecordcount,toolname);
+				
 						
 				 }
 					 catch(Exception e)
@@ -693,6 +696,7 @@ public static Response PostRequesttoGetIBResponse(String WorkItemTypeUId,String 
 	 if(!(workitem.equalsIgnoreCase("ReleaseAndSprint") || workitem.equalsIgnoreCase("Team") ))
 	 {
 		 int totalrecordcount = response.jsonPath().get("TotalRecordCount");
+		 CreateIBReport(workitem, totalrecordcount, toolname);
 		 Assert.assertEquals(totalrecordcount, 1,workitem+ " not flown for IB "+toolname);	
 	 }
 	
@@ -2963,6 +2967,7 @@ public static void VerifyTeamDetailsForEntity1(JsonPath jsonPath, String workite
 						Rownumber=3;
 						break;
 					case "ADOP Jira":
+					case "ADOP JIRA":
 						Rownumber=4;
 						break;
 					case "Cloud Jira":

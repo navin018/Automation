@@ -231,6 +231,7 @@ public class CommonFunctions {
 		String release_IterationExternalID="";
 		if(CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_statictxt)){
 		release_IterationExternalID = getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+		Tools.CreateIBReport("Release", 1, toolname);
 		}
 		else
 		{
@@ -254,6 +255,7 @@ public class CommonFunctions {
 		Thread.sleep(5000);
 		if(CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_statictxt)){
 			sprint_IterationExternalID = getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+			Tools.CreateIBReport("Sprint", 1, toolname);
 		}
 		else
 		{
@@ -428,21 +430,23 @@ public class CommonFunctions {
 			
 	
 			
-			String[] MSPSEntities = {"RelForMSPS","Initiative","FunctionalArea","Milestone","Deliverable"}; 
+			String[] MSPSEntities = {"ReleaseForMSPS","Initiative","FunctionalArea","Milestone","Deliverable"}; 
+			
 		
 			for(String entity:MSPSEntities){
 			
 				switch(entity){
 				
-				case "RelForMSPS":
-					HashMap<String,String> hm = Tools.getReleaseAndSprintDetails(toolname);
-					EnterEntityNameAndcheckIfQueryExecutedSuccessfully(hm.get("ReleaseName"),toolname);
+				case "ReleaseForMSPS":
+					HashMap<String,String> hm = Tools.getReleaseAndSprintDetails(toolname);					
+					EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);
 					Baseclass.getInstance().release_IterationExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
 					System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
 					clickJS(MyWizardUIMap.QueryValue_txtbox);
 					sendDelete();
 					Thread.sleep(2000);
 					break;
+					
 					
 					case "Initiative":
 						
@@ -498,8 +502,10 @@ public class CommonFunctions {
 
 		public static void EnterEntityNameAndcheckIfQueryExecutedSuccessfully(String entitydetailsToCapture,String toolname) {
 			try{
-				singleClick(By.xpath("//div[@role='row']/child::div[@col-id='Value']"));
+//				singleClick(By.xpath("//div[@role='row']/child::div[@col-id='Value']"));
+				singleClick(By.xpath("//div[@col-id='Value'][@role='gridcell']"));
 				enterText(MyWizardUIMap.QueryValueInput_txtbox,Tools.getWorkItemExternalID(entitydetailsToCapture, toolname));
+				System.out.println(Tools.getWorkItemExternalID(entitydetailsToCapture, toolname));
 				clickJS(MyWizardUIMap.runQuery_btn);
 				ExpWaitForCondition(MyWizardUIMap.QueryRunSuccess_Msg);
 				}

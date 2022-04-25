@@ -192,6 +192,8 @@ import java.util.Random;
 			 break;
 			 }
 			 Assert.assertEquals(TitleFromAPI, Title,"Title mismatch for MSPS IB verification for workitem "+workitem.split("_"));
+			 int totalrecordcount =1;
+			Tools.CreateIBReport(workitem,totalrecordcount,toolname);
 		}
 		catch(Exception e)
 		{

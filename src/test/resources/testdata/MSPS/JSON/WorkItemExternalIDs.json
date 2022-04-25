@@ -1,9 +1,1 @@
-{
-	"WorkItemExternalId_DeliveryPlan": "Project_AutomationData_345",
-	"WorkItemExternalId_Initiative": "Initiative44484",
-	"WorkItemExternalId_ReleaseName": "Release44484",
-	"WorkItemExternalId_FunctionalArea": "Functional Area44484",
-	"WorkItemExternalId_Milestone": "Milestone44484",
-	"WorkItemExternalId_Deliverable": "Deliverable44484"
-	
-}
+{"WorkItemExternalId_FunctionalArea":null,"WorkItemExternalId_ReleaseName":null,"WorkItemExternalId_Initiative":null,"WorkItemExternalId_DeliveryPlan":"TestAutomationProject_46743","WorkItemExternalId_Milestone":null,"WorkItemExternalId_Deliverable":null}

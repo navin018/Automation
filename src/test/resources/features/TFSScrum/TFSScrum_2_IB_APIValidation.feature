@@ -67,7 +67,7 @@ Scenario: TFSScrum_Requirement
 Scenario: TFSScrum_Milestone
 	And i verify the "Inbound" "Milestone" details for "TFS Scrum"
 	
-Scenario: TFSAgile_WorkRequest
+Scenario: TFSScrum_WorkRequest
 	
 	And i verify the "Inbound" "Work Request" details for "TFS Scrum"
 	
@@ -79,8 +79,8 @@ Scenario Outline: TFSScrum_DIY_IBVerification_Release_Sprint
 	Then i select client and DC for "<applicationname>"
 	And i capture the "IterationExternalID" for Entities created from "tool" for tool "TFS Scrum" 
 	And i generate a token for "DevTest" environment 	
-	And i verify if "Release" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
-	And i verify if "Sprint" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
+	And i verify if "Release" has "flown" which was "NA" for "TFS Scrum" for "Normal" functionality
+	And i verify if "Sprint" has "flown" which was "NA" for "TFS Scrum" for "Normal" functionality
 	
 Examples: 
 		| applicationname |toolname|
