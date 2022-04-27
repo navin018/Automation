@@ -82,6 +82,7 @@ public static By selectmyquery = By.xpath("//span[text()='QueryToFetchIterationD
 public static By runQuery_btn = By.xpath("//span[text()='Run Query']");
 
 public static By QueryRunSuccess_Msg = By.xpath("//div[@aria-label='The complete records have been fetched from data base. You can view /export to CSV.']");
+public static By QueryRunFailure_Msg=By.xpath("//div[text()='No matching record(s) found. Please try revisiting your criteria.']");
 //public static By GetIterationExternalID_statictxt = By.xpath("//div[@row-id='0']/child::div[@col-id='IterationExternalId' and @role='gridcell'][1]");
 public static By GetIterationExternalID_statictxt = By.xpath("//div[@row-id='0']/child::div[contains(@col-id,'ExternalId') and @role='gridcell'][1]");
 public static By GetIterationExternalID_MoreThanoneRow_statictxt = By.xpath("//div[@row-id='1']/child::div[@col-id='IterationExternalId' and @role='gridcell'][1]");

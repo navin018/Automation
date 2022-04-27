@@ -49,7 +49,7 @@ Scenario: ADOPJIRA_Test
 Scenario: ADOPJIRA_TestExecution 
 	
 	And i verify the "Inbound" "Test Execution" details for "ADOP JIRA"
-@wdrwf
+
 Scenario Outline: ADOPJira_DIY_IBVerification_Release_Sprint 
 	Given i load the "ADOP Jira" project properties file 
 	Given i login to application "<applicationname>" 

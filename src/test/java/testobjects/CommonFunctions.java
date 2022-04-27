@@ -206,6 +206,9 @@ public class CommonFunctions {
 		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 		String releasename="";
 		String sprintname="";
+		int totalrecordcount;
+		String release_IterationExternalID="";
+		String sprint_IterationExternalID="";
 		if(toolOrRMP.equalsIgnoreCase("tool")){
 		HashMap<String,String> hm = Tools.getReleaseAndSprintDetails(toolname);
 		releasename = hm.get("ReleaseName");
@@ -222,21 +225,27 @@ public class CommonFunctions {
 		
 		enterText(MyWizardUIMap.QueryValueInput_txtbox,releasename);
 		clickJS(MyWizardUIMap.runQuery_btn);
-		ExpWaitForCondition(MyWizardUIMap.QueryRunSuccess_Msg);
-		boolean morethanonerow_QueryResult = CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_MoreThanoneRow_statictxt);
-		if(morethanonerow_QueryResult)
-		{
-			Assert.fail("More than one row in search result for the searched release or sprint ID");
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		if(CheckIfElementExists(MyWizardUIMap.QueryRunSuccess_Msg)){			
+			boolean morethanonerow_QueryResult = CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_MoreThanoneRow_statictxt);
+			if(morethanonerow_QueryResult)
+			{
+				Assert.fail("More than one row in search result for the searched release or sprint ID");
+			}
+		
+			if(CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_statictxt)){	
+				totalrecordcount=1;
+				release_IterationExternalID = getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+				Tools.CreateIBReport("Release", totalrecordcount, toolname);
 		}
-		String release_IterationExternalID="";
-		if(CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_statictxt)){
-		release_IterationExternalID = getText(MyWizardUIMap.GetIterationExternalID_statictxt);
-		Tools.CreateIBReport("Release", 1, toolname);
 		}
-		else
-		{
-			Assert.fail("Release not flown for the tool"+toolname);
+		else if(CheckIfElementExists(MyWizardUIMap.QueryRunFailure_Msg)) {
+			totalrecordcount=0;
+			Tools.CreateIBReport("Release", totalrecordcount, toolname);
+			logger.info("Release Not flown for "+ toolname);
 		}
+	
+		
 		
 //		enter sprint details
 		clickJS(MyWizardUIMap.QueryValue_txtbox);
@@ -244,23 +253,31 @@ public class CommonFunctions {
 		Thread.sleep(4000);
 		enterText(MyWizardUIMap.QueryValueInput_txtbox,sprintname);
 		clickJS(MyWizardUIMap.runQuery_btn);
-		ExpWaitForCondition(MyWizardUIMap.QueryRunSuccess_Msg);
-		Thread.sleep(10000);
-		boolean morethanonerow_QueryResult_Sprint = CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_MoreThanoneRow_statictxt);
-		if(morethanonerow_QueryResult_Sprint)
-		{
-			Assert.fail("More than one row in search result for the searched sprint ID");
-		}
-		String sprint_IterationExternalID="";
+		ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+		if(CheckIfElementExists(MyWizardUIMap.QueryRunSuccess_Msg)) {
+			Thread.sleep(10000);
+			boolean morethanonerow_QueryResult_Sprint = CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_MoreThanoneRow_statictxt);
+			if(morethanonerow_QueryResult_Sprint)
+			{
+				Assert.fail("More than one row in search result for the searched sprint ID");
+			}
+		
 		Thread.sleep(5000);
-		if(CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_statictxt)){
+		if(CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_statictxt)){	
+			totalrecordcount=1;
 			sprint_IterationExternalID = getText(MyWizardUIMap.GetIterationExternalID_statictxt);
-			Tools.CreateIBReport("Sprint", 1, toolname);
+			Tools.CreateIBReport("Sprint", totalrecordcount, toolname);
+			
 		}
-		else
+		}
+		else if(CheckIfElementExists(MyWizardUIMap.QueryRunFailure_Msg))
 		{
+			totalrecordcount=0;
+			Tools.CreateIBReport("Sprint", totalrecordcount, toolname);			
+			logger.info("Sprint not flown for the tool"+toolname);
 			Assert.fail("Sprint not flown for the tool"+toolname);
 		}
+		
 		Baseclass.getInstance().release_IterationExternalID = release_IterationExternalID;
 		Baseclass.getInstance().sprint_IterationExternalID =sprint_IterationExternalID; 
 		writeIterationExternalIDs(release_IterationExternalID,sprint_IterationExternalID,toolname);

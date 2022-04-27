@@ -1576,7 +1576,7 @@ try{
 			waitPageToLoad();
 			ExpWaitForCondition(TFSUIMap.Pwd_txtbox);
 //			enterText(TFSUIMap.Pwd_txtbox,Property.getProperty("AIDTPassword"));
-			 enterText(TFSUIMap.Pwd_txtbox,CommonFunctions.decrypt(Property.getProperty("AIDTPassword")));
+			enterText(TFSUIMap.Pwd_txtbox,CommonFunctions.decrypt(Property.getProperty("AIDTPassword")));
 			click(TFSUIMap.signIn_btn);
 			ExpWaitForCondition(MyWizardUIMap.Yes_btn);
 			clickJS(MyWizardUIMap.Yes_btn);

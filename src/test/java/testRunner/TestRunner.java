@@ -17,7 +17,7 @@ import cucumber.api.junit.Cucumber;
 
 },
 
-
+tags= {"@wdrwf"},
 
 //tags = {"@5WorkItemCreation_TFSAgile"},
 //tags = {"@6IBValidation_TFSAgile"},
@@ -27,7 +27,7 @@ import cucumber.api.junit.Cucumber;
 //tags = {"@6IBValidation_TFSScrum"},
 
 //tags = {"@5WorkItemCreation_ADOPJira"},
-tags = {"@6IBValidation_ADOPJira"},
+//tags = {"@6IBValidation_ADOPJira"},
 
 //tags = {"@5WorkItemCreation_ADTJira"},
 //tags = {"@6IBValidation_ADTJira"},

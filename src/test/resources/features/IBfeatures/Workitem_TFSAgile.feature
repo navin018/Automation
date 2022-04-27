@@ -1,4 +1,4 @@
-@IBvalidation1
+@IBvalidation
 Feature: Workitem_TFSAgile
 
   Scenario Outline: TFSAgile_WorkitemCreation
