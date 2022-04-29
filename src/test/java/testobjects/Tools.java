@@ -764,7 +764,7 @@ public static Response PostRequesttoGetIBResponse_custom(String WorkItemTypeUId,
 			 requestParams.put("IterationExternalID", Baseclass.getInstance().release_IterationExternalID);
 		 if(WorkItemExternalId.contains("Sprint"))
 			 requestParams.put("IterationExternalID", Baseclass.getInstance().sprint_IterationExternalID);
-		 System.out.println("test");
+		
 	 }
 	 
 	 
@@ -1486,6 +1486,7 @@ public static void VerifyOutboundWorkItemReponse(String WorkItemTypeUId, String 
 						
 					 
 					 int size = response.jsonPath().getInt("Iterations.size()");
+					 CreateIBReport(workitem, size, toolname);
 //					 System.out.println(size);
 					 
 					 boolean releasefound = false;
@@ -2992,15 +2993,15 @@ public static void VerifyTeamDetailsForEntity1(JsonPath jsonPath, String workite
 						Columnnumber=1;
 		            	break;		            	
 					case "Feature":	
-					case "Initiative_MSPS":
+					case "Initiative":
 						Columnnumber=2;
 		            	break;		            
 					case "Story":
-					case "RelForMSPS":
+					case "ReleaseForMSPS":
 						Columnnumber=3;
 						break;	
 					case "Task":
-					case "FunctionalArea_MSPS":
+					case "FunctionalArea":
 						Columnnumber=4;
 						break;	
 					case "Bug":

@@ -184,6 +184,7 @@ import java.util.Random;
 			 case "DeliveryPlan_MSPS":
 			 TitleFromAPI = jsonPath.getString("DeliveryPlans[0].Title");
 			 Title=Tools.getWorkItemExternalID(workitem.split("_")[0], "MSPS");
+			 Tools.CreateIBReport(workitem, 1, toolname);
 			 break;
 
 			 default:
@@ -192,8 +193,8 @@ import java.util.Random;
 			 break;
 			 }
 			 Assert.assertEquals(TitleFromAPI, Title,"Title mismatch for MSPS IB verification for workitem "+workitem.split("_"));
-			 int totalrecordcount =1;
-			Tools.CreateIBReport(workitem,totalrecordcount,toolname);
+			
+			
 		}
 		catch(Exception e)
 		{

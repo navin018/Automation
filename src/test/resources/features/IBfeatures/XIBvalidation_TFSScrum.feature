@@ -27,8 +27,8 @@ Feature: XIBvalidation_TFSScrum
     Then i select client and DC for "<applicationname>"
     And i capture the "IterationExternalID" for Entities created from "tool" for tool "TFS Scrum"
     And i generate a token for "DevTest" environment
-    And i verify if "Release" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
-    And i verify if "Sprint" has "flown" which was "NA" for "TFS Agile" for "Normal" functionality
+    And i verify if "Release" has "flown" which was "NA" for "TFS Scrum" for "Normal" functionality
+    And i verify if "Sprint" has "flown" which was "NA" for "Scrum" for "Normal" functionality
 
     Examples:
       | applicationname |toolname|
