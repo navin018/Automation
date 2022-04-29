@@ -448,7 +448,7 @@ public class CommonFunctions {
 	
 			
 			String[] MSPSEntities = {"ReleaseForMSPS","Initiative","FunctionalArea","Milestone","Deliverable"}; 
-			
+			int totalrecordcount=0;
 		
 			for(String entity:MSPSEntities){
 			
@@ -456,33 +456,14 @@ public class CommonFunctions {
 				
 				case "ReleaseForMSPS":
 					HashMap<String,String> hm = Tools.getReleaseAndSprintDetails(toolname);					
-					EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);
-					Baseclass.getInstance().release_IterationExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
-					System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
-					clickJS(MyWizardUIMap.QueryValue_txtbox);
-					sendDelete();
-					Thread.sleep(2000);
-					break;
+					totalrecordcount=EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);									
+					break;					
 					
-					
-					case "Initiative":
-						
-						EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);
-						Baseclass.getInstance().InitiativeExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
-						System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
-						clickJS(MyWizardUIMap.QueryValue_txtbox);
-						sendDelete();
-						Thread.sleep(2000);
-					break;
-				
-				case "FunctionalArea":
-					EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);
-					Baseclass.getInstance().FunctionalAreaExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
-					System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
-					clickJS(MyWizardUIMap.QueryValue_txtbox);
-					sendDelete();
-					Thread.sleep(2000);
-					break;
+				case "Initiative":
+				case "FunctionalArea":						
+					totalrecordcount=EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);						
+					break;				
+									
 				case "Milestone":
 					clickJS(myQueriesUIMap.Queries_link);
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -490,10 +471,9 @@ public class CommonFunctions {
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 					Thread.sleep(4000);
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-					EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);
-					Baseclass.getInstance().MilestoneExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
-					System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
+					totalrecordcount=EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);
 					break;
+					
 				case "Deliverable":
 					clickJS(myQueriesUIMap.Queries_link);
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
@@ -501,13 +481,45 @@ public class CommonFunctions {
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
 					Thread.sleep(4000);
 					ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
-					EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);
-					Baseclass.getInstance().DeliverableExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
-					System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
-					break;
-		
+					totalrecordcount=EnterEntityNameAndcheckIfQueryExecutedSuccessfully(entity,toolname);				
+					break;		
 					
 				}
+				if(totalrecordcount==1) {
+					switch(entity){
+					case "ReleaseForMSPS":
+						Baseclass.getInstance().release_IterationExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+						System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
+						break;
+					case "Initiative":
+						Baseclass.getInstance().InitiativeExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+						System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
+						break;						
+					case "FunctionalArea":
+						Baseclass.getInstance().FunctionalAreaExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+						System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
+						break;
+					case "Milestone":
+						Baseclass.getInstance().MilestoneExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+						System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
+						entity="Milestone_MSPS";
+						break;
+					case "Deliverable":
+						Baseclass.getInstance().DeliverableExternalID=getText(MyWizardUIMap.GetIterationExternalID_statictxt);
+						System.out.println(entity +" external ID is "+getText(MyWizardUIMap.GetIterationExternalID_statictxt));
+						entity="Deliverable_MSPS";
+						break;
+						
+					}
+				Tools.CreateIBReport(entity, totalrecordcount, toolname);
+					
+				}else {
+					logger.info(entity+" not flown for "+toolname);
+					Tools.CreateIBReport(entity, totalrecordcount, toolname);
+				}
+				clickJS(MyWizardUIMap.QueryValue_txtbox);
+				sendDelete();
+				Thread.sleep(2000);
 			}
 			
 			}
@@ -517,25 +529,39 @@ public class CommonFunctions {
 			}
 		}
 
-		public static void EnterEntityNameAndcheckIfQueryExecutedSuccessfully(String entitydetailsToCapture,String toolname) {
+		public static int EnterEntityNameAndcheckIfQueryExecutedSuccessfully(String entitydetailsToCapture,String toolname) {
 			try{
+				
 //				singleClick(By.xpath("//div[@role='row']/child::div[@col-id='Value']"));
 				singleClick(By.xpath("//div[@col-id='Value'][@role='gridcell']"));
 				enterText(MyWizardUIMap.QueryValueInput_txtbox,Tools.getWorkItemExternalID(entitydetailsToCapture, toolname));
 				System.out.println(Tools.getWorkItemExternalID(entitydetailsToCapture, toolname));
 				clickJS(MyWizardUIMap.runQuery_btn);
-				ExpWaitForCondition(MyWizardUIMap.QueryRunSuccess_Msg);
+				ExpWaitForElementToDisappear(MyWizardUIMap.waitSign_Img);
+				int totalrecordcount = 0;
+				
+				if(CheckIfElementExists(MyWizardUIMap.QueryRunSuccess_Msg)){
+					totalrecordcount=1;
 				}
+				else if(CheckIfElementExists(MyWizardUIMap.QueryRunFailure_Msg)){
+					totalrecordcount=0;
+				}
+				else {
+					boolean morethanonerow_QueryResult = CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_MoreThanoneRow_statictxt);
+					if(morethanonerow_QueryResult)
+					{
+						Assert.fail("More than one row in search result for the entity "+entitydetailsToCapture+" in myqueries tile");
+					}
+				}
+				return totalrecordcount;
+				}
+			
 				catch(Exception e)
 				{
 					logger.info("Query not run successfully in myqueries tile while fetching MSPS details for "+entitydetailsToCapture);
 					Assert.fail("Query not run successfully in myqueries tile while fetching MSPS details for "+entitydetailsToCapture);
-				}
-				boolean morethanonerow_QueryResult = CheckIfElementExists(MyWizardUIMap.GetIterationExternalID_MoreThanoneRow_statictxt);
-				if(morethanonerow_QueryResult)
-				{
-					Assert.fail("More than one row in search result for the entity "+entitydetailsToCapture+" in myqueries tile");
-				}
+					return 0;
+				}	
 			
 		}
 

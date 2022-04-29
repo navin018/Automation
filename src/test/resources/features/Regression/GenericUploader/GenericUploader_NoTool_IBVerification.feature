@@ -1,7 +1,6 @@
 @7GenericUploader_NoTool_IBVerfification
 Feature: GenericUploader_NoTool_IBVerification 
 
-@Task
 Scenario: NoTool_Task_flow_GenericUploader_NoTool 
 	Given i load the project properties file 
 	And i generate a token for "DevTest" environment
@@ -42,16 +41,16 @@ And i verify if "Action" has "flown" which was "NA" for "NoToolInstance" for "Ge
 Scenario: NoTool_Decision_flow_GenericUploader
 And i verify if "Decision" has "flown" which was "NA" for "NoToolInstance" for "GenericUploader_NoTool" functionality
 
-@ReleaseandSprint
-Scenario Outline: NoTool_GenericUploader_IBVerification_Release_Sprint 
 
+Scenario: NoTool_GenericUploader_IBVerification_Release
+	
 	And i generate a token for "DevTest" environment 
 	And i set the IterationExternalID details into the baseclass for tool "NoToolInstance"	
 	And i verify if "Release" has "flown" which was "NA" for "NoToolInstance" for "GenericUploader_NoTool" functionality
 	And i verify if "Sprint" has "flown" which was "NA" for "NoToolInstance" for "GenericUploader_NoTool" functionality
 	
-		Examples: 
-		| applicationname |
-		| MyWizard        |
-
-
+				
+Scenario: NoTool_GenericUploader_IBVerification_Sprint
+And i verify if "Sprint" has "flown" which was "NA" for "NoToolInstance" for "GenericUploader_NoTool" functionality
+	
+		
