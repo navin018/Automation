@@ -1,0 +1,40 @@
+May 05, 2022 8:39:24 AM stepDefs.Hooks startUp
+INFO: Scenario GenericUploader_NoTool run is starting now
+May 05, 2022 8:39:24 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 08:39:24.092
+May 05, 2022 8:39:24 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 05, 2022 8:40:56 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@data-test-id='testuser04art@ds.dev.accenture.com']
+May 05, 2022 8:41:07 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='Generic Uploader']
+May 05, 2022 8:41:08 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='Generic Uploader']
+May 05, 2022 8:41:41 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='Program_DC for no tool']
+May 05, 2022 8:41:43 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='Program_DC for no tool']
+May 05, 2022 8:44:53 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Epic is Successfully Uploaded
+May 05, 2022 8:47:33 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Feature is Successfully Uploaded
+May 05, 2022 8:50:14 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Task is Successfully Uploaded
+May 05, 2022 8:52:59 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Bug is Successfully Uploaded
+May 05, 2022 8:55:41 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Issue is Successfully Uploaded
+May 05, 2022 8:58:22 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Impediment is Successfully Uploaded
+May 05, 2022 9:01:01 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Risk is Successfully Uploaded
+May 05, 2022 9:03:42 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Action is Successfully Uploaded
+May 05, 2022 9:06:26 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Decision is Successfully Uploaded
+May 05, 2022 9:09:08 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Iteration is Successfully Uploaded
+May 05, 2022 9:09:08 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 9:09:08 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-05 09:09:08.071

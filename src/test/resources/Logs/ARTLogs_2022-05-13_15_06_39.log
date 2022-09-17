@@ -1,0 +1,78 @@
+May 13, 2022 3:06:39 PM stepDefs.Hooks startUp
+INFO: Scenario ADTJIRA_WorkitemCreationInUI run is starting now
+May 13, 2022 3:06:39 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 15:06:39.595
+May 13, 2022 3:06:40 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 13, 2022 3:08:13 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:08:53 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is BOM-137630
+May 13, 2022 3:09:07 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:09:40 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is BOM-137631
+May 13, 2022 3:09:54 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:10:27 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story id is BOM-137632
+May 13, 2022 3:10:41 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:11:13 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk id is BOM-137633
+May 13, 2022 3:11:27 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:12:03 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug id is BOM-137634
+May 13, 2022 3:12:20 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:12:55 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue id is BOM-137635
+May 13, 2022 3:13:08 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:13:47 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Feature id is BOM-137636
+May 13, 2022 3:13:47 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Feature id is BOM-137636
+May 13, 2022 3:14:01 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:14:41 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Impediment id is BOM-137637
+May 13, 2022 3:14:55 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:15:28 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Deliverable id is BOM-137638
+May 13, 2022 3:15:42 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:16:16 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Decision id is BOM-137639
+May 13, 2022 3:16:30 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:17:07 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Requirement id is BOM-137640
+May 13, 2022 3:17:26 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:18:24 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Test id is BOM-137641
+May 13, 2022 3:18:38 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:19:13 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Milestone id is BOM-137642
+May 13, 2022 3:19:29 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:20:26 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Action id is BOM-137643
+May 13, 2022 3:20:43 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:21:42 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Work Request id is BOM-137644
+May 13, 2022 3:21:59 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 13, 2022 3:22:46 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Test Execution id is BOM-137645
+May 13, 2022 3:23:45 PM utilities.reporting.Reporting create_logs_and_report
+INFO: TestForTestExec id is BOM-137646
+May 13, 2022 3:27:50 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 3:27:50 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 15:27:50.695

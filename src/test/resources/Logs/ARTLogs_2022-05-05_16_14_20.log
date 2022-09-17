@@ -1,0 +1,30 @@
+May 05, 2022 4:14:20 PM stepDefs.Hooks startUp
+INFO: Scenario ADOPJira_WorkitemCcreation run is starting now
+May 05, 2022 4:14:20 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 16:14:20.367
+May 05, 2022 4:14:21 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 05, 2022 4:16:16 PM utilities.reporting.Reporting create_logs_and_report
+INFO: New Feature id is PHNXCN2-12799
+May 05, 2022 4:17:02 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is PHNXCN2-12800
+May 05, 2022 4:17:47 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story id is PHNXCN2-12801
+May 05, 2022 4:18:33 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk id is PHNXCN2-12802
+May 05, 2022 4:19:17 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug id is PHNXCN2-12803
+May 05, 2022 4:20:01 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Impediment id is PHNXCN2-12804
+May 05, 2022 4:20:51 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is PHNXCN2-12805
+May 05, 2022 4:21:37 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue id is PHNXCN2-12806
+May 05, 2022 4:22:20 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Test id is PHNXCN2-12807
+May 05, 2022 4:27:44 PM testobjects.JiraWorkitem CreateRelease
+INFO: Issues in creating release or sprint
+May 05, 2022 4:27:44 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 4:27:44 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 16:27:44.447

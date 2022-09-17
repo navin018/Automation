@@ -1,0 +1,32 @@
+May 09, 2022 4:33:45 PM stepDefs.Hooks startUp
+INFO: Scenario ADTJIRA_WorkitemCreationInUI run is starting now
+May 09, 2022 4:33:45 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-09 16:33:45.994
+May 09, 2022 4:33:46 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 09, 2022 4:34:56 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 09, 2022 4:35:35 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is BOM-137140
+May 09, 2022 4:35:49 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 09, 2022 4:36:21 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is BOM-137141
+May 09, 2022 4:36:34 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 09, 2022 4:37:06 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story id is BOM-137142
+May 09, 2022 4:37:20 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 09, 2022 4:37:52 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk id is BOM-137143
+May 09, 2022 4:38:06 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 09, 2022 4:38:42 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug id is BOM-137144
+May 09, 2022 4:38:47 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Bug_01 for the given tool
+May 09, 2022 4:39:00 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 09, 2022 4:39:00 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-09 16:39:00.102

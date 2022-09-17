@@ -1,0 +1,16 @@
+May 06, 2022 3:37:53 PM stepDefs.Hooks startUp
+INFO: Scenario CloudJira_WorkitemCcreation run is starting now
+May 06, 2022 3:37:53 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-06 15:37:53.372
+May 06, 2022 3:37:54 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 06, 2022 3:38:42 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='CloudJIRA_ClientNative']
+May 06, 2022 3:38:42 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='CloudJIRA_ClientNative']
+May 06, 2022 3:39:49 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Created Task_01 ID is CCN-5310
+May 06, 2022 3:39:50 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 06, 2022 3:39:50 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-06 15:39:50.454

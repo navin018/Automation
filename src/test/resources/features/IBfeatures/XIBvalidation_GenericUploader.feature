@@ -1,4 +1,4 @@
-@IBvalidation
+@IBvalidation_GL
 Feature: XIBvalidation_GenericUploader
 
 

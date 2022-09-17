@@ -1,4 +1,4 @@
-@IBvalidation
+@IBvalidation_IB
 Feature: XIBvalidation_ADOPJira
 
 

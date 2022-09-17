@@ -1,4 +1,4 @@
-@IBvalidation
+@IBvalidation_Cloud
 Feature: XIBvalidation_CloudJira
 
 

@@ -1,0 +1,78 @@
+May 06, 2022 7:19:52 AM stepDefs.Hooks startUp
+INFO: Scenario ADTJIRA_WorkitemCreationInUI run is starting now
+May 06, 2022 7:19:52 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-06 07:19:52.302
+May 06, 2022 7:19:53 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 06, 2022 7:21:21 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:22:01 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is BOM-136896
+May 06, 2022 7:22:15 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:22:48 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is BOM-136897
+May 06, 2022 7:23:02 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:23:34 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Story_01 for the given tool
+May 06, 2022 7:23:43 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:24:16 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Risk_01 for the given tool
+May 06, 2022 7:24:24 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:24:58 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Bug_01 for the given tool
+May 06, 2022 7:25:09 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:25:41 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Issue_01 for the given tool
+May 06, 2022 7:25:50 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:26:21 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Feature_01 for the given tool
+May 06, 2022 7:26:30 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:27:03 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Impediment_01 for the given tool
+May 06, 2022 7:27:13 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:27:49 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Deliverable_01 for the given tool
+May 06, 2022 7:27:58 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:28:29 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Decision_01 for the given tool
+May 06, 2022 7:28:38 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:29:11 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Requirement_01 for the given tool
+May 06, 2022 7:29:20 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:29:52 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Test_01 for the given tool
+May 06, 2022 7:30:01 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:30:33 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Milestone_01 for the given tool
+May 06, 2022 7:30:42 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:31:14 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Action_01 for the given tool
+May 06, 2022 7:31:23 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:31:57 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Work Request_01 for the given tool
+May 06, 2022 7:32:07 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 06, 2022 7:32:43 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Test Execution_01 for the given tool
+May 06, 2022 7:33:21 AM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for TestForTestExec_01 for the given tool
+May 06, 2022 7:34:02 AM testobjects.JiraWorkitem CreateRelease
+INFO: Issues in creating release or sprint
+May 06, 2022 7:34:02 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 06, 2022 7:34:02 AM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-06 07:34:02.913

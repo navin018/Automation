@@ -1,4 +1,4 @@
-@IBvalidation
+@IBvalidation_IBAGILE
 Feature: XIBvalidation_TFSAgile
 
 

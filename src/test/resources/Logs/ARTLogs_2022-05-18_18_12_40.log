@@ -1,0 +1,42 @@
+May 18, 2022 6:12:40 PM stepDefs.Hooks startUp
+INFO: Scenario ADOPJira_WorkitemCcreation run is starting now
+May 18, 2022 6:12:40 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-18 18:12:40.5
+May 18, 2022 6:12:41 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 18, 2022 6:15:28 PM utilities.reporting.Reporting create_logs_and_report
+INFO: New Feature id is PHNXCN2-13094
+May 18, 2022 6:16:10 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is PHNXCN2-13099
+May 18, 2022 6:16:57 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story id is PHNXCN2-13100
+May 18, 2022 6:17:41 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk id is PHNXCN2-13101
+May 18, 2022 6:24:16 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Bug_01 for the given tool
+May 18, 2022 6:24:27 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug id is PHNXCN2-13088
+May 18, 2022 6:24:28 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Bug_01 for the given tool
+May 18, 2022 6:31:02 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Impediment_01 for the given tool
+May 18, 2022 6:31:13 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Impediment_01 for the given tool
+May 18, 2022 6:37:49 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Epic_01 for the given tool
+May 18, 2022 6:38:00 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Epic_01 for the given tool
+May 18, 2022 6:44:31 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Issue_ADOP_01 for the given tool
+May 18, 2022 6:44:42 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Issue_ADOP_01 for the given tool
+May 18, 2022 6:51:12 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Test_01 for the given tool
+May 18, 2022 6:51:22 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Test_01 for the given tool
+May 18, 2022 6:57:34 PM testobjects.JiraWorkitem CreateRelease
+INFO: Issues in creating release or sprint
+May 18, 2022 6:57:34 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 18, 2022 6:57:34 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-18 18:57:34.614

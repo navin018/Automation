@@ -1,0 +1,38 @@
+May 10, 2022 4:00:26 PM stepDefs.Hooks startUp
+INFO: Scenario ADOPJira_WorkitemCcreation run is starting now
+May 10, 2022 4:00:26 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-10 16:00:26.052
+May 10, 2022 4:00:26 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 10, 2022 4:02:07 PM utilities.reporting.Reporting create_logs_and_report
+INFO: New Feature id is PHNXCN2-12906
+May 10, 2022 4:02:51 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is PHNXCN2-12907
+May 10, 2022 4:03:36 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story id is PHNXCN2-12908
+May 10, 2022 4:04:23 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk id is PHNXCN2-12909
+May 10, 2022 4:05:09 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug id is PHNXCN2-12910
+May 10, 2022 4:05:54 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Impediment id is PHNXCN2-12911
+May 10, 2022 4:06:46 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is PHNXCN2-12912
+May 10, 2022 4:13:27 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Issue_ADOP_01 for the given tool
+May 10, 2022 4:13:38 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue id is PHNXCN2-12903
+May 10, 2022 4:13:39 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Issue_ADOP_01 for the given tool
+May 10, 2022 4:20:09 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Test_01 for the given tool
+May 10, 2022 4:20:20 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Test id is MYCDDP1-941
+May 10, 2022 4:20:21 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Test_01 for the given tool
+May 10, 2022 4:28:07 PM testobjects.JiraWorkitem CreateRelease
+INFO: Issues in creating release or sprint
+May 10, 2022 4:28:07 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 10, 2022 4:28:07 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-10 16:28:07.963

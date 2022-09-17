@@ -1,0 +1,44 @@
+May 19, 2022 7:27:19 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_WorkitemCreation run is starting now
+May 19, 2022 7:27:19 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-19 07:27:19.469
+May 19, 2022 7:27:20 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 19, 2022 7:27:57 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='project-name font-size-l font-weight-semibold text-ellipsis'][text()='TFS Agile1_ Client-Native']
+May 19, 2022 7:28:30 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Bug_01
+May 19, 2022 7:28:46 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Epic_01
+May 19, 2022 7:28:49 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic_01 id is 350276
+May 19, 2022 7:29:00 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Feature_01
+May 19, 2022 7:29:16 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Issue_01
+May 19, 2022 7:29:31 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Task_01
+May 19, 2022 7:29:46 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem TestCase_01
+May 19, 2022 7:30:02 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Risk_01
+May 19, 2022 7:30:17 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Action_01
+May 19, 2022 7:30:33 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Decision_01
+May 19, 2022 7:30:56 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Deliverable_01 id is 350277
+May 19, 2022 7:31:11 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Requirement_01
+May 19, 2022 7:31:31 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Milestone_01
+May 19, 2022 7:31:45 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Story_01
+May 19, 2022 7:32:00 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Work Request_01
+May 19, 2022 7:32:13 AM testobjects.TFSWorkitem CreateReleaseAndSprint
+INFO: Issue creating release/sprint
+May 19, 2022 7:32:14 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 19, 2022 7:32:14 AM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-19 07:32:14.005

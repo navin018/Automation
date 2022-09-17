@@ -1,0 +1,40 @@
+May 23, 2022 4:03:45 PM stepDefs.Hooks startUp
+INFO: Scenario ADIT_WorkitemCreation run is starting now
+May 23, 2022 4:03:45 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-23 16:03:45.172
+May 23, 2022 4:03:45 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 23, 2022 4:04:22 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[text()='Release_AutomationData4083']
+May 23, 2022 4:04:23 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='grid-cell-contents-container'][text()='Release_AutomationData4083']//preceding::div[@aria-label='Row actions'][1]
+May 23, 2022 4:05:12 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug_01 id is 7513
+May 23, 2022 4:05:35 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic_01 id is 7514
+May 23, 2022 4:05:57 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Feature_01 id is 7515
+May 23, 2022 4:06:40 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue_01 id is 7516
+May 23, 2022 4:06:50 PM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Task_01
+May 23, 2022 4:07:46 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk_01 id is 7517
+May 23, 2022 4:08:24 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Action_01 id is 7518
+May 23, 2022 4:09:03 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Decision_01 id is 7519
+May 23, 2022 4:09:46 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Deliverable_01 id is 7520
+May 23, 2022 4:10:13 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story_01 id is 7521
+May 23, 2022 4:10:31 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Impediment_01 id is 7522
+May 23, 2022 4:10:59 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Milestone_01 id is 7523
+May 23, 2022 4:17:19 PM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Requirement_01
+May 23, 2022 4:17:32 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 23, 2022 4:17:32 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-23 16:17:32.223

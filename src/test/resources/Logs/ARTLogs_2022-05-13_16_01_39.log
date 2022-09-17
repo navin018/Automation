@@ -1,0 +1,12 @@
+May 13, 2022 4:01:39 PM stepDefs.Hooks startUp
+INFO: Scenario GenericUploader_NoTool run is starting now
+May 13, 2022 4:01:39 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 16:01:39.137
+May 13, 2022 4:01:39 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 13, 2022 4:03:46 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@data-test-id='testuser04art@ds.dev.accenture.com']
+May 13, 2022 4:04:22 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='Generic Uploader']
+May 13, 2022 4:04:22 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='Generic Uploader']

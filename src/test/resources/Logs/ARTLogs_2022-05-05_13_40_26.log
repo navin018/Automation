@@ -1,0 +1,162 @@
+May 05, 2022 1:40:26 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Task run is starting now
+May 05, 2022 1:40:26 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:40:26.724
+May 05, 2022 1:40:27 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 05, 2022 1:40:42 PM testobjects.CommonFunctions generateToken
+INFO: token gen comlpete
+May 05, 2022 1:40:44 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:40:44 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 13:40:44.253
+May 05, 2022 1:41:00 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Epic run is starting now
+May 05, 2022 1:41:00 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:41:00.975
+May 05, 2022 1:41:00 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:41:00 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 13:41:00.992
+May 05, 2022 1:41:17 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Story run is starting now
+May 05, 2022 1:41:17 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:41:17.012
+May 05, 2022 1:41:21 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:41:22 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:41:22 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story- 6746 is flown for AIDT
+May 05, 2022 1:41:22 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:41:22 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-05 13:41:22.467
+May 05, 2022 1:41:38 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Issue run is starting now
+May 05, 2022 1:41:38 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:41:38.674
+May 05, 2022 1:41:38 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:41:38 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 13:41:38.687
+May 05, 2022 1:41:54 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Bug run is starting now
+May 05, 2022 1:41:54 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:41:54.564
+May 05, 2022 1:41:54 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:41:54 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 13:41:54.575
+May 05, 2022 1:42:10 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Impediment run is starting now
+May 05, 2022 1:42:10 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:42:10.878
+May 05, 2022 1:42:13 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:42:13 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:42:13 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Impediment- 6747 is flown for AIDT
+May 05, 2022 1:42:13 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:42:13 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-05 13:42:13.734
+May 05, 2022 1:42:29 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Feature run is starting now
+May 05, 2022 1:42:29 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:42:29.742
+May 05, 2022 1:42:29 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:42:29 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 13:42:29.754
+May 05, 2022 1:42:45 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Risk run is starting now
+May 05, 2022 1:42:45 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:42:45.839
+May 05, 2022 1:43:18 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:43:18 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:43:18 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 13:43:18.059
+May 05, 2022 1:43:34 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Deliverable run is starting now
+May 05, 2022 1:43:34 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:43:34.039
+May 05, 2022 1:43:39 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:43:40 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:43:40 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Deliverable- 6745 is flown for AIDT
+May 05, 2022 1:43:40 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:43:40 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-05 13:43:40.627
+May 05, 2022 1:43:56 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Action run is starting now
+May 05, 2022 1:43:56 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:43:56.544
+May 05, 2022 1:44:41 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:44:41 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:44:41 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Action- 6743 is flown for AIDT
+May 05, 2022 1:44:41 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:44:41 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-05 13:44:41.465
+May 05, 2022 1:44:57 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Decision run is starting now
+May 05, 2022 1:44:57 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:44:57.583
+May 05, 2022 1:45:01 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:45:01 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:45:01 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Decision- 6744 is flown for AIDT
+May 05, 2022 1:45:01 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:45:01 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-05 13:45:01.674
+May 05, 2022 1:45:17 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Requirement run is starting now
+May 05, 2022 1:45:17 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:45:17.852
+May 05, 2022 1:45:17 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:45:17 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 13:45:17.862
+May 05, 2022 1:45:33 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_Milestone run is starting now
+May 05, 2022 1:45:33 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:45:33.74
+May 05, 2022 1:45:35 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:45:36 PM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 05, 2022 1:45:36 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Milestone- 6748 is flown for AIDT
+May 05, 2022 1:45:36 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:45:36 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-05 13:45:36.304
+May 05, 2022 1:45:52 PM stepDefs.Hooks startUp
+INFO: Scenario AIDT_IBVerification_Release_Sprint run is starting now
+May 05, 2022 1:45:52 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 13:45:52.338
+May 05, 2022 1:47:39 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@data-test-id='testuser04art@ds.dev.accenture.com']
+May 05, 2022 1:48:15 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='my Queries']
+May 05, 2022 1:48:16 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='my Queries']
+May 05, 2022 1:55:24 PM testobjects.MyWizardHomePage SelectClientAndDC
+INFO: Issue selecting client or DC
+May 05, 2022 1:55:24 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 1:55:24 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 13:55:24.998

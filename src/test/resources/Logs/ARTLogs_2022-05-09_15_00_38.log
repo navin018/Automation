@@ -1,0 +1,18 @@
+May 09, 2022 3:00:38 PM stepDefs.Hooks startUp
+INFO: Scenario ADTJIRA_WorkitemCreationInUI run is starting now
+May 09, 2022 3:00:38 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-09 15:00:38.829
+May 09, 2022 3:00:39 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 09, 2022 3:01:47 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 09, 2022 3:04:58 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is BOM-137118
+May 09, 2022 3:07:17 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //li[contains(@id,'bom')]
+May 09, 2022 3:10:38 PM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Task_01 for the given tool
+May 09, 2022 3:11:16 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 09, 2022 3:11:16 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-09 15:11:16.07

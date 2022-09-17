@@ -1,0 +1,14 @@
+May 20, 2022 8:53:43 AM stepDefs.Hooks startUp
+INFO: Scenario GenericUploader_NoTool run is starting now
+May 20, 2022 8:53:43 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-20 08:53:43.095
+May 20, 2022 8:53:43 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 20, 2022 8:55:06 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@data-test-id='testuser04art@ds.dev.accenture.com']
+May 20, 2022 9:01:07 AM testobjects.MyWizardHomePage NavigateToHomePage
+INFO: Issue loading home page
+May 20, 2022 9:01:07 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 20, 2022 9:01:07 AM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-20 09:01:07.222

@@ -1,0 +1,32 @@
+May 30, 2022 3:35:02 PM stepDefs.Hooks startUp
+INFO: Scenario ADOPJira_WorkitemCcreation run is starting now
+May 30, 2022 3:35:02 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-30 15:35:02.535
+May 30, 2022 3:35:03 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 30, 2022 3:36:43 PM utilities.reporting.Reporting create_logs_and_report
+INFO: New Feature id is PHNXCN2-13506
+May 30, 2022 3:37:26 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is PHNXCN2-13507
+May 30, 2022 3:38:08 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story id is PHNXCN2-13508
+May 30, 2022 3:38:52 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk id is PHNXCN2-13509
+May 30, 2022 3:39:34 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug id is PHNXCN2-13510
+May 30, 2022 3:40:16 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Impediment id is PHNXCN2-13511
+May 30, 2022 3:41:04 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is PHNXCN2-13512
+May 30, 2022 3:41:48 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue id is PHNXCN2-13513
+May 30, 2022 3:42:30 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Test id is PHNXCN2-13514
+May 30, 2022 3:56:51 PM utilities.reporting.Reporting create_logs_and_report
+INFO: TestForTestExec id is PHNXCN2-13515
+May 30, 2022 3:57:57 PM testobjects.JiraWorkitem Createtestcycle
+INFO: Test Result created for ADOP
+May 30, 2022 3:57:59 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 30, 2022 3:57:59 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-30 15:57:59.49

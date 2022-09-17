@@ -1,0 +1,22 @@
+May 25, 2022 8:48:59 AM stepDefs.Hooks startUp
+INFO: Scenario GenericUploader_NoTool run is starting now
+May 25, 2022 8:48:59 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-25 08:48:59.716
+May 25, 2022 8:49:01 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 25, 2022 8:50:41 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@data-test-id='testuser04art@ds.dev.accenture.com']
+May 25, 2022 8:51:27 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='Generic Uploader']
+May 25, 2022 8:51:28 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='Generic Uploader']
+May 25, 2022 8:53:49 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='Program_DC for no tool']
+May 25, 2022 8:53:52 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='Program_DC for no tool']
+May 25, 2022 8:57:21 AM testobjects.DataLoader CheckUploadStatusInGenericUploader
+INFO: The data provided for entity Epic is Successfully Uploaded
+May 25, 2022 8:57:43 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 25, 2022 8:57:43 AM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-25 08:57:43.475

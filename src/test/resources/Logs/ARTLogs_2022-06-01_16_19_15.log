@@ -1,0 +1,44 @@
+Jun 01, 2022 4:19:15 PM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_WorkitemCreation run is starting now
+Jun 01, 2022 4:19:15 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-06-01 16:19:15.95
+Jun 01, 2022 4:19:16 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+Jun 01, 2022 4:19:38 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='project-name font-size-l font-weight-semibold text-ellipsis'][text()='TFS Agile1_ Client-Native']
+Jun 01, 2022 4:20:05 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug_01 id is 353153
+Jun 01, 2022 4:20:19 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic_01 id is 353154
+Jun 01, 2022 4:20:33 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Feature_01 id is 353155
+Jun 01, 2022 4:20:47 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue_01 id is 353157
+Jun 01, 2022 4:21:00 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task_01 id is 353158
+Jun 01, 2022 4:21:14 PM utilities.reporting.Reporting create_logs_and_report
+INFO: TestCase_01 id is 353159
+Jun 01, 2022 4:21:27 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk_01 id is 353160
+Jun 01, 2022 4:21:41 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Action_01 id is 353161
+Jun 01, 2022 4:21:54 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Decision_01 id is 353162
+Jun 01, 2022 4:22:08 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Deliverable_01 id is 353163
+Jun 01, 2022 4:22:21 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Requirement_01 id is 353164
+Jun 01, 2022 4:22:35 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Milestone_01 id is 353165
+Jun 01, 2022 4:22:55 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story_01 id is 353166
+Jun 01, 2022 4:23:08 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Work Request_01 id is 353167
+Jun 01, 2022 4:23:25 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[text()='Release_AutomationData7634']
+Jun 01, 2022 4:23:25 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='grid-cell-contents-container'][text()='Release_AutomationData7634']//preceding::div[@aria-label='Row actions'][1]
+Jun 01, 2022 4:28:40 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+Jun 01, 2022 4:28:40 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-06-01 16:28:40.193

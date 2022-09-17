@@ -1,0 +1,12 @@
+May 13, 2022 3:39:58 PM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_WorkitemCreation run is starting now
+May 13, 2022 3:39:58 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 15:39:58.661
+May 13, 2022 3:39:59 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 13, 2022 3:40:29 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='project-name font-size-l font-weight-semibold text-ellipsis'][text()='TFS Agile1_ Client-Native']
+May 13, 2022 3:40:53 PM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Bug_01
+May 13, 2022 3:41:09 PM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Epic_01

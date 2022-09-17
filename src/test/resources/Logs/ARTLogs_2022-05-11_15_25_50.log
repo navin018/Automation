@@ -1,0 +1,24 @@
+May 11, 2022 3:25:50 PM stepDefs.Hooks startUp
+INFO: Scenario ADOPJira_WorkitemCcreation run is starting now
+May 11, 2022 3:25:50 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-11 15:25:50.017
+May 11, 2022 3:25:50 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 11, 2022 3:28:11 PM utilities.reporting.Reporting create_logs_and_report
+INFO: New Feature id is PHNXCN2-12914
+May 11, 2022 3:29:02 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is PHNXCN2-12927
+May 11, 2022 3:29:47 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story id is PHNXCN2-12928
+May 11, 2022 3:30:34 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk id is PHNXCN2-12929
+May 11, 2022 3:31:17 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug id is PHNXCN2-12930
+May 11, 2022 3:32:02 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Impediment id is PHNXCN2-12931
+May 11, 2022 3:32:53 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is PHNXCN2-12932
+May 11, 2022 3:33:39 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue id is PHNXCN2-12933
+May 11, 2022 3:34:23 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Test id is PHNXCN2-12934

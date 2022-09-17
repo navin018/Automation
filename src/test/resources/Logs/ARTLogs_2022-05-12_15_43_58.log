@@ -1,0 +1,10 @@
+May 12, 2022 3:43:58 PM stepDefs.Hooks startUp
+INFO: Scenario TFSScrum_WorkitemCcreation run is starting now
+May 12, 2022 3:43:58 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-12 15:43:58.95
+May 12, 2022 3:43:59 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 12, 2022 3:44:07 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 12, 2022 3:44:07 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-12 15:44:07.317

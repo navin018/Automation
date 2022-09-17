@@ -1,5 +1,5 @@
-@IBvalidation
-Feature:Workitem_ADT
+@IBvalidation_ADT
+Feature: Workitem_ADT
 
   Scenario Outline: ADTJIRA_WorkitemCreationInUI
     Given i load the "ADT Jira" project properties file

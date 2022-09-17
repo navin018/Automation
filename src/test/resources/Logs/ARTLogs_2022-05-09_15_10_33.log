@@ -1,0 +1,10 @@
+May 09, 2022 3:10:33 PM stepDefs.Hooks startUp
+INFO: Scenario ADTJIRA_WorkitemCreationInUI run is starting now
+May 09, 2022 3:10:33 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-09 15:10:33.64
+May 09, 2022 3:10:34 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 09, 2022 3:11:21 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 09, 2022 3:11:21 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-09 15:11:21.391

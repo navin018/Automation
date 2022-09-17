@@ -1,0 +1,204 @@
+May 13, 2022 9:19:20 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Task run is starting now
+May 13, 2022 9:19:20 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:19:20.028
+May 13, 2022 9:19:33 AM testobjects.CommonFunctions generateToken
+INFO: token gen comlpete
+May 13, 2022 9:19:35 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 13, 2022 9:19:39 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:19:40 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:19:40 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Task- 349742 is flown for TFS Agile
+May 13, 2022 9:19:40 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:19:40 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:19:40.204
+May 13, 2022 9:19:57 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Epic run is starting now
+May 13, 2022 9:19:57 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:19:57.021
+May 13, 2022 9:19:58 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:19:58 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:19:59 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic- 349739 is flown for TFS Agile
+May 13, 2022 9:19:59 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:19:59 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:19:59.048
+May 13, 2022 9:20:14 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Story run is starting now
+May 13, 2022 9:20:14 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:20:14.521
+May 13, 2022 9:20:16 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:20:16 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:20:16 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Story- 349750 is flown for TFS Agile
+May 13, 2022 9:20:16 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:20:16 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:20:16.804
+May 13, 2022 9:20:32 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Issue run is starting now
+May 13, 2022 9:20:32 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:20:32.248
+May 13, 2022 9:20:34 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:20:34 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:20:34 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue- 349741 is flown for TFS Agile
+May 13, 2022 9:20:34 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:20:34 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:20:34.304
+May 13, 2022 9:20:49 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Bug run is starting now
+May 13, 2022 9:20:49 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:20:49.794
+May 13, 2022 9:20:52 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:20:53 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:20:53 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug- 349738 is flown for TFS Agile
+May 13, 2022 9:20:53 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:20:53 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:20:53.756
+May 13, 2022 9:21:09 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Feature run is starting now
+May 13, 2022 9:21:09 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:21:09.84
+May 13, 2022 9:21:11 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:21:11 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:21:12 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Feature- 349740 is flown for TFS Agile
+May 13, 2022 9:21:12 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:21:12 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:21:12.117
+May 13, 2022 9:21:27 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Requirement run is starting now
+May 13, 2022 9:21:27 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:21:27.625
+May 13, 2022 9:21:29 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:21:29 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:21:29 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Requirement- 349748 is flown for TFS Agile
+May 13, 2022 9:21:29 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:21:29 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:21:29.94
+May 13, 2022 9:21:45 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_TestCase run is starting now
+May 13, 2022 9:21:45 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:21:45.078
+May 13, 2022 9:21:46 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:21:47 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:21:47 AM utilities.reporting.Reporting create_logs_and_report
+INFO: TestCase- 349743 is flown for TFS Agile
+May 13, 2022 9:21:47 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:21:47 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:21:47.182
+May 13, 2022 9:22:03 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Risk run is starting now
+May 13, 2022 9:22:03 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:22:03.606
+May 13, 2022 9:22:05 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:22:05 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:22:05 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk- 349744 is flown for TFS Agile
+May 13, 2022 9:22:05 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:22:05 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:22:05.845
+May 13, 2022 9:22:21 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Deliverable run is starting now
+May 13, 2022 9:22:21 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:22:21.488
+May 13, 2022 9:22:23 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:22:23 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:22:23 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Deliverable- 349747 is flown for TFS Agile
+May 13, 2022 9:22:23 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:22:23 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:22:23.422
+May 13, 2022 9:22:38 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Action run is starting now
+May 13, 2022 9:22:38 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:22:38.536
+May 13, 2022 9:22:40 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:22:40 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:22:40 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Action- 349745 is flown for TFS Agile
+May 13, 2022 9:22:40 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:22:40 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:22:40.526
+May 13, 2022 9:22:55 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Decision run is starting now
+May 13, 2022 9:22:55 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:22:55.931
+May 13, 2022 9:22:57 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:22:57 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:22:57 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Decision- 349746 is flown for TFS Agile
+May 13, 2022 9:22:57 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:22:57 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:22:57.951
+May 13, 2022 9:23:13 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_Milestone run is starting now
+May 13, 2022 9:23:13 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:23:13.031
+May 13, 2022 9:23:14 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:23:15 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:23:15 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Milestone- 349749 is flown for TFS Agile
+May 13, 2022 9:23:15 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:23:15 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:23:15.086
+May 13, 2022 9:23:29 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_WorkRequest run is starting now
+May 13, 2022 9:23:29 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:23:29.991
+May 13, 2022 9:23:33 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:23:33 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 13, 2022 9:23:33 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Work Request- 349751 is flown for TFS Agile
+May 13, 2022 9:23:33 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 13, 2022 9:23:33 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-13 09:23:33.327
+May 13, 2022 9:23:49 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_DIY_IBVerification_Release_Sprint run is starting now
+May 13, 2022 9:23:49 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-13 09:23:49.245

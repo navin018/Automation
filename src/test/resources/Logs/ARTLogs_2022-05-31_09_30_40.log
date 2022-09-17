@@ -1,0 +1,88 @@
+May 31, 2022 9:30:40 AM stepDefs.Hooks startUp
+INFO: Scenario CloudJIRA_Task run is starting now
+May 31, 2022 9:30:40 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-31 09:30:40.835
+May 31, 2022 9:30:41 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 31, 2022 9:30:54 AM testobjects.CommonFunctions generateToken
+INFO: token gen comlpete
+May 31, 2022 9:30:58 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:30:58 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:30:58 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Task- CCN-5528 is flown for Cloud JIRA
+May 31, 2022 9:30:58 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 31, 2022 9:30:58 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-31 09:30:58.858
+May 31, 2022 9:31:13 AM stepDefs.Hooks startUp
+INFO: Scenario CloudJIRA_Epic run is starting now
+May 31, 2022 9:31:13 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-31 09:31:13.359
+May 31, 2022 9:31:15 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:31:16 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:31:16 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic- CCN-5531 is flown for Cloud JIRA
+May 31, 2022 9:31:16 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 31, 2022 9:31:16 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-31 09:31:16.254
+May 31, 2022 9:31:30 AM stepDefs.Hooks startUp
+INFO: Scenario CloudJIRA_Story run is starting now
+May 31, 2022 9:31:30 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-31 09:31:30.826
+May 31, 2022 9:31:33 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:31:33 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:31:33 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Story- CCN-5529 is flown for Cloud JIRA
+May 31, 2022 9:31:33 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 31, 2022 9:31:33 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-31 09:31:33.312
+May 31, 2022 9:31:47 AM stepDefs.Hooks startUp
+INFO: Scenario CloudJIRA_Bug run is starting now
+May 31, 2022 9:31:47 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-31 09:31:47.801
+May 31, 2022 9:31:49 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:31:50 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:31:50 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug- CCN-5530 is flown for Cloud JIRA
+May 31, 2022 9:31:50 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 31, 2022 9:31:50 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-31 09:31:50.258
+May 31, 2022 9:32:04 AM stepDefs.Hooks startUp
+INFO: Scenario CloudJira_DIY_IBVerification_Release_Sprint run is starting now
+May 31, 2022 9:32:04 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-31 09:32:04.852
+May 31, 2022 9:33:19 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@data-test-id='testuser04art@ds.dev.accenture.com']
+May 31, 2022 9:33:28 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='my Queries']
+May 31, 2022 9:33:28 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='tile-title'][text()='my Queries']
+May 31, 2022 9:33:48 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='Program_Cloud Jira_Devops DL']
+May 31, 2022 9:33:51 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='Program_Cloud Jira_Devops DL']
+May 31, 2022 9:34:28 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:34:50 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:35:01 AM testobjects.CommonFunctions generateToken
+INFO: token gen comlpete
+May 31, 2022 9:35:03 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:35:05 AM testobjects.Tools CreateIBReport
+INFO: Excel Report Updated for IB Validation
+May 31, 2022 9:35:05 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 31, 2022 9:35:05 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-31 09:35:05.445

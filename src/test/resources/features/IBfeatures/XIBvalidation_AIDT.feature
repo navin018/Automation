@@ -1,4 +1,4 @@
-@IBvalidation
+@IBvalidation_IBAIDT
 Feature: XIBvalidation_AIDT
 
 

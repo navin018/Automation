@@ -1,0 +1,44 @@
+May 09, 2022 9:02:26 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_WorkitemCreation run is starting now
+May 09, 2022 9:02:26 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-09 09:02:26.023
+May 09, 2022 9:02:26 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 09, 2022 9:02:48 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='project-name font-size-l font-weight-semibold text-ellipsis'][text()='TFS Agile1_ Client-Native']
+May 09, 2022 9:03:11 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug_01 id is 348935
+May 09, 2022 9:03:24 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic_01 id is 348936
+May 09, 2022 9:03:39 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Feature_01 id is 348937
+May 09, 2022 9:03:53 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue_01 id is 348938
+May 09, 2022 9:04:07 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Task_01 id is 348939
+May 09, 2022 9:04:20 AM utilities.reporting.Reporting create_logs_and_report
+INFO: TestCase_01 id is 348940
+May 09, 2022 9:04:33 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk_01 id is 348941
+May 09, 2022 9:04:47 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Action_01 id is 348942
+May 09, 2022 9:05:00 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Decision_01 id is 348943
+May 09, 2022 9:05:14 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Deliverable_01 id is 348944
+May 09, 2022 9:05:27 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Requirement_01 id is 348945
+May 09, 2022 9:05:41 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Milestone_01 id is 348946
+May 09, 2022 9:06:00 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Story_01 id is 348947
+May 09, 2022 9:06:13 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Work Request_01 id is 348948
+May 09, 2022 9:06:30 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[text()='Release_AutomationData1251']
+May 09, 2022 9:06:30 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='grid-cell-contents-container'][text()='Release_AutomationData1251']//preceding::div[@aria-label='Row actions'][1]
+May 09, 2022 9:11:41 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 09, 2022 9:11:41 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-09 09:11:41.58

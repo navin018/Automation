@@ -1,0 +1,14 @@
+May 19, 2022 7:58:03 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_WorkitemCreation run is starting now
+May 19, 2022 7:58:03 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-19 07:58:03.905
+May 19, 2022 7:58:04 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 19, 2022 7:58:27 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='project-name font-size-l font-weight-semibold text-ellipsis'][text()='TFS Agile1_ Client-Native']
+May 19, 2022 7:58:27 AM testobjects.TFSWorkitem SelectProject
+INFO: Problems with TFS project load
+May 19, 2022 7:58:27 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 19, 2022 7:58:27 AM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-19 07:58:27.707

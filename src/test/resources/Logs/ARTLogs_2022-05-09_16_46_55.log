@@ -1,0 +1,24 @@
+May 09, 2022 4:46:55 PM stepDefs.Hooks startUp
+INFO: Scenario TFSScrum_WorkitemCcreation run is starting now
+May 09, 2022 4:46:55 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-09 16:46:55.264
+May 09, 2022 4:46:56 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 09, 2022 4:47:23 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='project-name font-size-l font-weight-semibold text-ellipsis'][text()='TFS Scrum_Client-Native']
+May 09, 2022 4:47:51 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug_01 id is 349057
+May 09, 2022 4:48:07 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic_01 id is 349058
+May 09, 2022 4:48:23 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Feature_01 id is 349059
+May 09, 2022 4:48:37 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue_01 id is 349060
+May 09, 2022 4:48:52 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk_01 id is 349061
+May 09, 2022 4:49:08 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task_01 id is 349062
+May 09, 2022 4:50:04 PM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem ProductBacklog_01
+May 09, 2022 4:50:40 PM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Action_01

@@ -1,0 +1,40 @@
+May 05, 2022 9:41:54 AM stepDefs.Hooks startUp
+INFO: Scenario ADIT_WorkitemCreation run is starting now
+May 05, 2022 9:41:54 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-05 09:41:54.986
+May 05, 2022 9:41:55 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 05, 2022 9:42:28 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[text()='Release_AutomationData8624']
+May 05, 2022 9:42:28 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='grid-cell-contents-container'][text()='Release_AutomationData8624']//preceding::div[@aria-label='Row actions'][1]
+May 05, 2022 9:43:17 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug_01 id is 6716
+May 05, 2022 9:43:34 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Epic_01
+May 05, 2022 9:44:10 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Feature_01
+May 05, 2022 9:44:46 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Issue_01
+May 05, 2022 9:45:23 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Task_01
+May 05, 2022 9:45:59 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Risk_01
+May 05, 2022 9:46:36 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Action_01
+May 05, 2022 9:47:13 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Decision_01
+May 05, 2022 9:47:49 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Deliverable_01
+May 05, 2022 9:48:26 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Story_01
+May 05, 2022 9:49:02 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Impediment_01
+May 05, 2022 9:49:39 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Milestone_01
+May 05, 2022 9:50:16 AM testobjects.AIDTWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Requirement_01
+May 05, 2022 9:50:28 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 05, 2022 9:50:28 AM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-05 09:50:28.579

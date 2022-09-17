@@ -1,5 +1,5 @@
-@IBvalidation
-Feature:Workitem_AIDT
+@IBvalidation_AIDT
+Feature: Workitem_AIDT
 
   Scenario Outline: ADIT_WorkitemCreation
     Given i load the "AIDT" project properties file

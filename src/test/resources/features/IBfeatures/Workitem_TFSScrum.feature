@@ -1,4 +1,4 @@
-@IBvalidation
+@IBvalidation_TFSS
 Feature: Workitem_TFSScrum
 
   Scenario Outline: TFSScrum_WorkitemCcreation

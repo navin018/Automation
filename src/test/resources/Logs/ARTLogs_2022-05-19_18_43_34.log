@@ -1,0 +1,36 @@
+May 19, 2022 6:43:34 PM stepDefs.Hooks startUp
+INFO: Scenario ADOPJira_WorkitemCcreation run is starting now
+May 19, 2022 6:43:34 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-19 18:43:34.74
+May 19, 2022 6:43:35 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 19, 2022 6:51:14 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem New Feature_ADOP_01 for the given tool
+May 19, 2022 6:51:25 PM utilities.reporting.Reporting create_logs_and_report
+INFO: New Feature id is PHNXCN2-13199
+May 19, 2022 6:51:26 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for New Feature_ADOP_01 for the given tool
+May 19, 2022 6:55:00 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is PHNXCN2-13209
+May 19, 2022 6:55:43 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story id is PHNXCN2-13210
+May 19, 2022 6:56:27 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk id is PHNXCN2-13211
+May 19, 2022 6:57:09 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug id is PHNXCN2-13212
+May 19, 2022 6:57:51 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Impediment id is PHNXCN2-13213
+May 19, 2022 6:58:40 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is PHNXCN2-13214
+May 19, 2022 6:59:24 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue id is PHNXCN2-13215
+May 19, 2022 7:00:05 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Test id is PHNXCN2-13216
+May 19, 2022 7:11:16 PM utilities.reporting.Reporting create_logs_and_report
+INFO: TestForTestExec id is PHNXCN2-13217
+May 19, 2022 7:12:36 PM testobjects.JiraWorkitem Createtestcycle
+INFO: Test Result created for ADOP
+May 19, 2022 7:12:38 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 19, 2022 7:12:38 PM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-19 19:12:38.517

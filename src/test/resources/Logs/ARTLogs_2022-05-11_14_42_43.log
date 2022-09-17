@@ -1,0 +1,22 @@
+May 11, 2022 2:42:43 PM stepDefs.Hooks startUp
+INFO: Scenario ADOPJira_WorkitemCcreation run is starting now
+May 11, 2022 2:42:43 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-11 14:42:43.714
+May 11, 2022 2:42:44 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 11, 2022 3:17:28 PM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Impediment_01 for the given tool
+May 11, 2022 3:18:02 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Impediment id is PHNXCN2-12923
+May 11, 2022 3:18:58 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic id is PHNXCN2-12924
+May 11, 2022 3:19:46 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue id is PHNXCN2-12925
+May 11, 2022 3:20:33 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Test id is PHNXCN2-12926
+May 11, 2022 3:25:39 PM testobjects.JiraWorkitem CreateRelease
+INFO: Issues in creating release or sprint
+May 11, 2022 3:25:39 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 11, 2022 3:25:39 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-11 15:25:39.801

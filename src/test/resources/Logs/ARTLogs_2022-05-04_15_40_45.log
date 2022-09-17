@@ -1,0 +1,24 @@
+May 04, 2022 3:40:45 PM stepDefs.Hooks startUp
+INFO: Scenario CloudJira_WorkitemCcreation run is starting now
+May 04, 2022 3:40:45 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-04 15:40:45.78
+May 04, 2022 3:40:46 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 04, 2022 3:41:39 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='CloudJIRA_ClientNative']
+May 04, 2022 3:41:39 PM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='CloudJIRA_ClientNative']
+May 04, 2022 3:42:40 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Created Task_01 ID is CCN-5290
+May 04, 2022 3:42:42 PM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Story_01 for the given tool
+May 04, 2022 3:43:04 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Created Story_01 ID is CCN-5291
+May 04, 2022 3:43:30 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Created Bug_01 ID is CCN-5292
+May 04, 2022 3:44:06 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Created Epic_01 ID is CCN-5293
+May 04, 2022 3:54:36 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 04, 2022 3:54:36 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-04 15:54:36.318

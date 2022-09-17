@@ -1,0 +1,54 @@
+May 25, 2022 4:28:18 PM stepDefs.Hooks startUp
+INFO: Scenario ADOPJira_WorkitemCcreation run is starting now
+May 25, 2022 4:28:18 PM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-25 16:28:18.023
+May 25, 2022 4:28:18 PM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 25, 2022 4:29:50 PM utilities.reporting.Reporting create_logs_and_report
+INFO: New Feature id is PHNXCN2-13397
+May 25, 2022 4:31:03 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Task id is PHNXCN2-13398
+May 25, 2022 4:31:16 PM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Story_01 for the given tool
+May 25, 2022 4:32:33 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Story id is PHNXCN2-13399
+May 25, 2022 4:32:46 PM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Risk_ADOP_01 for the given tool
+May 25, 2022 4:33:40 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Risk_ADOP_01 for the given tool
+May 25, 2022 4:33:50 PM utilities.reporting.Reporting create_logs_and_report
+INFO: Risk id is PHNXCN2-13388
+May 25, 2022 4:33:52 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Risk_ADOP_01 for the given tool
+May 25, 2022 4:40:20 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Bug_01 for the given tool
+May 25, 2022 4:40:30 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Bug_01 for the given tool
+May 25, 2022 4:40:39 PM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Impediment_01 for the given tool
+May 25, 2022 4:42:16 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Impediment_01 for the given tool
+May 25, 2022 4:42:24 PM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Epic_01 for the given tool
+May 25, 2022 4:48:26 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Epic_01 for the given tool
+May 25, 2022 4:48:36 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Epic_01 for the given tool
+May 25, 2022 4:48:44 PM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Issue_ADOP_01 for the given tool
+May 25, 2022 4:54:46 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Issue_ADOP_01 for the given tool
+May 25, 2022 4:54:56 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Issue_ADOP_01 for the given tool
+May 25, 2022 4:55:05 PM testobjects.JiraWorkitem SelectWorkItemtype
+INFO: issue selecting the Test_01 for the given tool
+May 25, 2022 5:01:07 PM testobjects.JiraWorkitem CreateWorkitem
+INFO: Issue creating workitem Test_01 for the given tool
+May 25, 2022 5:01:17 PM testobjects.JiraWorkitem CaptureWorkitemID
+INFO: Issue capturing workitem details for Test_01 for the given tool
+May 25, 2022 5:11:11 PM testobjects.JiraWorkitem CreateRelease
+INFO: Issues in creating release or sprint
+May 25, 2022 5:11:14 PM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 25, 2022 5:11:14 PM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-25 17:11:14.527

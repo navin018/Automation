@@ -1,0 +1,22 @@
+May 31, 2022 9:01:02 AM stepDefs.Hooks startUp
+INFO: Scenario CloudJira_WorkitemCcreation run is starting now
+May 31, 2022 9:01:02 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-31 09:01:02.26
+May 31, 2022 9:01:03 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 31, 2022 9:01:50 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='CloudJIRA_ClientNative']
+May 31, 2022 9:01:50 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //span[text()='CloudJIRA_ClientNative']
+May 31, 2022 9:02:41 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Created Task_01 ID is CCN-5528
+May 31, 2022 9:03:08 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Created Story_01 ID is CCN-5529
+May 31, 2022 9:03:34 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Created Bug_01 ID is CCN-5530
+May 31, 2022 9:04:07 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Created Epic_01 ID is CCN-5531
+May 31, 2022 9:11:44 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 31, 2022 9:11:44 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-31 09:11:44.862

@@ -1,0 +1,12 @@
+May 18, 2022 7:43:36 AM stepDefs.Hooks startUp
+INFO: Scenario GenericUploader_NoTool run is starting now
+May 18, 2022 7:43:36 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-18 07:43:36.532
+May 18, 2022 7:43:37 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 18, 2022 7:50:18 AM testobjects.CommonAcrossApps LoginToMyWizard
+INFO: MyWizard page could not be loaded
+May 18, 2022 7:50:18 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 18, 2022 7:50:18 AM stepDefs.Hooks closeDown
+INFO: Scenario  FAILED during execution. Scenario end time: 2022-05-18 07:50:18.689

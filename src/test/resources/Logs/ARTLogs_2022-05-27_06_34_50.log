@@ -1,0 +1,44 @@
+May 27, 2022 6:34:50 AM stepDefs.Hooks startUp
+INFO: Scenario TFSAgile_WorkitemCreation run is starting now
+May 27, 2022 6:34:50 AM stepDefs.Hooks startUp
+INFO: Scenario start time: 2022-05-27 06:34:50.937
+May 27, 2022 6:34:51 AM testobjects.CommonFunctions copyFileContentFromOneFileToAnother
+INFO: Property File loaded
+May 27, 2022 6:35:17 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='project-name font-size-l font-weight-semibold text-ellipsis'][text()='TFS Agile1_ Client-Native']
+May 27, 2022 6:35:50 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Bug_01 id is 351699
+May 27, 2022 6:36:04 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Epic_01 id is 351700
+May 27, 2022 6:36:20 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Feature_01 id is 351701
+May 27, 2022 6:36:37 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Issue_01 id is 351702
+May 27, 2022 6:36:51 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Task_01
+May 27, 2022 6:37:07 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem TestCase_01
+May 27, 2022 6:37:22 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Risk_01
+May 27, 2022 6:37:38 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Action_01
+May 27, 2022 6:37:54 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Decision_01
+May 27, 2022 6:38:09 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Deliverable_01
+May 27, 2022 6:38:24 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Requirement_01
+May 27, 2022 6:38:40 AM testobjects.TFSWorkitem EnterWorkItemDetails
+INFO: issue entering workitem details for workitem Milestone_01
+May 27, 2022 6:39:03 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Story_01 id is 351703
+May 27, 2022 6:39:18 AM utilities.reporting.Reporting create_logs_and_report
+INFO: Work Request_01 id is 351704
+May 27, 2022 6:39:35 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[text()='Release_AutomationData7380']
+May 27, 2022 6:39:35 AM utilities.selenium.SeleniumDSL prepareWebElementWithDynamicXpath
+INFO: Generated xpath isBy.xpath: //div[@class='grid-cell-contents-container'][text()='Release_AutomationData7380']//preceding::div[@aria-label='Row actions'][1]
+May 27, 2022 6:44:51 AM stepDefs.Hooks closeDown
+INFO: =======================================================================
+May 27, 2022 6:44:51 AM stepDefs.Hooks closeDown
+INFO: Scenario  PASSED during execution. Scenario end time: 2022-05-27 06:44:51.36
